@@ -11,6 +11,20 @@
 |
 */
 
+use App\Model\Task;
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
+////////////// login
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
