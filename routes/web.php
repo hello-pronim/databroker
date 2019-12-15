@@ -14,6 +14,10 @@
 use App\Model\Task;
 use Illuminate\Http\Request;
 
+Route::get('/styleguide', function () {
+    return view('styleguide');
+});
+
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -22,9 +26,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
-
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+

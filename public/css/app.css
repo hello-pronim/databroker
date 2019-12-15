@@ -1,5 +1,181 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.bk-success {
+  background-color: #78E6D0 !important;
+}
+
+.bk-primary {
+  background-color: #06038D !important;
+}
+
+.bk-warn {
+  background-color: #FF6B6B !important;
+}
+
+.bk-basic {
+  background-color: #020A09 !important;
+}
+
+.bk-grey-1 {
+  background-color: #8C9196 !important;
+}
+
+.bk-grey-2 {
+  background-color: #DAE1E5 !important;
+}
+
+.bk-grey-3 {
+  background-color: #EBF0F4 !important;
+}
+
+.bk-grey-4 {
+  background-color: #F8FAFD !important;
+}
+
+@media (min-width: 768px) {
+  .h1-big {
+    font: Bold 64px/64px DM Sans !important;
+    letter-spacing: 1.14px !important;
+  }
+
+  .h1-smaller {
+    font: Bold 40px/44px DM Sans !important;
+    letter-spacing: 0.71px !important;
+  }
+
+  .h2 {
+    font: Bold 30px/36px DM Sans !important;
+    letter-spacing: 0.54px !important;
+  }
+
+  .h3 {
+    font: Bold 21px/28px DM Sans !important;
+    letter-spacing: 0.37px !important;
+  }
+
+  .h4-intro {
+    font: Bold 18px/27px DM Sans !important;
+    letter-spacing: 0 !important;
+  }
+
+  .paragraph {
+    font: Regular 18px/27px DM Sans !important;
+    letter-spacing: 0 !important;
+  }
+
+  .paragraph-small {
+    font: Regular 14px/21px DM Sans !important;
+    letter-spacing: 0 !important;
+  }
+
+  .button-font {
+    font: Bold 14px/18px DM Sans !important;
+    letter-spacing: 0.25px !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .h1-big-sm {
+    font: Bold 42px/44px DM Sans !important;
+    letter-spacing: 0.75px !important;
+  }
+
+  .h1-smaller-sm {
+    font: Bold 30px/36px DM Sans !important;
+    letter-spacing: 0.54px !important;
+  }
+
+  .h2-sm {
+    font: Bold 24px/30px DM Sans !important;
+    letter-spacing: 0.43px !important;
+  }
+
+  .h3-sm {
+    font: Bold 18px/21px DM Sans !important;
+    letter-spacing: 0.32px !important;
+  }
+
+  .h4-intro-sm {
+    font: Bold 16px/27px DM Sans !important;
+    letter-spacing: 0 !important;
+  }
+
+  .paragraph-sm {
+    font: Regular 14px/24px DM Sans !important;
+    letter-spacing: 0 !important;
+  }
+
+  .paragraph-small-sm {
+    font: Regular 14px/24px DM Sans !important;
+    letter-spacing: 0 !important;
+  }
+}
+
+.btn-primary {
+  background: #FF6B6B 0% 0% no-repeat padding-box !important;
+  border-color: #FF6B6B !important;
+  box-shadow: 0px 15px 25px #FF6B6B26 !important;
+  border-radius: 30px !important;
+  font: Bold 14px/18px DM Sans !important;
+  letter-spacing: 0.25px !important;
+  color: #FFFFFF !important;
+}
+
+.btn-primary:hover {
+  background: #E15757 0% 0% no-repeat padding-box !important;
+  border-color: #E15757 important;
+  box-shadow: 0px 15px 25px #FF6B6B33 !important;
+}
+
+.btn-primary:focus {
+  background: #E15757 0% 0% no-repeat padding-box !important;
+  border-color: #E15757 important;
+  box-shadow: 0px 2px 4px #FF6B6B4D !important;
+}
+
+.btn-secondary {
+  border: 2px solid #06038D !important;
+  border-color: #06038D important;
+  border-radius: 30px !important;
+  font: Bold 14px/18px DM Sans !important;
+  letter-spacing: 0.25px !important;
+  color: #06038D !important;
+}
+
+.btn-secondary:hover {
+  border: 2px solid #FF6B6B !important;
+  border-color: #FF6B6B important;
+  color: #FF6B6B !important;
+}
+
+.btn-secondary:focus {
+  border: 2px solid #FF6B6B !important;
+  border-color: #FF6B6B important;
+  color: #FF6B6B !important;
+}
+
+.form-check .form-check-input:checked ~ .form-check-sign .custom-check {
+  background: #78E6D0 !important;
+}
+
+.round-inputbox {
+  border: 2px solid #DAE1E5 !important;
+  border-radius: 24px !important;
+  color: #020A09 !important;
+  background-image: unset;
+  background: unset !important;
+}
+
+.round-inputbox.error {
+  border-color: #FF6B6B !important;
+  color: #FF6B6B !important;
+}
+
+.round-inputbox.success {
+  border-color: #78E6D0 !important;
+  color: #FF6B6B !important;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
