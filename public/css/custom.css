@@ -1,0 +1,14 @@
+/*Header*/
+.fixed_bg .navbar{
+	background-color: transparent !important;
+	color: #fff;
+	padding:0px;
+}
+.fixed_bg .navbar .navbar-nav .nav-item .nav-link{
+	padding:5px 0px;
+	text-transform: none;
+	font-size: 14px;
+}
+.fixed_bg .navbar .navbar-nav .nav-item.dropdown{
+	padding-left: 20px;
+}
