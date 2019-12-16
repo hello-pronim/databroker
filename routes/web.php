@@ -11,6 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+use App\Model\Task;
+use Illuminate\Http\Request;
+
+Route::get('/styleguide', function () {
+    return view('styleguide');
 });
+
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+////////////// login
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+
+
+
