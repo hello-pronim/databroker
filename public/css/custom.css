@@ -72,3 +72,24 @@
 	border-top: 1px solid #DAE1E5;
 	border-bottom: 1px solid #DAE1E5;
 }
+#main_menu >.container{
+	justify-content: center;
+}
+#main_menu .navbar-collapse{
+	flex-grow: 0;
+}
+
+#main_menu .navbar-nav li{
+	border-left:1px solid #DAE1E5;
+}
+
+#main_menu .navbar-nav li:first-child{
+	border:none;
+}
+
+#main_menu .navbar-nav li a{
+	padding:0.35rem 1rem;
+	font-weight: bold;
+	text-transform: capitalize;
+	color: #8C9196;
+}
