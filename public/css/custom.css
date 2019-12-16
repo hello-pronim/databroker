@@ -1,9 +1,18 @@
 /* Colors */
+
 /*Header*/
+.fixed_bg {
+	background-color: #06038D;
+}
 .fixed_bg .navbar{
 	background-color: transparent !important;
 	color: #fff;
 	padding:0px;
+	margin: 0px;
+}
+.fixed_bg .navbar .material-icons {
+	margin-top: -10px !important;
+	margin-right: 6px !important;
 }
 .fixed_bg .navbar .navbar-nav .nav-item .nav-link{
 	padding:5px 0px;
@@ -64,6 +73,12 @@
 }
 .fixed_bg .dropdown-menu a.dropdown-item:hover{
 	background-color:#06038D !important;	
+}
+.app-top-bar{
+	display: flex;
+}
+.app-top-bar .app-brand{
+	margin:30px auto;
 }
 
 #main_menu{
