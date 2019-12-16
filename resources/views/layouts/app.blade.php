@@ -62,9 +62,11 @@
 		        				<h5> {{ trans('home.me_buyer') }} </h5>
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.bids') }} </a>
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.purchases') }} </a>
+		        				<div class="dropdown-divider"></div>
 		        				<h5> {{ trans('home.me_seller') }} </h5>
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.company_profile') }} </a>
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.data_offers') }} </a>
+		        				<div class="dropdown-divider"></div>
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.signout') }} </a>
 		        			</div>
 		        		</li>
@@ -111,11 +113,44 @@
                           <path id="Path_7866" data-name="Path 7866" d="M151.875,411.614a14.475,14.475,0,1,0,20.273,2.849,14.476,14.476,0,0,0-20.273-2.849" transform="translate(-117.631 -380.236)" fill="#78e6d0"></path>
                           <path id="Path_7867" data-name="Path 7867" d="M154.616,412.637h0l0,0a23.216,23.216,0,0,1,37.188,18.5l19.726-14.88.013.017V388.237h-85.91V434.5Z" transform="translate(-125.637 -388.237)" fill="#78e6d0"></path>
                           <path id="Path_7868" data-name="Path 7868" d="M182.565,438.581a23.215,23.215,0,0,1-37.188-18.5l-19.726,14.88-.014-.017v28.07h85.91V416.718Z" transform="translate(-125.637 -377.1)" fill="#78e6d0"></path>
-                        </svg>
+                        </svg>                        
                     </a>
                 </div>                
                 <div class="clear"></div>
             </div>
+        </div>
+        <div class="container-fluid">
+        	<nav class="navbar  bg-white navbar-expand-lg " id="main_menu">
+			    <div class="container">
+			      <div class="navbar-translate">			        
+			        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+			          <span class="sr-only">Toggle navigation</span>
+			          <span class="navbar-toggler-icon"></span>
+			          <span class="navbar-toggler-icon"></span>
+			          <span class="navbar-toggler-icon"></span>
+			        </button>
+			      </div>
+			      <div class="collapse navbar-collapse">
+			        <ul class="navbar-nav ml-auto">
+			          <li class="dropdown nav-item">
+			            <a href="#" class="nav-link">
+			              Components
+			            </a>			            
+			          </li>
+			          <li class="dropdown nav-item">
+			            <a href="#" class="nav-link">
+			              Sections
+			            </a>			           
+			          </li>
+			          <li class="dropdown nav-item">
+			            <a href="#" class="nav-link">
+			              Examples
+			            </a>			            
+			          </li>			          
+			        </ul>
+			      </div>
+			    </div>
+			  </nav>
         </div>
         <dir class="cookie-accept">
             <div class="cookie-accept-container">
@@ -168,7 +203,7 @@
                       <path id="Path_7866" data-name="Path 7866" d="M151.875,411.614a14.475,14.475,0,1,0,20.273,2.849,14.476,14.476,0,0,0-20.273-2.849" transform="translate(-117.631 -380.236)" fill="#78e6d0"></path>
                       <path id="Path_7867" data-name="Path 7867" d="M154.616,412.637h0l0,0a23.216,23.216,0,0,1,37.188,18.5l19.726-14.88.013.017V388.237h-85.91V434.5Z" transform="translate(-125.637 -388.237)" fill="#78e6d0"></path>
                       <path id="Path_7868" data-name="Path 7868" d="M182.565,438.581a23.215,23.215,0,0,1-37.188-18.5l-19.726,14.88-.014-.017v28.07h85.91V416.718Z" transform="translate(-125.637 -377.1)" fill="#78e6d0"></path>
-                    </svg>
+                    </svg>                    
                 </div>
                 <div class="app-footer-social-link-container">
                     <div class="app-footer-social-link">
@@ -209,6 +244,7 @@
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>        
+    <script src="{{ asset('js/app.js') }}"></script>        
             
     
     <script type="text/javascript">
