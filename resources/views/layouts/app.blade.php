@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/material.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('css/v4-shims.css') }}">        
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
@@ -246,6 +247,7 @@
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>        
     <script src="{{ asset('js/app.js') }}"></script>        
+    <script src="{{ asset('js/custom.js') }}"></script>   
             
     
     <script type="text/javascript">
