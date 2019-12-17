@@ -159,6 +159,15 @@
     background: $color-success !important;
 }
 
+// Radiobutton
+.form-check .form-check-input:checked~.circle .custom-check {
+    background: $color-success !important;
+}
+
+.form-check .form-check-input:checked~.circle {
+    border-color: unset;
+}
+
 // Input
 .round-inputbox {
 	border: 2px solid $color-grey-2 !important;
