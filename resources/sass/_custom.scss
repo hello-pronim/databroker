@@ -226,7 +226,7 @@
 	max-width: 400px;
 }
 
-#login_section .customize-btn, #register_link {
+#login_section .customize-btn, #register_section .customize-btn, #register_link {
     height: 38px;    
     width: 170px;    
     font-size: 12px;    
@@ -239,9 +239,10 @@
     border-width: 1px !important;
 }
 
-#forgot_pass_link {
-	font-size: 10px;
+#forgot_pass_link, #login_link {
+	font-size: 12px;
     float: right;
+    text-transform: unset;
 }
 
 #login_title {	

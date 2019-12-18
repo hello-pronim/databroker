@@ -128,9 +128,20 @@
                             <span class="custom-check check"></span>
                         </span>
                     </label>
-                </div>                        
+                </div> 
+                <br>                       
+                
+                <div class="form-group row mb-0">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn customize-btn pure-material-button-outlined">CREAT ACCOUNT</button>
 
-                <button type="submit" class="btn customize-btn pure-material-button-outlined">CREAT ACCOUNT</button>
+                        @if (Route::has('password.request'))
+                            <a class="btn btn-link" id="login_link" href="{{ route('login') }}">
+                                {{ __('Already have a account?') }}
+                            </a>
+                        @endif
+                    </div>
+                </div>
                 
             </form>            
         </div>
