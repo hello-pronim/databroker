@@ -69,7 +69,11 @@
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.company_profile') }} </a>
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.data_offers') }} </a>
 		        				<div class="dropdown-divider"></div>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.signout') }} </a>
+		        				<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"> {{ trans('home.signout') }} </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
 		        			</div>
 		        		</li>
 		        	</ul>		    

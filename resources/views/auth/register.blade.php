@@ -10,7 +10,7 @@
                 @csrf
 
                 <label class="pure-material-textfield-outlined">
-                    <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                    <input type="text" id="firstname" name="name" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
                     <span>First name</span>
                     <div class="error_notice"> This field is required</div>
                     @error('firstname')
@@ -111,7 +111,7 @@
                 </div>
 
                 <label class="pure-material-textfield-outlined">
-                    <input type="text" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="{{ old('password') }}" required autocomplete="password" autofocus>
+                    <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="" required autofocus>
                     <span>{{ __('Password') }}</span>
                     <div class="error_notice"> This field is required</div>
                     @error('password')
@@ -120,6 +120,18 @@
                         </span>
                     @enderror
                 </label>
+
+                <label class="pure-material-textfield-outlined">
+                    <input type="password" id="password-confirm" name="password_confirmation" class="form-control input_data @error('password-confirm')  is-invalid @enderror" placeholder=" "  value="" required autofocus>
+                    <span>{{ __('Confirm Password') }}</span>
+                    <div class="error_notice"> This field is required</div>
+                    @error('password-confirm')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </label>
+
                 <div class="form-check">
                     <label class="form-check-label">                
                         <input class="form-check-input" type="checkbox" value="">

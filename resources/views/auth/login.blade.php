@@ -21,7 +21,7 @@
                 </label>
 
                 <label class="pure-material-textfield-outlined">
-                    <input type="text" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="{{ old('password') }}" required autocomplete="password" autofocus>
+                    <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="{{ old('password') }}" required autocomplete="password" autofocus>
                     <span>{{ __('Password') }}</span>
                     <div class="error_notice"> This field is required</div>
                     @error('password')
