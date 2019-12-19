@@ -180,6 +180,52 @@
             </code>
         </pre>
     </div>
+    <h2>RadioButton</h2>
+    <div class="bd-example" data-example-id="">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="radio" value="">
+          Normal
+          <span class="circle">
+            <span class="custom-check check"></span>
+          </span>
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="radio" value="" disabled="">
+          Inactive
+          <span class="circle">
+            <span class="check"></span>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="highlight">
+        <pre>
+            <code class="language-html" data-lang="html">
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-check"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-check-label"</span><span class="nt">&gt;</span>                
+                        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-check-input"</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>
+                        Normal
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"circle"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"custom-check check"</span><span class="nt">&gt;&lt;/span&gt;</span>
+                        <span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-check"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-check-label"</span><span class="nt">&gt;</span>                
+                        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-check-input"</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>
+                        Inactive
+                        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"circle"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"check"</span><span class="nt">&gt;&lt;/span&gt;</span>
+                        <span class="nt">&lt;/span&gt;</span>
+                    <span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            </code>
+        </pre>
+    </div>
     <h2>Input</h2>
     <div class="bd-example">
         <div class="form-group col-md-6 bmd-form-group">        
@@ -211,7 +257,19 @@
     </div>
     <h2></h2>
     <div class="bd-example">
-      
+        <select id="inputState" class="form-control">
+                  <option selected disabled hidden>Choose...</option>
+                  <option>...</option>
+                </select>
+    </div>    
+    <div class="highlight">
+        <pre>
+            <code class="language-html" data-lang="html" style="font-size: 14px">                
+            </code>
+        </pre>
+    </div>
+    <h2></h2>
+    <div class="bd-example">          
     </div>    
     <div class="highlight">
         <pre>
