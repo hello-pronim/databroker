@@ -1451,6 +1451,10 @@ i.fa.fa-facebook.fa-3x.fa-gradient {}
     content: "\f224"
 }
 
+.fa.fa-pinterest:before {
+    content: "\f0d2"   
+}
+
 .fa.fa-facebook-official {
     font-family: "Font Awesome 5 Brands";
     font-weight: 400

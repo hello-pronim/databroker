@@ -5,14 +5,28 @@
 .text-white{
 	color:white;
 }
+.text-grey{
+	color:#BAC0C5;
+}
+.text-bold{
+	font-size: bold;
+}
+.text-green{
+	color:#78E6D0;
+}
 .bd-white{
 	border:1px solid #fff !important;
 }
 /*General style*/
-.mb-40{
+.mb-20{
 	margin-bottom: 20px;
 }
-
+.mt-40{
+	margin-top: 40px;	
+}
+.mt-80{
+	margin-top: 80px;	
+}
 /*Font*/
 h1,h2,h3,h4,h5,h6{
 	font-family: DM Sans;
@@ -131,9 +145,30 @@ h1,h2,h3,h4,h5,h6{
 /*Homepage*/
 .card{
 	border:none;
-}
-.card:after{
 	border-radius: 0px;
+	box-shadow: none;
+}
+.card .card-header{
+	padding: 0px;
+}
+.card .card-header img{
+	width: 100%;
+}
+.card .card-title {
+	font-family: DM Sans;
+	font-size: 16px;
+}
+.card .card-category{
+	font-family: DM Sans;
+	font-size: 14px;
+	color: #000 !important;
+	text-transform: capitalize;
+	font-weight: normal;
+}
+.card.card-background:after{
+	border-radius: 0px;
+	background-color: none;
+	opacity: 0;
 }
 .card.card-background .card-body{
 	margin: 0px;
@@ -144,21 +179,82 @@ h1,h2,h3,h4,h5,h6{
 	color: #78E6D0 !important;
 	text-transform: capitalize;
 }
-
+.card.card-background .card-body .card-author{
+	color: #fff;
+	margin-top: 30px;
+}
+.card.card-background .card-body .card-author img{
+	width: 92px;
+	margin-top: -5px;
+}
+.card.card-profile .card-body .img{
+	width: 85px;
+}
+.card .card-body .card-description{
+	color: #000;	
+}
 .btn.readmore{
 	color:white;
 	border: 1px solid #fff;
 	font-size: 0.7em;
 	padding: 0.75em 3.5em;
 	text-transform: uppercase;
-
 }
-
 .app-partner-items div.app-partner-item{
 	border: 1px solid #ddd;
 }
-
+.app-partner-item .icon img{
+	width: 30%;
+    max-height: 60px;
+}
+.app-partner-item .img{
+	text-align: center;
+}
+.app-partner-item .img img{
+	max-width: 100%;
+    max-height: 90px;
+    margin: 20px auto;
+}
 .info{
 	text-align: center;
 	padding:35px 0 18px;
+}
+.text-free{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: -1.5rem;
+}
+/*footer section1*/
+.footer_section1 ul h5{
+	font-size: 18px;
+	font-weight: bold;
+}
+.footer_section1 ul li{
+	margin-bottom: 10px;
+}
+.footer_section1 ul li a {
+	color: #8c9196;
+	font-weight: 500;
+}
+.footer_section1 ul li:before{
+	content: ">";
+	display: inline-block;
+	color: #8c9196;	
+	font-weight: 500;
+	padding-right: 5px;
+}
+.footer_section1 .readmore-inourblog-btn {
+	margin: 50px auto;
+}
+.app-footer-section{
+	display: table;
+}
+.app-footer-section >div{
+	display: table-cell;
+	width: 33.33%;
+	vertical-align: middle;
+}
+.app-footer-section .app-footer-social-link-container{
+	text-align: right;
 }

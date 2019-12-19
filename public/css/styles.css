@@ -195,7 +195,7 @@ body {
 .app-reveal-section {
     max-width: 1440px;
     margin: 0px auto;
-    padding: 60px 30px 120px 15px;
+    padding: 60px 30px 50px 15px;
 }
 
 .app-reveal-section-notify {
@@ -258,17 +258,20 @@ body {
 }
 
 .section_splitor {
-    background: url(../images/patterns/white_pattern.png?v1);
-    height: 26px;
-    margin-bottom: 60px;
-    background-size: 17.3px;
+    background: url(../images/patterns/section_splitor.png);
+    height: 70px;
+    margin-bottom: 60px;    
+    background-size: contain;
+    margin: 50px auto;
 }
 
-.section_splitor_green {
-    background: url(../images/patterns/green_pattern.png?v1);
-    height: 26px;
-    width: 32%;
-    background-size: 17.3px;
+.section_splitor_green{
+    background: url("../images/patterns/green-pattern.svg");
+    height: 32px;
+    background-repeat:repeat-x;
+    width: 100%;
+    background-size: contain;
+    margin:50px auto;
 }
 
 .section_splitor2 {
@@ -295,7 +298,7 @@ body {
     width: 50px;
     height: 2px;
     background-color: #78E6D0;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .app-monetize-section-item1 h1 {
@@ -311,10 +314,12 @@ body {
 }
 
 .app-monetize-section-item1 p {
-    margin: 50px auto;
+    margin: 15px auto 50px;
     font-weight: 500;
     max-width: 780px;
     text-align: center;
+    color: #020A09;
+    font-size: 18px;
 }
 
 .app-monetize-section-item2 {
@@ -683,9 +688,9 @@ img.app-partner-item {
 }
 
 .app-footer-section {
-    max-width: 1200px;
+    width: 100%;
     margin: 0px auto;
-    padding: 20px;
+    padding: 20px 0px;
     color: #aaaaaa;
 }
 
@@ -741,15 +746,11 @@ img.app-partner-item {
 }
 
 .app-footer-link {
-    position: absolute;
-    top: 73px;
-    left: 40px;
+    
 }
 
 .app-footer-social-link-container {
-    position: absolute;
-    top: 64px;
-    right: 40px;
+  
 }
 
 .app-footer-link a {
