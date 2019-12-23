@@ -2,6 +2,9 @@
 .btn-transparent{
 	background-color: transparent;	
 }
+.text-primary{
+	color: #06038D !important;
+}
 .text-white{
 	color:white;
 }
@@ -9,7 +12,7 @@
 	color:#BAC0C5;
 }
 .text-bold{
-	font-size: bold;
+	font-weight: bold;
 }
 .text-green{
 	color:#78E6D0;
@@ -21,6 +24,12 @@
 .mb-20{
 	margin-bottom: 20px;
 }
+.mb-50{
+	margin-bottom: 50px;
+}
+.mt-20{
+	margin-top: 20px;	
+}
 .mt-40{
 	margin-top: 40px;	
 }
@@ -30,6 +39,55 @@
 /*Font*/
 h1,h2,h3,h4,h5,h6{
 	font-family: DM Sans;
+}
+
+/*General Style*/
+
+.custom-btn1 {
+    border: 2px solid #06038D;
+    border-radius: 25px;
+    color: #06038D;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    width: 224px;
+    height: 50px;
+    margin: 20px 0px;
+}
+
+.custom-btn1:hover {
+    color: #4542bd;
+    border: 2px solid #4542bd;
+}
+.bg-pattern-side{
+	position: relative;
+}
+.bg-pattern-side:before{
+	content: "";
+	background-image: url("../images/patterns/background_02.png");
+	background-position: left;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 400px;
+    height: 400px;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.bg-pattern-side:after{
+	content: "";
+	background-image: url("../images/patterns/background_01.png");
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 400px;
+    height: 400px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 /*Header*/
@@ -258,3 +316,32 @@ h1,h2,h3,h4,h5,h6{
 .app-footer-section .app-footer-social-link-container{
 	text-align: right;
 }
+
+/*Login*/
+
+#auth{
+	-webkit-box-shadow: 0px 1px 3px #DAE1E5 !important;
+	-moz-box-shadow: 0px 1px 3px #DAE1E5 !important;
+	box-shadow: 0px 1px 3px #DAE1E5 !important;		
+	border-bottom: 1px solid #DAE1E5;	
+	position: relative;
+	margin-bottom: 4rem;
+}
+.auth-section h1{
+	font-size: 64px !important;	
+	line-height: 70px !important;		
+}
+.auth-section .h4-intro{
+	font-size: 24px !important;
+	line-height: 30px !important;	
+}
+.auth-section .btn-link:hover{
+	border: 1px solid transparent !important;
+	color: #eb4444;
+}
+#forgot_pass_link, #login_link{
+	text-transform: capitalize;
+	margin: 34px 0px;
+	font-weight: bold;
+}
+/*Register*/
