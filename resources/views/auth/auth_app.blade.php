@@ -85,7 +85,7 @@
   			<div class="section_splitor_green"></div>
   			<div class="container footer_section1">
   				<div class="row">
-  					<div class="col-md-3">
+  					<div class="col-xl-3 col-md-6">
   						<h5>Discover our data communities</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="/presentation">About Us</a></li> 
@@ -96,7 +96,7 @@
   							<li> <a href="/coupon">Get coupon</a></li> 
   						</ul>
   					</div>
-  					<div class="col-md-3">
+  					<div class="col-xl-3 col-md-6">
   						<h5>Discover our data communities</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="/presentation">About Us</a></li> 
@@ -107,7 +107,7 @@
   							<li> <a href="/coupon">Get coupon</a></li> 
   						</ul>
   					</div>
-  					<div class="col-md-3">
+  					<div class="col-xl-3 col-md-6">
   						<h5>Discover our data communities</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="/presentation">About Us</a></li> 
@@ -118,7 +118,7 @@
   							<li> <a href="/coupon">Get coupon</a></li> 
   						</ul>
   					</div>
-  					<div class="col-md-3">
+  					<div class="col-xl-3 col-md-6">
   						<h5>Discover our data communities</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="/presentation">About Us</a></li> 
@@ -138,42 +138,42 @@
 			        </div>
 			    </div>
 			    <div class="app-partner-items row">
-		        	<div class="col-md-2">
+		        	<div class="col-lg-2 col-md-4">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/partner_1.png') }}">
 			                </div>        
 		        		</div>
 		        	</div>
-		        	<div class="col-md-2">
+		        	<div class="col-lg-2 col-md-4">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/partner_2.png') }}">
 			                </div>        
 		        		</div>
 		        	</div>
-		        	<div class="col-md-2">
+		        	<div class="col-lg-2 col-md-4">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/partner_3.png') }}">
 			                </div>        
 		        		</div>
 		        	</div>
-		        	<div class="col-md-2">
+		        	<div class="col-lg-2 col-md-4">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/partner_4.png') }}">
 			                </div>        
 		        		</div>
 		        	</div>
-		        	<div class="col-md-2">
+		        	<div class="col-lg-2 col-md-4">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/partner_5.png') }}">
 			                </div>        
 		        		</div>
 		        	</div>
-		        	<div class="col-md-2">
+		        	<div class="col-lg-2 col-md-4">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/europense.png') }}">

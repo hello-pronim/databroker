@@ -4,7 +4,7 @@
 <div class="container-fluid app-wapper">    
     <div class="container">
         <div class="row justify-content-center auth-section">
-            <div class="col-md-6">                
+            <div class="col-lg-8 col-md-10">                
                 <h1 class="h1-smaller color-primary text-center text-primary">{{ __('Reset Password') }}</h1>                
                 
                 @if (session('status'))

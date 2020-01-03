@@ -3,3 +3,12 @@
     max-width: 1440px;
   }
 }
+
+@media (min-width: 1024px) {
+	.app-reveal-section-notify h1{
+		font-size: 48px;
+	}
+	.app-reveal-section-notify p{
+		font-size: 24px;
+	}
+}

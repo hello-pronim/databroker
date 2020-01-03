@@ -102,8 +102,8 @@
 
                     <label class="pure-material-textfield-outlined">
                         <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="" required autofocus>
-                        <span>{{ __('Password') }}</span>
-                        <div class="error_notice"> This field is required</div>
+                        <span>{{ trans('auth.password') }}</span>
+                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Password']) }}</div>
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -113,8 +113,8 @@
 
                     <label class="pure-material-textfield-outlined">
                         <input type="password" id="password-confirm" name="password_confirmation" class="form-control input_data @error('password-confirm')  is-invalid @enderror" placeholder=" "  value="" required autofocus>
-                        <span>{{ __('Confirm Password') }}</span>
-                        <div class="error_notice"> This field is required</div>
+                        <span>{{ trans('auth.confirm_password') }}</span>
+                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Confirm Password']) }}</div>
                         @error('password-confirm')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

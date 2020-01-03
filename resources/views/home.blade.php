@@ -4,13 +4,15 @@
 @section('content')
 <div class="container-fluid app-wapper">	
     <div class="top-bg-image"></div>
-    <div class="app-section app-reveal-section align-items-center">
-        <div class="app-reveal-section-notify" style="margin-bottom: 0;">
-            <h1>Welcome to <br> databroker. </h1>
-            <p>Here comes an extra copy line. Lorem<br>
-                ipsum dolor sit amet, consectetur</p>
-        </div>
-    </div>
+    <div class="container">
+    	<div class="app-section app-reveal-section align-items-center">
+	        <div class="app-reveal-section-notify" style="margin-bottom: 0;">
+	            <h1>Welcome to <br> databroker. </h1>
+	            <p>Here comes an extra copy line. Lorem<br>
+	                ipsum dolor sit amet, consectetur</p>
+	        </div>
+	    </div>
+    </div>    
     <img class="app-reveal-section-mark2" src="{{ asset('images/reveal_mark1.jpg') }}">
     <div class="app-section app-reveal-section align-items-center" style="padding-top: 0;">    
         <img class="app-reveal-section-mark" src="{{ asset('images/reveal_mark0.jpg') }}">
@@ -27,7 +29,10 @@
 						<h6 class="card-category text-info tx-success">Featured</h6>
 						<h3 class="card-title">Weather data</h3>
 						<p class="card-description">
-							Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+							Short description (eg. Get current weather and daily
+							forecasts. iteractive maps show precipitation, clouds,
+							pressure, wind around your location. Now available for 
+							all countries in Europe.)							
 						</p>
 						<a href="#pablo" class="btn btn-round readmore">
 							READ MORE

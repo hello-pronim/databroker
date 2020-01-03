@@ -20,5 +20,7 @@ return [
     'last_name' => 'Last Name',
     'email_address' => 'Email Address',
     'company' => 'Company',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm Password'
 
 ];

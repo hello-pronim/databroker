@@ -196,7 +196,7 @@ body {
 .app-reveal-section {
     max-width: 1440px;
     margin: 0px auto;
-    padding: 60px 30px 50px 15px;
+    padding: 60px 30px 50px 0px;
 }
 
 .app-reveal-section-notify {
