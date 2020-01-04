@@ -23,10 +23,12 @@ Route::get('/', function () {
 });
 ////////////// login
 Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/data/{id}', 'DataController@details')->name('details');
 
-Auth::routes();
+
 
 
 
