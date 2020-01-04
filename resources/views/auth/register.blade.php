@@ -1,17 +1,17 @@
 @extends('auth.auth_app')
 
 @section('content')
-<div class="container-fluid app-wapper bg-pattern-side">    
+<div class="container-fluid app-wapper bg-pattern-side">
     <div class="container">
         <div class="row justify-content-center auth-section">
             <div class="col-md-8" id="register_section">
                 <h1 class="h1-smaller text-primary text-center" id="register_title">Let's get you set up on<br>Databroker dao!</h1>
-                <br>            
+                <br>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="firstname" name="name" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                        <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
                         <span>{{ trans('auth.first_name') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'First Name']) }}</div>
                         @error('firstname')
@@ -33,10 +33,10 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input type="text" id="email" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress') }}" required autocomplete="emailAddress" autofocus>
                         <span>{{ trans('auth.email_address') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
-                        @error('email')
+                        @error('emailAddress')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -123,18 +123,18 @@
                     </label>
 
                     <div class="form-check">
-                        <label class="form-check-label">                
+                        <label class="form-check-label">
                             <input class="form-check-input" type="checkbox" value="">
                             <b class="">Yes, I accept the <font style="color: #78E6D0;">terms and conditions</font> and <font style="color: #78E6D0;">the privacy</font> of Databroker dao</b>
                             <span class="form-check-sign">
                                 <span class="custom-check check"></span>
                             </span>
                         </label>
-                    </div> 
-                    <br>                       
-                    
-                    <div class="form-group row mb-0">                        
-                        <div class="col-md-6">                                
+                    </div>
+                    <br>
+
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6">
                             <button type="submit" class="btn customize-btn">CREAT ACCOUNT</button>
                         </div>
 
@@ -144,12 +144,12 @@
                                     {{ __('Already have a account?') }}
                                 </a>
                             @endif
-                        </div>                        
+                        </div>
                     </div>
-                    
-                </form>            
+
+                </form>
             </div>
         </div>
     </div>
-</div> 
+</div>
 @endsection
