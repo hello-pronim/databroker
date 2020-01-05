@@ -42,7 +42,23 @@ h1,h2,h3,h4,h5,h6{
 }
 
 /*General Style*/
-
+.sendmessage-btn{
+	border: 2px solid #06038D;
+	background:transparent;
+    border-radius: 25px;
+    color: #06038D;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    width: 200px;
+    height: 50px;
+    margin: 20px 0px;
+}
+.sendmessage-btn:hover {
+    color: #4542bd;
+    border: 2px solid #4542bd;
+}
 .custom-btn1 {
     border: 2px solid #06038D;
     border-radius: 25px;
@@ -60,6 +76,7 @@ h1,h2,h3,h4,h5,h6{
     color: #4542bd;
     border: 2px solid #4542bd;
 }
+
 .bg-pattern-side{
 	position: relative;
 }
@@ -89,7 +106,31 @@ h1,h2,h3,h4,h5,h6{
     right: 0;
     top: 0;
 }
-
+.bg-pattern1-left{
+	position: relative;
+}
+.bg-pattern1-left:before{
+	content: "";
+	background-image: url("../images/patterns/BG-left-desktop.svg");
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 700px;
+    height: 400px;
+    display: block;
+    position: absolute;
+    left:0;
+    top: 0;	
+}
+.back-icon{
+	color: #BAC0C5;
+	font-size: 14px;
+	font-weight: bold;	
+}	
+.back-icon span{
+	vertical-align: middle;
+	margin-left: 10px;	
+}
 /*Header*/
 .fixed_bg {
 	background-color: #06038D;
@@ -198,6 +239,7 @@ h1,h2,h3,h4,h5,h6{
 	font-weight: bold;
 	text-transform: capitalize;
 	color: #8C9196;
+	font-size: 16px;
 }
 
 /*Homepage*/
@@ -346,3 +388,128 @@ h1,h2,h3,h4,h5,h6{
 	font-weight: bold;
 }
 /*Register*/
+
+
+/*Blogs*/
+.blog-header h1{
+	font-size: 40px;
+	font-weight: bold;
+	color: #06038D;
+}
+.blog-header p.area{
+	font-size: 18px;
+	color: #020A09;
+	margin-top: -10px;
+}
+.blog-header p.category{
+	font-size: 18px;
+	color: #78E6D0;
+}
+.blog-content {
+
+}
+.blog-content .blog-img{
+	width: 100%;	
+}
+.blog-content .explain{
+	font-size: 30px;
+	font-weight: bold;
+	color: #020A09;
+}
+.blog-content .subcategory, .blog-content .country{
+	font-size: 18px;	
+	color: #020A09;
+	display: block;
+	margin:10px 0;
+}
+.blog-content .author_avatar{
+	border: 1px solid #DAE1E5;
+	padding: 30px 40px;
+	width: fit-content;
+	margin:10px 0 30px 0;
+}
+.blog-content .author{
+	font-size: 18px;
+	color: #78E6D0;	
+	display: block;
+}
+.blog-content .nav-tabs-wrapper{
+	margin:20px 0;
+	border-bottom: 1px solid #D0D7DD;
+}
+.blog-content .nav-tabs-wrapper .nav-tabs{
+	padding: 0px;
+}
+.blog-content .nav-tabs-wrapper .nav-item a{
+	color: #8C9196 !important;
+	font-size: 18px;
+	text-transform: capitalize;
+}
+.blog-content .nav-tabs-wrapper .nav-item a:hover{
+	color: #020A09 !important;
+}
+.blog-content .nav-tabs-wrapper .nav-item a.active{
+	color: #020A09 !important;
+	border-bottom: 2px solid #78E6D0 !important;
+}
+.blog-content .tab-content .tab-pane h2{
+	font-size: 30px;
+	font-weight: bold;
+}
+.blog-content .tab-content .tab-pane p{
+	font-size: 18px;
+}
+.blog-content .tab-content .tab-pane .region{
+	padding: 15px 0px;
+}
+.blog-content .tab-content .tab-pane .region label{
+	font-size: 18px;
+	color: #8C9196;
+}
+.blog-content .tab-content .tab-pane .region span{
+	font-size: 18px;
+	color: #020A09;
+}
+.blog-content .tab-content .tab-pane .download i{
+	color: #BAC0C5;
+}
+
+.blog-content .tab-content .tab-pane .download span{
+	color: #BAC0C5;
+	font-size: 14px;
+	vertical-align: top;
+	margin-left: 10px;
+}
+.blog-content .tab-content .tab-pane .buy_lists{
+	margin-top: 30px;
+}
+.blog-content .tab-content .tab-pane .buy_lists .buy_list {
+	border-top: 1px solid #D0D7DD;	
+	padding-top: 30px;
+}
+.blog-content .tab-content .tab-pane .buy_lists .buy_list h3{
+	font-size: 20px;
+	color: #020A09;
+	margin: 0px;
+	font-weight: bold;
+}
+.blog-content .tab-content .tab-pane .buy_lists .buy_list label{
+	font-size: 18px;
+}
+.blog-content .tab-content .tab-pane .buy_lists .buy_list a{
+	font-size: 14px;
+	color: #020A09;
+}
+.blog-content .tab-content .tab-pane .buy_lists .buy_list .price {
+	font-size: 20px;
+	color: #FF6B6B;
+	font-weight: bold;
+}
+.blog-content .tab-content .tab-pane .buy_lists .buy_list button{
+	display: inline-block;
+	font-size: 14px;
+	width:auto;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-left: 20px;
+}

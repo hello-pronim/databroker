@@ -27,5 +27,15 @@ return [
     'me_seller' => 'Me as a seller',
     'company_profile' => 'Company Profile',
     'data_offers' => 'Data Offers',
-    'signout' => 'Sign Out'
+    'signout' => 'Sign Out',
+
+    /*menu*/
+    'geographics' => 'Geographics',
+    'environment' => 'Environment',
+    'transport' => 'Transport',
+    'people' => 'People',
+    'agriculture' => 'Agriculture',
+    'energy' => 'Energy', 
+    'economy' => 'Economy', 
+    'supply_chain' => 'Supply Chain'
 ];
