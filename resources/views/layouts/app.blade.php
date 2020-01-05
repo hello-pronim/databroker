@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('css/v4-shims.css') }}">        
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/custom2.css') }}">
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
         
     </head>
@@ -348,8 +349,10 @@
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>        
+
     <script src="{{ asset('js/app.js') }}"></script>        
     <script src="{{ asset('js/custom.js') }}"></script>   
+    <script src="{{ asset('js/custom2.js') }}"></script>   
             
     
     <script type="text/javascript">

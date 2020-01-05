@@ -1,0 +1,391 @@
+/* Profile */
+@import url('https://fonts.googleapis.com/css?family=DM+Sans&display=swap');
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container-fluid .navbar {
+	margin-bottom: 0px;
+}
+
+.container-fluid.profile .container {
+	padding-left: 137px;
+	padding-top: 65.5px;
+
+	text-align: left;
+	font-family: DM Sans;
+	font-style: normal;
+}
+
+.profile .Path_10666 {
+    overflow: visible;
+    position: absolute;
+    width: 690.685px;
+    height: 330.512px;
+    margin-top: 18.1px;
+    margin-left: -104.685px;
+    /*top: 227.611px;*/
+    transform: matrix(1,0,0,1,0,0);
+}
+
+#Path_10666 {
+    opacity: 0.2;
+}
+
+.accountinfo {
+	overflow: visible;
+	width: 405px;
+	white-space: nowrap;
+	line-height: 44px;
+	font-weight: bold;
+	font-size: 40px;
+	color: rgba(6,3,141,1);
+	letter-spacing: 0.17857131958007813px;
+}
+.label {
+	padding-left: 2px;
+}
+.companyname {
+	white-space: nowrap;
+	line-height: 27px;
+	margin-top: -1.5px;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(2,10,9,1);
+}
+.adminname {
+	margin-top: 11px;
+	white-space: nowrap;
+	line-height: 27px;
+	margin-top: -4.5px;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(120,230,208,1);
+}
+
+.profileinfo {
+	margin-top: 65px;
+	width: 700px;
+	margin-left: 3px;
+	position: relative;
+}
+.profileinfo .sectiontitle {
+	white-space: nowrap;
+	line-height: 36px;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(2,10,9,1);
+	letter-spacing: 0.17857139587402343px;
+}
+.info-label {
+	font-weight: normal;
+	font-size: 14px;
+	color: rgba(140,145,150,1);
+	padding-right: 0px;
+}
+.info-text {
+	font-weight: bold;
+	font-size: 14px;
+	color: rgba(140,145,150,1);
+}
+.Line_ua {
+	width: 30px;
+	height: 2px;
+	margin-left: 4px;
+	margin-top: 28.5px;
+	transform: matrix(1,0,0,1,0,0);
+}
+.top-right {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.action-button-edit {
+	width: 53px;
+	height: 19px;
+	margin-top: 12px;
+}
+.action-button-edit .ic-pencil {
+	width: 14px;
+	height: 14px;
+	transform: matrix(1,0,0,1,0,0);
+}
+.action-button-edit .label-edit {
+	margin-left: 13px;
+	font-weight: bold;
+	font-size: 14px;
+	color: rgba(186,192,197,1);
+	letter-spacing: 0.1785714340209961px;
+}
+
+.app-section.users {
+	width: 700px;
+	margin-left: 3px;
+	margin-top: 29.5px;
+
+	font-weight: normal;
+	font-size: 14px;
+}
+.app-section.users .sectiontitle {
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(2,10,9,1);
+	letter-spacing: 0.17857139587402343px;
+}
+.app-section.users table {
+	margin-top: -35px;
+}
+.col-name {
+	color: rgba(2,10,9,1);
+}
+.col-since {
+	color: rgba(2,10,9,1);
+}
+th.col-since {
+	color: rgba(140,145,150,1);
+}
+.action-button-delete {
+	width: 73px;
+}
+.action-button-delete .ic-delete-16 {
+	width: 16px;
+	height: 16px;
+	transform: matrix(1,0,0,1,0,0);
+}
+.action-button-delete .label-delete {
+	margin-left: 11px;
+	font-weight: bold;
+	font-size: 14px;
+	color: rgba(186,192,197,1);
+	letter-spacing: 0.1785714340209961px;
+}
+
+.Buttons_Round_Hero {
+	width: 170px;
+	height: 50px;
+	margin-top: 41px;
+	margin-bottom: 14px;
+	margin-left: 2px;
+	position: relative;
+	overflow: visible;
+}
+.Buttons_Round_Hero .bg_tg {
+	overflow: visible;
+	position: absolute;
+	width: 170px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+	transform: matrix(1,0,0,1,0,0);
+}
+.Buttons_Round_Hero .label {
+	font-weight: bold;
+	font-size: 14px;
+	color: rgba(6,3,141,1);
+	letter-spacing: 0.1785714340209961px;
+}
+.description {
+	margin-left: 7px;
+	font-weight: normal;
+	font-size: 14px;
+	color: rgba(140,145,150,1);
+}
+	#Adwords_Keyword_rese_tl {
+		position: absolute;
+		left: 366px;
+		top: 53px;
+		overflow: hidden;
+		width: 195px;
+		height: 164px;
+		line-height: 58px;
+		margin-top: -22px;
+		text-align: left;
+		font-family: DM Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		color: rgba(140,145,150,1);
+	}
+	#Component_147___1 {
+		position: absolute;
+		width: 73px;
+		height: 18px;
+		left: 629px;
+		top: 53px;
+		overflow: visible;
+	}
+	#icon_navigation_close_24px_ {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 1px;
+		overflow: visible;
+	}
+	#_tp {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	.__Color_ts {
+		overflow: visible;
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#_tr {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Component_147___2 {
+		position: absolute;
+		width: 73px;
+		height: 18px;
+		left: 629px;
+		top: 110px;
+		overflow: visible;
+	}
+	#Our_partners_tu {
+		position: absolute;
+		left: 27px;
+		top: -1px;
+		overflow: visible;
+		width: 45px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: DM Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 14px;
+		color: rgba(186,192,197,1);
+		letter-spacing: 0.1785714340209961px;
+	}
+	#icon_navigation_close_24px__tv {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 1px;
+		overflow: visible;
+	}
+	#_tw {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	.__Color_tz {
+		overflow: visible;
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#_ty {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Component_147___3 {
+		position: absolute;
+		width: 73px;
+		height: 18px;
+		left: 629px;
+		top: 167px;
+		overflow: visible;
+	}
+	#Our_partners_t {
+		position: absolute;
+		left: 27px;
+		top: -1px;
+		overflow: visible;
+		width: 45px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: DM Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 14px;
+		color: rgba(186,192,197,1);
+		letter-spacing: 0.1785714340209961px;
+	}
+	#icon_navigation_close_24px__t {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 1px;
+		overflow: visible;
+	}
+	#_t {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	.__Color_ua {
+		overflow: visible;
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#_ua {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	.Shape {
+		overflow: visible;
+		position: absolute;
+		width: 702px;
+		height: 1px;
+		left: 0px;
+		top: 90.998px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	.Shape_t {
+		overflow: visible;
+		position: absolute;
+		width: 702px;
+		height: 1px;
+		left: 0px;
+		top: 147.998px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	.Shape_ua {
+		overflow: visible;
+		position: absolute;
+		width: 702px;
+		height: 1px;
+		left: 0px;
+		top: 209.998px;
+		transform: matrix(1,0,0,1,0,0);
+	}
