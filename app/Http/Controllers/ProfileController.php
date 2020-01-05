@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -23,6 +24,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profile');
+        return view('account.profile');
+    }
+
+    public function purchases(Request $request) 
+    {
+        return view('account.purchases');
     }
 }
