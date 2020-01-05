@@ -141,19 +141,44 @@
 			        <ul class="navbar-nav ml-auto">
 			          <li class="dropdown nav-item">
 			            <a href="#" class="nav-link">
-			              Components
+			              {{ trans('home.geographics') }} 
 			            </a>			            
 			          </li>
 			          <li class="dropdown nav-item">
 			            <a href="#" class="nav-link">
-			              Sections
+			              {{ trans('home.environment') }} 
 			            </a>			           
 			          </li>
 			          <li class="dropdown nav-item">
 			            <a href="#" class="nav-link">
-			              Examples
+			              {{ trans('home.transport') }} 
 			            </a>			            
 			          </li>			          
+                <li class="dropdown nav-item">
+                  <a href="#" class="nav-link">
+                    {{ trans('home.people') }} 
+                  </a>                  
+                </li>
+                <li class="dropdown nav-item">
+                  <a href="#" class="nav-link">
+                    {{ trans('home.agriculture') }} 
+                  </a>                  
+                </li>
+                <li class="dropdown nav-item">
+                  <a href="#" class="nav-link">
+                    {{ trans('home.energy') }} 
+                  </a>                  
+                </li>
+                <li class="dropdown nav-item">
+                  <a href="#" class="nav-link">
+                    {{ trans('home.economy') }} 
+                  </a>                  
+                </li>
+                <li class="dropdown nav-item">
+                  <a href="#" class="nav-link">
+                    {{ trans('home.supply_chain') }} 
+                  </a>                  
+                </li>
 			        </ul>
 			      </div>
 			    </div>
