@@ -379,7 +379,7 @@ h1,h2,h3,h4,h5,h6{
 	line-height: 30px !important;	
 }
 .auth-section .btn-link:hover{
-	border: 1px solid transparent !important;
+	/*border: 1px solid transparent !important;*/
 	color: #eb4444;
 }
 #forgot_pass_link, #login_link{
@@ -512,4 +512,7 @@ h1,h2,h3,h4,h5,h6{
 	padding-left: 20px;
 	padding-right: 20px;
 	margin-left: 20px;
+}
+.form-check .form-check-sign .check.is-invalid{
+	border-color:#eb4444;
 }

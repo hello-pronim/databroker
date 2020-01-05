@@ -9,12 +9,12 @@
                 <p class="text-center h4-intro mb-50">To send message to the seller</p>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
+                    
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input type="text" id="email" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress') }}" required autocomplete="email" autofocus>
                         <span>Email Address</span>
                         <div class="error_notice"> This field is required</div>
-                        @error('email')
+                        @error('emailAddress')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
