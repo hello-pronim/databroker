@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],  
             'term_conditions' => ['required']          
         ]);
+        return $result;
     }
 
     /**

@@ -1,12 +1,12 @@
 @extends('auth.auth_app')
 
 @section('content')
-<div class="container-fluid app-wapper bg-pattern-side">    
+<div class="container-fluid app-wapper bg-pattern-side">
     <div class="container">
         <div class="row justify-content-center auth-section">
             <div class="col-md-8" id="register_section">
                 <h1 class="h1-smaller text-primary text-center" id="register_title">Let's get you set up on<br>Databroker dao!</h1>
-                <br>            
+                <br>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
@@ -144,12 +144,12 @@
                                     {{ __('Already have a account?') }}
                                 </a>
                             @endif
-                        </div>                        
+                        </div>
                     </div>
-                    
-                </form>            
+
+                </form>
             </div>
         </div>
     </div>
-</div> 
+</div>
 @endsection
