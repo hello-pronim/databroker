@@ -1,8 +1,11 @@
 /* switch data offer steps */
 .app-section.step2 {
-	display: none;
+	display: block;
 }
 .app-section.step3 {
+	display: block;
+}
+.app-section.step4 {
 	display: block;
 }
 
@@ -50,6 +53,8 @@
 }
 
 .page-title {
+	margin-top: 4.5px;
+	margin-bottom: 4.5px;
 	white-space: nowrap;
 	line-height: 44px;
 	font-weight: bold;
@@ -204,11 +209,20 @@ th.col-since {
     height: 14px; 
     border-radius: 7px; 
     text-align: center; 
+    font-size: 14px;
+
+    padding: 0px 4px; 
+    margin-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    line-height: 1.0;
 } 
 
 .btn.btn-circle.btn-question {
-    padding: 0px 5px; 
-	right: 0px;
+    font-size: 10px;
+}
+
+.btn.btn-circle.btn-delete {
 }
 
 .btn-red {
@@ -347,12 +361,12 @@ th.col-since {
 
 /*#Businesses_often_bec*/
 .data-offer .sub-title {	
-	margin-top: -1.5px;
+	margin-top: 3px;
+	margin-bottom: 3px;
 	font-weight: bold;
 	font-size: 21px;
 	color: #020A09;	/* $color-basic */
 	letter-spacing: 0.17857139587402343px;
-	margin-bottom: 65px;
 }
 
 .data-offer .description-header {
@@ -360,7 +374,7 @@ th.col-since {
 	/*width: 689px;*/
 }
 
-.data-offer .description {
+.data-offer .section-title {
 	line-height: 27px;
 	font-size: 18px;
 	font-weight: bold;
@@ -373,6 +387,7 @@ th.col-since {
 	display: flex;
 	position: relative;
 	padding-bottom: 30px;
+	margin-bottom: 6px;
 }
 
 .data-offer .user-message {
@@ -400,7 +415,6 @@ th.col-since {
 }
 
 .data-offer .buttons {
-	margin-top: 35px;
 	justify-content: space-between;
 }
 
@@ -409,9 +423,72 @@ th.col-since {
 	height: 50px;
 }
 
-.example-link {
+.data-offer .example-link {
 	margin-top: 3px;
 	font-weight: normal;
 	font-size: 14px;
 	color: #78E6D0;	/* $color-success */
+}
+
+.data-offer .header .description {
+	font-size: 18px;
+	font-weight: normal;
+	margin-top: 4.5px;
+	margin-bottom: 4.5px;
+}
+
+.data-offer .header {
+	margin-bottom: 65px;
+}
+
+.data-offer .file-drag-drop-zone .drag-drop-dummy {
+	margin-top: 9px;
+	margin-bottom: 11px;
+	width: 702px;
+	height: 187px;
+	background: #aaa;
+}
+
+.data-offer .file-drag-drop-zone .file-list {
+	margin-top: 12px;
+	margin-bottom: 25px;
+}
+
+.data-offer .file-list .file-entry {
+	color: #8C9196;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 4.5px 0.5px;
+}
+
+.data-offer .header .right-block {
+	margin-top: 22px;
+}
+
+.data-offer .images-block .description1 {	
+	font-size: 14px;
+	font-weight: normal;
+	color: #020A09;	/* $color-basic */
+}
+
+.data-offer .images-block .description2 {	
+	color: #78E6D0;
+	font-weight: normal;
+	font-size: 18px;
+	margin-top: 4.5px;
+	margin-bottom: 4.5px;
+}
+
+.data-offer .images-block .images-list {	
+	margin-top: 22px;
+}
+
+.data-offer .images-block .images-list .image-item {	
+	width: 336px;
+	height: 201px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 12.5px;
+	margin-bottom: 12.5px;
+	background: url('/images/dummy/data-offer-image.png');
 }
