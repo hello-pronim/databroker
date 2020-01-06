@@ -281,9 +281,11 @@
 	                    <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top">error</i></label>
 	                    
 	                    <div class="fileupload">	                    	
-				            <input type="file" name="company_logo" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,<a href="https://www.jqueryscript.net/tags.php?/video/">video</a>/*,.ppt,.pptx,.txt,.pdf'>
+				            <input type="file" name="company_logo" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf'>
 	                    </div>
-
+	                    <div class="buttons text-right">						
+							<button type="button" class="btn customize-btn btn-next pull-right">Next</button>
+						</div>
 			        </div>	
     			</div>
     		</div>	        
