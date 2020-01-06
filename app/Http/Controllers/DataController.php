@@ -29,4 +29,8 @@ class DataController extends Controller
     public function publish(){
         return view('data.publish');
     }
+
+    public function offers(){
+        return view('data.offers');
+    }
 }
