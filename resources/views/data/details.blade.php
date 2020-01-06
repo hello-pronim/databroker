@@ -64,10 +64,10 @@
 				            <div class="tab-pane" id="samples">
 				                <h2>Use cases</h2>
 				                <p>Sample of lorem ipsum dolor sit amet.</p>
-				                <div class="download"><i class="material-icons">cloud_download</i><span>document.pdf</span></div>
+				                <div class="download"><i class="material-icons">get_app</i><span>document.pdf</span></div>
 
 				                <p>Sample of lorem ipsum dolor sit amet.</p>
-				                <div class="download"><i class="material-icons">cloud_download</i><span>document.pdf</span></div>
+				                <div class="download"><i class="material-icons">get_app</i><span>document.pdf</span></div>
 				            </div>
 				            <div class="tab-pane" id="this_data">
 				                <h2>Buy this data</h2>
@@ -95,7 +95,7 @@
 					                			<h3>Satellite imagery of buildings and roads</h3>	
 					                			<label class="country">Belgium</label>
 					                			<p><label class="text-grey">{{ trans('pages.format') }} : </label> <span>Stream</span></p>
-					                			<a href="javascript:;">More Info <i class="material-icons">arrow_drop_down</i></a>
+					                			<a href="javascript:;">More Info <i class="material-icons">get_app</i></a>
 					                		</div>
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>
@@ -111,7 +111,7 @@
 					                			<h3>Satellite imagery of buildings and roads</h3>	
 					                			<label class="country">Belgium</label>
 					                			<p><label class="text-grey">{{ trans('pages.format') }} : </label> <span>Stream</span></p>
-					                			<a href="javascript:;">More Info <i class="material-icons">arrow_drop_down</i></a>
+					                			<a href="javascript:;">More Info <i class="material-icons">get_app</i></a>
 					                		</div>
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>

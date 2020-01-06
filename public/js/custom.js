@@ -1,6 +1,9 @@
 $(document).ready(function(){    
 
     $(".dropdown-menu").each(function(){ $(this).css({right: -($(this).width()/2+20)+"px"}); console.log($(this).width()) });
+
+    $('input[type="file"]').imageuploadify();
+
 });
 
 /*Dropdown Menu*/
@@ -18,5 +21,7 @@ $('.dropdown-container .dropdown .dropdown-menu li').click(function () {
     $(this).parents('.dropdown-container .dropdown').find('input').attr('value', $(this).attr('value')).change();
 });
 /*End Dropdown Menu*/
+
+
 
 

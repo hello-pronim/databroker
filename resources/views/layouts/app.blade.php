@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="title" content="DataBroker">
-        <meta name="description" content="">
+        <meta name="description" content="">        
 
         <meta property="og:title" content="">
         <meta property="og:site_name" content="DataBroker">
@@ -15,7 +15,7 @@
         <meta property="og:type" content="">
         <meta property="og:image" content="">
 
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline'; img-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;">
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline'; img-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> -->
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
@@ -28,7 +28,10 @@
         <link rel="stylesheet" href="{{ asset('css/material.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/v4-shims.css') }}">        
+        <link rel="stylesheet" href="{{ asset('css/v4-shims.css') }}">    
+
+        @yield('additional_css')
+
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/custom2.css') }}">
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
@@ -375,10 +378,12 @@
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>        
 
+    @yield('additional_javascript')
+
     <script src="{{ asset('js/app.js') }}"></script>        
     <script src="{{ asset('js/custom.js') }}"></script>   
     <script src="{{ asset('js/custom2.js') }}"></script>   
-            
+
     
     <script type="text/javascript">
         $(function(){
