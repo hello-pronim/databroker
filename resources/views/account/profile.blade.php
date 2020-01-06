@@ -9,7 +9,7 @@
 		</path>
 	</svg>
 	<div class="container">
-		<div class="accountinfo">Account information</div>		
+		<div class="page-title">Account information</div>		
 		<div class="label companyname">
 			<span>Company Name</span>
 		</div>
