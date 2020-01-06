@@ -35,7 +35,9 @@
     opacity: 0.2;
 }
 
-.page-title {
+.accountinfo {
+	overflow: visible;
+	width: 405px;
 	white-space: nowrap;
 	line-height: 44px;
 	font-weight: bold;
@@ -191,90 +193,199 @@ th.col-since {
 	font-size: 14px;
 	color: rgba(140,145,150,1);
 }
-
-/* purchases */
-.purchase-items {
-	margin-left: 3px;
-	margin-top: 71px;
-	width: 1432px;
-}
-
-.purchase-item {
-	
-}
-
-.purchase-item .Shape_tv {
-	overflow: visible;
-	width: 1434px;
-	height: 1px;
-	transform: matrix(1,0,0,1,0,0);
-	margin-bottom: 34px;
-}
-
-/* #Adwords_Keyword_rese_tr */
-.purchase-item .date-label {
-	margin-top: 7px;
-	overflow: visible;
-	height: 21px;
-	line-height: 30px;
-	font-weight: normal;
-	font-size: 14px;
-	color: rgba(140,145,150,1);
-}
-
-/*#Businesses_often_bec_tt */
-.purchase-item .item-title {
-	line-height: 30px;
-	font-weight: bold;
-	font-size: 21px;
-	color: rgba(2,10,9,1);
-	letter-spacing: 0.17857139587402343px;
-}
-
-/*#Adwords_Keyword_rese_tw */
-.purchase-item .item-location 
-{
-	margin-top: 8px;
-	margin-bottom: 18px;
-	overflow: visible;
-	height: 27px;
-	line-height: 27px;
-	font-weight: normal;
-	font-size: 14px;
-	color: rgba(2,10,9,1);
-}
-
-.field-table {
-	width: 458px;
-}
-
-/*#Adwords_Keyword_rese_tx*/
-.field-label {
-	font-weight: normal;
-	font-size: 14px;
-	color: rgba(140,145,150,1);
-}
-
-/*#Adwords_Keyword_rese_ty*/
-.field-value {	
-	font-weight: bold;
-	font-size: 14px;
-	color:rgba(2,10,9,1);
-}
-
-/*#Adwords_Keyword_rese_t */
-.seller-company {
-	font-weight: normal;
-	font-size: 21px;
-	color: rgba(2,10,9,1);
-	letter-spacing: 0.17857139587402343px;
-}
-
-/*#Businesses_often_bec_tu */
-.seller-price {
-	margin-top: 4px;
-	font-weight: bold;
-	font-size: 21px;
-	color: rgba(255,107,107,1);
-	letter-spacing: 0.17857139587402343px;
-}
+	#Adwords_Keyword_rese_tl {
+		position: absolute;
+		left: 366px;
+		top: 53px;
+		overflow: hidden;
+		width: 195px;
+		height: 164px;
+		line-height: 58px;
+		margin-top: -22px;
+		text-align: left;
+		font-family: DM Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		color: rgba(140,145,150,1);
+	}
+	#Component_147___1 {
+		position: absolute;
+		width: 73px;
+		height: 18px;
+		left: 629px;
+		top: 53px;
+		overflow: visible;
+	}
+	#icon_navigation_close_24px_ {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 1px;
+		overflow: visible;
+	}
+	#_tp {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	.__Color_ts {
+		overflow: visible;
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#_tr {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Component_147___2 {
+		position: absolute;
+		width: 73px;
+		height: 18px;
+		left: 629px;
+		top: 110px;
+		overflow: visible;
+	}
+	#Our_partners_tu {
+		position: absolute;
+		left: 27px;
+		top: -1px;
+		overflow: visible;
+		width: 45px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: DM Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 14px;
+		color: rgba(186,192,197,1);
+		letter-spacing: 0.1785714340209961px;
+	}
+	#icon_navigation_close_24px__tv {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 1px;
+		overflow: visible;
+	}
+	#_tw {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	.__Color_tz {
+		overflow: visible;
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#_ty {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Component_147___3 {
+		position: absolute;
+		width: 73px;
+		height: 18px;
+		left: 629px;
+		top: 167px;
+		overflow: visible;
+	}
+	#Our_partners_t {
+		position: absolute;
+		left: 27px;
+		top: -1px;
+		overflow: visible;
+		width: 45px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: DM Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 14px;
+		color: rgba(186,192,197,1);
+		letter-spacing: 0.1785714340209961px;
+	}
+	#icon_navigation_close_24px__t {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 1px;
+		overflow: visible;
+	}
+	#_t {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	.__Color_ua {
+		overflow: visible;
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#_ua {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	.Shape {
+		overflow: visible;
+		position: absolute;
+		width: 702px;
+		height: 1px;
+		left: 0px;
+		top: 90.998px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	.Shape_t {
+		overflow: visible;
+		position: absolute;
+		width: 702px;
+		height: 1px;
+		left: 0px;
+		top: 147.998px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	.Shape_ua {
+		overflow: visible;
+		position: absolute;
+		width: 702px;
+		height: 1px;
+		left: 0px;
+		top: 209.998px;
+		transform: matrix(1,0,0,1,0,0);
+	}

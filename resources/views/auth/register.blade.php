@@ -1,17 +1,17 @@
 @extends('auth.auth_app')
 
 @section('content')
-<div class="container-fluid app-wapper bg-pattern-side">    
+<div class="container-fluid app-wapper bg-pattern-side">
     <div class="container">
         <div class="row justify-content-center auth-section">
             <div class="col-md-8" id="register_section">
                 <h1 class="h1-smaller text-primary text-center" id="register_title">Let's get you set up on<br>Databroker dao!</h1>
-                <br>            
+                <br>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="firstname" name="name" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                        <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
                         <span>{{ trans('auth.first_name') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'First Name']) }}</div>
                         @error('firstname')
@@ -33,10 +33,10 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input type="text" id="email" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress') }}" required autocomplete="email" autofocus>
                         <span>{{ trans('auth.email_address') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
-                        @error('email')
+                        @error('emailAddress')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -44,10 +44,10 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="company" name="company" class="form-control input_data @error('company')  is-invalid @enderror" placeholder=" "  value="{{ old('company') }}" required autocomplete="company" autofocus>
+                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ old('companyName') }}" required autocomplete="company" autofocus>
                         <span>{{ trans('auth.company') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company']) }}</div>
-                        @error('company')
+                        @error('companyName')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -59,7 +59,7 @@
                             <div class="select">
                                 <span>What business are you in?</span>
                             </div>
-                            <input type="hidden" id="businessName2" name="businessName2" value="Agriculture/Mining/Forestry">
+                            <input type="hidden" id="businessName" name="businessName" value="Agriculture/Mining/Forestry">
                             <ul class="dropdown-menu" style="display: none;">
                                 <li value="Agriculture/Mining/Forestry">Agriculture/Mining/Forestry</li>
                                 <li value="Advertising/Media/Publishing">Advertising/Media/Publishing</li>
@@ -90,7 +90,7 @@
                             <div class="select">
                                 <span>What kind of role do you have?</span>
                             </div>
-                            <input type="hidden" id="jobTitle2" name="jobTitle2" value="Technical">
+                            <input type="hidden" id="jobTitle" name="jobTitle" value="Technical">
                             <ul class="dropdown-menu" style="display: none;">
                                 <li value="Business">Business</li>
                                 <li value="Technical">Technical</li>
@@ -124,12 +124,12 @@
 
                     <div class="form-check">
                         <label class="form-check-label">                
-                            <input class="form-check-input" type="checkbox" value="">
+                            <input type="checkbox" class="form-check-input" name="term_conditions" value="true">
                             <b class="">Yes, I accept the <font style="color: #78E6D0;">terms and conditions</font> and <font style="color: #78E6D0;">the privacy</font> of Databroker dao</b>
                             <span class="form-check-sign">
-                                <span class="custom-check check"></span>
-                            </span>
-                        </label>
+                                <span class="custom-check check @error('term_conditions') is-invalid @enderror"></span>
+                            </span>                                                        
+                        </label>                                                   
                     </div> 
                     <br>                       
                     
@@ -144,12 +144,12 @@
                                     {{ __('Already have a account?') }}
                                 </a>
                             @endif
-                        </div>                        
+                        </div>
                     </div>
-                    
-                </form>            
+
+                </form>
             </div>
         </div>
     </div>
-</div> 
+</div>
 @endsection

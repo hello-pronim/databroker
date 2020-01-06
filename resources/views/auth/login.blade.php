@@ -10,11 +10,21 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input type="text" id="emailAddress" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress') }}" required autocomplete="emailAddress" autofocus>
                         <span>Email Address</span>
                         <div class="error_notice"> This field is required</div>
-                        @error('email')
+                        @error('emailAddress')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -34,8 +44,8 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-6">
-                            <button type="submit" class="btn customize-btn">CONTINUE</button> 
-                        </div>    
+                            <button type="submit" class="btn customize-btn">CONTINUE</button>
+                        </div>
                         <div class="col-md-6 text-right">
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link text-grey" id="forgot_pass_link" href="{{ route('password.request') }}">
@@ -53,9 +63,9 @@
                     </a>
 
                 </form>
-                
+
             </div>
         </div>
     </div>
-</div>    
+</div>
 @endsection

@@ -10,14 +10,18 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
+    protected $primaryKey = 'userIdx';
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'userIdx', 'firstname', 'lastname', 'emailAddress', 'companyName', 'bussinessName', 'jobTitle', 'password', 'passwordKey' 'forgottenPasswordToken', 'name', 'email', 'password',
+        'firstname', 'lastname', 'emailAddress', 'companyName', 'businessName', 'jobTitle', 'password', 'passwordKey', 'forgottenPasswordToken', 'wallet', 'buyerCheck', 'SellerCheck', 'userStatus'
     ];
+
+    
 
     /**
      * The attributes that should be hidden for arrays.
@@ -25,7 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'forgottenPasswordToken',
     ];
 
     /**
