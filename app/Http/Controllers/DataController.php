@@ -25,4 +25,8 @@ class DataController extends Controller
     {        
         return view('data.details');
     }
+
+    public function publish(){
+        return view('data.publish');
+    }
 }

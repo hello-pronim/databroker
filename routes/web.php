@@ -26,7 +26,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@index')->name('profile');
-Route::get('/data/{id}', 'DataController@details')->name('details');
+Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name('data_details');
+Route::get('/data/publish', 'DataController@publish')->name('data_publish');
 
 
 Auth::routes();

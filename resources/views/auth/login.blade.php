@@ -10,16 +10,6 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
                     <label class="pure-material-textfield-outlined">
                         <input type="text" id="emailAddress" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress') }}" required autocomplete="emailAddress" autofocus>
                         <span>Email Address</span>
