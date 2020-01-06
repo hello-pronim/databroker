@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('additional_css')
+	<link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
+@endsection
+
 @section('content')
 <div class="container-fluid app-wapper">
 	<div class="bg-pattern1-left"></div>
@@ -7,11 +11,12 @@
     	<div class="app-section app-reveal-section align-items-center">
     		<div class="row">
     			<div class="col-lg-6">
-    				<div class="data-offer-header">
+    				<div class="blog-header">
 			            <h1>Before we start</h1>			            
-			            <p class="desc">Please provide us some extra information about your company first. We need this info to publish it on the marketplace together with your data offer.</p>
+			            <p class="area">Please provide us some extra information about your company first. <br>
+			            We need this info to publish it on the marketplace together with your data offer.</p>
 			        </div>
-			        <div class="data-offer-content">
+			        <div class="blog-content">
 			        	<label class="pure-material-textfield">In which country are you located?</label>
 			        	<div class="dropdown-container">
 	                        <div class="dropdown" tabindex="1">
@@ -273,14 +278,23 @@
 	                        <input type="text" id="companyUrl" name="companyUrl" class="form-control input_data" placeholder=" "  value="" required autocomplete="companyUrl" autofocus>
 	                        <span>{{ trans('pages.enter_url') }}</span>	                        
 	                    </label>
+	                    <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top">error</i></label>
+	                    
+	                    <div class="fileupload">	                    	
+				            <input type="file" name="company_logo" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,<a href="https://www.jqueryscript.net/tags.php?/video/">video</a>/*,.ppt,.pptx,.txt,.pdf'>
+	                    </div>
+
 			        </div>	
     			</div>
-    		</div>
-	        
+    		</div>	        
 	    </div>	
-	    <a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>    
+	    
     </div>      
 </div>
 
 @endsection
 
+
+@section('additional_javascript')
+	<script src="{{ asset('js/plugins/imageuploadify.min.js') }}"></script>        
+@endsection
