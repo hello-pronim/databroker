@@ -10,12 +10,12 @@
 			</path>
 		</svg>
 		<div class="container">
-			<div class="page-title text-primary">Account information</div>		
+			<div class="page-title text-primary">{{ trans('pages.account_information') }}</div>		
 			<div class="label companyname">
-				<span>Company Name</span>
+				<span>{{ trans('pages.company_name') }}</span>
 			</div>
 			<div class="label adminname">
-				<span>Admin Name</span>
+				<span>{{ trans('pages.admin_name') }}</span>
 			</div>
 
 			<div class="app-section profileinfo">
@@ -25,28 +25,28 @@
 						</path>
 					</svg>
 					<div class="label-edit">
-						<span>Edit</span>
+						<span>{{ trans('pages.edit') }}</span>
 					</div>
 				</div>
-				<div class="sectiontitle">Profile information</div>
+				<div class="sectiontitle">{{ trans('pages.profile_information') }}</div>
 				<div class="row">
-					<div class="col-2 info-label">Name:</div>
+					<div class="col-2 info-label">{{ trans('pages.name') }}:</div>
 					<div class="col info-text">Mark Spencer</div>
 				</div>
 				<div class="row">
-					<div class="col-2 info-label">Email address:</div>
+					<div class="col-2 info-label">{{ trans('pages.email_address') }}:</div>
 					<div class="col info-text">mark.spener@company.com</div>
 				</div>
 				<div class="row">
-					<div class="col-2 info-label">Job title:</div>
+					<div class="col-2 info-label">{{ trans('pages.job_title') }}:</div>
 					<div class="col info-text">Lorem Ipsum</div>
 				</div>
 				<div class="row">
-					<div class="col-2 info-label">Industry:</div>
+					<div class="col-2 info-label">{{ trans('pages.industry') }}:</div>
 					<div class="col info-text">Industry Name</div>
 				</div>
 				<div class="row">
-					<div class="col-2 info-label">Password:</div>
+					<div class="col-2 info-label">{{ trans('pages.Password') }}:</div>
 					<div class="col info-text">**************</div>
 				</div>
 			</div>
@@ -57,13 +57,13 @@
 			
 			<div id="Group_2476" class="app-section users">
 				<div class="sectiontitle">
-					<span>Users</span>
+					<span>{{ trans('pages.users') }}</span>
 				</div>
 				<table class="table">
 				  <thead>
 				    <tr>
 				      <th scope="col" class="col-name"></th>
-				      <th scope="col" class="col-since">Active Since</th>
+				      <th scope="col" class="col-since">{{ trans('pages.Active_Since') }}</th>
 				      <th scope="col" class="col-action"></th>
 				    </tr>
 				  </thead>
@@ -78,7 +78,7 @@
 	    							</path>
 	    						</svg>
 	    						<div class="label-delete">
-	    							<span>Delete</span>
+	    							<span>{{ trans('pages.Delete') }}</span>
 	    						</div>
 	    					</div>
 	    				</td>
@@ -93,7 +93,7 @@
 	    							</path>
 	    						</svg>
 	    						<div class="label-delete">
-	    							<span>Delete</span>
+	    							<span>{{ trans('pages.Delete') }}</span>
 	    						</div>
 	    					</div>
 	    				</td>
@@ -108,16 +108,16 @@
 	    							</path>
 	    						</svg>
 	    						<div class="label-delete">
-	    							<span>Delete</span>
+	    							<span>{{ trans('pages.Delete') }}</span>
 	    						</div>
 	    					</div>
 	  					</td>
 				    </tr>
 				  </tbody>
 				</table>
-				<button type="button" class="btn btn-outline-primary btn-rounded waves-effect Buttons_Round_Hero">INVITE USERS</button>
+				<button type="button" class="btn btn-outline-primary btn-rounded waves-effect Buttons_Round_Hero">{{ trans('pages.INVITE_USERS') }}</button>
 				<div class="description">
-					<span>You can deactivate your Databroker account anytime you want. </span><span style="color:rgba(120,230,208,1);">Read more</span>
+					<span>{{ trans('pages.profile_description') }} </span><span style="color:rgba(120,230,208,1);">{{ trans('pages.Read_more') }}</span>
 				</div>
 			</div>
 		</div>

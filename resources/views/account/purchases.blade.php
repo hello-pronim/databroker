@@ -9,7 +9,7 @@
       </path>
     </svg>
     <div class="container">
-      <div class="page-title">Purchases</div>    
+      <div class="page-title">{{ trans('pages.Purchases') }}</div>    
 
       <div class="app-section purchase-items">
         <div class="purchase-item">
