@@ -15,7 +15,7 @@
 				<span>{{ trans('pages.company_name') }}</span>
 			</div>
 			<div class="label adminname">
-				<span>{{ trans('pages.admin_name') }}</span>
+			<span>{{ $companyName }}</span>
 			</div>
 
 			<div class="app-section profileinfo">
@@ -31,19 +31,20 @@
 				<div class="sectiontitle">{{ trans('pages.profile_information') }}</div>
 				<div class="row">
 					<div class="col-2 info-label">{{ trans('pages.name') }}:</div>
-					<div class="col info-text">Mark Spencer</div>
+				<div class="col info-text">{{ $firstname }} {{ $lastname }}</div>
+
 				</div>
 				<div class="row">
 					<div class="col-2 info-label">{{ trans('pages.email_address') }}:</div>
-					<div class="col info-text">mark.spener@company.com</div>
+				<div class="col info-text">{{ $emailAddress }}</div>
 				</div>
 				<div class="row">
 					<div class="col-2 info-label">{{ trans('pages.job_title') }}:</div>
-					<div class="col info-text">Lorem Ipsum</div>
+				<div class="col info-text">{{ $jobTitle }}</div>
 				</div>
 				<div class="row">
 					<div class="col-2 info-label">{{ trans('pages.industry') }}:</div>
-					<div class="col info-text">Industry Name</div>
+				<div class="col info-text">{{ $businessName }}</div>
 				</div>
 				<div class="row">
 					<div class="col-2 info-label">{{ trans('pages.Password') }}:</div>
