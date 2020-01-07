@@ -341,16 +341,16 @@ th.col-since {
 .ic-question {
 	width: 14px;
 	height: 14px;
-	overflow: visible;
-	position: absolute;
-	right: 0px;
+	overflow: visible;	
+	margin-left: 5px;
+	position: relative;
 }
 .ic-question .Ellipse_18 {
 	position: absolute;
 	overflow: visible;
 	width: 14px;
 	height: 14px;
-	left: 0px;
+	left: 1px;
 	top: 0px;
 }
 
