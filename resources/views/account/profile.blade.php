@@ -55,10 +55,11 @@
 
                 <div id="profile-edit-section" style="display: none;">
                     <div id="cancel-button" class="top-right flex-center">
-                        <div class="label-edit">
+                        <div class="label-cancel">
                             <a class="" href="#" onClick="document.getElementById('profile-edit-section').style.display = 'none';document.getElementById('profile-display-section').style.display = 'block';"><span>Cancel</span></a>
                         </div>
                     </div>
+                    <br />
                     <form method="POST">
                         @csrf
                         <div class="row">
@@ -111,8 +112,35 @@
                         </div>
                         <div class="row">
                             <div class="col-2 info-label">Industry:</div>
-                            <div class="col info-text">
-                                <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" "  value="{{ old('businessName', $businessName) }}" autocomplete="businessName" autofocus>
+                            <div class="col dropdown-container">
+                                <div class="dropdown" tabindex="1">
+                                    <div class="select">
+                                        <span>What business are you in?</span>
+                                    </div>
+                                    <input type="hidden" id="businessName" name="businessName" value="Agriculture/Mining/Forestry">
+                                    <ul class="dropdown-menu" style="display: none;">
+                                        <li value="Agriculture/Mining/Forestry">Agriculture/Mining/Forestry</li>
+                                        <li value="Advertising/Media/Publishing">Advertising/Media/Publishing</li>
+                                        <li value="Automotive">Automotive</li>
+                                        <li value="Construction/Engineering/Infrstructure">Construction/Engineering/Infrstructure</li>
+                                        <li value="Chemicals">Chemicals</li>
+                                        <li value="Creative">Creative</li>
+                                        <li value="Education">Education</li>
+                                        <li value="Energy/Utilities">Energy/Utilities</li>
+                                        <li value="Financial services &amp; insurance">Financial services &amp; insurance</li>
+                                        <li value="Government/Non-profit">Government/Non-profit</li>
+                                        <li value="Healthcare">Healthcare</li>
+                                        <li value="Hospitality/Tourism">Hospitality/Tourism</li>
+                                        <li value="IT services">IT services</li>
+                                        <li value="Manufacturing">Manufacturing</li>
+                                        <li value="Pharmaceutical/Biotech">Pharmaceutical/Biotech</li>
+                                        <li value="Retail/Consumer goods">Retail/Consumer goods</li>
+                                        <li value="Telecommunications/Electronics">Telecommunications/Electronics</li>
+                                        <li value="Transportation/Logistics">Transportation/Logistics</li>
+                                        <li value="">Other industry</li>
+                                    </ul>
+                                </div>
+                                <div class="error_notice"> This field is required</div>
                             </div>
                         </div>
                         <div class="row">
