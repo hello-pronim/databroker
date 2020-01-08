@@ -8,7 +8,7 @@
 <div class="container-fluid app-wapper data-offer">
 	<div class="bg-pattern1-left"></div>
     <div class="container">
-    	<div id="before" class="app-section app-reveal-section align-items-center step current">
+    	<div id="before" class="app-section app-reveal-section align-items-center step">
     		<div class="row">
     			<div class="col-lg-6">
     				<div class="blog-header">
@@ -304,7 +304,7 @@
 			</div>
 			<div class="row">			
 				<div class="col-6">
-					<div class=" description-header flex-vcenter-justify">
+					<div class=" description-header flex-vcenter">
 						<div class="section-title">{{ trans('pages.data_offer_step_1_description') }}</div>
 						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
@@ -313,7 +313,7 @@
 						<div class="char-counter" id="Title_rb">0 / xxx characters</div>
 					</div>
 					<br>
-					<div class=" description-header flex-vcenter-justify">
+					<div class=" description-header flex-vcenter">
 						<div class="section-title">{{ trans('pages.for_what_region') }}</div>
 						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
@@ -362,13 +362,13 @@
 			                        </label>
 			                    </div>			                    
                                 <div class="input pure-material-textfield-outlined"><input type="text" placeholder="{{ trans('pages.or_add_country') }}" class="form-control input_data"></div>                              
-                                <div class="buttons flex-vcenter-justify">						
+                                <div class="buttons flex-vcenter">						
 									<button type="button" class="btn customize-btn btn-next">{{ trans('pages.confirm') }}</button>
 								</div>
                             </ul>
                         </div>
                     </div>    
-                    <div class=" description-header flex-vcenter-justify">
+                    <div class=" description-header flex-vcenter">
 						<div class="section-title">{{ trans('pages.in_which_community') }}</div>
 						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
@@ -404,7 +404,7 @@
 					<div class="fileupload">	                    	
 					    <input type="file" name="company_logo" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf'>
 					</div>
-					<div class="buttons flex-vcenter-justify">
+					<div class="buttons flex-vcenter">
 						<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
 						<button type="button" class="btn customize-btn btn-next">{{ trans('pages.next') }}</button>
 					</div>
@@ -429,7 +429,7 @@
 			</div>
 			<div class="row">			
 				<div class="col-6">
-					<div class=" description-header flex-vcenter-justify">
+					<div class=" description-header flex-vcenter">
 						<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.data_offer_step_2_description') }}</div>
 						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
@@ -437,7 +437,7 @@
 						<textarea class="user-message" placeholder="{{ trans('pages.your_message') }}"></textarea>
 						<div class="char-counter" id="Title_rb">0 / xxx characters</div>
 					</div>
-					<div class="buttons flex-vcenter-justify">
+					<div class="buttons flex-vcenter">
 						<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a><!-- goto 44 -->
 						<button type="button" class="btn customize-btn btn-next">{{ trans('pages.next') }}</button><!-- goto 48 -->
 					</div>
@@ -462,7 +462,7 @@
 			</div>
 			<div class="row">			
 				<div class="col-6">
-					<div class=" description-header flex-vcenter-justify">
+					<div class=" description-header flex-vcenter">
 						<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.data_offer_step_3_description') }} </div>
 						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
@@ -470,7 +470,7 @@
 						<textarea class="user-message" placeholder="{{ trans('pages.your_message') }}"></textarea>
 						<div class="char-counter" id="Title_rb">0 / xxx characters</div>
 					</div>
-					<div class="buttons flex-vcenter-justify">
+					<div class="buttons flex-vcenter">
 						<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
 						<button type="button" class="btn customize-btn btn-next">{{ trans('pages.next') }}</button>
 					</div>
@@ -481,7 +481,7 @@
 				</div>
 			</div>
 	    </div>	
-    	<div id="step4" class="app-section app-reveal-section align-items-center step">  
+    	<div id="step4" class="app-section app-reveal-section align-items-center step current">  
     		<div class="row header">  	
 	    		<div class="col col-9">
 					<div class="page-title text-primary">{{ trans('pages.data_offer_step_4') }}</div>		
@@ -496,10 +496,13 @@
 			</div>
 			<div class="row files-block">			
 				<div class="col-6">
-					<div class=" description-header flex-vcenter-justify">
+					<div class=" description-header flex-vcenter">
 						<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.files') }}</div>
 						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
+                    <div class="fileupload">	                    	
+			            <input type="file" name="offer_files" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf'>
+                    </div>
 					<div class="file-drag-drop-zone">
 						<div class="drag-drop-dummy">
 						</div>
@@ -524,7 +527,7 @@
 			</div>
 			<div class="row images-block">			
 				<div class="col-6">
-					<div class=" description-header flex-vcenter-justify">
+					<div class=" description-header flex-vcenter">
 						<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.images') }}</div>
 						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
@@ -544,7 +547,7 @@
 							<div class="image-item col flex-center">4</div>
 						</div>
 					</div>
-					<div class="buttons flex-vcenter-justify">
+					<div class="buttons flex-vcenter">
 						<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>{{ trans('pages.previous_step') }}</span></a>
 						<button type="button" class="btn customize-btn">{{ trans('pages.publish_on_marketplace') }}</button>
 					</div>

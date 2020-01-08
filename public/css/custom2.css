@@ -504,17 +504,19 @@ th.col-since {
 	width: 14px;
 	height: 14px;
 	font-size: 16px;
-	display: inline-block;
+	display: flex;
+	margin-left: 16px;
 }
 
 .data-offer .gray-icon:hover {
 	color: #8C9196;
 }
 
-.data-offer .file-entry .gray-icon {
-	margin-left: 16px;
+/*.data-offer .gray-icon::before {
+	content: ' ',
+	width: 16px;
 }
-
+*/
 .data-offer .icon-delete {
 	color: #BAC0C5;
 	width: 20px;
