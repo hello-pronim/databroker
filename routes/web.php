@@ -26,8 +26,10 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/profile', 'ProfileController@index')->name('account.profile');
 	Route::post('/profile', 'ProfileController@update')->name('account.profile.update');
 	Route::get('/profile/purchases', 'ProfileController@purchases')->name('account.purchases');	
+	
 	Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name('data_details');
 	Route::get('/data/offers', 'DataController@offers')->name('data_offers');	
+	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');	
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

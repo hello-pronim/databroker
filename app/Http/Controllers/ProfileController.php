@@ -38,7 +38,7 @@ class ProfileController extends Controller
         $user = $this->getAuthUser();
 
         // TODO
-        $users = \App\User::all();
+        $users = User::all();
         $users = null;
 
         return view('account.profile', $user)->with('users', $users);

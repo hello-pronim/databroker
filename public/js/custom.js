@@ -54,7 +54,7 @@ $(document).ready(function(){
     });
 
     /*$("#data-offer").submit(function(e){
-    	e.preventDefault();
+    	e.preventDefault();    
     	console.log($(this).serialize());
     });*/
 
