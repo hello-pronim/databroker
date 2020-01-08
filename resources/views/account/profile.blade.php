@@ -59,7 +59,7 @@
                             <a class="" href="#" onClick="document.getElementById('profile-edit-section').style.display = 'none';document.getElementById('profile-display-section').style.display = 'block';"><span>Cancel</span></a>
                         </div>
                     </div>
-                    <form method="POST" action="{{ route('account.profile.update') }}">
+                    <form method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-2 info-label">First name:</div>

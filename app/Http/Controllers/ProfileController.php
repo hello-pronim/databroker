@@ -72,7 +72,11 @@ class ProfileController extends Controller
         $passwordConfirm = $request->input('password_confirmation');
 
         if ((!empty($oldPassword)) || (!empty($password)) || (!empty($passwordConfirm))) {
+            $updatePassword = true;
             $fields['password'] = ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'];
+        }
+        else {
+            $updatePassword = false;
         }
 
         $data = $this->validate($request, $fields);
@@ -87,7 +91,11 @@ class ProfileController extends Controller
             $user->emailAddress = $data['emailAddress'];
             $user->jobTitle = $request->input('jobTitle');
             $user->businessName = $request->input('businessName');
-            $user->password = Hash::make($data['password']);
+
+            if ($updatePassword == true)
+            {
+                $user->password = Hash::make($data['password']);
+            }
 
             $user->save();
             return redirect('/profile/'.Auth::user()->id)->with('success', 'Profile has been updated');
