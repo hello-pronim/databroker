@@ -304,30 +304,18 @@
 			</div>
 			<div class="row">			
 				<div class="col-6">
-					<div class=" description-header flex-vcenter">
+					<div class=" description-header flex-vcenter-justify">
 						<div class="section-title">{{ trans('pages.data_offer_step_1_description') }}</div>
-						<div id="Component_157___20" class="Component_157___20 ic-question flex-center">
-							<svg class="Ellipse_18">
-								<ellipse fill="rgba(186,192,197,1)" id="Ellipse_18" rx="7" ry="7" cx="7" cy="7">
-								</ellipse>
-							</svg>
-							<div id="__re" class="text-white font-11-bold label">?</div>
-						</div>
+						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
 					<div class="text-wrapper">
 						<textarea class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}"></textarea>
 						<div class="char-counter" id="Title_rb">0 / xxx characters</div>
 					</div>
 					<br>
-					<div class=" description-header flex-vcenter">
+					<div class=" description-header flex-vcenter-justify">
 						<div class="section-title">{{ trans('pages.for_what_region') }}</div>
-						<div id="Component_157___20" class="Component_157___20 ic-question flex-center">
-							<svg class="Ellipse_18">
-								<ellipse fill="rgba(186,192,197,1)" id="Ellipse_18" rx="7" ry="7" cx="7" cy="7">
-								</ellipse>
-							</svg>
-							<div id="__re" class="text-white font-11-bold label">?</div>
-						</div>
+						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
 					<div class="dropdown-container">
                         <div class="custom-dropdown" tabindex="1">
@@ -374,21 +362,15 @@
 			                        </label>
 			                    </div>			                    
                                 <div class="input pure-material-textfield-outlined"><input type="text" placeholder="{{ trans('pages.or_add_country') }}" class="form-control input_data"></div>                              
-                                <div class="buttons flex-vcenter">						
+                                <div class="buttons flex-vcenter-justify">						
 									<button type="button" class="btn customize-btn btn-next">{{ trans('pages.confirm') }}</button>
 								</div>
                             </ul>
                         </div>
                     </div>    
-                    <div class=" description-header flex-vcenter">
+                    <div class=" description-header flex-vcenter-justify">
 						<div class="section-title">{{ trans('pages.in_which_community') }}</div>
-						<div id="Component_157___20" class="Component_157___20 ic-question flex-center">
-							<svg class="Ellipse_18">
-								<ellipse fill="rgba(186,192,197,1)" id="Ellipse_18" rx="7" ry="7" cx="7" cy="7">
-								</ellipse>
-							</svg>
-							<div id="__re" class="text-white font-11-bold label">?</div>
-						</div>
+						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
 					<div class="dropdown-container">
                         <div class="dropdown" tabindex="1">
@@ -422,7 +404,7 @@
 					<div class="fileupload">	                    	
 					    <input type="file" name="company_logo" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf'>
 					</div>
-					<div class="buttons flex-vcenter">
+					<div class="buttons flex-vcenter-justify">
 						<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
 						<button type="button" class="btn customize-btn btn-next">{{ trans('pages.next') }}</button>
 					</div>
@@ -447,21 +429,15 @@
 			</div>
 			<div class="row">			
 				<div class="col-6">
-					<div class=" description-header flex-vcenter">
+					<div class=" description-header flex-vcenter-justify">
 						<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.data_offer_step_2_description') }}</div>
-						<div id="Component_157___20" class="Component_157___20 ic-question flex-center">
-							<svg class="Ellipse_18">
-								<ellipse fill="rgba(186,192,197,1)" id="Ellipse_18" rx="7" ry="7" cx="7" cy="7">
-								</ellipse>
-							</svg>
-							<div id="__re" class="text-white font-11-bold label">?</div>
-						</div>
+						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
 					<div class="text-wrapper">
 						<textarea class="user-message" placeholder="{{ trans('pages.your_message') }}"></textarea>
 						<div class="char-counter" id="Title_rb">0 / xxx characters</div>
 					</div>
-					<div class="buttons flex-vcenter">
+					<div class="buttons flex-vcenter-justify">
 						<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a><!-- goto 44 -->
 						<button type="button" class="btn customize-btn btn-next">{{ trans('pages.next') }}</button><!-- goto 48 -->
 					</div>
@@ -486,15 +462,15 @@
 			</div>
 			<div class="row">			
 				<div class="col-6">
-					<div class=" description-header flex-vcenter">
+					<div class=" description-header flex-vcenter-justify">
 						<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.data_offer_step_3_description') }} </div>
-						<button type="button" class="btn btn-circle btn-sm btn-question">?</button>
+						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
 					<div class="text-wrapper">
 						<textarea class="user-message" placeholder="{{ trans('pages.your_message') }}"></textarea>
 						<div class="char-counter" id="Title_rb">0 / xxx characters</div>
 					</div>
-					<div class="buttons flex-vcenter">
+					<div class="buttons flex-vcenter-justify">
 						<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
 						<button type="button" class="btn customize-btn btn-next">{{ trans('pages.next') }}</button>
 					</div>
@@ -520,21 +496,23 @@
 			</div>
 			<div class="row files-block">			
 				<div class="col-6">
-					<div class=" description-header flex-vcenter">
+					<div class=" description-header flex-vcenter-justify">
 						<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.files') }}</div>
-						<button type="button" class="btn btn-circle btn-sm btn-question">?</button>
+						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
 					<div class="file-drag-drop-zone">
 						<div class="drag-drop-dummy">
 						</div>
-						<div class="file-list">
-							<div class="file-entry">
-								document.pdf
-								<button type="button" class="btn btn-circle btn-sm btn-delete">×</button>
-							</div>
-							<div class="file-entry">
-								document.pdf
-								<button type="button" class="btn btn-circle btn-sm btn-delete">×</button>
+						<div class="row">
+							<div class="file-list col-4">
+								<div class="file-entry flex-vcenter">
+									document.pdf
+									<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
+								</div>
+								<div class="file-entry flex-vcenter">
+									document.xxx
+									<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -546,9 +524,9 @@
 			</div>
 			<div class="row images-block">			
 				<div class="col-6">
-					<div class=" description-header flex-vcenter">
+					<div class=" description-header flex-vcenter-justify">
 						<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.images') }}</div>
-						<button type="button" class="btn btn-circle btn-sm btn-question">?</button>
+						<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 					</div>
 					<div class="description1">{{ trans('pages.data_offer_image_upload_description1') }}</div>
 					<div class="file-drag-drop-zone">
@@ -566,7 +544,7 @@
 							<div class="image-item col flex-center">4</div>
 						</div>
 					</div>
-					<div class="buttons flex-vcenter">
+					<div class="buttons flex-vcenter-justify">
 						<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>{{ trans('pages.previous_step') }}</span></a>
 						<button type="button" class="btn customize-btn">{{ trans('pages.publish_on_marketplace') }}</button>
 					</div>

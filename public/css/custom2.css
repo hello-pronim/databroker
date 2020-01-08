@@ -22,6 +22,12 @@
 	/*justify-content: space-between;*/
 }
 
+.flex-vcenter-justify {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .btn-rounded {
     border-radius: 10em;
 }
@@ -444,7 +450,7 @@ th.col-since {
 .data-offer .file-drag-drop-zone .drag-drop-dummy {
 	margin-top: 9px;
 	margin-bottom: 11px;
-	width: 702px;
+	/*width: 702px;*/
 	height: 187px;
 	background: #aaa;
 }
@@ -492,3 +498,45 @@ th.col-since {
 	margin-bottom: 12.5px;
 	background: url('/images/dummy/data-offer-image.png');
 }
+
+.data-offer .gray-icon {
+	color: #BAC0C5;
+	width: 14px;
+	height: 14px;
+	font-size: 16px;
+	display: inline-block;
+}
+
+.data-offer .gray-icon:hover {
+	color: #8C9196;
+}
+
+.data-offer .file-entry .gray-icon {
+	margin-left: 16px;
+}
+
+.data-offer .icon-delete {
+	color: #BAC0C5;
+	width: 20px;
+	height: 20px;
+	padding: 2px 2px;
+	font-size: 16px;
+	display: flex;
+}
+
+.data-offer .icon-delete:hover {
+	color: #FF6B6B;
+	padding: 0px;
+	font-size: 22px;
+	display: flex;
+}
+
+/*.data-offer .file-entry .icon-delete::before {
+	content: ' ';
+	width: 16px;
+}*/
+
+.data-offer .file-entry .icon-delete {
+	margin-left: 16px;
+}
+
