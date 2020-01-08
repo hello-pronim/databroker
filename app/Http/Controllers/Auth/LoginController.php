@@ -76,10 +76,5 @@ class LoginController extends Controller
         return 'emailAddress';
     }
 
-     public function logout()
-    {
-        return Redirect::to('login');
-    }
-
-
+  
 }

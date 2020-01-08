@@ -551,6 +551,9 @@ h1,h2,h3,h4,h5,h6{
 	color: #020A09;
 	margin-bottom: 20px;
 }
+.custom-dropdown .select span{
+	text-transform: capitalize;
+}
 .custom-dropdown .custom-dropdown-menu .check_container{
 	width: 30%;
 	display: inline-block;

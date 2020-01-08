@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="container-fluid app-wapper profile" ng-app="myApp" ng-controller="myCtrl">	
+<div class="container-fluid app-wapper profile" ng-app="myApp" ng-controller="myCtrl">
 	<div class="app-section app-reveal-section align-items-center">
 	    <div class="top-bg-image"></div>
 	    <svg class="Path_10666" viewBox="143.241 204.635 690.685 330.511">
@@ -10,7 +10,7 @@
 			</path>
 		</svg>
 		<div class="container">
-			<div class="page-title text-primary">{{ trans('pages.account_information') }}</div>		
+			<div class="page-title text-primary">{{ trans('pages.account_information') }}</div>
 			<div class="label companyname">
 				<span>{{ trans('pages.company_name') }}</span>
 			</div>
@@ -18,44 +18,136 @@
 			<span>{{ $companyName }}</span>
 			</div>
 
-			<div class="app-section profileinfo">
-				<div class="action-button-edit top-right flex-center">
-					<svg viewBox="0 0 14 14" class="ic-pencil">
-						<path fill="rgba(186,192,197,1)" id="__Color_tc" d="M 2.916659355163574 13.99999904632568 L 2.915555000305176 13.9988956451416 L 2.915780544281006 13.99867057800293 L 0 13.99999904632568 L 0 11.08349990844727 L 8.601590156555176 2.482380390167236 L 11.51824951171875 5.398880004882813 L 2.916659355163574 13.99999904632568 Z M 12.34978103637695 4.566686630249023 L 12.34922885894775 4.566142082214355 L 9.433821678161621 1.650194644927979 L 10.85680484771729 0.2272899150848389 C 11.00338077545166 0.08072225749492645 11.19804191589355 0 11.40494441986084 0 C 11.61184024810791 0 11.80669593811035 0.08072225749492645 11.95361328125 0.2272899150848389 L 13.77346420288086 2.047039985656738 C 14.07551288604736 2.349064111709595 14.07551288604736 2.841065645217896 13.77346420288086 3.143789529800415 L 12.35033321380615 4.566142082214355 L 12.34978103637695 4.566686630249023 Z">
-						</path>
-					</svg>
-					<div class="label-edit">
-						<span>{{ trans('pages.edit') }}</span>
-					</div>
-				</div>
-				<div class="sectiontitle">{{ trans('pages.profile_information') }}</div>
-				<div class="row">
-					<div class="col-2 info-label">{{ trans('pages.name') }}:</div>
-				<div class="col info-text">{{ $firstname }} {{ $lastname }}</div>
+            <div class="app-section profileinfo">
+                <div id="profile-display-section">
+                    <div id="edit-button" class="action-button-edit top-right flex-center">
+                        <svg viewBox="0 0 14 14" class="ic-pencil">
+                            <path fill="rgba(186,192,197,1)" id="__Color_tc" d="M 2.916659355163574 13.99999904632568 L 2.915555000305176 13.9988956451416 L 2.915780544281006 13.99867057800293 L 0 13.99999904632568 L 0 11.08349990844727 L 8.601590156555176 2.482380390167236 L 11.51824951171875 5.398880004882813 L 2.916659355163574 13.99999904632568 Z M 12.34978103637695 4.566686630249023 L 12.34922885894775 4.566142082214355 L 9.433821678161621 1.650194644927979 L 10.85680484771729 0.2272899150848389 C 11.00338077545166 0.08072225749492645 11.19804191589355 0 11.40494441986084 0 C 11.61184024810791 0 11.80669593811035 0.08072225749492645 11.95361328125 0.2272899150848389 L 13.77346420288086 2.047039985656738 C 14.07551288604736 2.349064111709595 14.07551288604736 2.841065645217896 13.77346420288086 3.143789529800415 L 12.35033321380615 4.566142082214355 L 12.34978103637695 4.566686630249023 Z">
+                            </path>
+                        </svg>
+                        <div class="label-edit">
+                            <a class="" href="#" onClick="document.getElementById('profile-edit-section').style.display = 'block';document.getElementById('profile-display-section').style.display = 'none';"><span>{{ trans('pages.edit') }}</span></a>
+                        </div>
+                    </div>
+                        <div class="sectiontitle">{{ trans('pages.profile_information') }}</div>
+                        <div class="row">
+                            <div class="col-2 info-label">{{ trans('pages.name') }}:</div>
+                            <div class="col info-text">{{ $firstname }} {{ $lastname }}</div>
+                        </div>
 
-				</div>
-				<div class="row">
-					<div class="col-2 info-label">{{ trans('pages.email_address') }}:</div>
-				<div class="col info-text">{{ $emailAddress }}</div>
-				</div>
-				<div class="row">
-					<div class="col-2 info-label">{{ trans('pages.job_title') }}:</div>
-				<div class="col info-text">{{ $jobTitle }}</div>
-				</div>
-				<div class="row">
-					<div class="col-2 info-label">{{ trans('pages.industry') }}:</div>
-				<div class="col info-text">{{ $businessName }}</div>
-				</div>
-				<div class="row">
-					<div class="col-2 info-label">{{ trans('pages.Password') }}:</div>
-					<div class="col info-text">**************</div>
-				</div>
-			</div>
+                        <div class="row">
+                            <div class="col-2 info-label">{{ trans('pages.email_address') }}:</div>
+                            <div class="col info-text">{{ $emailAddress }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 info-label">{{ trans('pages.job_title') }}:</div>
+                            <div class="col info-text">{{ $jobTitle }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 info-label">{{ trans('pages.industry') }}:</div>
+                            <div class="col info-text">{{ $businessName }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 info-label">{{ trans('pages.Password') }}:</div>
+                            <div class="col info-text">**************</div>
+                        </div>
+                    </div><!--profile-display-section-->
+
+                <div id="profile-edit-section" style="display: none;">
+                    <div id="cancel-button" class="top-right flex-center">
+                        <div class="label-edit">
+                            <a class="" href="#" onClick="document.getElementById('profile-edit-section').style.display = 'none';document.getElementById('profile-display-section').style.display = 'block';"><span>Cancel</span></a>
+                        </div>
+                    </div>
+                    <form method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-2 info-label">First name:</div>
+                            <div class="col info-text">
+                                <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname', $firstname) }}" required autocomplete="firstname" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'First name']) }}</div>
+                            @error('firstname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="row">
+                            <div class="col-2 info-label">Last name:</div>
+                            <div class="col info-text">
+                                <input type="text" id="lastname" name="lastname" class="form-control input_data @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ old('lastname', $lastname) }}" required autocomplete="lastname" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last name']) }}</div>
+                            @error('lastname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="row">
+                            <div class="col-2 info-label">Email address:</div>
+                            <div class="col info-text">
+                                <input type="text" id="emailAddress" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress', $emailAddress) }}" required autocomplete="emailAddress" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email address']) }}</div>
+                            @error('emailAddress')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="row">
+                            <div class="col-2 info-label">Job title:</div>
+                            <div class="col info-text">
+                                <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle', $jobTitle) }}" autocomplete="jobTitle" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 info-label">Industry:</div>
+                            <div class="col info-text">
+                                <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" "  value="{{ old('businessName', $businessName) }}" autocomplete="businessName" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 info-label">Old password:</div>
+                            <div class="col info-text">
+                                <input type="password" id="oldPassword" name="oldPassword" class="form-control input_data @error('oldPassword')  is-invalid @enderror" placeholder=" "  value="{{ old('oldPassword') }}" autocomplete="password" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 info-label">New password:</div>
+                            <div class="col info-text">
+                                <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 info-label">Confirm password:</div>
+                            <div class="col info-text">
+                                <input type="password" id="password-confirm" name="password_confirmation" class="form-control input_data @error('password-confirm')  is-invalid @enderror" placeholder=" "  value="" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col info-text">
+                                <button type="submit" class="btn customize-btn">UPDATE PROFILE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div><!--profile-edit-section-->
+
+			</div><!--app-section profileinfo-->
+
 			<svg class="Line_ua" viewBox="0 0.5 28 2">
 				<path fill="transparent" stroke="rgba(120,230,208,1)" stroke-width="2px" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="10" shape-rendering="auto" id="Line_ua" d="M 0 0.5 L 28 0.5">
 				</path>
 			</svg>
-			
+
 			<div id="Group_2476" class="app-section users">
 				<div class="sectiontitle">
 					<span>{{ trans('pages.users') }}</span>

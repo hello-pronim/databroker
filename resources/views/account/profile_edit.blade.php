@@ -76,6 +76,24 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-2 info-label">Old password:</div>
+                        <div class="col info-text">
+                            <input type="password" id="oldPassword" name="oldPassword" class="form-control input_data @error('oldPassword')  is-invalid @enderror" placeholder=" "  value="{{ old('oldPassword') }}" autocomplete="password" autofocus>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 info-label">New password:</div>
+                        <div class="col info-text">
+                            <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="" autofocus>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 info-label">Confirm password:</div>
+                        <div class="col info-text">
+                            <input type="password" id="password-confirm" name="password_confirmation" class="form-control input_data @error('password-confirm')  is-invalid @enderror" placeholder=" "  value="" autofocus>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col info-text">
                             <button type="submit" class="btn customize-btn">UPDATE PROFILE</button>
                         </div>

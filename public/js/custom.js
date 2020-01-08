@@ -1,6 +1,6 @@
 $(document).ready(function(){    
 
-    $(".dropdown-menu").each(function(){ $(this).css({right: -($(this).width()/2+20)+"px"}); console.log($(this).width()) });
+    $(".dropdown-menu").each(function(){ $(this).css({right: -($(this).width()/2+20)+"px"}); });
 
     if($.fn.imageuploadify){
     	$('input[type="file"]').imageuploadify();
@@ -8,7 +8,33 @@ $(document).ready(function(){
 
     $(".custom-dropdown div.select").click(function(){	    	
     	$(this).parent().find("ul").toggle();
-    })
+    });
+
+    $(".custom-dropdown .custom-dropdown-menu button").click(function(){
+    	var select_box = $(this).parent().parent();
+    	select_box.toggle();
+    	var show_box = $(this).closest('.custom-dropdown').find('.select');
+    	var region = select_box.find("input[name='region[]']").val();
+    	
+    	var region = []
+    	$("input[name='region[]'").each(function(i){
+    		if($(this).attr('type') == 'checkbox'){
+    			if($(this).is(":checked")){
+    				region.push($(this).val());		
+    			}
+    		}
+    		else if($(this).attr('type') == 'text'){
+    			if($(this).val()){
+    				region.push($(this).val());		
+    			}
+    		}
+    		
+    	});
+    	
+    	show_box.find("span").html(region.join(','));
+    	$("input[name='region_']").val(region.join(','));
+    });
+
 
     $(".data-offer .step button.btn-next").click(function(e){
     	var cur_step = $(this).closest("div.step");
@@ -26,6 +52,11 @@ $(document).ready(function(){
     	prev.addClass('current');
 
     });
+
+    /*$("#data-offer").submit(function(e){
+    	e.preventDefault();
+    	console.log($(this).serialize());
+    });*/
 
 });
 
