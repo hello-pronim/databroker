@@ -58,7 +58,7 @@
 .imageuploadify .imageuploadify-images-list button {
   margin-top: 0px;
 }
-.imageuploadify .imageuploadify-images-list .imageuploadify-container {
+.imageuploadify .imageuploadify-image-block .imageuploadify-container {
   width: 100px;
   height: 100px;
   position: relative;
@@ -68,7 +68,7 @@
   border-radius: 12px;
   box-shadow: 0 0 4px 0 #888888;  
 }
-.imageuploadify .imageuploadify-images-list .imageuploadify-container button.btn-danger {
+.imageuploadify .imageuploadify-image-block .imageuploadify-container button.btn-danger {
   position: absolute;
   top: 3px;
   right: 3px;
@@ -81,7 +81,7 @@
   text-align: center;
   z-index: 3;
 }
-.imageuploadify .imageuploadify-images-list .imageuploadify-container img {
+.imageuploadify .imageuploadify-image-block .imageuploadify-container img {
   height: 100px;
   left: 50%;
   position: absolute;
@@ -89,7 +89,7 @@
   transform: translate(-50%, -50%);
   width: auto;
 }
-.imageuploadify .imageuploadify-images-list .imageuploadify-container .imageuploadify-details {
+.imageuploadify .imageuploadify-image-block .imageuploadify-container .imageuploadify-details {
   position: absolute;
   top: 0;
   padding-top: 20px;
@@ -101,7 +101,7 @@
   background: rgba(255, 255, 255, 0.5);
   z-index: 2;  
 }
-.imageuploadify .imageuploadify-images-list .imageuploadify-container .imageuploadify-details span {
+.imageuploadify .imageuploadify-image-block .imageuploadify-container .imageuploadify-details span {
   display: block;  
 }.
 
@@ -126,7 +126,7 @@
     max-height: 100%;
     margin: 0px;
 }
-.imageuploadify .imageuploadify-image-block .imageuploadify-container i{
+.imageuploadify .imageuploadify-image-block .imageuploadify-container .remove{
 	position: absolute;
 	  right: 5px;
 	  top: 5px;  
