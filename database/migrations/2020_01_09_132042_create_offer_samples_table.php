@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBusinessesTable extends Migration
+class CreateOfferSamplesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateBusinessesTable extends Migration
      */
     public function up()
     {
-        Schema::create('businesses', function (Blueprint $table) {
+        Schema::create('offer_samples', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('businessName');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ class CreateBusinessesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('businesses');
+        Schema::dropIfExists('offer_samples');
     }
 }

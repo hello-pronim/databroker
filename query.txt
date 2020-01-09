@@ -18,3 +18,8 @@ INSERT INTO `business` (`businessIdx`, `businessName`, `created_at`, `updated_at
 (17, 'Telecommunications/Electronics', NULL, NULL),
 (18, 'Transportation/Logistics', NULL, NULL),
 (19, 'Other industry', NULL, NULL);
+
+// Add a field to offer table
+
+ALTER TABLE `databroker_new`.`offers` 
+ADD COLUMN `offerImage` VARCHAR(255) NULL AFTER `offerDescription`;

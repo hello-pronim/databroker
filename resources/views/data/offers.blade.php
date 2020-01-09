@@ -48,7 +48,7 @@
 		                    <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top">error</i></label>
 		                    
 		                    <div class="fileupload">	                    	
-					            <input type="file" name="companyLogo" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf'>
+					            <input type="file" name="companyLogo" accept='image/*'>
 					            <div class="error_notice companyLogo"> This field is required</div>
 		                    </div>
 		                    <div class="buttons text-right">						
@@ -92,7 +92,7 @@
 	                            <div class="select">
 	                                <span>Please Select</span>
 	                            </div>
-	                            <input type="hidden" id="regionIdx" name="regionIdx" value="">
+	                            <input type="hidden" id="offercountry" name="offercountry" value="">
 	                            <ul class="custom-dropdown-menu region-select" style="display: none;">
 	                            	<h4>{{ trans('pages.select_region') }}:</h4>
 	                            	@foreach ($regions as $region)
@@ -128,7 +128,7 @@
 									</div>
 	                            </ul>
 	                        </div>
-	                        <div class="error_notice regionIdx"> This field is required</div>
+	                        <div class="error_notice offercountry"> This field is required</div>
 	                    </div>    
 	                    <br>
 	                    <div class=" description-header flex-vcenter">
@@ -152,7 +152,7 @@
 	                    <br>
 	                    <br>
 						<div class="fileupload">	                    	
-						    <input type="file" name="offerImage" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf'>
+						    <input type="file" name="offerImage" accept='image/*' description="{{ trans('pages.data_offer_image_upload_description2') }}">
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
 						<div class="buttons flex-vcenter">
@@ -252,7 +252,7 @@
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
 						<div class="fileupload">                            
-	                        <input type="file" name="offer_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf' multiple filelist>
+	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf' multiple filelist>
 	                    </div>
 						<div class="file-drag-drop-zone">
 							<div class="drag-drop-dummy">
@@ -284,7 +284,7 @@
 						</div>
 						<div class="description1">{{ trans('pages.data_offer_image_upload_description1') }}</div>
 						<div class="fileupload">                            
-	                        <input type="file" name="image_files" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2') }}">
+	                        <input type="file" name="offersample_images" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2') }}">
 	                    </div>
 						<div class="images-list">
 							<div class="row">

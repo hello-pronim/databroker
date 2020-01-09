@@ -20,4 +20,8 @@ class Region extends Model
     public function provider(){
         return $this->belongsTo('App\Models\Provider');
     }
+
+    public function offercountry(){
+        return $this->belongsTo('App\Models\OfferCountry');
+    }
 }

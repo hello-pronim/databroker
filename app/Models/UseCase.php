@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Community extends Model
+class UseCase extends Model
 {
-    protected $primaryKey = 'communityIdx';
+    protected $table = 'useCases';
+
+    protected $primaryKey = 'UseCaseIdx';
     
     /**
      * The attributes that are mass assignable.
@@ -14,10 +16,10 @@ class Community extends Model
      * @var array
      */
     protected $fillable = [
-        'communityName'
-    ];
+        'offerIdx', 'useCaseDescription', 'useCaseContent'
+    ];    
 
     public function offer(){
-        return $this->belongsTo('App\Models\Offer');
+    	return $this->hasOne('App\Models\Offer');
     }
 }

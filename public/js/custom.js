@@ -68,7 +68,7 @@ $(document).ready(function(){
     	});
     	
     	show_box.find("span").html(region.join(','));
-    	$("input[name='regionIdx']").val(regionIdx.join(','));
+    	$("input[name='offercountry']").val(regionIdx.join(','));
     });
 
     $(".data-offer .step button.btn-next").click(function(e){
