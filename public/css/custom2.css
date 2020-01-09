@@ -447,6 +447,10 @@ th.col-since {
 	margin-bottom: 65px;
 }
 
+.data-offer .file-drag-drop-zone {
+	display: none;
+}
+
 .data-offer .file-drag-drop-zone .drag-drop-dummy {
 	margin-top: 9px;
 	margin-bottom: 11px;
@@ -456,9 +460,9 @@ th.col-since {
 	display: none;
 }
 
-.data-offer .file-drag-drop-zone .file-entries {
+.data-offer .file-drag-drop-zone .file-entries,
+.data-offer .file-upload .file-entries {
 	margin-top: 12px;
-	margin-bottom: 25px;
 }
 
 .data-offer .file-entries .file-entry {
@@ -470,6 +474,10 @@ th.col-since {
 
 .data-offer .header .right-block {
 	margin-top: 22px;
+}
+
+.data-offer .images-block {
+	margin-top: 25px;
 }
 
 .data-offer .images-block .description1 {	
@@ -520,7 +528,7 @@ th.col-since {
 	width: 16px;
 }
 */
-.data-offer .icon-delete {
+/*.data-offer .icon-delete {
 	color: #BAC0C5;
 	width: 20px;
 	height: 20px;
@@ -534,7 +542,7 @@ th.col-since {
 	padding: 0px;
 	font-size: 22px;
 	display: flex;
-}
+}*/
 
 /*.data-offer .file-entry .icon-delete::before {
 	content: ' ';
@@ -551,7 +559,12 @@ th.col-since {
 	/*height: 187px;*/
 	/*padding: 8px;*/
 	border: unset;
+}
+.data-offer .imageuploadify .imageuploadify-image-block.thumbnails {
 	margin-top: 22px;
+}
+.data-offer .imageuploadify .imageuploadify-image-block.file-entries {
+	margin-top: 12px;
 }
 .data-offer .imageuploadify .imageuploadify-image-block.thumbnails {
 	display: flex;
@@ -596,26 +609,49 @@ th.col-since {
 	box-shadow: unset;	
 	position: relative;
 	float: unset;
+	text-align: left;
 }
 /*.data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container::after {
 	content: "";
 	display: block;
 	padding-bottom: 100%;
 }*/
-.data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container.file-entries {
+.data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container.file-entry {
 	color: #8C9196;
 	font-size: 14px;
 	font-weight: bold;
 	margin: 4.5px 0.5px;
 }
 
-.data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container .remove {
+.data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container.file-entry i {
+	margin-right: 8px;
+}
+
+.data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container.file-entry i.remove {
+	/*color: #020A09;*/
+	/*width: 16px;
+	height: 16px;
+	*/
+	color: #BAC0C5;
+	display: unset;
+	margin-left: 16px;
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+
+	position: static;
+	right: unset;
+	top: unset;
+}
+
+.data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container.thumbnails .remove {
 	color: #020A09;
 	width: 20px;
 	height: 20px;
 	display: relative;
 }
 
+.data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container.file-entry i.remove:hover,
 .data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container .remove:hover {
 	color: #FF6B6B;
 }

@@ -242,7 +242,7 @@
 					</div>
 				</div>
 		    </div>	
-	    	<div id="step4" class="app-section app-reveal-section align-items-center step current">  
+	    	<div id="step4" class="app-section app-reveal-section align-items-center step">  
 	    		<div class="row header">  	
 		    		<div class="col col-9">
 						<div class="page-title text-primary">{{ trans('pages.data_offer_step_4') }}</div>		
@@ -268,17 +268,17 @@
 							<div class="drag-drop-dummy">
 							</div>
 							<div class="row">
-							<div class="file-entries col-4">
-								<div class="file-entry flex-vcenter">
-									document.pdf
-									<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
-								</div>
-								<div class="file-entry flex-vcenter">
-									document.xxx
-									<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
+								<div class="file-entries col-4">
+									<div class="file-entry flex-vcenter">
+										document.pdf
+										<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
+									</div>
+									<div class="file-entry flex-vcenter">
+										document.xxx
+										<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
+									</div>
 								</div>
 							</div>
-						</div>
 						</div>
 					</div>
 					<div class="col-3">
