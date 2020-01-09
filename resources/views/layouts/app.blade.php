@@ -62,7 +62,7 @@
 		        			<a class="nav-link dropdown-toggle" id="account_dropdown" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false"><i class="icon material-icons mdl-badge" data-badge="!">person</i>{{ trans('home.account') }}</a>
 		        			<div class="dropdown-menu" aria-labelledby="account_dropdown">
 		        				<h4> {{ trans('home.mark_spencer') }} </h4>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.profile_account_info') }} </a>
+		        				<a class="dropdown-item" href="{{ route('account.profile') }}"> {{ trans('home.profile_account_info') }} </a>
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.wallet') }} </a>
 		        				<div class="dropdown-divider"></div>
 		        				<h5> {{ trans('home.me_buyer') }} </h5>

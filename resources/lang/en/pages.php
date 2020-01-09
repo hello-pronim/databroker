@@ -11,6 +11,7 @@ return [
     'access_to_data' => 'Access to this data',
     'please_select' => 'Please Select',
     'enter_url' => 'Enter URL',
+    'enter_name' => 'Enter Name',
     'confirm' => 'confirm',
     
     'images' => 'Images',
@@ -38,6 +39,8 @@ return [
     'INVITE_USERS' => 'INVITE USERS',
     'users' => 'Users',
     'Purchases' => 'Purchases',
+    'what_company_name' => 'What is the name of your company?',
+    'what_company_url' => 'What is the URL of your company?',
 
     'profile_description' => 'You can deactivate your Databroker account anytime you want.',
 

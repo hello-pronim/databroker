@@ -2176,6 +2176,7 @@ body {
     color: #e71010;
     text-indent: 35px;
     display: none;
+    font-family: 'DM Sans';
 }
 
 .error_notice:before {

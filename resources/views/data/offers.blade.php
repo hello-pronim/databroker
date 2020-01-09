@@ -32,9 +32,15 @@
 		                            @endforeach    
 		                            </ul>	                           
 		                        </div>
-		                        <div class="error_notice"> This field is required</div>
+		                        <div class="error_notice regionIdx"> This field is required</div>
 		                    </div>
-		                    <label class="pure-material-textfield">In which country are you located?</label>
+		                    <label class="pure-material-textfield">{{ trans('pages.what_company_name') }}</label>
+		                    <label class="pure-material-textfield-outlined">
+		                        <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="">
+		                        <span>{{ trans('pages.enter_name') }}</span>	                        
+		                        <div class="error_notice companyName"> This field is required</div>
+		                    </label>
+		                    <label class="pure-material-textfield">{{ trans('pages.what_company_url') }}</label>
 		                    <label class="pure-material-textfield-outlined">
 		                        <input type="text" id="companyUrl" name="companyUrl" class="form-control input_data" placeholder=" "  value="">
 		                        <span>{{ trans('pages.enter_url') }}</span>	                        
@@ -43,6 +49,7 @@
 		                    
 		                    <div class="fileupload">	                    	
 					            <input type="file" name="companyLogo" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf'>
+					            <div class="error_notice companyLogo"> This field is required</div>
 		                    </div>
 		                    <div class="buttons text-right">						
 								<button type="button" class="btn customize-btn btn-next pull-right">{{ trans('pages.next') }}</button>
@@ -70,65 +77,60 @@
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
 						<div class="text-wrapper">
-							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}"></textarea>
-							<div class="char-counter" id="Title_rb">0 / xxx characters</div>
+							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}"></textarea>							
+							<div class="error_notice offerTitle"> This field is required</div>
+							<div class="char-counter" id="Title_rb">0 / xxx characters</div>	
 						</div>
+						
 						<br>
 						<div class=" description-header flex-vcenter">
 							<div class="section-title">{{ trans('pages.for_what_region') }}</div>
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
-						<div class="dropdown-container">
+						<div class="custom-dropdown-container">
 	                        <div class="custom-dropdown" tabindex="1">
 	                            <div class="select">
 	                                <span>Please Select</span>
 	                            </div>
-	                            <input type="hidden" id="region" name="regionNames" value="">
+	                            <input type="hidden" id="regionIdx" name="regionIdx" value="">
 	                            <ul class="custom-dropdown-menu region-select" style="display: none;">
 	                            	<h4>{{ trans('pages.select_region') }}:</h4>
-	                               	<div class="check_container">
-				                        <label class="pure-material-checkbox">
-				                            <input type="checkbox" class="form-control no-block check_community" name="region[]" value="world">
-				                            <span>World</span>
-				                        </label>
-				                    </div>
+	                            	@foreach ($regions as $region)
+		                               	<div class="check_container">
+					                        <label class="pure-material-checkbox">
+					                            <input type="checkbox" class="form-control no-block check_community" name="region[]" region="{{$region->regionName}}" value="{{$region->regionIdx}}">
+					                            <span>{{$region->regionName}}</span>
+					                        </label>
+					                    </div>
+					                @endforeach    
+				                    
 				                    <div class="check_container">
 				                        <label class="pure-material-checkbox">
-				                            <input type="checkbox" class="form-control no-block check_community" name="region[]" value="north america">
-				                            <span>North America</span>
-				                        </label>
-				                    </div>
-				                    <div class="check_container">
-				                        <label class="pure-material-checkbox">
-				                            <input type="checkbox" class="form-control no-block check_community" name="region[]" value="asia">
-				                            <span>Asia</span>
-				                        </label>
-				                    </div>
-				                    <div class="check_container">
-				                        <label class="pure-material-checkbox">
-				                            <input type="checkbox" class="form-control no-block check_community" name="region[]" value="europe">
-				                            <span>Europe</span>
-				                        </label>
-				                    </div>
-				                    <div class="check_container">
-				                        <label class="pure-material-checkbox">
-				                            <input type="checkbox" class="form-control no-block check_community" name="region[]" value="south america">
-				                            <span>South America</span>
-				                        </label>
-				                    </div>
-				                    <div class="check_container">
-				                        <label class="pure-material-checkbox">
-				                            <input type="checkbox" class="form-control no-block check_community" name="region[]" value="to_be_definded">
+				                            <input type="checkbox" class="form-control no-block check_community" id="to_be_definded">
 				                            <span>To be defined</span>
 				                        </label>
 				                    </div>			                    
-	                                <div class="input pure-material-textfield-outlined"><input type="text" placeholder="{{ trans('pages.or_add_country') }}" name="region[]" class="form-control input_data"></div>                              
+	                                <div class="dropdown-container country_list" style="display: none;">
+				                        <div class="dropdown" tabindex="1">
+				                            <div class="select">
+				                                <span>{{ trans('pages.or_add_country') }}</span>
+				                            </div>
+				                            <input type="hidden" name="region[]" value="">
+				                            <ul class="dropdown-menu" style="display: none;">
+				                            @foreach ($countries as $country)
+				                                <li value="{{$country->regionIdx}}">{{ $country->regionName }}</li>
+				                            @endforeach    
+				                            </ul>	                           
+				                        </div>				                        
+				                    </div>                             
 	                                <div class="buttons flex-vcenter">						
 										<button type="button" class="btn customize-btn">{{ trans('pages.confirm') }}</button>
 									</div>
 	                            </ul>
 	                        </div>
+	                        <div class="error_notice regionIdx"> This field is required</div>
 	                    </div>    
+	                    <br>
 	                    <div class=" description-header flex-vcenter">
 							<div class="section-title">{{ trans('pages.in_which_community') }}</div>
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
@@ -138,32 +140,20 @@
 	                            <div class="select">
 	                                <span>Please Select</span>
 	                            </div>
-	                            <input type="hidden" id="community" name="community" value="Agriculture/Mining/Forestry">
+	                            <input type="hidden" id="communityIdx" name="communityIdx" value="">
 	                            <ul class="dropdown-menu" style="display: none;">
-	                                <li value="Agriculture/Mining/Forestry">Agriculture/Mining/Forestry</li>
-	                                <li value="Advertising/Media/Publishing">Advertising/Media/Publishing</li>
-	                                <li value="Automotive">Automotive</li>
-	                                <li value="Construction/Engineering/Infrstructure">Construction/Engineering/Infrstructure</li>
-	                                <li value="Chemicals">Chemicals</li>
-	                                <li value="Creative">Creative</li>
-	                                <li value="Education">Education</li>
-	                                <li value="Energy/Utilities">Energy/Utilities</li>
-	                                <li value="Financial services &amp; insurance">Financial services &amp; insurance</li>
-	                                <li value="Government/Non-profit">Government/Non-profit</li>
-	                                <li value="Healthcare">Healthcare</li>
-	                                <li value="Hospitality/Tourism">Hospitality/Tourism</li>
-	                                <li value="IT services">IT services</li>
-	                                <li value="Manufacturing">Manufacturing</li>
-	                                <li value="Pharmaceutical/Biotech">Pharmaceutical/Biotech</li>
-	                                <li value="Retail/Consumer goods">Retail/Consumer goods</li>
-	                                <li value="Telecommunications/Electronics">Telecommunications/Electronics</li>
-	                                <li value="Transportation/Logistics">Transportation/Logistics</li>
-	                                <li value="">Other industry</li>
-	                            </ul>
+	                                @foreach ($communities as $community)
+		                                <li value="{{$community->communityIdx}}">{{ $community->communityName }}</li>
+		                            @endforeach                                    
+	                            </ul>	                            
 	                        </div>
+	                        <div class="error_notice communityIdx"> This field is required</div>
 	                    </div>    
+	                    <br>
+	                    <br>
 						<div class="fileupload">	                    	
-						    <input type="file" name="data_offer_image" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf'>
+						    <input type="file" name="offerImage" accept='.xlsx,.xls,image/*,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf'>
+						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Provider;
 use App\Models\Region;
+use App\Models\Community;
 
 class DataController extends Controller
 {
@@ -31,10 +32,11 @@ class DataController extends Controller
     }
 
     public function offers(Request $request){        
-        
+        $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
+        $communities = Community::all();
 
-        $data = array( 'countries' );
+        $data = array( 'regions', 'countries', 'communities' );
         return view('data.offers', compact($data));
     }
     public function add_offer(Request $request){
@@ -44,6 +46,7 @@ class DataController extends Controller
                 
         $provider_data['userIdx'] = Auth::id();
         $provider_data['regionIdx'] = $request->regionIdx;
+        $provider_data['companyName'] = $request->companyName;        
         $provider_data['companyUrl'] = $request->companyUrl;        
 
         $provider_obj = Provider::create($provider_data);

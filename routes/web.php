@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function(){
 	Route::get('/profile', 'ProfileController@index')->name('account.profile');
-	Route::post('/profile', 'ProfileController@update')->name('account.profile.update');
+	Route::post('/profile/edit', 'ProfileController@update')->name('account.profile.update');
 	Route::get('/profile/purchases', 'ProfileController@purchases')->name('account.purchases');	
 	
 	Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name('data_details');

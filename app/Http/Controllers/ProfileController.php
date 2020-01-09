@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\Business;
+
 class ProfileController extends Controller
 {
     /**
@@ -38,19 +40,16 @@ class ProfileController extends Controller
         $user = $this->getAuthUser();
 
         // TODO
+
         $users = User::all();
         $users = null;
+        $business = Business::all();
 
-        return view('account.profile', $user)->with('users', $users);
+        $data = array('user', 'users', 'business');
+        return view('account.profile', compact($data));
+
     }
-
-    public function edit(Request $request)
-    {
-        $user = $this->getAuthUser();
-
-        return view('account.profile_edit', $user);
-    }
-
+   
     public function purchases(Request $request)
     {
         return view('account.purchases');
@@ -79,27 +78,33 @@ class ProfileController extends Controller
             $updatePassword = false;
         }
 
-        $data = $this->validate($request, $fields);
+        $validator = Validator::make($request->all(), $fields);
 
+        if($validator->fails()){
+            return response()->json(array( "success" => false, 'result' => $validator->errors() ));                    
+        }
+        
         // check old password
-        if (!Hash::check($oldPassword, $user->password)) {
-            return back()->withErrors('Current password incorrect')->withInput();
-        }
-        else {
-            $user->firstname = $data['firstname'];
-            $user->lastname = $data['lastname'];
-            $user->emailAddress = $data['emailAddress'];
-            $user->jobTitle = $request->input('jobTitle');
-            $user->businessName = $request->input('businessName');
+        
+        $user->firstname = $request->input('firstname');
+        $user->lastname = $request->input('lastname');
+        $user->emailAddress = $request->input('emailAddress');
+        $user->jobTitle = $request->input('jobTitle');
+        $user->businessName = $request->input('businessName');
 
-            if ($updatePassword == true)
-            {
-                $user->password = Hash::make($data['password']);
+        if ($updatePassword == true)
+        {
+            if (!Hash::check($oldPassword, $user->password)) {                                
+                return response()->json(array("success" => false, 'result' => array('password'=> "Old password is not correct.")));
+            }else {
+                $user->password = Hash::make($request->input('password'));
             }
-
-            $user->save();
-            return redirect('/profile/'.Auth::user()->id)->with('success', 'Profile has been updated');
+            
         }
+
+        $user->save();
+        
+        return response()->json(['success' => true, 'result' => "Updated successfully."]);
     }
 
     protected function validator(array $data)

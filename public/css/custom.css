@@ -24,6 +24,9 @@
 	border:1px solid #fff !important;
 }
 /*General style*/
+.mb-10{
+	margin-bottom: 10px;
+}
 .mb-20{
 	margin-bottom: 20px;
 }
@@ -38,6 +41,9 @@
 }
 .mt-80{
 	margin-top: 80px;	
+}
+.ml-15{
+	margin-left: 15px;
 }
 .min-h100{
 	min-height: 100px !important;
@@ -584,8 +590,10 @@ h1,h2,h3,h4,h5,h6{
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
 }
-
-.dropdown-container .custom-dropdown {
+.custom-dropdown-container{
+	margin: 10px 0px;
+}
+.custom-dropdown-container .custom-dropdown {
     width: 100%;
     display: inline-block;
     background-color: #fff;
@@ -603,10 +611,10 @@ h1,h2,h3,h4,h5,h6{
     /* margin: 10px 0px 17px; */
     position: relative;
 }
-.dropdown-container .custom-dropdown:focus {
+.custom-dropdown-container .custom-dropdown:focus {
     outline-color: transparent;
 }
-.dropdown-container .custom-dropdown:before {
+.custom-dropdown-container .custom-dropdown:before {
     content: ' ';
     width: 30px;
     height: 30px;
@@ -617,12 +625,12 @@ h1,h2,h3,h4,h5,h6{
     right: 19px;
     border-radius: 15px;
 }
-.dropdown-container .custom-dropdown .select {
+.custom-dropdown-container .custom-dropdown .select {
     cursor: pointer;
     display: block;
     padding: 10px
 }
-.dropdown-container .custom-dropdown .select > i {
+.custom-dropdown-container .custom-dropdown .select > i {
     font-size: 13px;
     color: #888;
     cursor: pointer;
@@ -630,15 +638,18 @@ h1,h2,h3,h4,h5,h6{
     float: right;
     line-height: 20px
 }
-.dropdown-container .custom-dropdown:hover {
+.custom-dropdown-container .custom-dropdown:hover {
     box-shadow: 0 0 4px rgb(204, 204, 204)
 }
-.dropdown-container .custom-dropdown .input input{
+.custom-dropdown-container .custom-dropdown .input input{
 	width: 100%;
     margin: 20px 0;
 }
-.dropdown-container .custom-dropdown .custom-dropdown-menu .customize-btn{
-	margin: 0px;
+.custom-dropdown-container .custom-dropdown .custom-dropdown-menu .customize-btn{
+	margin: 20px 0 0 0;
+}
+.custom-dropdown-container .custom-dropdown .country_list{
+	margin-bottom: 0px;
 }
 .data-offer .step{
 	display: none;
@@ -650,4 +661,8 @@ h1,h2,h3,h4,h5,h6{
 .data-offer .step.current{
 	display: block;
 }
-
+.data-offer .text-wrapper .error_notice{
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}

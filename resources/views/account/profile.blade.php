@@ -15,7 +15,7 @@
 				<span>{{ trans('pages.company_name') }}</span>
 			</div>
 			<div class="label adminname">
-			<span>{{ $companyName }}</span>
+			<span>{{ $user->companyName }}</span>
 			</div>
 
             <div class="app-section profileinfo">
@@ -32,20 +32,20 @@
                         <div class="sectiontitle">{{ trans('pages.profile_information') }}</div>
                         <div class="row">
                             <div class="col-2 info-label">{{ trans('pages.name') }}:</div>
-                            <div class="col info-text">{{ $firstname }} {{ $lastname }}</div>
+                            <div class="col info-text">{{ $user->firstname }} {{ $user->lastname }}</div>
                         </div>
 
                         <div class="row">
                             <div class="col-2 info-label">{{ trans('pages.email_address') }}:</div>
-                            <div class="col info-text">{{ $emailAddress }}</div>
+                            <div class="col info-text">{{ $user->emailAddress }}</div>
                         </div>
                         <div class="row">
                             <div class="col-2 info-label">{{ trans('pages.job_title') }}:</div>
-                            <div class="col info-text">{{ $jobTitle }}</div>
+                            <div class="col info-text">{{ $user->jobTitle }}</div>
                         </div>
                         <div class="row">
                             <div class="col-2 info-label">{{ trans('pages.industry') }}:</div>
-                            <div class="col info-text">{{ $businessName }}</div>
+                            <div class="col info-text">{{ $user->businessName }}</div>
                         </div>
                         <div class="row">
                             <div class="col-2 info-label">{{ trans('pages.Password') }}:</div>
@@ -60,109 +60,88 @@
                         </div>
                     </div>
                     <br />
-                    <form method="POST">
+                    <form method="POST" action="{{ route('account.profile.update') }}">
                         @csrf
                         <div class="row">
-                            <div class="col-3 info-label">First name:</div>
-                            <div class="col info-text">
-                                <input type="text" id="firstname" name="firstname" class="form-control @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname', $firstname) }}" required autocomplete="firstname" autofocus>
+                            <div class="col-3 info-label flex-vend">First name:</div>
+                            <div class="col info-text flex-vcenter">
+                                <input type="text" id="firstname" name="firstname" class="form-control" placeholder=" "  value="{{ old('firstname', $user->firstname) }}" autocomplete="firstname" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">                                                        
+                            <span class="invalid-feedback firstname ml-15" role="alert">
+                                <strong></strong>
+                            </span>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-3 info-label flex-vend">Last name:</div>
+                            <div class="col info-text flex-vcenter">
+                                <input type="text" id="lastname" name="lastname" class="form-control" placeholder=" "  value="{{ old('lastname', $user->lastname) }}" autocomplete="lastname" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">                                                        
+                            <span class="invalid-feedback lastname ml-15" role="alert">
+                                <strong></strong>
+                            </span>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-3 info-label flex-vend">Email address:</div>
+                            <div class="col info-text flex-vcenter">
+                                <input type="text" id="emailAddress" name="emailAddress" class="form-control" placeholder=" "  value="{{ old('emailAddress', $user->emailAddress) }}" autocomplete="emailAddress" autofocus>
+                            </div>
+                        </div>
+                        <div class="row">                                                        
+                            <span class="invalid-feedback emailAddress ml-15" role="alert">
+                                <strong></strong>
+                            </span>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-3 info-label flex-vend">Job title:</div>
+                            <div class="col info-text flex-vcenter">
+                                <input type="text" id="jobTitle" name="jobTitle" class="form-control" placeholder=" "  value="{{ old('jobTitle', $user->jobTitle) }}" autocomplete="jobTitle" autofocus>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'First name']) }}</div>
-                            @error('firstname')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label">Last name:</div>
-                            <div class="col info-text">
-                                <input type="text" id="lastname" name="lastname" class="form-control @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ old('lastname', $lastname) }}" required autocomplete="lastname" autofocus>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last name']) }}</div>
-                            @error('lastname')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label">Email address:</div>
-                            <div class="col info-text">
-                                <input type="text" id="emailAddress" name="emailAddress" class="form-control @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress', $emailAddress) }}" required autocomplete="emailAddress" autofocus>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email address']) }}</div>
-                            @error('emailAddress')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label">Job title:</div>
-                            <div class="col info-text">
-                                <input type="text" id="jobTitle" name="jobTitle" class="form-control @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle', $jobTitle) }}" autocomplete="jobTitle" autofocus>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label">Industry:</div>
-                            <div class="col dropdown-container">
+                            <div class="col-3 info-label flex-vcenter">Industry:</div>
+                            <div class="col dropdown-container flex-vcenter mb-10">
                                 <div class="dropdown" tabindex="1">
                                     <div class="select">
-                                        <span>{{ old('businessName', $businessName) }}</span>
+                                        <span>{{ old('businessName', $user->businessName) }}</span>
                                     </div>
-                                    <input type="hidden" id="businessName" name="businessName" value="Agriculture/Mining/Forestry">
+                                    <input type="hidden" id="businessName" name="businessName" value="{{$user->businessName}}">
                                     <ul class="dropdown-menu" style="display: none;">
-                                        <li value="Agriculture/Mining/Forestry">Agriculture/Mining/Forestry</li>
-                                        <li value="Advertising/Media/Publishing">Advertising/Media/Publishing</li>
-                                        <li value="Automotive">Automotive</li>
-                                        <li value="Construction/Engineering/Infrstructure">Construction/Engineering/Infrstructure</li>
-                                        <li value="Chemicals">Chemicals</li>
-                                        <li value="Creative">Creative</li>
-                                        <li value="Education">Education</li>
-                                        <li value="Energy/Utilities">Energy/Utilities</li>
-                                        <li value="Financial services &amp; insurance">Financial services &amp; insurance</li>
-                                        <li value="Government/Non-profit">Government/Non-profit</li>
-                                        <li value="Healthcare">Healthcare</li>
-                                        <li value="Hospitality/Tourism">Hospitality/Tourism</li>
-                                        <li value="IT services">IT services</li>
-                                        <li value="Manufacturing">Manufacturing</li>
-                                        <li value="Pharmaceutical/Biotech">Pharmaceutical/Biotech</li>
-                                        <li value="Retail/Consumer goods">Retail/Consumer goods</li>
-                                        <li value="Telecommunications/Electronics">Telecommunications/Electronics</li>
-                                        <li value="Transportation/Logistics">Transportation/Logistics</li>
-                                        <li value="">Other industry</li>
+                                        @foreach($business as $busi )
+                                        <li value="{{$busi->businessName}}">{{$busi->businessName}}</li>
+                                        @endforeach
                                     </ul>
-                                </div>
-                                <div class="error_notice"> This field is required</div>
+                                </div>                                
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3 info-label">Old password:</div>
-                            <div class="col info-text">
-                                <input type="password" id="oldPassword" name="oldPassword" class="form-control @error('oldPassword')  is-invalid @enderror" placeholder=" "  value="{{ old('oldPassword') }}" autocomplete="password" autofocus>
+                            <div class="col-3 info-label flex-vend">Old password:</div>
+                            <div class="col info-text flex-vcenter">
+                                <input type="password" id="oldPassword" name="oldPassword" class="form-control" placeholder=" "  value="{{ old('oldPassword') }}" autocomplete="password" autofocus>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3 info-label">New password:</div>
-                            <div class="col info-text">
-                                <input type="password" id="password" name="password" class="form-control @error('password')  is-invalid @enderror" placeholder=" "  value="" autofocus>
+                            <div class="col-3 info-label flex-vend">New password:</div>
+                            <div class="col info-text flex-vcenter">
+                                <input type="password" id="password" name="password" class="form-control" placeholder=" "  value="" autofocus>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3 info-label">Confirm password:</div>
-                            <div class="col info-text">
-                                <input type="password" id="password-confirm" name="password_confirmation" class="form-control @error('password-confirm')  is-invalid @enderror" placeholder=" "  value="" autofocus>
+                            <div class="col-3 info-label flex-vend">Confirm password:</div>
+                            <div class="col info-text flex-vcenter">
+                                <input type="password" id="password-confirm" name="password_confirmation" class="form-control" placeholder=" "  value="" autofocus>
                             </div>
                         </div>
+                        <div class="row">                                                        
+                            <span class="invalid-feedback password ml-15" role="alert">
+                                <strong></strong>
+                            </span>                            
+                        </div>
                         <div class="row">
-                            <div class="col info-text">
+                            <div class="col info-text flex-vend">
                                 <button type="submit" class="btn customize-btn">UPDATE PROFILE</button>
                             </div>
                         </div>
