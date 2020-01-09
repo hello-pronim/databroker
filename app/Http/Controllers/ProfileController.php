@@ -82,7 +82,7 @@ class ProfileController extends Controller
         $data = $this->validate($request, $fields);
 
         // check old password
-        if (Hash::check($oldPassword, $user->password)) {
+        if (!Hash::check($oldPassword, $user->password)) {
             return back()->withErrors('Current password incorrect')->withInput();
         }
         else {
