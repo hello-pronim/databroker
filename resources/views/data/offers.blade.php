@@ -251,21 +251,24 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.files') }}</div>
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
+						<div class="fileupload">                            
+	                        <input type="file" name="offer_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf' multiple filelist>
+	                    </div>
 						<div class="file-drag-drop-zone">
 							<div class="drag-drop-dummy">
 							</div>
 							<div class="row">
-							<div class="file-list col-4">
-								<div class="file-entry flex-vcenter">
-									document.pdf
-									<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
-								</div>
-								<div class="file-entry flex-vcenter">
-									document.xxx
-									<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
+								<div class="file-entries col-4">
+									<div class="file-entry flex-vcenter">
+										document.pdf
+										<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
+									</div>
+									<div class="file-entry flex-vcenter">
+										document.xxx
+										<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
+									</div>
 								</div>
 							</div>
-						</div>
 						</div>
 					</div>
 					<div class="col-3">
@@ -280,11 +283,9 @@
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
 						<div class="description1">{{ trans('pages.data_offer_image_upload_description1') }}</div>
-						<div class="file-drag-drop-zone">
-							<div class="drag-drop-dummy">
-							</div>
-						</div>
-						<div class="description2">{{ trans('pages.data_offer_image_upload_description2') }}</div>
+						<div class="fileupload">                            
+	                        <input type="file" name="image_files" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2') }}">
+	                    </div>
 						<div class="images-list">
 							<div class="row">
 								<div class="image-item col flex-center">1</div>
