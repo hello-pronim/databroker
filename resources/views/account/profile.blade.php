@@ -63,9 +63,9 @@
                     <form method="POST">
                         @csrf
                         <div class="row">
-                            <div class="col-2 info-label">First name:</div>
+                            <div class="col-3 info-label">First name:</div>
                             <div class="col info-text">
-                                <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname', $firstname) }}" required autocomplete="firstname" autofocus>
+                                <input type="text" id="firstname" name="firstname" class="form-control @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname', $firstname) }}" required autocomplete="firstname" autofocus>
                             </div>
                         </div>
                         <div class="row">
@@ -77,9 +77,9 @@
                             @enderror
                         </div>
                         <div class="row">
-                            <div class="col-2 info-label">Last name:</div>
+                            <div class="col-3 info-label">Last name:</div>
                             <div class="col info-text">
-                                <input type="text" id="lastname" name="lastname" class="form-control input_data @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ old('lastname', $lastname) }}" required autocomplete="lastname" autofocus>
+                                <input type="text" id="lastname" name="lastname" class="form-control @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ old('lastname', $lastname) }}" required autocomplete="lastname" autofocus>
                             </div>
                         </div>
                         <div class="row">
@@ -91,9 +91,9 @@
                             @enderror
                         </div>
                         <div class="row">
-                            <div class="col-2 info-label">Email address:</div>
+                            <div class="col-3 info-label">Email address:</div>
                             <div class="col info-text">
-                                <input type="text" id="emailAddress" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress', $emailAddress) }}" required autocomplete="emailAddress" autofocus>
+                                <input type="text" id="emailAddress" name="emailAddress" class="form-control @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress', $emailAddress) }}" required autocomplete="emailAddress" autofocus>
                             </div>
                         </div>
                         <div class="row">
@@ -105,17 +105,17 @@
                             @enderror
                         </div>
                         <div class="row">
-                            <div class="col-2 info-label">Job title:</div>
+                            <div class="col-3 info-label">Job title:</div>
                             <div class="col info-text">
-                                <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle', $jobTitle) }}" autocomplete="jobTitle" autofocus>
+                                <input type="text" id="jobTitle" name="jobTitle" class="form-control @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle', $jobTitle) }}" autocomplete="jobTitle" autofocus>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2 info-label">Industry:</div>
+                            <div class="col-3 info-label">Industry:</div>
                             <div class="col dropdown-container">
                                 <div class="dropdown" tabindex="1">
                                     <div class="select">
-                                        <span>What business are you in?</span>
+                                        <span>{{ old('businessName', $businessName) }}</span>
                                     </div>
                                     <input type="hidden" id="businessName" name="businessName" value="Agriculture/Mining/Forestry">
                                     <ul class="dropdown-menu" style="display: none;">
@@ -144,21 +144,21 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2 info-label">Old password:</div>
+                            <div class="col-3 info-label">Old password:</div>
                             <div class="col info-text">
-                                <input type="password" id="oldPassword" name="oldPassword" class="form-control input_data @error('oldPassword')  is-invalid @enderror" placeholder=" "  value="{{ old('oldPassword') }}" autocomplete="password" autofocus>
+                                <input type="password" id="oldPassword" name="oldPassword" class="form-control @error('oldPassword')  is-invalid @enderror" placeholder=" "  value="{{ old('oldPassword') }}" autocomplete="password" autofocus>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2 info-label">New password:</div>
+                            <div class="col-3 info-label">New password:</div>
                             <div class="col info-text">
-                                <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="" autofocus>
+                                <input type="password" id="password" name="password" class="form-control @error('password')  is-invalid @enderror" placeholder=" "  value="" autofocus>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2 info-label">Confirm password:</div>
+                            <div class="col-3 info-label">Confirm password:</div>
                             <div class="col info-text">
-                                <input type="password" id="password-confirm" name="password_confirmation" class="form-control input_data @error('password-confirm')  is-invalid @enderror" placeholder=" "  value="" autofocus>
+                                <input type="password" id="password-confirm" name="password_confirmation" class="form-control @error('password-confirm')  is-invalid @enderror" placeholder=" "  value="" autofocus>
                             </div>
                         </div>
                         <div class="row">
