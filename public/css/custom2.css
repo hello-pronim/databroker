@@ -593,13 +593,22 @@ th.col-since {
 	justify-content: center;
 	align-items: center;
 
-	width: 48%;
-	padding-bottom: 30%;
-	margin-bottom: 3%;
 	height: unset;
 	border-radius: unset;
 	box-shadow: unset;	
 	position: relative;
+}
+
+.data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container.thumbnails {
+	width: 48%;
+	padding-bottom: 30%;
+	margin-bottom: 3%;
+}
+
+.data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container.thumbnails.single {
+	width: 100%;
+	padding-bottom: 60%;
+	margin-bottom: 0px;
 }
 
 .data-offer .imageuploadify .imageuploadify-image-block .imageuploadify-container.file-entry {
