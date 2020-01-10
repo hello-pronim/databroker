@@ -775,3 +775,98 @@ th.col-since {
 ::-webkit-scrollbar-corner {
     background-color: transparent;
 }
+
+/* customize Select2 */
+.adv-combo-wrapper select {
+	width: 100%;
+}
+
+.adv-combo-wrapper .select2 .selection .select2-selection .select2-selection__arrow b {
+	display: none;
+}
+
+/*Styling Selectbox*/
+.dropdown-container .dropdown,
+.adv-combo-wrapper .select2 .selection .select2-selection {
+    width: 100%;
+    display: inline-block;
+    background-color: #fff;
+    box-shadow: 0 0 2px rgb(123, 126, 129);
+    transition: all .5s ease;
+    position: relative;
+    font-size: 14px;
+    color: #474747;
+    height: 100%;
+    text-align: left;
+    border-radius: 24px;
+    text-indent: 15px;
+    height: 48px;
+    line-height: 28px;
+    /* margin: 10px 0px 17px; */
+    position: relative;
+}
+
+.dropdown-container,
+.adv-combo-wrapper .select2-container {
+    margin: 10px 0px 17px;
+    padding-bottom: 10px;
+}
+
+.dropdown-container .dropdown:focus,
+.adv-combo-wrapper .select2 .selection .select2-selection:focus {
+    outline-color: transparent;
+}
+
+.dropdown-container .dropdown:before,
+.adv-combo-wrapper .select2 .selection .select2-selection .select2-selection__arrow {
+    content: ' ';
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-image: url(../images/patterns/select_drop.png);
+    background-repeat: no-repeat;
+    top: 10px;
+    right: 19px;
+    border-radius: 15px;
+}
+
+.dropdown-container .dropdown .select,
+.adv-combo-wrapper .select2 .selection .select2-selection {
+    cursor: pointer;
+    display: block;
+    padding: 10px
+}
+
+.dropdown-container .dropdown .select > i,
+.adv-combo-wrapper .select2 .selection .select2-selection > i {
+    font-size: 13px;
+    color: #888;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    float: right;
+    line-height: 20px
+}
+
+.dropdown-container .dropdown:hover,
+.adv-combo-wrapper .select2 .selection .select2-selection:hover {
+    box-shadow: 0 0 4px rgb(204, 204, 204)
+}
+
+.dropdown-container .dropdown:active,
+.adv-combo-wrapper .select2 .selection .select2-selection:active {
+    background-color: #f8f8f8
+}
+
+.dropdown-container .dropdown.active:hover, 
+.dropdown-container .dropdown.active,
+.adv-combo-wrapper .select2.select2-container--open .selection .select2-selection:hover,
+.adv-combo-wrapper .select2.select2-container--open .selection .select2-selection {
+    box-shadow: 0 0 4px rgb(204, 204, 204);
+    border-radius: 5px 5px 0 0;
+    background-color: #f8f8f8
+}
+
+.dropdown-container .dropdown.active .select > i,
+.adv-combo-wrapper .select2 .selection .select2-selection > i {
+    transform: rotate(-90deg)
+}

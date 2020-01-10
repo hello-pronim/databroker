@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/material.min.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
         
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
@@ -267,11 +268,13 @@
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>   
     <script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 
     @yield('additional_javascript')
 
     <script src="{{ asset('js/app.js') }}"></script>        
     <script src="{{ asset('js/custom.js') }}"></script>   
+    <script src="{{ asset('js/custom2.js') }}"></script>   
             
     
     <script type="text/javascript">

@@ -20,7 +20,14 @@
 				        </div>
 				        <div class="blog-content">
 				        	<label class="pure-material-textfield">In which country are you located?</label>
-				        	<div class="dropdown-container">
+				        	<div class="adv-combo-wrapper">
+			                    <select class="">
+			                    	@foreach ($countries as $country)
+		                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
+		                            @endforeach
+			                    </select>
+			                </div>
+				        	<div class="dropdown-container hidden">
 		                        <div class="dropdown" tabindex="1">
 		                            <div class="select">
 		                                <span>{{ trans('pages.please_select') }}</span>
@@ -30,7 +37,7 @@
 		                            @foreach ($countries as $country)
 		                                <li value="{{$country->regionIdx}}">{{ $country->regionName }}</li>
 		                            @endforeach    
-		                            </ul>	                           
+		                            </ul>
 		                        </div>
 		                        <div class="error_notice regionIdx"> This field is required</div>
 		                    </div>
