@@ -899,8 +899,13 @@ th.col-since {
     overflow: hidden;
     /*display: none;*/
     max-height: 176px;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
     z-index: 9
+}
+
+.select2-container--default .select2-results>.select2-results__options {
+	max-height: 144px;
+    overflow-y: auto;
 }
 
 .select2-container.select2-container--open .select2-dropdown.select2-dropdown--above {
@@ -935,6 +940,10 @@ body .select2-search--dropdown {
     text-indent: 15px;
     border-width: 0px;
 }
+
+/*.select2-container.select2-container--open .select2-dropdown li {
+    border-width: 0px;
+}*/
 
 .dropdown-container .dropdown .dropdown-menu,
 .select2-container.select2-container--open .select2-dropdown {
