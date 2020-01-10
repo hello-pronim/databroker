@@ -18,7 +18,7 @@
 	        <div class="blog-content">
 	        	<div class="row">
 	        		<div class="col-lg-8">
-	        			<img class="blog-img" src="{{ asset('images/blogs/blog.png') }}" />
+	        			<img class="blog-img" src="{{ asset('uploads/offer/'.$offer['offerImage']) }}" />
 	        		</div>
 	        		<div class="col-lg-4">
 	        			<h2 class="explain">Data provided by {{ $offer['provider']->companyName }}</h2>
@@ -72,12 +72,21 @@
 				                <p>{{ $offer['usecase']->useCaseContent }}</p>
 				            </div>
 				            <div class="tab-pane" id="samples">
-				                <h2>Use cases</h2>
-				                <p>Sample of lorem ipsum dolor sit amet.</p>
-				                <div class="download"><i class="material-icons">get_app</i><span>document.pdf</span></div>
-
-				                <p>Sample of lorem ipsum dolor sit amet.</p>
-				                <div class="download"><i class="material-icons">get_app</i><span>document.pdf</span></div>
+				                <h2>{{ trans('pages.samples') }}</h2>
+				                @foreach($offersample as $sample)
+				                	@if( explode("-", $sample['sampleType'])[0] == 'file')
+				                	<div class="file">
+				                		<p>{{$sample['sampleDescription']}}</p>
+				                		<a class="download" href="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}"><i class="material-icons">get_app</i><span>{{$sample['sampleFileName']}}</span></a>
+				                	</div>	
+				                	@endif				                	
+				                	@if( explode("-", $sample['sampleType'])[0] == 'image')				                	
+				                		<div class="image">					                		
+					                		<img src="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}">
+					                		<p>{{$sample['sampleDescription']}}</p>
+				                		</div>
+				                	@endif				                	
+				                @endforeach	
 				            </div>
 				            <div class="tab-pane" id="this_data">
 				                <h2>Buy this data</h2>

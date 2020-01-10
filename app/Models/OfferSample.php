@@ -20,7 +20,7 @@ class OfferSample extends Model
     ];    
 
     public function offer(){
-    	return $this->hasOne('App\Models\Offer', 'offerIdx', 'offerIdx');
+    	return $this->hasMany('App\Models\Offer', 'offerIdx', 'offerIdx');
     }
 
 }
