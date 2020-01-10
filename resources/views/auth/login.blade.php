@@ -47,7 +47,7 @@
 
                     <hr>
                     <p class="h4-intro">No account yet?</p>
-                    <p class="paragraph-small text-bold">Let's get you set up on Databroker dao first! It's free!</p>
+                    <p class="paragraph-small text-bold">Let's get you set up on Databroker first! It's free!</p>
                     <a id="register_link" href="{{ route('register') }}">
                         <button type="button" class="btn custom-btn1 pure-material-button-outlined">{{ __('REGISTER NOW') }}</button>
                     </a>

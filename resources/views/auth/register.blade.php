@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row justify-content-center auth-section">
             <div class="col-md-8" id="register_section">
-                <h1 class="h1-smaller text-primary text-center" id="register_title">Let's get you set up on<br>Databroker dao!</h1>
+                <h1 class="h1-smaller text-primary text-center" id="register_title">Let's get you set up on<br>Databroker!</h1>
                 <br>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
@@ -125,7 +125,7 @@
                     <div class="form-check">
                         <label class="form-check-label">                
                             <input type="checkbox" class="form-check-input" name="term_conditions" value="true">
-                            <b class="">Yes, I accept the <font style="color: #78E6D0;">terms and conditions</font> and <font style="color: #78E6D0;">the privacy</font> of Databroker dao</b>
+                            <b class="">Yes, I accept the <font style="color: #78E6D0;">terms and conditions</font> and <font style="color: #78E6D0;">the privacy</font> of Databroker</b>
                             <span class="form-check-sign">
                                 <span class="custom-check check @error('term_conditions') is-invalid @enderror"></span>
                             </span>                                                        

@@ -252,7 +252,7 @@
   				<div class="app-section app-monetize-section align-items-center">
 			        <div class="app-monetize-section-item0"></div>
 			        <div class="app-monetize-section-item1">
-			            <h1>Databroker dao is supported by our trusted partners.</h1>	            			            
+			            <h1>Databroker is supported by our trusted partners.</h1>	            			            
 			        </div>
 			    </div>
 			    <div class="app-partner-items row">
@@ -354,16 +354,16 @@
 	                </div>
 	                <div class="app-footer-social-link-container">
 	                    <div class="app-footer-social-link">
-	                        <a href="https://www.facebook.com/DataBrokerDAO/" rel="nofollow noopener noreferrer" target="_blank">
+	                        <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
 	                          <img src="{{ asset('/images/facebook.png') }}">
 	                        </a>
-	                        <a href="https://www.twitter.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
+	                        <a href="https://www.twitter.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
 	                          <img src="{{ asset('/images/twitter.png') }}">
 	                        </a>
-	                        <a href="https://www.pinterest.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
+	                        <a href="https://www.pinterest.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
 	                          <img src="{{ asset('/images/pinterest.png') }}">
 	                        </a>
-	                        <a href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
+	                        <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
 	                          <img src="{{ asset('/images/linkedin.png') }}">
 	                        </a>	                        
 	                    </div>
