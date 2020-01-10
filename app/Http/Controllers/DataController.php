@@ -32,7 +32,12 @@ class DataController extends Controller
      */
     public function details(Request $request)
     {        
-        return view('data.details');
+        $offer = Offer::with('provider')->where('offerIdx', $request->id)->first();
+        var_dump($offer->offerIdx);
+        
+        $data = array('offer' => $offer);
+
+        return view('data.details')->with($data);
     }
 
     public function offers(Request $request){        
@@ -87,7 +92,7 @@ class DataController extends Controller
         $provider_data['userIdx'] = Auth::id();
         $provider_data['regionIdx'] = $request->regionIdx;
         $provider_data['companyName'] = $request->companyName;        
-        $provider_data['companyUrl'] = $request->companyUrl;        
+        $provider_data['companyURL'] = $request->companyUrl;        
 
         $provider_obj = Provider::create($provider_data);
         $providerIdx = $provider_obj['providerIdx'];
@@ -111,7 +116,7 @@ class DataController extends Controller
         $fileName = "offer_".$offerIdx.'.'.$request->file('offerImage_1')->extension();
         $request->file('offerImage_1')->move($offerImage_path, $fileName);
         
-        Offer::where('offerIdx', $providerIdx)->update(array( "offerImage" => $fileName ));        
+        Offer::where('offerIdx', $offerIdx)->update(array( "offerImage" => $fileName ));        
 
         $offercountry_data = [];
 

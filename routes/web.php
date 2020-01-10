@@ -18,10 +18,6 @@ Route::get('/styleguide', function () {
     return view('styleguide');
 });
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
-
 Route::group(['middleware' => ['auth']], function(){
 	Route::get('/profile', 'ProfileController@index')->name('account.profile');
 	Route::post('/profile/edit', 'ProfileController@update')->name('account.profile.update');
@@ -35,7 +31,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');	
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes(['verify' => true]);
 Auth::routes();
