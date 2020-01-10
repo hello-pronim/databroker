@@ -816,7 +816,7 @@ th.col-since {
 
 /*.dropdown-container,*/
 .adv-combo-wrapper .select2-container {
-    margin: 10px 0px 17px;
+    margin: 10px 0px 10px;
     padding-bottom: 10px;
 }
 
@@ -900,7 +900,7 @@ th.col-since {
     /*display: none;*/
     max-height: 176px;
     /*overflow-y: auto;*/
-    z-index: 9
+    z-index: 109
 }
 
 .select2-container--default .select2-results>.select2-results__options {

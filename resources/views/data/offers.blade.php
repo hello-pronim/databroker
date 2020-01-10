@@ -22,25 +22,13 @@
 				        	<label class="pure-material-textfield">In which country are you located?</label>
 				        	<div class="adv-combo-wrapper">
 			                    <select class="">
+			                    	<option></option>
 			                    	@foreach ($countries as $country)
 		                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
 		                            @endforeach
 			                    </select>
-			                </div>
-				        	<div class="dropdown-container hidden">
-		                        <div class="dropdown" tabindex="1">
-		                            <div class="select">
-		                                <span>{{ trans('pages.please_select') }}</span>
-		                            </div>
-		                            <input type="hidden" id="regionIdx" name="regionIdx" value="">
-		                            <ul class="dropdown-menu" style="display: none;">
-		                            @foreach ($countries as $country)
-		                                <li value="{{$country->regionIdx}}">{{ $country->regionName }}</li>
-		                            @endforeach    
-		                            </ul>
-		                        </div>
 		                        <div class="error_notice regionIdx"> This field is required</div>
-		                    </div>
+			                </div>
 		                    <label class="pure-material-textfield">{{ trans('pages.what_company_name') }}</label>
 		                    <label class="pure-material-textfield-outlined">
 		                        <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="">
@@ -117,18 +105,16 @@
 				                            <span>{{ trans('pages.other') }}</span>
 				                        </label>
 				                    </div>			                    
-	                                <div class="dropdown-container country_list" style="display: none;">
-				                        <div class="dropdown" tabindex="1">
-				                            <div class="select">
-				                                <span>{{ trans('pages.or_add_country') }}</span>
-				                            </div>
-				                            <input type="hidden" name="region[]" value="">
-				                            <ul class="dropdown-menu" style="display: none;">
-				                            @foreach ($countries as $country)
-				                                <li value="{{$country->regionIdx}}">{{ $country->regionName }}</li>
-				                            @endforeach    
-				                            </ul>	                           
-				                        </div>				                        
+	                                <div class="dropdown-container country_list" style="display: none;">				                        
+			                            <div class="adv-combo-wrapper">
+			                            	<select class="" placeholder="{{ trans('pages.or_add_country') }}">
+			                            		<option></option>
+						                    	@foreach ($countries as $country)
+					                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
+					                            @endforeach
+						                    </select>
+						                </div>
+			                            <input type="hidden" name="region[]" value="">
 				                    </div>                             
 	                                <div class="buttons flex-vcenter">						
 										<button type="button" class="btn customize-btn">{{ trans('pages.confirm') }}</button>
@@ -143,16 +129,15 @@
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
 						<div class="dropdown-container">
-	                        <div class="dropdown" tabindex="1">
-	                            <div class="select">
-	                                <span>Please Select</span>
-	                            </div>
+	                        <div class="dropdown2" tabindex="1">
 	                            <input type="hidden" id="communityIdx" name="communityIdx" value="">
-	                            <ul class="dropdown-menu" style="display: none;">
-	                                @foreach ($communities as $community)
-		                                <li value="{{$community->communityIdx}}">{{ $community->communityName }}</li>
-		                            @endforeach                                    
-	                            </ul>	                            
+	                            <div class="adv-combo-wrapper">
+	                            	<select class="">
+	                            		<option></option>
+		                                @foreach ($communities as $community)
+			                                <option value="{{$community->communityIdx}}">{{ $community->communityName }}</option>
+			                            @endforeach  
+				                </div>	                            
 	                        </div>
 	                        <div class="error_notice communityIdx"> This field is required</div>
 	                    </div>    
