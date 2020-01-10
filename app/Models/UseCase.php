@@ -8,7 +8,7 @@ class UseCase extends Model
 {
     protected $table = 'useCases';
 
-    protected $primaryKey = 'UseCaseIdx';
+    protected $primaryKey = 'useCaseIdx';
     
     /**
      * The attributes that are mass assignable.

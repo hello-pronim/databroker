@@ -12,7 +12,12 @@ return [
     'please_select' => 'Please Select',
     'enter_url' => 'Enter URL',
     'enter_name' => 'Enter Name',
-    'confirm' => 'confirm',
+    'confirm' => 'Confirm',
+    'send_message' => 'Send a Message',
+    'description' => 'Description',
+    'use_case' => 'Use Cases',
+    'samples' => 'Samples',
+    'buy_this_data' => 'Buy This Data',
     
     'images' => 'Images',
     'files' => 'Files',
@@ -59,4 +64,7 @@ return [
     'in_which_community' => 'In which community do you want to publish your data offer?',
     'or_add_country' => 'Or add country',
     'select_region' => 'Select Region',
+
+    /*offer details*/
+    'contact_data_provider' => 'Contact this data provider for any questions, or to prepare a specific dataset based on your needs.'
 ];

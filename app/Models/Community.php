@@ -16,8 +16,5 @@ class Community extends Model
     protected $fillable = [
         'communityName'
     ];
-
-    public function offer(){
-        return $this->belongsTo('App\Models\Offer');
-    }
+    
 }

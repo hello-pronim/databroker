@@ -12,7 +12,7 @@ return [
     'discover_our_matchmaking_service' => 'Discover our matchmaking service',
     'explore_use_cases' => 'Explore use cases',
     'help_customer_care' => 'Help & customer care',
-    'about_databroker_dao' => 'About databroker dao',
+    'about_databroker_dao' => 'About databroker',
     'partners' => 'Partners',
     'updates' => 'Updates',
     'press_media' => 'Press & media',

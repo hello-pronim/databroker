@@ -16,5 +16,9 @@ class Region extends Model
     protected $fillable = [
         'regionName', 'regionCheck', 'regionType'
     ];
-    
+ 	
+
+ 	 public function offer(){
+    	return $this->belongsToMany('App\Models\Offer', 'App\Models\OfferCountry', 'regionIdx', 'offerIdx');
+    }   
 }

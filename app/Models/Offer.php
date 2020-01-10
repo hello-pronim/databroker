@@ -18,11 +18,19 @@ class Offer extends Model
     ];    
 
     public function community(){
-    	return $this->hasOne('App\Models\Community');
+    	return $this->hasOne('App\Models\Community', 'communityIdx', 'communityIdx');
     }
 
     public function provider(){
     	return $this->hasOne('App\Models\Provider', 'providerIdx', 'providerIdx');
+    }
+
+    public function usecase(){
+    	return $this->belongsTo('App\Models\UseCase', 'offerIdx', 'offerIdx');
+    }
+
+    public function region(){
+    	return $this->belongsToMany('App\Models\Region', 'App\Models\OfferCountry', 'offerIdx', 'regionIdx');
     }
 
 }
