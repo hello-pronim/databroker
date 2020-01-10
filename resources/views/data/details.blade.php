@@ -11,6 +11,7 @@
 	            <p class="area">Europe</p>
 	            <p class="category">Mobility</p>
 	        </div>
+	        {{ $offer['offerImage'] }}
 	        <div class="blog-content">
 	        	<div class="row">
 	        		<div class="col-lg-8">

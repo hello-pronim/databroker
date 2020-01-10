@@ -24,8 +24,5 @@ class Provider extends Model
     public function region(){
     	return $this->hasOne('App\Models\Region');
     }
-
-    public function offer(){
-        return $this->belongsTo('App\Models\Offer');
-    }    
+    
 }
