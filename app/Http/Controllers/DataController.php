@@ -43,6 +43,42 @@ class DataController extends Controller
         $data = array( 'regions', 'countries', 'communities' );
         return view('data.offers', compact($data));
     }
+
+    public function offers_overview(Request $request){        
+        $offers = array( 
+            array(
+                'id' => 1,
+                'title' => 'Satellite imagery of highways', 
+                'region' => 'Europe',
+                'products' => 'not added yet',
+                'status' => 'active',
+            ),
+            array(
+                'id' => 2,
+                'title' => 'Noize Maps', 
+                'region' => 'New York',
+                'products' => '6',
+                'status' => '',
+            ),
+            array(
+                'id' => 3,
+                'title' => 'Flood Maps', 
+                'region' => 'Worldwide',
+                'products' => '3',
+                'status' => '',
+            ),
+            array(
+                'id' => 4,
+                'title' => 'Traffic Maps', 
+                'region' => 'Worldwide',
+                'products' => '3',
+                'status' => '',
+            ),
+        );
+
+        $data = array( 'offers' );
+        return view('data.offers_overview', compact($data));
+    }
     public function add_offer(Request $request){
 
         $provider_data = [];
