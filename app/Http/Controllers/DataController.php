@@ -32,9 +32,8 @@ class DataController extends Controller
      */
     public function details(Request $request)
     {        
-        $offer = Offer::with('provider')->where('offerIdx', $request->id)->first();
-        var_dump($offer->offerIdx);
-        
+        $offer = Offer::with(['region', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
+                
         $data = array('offer' => $offer);
 
         return view('data.details')->with($data);

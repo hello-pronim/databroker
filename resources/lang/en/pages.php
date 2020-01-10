@@ -12,7 +12,13 @@ return [
     'please_select' => 'Please Select',
     'enter_url' => 'Enter URL',
     'enter_name' => 'Enter Name',
-    'confirm' => 'confirm',
+    'confirm' => 'Confirm',
+    'send_message' => 'Send a Message',
+    'description' => 'Description',
+    'use_case' => 'Use Cases',
+    'samples' => 'Samples',
+    'buy_this_data' => 'Buy This Data',
+    'other' => 'Other',
     
     'images' => 'Images',
     'files' => 'Files',
@@ -65,5 +71,6 @@ return [
     'help_section' => 'help-section',
     'PUBLISH_NEW_DATA_OFFER' => 'PUBLISH NEW DATA OFFER',
     'data_products' => 'Data products',
+    'contact_data_provider' => 'Contact this data provider for any questions, or to prepare a specific dataset based on your needs.'
 
 ];

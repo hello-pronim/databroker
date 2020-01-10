@@ -114,7 +114,7 @@
 				                    <div class="check_container">
 				                        <label class="pure-material-checkbox">
 				                            <input type="checkbox" class="form-control no-block check_community" id="to_be_definded">
-				                            <span>To be defined</span>
+				                            <span>{{ trans('pages.other') }}</span>
 				                        </label>
 				                    </div>			                    
 	                                <div class="dropdown-container country_list" style="display: none;">

@@ -16,14 +16,7 @@ class OfferCountry extends Model
      * @var array
      */
     protected $fillable = [
-        'offerIdx', 'regionIdx'
+        'regionIdx', 'offerIdx'
     ];    
-
-	public function offer(){
-    	return $this->hasOne('App\Models\Offer');
-    }
-
-    public function region(){
-    	return $this->hasOne('App\Models\Region');
-    }
+	
 }
