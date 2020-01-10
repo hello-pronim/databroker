@@ -17,6 +17,7 @@ return [
     'updates' => 'Updates',
     'press_media' => 'Press & media',
     'contact' => 'Contact',
+    'match_me' => 'Match Me Up',
     /*action*/
     'mark_spencer' => 'Mark Spencer',
     'profile_account_info' => 'Profile & Account Info',

@@ -24,11 +24,11 @@
 	<div class="container">		
 	    <div class="row">
 	    	<div class="col-md-12">
-				<div class="card card-raised card-background" style="background-image: url({{ asset('images/plane.jpg') }})">
+				<div class="card card-raised card-background" style="background-image: url({{ asset('images/plane.png') }})">
 					<div class="card-body">
 						<h6 class="card-category text-info tx-success">Featured</h6>
-						<h3 class="card-title">Weather data</h3>
-						<p class="card-description">
+						<h3 class="card-title fs-40">Weather data</h3>
+						<p class="card-description text-white">
 							Short description (eg. Get current weather and daily
 							forecasts. iteractive maps show precipitation, clouds,
 							pressure, wind around your location. Now available for 
@@ -50,7 +50,7 @@
 
 <div class="container-fluid app-wapper">
     <div class="container">        
-        <h1 class="mb-20 text-left">Trending</h1>
+        <h1 class="mb-20 fs-30 text-bold text-left">Trending</h1>
         <div class="app-partner-items row">
         	<div class="col-md-2">
         		<div class="app-partner-item info">
@@ -104,19 +104,19 @@
         </div>
 
 
-		<h1 class="mt-80 mb-20 text-left"> Fresh on the marketplace </h1>
+		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> Fresh on the marketplace </h1>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/design/Rectangle 745-1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog1.png') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/partner_4.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/marketplace1.png') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -124,13 +124,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/design/Rectangle 745-1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog2.png') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/partner_5.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/marketplace2.png') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -138,13 +138,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/design/Rectangle 745-1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog3.png') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/partner_1.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/marketplace3.png') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -157,12 +157,12 @@
         <div style="background: url({{ asset('images/patterns/background_02.png') }});background-position: left;background-repeat: no-repeat;background-size: contain;">
             <div class="app-section app-peek-section align-items-center">
                 <div class="app-monetize-section-item0"></div>
-                <h1 style="margin-bottom: 20px;">Looking for specific data to improve your business?</h1>
+                <h1 class="fs-30 mb-10">Looking for specific data to improve your business?</h1>
                 <p class="center">
                     We can match you up with the perfect data partner
                     <span class="height-space" style="display: block;"></span>
                     <a href="/newsletter">
-                        <button type="button" class="btn match-me-up-btn pure-material-button-outlined">Notify Me</button>
+                        <button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.match_me') }}</button>
                     </a>                     
                 </p>
                 <p class="text-free text-grey">It's free</p>
@@ -174,19 +174,19 @@
 
 <div class="container-fluid app-wapper">	
 	<div class="container">
-		<h1 class="mt-80 mb-20 text-left"> Team picks </h1>
+		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> Team picks </h1>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/design/Rectangle 745-1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog1.png') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/partner_4.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/marketplace1.png') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -194,13 +194,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/design/Rectangle 745-1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog2.png') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/partner_5.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/marketplace2.png') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -208,13 +208,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/design/Rectangle 745-1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog3.png') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/partner_1.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/marketplace3.png') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -223,7 +223,7 @@
 	    <div class="app-section app-monetize-section align-items-center">
 	        <div class="app-monetize-section-item0"></div>
 	        <div class="app-monetize-section-item1">
-	            <h1>Featured data providers.</h1>	            
+	            <h1 class="fs-30">Featured data providers.</h1>	            
 	            <p>Check out their data offers!</p>
 	        </div>
 	    </div>
@@ -280,7 +280,7 @@
         <div style="background: url({{ asset('images/patterns/background_02.png') }});background-position: left;background-repeat: no-repeat;background-size: contain;">
             <div class="app-section app-peek-section align-items-center">
                 <div class="app-monetize-section-item0"></div>
-                <h1 style="margin-bottom: 20px;">Title addressing potential buyers?</h1>
+                <h1 class="fs-30" style="margin-bottom: 10px;">Title addressing potential buyers?</h1>
                 <p class="center">
                     Subtitle addresssing potential buyers
                     <span class="height-space" style="display: block;"></span>
@@ -295,19 +295,18 @@
 </div>
 <div class="container-fluid app-wapper">	
 	<div class="container">
-		<h1 class="mt-80 mb-20 text-left"> Top use cases </h1>
+		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> Top use cases </h1>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/design/Rectangle 745-1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/usecase2.png') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title text-bold text-green">Satelite imagery of building and roads</h4>
-						<p class="card-description">Increased satety thanks to the connected cars.
-							Discover now how data exchanges can help saving lives and preventing accidents.
+						<h4 class="card-title text-bold text-green">Transport</h4>
+						<p class="card-description text-bold">Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.
 						</p>						
 					</div>			
 				</div>	
@@ -316,13 +315,12 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/design/Rectangle 745-1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/usecase3.png') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title text-bold text-green">Satelite imagery of building and roads</h4>
-						<p class="card-description">Increased satety thanks to the connected cars.
-							Discover now how data exchanges can help saving lives and preventing accidents.
+						<h4 class="card-title text-bold text-green">People</h4>
+						<p class="card-description text-bold">Achieve your full potential with retail location planning
 						</p>						
 					</div>			
 				</div>	
@@ -331,13 +329,12 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/design/Rectangle 745-1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/usecase1.png') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">						
-						<h4 class="card-title text-bold text-green">Satelite imagery of building and roads</h4>
-						<p class="card-description">Increased satety thanks to the connected cars.
-							Discover now how data exchanges can help saving lives and preventing accidents.
+						<h4 class="card-title text-bold text-green">Agriculture</h4>
+						<p class="card-description text-bold">Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.
 						</p>
 					</div>			
 				</div>	

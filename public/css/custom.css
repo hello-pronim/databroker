@@ -6,13 +6,16 @@
 	color: #06038D !important;
 }
 .text-white{
-	color:white;
+	color:white !important;
 }
 .text-grey{
 	color:#BAC0C5;
 }
 .text-bold{
 	font-weight: bold;
+}
+.text-normal{
+	font-weight: normal;
 }
 .text-green{
 	color:#78E6D0;
@@ -23,12 +26,24 @@
 .bd-white{
 	border:1px solid #fff !important;
 }
+.fs-16{
+	font-size: 16px !important;
+}
+.fs-20{
+	font-size: 20px !important;
+}
+.fs-30{
+	font-size: 30px !important;
+}
+.fs-40{
+	font-size: 40px !important;
+}
 /*General style*/
 .mb-10{
-	margin-bottom: 10px;
+	margin-bottom: 10px !important;
 }
 .mb-20{
-	margin-bottom: 20px;
+	margin-bottom: 20px !important;
 }
 .mb-50{
 	margin-bottom: 50px;
@@ -56,7 +71,7 @@
 }
 /*Font*/
 h1,h2,h3,h4,h5,h6{
-	font-family: DM Sans;
+	font-family: DM Sans !important;
 }
 
 /*General Style*/
@@ -271,6 +286,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .card .card-header img{
 	width: 100%;
+	opacity: 0.8;
 }
 .card .card-title {
 	font-family: DM Sans;
@@ -296,6 +312,8 @@ h1,h2,h3,h4,h5,h6{
 .card.card-background .card-body .card-category{
 	color: #78E6D0 !important;
 	text-transform: capitalize;
+	font-weight: bold;
+	font-size: 20px;
 }
 .card.card-background .card-body .card-author{
 	color: #fff;
@@ -306,15 +324,17 @@ h1,h2,h3,h4,h5,h6{
 	margin-top: -5px;
 }
 .card.card-profile .card-body .img{
-	width: 85px;
+	max-width: 85px;
+    max-height: 40px;
 }
 .card .card-body .card-description{
 	color: #000;	
 }
 .btn.readmore{
 	color:white;
-	border: 1px solid #fff;
-	font-size: 0.7em;
+	border: 2px solid #fff;
+	font-size: 14px;
+	background-color: transparent;
 	padding: 0.75em 3.5em;
 	text-transform: uppercase;
 }
@@ -325,13 +345,14 @@ h1,h2,h3,h4,h5,h6{
 .app-partner-item .icon img{
 	width: 30%;
     max-height: 60px;
+    height: 60px;
 }
 .app-partner-item .img{
 	text-align: center;
 }
 .app-partner-item .img img{
 	max-width: 100%;
-    max-height: 90px;
+    max-height: 70px;
     margin: 20px auto;
 }
 .info{
@@ -339,13 +360,13 @@ h1,h2,h3,h4,h5,h6{
 	padding:35px 0 18px;
 }
 .text-free{
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: bold;
 	text-align: center;
-	margin-top: -1.5rem;
+	margin-top: -1rem;
 }
 /*footer section1*/
-.footer_section1 ul h5{
+.footer_section1 h5{
 	font-size: 18px;
 	font-weight: bold;
 }
@@ -365,6 +386,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .footer_section1 .readmore-inourblog-btn {
 	margin: 50px auto;
+	background-color: transparent;
 }
 .app-footer-section{
 	display: table;
@@ -376,6 +398,12 @@ h1,h2,h3,h4,h5,h6{
 }
 .app-footer-section .app-footer-social-link-container{
 	text-align: right;
+	top: 50px;
+    right: 15px;
+}
+.app-footer-section .app-footer-link{
+	top: 50px;
+    left: 15px;
 }
 
 /*Login*/

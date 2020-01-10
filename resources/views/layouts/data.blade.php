@@ -141,7 +141,7 @@
   				<div class="app-section app-monetize-section align-items-center">
 			        <div class="app-monetize-section-item0"></div>
 			        <div class="app-monetize-section-item1">
-			            <h1>Databroker is supported by our trusted partners.</h1>	            			            
+			            <h1 class="fs-30">Databroker is supported by our trusted partners.</h1>	            			            
 			        </div>
 			    </div>
 			    <div class="app-partner-items row">
