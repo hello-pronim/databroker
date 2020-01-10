@@ -18,6 +18,7 @@ return [
     'use_case' => 'Use Cases',
     'samples' => 'Samples',
     'buy_this_data' => 'Buy This Data',
+    'other' => 'Other',
     
     'images' => 'Images',
     'files' => 'Files',
