@@ -30,6 +30,11 @@
 	justify-content: space-between;
 }
 
+.pull-right {
+	/*align-self: flex-end;*/
+	float: right;
+}
+
 .btn-rounded {
     border-radius: 10em;
 }
@@ -677,6 +682,78 @@ th.col-since {
 	top: 5px;
 }*/
 
+.data-offer.overview .btn-next {
+	margin-top: 116px;
+}
+
+.data-offer.overview .gridview {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.data-offer.overview .gridview .cell {
+	border: 1px solid #DAE1E5;
+	border-left: 4px solid #DAE1E5;
+	padding: 24px 32px 18px 27px;
+
+	position: relative;
+}
+
+.data-offer.overview .gridview.col2 .cell {
+	width: 49%;
+	margin-bottom: 2%;
+}
+
+.data-offer.overview .gridview .cell.active {
+	border-left: 4px solid #78E6D0;
+}
+
+.data-offer.overview .offer .right-arrow {
+	color: #DAE1E5;
+	width: 24px;
+	height: 24px;
+	top: 30px;
+	right: 30px;
+	position: absolute;
+}
+
+.data-offer.overview .offer.active .right-arrow {
+	color: #78E6D0;
+}
+
+.data-offer.overview .offer .offer-title {
+	font-size: 21px;
+	font-weight: bold;
+	line-height: 24px;
+	letter-spacing: 0.1786px;
+	text-align: left;
+	color: #020A09;
+}
+
+.data-offer.overview .offer .region {
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 24px;
+	letter-spacing: 0px;
+	text-align: left;
+	color: #020A09;
+}
+
+.data-offer.overview .offer .offer-products {
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 24px;
+	letter-spacing: 0px;
+	text-align: left;
+	color: #020A09;
+	margin-top: 16px;
+}
+
+.offer .label {
+	font-weight: normal;
+	color: #8C9196;
+}
 ::-webkit-scrollbar {
     width: 14px;
     height: 18px;

@@ -65,6 +65,11 @@ return [
     'or_add_country' => 'Or add country',
     'select_region' => 'Select Region',
 
-    /*offer details*/
+    'Data_offers_overview' => 'Data offers overview',
+    'data_offer_overview_desc1' => 'For more info about adding data offers and data products, and the API you need to install to make your data ready for selling and transactions to your buyers, go to the ',
+    'help_section' => 'help-section',
+    'PUBLISH_NEW_DATA_OFFER' => 'PUBLISH NEW DATA OFFER',
+    'data_products' => 'Data products',
     'contact_data_provider' => 'Contact this data provider for any questions, or to prepare a specific dataset based on your needs.'
+
 ];
