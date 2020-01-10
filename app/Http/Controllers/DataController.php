@@ -33,8 +33,10 @@ class DataController extends Controller
     public function details(Request $request)
     {        
         $offer = Offer::with(['region', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
+
+        $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->get();
                 
-        $data = array('offer' => $offer);
+        $data = array('offer' => $offer, 'offersample' => $offersample);
 
         return view('data.details')->with($data);
     }
@@ -143,11 +145,6 @@ class DataController extends Controller
 
         $offersample_path = public_path('uploads/offersample');
         $offersample_data['offerIdx'] = $offerIdx;
-
-        $offersample_data =[];
-
-        $offersample_path = public_path('uploads/offersample');
-        $offersample_data['offerIdx'] = 1;
         
         $i =1;        
         while( $request->file('offersample_files_'.$i) != null ){        
@@ -157,7 +154,7 @@ class DataController extends Controller
             $request->file('offersample_files_'.$i)->move($offersample_path, $fileName);
 
             $offersample_data['sampleFileName'] = $fileName;
-            $offersample_data['sampleFileType'] = "file-".$extension;
+            $offersample_data['sampleType'] = "file-".$extension;
             OfferSample::create($offersample_data);    
             $i++;
         }
@@ -170,7 +167,7 @@ class DataController extends Controller
             $request->file('offersample_images_'.$i)->move($offersample_path, $fileName);
 
             $offersample_data['sampleFileName'] = $fileName;
-            $offersample_data['sampleFileType'] = "file-".$extension;
+            $offersample_data['sampleType'] = "image-".$extension;
             OfferSample::create($offersample_data);    
             $i++;
         }

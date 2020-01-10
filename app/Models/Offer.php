@@ -22,8 +22,12 @@ class Offer extends Model
     }
 
     public function provider(){
-    	return $this->hasOne('App\Models\Provider', 'providerIdx', 'providerIdx');
+        return $this->hasOne('App\Models\Provider', 'providerIdx', 'providerIdx');
     }
+
+    public function offersample(){
+        return $this->belongsTo('App\Models\OfferSample', 'offerIdx', 'offerIdx');
+    }    
 
     public function usecase(){
     	return $this->belongsTo('App\Models\UseCase', 'offerIdx', 'offerIdx');
