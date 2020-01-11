@@ -134,9 +134,10 @@
 	                            <div class="adv-combo-wrapper">
 	                            	<select class="">
 	                            		<option></option>
-		                                @foreach ($communities as $community)
-			                                <option value="{{$community->communityIdx}}">{{ $community->communityName }}</option>
-			                            @endforeach  
+	                                @foreach ($communities as $community)
+		                                <option value="{{$community->communityIdx}}">{{ $community->communityName }}</option>
+		                            @endforeach  
+			                         </select>
 				                </div>	                            
 	                        </div>
 	                        <div class="error_notice communityIdx"> This field is required</div>
