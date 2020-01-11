@@ -13,7 +13,9 @@ class CreateBusinessesTable extends Migration
      */
     public function up()
     {
-        Schema::create('businesses', function (Blueprint $table) {
+        Schema::create('Businesses', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
             $table->bigIncrements('businessIdx');
             $table->string('businessName');
             $table->timestamps();

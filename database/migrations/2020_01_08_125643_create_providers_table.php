@@ -13,16 +13,19 @@ class CreateProvidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('providers', function (Blueprint $table) {
+        Schema::create('Providers', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
             $table->bigIncrements('providerIdx');
-            $table->integer('userIdx');
-            $table->foreign('userIdx')->references('userIdx')->on('users');
-            $table->integer('regionIdx');
-            $table->foreign('regionIdx')->references('regionIdx')->on('regions');
+            $table->unsignedBigInteger('userIdx');
+            $table->foreign('userIdx')->references('userIdx')->on('Users');
+            $table->unsignedBigInteger('regionIdx');
+            $table->foreign('regionIdx')->references('regionIdx')->on('Regions');
             $table->string('companyName');
             $table->string('companyURL');
             $table->string('companyLogo');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('Regions_regionIdx')->nullable();
         });
     }
 
@@ -33,6 +36,6 @@ class CreateProvidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('providers');
+        Schema::dropIfExists('Providers');
     }
 }

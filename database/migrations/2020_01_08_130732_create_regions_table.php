@@ -13,11 +13,12 @@ class CreateRegionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('regions', function (Blueprint $table) {
+        Schema::create('Regions', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
             $table->bigIncrements('regionIdx');
             $table->string('regionName');
             $table->tinyInteger('regionCheck');
-            $table->string('regionType');
             $table->timestamps();
         });
     }

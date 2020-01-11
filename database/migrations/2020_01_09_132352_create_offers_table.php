@@ -13,8 +13,17 @@ class CreateOffersTable extends Migration
      */
     public function up()
     {
-        Schema::create('offers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('Offers', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('offerIdx');
+            $table->unsignedBigInteger('providerIdx');
+            $table->foreign('providerIdx')->references('providerIdx')->on('Providers');
+            $table->unsignedBigInteger('communityIdx');
+            $table->foreign('communityIdx')->references('communityIdx')->on('Communities');
+            $table->string('offerTitle');
+            $table->text('offerDescription');
+            $table->char('themes', 20);
             $table->timestamps();
         });
     }
@@ -26,6 +35,6 @@ class CreateOffersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offers');
+        Schema::dropIfExists('Offers');
     }
 }
