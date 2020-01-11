@@ -85,6 +85,60 @@ class DataController extends Controller
         $data = array( 'offers' );
         return view('data.offers_overview', compact($data));
     }
+
+    public function offer_detail(Request $request)
+    {   
+        $offer = [
+            'title' => 'Satellite imagery of highways',
+            'region' => 'Europe',
+            'publish_status' => 'Published',            
+        ];
+        $products = [
+                [
+                    'title' => 'Satellite imagery of buildings and roads', 
+                    'region' => 'Belgium',
+                    'format' => 'API flow',
+                    'price' => '€500 / DTX xxx',
+                    'price_status' => '',
+                    'period' => '1 day',
+                    'status' => 'Unpublished',
+                    'sell_status' => '',
+                ],
+                [
+                    'title' => 'Satellite imagery of highways', 
+                    'region' => 'Belgium - Flanders',
+                    'format' => 'One file (xml)',
+                    'price' => '€500 / DTX xxx',
+                    'price_status' => 'Bidding possible',
+                    'period' => '1 month',
+                    'status' => 'published',
+                    'sell_status' => 'pending',
+                ],
+                [
+                    'title' => 'Satellite imagery of buildings and roads', 
+                    'region' => 'Germany - Berlin',
+                    'format' => 'Stream',
+                    'price' => 'Price not set.',
+                    'price_status' => 'Only bidding.',
+                    'period' => '1 year',
+                    'status' => 'published',
+                    'sell_status' => 'pending',
+                ],
+                [
+                    'title' => 'Satellite imagery of buildings and roads', 
+                    'region' => 'Flanders',
+                    'format' => 'Stream',
+                    'price' => 'Price not set.',
+                    'price_status' => 'Only bidding.',
+                    'period' => '',
+                    'status' => 'published',
+                    'sell_status' => 'ready',
+                ],
+            ];
+        $data = array( 'offer', 'products' );
+        return view('data.offer_detail', compact($data));
+    }
+
     public function add_offer(Request $request){
 
         $provider_data = [];

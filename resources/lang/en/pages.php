@@ -71,6 +71,21 @@ return [
     'help_section' => 'help-section',
     'PUBLISH_NEW_DATA_OFFER' => 'PUBLISH NEW DATA OFFER',
     'data_products' => 'Data products',
-    'contact_data_provider' => 'Contact this data provider for any questions, or to prepare a specific dataset based on your needs.'
+    'contact_data_provider' => 'Contact this data provider for any questions, or to prepare a specific dataset based on your needs.',
 
+    'Back_to_data_offer_overview' => 'Back to data offer overview',
+    'Data_offer' => 'Data offer',
+    'Ready_to_sell' => 'Ready to sell',
+    'sell_pending_hint' => 'To enable selling, go to the Data Exchange Controller and declare this data product using this ID.',
+    'id' => 'ID',
+    'Copy_ID' => 'Copy ID',
+    'published' => 'Published',
+    'unpublish' => 'Unpublish',
+    'unpublished' => 'Unpublished',
+    'hidden_numbers' => '**************************',
+    'ADD_DATA_PRODUCT' => 'ADD DATA PRODUCT',
+    'Status' => 'Status',
+    'view_on_marketplace' => 'View on marketplace',
+    'price' => 'Price',
+    'Access_to_this_data' => 'Access to this data',
 ];
