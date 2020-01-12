@@ -30,6 +30,6 @@ class CreateOfferCountiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offer_counties');
+        Schema::dropIfExists('OfferCountries');
     }
 }

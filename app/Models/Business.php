@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Business extends Model
 {
-    protected $table = 'business';
+    protected $table = 'Businesses';
 
     protected $primaryKey = 'businessIdx';
-    
+
     /**
      * The attributes that are mass assignable.
      *

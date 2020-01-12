@@ -1,4 +1,4 @@
-INSERT INTO `Business` (`businessIdx`, `businessName`, `created_at`, `updated_at`) VALUES
+INSERT INTO `Businesses` (`businessIdx`, `businessName`, `created_at`, `updated_at`) VALUES
 (1, 'Agriculture/Mining/Forestry', NULL, NULL),
 (2, 'Advertising/Media/Publishing', NULL, NULL),
 (3, 'Automotive', NULL, NULL),

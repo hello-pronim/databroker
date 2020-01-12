@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class OfferSample extends Model
 {
-    protected $table = 'offerSamples';
+    protected $table = 'OfferSamples';
 
     protected $primaryKey = 'sampleIdx';
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -17,7 +17,7 @@ class OfferSample extends Model
      */
     protected $fillable = [
         'offerIdx', 'sampleDescription', 'sampleFileName', 'sampleType'
-    ];    
+    ];
 
     public function offer(){
     	return $this->hasMany('App\Models\Offer', 'offerIdx', 'offerIdx');
