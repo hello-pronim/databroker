@@ -13,10 +13,12 @@ class ArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('Articles', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
             $table->bigIncrements('articleIdx');
             $table->string('articleTitle');
-            $table->string('articleContent');            
+            $table->string('articleContent');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class ArticlesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('Articles');
     }
 }

@@ -13,8 +13,14 @@ class CreateUseCasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('use_cases', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('UseCases', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('useCaseIdx');
+            $table->unsignedBigInteger('offerIdx');
+            $table->foreign('offerIdx')->references('offerIdx')->on('Offers');
+            $table->string('useCaseDescription');
+            $table->text('useCaseContent');
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateUseCasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('use_cases');
+        Schema::dropIfExists('UseCases');
     }
 }
