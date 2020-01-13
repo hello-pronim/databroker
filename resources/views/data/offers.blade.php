@@ -2,6 +2,7 @@
 
 @section('additional_css')
 	<link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection
 
 @section('content')
@@ -20,27 +21,13 @@
 				        </div>
 				        <div class="blog-content">
 				        	<label class="pure-material-textfield">In which country are you located?</label>
-				        	<div class="adv-combo-wrapper">
-			                    <select class="">
+				        	<div class="adv-combo-wrapper custom-select2">
+			                    <select class="" data-placeholder="{{ trans('pages.search_by_country') }}">
 			                    	@foreach ($countries as $country)
 		                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
 		                            @endforeach
 			                    </select>
 			                </div>
-				        	<div class="dropdown-container hidden">
-		                        <div class="dropdown" tabindex="1">
-		                            <div class="select">
-		                                <span>{{ trans('pages.please_select') }}</span>
-		                            </div>
-		                            <input type="hidden" id="regionIdx" name="regionIdx" value="">
-		                            <ul class="dropdown-menu" style="display: none;">
-		                            @foreach ($countries as $country)
-		                                <li value="{{$country->regionIdx}}">{{ $country->regionName }}</li>
-		                            @endforeach    
-		                            </ul>
-		                        </div>
-		                        <div class="error_notice regionIdx"> This field is required</div>
-		                    </div>
 		                    <label class="pure-material-textfield">{{ trans('pages.what_company_name') }}</label>
 		                    <label class="pure-material-textfield-outlined">
 		                        <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="">
@@ -117,19 +104,13 @@
 				                            <span>{{ trans('pages.other') }}</span>
 				                        </label>
 				                    </div>			                    
-	                                <div class="dropdown-container country_list" style="display: none;">
-				                        <div class="dropdown" tabindex="1">
-				                            <div class="select">
-				                                <span>{{ trans('pages.or_add_country') }}</span>
-				                            </div>
-				                            <input type="hidden" name="region[]" value="">
-				                            <ul class="dropdown-menu" style="display: none;">
-				                            @foreach ($countries as $country)
-				                                <li value="{{$country->regionIdx}}">{{ $country->regionName }}</li>
-				                            @endforeach    
-				                            </ul>	                           
-				                        </div>				                        
-				                    </div>                             
+				                    <div class="adv-combo-wrapper custom-select2" style="display: none;">
+					                    <select class="" name="region[]" data-placeholder="{{ trans('pages.search_by_country') }}">
+					                    	@foreach ($countries as $country)
+				                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
+				                            @endforeach
+					                    </select>
+					                </div>
 	                                <div class="buttons flex-vcenter">						
 										<button type="button" class="btn customize-btn">{{ trans('pages.confirm') }}</button>
 									</div>
@@ -322,5 +303,6 @@
 
 @section('additional_javascript')
 	<script src="{{ asset('js/plugins/imageuploadify.min.js') }}"></script>        
+	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>        
 @endsection
 

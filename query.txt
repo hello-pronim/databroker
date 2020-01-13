@@ -29,3 +29,9 @@ ADD COLUMN `offerImage` VARCHAR(255) NULL AFTER `offerDescription`;
 ALTER TABLE `databroker_new`.`offerSamples` 
 CHANGE COLUMN `sampleType` `sampleType` VARCHAR(20) NULL DEFAULT NULL ;
 
+// community table
+INSERT INTO `databroker_new`.`communities` (`communityName`) VALUES ('Transport');
+INSERT INTO `databroker_new`.`communities` (`communityName`) VALUES ('Economy');
+INSERT INTO `databroker_new`.`communities` (`communityName`) VALUES ('Supply Chain');
+
+

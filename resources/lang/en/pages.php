@@ -19,6 +19,11 @@ return [
     'samples' => 'Samples',
     'buy_this_data' => 'Buy This Data',
     'other' => 'Other',
+    'read_more' => 'Read More',
+    'explore' => 'Explore',
+    'for_data_about' => 'for data about',
+    'in' => 'in',
+    'search_by_country' => 'Search by country',
     
     'images' => 'Images',
     'files' => 'Files',
@@ -71,6 +76,9 @@ return [
     'help_section' => 'help-section',
     'PUBLISH_NEW_DATA_OFFER' => 'PUBLISH NEW DATA OFFER',
     'data_products' => 'Data products',
-    'contact_data_provider' => 'Contact this data provider for any questions, or to prepare a specific dataset based on your needs.'
+    'contact_data_provider' => 'Contact this data provider for any questions, or to prepare a specific dataset based on your needs.',
 
+    'explore_data_offer' => 'Explore data offers in',
+    'all_themes' => 'All themes',
+    'all_regions' => 'All regions'
 ];

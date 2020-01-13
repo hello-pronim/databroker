@@ -40,7 +40,7 @@ $(document).ready(function(){
     });
 
     $("#to_be_definded").on("click", function(){
-    	$(".custom-dropdown .country_list").toggle();
+    	$(".custom-dropdown .custom-select2").toggle();
     });
 
     $(".custom-dropdown .custom-dropdown-menu button").click(function(){
@@ -66,6 +66,10 @@ $(document).ready(function(){
     		}
     		
     	});
+        if(select_box.find(".custom-select2 select").val() && $("#to_be_definded").is(":checked") ){
+            regionIdx.push(select_box.find(".custom-select2 select").val());    
+            region.push(select_box.find(".custom-select2 select").find("option:checked").text());
+        }        
     	
     	show_box.find("span").html(region.join(','));
     	$("input[name='offercountry']").val(regionIdx.join(','));

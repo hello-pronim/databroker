@@ -9,6 +9,8 @@ use App\Models\Provider;
 use App\Models\Region;
 use App\Models\Community;
 use App\Models\Offer;
+use App\Models\Theme;
+use App\Models\OfferTheme;
 use App\Models\OfferSample;
 use App\Models\OfferCountry;
 use App\Models\UseCase;
@@ -173,5 +175,15 @@ class DataController extends Controller
         }
         
 
+    }
+
+    public function category(Request $request){
+        $communities = Community::get();
+        $regions = Region::where('regionType', 'area')->get();
+        $countries = Region::where('regionType', 'country')->get();
+        $themes = Theme::get();
+        
+        $data = array( 'communities', 'regions', 'countries', 'themes' );                
+        return view('data.category', compact($data));
     }
 }

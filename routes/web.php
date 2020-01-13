@@ -29,6 +29,15 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/data/offers/{id}', 'DataController@offer_detail')->where('id', '[0-9]+')->name('data_offer_detail');	
 
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');	
+
+	Route::get('/geographic', 'DataController@category')->name('data.geographic');	
+	Route::get('/environment', 'DataController@category')->name('data.environment');	
+	Route::get('/transport', 'DataController@category')->name('data.transport');	
+	Route::get('/people', 'DataController@category')->name('data.people');	
+	Route::get('/agriculture', 'DataController@category')->name('data.agriculture');	
+	Route::get('/energy', 'DataController@category')->name('data.energy');	
+	Route::get('/economy', 'DataController@category')->name('data.economy');	
+	Route::get('/supply_chain', 'DataController@category')->name('data.supply_chain');	
 });
 
 Route::get('/', 'HomeController@index')->name('home');
