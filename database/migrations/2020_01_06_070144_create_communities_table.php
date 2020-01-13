@@ -13,8 +13,10 @@ class CreateCommunitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('communities', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('Communities', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('communityIdx');
             $table->string('communityName');
             $table->timestamps();
         });
@@ -27,6 +29,6 @@ class CreateCommunitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('communities');
+        Schema::dropIfExists('Communities');
     }
 }

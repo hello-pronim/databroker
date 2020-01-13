@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class UseCase extends Model
 {
-    protected $table = 'useCases';
+    protected $table = 'UseCases';
 
     protected $primaryKey = 'useCaseIdx';
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -17,7 +17,7 @@ class UseCase extends Model
      */
     protected $fillable = [
         'offerIdx', 'useCaseDescription', 'useCaseContent'
-    ];    
+    ];
 
     public function offer(){
     	return $this->hasOne('App\Models\Offer');

@@ -13,8 +13,14 @@ class CreateOfferSamplesTable extends Migration
      */
     public function up()
     {
-        Schema::create('offer_samples', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('OfferSamples', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('sampleIdx');
+            $table->unsignedBigInteger('offerIdx');
+            $table->text('sampleDescription');
+            $table->string('sampleFileName');
+            $table->tinyInteger('sampleType');
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateOfferSamplesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offer_samples');
+        Schema::dropIfExists('OfferSamples');
     }
 }

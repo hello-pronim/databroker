@@ -13,8 +13,13 @@ class CreateOfferCountiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('offer_counties', function (Blueprint $table) {
-            $table->bigIncrements('id');            
+        Schema::create('OfferCountries', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
+            $table->unsignedBigInteger('regionIdx');
+            $table->foreign('regionIdx')->references('regionIdx')->on('Regions');
+            $table->unsignedBigInteger('offerIdx');
+            $table->foreign('offerIdx')->references('offerIdx')->on('Offers');
         });
     }
 
@@ -25,6 +30,6 @@ class CreateOfferCountiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offer_counties');
+        Schema::dropIfExists('OfferCountries');
     }
 }

@@ -24,7 +24,7 @@
 					<span class="iconify right-arrow" data-icon="bx:bx-right-arrow-alt" data-inline="false"></span>
 					<p class="offer-title">{{$offer['title']}}</p>
 					<p class="region">{{$offer['region']}}</p>
-					<span class="offer-products"><span class="label">{{ trans('data_products') }}: </span>{{$offer['products']}}</span>
+					<span class="offer-products"><span class="label">{{ trans('pages.data_products') }}: </span>{{$offer['products']}}</span>
 				</a>
 			@endforeach
 		</div>

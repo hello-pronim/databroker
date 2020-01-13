@@ -23,10 +23,12 @@
 				        	<label class="pure-material-textfield">In which country are you located?</label>
 				        	<div class="adv-combo-wrapper custom-select2">
 			                    <select class="" data-placeholder="{{ trans('pages.search_by_country') }}">
+			                    	<option></option>
 			                    	@foreach ($countries as $country)
 		                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
 		                            @endforeach
 			                    </select>
+		                        <div class="error_notice regionIdx"> This field is required</div>
 			                </div>
 		                    <label class="pure-material-textfield">{{ trans('pages.what_company_name') }}</label>
 		                    <label class="pure-material-textfield-outlined">
@@ -106,6 +108,7 @@
 				                    </div>			                    
 				                    <div class="adv-combo-wrapper custom-select2" style="display: none;">
 					                    <select class="" name="region[]" data-placeholder="{{ trans('pages.search_by_country') }}">
+											<option></option>
 					                    	@foreach ($countries as $country)
 				                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
 				                            @endforeach
@@ -124,16 +127,16 @@
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
 						<div class="dropdown-container">
-	                        <div class="dropdown" tabindex="1">
-	                            <div class="select">
-	                                <span>Please Select</span>
-	                            </div>
+	                        <div class="dropdown2" tabindex="1">
 	                            <input type="hidden" id="communityIdx" name="communityIdx" value="">
-	                            <ul class="dropdown-menu" style="display: none;">
+	                            <div class="adv-combo-wrapper">
+	                            	<select class="">
+	                            		<option></option>
 	                                @foreach ($communities as $community)
-		                                <li value="{{$community->communityIdx}}">{{ $community->communityName }}</li>
-		                            @endforeach                                    
-	                            </ul>	                            
+		                                <option value="{{$community->communityIdx}}">{{ $community->communityName }}</option>
+		                            @endforeach  
+			                         </select>
+				                </div>	                            
 	                        </div>
 	                        <div class="error_notice communityIdx"> This field is required</div>
 	                    </div>    

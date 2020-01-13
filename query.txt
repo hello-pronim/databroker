@@ -1,4 +1,4 @@
-INSERT INTO `business` (`businessIdx`, `businessName`, `created_at`, `updated_at`) VALUES
+INSERT INTO `Businesses` (`businessIdx`, `businessName`, `created_at`, `updated_at`) VALUES
 (1, 'Agriculture/Mining/Forestry', NULL, NULL),
 (2, 'Advertising/Media/Publishing', NULL, NULL),
 (3, 'Automotive', NULL, NULL),
@@ -21,12 +21,12 @@ INSERT INTO `business` (`businessIdx`, `businessName`, `created_at`, `updated_at
 
 // Add a field to offer table
 
-ALTER TABLE `databroker_new`.`offers` 
+ALTER TABLE `databroker_new`.`Offers`
 ADD COLUMN `offerImage` VARCHAR(255) NULL AFTER `offerDescription`;
 
 // offer sample table
 
-ALTER TABLE `databroker_new`.`offerSamples` 
+ALTER TABLE `databroker_new`.`OfferSamples`
 CHANGE COLUMN `sampleType` `sampleType` VARCHAR(20) NULL DEFAULT NULL ;
 
 // community table

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OfferCountry extends Model
 {
-    
-    protected $table = 'offerCountries';
+    protected $table = 'OfferCountries';
 
     public $timestamps = false;
     /**
@@ -17,6 +16,6 @@ class OfferCountry extends Model
      */
     protected $fillable = [
         'regionIdx', 'offerIdx'
-    ];    
-	
+    ];
+
 }
