@@ -80,8 +80,7 @@ return [
 
     'explore_data_offer' => 'Explore data offers in',
     'all_themes' => 'All themes',
-    'all_regions' => 'All regions'
-
+    'all_regions' => 'All regions',
     'Back_to_data_offer_overview' => 'Back to data offer overview',
     'Data_offer' => 'Data offer',
     'Ready_to_sell' => 'Ready to sell',
