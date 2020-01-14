@@ -824,3 +824,7 @@ h1,h2,h3,h4,h5,h6{
 	content: "";
     margin-right: 5px;
 }
+#offer-list .card .card-header img{
+	min-height: 270px;
+    max-height: 270px;
+}
