@@ -13,6 +13,7 @@
 
 use App\Model\Task;
 use Illuminate\Http\Request;
+use App\Model\Community;
 use App\Http\Controllers\DataController;
 
 Route::get('/styleguide', function () {
@@ -30,6 +31,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/data/offers/{id}', 'DataController@offer_detail')->where('id', '[0-9]+')->name('data_offer_detail');	
 
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');	
+	
 
 	Route::get('/geographic', function(){
 		$datacontroller = new DataController();
@@ -43,6 +45,10 @@ Route::group(['middleware' => ['auth']], function(){
 		$datacontroller = new DataController();
 		return $datacontroller->category("Transport");
 	})->name('data.transport');	
+	Route::get('/mobility', function(){
+		$datacontroller = new DataController();
+		return $datacontroller->category("Mobility");
+	})->name('data.mobility');	
 	Route::get('/people', function(){
 		$datacontroller = new DataController();
 		return $datacontroller->category("People");
