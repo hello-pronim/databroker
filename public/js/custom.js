@@ -183,8 +183,8 @@ $(document).ready(function(){
                             '</div>'+
                         '</div>';                    
                 });
-                
-                list += '<div class="row">' + list + '</div>';
+
+                list = '<div class="row">' + list + '</div>';
                 $("#offer-list").html(list);
             }
         });
