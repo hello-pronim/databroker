@@ -11,9 +11,8 @@
 |
 */
 
-use App\Model\Task;
 use Illuminate\Http\Request;
-use App\Model\Community;
+use App\Models\Community;
 use App\Http\Controllers\DataController;
 
 Route::get('/styleguide', function () {
@@ -32,43 +31,18 @@ Route::group(['middleware' => ['auth']], function(){
 
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');	
 	
+	$communities = Community::get();
+	$datacontroller = new DataController();
+	foreach ($communities as $key => $community) {
 
-	Route::get('/geographic', function(){
-		$datacontroller = new DataController();
-		return $datacontroller->category("Geographic");
-	})->name('data.geographic');	
-	Route::get('/environment', function(){
-		$datacontroller = new DataController();
-		return $datacontroller->category("Environment");
-	})->name('data.environment');	
-	Route::get('/transport', function(){
-		$datacontroller = new DataController();
-		return $datacontroller->category("Transport");
-	})->name('data.transport');	
-	Route::get('/mobility', function(){
-		$datacontroller = new DataController();
-		return $datacontroller->category("Mobility");
-	})->name('data.mobility');	
-	Route::get('/people', function(){
-		$datacontroller = new DataController();
-		return $datacontroller->category("People");
-	})->name('data.people');	
-	Route::get('/agriculture', function(){
-		$datacontroller = new DataController();
-		return $datacontroller->category("Agriculture");
-	})->name('data.agriculture');	
-	Route::get('/energy', function(){
-		$datacontroller = new DataController();
-		return $datacontroller->category("Energy");
-	})->name('data.energy');	
-	Route::get('/economy', function(){
-		$datacontroller = new DataController();
-		return $datacontroller->category("Economy");
-	})->name('data.economy');	
-	Route::get('/supply_chain', function(){
-		$datacontroller = new DataController();
-		return $datacontroller->category("Supply Chain");
-	})->name('data.supply_chain');		
+		$community_route = str_replace( ' ', '_', strtolower($community->communityName) );
+		$data = array('datacontroller'=>$datacontroller, 'community'=>$community);
+		Route::get('/'.$community_route, function() use($data){			
+			return $data['datacontroller']->category($data['community']->communityName);
+		})->name('data.'.$community_route);	
+
+	}
+		
 });
 
 Route::get('/', 'HomeController@index')->name('home');
