@@ -157,9 +157,7 @@ $(document).ready(function(){
                 console.log(res);
                 var list= "";
                 $.each(res, function(key, elem){                                       
-                    if(key%3 == 0){
-                        list += '<div class="row">';
-                    }
+                   
                     list += 
                         '<div class="col-md-4">' +
                             '<div class="card card-profile card-plain">' +
@@ -183,11 +181,10 @@ $(document).ready(function(){
                                     '<a href="'+elem.provider.companyURL+'"><img class="img" src="uploads/company/'+elem.provider.companyLogo+'" /></a>'+
                                 '</div>'+
                             '</div>'+
-                        '</div>';
-                    if(key%3 == 0){
-                        list += '</div>';
-                    }
+                        '</div>';                    
                 });
+                
+                list += '<div class="row">' + list + '</div>';
                 $("#offer-list").html(list);
             }
         });
