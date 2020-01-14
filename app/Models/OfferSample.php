@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OfferSample extends Model
 {
-    protected $table = 'OfferSamples';
+    protected $table = 'offerSamples';
 
     protected $primaryKey = 'sampleIdx';
 

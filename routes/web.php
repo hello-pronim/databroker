@@ -13,6 +13,7 @@
 
 use App\Model\Task;
 use Illuminate\Http\Request;
+use App\Http\Controllers\DataController;
 
 Route::get('/styleguide', function () {
     return view('styleguide');
@@ -30,14 +31,38 @@ Route::group(['middleware' => ['auth']], function(){
 
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');	
 
-	Route::get('/geographic', 'DataController@category')->name('data.geographic');	
-	Route::get('/environment', 'DataController@category')->name('data.environment');	
-	Route::get('/transport', 'DataController@category')->name('data.transport');	
-	Route::get('/people', 'DataController@category')->name('data.people');	
-	Route::get('/agriculture', 'DataController@category')->name('data.agriculture');	
-	Route::get('/energy', 'DataController@category')->name('data.energy');	
-	Route::get('/economy', 'DataController@category')->name('data.economy');	
-	Route::get('/supply_chain', 'DataController@category')->name('data.supply_chain');	
+	Route::get('/geographic', function(){
+		$datacontroller = new DataController();
+		return $datacontroller->category("Geographic");
+	})->name('data.geographic');	
+	Route::get('/environment', function(){
+		$datacontroller = new DataController();
+		return $datacontroller->category("Environment");
+	})->name('data.environment');	
+	Route::get('/transport', function(){
+		$datacontroller = new DataController();
+		return $datacontroller->category("Transport");
+	})->name('data.transport');	
+	Route::get('/people', function(){
+		$datacontroller = new DataController();
+		return $datacontroller->category("People");
+	})->name('data.people');	
+	Route::get('/agriculture', function(){
+		$datacontroller = new DataController();
+		return $datacontroller->category("Agriculture");
+	})->name('data.agriculture');	
+	Route::get('/energy', function(){
+		$datacontroller = new DataController();
+		return $datacontroller->category("Energy");
+	})->name('data.energy');	
+	Route::get('/economy', function(){
+		$datacontroller = new DataController();
+		return $datacontroller->category("Economy");
+	})->name('data.economy');	
+	Route::get('/supply_chain', function(){
+		$datacontroller = new DataController();
+		return $datacontroller->category("Supply Chain");
+	})->name('data.supply_chain');		
 });
 
 Route::get('/', 'HomeController@index')->name('home');

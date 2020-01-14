@@ -22,7 +22,7 @@
 				        <div class="blog-content">
 				        	<label class="pure-material-textfield">In which country are you located?</label>
 				        	<div class="adv-combo-wrapper custom-select2">
-			                    <select class="" data-placeholder="{{ trans('pages.search_by_country') }}">
+			                    <select name="regionIdx" data-placeholder="{{ trans('pages.search_by_country') }}">
 			                    	<option></option>
 			                    	@foreach ($countries as $country)
 		                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
@@ -130,7 +130,7 @@
 	                        <div class="dropdown2" tabindex="1">
 	                            <input type="hidden" id="communityIdx" name="communityIdx" value="">
 	                            <div class="adv-combo-wrapper">
-	                            	<select class="">
+	                            	<select name="communityIdx">
 	                            		<option></option>
 	                                @foreach ($communities as $community)
 		                                <option value="{{$community->communityIdx}}">{{ $community->communityName }}</option>

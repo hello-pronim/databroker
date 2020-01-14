@@ -66,6 +66,9 @@
 .ml-15{
 	margin-left: 15px;
 }
+.pb-10{
+	padding-bottom: 10px;
+}
 .min-h100{
 	min-height: 100px !important;
 }
@@ -609,6 +612,11 @@ h1,h2,h3,h4,h5,h6{
 	color: #020A09;
 	margin-bottom: 20px;
 }
+.custom-dropdown .custom-dropdown-menu h5{
+	font-size: 14px;
+	font-weight: bold;
+	color: #020A09;
+}
 .custom-dropdown .select span{
 	text-transform: capitalize;
 }
@@ -704,8 +712,9 @@ h1,h2,h3,h4,h5,h6{
 .custom-dropdown-container .custom-dropdown .country_list{
 	margin-bottom: 0px;
 }
-.select2-container .select2-dropdown{
+.select2-container .select2-dropdown--below{
 	box-shadow: 0 0 2px rgb(123, 126, 129);
+	/*border:1px solid rgb(204, 204, 204);*/
     background-color: #fff;
     position: absolute;
     z-index: 100;
@@ -714,7 +723,7 @@ h1,h2,h3,h4,h5,h6{
     padding: 20px 30px;
     border:0px;
 }
-.select2-container .select2-dropdown:after{
+.select2-container .select2-dropdown--below:after{
 	content: "";
     position: absolute;
     top: -7px;
@@ -726,6 +735,30 @@ h1,h2,h3,h4,h5,h6{
     border-width: 0 2px 2px 0;
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
+}
+.select2-container .select2-dropdown--above{
+	box-shadow: 0 0 2px rgb(123, 126, 129);
+	/*border:1px solid rgb(204, 204, 204);*/
+    background-color: #fff;
+    position: absolute;
+    z-index: 100;
+    width: 100%;    
+    text-indent: 0px;
+    padding: 20px 30px;
+    border:0px;
+}
+.select2-container .select2-dropdown--above:after{
+	content: "";
+    position: absolute;
+    bottom: -7px;
+    right: 28px;
+    display: inline-block!important;
+    background: #fff;
+    padding: 5px;
+    border: solid #dae1e5;
+    border-width: 0 2px 2px 0;
+    transform: rotate(-315deg);
+    -webkit-transform: rotate(-315deg);
 }
 .data-offer .step{
 	display: none;
@@ -773,4 +806,21 @@ h1,h2,h3,h4,h5,h6{
 }
 .cat-select.adv-combo-wrapper .select2-container{
 	margin: 0px;
+}
+.cat-select .region-select span.region{
+	width: 49%;
+	display: inline-block;
+	margin-bottom: 10px;
+	cursor:pointer;
+}
+.cat-select .region-select span.region:hover{
+	color: #78E6D0;
+}
+.offer-location span:after{
+	content: ",";
+    margin-right: 5px;
+}
+.offer-location span:last-child:after{
+	content: "";
+    margin-right: 5px;
 }

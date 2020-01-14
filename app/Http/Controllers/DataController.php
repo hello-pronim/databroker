@@ -226,18 +226,19 @@ class DataController extends Controller
             $offersample_data['sampleType'] = "image-".$extension;
             OfferSample::create($offersample_data);    
             $i++;
-        }
-        
+        }        
 
-    }
+    }   
 
-    public function category(Request $request){
+    public function category($category=""){         
         $communities = Community::get();
         $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
         $themes = Theme::get();
         
-        $data = array( 'communities', 'regions', 'countries', 'themes' );                
+        $dataoffer = Offer::with(['region', 'provider', 'usecase'])->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')->where('communities.communityName', ucfirst($category))->limit(12)->get();
+        
+        $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes' );                
         return view('data.category', compact($data));
     }
 }

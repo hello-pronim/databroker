@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OfferCountry extends Model
 {
-    protected $table = 'OfferCountries';
+    protected $table = 'offerCountries';
 
     public $timestamps = false;
     /**

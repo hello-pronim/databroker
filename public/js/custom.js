@@ -116,6 +116,16 @@ $(document).ready(function(){
     	console.log($(this).serialize());
     });*/
 
+    $("#community").change(function(){        
+        var community = $(this).val();
+        window.location.href = '/'+ community.toLowerCase().replace(" ", "_");
+    });
+
+    $("#theme").change(function(){        
+        var theme = $(this).val();
+        window.location.href = '/data/region/'+ theme;
+    });
+
 });
 
 /*Dropdown Menu*/

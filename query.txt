@@ -34,4 +34,7 @@ INSERT INTO `databroker_new`.`communities` (`communityName`) VALUES ('Transport'
 INSERT INTO `databroker_new`.`communities` (`communityName`) VALUES ('Economy');
 INSERT INTO `databroker_new`.`communities` (`communityName`) VALUES ('Supply Chain');
 
+UPDATE `databroker_new`.`communities` SET `communityName` = 'Environment' WHERE (`communityIdx` = '2');
+
+
 

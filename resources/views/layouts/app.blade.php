@@ -144,42 +144,42 @@
 			      <div class="collapse navbar-collapse">
 			        <ul class="navbar-nav ml-auto">
 			          <li class="dropdown nav-item">
-			            <a href="#" class="nav-link">
+			            <a href="{{ route('data.geographic') }}" class="nav-link">
 			              {{ trans('home.geographics') }} 
 			            </a>			            
 			          </li>
 			          <li class="dropdown nav-item">
-			            <a href="#" class="nav-link">
+			            <a href="{{ route('data.environment') }}" class="nav-link">
 			              {{ trans('home.environment') }} 
 			            </a>			           
 			          </li>
 			          <li class="dropdown nav-item">
-			            <a href="#" class="nav-link">
+			            <a href="{{ route('data.transport') }}" class="nav-link">
 			              {{ trans('home.transport') }} 
 			            </a>			            
 			          </li>			          
                 <li class="dropdown nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('data.people') }}" class="nav-link">
                     {{ trans('home.people') }} 
                   </a>                  
                 </li>
                 <li class="dropdown nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('data.agriculture') }}" class="nav-link">
                     {{ trans('home.agriculture') }} 
                   </a>                  
                 </li>
                 <li class="dropdown nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('data.energy') }}" class="nav-link">
                     {{ trans('home.energy') }} 
                   </a>                  
                 </li>
                 <li class="dropdown nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('data.economy') }}" class="nav-link">
                     {{ trans('home.economy') }} 
                   </a>                  
                 </li>
                 <li class="dropdown nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('data.geographic') }}" class="nav-link">
                     {{ trans('home.supply_chain') }} 
                   </a>                  
                 </li>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UseCase extends Model
 {
-    protected $table = 'UseCases';
+    protected $table = 'useCases';
 
     protected $primaryKey = 'useCaseIdx';
 

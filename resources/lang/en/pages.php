@@ -24,6 +24,7 @@ return [
     'for_data_about' => 'for data about',
     'in' => 'in',
     'search_by_country' => 'Search by country',
+    'select_by_community' => 'Select by community',
     
     'images' => 'Images',
     'files' => 'Files',
