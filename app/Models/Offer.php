@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Region;
+use App\Models\Community;
+use App\Models\Theme;
 
 class Offer extends Model
 {
@@ -35,6 +38,38 @@ class Offer extends Model
 
     public function region(){
     	return $this->belongsToMany('App\Models\Region', 'App\Models\OfferCountry', 'offerIdx', 'regionIdx');
+    }
+
+    protected static function filter_offer($param){
+        
+        if($param->region){
+            $dataoffer = Offer::with(['provider'])->select('offers.*', 'regions.*') 
+                        ->leftjoin('offerCountries', 'offerCountries.offerIdx', '=',  'offers.offerIdx')
+                        ->leftjoin('regions', 'regions.regionIdx', '=',  'offerCountries.regionIdx');
+        }else{
+            $dataoffer = Offer::with(['region', 'provider'])->select('offers.*'); 
+        }        
+        
+
+        $dataoffer->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
+                  ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
+                  ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx');
+
+        if($param->community){
+            $dataoffer->where('communities.communityIdx', $param->community);
+        }   
+
+        if($param->theme){
+            $dataoffer->where('themes.themeIdx', $param->theme);
+        }   
+
+        if($param->region){
+            $dataoffer->where('regions.regionIdx', $param->region);
+        }   
+
+        $result = $dataoffer->limit(12)->get();
+
+        return $result;                    
     }
 
 }

@@ -241,4 +241,11 @@ class DataController extends Controller
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes' );                
         return view('data.category', compact($data));
     }
+
+    public function filter_offer(Request $request){
+
+        $dataoffer = Offer::filter_offer($request);
+            
+        return response()->json($dataoffer);
+    }
 }

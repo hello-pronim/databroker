@@ -23,13 +23,14 @@
 	        <div class="app-monetize-section-item0 ml-0 mt-20"></div>
 	        <div class="cat-body">
 	        	<div class="row">
+	        		@csrf    		
 	        		<div class="col-lg-4">
 	        			<label class="cat-label">{{ trans('pages.explore') }}</label>	        	
 	                    <div class="adv-combo-wrapper custom-select2 cat-select">
 		                    <select id="community" data-placeholder="{{ trans('pages.select_by_community') }}" class="no-search">
 		                    	<option></option>
 		                    	@foreach ($communities as $community)
-	                                <option value="{{$community->communityName}}">{{ $community->communityName }}</option>
+	                                <option value="{{$community->communityIdx}}">{{ $community->communityName }}</option>
 	                            @endforeach
 		                    </select>	                        
 		                </div>
@@ -51,8 +52,7 @@
 	                        <div id="region" class="custom-dropdown" tabindex="1">
 	                            <div class="select">
 	                                <span>{{ trans('pages.all_regions') }}</span>
-	                            </div>
-	                            <input type="hidden" id="offercountry" name="offercountry" value="">
+	                            </div>	                            
 	                            <ul class="custom-dropdown-menu region-select" style="display: none;">
 				                    <div class="adv-combo-wrapper custom-select2">
 					                    <select data-placeholder="{{ trans('pages.search_by_country') }}">
@@ -63,41 +63,42 @@
 					                    </select>	                        
 					                </div>
 	                            	<h5>Or {{ trans('pages.select_region') }}:</h5>
-	                            	<span class="region">{{ trans('pages.all_regions') }}</span>
+	                            	<span class="region" region-id="all">{{ trans('pages.all_regions') }}</span>
 	                            	@foreach ($regions as $region)
-					                    <span class="region">{{$region->regionName}}</span>
+					                    <span class="region" region-id="{{$region->regionIdx}}">{{$region->regionName}}</span>
 					                @endforeach
 	                            </ul>
-	                        </div>
-	                        <div class="error_notice offercountry"> This field is required</div>
+	                        </div>	                        
 	                    </div>  
 	        		</div>
 	        	</div>
 	        </div>	        
     	</div>		    
-    	<h1 class="mb-20 fs-30 text-bold text-left"> Explore {{ count($dataoffer) }} data offers </h1>    	
-		<div class="row">
-			@foreach ( $dataoffer as $offer )
-			<div class="col-md-4">
-				<div class="card card-profile card-plain">					
-					<div class="card-header">
-						<a href="/data/{{ $offer['offerIdx'] }}">
-							<img class="img" src="{{ asset('uploads/offer/'.$offer['offerImage']) }}" />
-						</a>
-					</div>
-					<div class="card-body text-left">
-						<h4 class="offer-title card-title">{{$offer['offerTitle']}}</h4>
-						<h6 class="offer-location card-category">
-							@foreach($offer['region'] as $region)
-			            		<span>{{ $region->regionName }}</span>
-			            	@endforeach
-			            </h6>			            
-						<a href="{{ $offer['provider']->companyURL }}"><img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" /></a>
-					</div>
+    	<h1 class="mb-20 fs-30 text-bold text-left"> Explore {{ count($dataoffer) }} data offers </h1>   
+    	<div id="offer-list">
+			<div class="row">
+				@foreach ( $dataoffer as $offer )
+				<div class="col-md-4">
+					<div class="card card-profile card-plain">					
+						<div class="card-header">
+							<a href="/data/{{ $offer['offerIdx'] }}">
+								<img class="img" src="{{ asset('uploads/offer/'.$offer['offerImage']) }}" />
+							</a>
+						</div>
+						<div class="card-body text-left">
+							<h4 class="offer-title card-title">{{$offer['offerTitle']}}</h4>
+							<h6 class="offer-location card-category">
+								@foreach($offer['region'] as $region)
+				            		<span>{{ $region->regionName }}</span>
+				            	@endforeach
+				            </h6>			            
+							<a href="{{ $offer['provider']->companyURL }}"><img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" /></a>
+						</div>
+					</div>	
 				</div>	
-			</div>	
-			@endforeach			
-  		</div>
+				@endforeach			
+	  		</div>
+  		</div> 	
   		@if (count($dataoffer) > 12 )
   		<div class="text-center"><button type="button" class="btn btn-round sendmessage-btn">Load More</button></div>
   		@endif

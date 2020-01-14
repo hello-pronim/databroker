@@ -813,7 +813,7 @@ h1,h2,h3,h4,h5,h6{
 	margin-bottom: 10px;
 	cursor:pointer;
 }
-.cat-select .region-select span.region:hover{
+.cat-select .region-select span.region.active, .cat-select .region-select span.region:hover{
 	color: #78E6D0;
 }
 .offer-location span:after{

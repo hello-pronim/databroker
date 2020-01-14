@@ -116,15 +116,83 @@ $(document).ready(function(){
     	console.log($(this).serialize());
     });*/
 
-    $("#community").change(function(){        
-        var community = $(this).val();
-        window.location.href = '/'+ community.toLowerCase().replace(" ", "_");
+    $("#community").change(function(){                
+        //window.location.href = '/'+ community.toLowerCase().replace(" ", "_");
+        filter_dataoffer();
     });
 
-    $("#theme").change(function(){        
-        var theme = $(this).val();
-        window.location.href = '/data/region/'+ theme;
+    $("#theme").change(function(){                
+        filter_dataoffer();
     });
+
+    $("#region select").change(function(){
+        filter_dataoffer();
+        $("#region span.region").removeClass('active');
+    });
+
+    $("#region span.region").click(function(){        
+        $("#region select").val("");
+        $("#region span.region").removeClass('active');
+        $(this).addClass('active');
+        filter_dataoffer();
+    });
+
+    function filter_dataoffer(){
+        var crsf = $("input[name='_token']").val();        
+        var community = $("#community").val();
+        var theme = $("#theme").val();
+        var region1 = $("#region select").val();
+        var region2 = $("#region span.region.active").attr("region-id");
+       
+        region = region1==""?region2:region1;
+        if(region == "all") region = "";
+        var data = {_token: crsf, community: community, theme:theme, region:region}
+        
+        $.ajax({
+            type: "post",
+            url : '/offer/filter',
+            data : data,
+            dataType: 'json',
+            success: function(res){
+                console.log(res);
+                var list= "";
+                $.each(res, function(key, elem){                                       
+                    if(key%3 == 0){
+                        list += '<div class="row">';
+                    }
+                    list += 
+                        '<div class="col-md-4">' +
+                            '<div class="card card-profile card-plain">' +
+                                '<div class="card-header">' +
+                                    '<a href="/data/'+elem.offerIdx+'">' +
+                                        '<img class="img" src="/uploads/offer/'+elem.offerImage+'" />'+
+                                    '</a>'+
+                                '</div>'+
+                                '<div class="card-body text-left">'+
+                                    '<h4 class="offer-title card-title">'+elem.offerTitle+'</h4>'+
+                                    '<h6 class="offer-location card-category">';
+                                    if(typeof elem.region == 'object'){
+                                        $.each(elem.region, function(a, b){
+                                            list += '<span>'+b.regionName+'</span>';
+                                        });
+                                    }else{
+                                        list += '<span>'+elem.regionName+'</span>';
+                                    }    
+                                    
+                                    list+='</h6>'+
+                                    '<a href="'+elem.provider.companyURL+'"><img class="img" src="uploads/company/'+elem.provider.companyLogo+'" /></a>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
+                    if(key%3 == 0){
+                        list += '</div>';
+                    }
+                });
+                $("#offer-list").html(list);
+            }
+        });
+
+    }
 
 });
 
