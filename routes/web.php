@@ -32,21 +32,21 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');	
 		
-	$communities = Community::get();
-	$datacontroller = new DataController();
-	foreach ($communities as $key => $community) {
-
-		$community_route = str_replace( ' ', '_', strtolower($community->communityName) );
-		$data = array('datacontroller'=>$datacontroller, 'community'=>$community);
-		Route::get('/'.$community_route, function() use($data){			
-			return $data['datacontroller']->category($data['community']->communityName);
-		})->name('data.'.$community_route);	
-
-	}
-		
 });
 
 Route::get('/', 'HomeController@index')->name('home');
+
+$communities = Community::get();
+$datacontroller = new DataController();
+foreach ($communities as $key => $community) {
+
+	$community_route = str_replace( ' ', '_', strtolower($community->communityName) );
+	$data = array('datacontroller'=>$datacontroller, 'community'=>$community);
+	Route::get('/'.$community_route, function() use($data){			
+		return $data['datacontroller']->category($data['community']->communityName);
+	})->name('data.'.$community_route);	
+
+}
 
 Auth::routes(['verify' => true]);
 Auth::routes();
