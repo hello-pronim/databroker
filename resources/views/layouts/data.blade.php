@@ -5,8 +5,8 @@
         <title>{{ config('app.locale') }}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="title" content="DataBroker">
-        <meta name="description" content="">
+        <meta name="title" content="{{ trans('data.meta_title') }}">
+        <meta name="description" content="{{ trans('data.meta_desc') }}">
 
         <meta property="og:title" content="">
         <meta property="og:site_name" content="DataBroker">

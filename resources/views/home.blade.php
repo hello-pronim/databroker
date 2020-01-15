@@ -8,8 +8,7 @@
     	<div class="app-section app-reveal-section align-items-center">
 	        <div class="app-reveal-section-notify" style="margin-bottom: 0;">
 	            <h1>Welcome to <br> databroker. </h1>
-	            <p>Here comes an extra copy line. Lorem<br>
-	                ipsum dolor sit amet, consectetur</p>
+	            <p>{{ trans('home.one_stop_solution') }}</p>
 	        </div>
 	    </div>
     </div>    
@@ -26,7 +25,7 @@
 	    	<div class="col-md-12">
 				<div class="card card-raised card-background" style="background-image: url({{ asset('images/plane.png') }})">
 					<div class="card-body">
-						<h6 class="card-category text-info tx-success">Featured</h6>
+						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
 						<h3 class="card-title fs-40">Weather data</h3>
 						<p class="card-description text-white">
 							Short description (eg. Get current weather and daily
@@ -50,7 +49,7 @@
 
 <div class="container-fluid app-wapper">
     <div class="container">        
-        <h1 class="mb-20 fs-30 text-bold text-left">Trending</h1>
+        <h1 class="mb-20 fs-30 text-bold text-left">{{ trans('home.trending') }}</h1>
         <div class="app-partner-items row">
         	<div class="col-md-2">
         		<div class="app-partner-item info">
@@ -104,7 +103,7 @@
         </div>
 
 
-		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> Fresh on the marketplace </h1>
+		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.new_on_marketplace') }} </h1>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card card-profile card-plain">
@@ -157,9 +156,9 @@
         <div style="background: url({{ asset('images/patterns/background_02.png') }});background-position: left;background-repeat: no-repeat;background-size: contain;">
             <div class="app-section app-peek-section align-items-center">
                 <div class="app-monetize-section-item0"></div>
-                <h1 class="fs-30 mb-10">Looking for specific data to improve your business?</h1>
+                <h1 class="fs-30 mb-10">{{ trans('home.looking_supercharge')}}</h1>
                 <p class="center">
-                    We can match you up with the perfect data partner
+                    {{ trans('home.looking_supercharge_description')}}
                     <span class="height-space" style="display: block;"></span>
                     <a href="/newsletter">
                         <button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.match_me') }}</button>
@@ -174,7 +173,7 @@
 
 <div class="container-fluid app-wapper">	
 	<div class="container">
-		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> Team picks </h1>
+		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.team_picks') }} </h1>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card card-profile card-plain">
@@ -223,7 +222,7 @@
 	    <div class="app-section app-monetize-section align-items-center">
 	        <div class="app-monetize-section-item0"></div>
 	        <div class="app-monetize-section-item1">
-	            <h1 class="fs-30">Featured data providers.</h1>	            
+	            <h1 class="fs-30"> {{ trans('home.featured_data_providers') }} </h1>
 	            <p>Check out their data offers!</p>
 	        </div>
 	    </div>
@@ -280,12 +279,12 @@
         <div style="background: url({{ asset('images/patterns/background_02.png') }});background-position: left;background-repeat: no-repeat;background-size: contain;">
             <div class="app-section app-peek-section align-items-center">
                 <div class="app-monetize-section-item0"></div>
-                <h1 class="fs-30" style="margin-bottom: 10px;">Title addressing potential buyers?</h1>
+                <h1 class="fs-30" style="margin-bottom: 10px;">{{ trans('home.sell_or_share') }}</h1>
                 <p class="center">
-                    Subtitle addresssing potential buyers
+                    {{ trans('home.sell_or_share_desc')}}
                     <span class="height-space" style="display: block;"></span>
                     <a href="/newsletter">
-                        <button type="button" class="btn match-me-up-btn pure-material-button-outlined">Contact</button>
+                        <button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.lets_started') }}</button>
                     </a>                     
                 </p>                
             </div>
@@ -295,7 +294,7 @@
 </div>
 <div class="container-fluid app-wapper">	
 	<div class="container">
-		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> Top use cases </h1>
+		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('home.top_usecase')}} </h1>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card card-profile card-plain">

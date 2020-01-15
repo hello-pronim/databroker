@@ -5,8 +5,8 @@
         <title>{{ config('app.locale') }}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="title" content="DataBroker">
-        <meta name="description" content="">        
+        <meta name="title" content="{{ trans('data.meta_title') }}">
+        <meta name="description" content="{{ trans('data.meta_desc') }}">
 
         <meta property="og:title" content="">
         <meta property="og:site_name" content="DataBroker">
@@ -47,14 +47,14 @@
 		        		<li class="nav-item dropdown">
 		        			<a class="nav-link dropdown-toggle" id="more_dropdown" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">{{ trans('home.more') }}</a>
 		        			<div class="dropdown-menu" aria-labelledby="more_dropdown">
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.discover_our_matchmaking_service') }} </a>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.explore_use_cases') }} </a>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.help_customer_care') }} </a>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.about_databroker_dao') }} </a>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.partners') }} </a>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.updates') }} </a>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.press_media') }} </a>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.contact') }} </a>
+		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.about_databroker') }} </a>
+                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.partners') }} </a>
+                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.datamatch') }} </a>
+                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.usecase') }} </a>
+                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.helpsupport') }} </a>
+                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.news') }} </a>
+                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.media_center') }} </a>
+		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.contact_us') }} </a>
 		        			</div>
 		        		</li>
 		        	</ul>	
@@ -194,8 +194,8 @@
                     <div class="close_button"></div>
                 </div>
                 <h3><span>i</span>COOKIES</h3>
-                <p>We use cookies to help us improve website user experience. If you continue, we'll assume that you are happy for us to use cookies for this purpose.</p>
-                <button type="button" class="btn accept-btn pure-material-button-outlined">I accept</button>
+                <p>{{ trans('home.cookie_desc') }}</p>
+                <button type="button" class="btn accept-btn pure-material-button-outlined">{{ trans('home.accept_cookie') }}</button>
             </div>
         </dir>
 
@@ -205,48 +205,46 @@
   			<div class="container footer_section1">
   				<div class="row">
   					<div class="col-md-3">
-  						<h5>Discover our data communities</h5>
+  						<h5>{{ trans('home.explore_data_communities') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
-  							<li><a href="/presentation">About Us</a></li> 
-  							<li><a href="/templates/free">Freebies</a></li> 
-  							<li><a href="/templates/premium">Premium</a></li> 
-  							<li> <a href="https://www.creative-tim.com/blog">Blog</a></li> 
-  							<li> <a href="/affiliates/new">Affiliate Program</a></li> 
-  							<li> <a href="/coupon">Get coupon</a></li> 
+  							<li><a href="{{ route('data.geographic') }}">{{ trans('home.geographics') }}</a></li> 
+                <li><a href="{{ route('data.environment') }}">{{ trans('home.environment') }}</a></li> 
+                <li><a href="{{ route('data.transport') }}">{{ trans('home.transports') }}</a></li> 
+                <li><a href="{{ route('data.people') }}">{{ trans('home.people') }}</a></li> 
+                <li><a href="{{ route('data.agriculture') }}">{{ trans('home.agriculture') }}</a></li> 
+                <li><a href="{{ route('data.energy') }}">{{ trans('home.energy') }}</a></li> 
+                <li><a href="{{ route('data.economy') }}">{{ trans('home.economy') }}</a></li> 
+                <li><a href="{{ route('data.supply_chain') }}">{{ trans('home.supply_chain') }}</a></li>   							
   						</ul>
   					</div>
   					<div class="col-md-3">
-  						<h5>Discover our data communities</h5>
+  						<h5>{{ trans('home.about_databroker') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
-  							<li><a href="/presentation">About Us</a></li> 
-  							<li><a href="/templates/free">Freebies</a></li> 
-  							<li><a href="/templates/premium">Premium</a></li> 
-  							<li> <a href="https://www.creative-tim.com/blog">Blog</a></li> 
-  							<li> <a href="/affiliates/new">Affiliate Program</a></li> 
-  							<li> <a href="/coupon">Get coupon</a></li> 
+  							<li><a href="javascript:;">{{ trans('home.partners') }}</a></li> 
+  							<li><a href="javascript:;">{{ trans('home.datamatch') }}</a></li> 
+  							<li><a href="javascript:;">{{ trans('home.partners') }}</a></li> 
+  							<li> <a href="javascript:;">{{ trans('home.usecase') }}</a></li> 
+  							<li> <a href="javascript:;">{{ trans('home.updates') }}</a></li> 
+  							<li> <a href="javascript:;">{{ trans('home.media_center') }}</a></li> 
+                <li> <a href="javascript:;">{{ trans('home.contact_us') }}</a></li> 
   						</ul>
   					</div>
   					<div class="col-md-3">
-  						<h5>Discover our data communities</h5>
+  						<h5>{{ trans('home.helpsupport') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
-  							<li><a href="/presentation">About Us</a></li> 
-  							<li><a href="/templates/free">Freebies</a></li> 
-  							<li><a href="/templates/premium">Premium</a></li> 
-  							<li> <a href="https://www.creative-tim.com/blog">Blog</a></li> 
-  							<li> <a href="/affiliates/new">Affiliate Program</a></li> 
-  							<li> <a href="/coupon">Get coupon</a></li> 
+  							<li><a href="javascript:;">{{ trans('home.buying_data') }}</a></li> 
+                <li><a href="javascript:;">{{ trans('home.selling_data') }}</a></li> 
+                <li><a href="javascript:;">{{ trans('home.privacy_security') }}</a></li> 
+                <li> <a href="javascript:;">{{ trans('home.our_gurantee') }}</a></li> 
+                <li> <a href="javascript:;">{{ trans('home.file_complaint') }}</a></li> 
+                <li> <a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 
   						</ul>
   					</div>
   					<div class="col-md-3">
-  						<h5>Discover our data communities</h5>
-  						<ul class="list-unstyled" data-turbolinks="false"> 
-  							<li><a href="/presentation">About Us</a></li> 
-  							<li><a href="/templates/free">Freebies</a></li> 
-  							<li><a href="/templates/premium">Premium</a></li> 
-  							<li> <a href="https://www.creative-tim.com/blog">Blog</a></li> 
-  							<li> <a href="/affiliates/new">Affiliate Program</a></li> 
-  							<li> <a href="/coupon">Get coupon</a></li> 
-  						</ul>
+  						<h5>{{ trans('home.signupbox') }}</h5>
+  						<p class="text-thick-grey fs-18"> {{ trans('home.signupbox') }} </p>
+              <button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.signup') }}</button>
+
   					</div>
   				</div>
 
@@ -301,7 +299,7 @@
 		        	</div>
 		        </div>    
 		        <div class="row">		        	
-		        	<button class="btn readmore-inourblog-btn pure-material-button-outlined">View All</button>
+		        	<button class="btn readmore-inourblog-btn pure-material-button-outlined">{{ trans('home.viewall_partners') }}</button>
 		        </div>
   			</div>
   		</div>
@@ -311,9 +309,9 @@
         		<div class="app-section app-footer-section align-items-center">
         			<div class="app-footer-link">
 	                    <!--a href="">Terms and Conditions</a-->
-	                    <a href="/terms-conditions">Terms and Conditions</a>
-	                    <a href="/privacy-policy">Privacy Policy</a>
-	                    <a href="/cookie-policy" style="padding-right: 0;">Cookie Policy</a>
+	                    <a href="/terms-conditions">{{ trans('home.terms_conditions') }}</a>
+	                    <a href="/privacy-policy">{{ trans('home.privacy_policy') }}</a>
+	                    <a href="/cookie-policy" style="padding-right: 0;">{{ trans('home.cookie_policy') }}</a>
 	                </div>
 	                <div class="site_footer_logo_container">
 	                    <svg class="site_footer_logo" id="logo-white" xmlns="http://www.w3.org/2000/svg" width="525.314" height="90.848" viewBox="0 0 525.314 90.848">

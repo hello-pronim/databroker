@@ -8,6 +8,9 @@
 .text-white{
 	color:white !important;
 }
+.text-thick-grey{
+	color:#8C9196;
+}
 .text-grey{
 	color:#BAC0C5;
 }
@@ -28,6 +31,9 @@
 }
 .fs-16{
 	font-size: 16px !important;
+}
+.fs-18{
+	font-size: 18px !important;
 }
 .fs-20{
 	font-size: 20px !important;
