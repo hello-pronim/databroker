@@ -230,7 +230,8 @@ class DataController extends Controller
 
     }   
 
-    public function category($category=""){         
+    public function category($category=""){
+
         $communities = Community::get();
         $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
@@ -240,7 +241,17 @@ class DataController extends Controller
         
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes' );                
         return view('data.category', compact($data));
+
     }
+
+    public function community($community=""){         
+
+        $communities = Community::get();        
+        $themes = Theme::get_theme_by_community($community);
+        
+        $data = array( 'community', 'communities', 'themes' );                
+        return view('data.community', compact($data));
+    }    
 
     public function filter_offer(Request $request){
 

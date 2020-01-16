@@ -5,6 +5,9 @@
 .text-primary{
 	color: #06038D !important;
 }
+.text-warning{
+	color: #FF6B6B !important;
+}
 .text-white{
 	color:white !important;
 }
@@ -44,6 +47,9 @@
 .fs-40{
 	font-size: 40px !important;
 }
+.hr-h{	
+	margin:0 10px;
+}
 /*General style*/
 .mb-10{
 	margin-bottom: 10px !important;
@@ -59,6 +65,9 @@
 }
 .mt-20{
 	margin-top: 20px;	
+}
+.mt-30{
+	margin-top: 30px;	
 }
 .mt-40{
 	margin-top: 40px;	
@@ -178,6 +187,27 @@ h1,h2,h3,h4,h5,h6{
 .back-icon span{
 	vertical-align: middle;
 	margin-left: 10px;	
+}
+.rotated{
+	transform: rotate(180deg);
+}
+i.rotated{
+	border-top: 1px solid #BAC0C5;
+    width: 9px;
+    text-indent: -3px;
+    height: 12px;
+    color: #BAC0C5;
+    position: relative;
+    font-size: 16px;
+}
+i.rotated:before{
+	content: "";
+    height: 3px;
+    width: 12px;
+    background: #fff;
+    position: absolute;
+    top: 12px;
+    left: -2px;
 }
 /*Header*/
 .fixed_bg {
@@ -833,4 +863,39 @@ h1,h2,h3,h4,h5,h6{
 #offer-list .card .card-header img{
 	min-height: 270px;
     max-height: 270px;
+}
+/*wallet page*/
+#wallet .download i{
+	font-size: 16px;
+	color: #BAC0C5;
+}
+#wallet .download span{
+	color: #BAC0C5;
+	font-size: 14px;
+	margin-left: 14px;
+}
+#wallet .wallet_fill{
+	display: inline-block;
+}
+.more_info{
+	color: #020A09;
+	position: relative;
+}
+.more_info i{
+    position: absolute;
+    right: -20px;
+    top: -5px;
+}
+#transactions table tr{
+	border-bottom: 1px solid #D0D7DD;
+}
+#transactions table td{
+	border-top: none;
+	font-size: 14px;
+}
+#transactions table td i{
+	transform: rotate(45deg);
+	font-size: 16px;
+	vertical-align: text-top;
+	margin-right: 10px;
 }

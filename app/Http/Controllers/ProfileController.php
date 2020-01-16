@@ -107,6 +107,10 @@ class ProfileController extends Controller
         return response()->json(['success' => true, 'result' => "Updated successfully."]);
     }
 
+    public function wallet(Request $request){
+        return view('account.wallet');
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [

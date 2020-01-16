@@ -16,7 +16,7 @@
 			            <p class="desc">
 			            	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
 			            </p>	            
-			            <button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.read_more') }}</button>
+			            <a href="{{ route('data.community_'.strtolower($category)) }}"><button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.read_more') }}</button></a>
 	        		</div>	
 	        	</div>	        	
 	        </div>	        

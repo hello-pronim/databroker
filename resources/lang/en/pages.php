@@ -53,6 +53,7 @@ return [
     'Purchases' => 'Purchases',
     'what_company_name' => 'What is the name of your company?',
     'what_company_url' => 'What is the URL of your company?',
+    'transactions' => 'Transactions',
 
     'profile_description' => 'You can deactivate your Databroker account anytime you want.',
 
@@ -97,5 +98,10 @@ return [
     'view_on_marketplace' => 'View on marketplace',
     'price' => 'Price',
     'Access_to_this_data' => 'Access to this data',
+
+    'view_dataoffer' => 'View Data Offer',
+    'discover_improve_business' => 'Discover how geographics data can improve your business',
+    'what_business_challenge' => 'What business challenge can we help you solve?',
+    'tell_us_data_partner' => 'Tell us and we’ll match you up with the perfect data partner!',
 
 ];

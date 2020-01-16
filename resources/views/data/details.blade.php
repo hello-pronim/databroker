@@ -4,8 +4,7 @@
 <div class="container-fluid app-wapper">
 	<div class="bg-pattern1-left"></div>
     <div class="container">
-    	<div class="app-section app-reveal-section align-items-center">
-    		<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
+    	<div class="app-section app-reveal-section align-items-center">    		
 	        <div class="blog-header">
 	            <h1>{{ $offer['offerTitle'] }}</h1>	            
 	            <p class="area">

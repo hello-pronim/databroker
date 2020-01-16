@@ -28,6 +28,8 @@ ADD COLUMN `offerImage` VARCHAR(255) NULL AFTER `offerDescription`;
 
 ALTER TABLE `databroker_new`.`OfferSamples`
 CHANGE COLUMN `sampleType` `sampleType` VARCHAR(20) NULL DEFAULT NULL ;
+ALTER TABLE `databroker_new`.`themes` 
+ADD COLUMN `communityIdx` VARCHAR(45) NULL AFTER `themeIdx`;
 
 // community table
 INSERT INTO `databroker_new`.`communities` (`communityName`) VALUES ('Transport');
@@ -36,4 +38,58 @@ INSERT INTO `databroker_new`.`communities` (`communityName`) VALUES ('Supply Cha
 
 UPDATE `databroker_new`.`communities` SET `communityName` = 'Environment' WHERE (`communityIdx` = '2');
 DELETE from communities where communityIdx=4;
+
+// theme table
+ALTER TABLE `databroker_new`.`themes` ADD COLUMN `themeText` TEXT NULL AFTER `themeName`;
+
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Locations', 'Information about locations according to their absolute (using latitude and longitude) or relative location (distance from another point).\n');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Places ', 'Information about locations according to their physical (e.g. topography, geology) or human characteristics (e.g. land use, political systems).');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Human-environment interaction ', 'Data that helps us understand how the quality of environmental system affects the social system and how human activities affect the environmental system.\n');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Movement', 'Data related to the geographic movement and of people (migration and population), goods (trade), and ideas (communication) across the planet.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Regions', 'Information about locations according to a unifying characteristic, covering formal (e.g. countries) and functional regions (e.g. Wi-Fi hotspots).');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Natural resources ', 'Statistics and indicators on the supply, transformation and use of natural recourses such as oil, gas, metals and minerals, water, wind and solar energy.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Air emissions', 'Air quality statistics for greenhouse gas emissions and air pollutants, including primary emissions (e.g. factories, vehicles) and secondary air pollution.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Biodiversity', 'Data related to species of flora and fauna, biomes, land use, land cover change, as well as habitats and ecosystems in terrestrial and marine environments.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Environmental protection', 'Activities and resources dedicated by businesses, households and governments to protecting the environment, including waste and recycling.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Hazardous substances', 'Statistics on the production and use/consumption of chemicals in products and chemical mixtures that are hazardous to humans or the environment.\n');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Resource productivity', 'Flows of materials into and out of national economies, including domestic extraction and the release of materials, as well as physical imports and exports. ');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Taxes', 'Environmental taxes imposed on activities that are considered harmful to the environment, including government revenue and ratios to GDP.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Climate change', 'Statistics from a wide range of domains on activities that cause and reduce greenhouse gas emissions, the impact of climate change and how we adapt to it.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Transport of goods ', 'Volumes of freight transport by road, rail, air, sea or inland waterways, average distances, average loads carried, empty runnings. \n');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Transport of people ', 'Passenger-kilometres by transport type, journey purpose, available seats, on-time rates, public transport usage, access for disabled people.\n');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Traffic', 'Vehicle-kilometres by vehicle type, traffic volume by road type, speed limits and real speeds on road segments, daily traffic flows, raw counts.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Transport safety', 'Data on injuries and deaths from road accidents, exposure data about road use and users, and data on safety features like seatbelts and helmets.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Transport sector', 'Employment, infrastructure investment and maintenance, equipment manufacture, number and age of vehicles/vessels by type, vehicles by fuel type.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Population', 'Demography and migration flows, demographic indicators, population projections, population and housing census, asylum, migration integration.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Health', 'Public health including health determinants, health care expenditure, resources and activities, disability, causes of death, accidents at work.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Education & training', 'Participation in education and training, learning mobility, education personnel, education finance, outcomes, language learning.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Labour market', 'Data on employment, inactivity, working time, job vacancies, labour costs, gross and net earnings, gender pay gap, minimum wages. ');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Income & living conditions', 'Employee, property and household income, self-employment, social benefits, taxes and contributions, household membership.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Culture, sports & youth ', 'Data related to spending, attendance and revenue generated from cultural and sporting activities, and a wide range of aspects related to young people. ');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Crime & criminal justice ', 'Recorded offences by type of crime, age and gender of offenders, volumes of legal cases, age and gender of prisoners, prison capacities and occupancies. ');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Equality', 'Gender, age and disability equality, covering topics such as employment, salaries, education, quality of life, social inclusion, household make-up.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Economic accounts ', 'Income generated by agricultural activities, including values for input, output, gross value added, subsidies and taxes, real net value added at factor cost. ');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Prices & indices', 'Data on price indices and absolute prices of inputs and outputs in the agricultural, mining, forestry and fishing sectors and on land prices and rents. ');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Production', 'Crop, animal, aquaculture and forestry production data in physical units (number, weight, quantity, area), including land use for agricultural production.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Organic farming', 'Data covering operators involved in organic farming and the processing of organic products, crop area and production, livestock and aquaculture.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Agri-environment', 'Environmental impacts of agriculture including land use and practices, energy use, soil and water quality, pesticide and fertiliser use, pollution, biodiversity.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Quantities', 'Energy balance positions for different fuel types and sectors, from supply through transformation to final energy consumption by businesses and households.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Energy prices ', 'Price data for household and non-household consumers across fuel types, including, consumption bands, network costs and taxes.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Infrastructure', 'Electricity generation capacities, combined heat and power capacity, nuclear energy facilities, biofuel production capacities, solar collector’s surface.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('National accounts ', 'Main GDP aggregates, institutional sector accounts for businesses and households, balance sheets, supply and use tables, input-output tables.   ');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Government finance', 'Government surplus/deficit, gross debt, revenue and expenditure, transactions and changes in financial assets and liabilities, balance sheets.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Exchange & interest rates ', 'Current and historical exchange rates between currencies, effective exchange rate indices, short- and long-term interest rates, yield curves.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Economic globalisation', 'International trade in goods and services, inward and outwards foreign affiliates, foreign direct investment, employment and international sourcing.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Digital economy & society', 'Mobile internet access, social media use, e-commerce, ICT employment, internet security, cloud services, digital skills for businesses and households.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Commerce', 'Consumer Price Index, purchasing habits, seasonality trends, household disposable income, household savings rates, e-commerce data capture.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Automotive', 'Data that can help identify trends and customer preferences, optimise manufacturing processes, ensure parts supply, monitor goods movements.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Chemicals', 'Data that can be used to maximise operational efficiency, improve forecasts, mitigate safety risks, identify synergies with other sectors.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Data that can be used to maximise operational efficiency, improve forecasts, mitigate safety risks, identify synergies with other sectors.', 'Data to help reduce component waste, identify and reduce process inefficiencies, manage demand, project inventory need and increase visibility.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Food & beverage', 'Data to improve end-to-end traceability solutions, understand customer trends and predict demand, optimise packaging for transport and storage.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Pharmaceutical', 'Data for improved demand forecasting, yield and network optimisation, manufacturing performance, and available-to-promise accuracy.');
+INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Retail', 'Data for real-time delivery management, improved order picking and vendor management, automated product sourcing and segmented supply chains.');
+
+
+
+
 

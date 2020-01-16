@@ -64,7 +64,7 @@
 		        			<div class="dropdown-menu" aria-labelledby="account_dropdown">
 		        				<h4> {{ trans('home.mark_spencer') }} </h4>
 		        				<a class="dropdown-item" href="{{ route('account.profile') }}"> {{ trans('home.profile_account_info') }} </a>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.wallet') }} </a>
+		        				<a class="dropdown-item" href="{{ route('account.wallet') }}"> {{ trans('home.wallet') }} </a>
 		        				<div class="dropdown-divider"></div>
 		        				<h5> {{ trans('home.me_buyer') }} </h5>
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.bids') }} </a>

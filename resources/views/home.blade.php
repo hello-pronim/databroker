@@ -65,7 +65,7 @@
 					<div class="icon">
 						<img src="{{ asset('images/design/transport.svg') }}">
 	                </div>
-					<h4 class="info-title"> Car data </h4>
+					<h4 class="info-title"> Traffic density </h4>
         		</div>
 
         	</div>
@@ -73,7 +73,7 @@
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/people.svg') }}">
                     </div>
-					<h4 class="info-title"> Car data </h4>
+					<h4 class="info-title"> Shopping behaviour </h4>
         		</div>
 
         	</div>
@@ -81,7 +81,7 @@
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/geography.svg') }}">
                     </div>
-					<h4 class="info-title"> Car data </h4>
+					<h4 class="info-title"> Land parcels </h4>
         		</div>
 
         	</div>
@@ -89,7 +89,7 @@
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/energy.svg') }}">
                     </div>		
-					<h4 class="info-title"> Car data </h4>
+					<h4 class="info-title"> Light pollution </h4>
         		</div>
 
         	</div>
@@ -97,7 +97,7 @@
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/geography.svg') }}">
                     </div>
-					<h4 class="info-title"> Car data </h4>
+					<h4 class="info-title"> Flood maps </h4>
         		</div>
         	</div>
         </div>
@@ -338,7 +338,7 @@
 					</div>			
 				</div>	
 			</div>	
-  		</div>
+  		</div>  		
   	</div>  	
 </div>
 @endsection
