@@ -48,9 +48,9 @@
 		        			<a class="nav-link dropdown-toggle" id="more_dropdown" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">{{ trans('home.more') }}</a>
 		        			<div class="dropdown-menu" aria-labelledby="more_dropdown">
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.about_databroker') }} </a>
-                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.partners') }} </a>
+                    <a class="dropdown-item" href="{{ route('about.partners') }}"> {{ trans('home.partners') }} </a>
                     <a class="dropdown-item" href="javascript:;"> {{ trans('home.datamatch') }} </a>
-                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.usecase') }} </a>
+                    <a class="dropdown-item" href="{{ route('about.usecase') }}"> {{ trans('home.usecase') }} </a>
                     <a class="dropdown-item" href="javascript:;"> {{ trans('home.helpsupport') }} </a>
                     <a class="dropdown-item" href="javascript:;"> {{ trans('home.news') }} </a>
                     <a class="dropdown-item" href="javascript:;"> {{ trans('home.media_center') }} </a>
