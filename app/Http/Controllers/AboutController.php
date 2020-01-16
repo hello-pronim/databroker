@@ -112,6 +112,6 @@ class AboutController extends Controller
         );
 
         $data = array( 'usecases', 'usecases2' );
-        return view('more.usecase', compact($data));
+        return view('about.usecase', compact($data));
     }
 }
