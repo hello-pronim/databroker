@@ -15,7 +15,7 @@ use App\Models\OfferSample;
 use App\Models\OfferCountry;
 use App\Models\UseCase;
 
-class MoreController extends Controller
+class AboutController extends Controller
 {
     /**
      * Create a new controller instance.

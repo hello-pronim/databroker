@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function(){
 	
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');			
 
-	Route::get('/usecase', 'MoreController@usecase')->name('more.usecase');    
+	Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase');    
 });
 
 Route::get('/', 'HomeController@index')->name('home');
