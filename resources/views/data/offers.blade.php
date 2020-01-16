@@ -48,7 +48,7 @@
 					            <div class="error_notice companyLogo"> This field is required</div>
 		                    </div>
 		                    <div class="buttons text-right">						
-								<button type="button" class="btn customize-btn btn-next pull-right">{{ trans('pages.next') }}</button>
+								<button type="button" class="customize-btn btn-next pull-right">{{ trans('pages.next') }}</button>
 							</div>
 				        </div>	
 	    			</div>
@@ -115,7 +115,7 @@
 					                    </select>
 					                </div>
 	                                <div class="buttons flex-vcenter">						
-										<button type="button" class="btn customize-btn">{{ trans('pages.confirm') }}</button>
+										<button type="button" class="customize-btn">{{ trans('pages.confirm') }}</button>
 									</div>
 	                            </ul>
 	                        </div>
@@ -148,7 +148,7 @@
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
-							<button type="button" class="btn customize-btn btn-next">{{ trans('pages.next') }}</button>
+							<button type="button" class="customize-btn btn-next">{{ trans('pages.next') }}</button>
 						</div>
 					</div>
 					<div class="col-3">
@@ -181,7 +181,7 @@
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a><!-- goto 44 -->
-							<button type="button" class="btn customize-btn btn-next">{{ trans('pages.next') }}</button><!-- goto 48 -->
+							<button type="button" class="customize-btn btn-next">{{ trans('pages.next') }}</button><!-- goto 48 -->
 						</div>
 					</div>
 					<div class="col-3">
@@ -214,7 +214,7 @@
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
-							<button type="button" class="btn customize-btn btn-next">{{ trans('pages.next') }}</button>
+							<button type="button" class="customize-btn btn-next">{{ trans('pages.next') }}</button>
 						</div>
 					</div>
 					<div class="col-3">
@@ -289,7 +289,7 @@
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>{{ trans('pages.previous_step') }}</span></a>
-							<button type="sbumit" class="btn customize-btn">{{ trans('pages.publish_on_marketplace') }}</button>
+							<button type="sbumit" class="customize-btn">{{ trans('pages.publish_on_marketplace') }}</button>
 						</div>
 					</div>
 					<div class="col-3">

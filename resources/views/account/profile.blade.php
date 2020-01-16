@@ -142,7 +142,7 @@
                         </div>
                         <div class="row">
                             <div class="col info-text flex-vend">
-                                <button type="submit" class="btn customize-btn">UPDATE PROFILE</button>
+                                <button type="submit" class="customize-btn">UPDATE PROFILE</button>
                             </div>
                         </div>
                     </form>

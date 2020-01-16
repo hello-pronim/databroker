@@ -34,7 +34,7 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-6">
-                            <button type="submit" class="btn customize-btn">CONTINUE</button>
+                            <button type="submit" class="customize-btn">CONTINUE</button>
                         </div>
                         <div class="col-md-6 text-right">
                             @if (Route::has('password.request'))

@@ -30,7 +30,7 @@
                         </div>                        
                         
                         <div class="form-group mb-0 col-md-6 text-right">                            
-                            <button type="submit" class="btn customize-btn">{{ __('Send Password Reset Link') }}</button>
+                            <button type="submit" class="customize-btn">{{ __('Send Password Reset Link') }}</button>
                         </div>    
                     </div>
                 </form>

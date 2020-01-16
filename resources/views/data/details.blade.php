@@ -4,7 +4,7 @@
 <div class="container-fluid app-wapper">
 	<div class="bg-pattern1-left"></div>
     <div class="container">
-    	<div class="app-section app-reveal-section align-items-center">    		
+    	<div class="app-section app-reveal-section align-items-center data-detail">    		
 	        <div class="blog-header">
 	            <h1>{{ $offer['offerTitle'] }}</h1>	            
 	            <p class="area">
@@ -103,7 +103,7 @@
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<button type="button" class="btn customize-btn">Buy Now</button>
+					                			<button type="button" class="customize-btn">Buy Now</button>
 					                		</div>	
 				                		</div>				                		
 				                	</div>
@@ -118,8 +118,8 @@
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<button type="button" class="btn customize-btn">Send a bid to the seller</button>
-					                			<button type="button" class="btn customize-btn">Buy Now</button>
+					                			<button type="button" class="customize-btn">Send a bid to the seller</button>
+					                			<button type="button" class=" customize-btn">Buy Now</button>
 					                		</div>	
 				                		</div>				                		
 				                	</div>
@@ -134,7 +134,7 @@
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<button type="button" class="btn customize-btn">Buy Now</button>
+					                			<button type="button" class="customize-btn">Buy Now</button>
 					                		</div>	
 				                		</div>				                		
 				                	</div>	

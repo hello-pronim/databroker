@@ -135,7 +135,7 @@
                     
                     <div class="form-group row mb-0">                        
                         <div class="col-md-6">                                
-                            <button type="submit" class="btn customize-btn">CREAT ACCOUNT</button>
+                            <button type="submit" class="customize-btn">CREAT ACCOUNT</button>
                         </div>
 
                         <div class="col-md-6 text-right">
