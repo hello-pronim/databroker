@@ -1321,3 +1321,63 @@ body .select2-search--dropdown {
 	padding-left: 0px;
 }
 
+.cat-body .adv-combo-wrapper,
+.data-offer .adv-combo-wrapper {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* Use Cases */
+.geocommunity-wrapper {
+	flex: 1 1 auto;
+}
+
+.sub-footer {
+	;
+}
+
+.section_splitor_gray {
+    background: url("../images/patterns/gray-pattern.svg");
+    background-repeat:repeat-x;
+    width: 100%;
+    background-size: contain;
+    height: 77.33px;
+}
+
+.section_splitor_gray.h713 {
+	height: 71.33px;
+}
+
+.bg-pattern1-both {
+	position: relative;
+	height: 387px;
+}
+.bg-pattern1-both:before{
+	content: "";
+	background-image: url("../images/patterns/BG-half-left-desktop.svg");
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 340.8px;
+    height: 326.18px;
+    display: block;
+    position: absolute;
+    left:0;
+    top: 0;	
+}
+.bg-pattern1-both:after{
+	content: "";
+	background-image: url("../images/patterns/BG-half-right-desktop.svg");
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 340.8px;
+    height: 326.18px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;	
+}
+
+
+

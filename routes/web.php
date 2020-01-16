@@ -30,6 +30,8 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/data/offers/{id}', 'DataController@offer_detail')->where('id', '[0-9]+')->name('data_offer_detail');
 	
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');			
+
+	Route::get('/usecase', 'MoreController@usecase')->name('more.usecase');    
 });
 
 Route::get('/', 'HomeController@index')->name('home');
