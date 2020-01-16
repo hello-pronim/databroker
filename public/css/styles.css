@@ -2322,8 +2322,12 @@ input.input_data, select.input_data {
 }
 
 .customize-btn:hover {
-    color: white;
-    background-color: #eb4444;
+    background-color: #E15757;
+    box-shadow: 0px 15px 25px #FF6B6B33;
+}
+.customize-btn:active {
+    background-color: #E15757;
+    box-shadow: 0px 2px 4px #FF6B6B4D;
 }
 .customize-btn {
     height: 50px;
@@ -2331,9 +2335,45 @@ input.input_data, select.input_data {
     width: 225px;
     margin: 28px 0px;
     color: white;
-    background-color: #ff6b6b;
+    background: #FF6B6B 0% 0% no-repeat padding-box;
+    box-shadow: 0px 15px 25px #FF6B6B26;
     text-transform: uppercase;
     font-size: small;
     font-weight: bold;
     border: none;
+}
+
+.button.blue-outline {
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid #06038D;
+    border-radius: 25px;
+    color: #06038D;
+
+    font-family: DM Sans;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.25px;
+}
+
+.button.blue-outline:hover {
+    border: 2px solid #FF6B6B;
+    color: #FF6B6B;
+}
+
+.button.blue-outline:active {
+    border: 2px solid #E15757;
+    color: #E15757;
+}
+
+.button.w225 {
+    width: 225px;
 }
