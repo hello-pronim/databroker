@@ -27,6 +27,38 @@ class AboutController extends Controller
         //$this->middleware(['auth','verified']);
     }
 
+    public function index(Request $request)
+    {
+        $teammates = array(
+            array(
+                'id'        => 1, 
+                'avatar'    => '../images/dummy/Matthew_DB.png', 
+                'name'      => 'Matthew van Niekerk',
+                'title'  => 'Co-founder and CEO', 
+            ),
+            array(
+                'id'        => 2, 
+                'avatar'    => '../images/dummy/Roderik_DB.png', 
+                'name'      => 'Roderik van der Veer',
+                'title'  => 'Co-founder and CTO', 
+            ),
+            array(
+                'id'        => 3, 
+                'avatar'    => '../images/dummy/Vincent_DB.png', 
+                'name'      => 'Vincent Bultot',
+                'title'  => 'DataMatch Advisor', 
+            ),
+            array(
+                'id'        => 4, 
+                'avatar'    => '../images/dummy/Valentina_DB.png', 
+                'name'      => 'Valentina Ponomariova',
+                'title'  => 'Marketing and Communications Manager', 
+            ),
+        );        
+        $data = array( 'teammates' );
+        return view('about.about', compact($data));
+    }
+
     public function partners(Request $request)
     {        
         $partners = array (

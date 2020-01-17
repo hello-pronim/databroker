@@ -38,6 +38,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
 Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name('data_details');
 
+Route::get('/about/', 'AboutController@index')->name('about.about');    
 Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
 Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase');
 
