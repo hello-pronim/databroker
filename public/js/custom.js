@@ -191,6 +191,12 @@ $(document).ready(function(){
 
     }
 
+    $("#bids .bid a.nav-link").click(function(){
+        $($("#bids .bid a.nav-link")).removeClass('active');
+        $("#bids .bid").removeClass("open");
+        $(this).parent().addClass("open");
+    });
+
 });
 
 /*Dropdown Menu*/

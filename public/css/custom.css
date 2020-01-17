@@ -24,7 +24,7 @@
 	font-weight: normal;
 }
 .text-green{
-	color:#78E6D0;
+	color:#78E6D0 !important;
 }
 .text-top{
 	vertical-align: text-top;
@@ -898,4 +898,54 @@ i.rotated:before{
 	font-size: 16px;
 	vertical-align: text-top;
 	margin-right: 10px;
+}
+
+#bids{
+	margin-top: 50px;
+}
+#bids .bid{
+	width: 100%;    
+    background-color: #fff;
+    box-shadow: 0 0 2px rgb(123, 126, 129);    
+    position: relative;    
+    color: #474747;
+    text-align: left;
+    padding: 20px 30px;
+    border-left:4px solid #DAE1E5;
+    margin-bottom: 30px;
+    color: #020A09;
+}
+#bids .bid.open{
+	border-left-color:#78E6D0;
+}
+#bids .bid a{
+	color: #020A09 !important;
+	text-transform: capitalize;
+	padding: 0px;
+}
+#bids .bid a:hover{
+	color: #333 !important;
+}
+#bids .bid h4{
+	line-height: 24px;
+}
+#bids p{
+	margin-bottom: 0px;
+}
+#bids .bid >div label{
+	color: #8C9196;
+	min-width: 150px;
+}
+#bids .bid >div span{
+	color: #020A09;
+	font-size: 14px;
+	font-weight: bold;
+}
+#bids .bids_list .bid_desc{
+	width: 100%;
+	border-top: 1px solid #DAE1E5;
+	padding: 20px 30px;	
+}
+#bids .bids_list .bid_desc .row{
+	margin-bottom: 20px;
 }
