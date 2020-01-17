@@ -209,7 +209,7 @@
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="{{ route('data.geographic') }}">{{ trans('home.geographics') }}</a></li> 
                 <li><a href="{{ route('data.environment') }}">{{ trans('home.environment') }}</a></li> 
-                <li><a href="{{ route('data.transport') }}">{{ trans('home.transports') }}</a></li> 
+                <li><a href="{{ route('data.transport') }}">{{ trans('home.transport') }}</a></li> 
                 <li><a href="{{ route('data.people') }}">{{ trans('home.people') }}</a></li> 
                 <li><a href="{{ route('data.agriculture') }}">{{ trans('home.agriculture') }}</a></li> 
                 <li><a href="{{ route('data.energy') }}">{{ trans('home.energy') }}</a></li> 

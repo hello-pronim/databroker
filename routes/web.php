@@ -29,15 +29,17 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/data/offers/overview', 'DataController@offers_overview')->name('data_offers_overview');	
 	Route::get('/data/offers/{id}', 'DataController@offer_detail')->where('id', '[0-9]+')->name('data_offer_detail');
 	
-	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');			
+	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');
 
-	Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
-	Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase');    
+	Route::get('bids', 'ProfileController@bids')->name('profile.bids');
 });
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
 Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name('data_details');
+
+Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
+Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase');
 
 $communities = Community::get();
 $datacontroller = new DataController();

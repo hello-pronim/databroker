@@ -111,6 +111,12 @@ class ProfileController extends Controller
         return view('account.wallet');
     }
 
+    public function bids(){
+        $user = Auth::user();
+        
+        return view('account.bids');
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
