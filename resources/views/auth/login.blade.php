@@ -6,7 +6,7 @@
         <div class="row justify-content-center auth-section">
             <div class="col-xl-6 col-lg-6 col-md-10" id="login_section">
                 <h1 class="h1-smaller color-primary text-center text-primary" id="login_title">Please sign in</h1>
-                <p class="text-center h4-intro mb-50">To send message to the seller</p>
+                <p class="text-center h4-intro mb-50">To your account </p>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
