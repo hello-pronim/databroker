@@ -204,7 +204,7 @@
   			<div class="section_splitor_green"></div>
   			<div class="container footer_section1">
   				<div class="row">
-  					<div class="col-md-3">
+  					<div class="col-md-4 col-lg-3">
   						<h5>{{ trans('home.explore_data_communities') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="{{ route('data.geographic') }}">{{ trans('home.geographics') }}</a></li> 
@@ -217,7 +217,7 @@
                 <li><a href="{{ route('data.supply_chain') }}">{{ trans('home.supply_chain') }}</a></li>   							
   						</ul>
   					</div>
-  					<div class="col-md-3">
+  					<div class="col-md-4 col-lg-3">
   						<h5>{{ trans('home.about_databroker') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="javascript:;">{{ trans('home.partners') }}</a></li> 
@@ -229,7 +229,7 @@
                 <li> <a href="javascript:;">{{ trans('home.contact_us') }}</a></li> 
   						</ul>
   					</div>
-  					<div class="col-md-3">
+  					<div class="col-md-4 col-lg-3">
   						<h5>{{ trans('home.helpsupport') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="javascript:;">{{ trans('home.buying_data') }}</a></li> 
@@ -240,9 +240,9 @@
                 <li> <a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 
   						</ul>
   					</div>
-  					<div class="col-md-3">
+  					<div class="col-md-12 col-lg-3 footer-newsletter">
   						<h5>{{ trans('home.signupbox') }}</h5>
-  						<p class="text-thick-grey fs-18"> {{ trans('home.signupbox') }} </p>
+              <p class="text-thick-grey fs-18"> {{ trans('home.signupbox_desc') }} </p>
               <button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.signup') }}</button>
 
   					</div>
@@ -255,42 +255,42 @@
 			        </div>
 			    </div>
 			    <div class="app-partner-items row">
-		        	<div class="col-md-2">
+		        	<div class="col-md-4 col-lg-2">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/partner_1.png') }}">
 			                </div>        
 		        		</div>
 		        	</div>
-		        	<div class="col-md-2">
+		        	<div class="col-md-4 col-lg-2">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/partner_2.png') }}">
 			                </div>        
 		        		</div>
 		        	</div>
-		        	<div class="col-md-2">
+		        	<div class="col-md-4 col-lg-2">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/partner_3.png') }}">
 			                </div>        
 		        		</div>
 		        	</div>
-		        	<div class="col-md-2">
+		        	<div class="col-md-4 col-lg-2">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/partner_4.png') }}">
 			                </div>        
 		        		</div>
 		        	</div>
-		        	<div class="col-md-2">
+		        	<div class="col-md-4 col-lg-2">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/partner_5.png') }}">
 			                </div>        
 		        		</div>
 		        	</div>
-		        	<div class="col-md-2">
+		        	<div class="col-md-4 col-lg-2">
 		        		<div class="app-partner-item">
 							<div class="img">
 								<img src="{{ asset('images/europense.png') }}">
@@ -351,8 +351,9 @@
 	                      <path id="Path_7868" data-name="Path 7868" d="M182.565,438.581a23.215,23.215,0,0,1-37.188-18.5l-19.726,14.88-.014-.017v28.07h85.91V416.718Z" transform="translate(-125.637 -377.1)" fill="#78e6d0"></path>
 	                    </svg>                    
 	                </div>
-	                <div class="app-footer-social-link-container">
-	                    <div class="app-footer-social-link">
+	                <div class="app-footer-social-link-container">                      
+                      <h4>Follow us on social media</h4>
+	                    <div class="app-footer-social-link">                          
 	                        <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
 	                          <img src="{{ asset('/images/facebook.png') }}">
 	                        </a>

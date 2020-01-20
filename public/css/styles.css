@@ -851,25 +851,7 @@ img.app-partner-item {
 }
 
 @media screen and (max-width: 1200px) {
-    .app-footer-link {
-        position: relative;
-        top: 0;
-        left: 0;
-        text-align: center;
-        padding: 30px 0 10px 0;
-    }
-
-    .app-footer-social-link-container {
-        position: relative;
-        top: 0;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        margin: 0px auto;
-        line-height: 40px;
-        padding-top: 20px;
-    }
-
+    
     .app-footer-social-link-container .app-footer-social-link {
         display: block;
     }
