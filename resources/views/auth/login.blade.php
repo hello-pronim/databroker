@@ -4,7 +4,7 @@
 <div class="container-fluid app-wapper">
     <div class="container">
         <div class="row justify-content-center auth-section">
-            <div class="col-xl-4 col-lg-6 col-md-10" id="login_section">
+            <div class="col-xl-6 col-lg-6 col-md-10" id="login_section">
                 <h1 class="h1-smaller color-primary text-center text-primary" id="login_title">Please sign in</h1>
                 <p class="text-center h4-intro mb-50">To send message to the seller</p>
                 <form method="POST" action="{{ route('login') }}">
@@ -33,10 +33,10 @@
                     </label>
 
                     <div class="form-group row mb-0">
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <button type="submit" class="customize-btn">CONTINUE</button>
                         </div>
-                        <div class="col-md-6 text-right">
+                        <div class="col-6 text-right">
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link text-grey" id="forgot_pass_link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Password?') }}

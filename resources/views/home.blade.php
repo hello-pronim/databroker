@@ -51,7 +51,7 @@
     <div class="container">        
         <h1 class="mb-20 fs-30 text-bold text-left">{{ trans('home.trending') }}</h1>
         <div class="app-partner-items row">
-        	<div class="col-md-2">
+        	<div class="col-md-6 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon">
 						<img src="{{ asset('images/design/transport.svg') }}">
@@ -60,7 +60,7 @@
         		</div>
 
         	</div>
-        	<div class="col-md-2">
+        	<div class="col-md-6 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon">
 						<img src="{{ asset('images/design/transport.svg') }}">
@@ -69,7 +69,7 @@
         		</div>
 
         	</div>
-        	<div class="col-md-2">
+        	<div class="col-md-6 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/people.svg') }}">
                     </div>
@@ -77,7 +77,7 @@
         		</div>
 
         	</div>
-        	<div class="col-md-2">
+        	<div class="col-md-6 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/geography.svg') }}">
                     </div>
@@ -85,7 +85,7 @@
         		</div>
 
         	</div>
-        	<div class="col-md-2">
+        	<div class="col-md-6 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/energy.svg') }}">
                     </div>		
@@ -93,7 +93,7 @@
         		</div>
 
         	</div>
-        	<div class="col-md-2">
+        	<div class="col-md-6 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/geography.svg') }}">
                     </div>

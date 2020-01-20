@@ -127,6 +127,7 @@ h1,h2,h3,h4,h5,h6{
     width: 224px;
     height: 50px;
     margin: 20px 0px;
+    background-color: transparent;
 }
 
 .custom-btn1:hover {
@@ -435,6 +436,7 @@ i.rotated:before{
 }
 .app-footer-section{
 	display: table;
+	max-width: 100%;
 }
 .app-footer-section >div{
 	display: table-cell;
@@ -443,12 +445,13 @@ i.rotated:before{
 }
 .app-footer-section .app-footer-social-link-container{
 	text-align: right;
-	top: 50px;
-    right: 15px;
+	position: unset;
+}
+.app-footer-section .app-footer-social-link-container h4{
+	display: none;
 }
 .app-footer-section .app-footer-link{
-	top: 50px;
-    left: 15px;
+	position: unset;	
 }
 
 /*Login*/
