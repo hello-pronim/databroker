@@ -109,7 +109,7 @@
                         <div class="partner-logo avatar" style="background-image: url('{{asset($member['avatar'])}}');"></div>
                         <div class="name">{{$member['name']}}</div>
                         <div class="teamtitle para-small">{{$member['title']}}</div>
-                        <a class="icon linkedin"></a>
+                        <a class="databroker-icon linkedin"></a>
                     </div>
                     @endforeach
                 </div>

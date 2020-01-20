@@ -122,30 +122,30 @@
 
 
 /* icons */
-.icon {
+.databroker-icon {
 	width: 46px;
 	height: 46px;
 }
-.icon.facebook {
+.databroker-icon.facebook {
 	background: transparent url('../images/Facebook.png') 0% 0% no-repeat padding-box;
 }
-.icon.twitter {
+.databroker-icon.twitter {
 	background: transparent url('../images/Twitter.png') 0% 0% no-repeat padding-box;
 }
-.icon.pinterest {
+.databroker-icon.pinterest {
 	background: transparent url('../images/Pinterest.png') 0% 0% no-repeat padding-box;
 }
-.icon.linkedin {
+.databroker-icon.linkedin {
 	background: transparent url('../images/linkedin-circled-96.png') 0% 0% no-repeat padding-box;
 	background-size: contain;
 }
-.icon.medium {
+.databroker-icon.medium {
 	background: transparent url('../images/Medium.png') 0% 0% no-repeat padding-box;
 }
-.icon.github {
+.databroker-icon.github {
 	background: transparent url('../images/Github.png') 0% 0% no-repeat padding-box;
 }
-.icon.telegram {
+.databroker-icon.telegram {
 	background: transparent url('../images/Telegram.png') 0% 0% no-repeat padding-box;
 }
 .double-quote {

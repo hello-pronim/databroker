@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/data/offers/overview', 'DataController@offers_overview')->name('data_offers_overview');	
 	Route::get('/data/offers/{id}', 'DataController@offer_detail')->where('id', '[0-9]+')->name('data_offer_detail');
 	
-	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');
+	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');			
 
 	Route::get('/bids', 'ProfileController@bids')->name('profile.bids');
 });
@@ -40,8 +40,8 @@ Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name(
 
 Route::get('/about/', 'AboutController@index')->name('about.about');    
 Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
-Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase');
-
+Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase'); 
+	
 $communities = Community::get();
 $datacontroller = new DataController();
 foreach ($communities as $key => $community) {
