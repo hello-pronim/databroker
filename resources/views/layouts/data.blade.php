@@ -110,10 +110,10 @@
                 <li><a href="javascript:;">{{ trans('home.partners') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.datamatch') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.partners') }}</a></li> 
-                <li> <a href="javascript:;">{{ trans('home.usecase') }}</a></li> 
-                <li> <a href="javascript:;">{{ trans('home.updates') }}</a></li> 
-                <li> <a href="javascript:;">{{ trans('home.media_center') }}</a></li> 
-                <li> <a href="javascript:;">{{ trans('home.contact_us') }}</a></li> 
+                <li><a href="javascript:;">{{ trans('home.usecase') }}</a></li> 
+                <li><a href="javascript:;">{{ trans('home.updates') }}</a></li> 
+                <li><a href="javascript:;">{{ trans('home.media_center') }}</a></li> 
+                <li><a href="javascript:;">{{ trans('home.contact_us') }}</a></li> 
               </ul>
             </div>
             <div class="col-md-4 col-lg-3">
@@ -122,9 +122,9 @@
                 <li><a href="javascript:;">{{ trans('home.buying_data') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.selling_data') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.privacy_security') }}</a></li> 
-                <li> <a href="javascript:;">{{ trans('home.our_gurantee') }}</a></li> 
-                <li> <a href="javascript:;">{{ trans('home.file_complaint') }}</a></li> 
-                <li> <a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 
+                <li><a href="javascript:;">{{ trans('home.our_gurantee') }}</a></li> 
+                <li><a href="javascript:;">{{ trans('home.file_complaint') }}</a></li> 
+                <li><a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 
               </ul>
             </div>
             <div class="col-md-12 col-lg-3 footer-newsletter">

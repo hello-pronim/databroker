@@ -125,7 +125,7 @@
                     <div class="form-check">
                         <label class="form-check-label">                
                             <input type="checkbox" class="form-check-input" name="term_conditions" value="true">
-                            <b class="">Yes, I accept the <font style="color: #78E6D0;">terms and conditions</font> and <font style="color: #78E6D0;">the privacy</font> of Databroker</b>
+                            <b class="">Yes, I accept the <font style="color: #78E6D0;">terms and conditions</font> and <font style="color: #78E6D0;">the privacy policy</font> of Databroker</b>
                             <span class="form-check-sign">
                                 <span class="custom-check check @error('term_conditions') is-invalid @enderror"></span>
                             </span>                                                        
@@ -135,13 +135,13 @@
                     
                     <div class="form-group row mb-0">                        
                         <div class="col-md-6">                                
-                            <button type="submit" class="customize-btn">CREAT ACCOUNT</button>
+                            <button type="submit" class="customize-btn">CREATE ACCOUNT</button>
                         </div>
 
                         <div class="col-md-6 text-right">
                             @if (Route::has('login'))
                                 <a class="btn btn-link text-grey" id="login_link" href="{{ route('login') }}">
-                                    {{ __('Already have a account?') }}
+                                    {{ __('Already have an account?') }}
                                 </a>
                             @endif
                         </div>

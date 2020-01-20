@@ -32,6 +32,7 @@
 .bd-white{
 	border:1px solid #fff !important;
 }
+/*font-size*/
 .fs-16{
 	font-size: 16px !important;
 }
@@ -80,6 +81,9 @@
 }
 .ml-15{
 	margin-left: 15px;
+}
+.pt-40{
+	padding-top: 40px;
 }
 .pb-10{
 	padding-bottom: 10px;
@@ -480,7 +484,7 @@ i.rotated:before{
 	color: #eb4444;
 }
 #forgot_pass_link, #login_link{
-	text-transform: capitalize;
+	text-transform: none;
 	margin: 34px 0px;
 	font-weight: bold;
 }
