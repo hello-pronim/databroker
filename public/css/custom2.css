@@ -122,10 +122,6 @@
 
 
 /* icons */
-.icon {
-	width: 46px;
-	height: 46px;
-}
 .icon.facebook {
 	background: transparent url('../images/Facebook.png') 0% 0% no-repeat padding-box;
 }
