@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function(){
 	
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');
 
-	Route::get('bids', 'ProfileController@bids')->name('profile.bids');
+	Route::get('/bids', 'ProfileController@bids')->name('profile.bids');
 });
 
 Route::get('/', 'HomeController@index')->name('home');
