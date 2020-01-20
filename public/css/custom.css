@@ -388,6 +388,9 @@ i.rotated:before{
 	border: 1px solid #ddd;
 	margin-bottom: 10px;
 }
+.app-partner-items div.app-partner-item .info-title{
+	max-height: 28px;
+}
 .app-partner-item .icon img{
 	width: 30%;
     max-height: 60px;
