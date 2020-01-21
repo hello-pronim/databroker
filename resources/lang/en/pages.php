@@ -76,7 +76,7 @@ return [
     'Data_offers_overview' => 'Data offers overview',
     'data_offer_overview_desc1' => 'For more info about adding data offers and data products, and the API you need to install to make your data ready for selling and transactions to your buyers, go to the ',
     'help_section' => 'help-section',
-    'PUBLISH_NEW_DATA_OFFER' => 'PUBLISH NEW DATA OFFER',
+    'publish_a_data_offer' => 'PUBLISH A DATA OFFER',
     'data_products' => 'Data products',
     'contact_data_provider' => 'Contact this data provider for any questions, or to prepare a specific dataset based on your needs.',
 
@@ -103,5 +103,21 @@ return [
     'discover_improve_business' => 'Discover how geographics data can improve your business',
     'what_business_challenge' => 'What business challenge can we help you solve?',
     'tell_us_data_partner' => 'Tell us and we’ll match you up with the perfect data partner!',
+
+    /*publish data offer*/
+    'publish_data_offer_title' => 'Ready to generate a new revenue stream?',
+    'publish_data_offer_desc' => 'You’re in the right place! Businesses around the world – from small and medium-sized enterprises to multinationals – are understanding the need to put data at the heart of their strategic decision-making. Could your data be just what they need?<br>
+        Our mission is to connect those who have data with those who need it and appreciate its value. And the Databroker marketplace does just that.<br>
+        Publishing a data offer on our marketplace is the perfect way to attract potential buyers, and then discover how you can meet their specific needs.<br><br>
+        What’s more, it’s easy and free!',
+    'advantage_databroker' => 'Advantages of selling your data via Databroker',
+    'advantage_databroker_reason1' => 'Easy access to a global audience of data-hungry companies',
+    'advantage_databroker_reason1_desc' => 'Companies worldwide are waking up to the value of data to help them streamline their business and outrun the competition. Our user-friendly platform gives your data the visibility it needs, on a global scale.',
+    'advantage_databroker_reason2' => 'One platform to manage all aspects of your data transactions',
+    'advantage_databroker_reason2_desc' => 'From the moment you publish your data offer in our marketplace, to the moment you receive your earnings in your account, all aspects of the transaction are automated and handled within Databroker. 
+        No separate contracts or agreements to keep track of, and after the 30-day warranty period, you can redeem your earnings at the touch of a button. ',
+    'advantage_databroker_reason3' => 'Fully secure peer-to-peer data transfer',
+    'advantage_databroker_reason3_desc' => 'Our marketplace is all about bringing together buyers and sellers, and thanks to our peer-to-peer marketplace, the data you sell is transferred directly from your system to the buyer, never passing through the Databroker platform. 
+        This means you keep full control of your data at all times, and that only buyers have access to the specific data product(s) they have bought.',
 
 ];

@@ -9,7 +9,7 @@
     <div class="container">	
 		<div class="row">
 			<div class="col-lg-6">
-				<div class="blog-header">
+				<div class="blog-header mt-60">
 		            <h1>{{ trans('pages.Data_offers_overview') }}</h1>			            
 		            <p class="area">{{ trans('pages.data_offer_overview_desc1') }}<a href="" class="help-section">{{ trans('pages.help_section') }}</a>.</p>
 		        </div>		        

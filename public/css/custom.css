@@ -1,3 +1,6 @@
+body{
+	counter-reset: section; 
+}
 /* Colors */
 .btn-transparent{
 	background-color: transparent;	
@@ -67,6 +70,9 @@
 .mt-0{
 	margin-top: 0px;
 }
+.mt-10{
+	margin-top: 10px;	
+}
 .mt-20{
 	margin-top: 20px;	
 }
@@ -75,6 +81,9 @@
 }
 .mt-40{
 	margin-top: 40px;	
+}
+.mt-60{
+	margin-top: 60px;	
 }
 .mt-80{
 	margin-top: 80px;	
@@ -85,11 +94,17 @@
 .ml-15{
 	margin-left: 15px;
 }
+.pt-20{
+	padding-top: 20px;
+}
 .pt-40{
 	padding-top: 40px;
 }
 .pb-10{
 	padding-bottom: 10px;
+}
+.pl-15{
+	padding-left: 15px;
 }
 .min-h100{
 	min-height: 100px !important;
@@ -100,11 +115,37 @@
 .hide{
 	display: none;
 }
+.flex-end{
+	align-self: flex-end;
+}
 /*Font*/
 h1,h2,h3,h4,h5,h6{
 	font-family: DM Sans !important;
 }
-
+h1{
+	font-size: 64px;
+	line-height: 72px;
+}
+h2{
+	font-size: 42px;
+	line-height: 54px;
+}
+h3{
+	font-size: 30px;
+	line-height: 36px;
+}
+h4{
+	font-size: 20px;
+	line-height: 24px;
+}
+h5{
+	font-size: 16px;
+	line-height: 18px;
+}
+h6{
+	font-size: 12px;
+	line-height: 14px;
+}
 /*General Style*/
 .sendmessage-btn{
 	border: 2px solid #06038D;
@@ -250,6 +291,18 @@ i.rotated:before{
     border-width: 0 2px 2px 0;
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
+}
+.number-counter{
+	font-size: 20px;
+	font-weight: bold;
+}
+.number-counter:before{
+	counter-increment: section;
+  	content: counter(section) ". "; 
+  	font-size: 54px;
+  	font-weight: bold;
+  	color: #FF6B6B;
+  	vertical-align: middle;
 }
 /*Header*/
 .fixed_bg {
@@ -532,7 +585,7 @@ i.rotated:before{
 .blog-header h1, .cat-header h1{
 	font-size: 40px;
 	font-weight: bold;
-	color: #06038D;
+	color: #06038D;	
 }
 .blog-header p.area{
 	font-size: 18px;
@@ -995,4 +1048,43 @@ i.rotated:before{
 }
 #bids .bids_list .bid_desc .row{
 	margin-bottom: 20px;
+}
+/*Data offer publish */
+.testimonials{
+	display: grid;
+	grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+	gap:0px 30px;
+}
+.testimonials .testimonial{	
+	border: 1px solid #DAE1E5;	
+	background-color: #fff;
+	padding: 50px 30px;
+}
+.testimonials .testimonial:before{
+	content: "";
+	background-image: url('../images/patterns/double_quote.png');
+	width: 50px;
+	height: 50px;
+	display: block;
+	background-repeat: no-repeat;
+	margin: 0 auto;
+	background-size: contain;
+}
+.testimonials .testimonial p{
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+.testimonials .testimonial .author{
+	margin-top: 30px;
+	color: #8C9196;
+}
+.publish_box {
+	border: 1px solid #DAE1E5;	
+	padding: 30px 50px;
+	background-image: url('../images/patterns/background_00.png');
+	background-repeat: no-repeat;
+	background-position: center;	
+	background-size: 60%;
+	text-align: center;
 }

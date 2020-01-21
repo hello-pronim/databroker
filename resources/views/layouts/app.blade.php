@@ -43,7 +43,7 @@
         	<div class="navbar navbar-expand-lg">
         		<div class="container">        		
 	    			<ul class="navbar-nav left">
-		        		<li class="nav-item"><a class="nav-link" href="{{ route('data_offers') }}">{{ trans('home.publish_data_offer') }}</a></li>
+		        		<li class="nav-item"><a class="nav-link" href="{{ route('data_offer_publish') }}">{{ trans('home.publish_data_offer') }}</a></li>
 		        		<li class="nav-item dropdown">
 		        			<a class="nav-link dropdown-toggle" id="more_dropdown" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">{{ trans('home.more') }}</a>
 		        			<div class="dropdown-menu" aria-labelledby="more_dropdown">

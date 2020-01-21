@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/data/offers', 'DataController@offers')->name('data_offers');		//should rename as publish
 	Route::get('/data/offers/overview', 'DataController@offers_overview')->name('data_offers_overview');	
 	Route::get('/data/offers/{id}', 'DataController@offer_detail')->where('id', '[0-9]+')->name('data_offer_detail');
+	Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
 	
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');			
 
@@ -38,7 +39,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
 Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name('data_details');
 
-Route::get('/about/', 'AboutController@index')->name('about.about');    
+Route::get('/about', 'AboutController@index')->name('about.about');    
+Route::get('/contact', 'AboutController@contact')->name('contact');    
 Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
 Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase'); 
 	

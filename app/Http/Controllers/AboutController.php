@@ -268,4 +268,8 @@ class AboutController extends Controller
         $data = array( 'usecases', 'usecases2' );
         return view('about.usecase', compact($data));
     }
+
+    public function contact(){
+        
+    }
 }

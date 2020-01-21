@@ -8,7 +8,7 @@
 	<div class="bg-pattern1-left"></div>
     <div class="container">	
     	<div class="app-section app-reveal-section align-items-center">
-    		<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>{{ trans('pages.Back_to_data_offer_overview') }}</span></a>
+    		<a href="{{ route('data_offers_overview') }}" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>{{ trans('pages.Back_to_data_offer_overview') }}</span></a>
 	        <div class="blog-header">
 	            <h1>{{ trans('pages.Data_offer') }}</h1>
 	            <div class="offer">

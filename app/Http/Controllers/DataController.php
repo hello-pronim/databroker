@@ -88,6 +88,13 @@ class DataController extends Controller
         return view('data.offers_overview', compact($data));
     }
 
+    public function offer_publish(Request $request){
+        $communities = Community::get();
+
+        $data = array('communities');
+        return view('data.offer_publish', compact($data));   
+    }
+
     public function offer_detail(Request $request)
     {   
         $offer = [
