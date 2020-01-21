@@ -1,6 +1,9 @@
 /* Colors */
 .btn-transparent{
 	background-color: transparent;	
+}	
+.btn-transparent:hover, .btn-transparent:focus, .btn-transparent:active{
+	background-color: transparent;	
 }
 .text-primary{
 	color: #06038D !important;
@@ -213,6 +216,40 @@ i.rotated:before{
     position: absolute;
     top: 12px;
     left: -2px;
+}
+.more_dropdown{
+	list-style: none;
+	position: relative;
+	display: inline-block;
+}
+.more_dropdown a .open{
+	display: none;
+}
+.more_dropdown div{
+	display: none;
+	position: absolute;
+	box-shadow: 0 0 2px rgb(123, 126, 129);
+    background-color: #fff;
+    position: absolute;
+    z-index: 100;
+    width: 350px;
+    top: 35px;
+    right: -193px;
+    text-indent: 0px;
+    padding: 15px;
+}
+.more_dropdown div:after{
+	content: "";
+    position: absolute;
+    top: -7px;
+    right: 50%;
+    display: inline-block!important;
+    background: #fff;
+    padding: 5px;
+    border: solid #dae1e5;
+    border-width: 0 2px 2px 0;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
 }
 /*Header*/
 .fixed_bg {

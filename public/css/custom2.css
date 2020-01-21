@@ -586,6 +586,30 @@ th.col-since {
 	border-top: 1px solid #DAE1E5;
 	margin-top: 40px;
 	padding-top: 30px;
+	font-size: 14px;
+}
+.purchase-item .date-label, .purchase-item .field-label{	
+	color:#8C9196;
+}
+.purchase-item .field-value{
+	font-weight: bold;
+}
+.purchase-item h4{
+	margin:0px;
+	font-size: 21px;
+	color: #020A09;	
+}
+.purchase-item .seller .price{
+	font-size: 21px;
+	color: #FF6B6B;
+	font-weight: bold;
+}
+.purchase-item a.more_info{
+	color: #020A09;
+}
+.purchase-item a.more_info i{
+	right: -24px;
+    top: -3px;
 }
 .color-basic {
 	color: #020A09;	/* $color-basic */

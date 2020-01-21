@@ -197,6 +197,11 @@ $(document).ready(function(){
         $(this).parent().addClass("open");
     });
 
+    $(".more_dropdown a").click(function(){
+        $(this).find("i").toggle();
+        $(this).parent().find("div").toggle();
+    });
+
 });
 
 /*Dropdown Menu*/
