@@ -2,6 +2,25 @@ $(document).ready(function(){
 
     $(".dropdown-menu").each(function(){ $(this).css({right: -($(this).width()/2+20)+"px"}); });
 
+    $("#register_nl_section form").submit(function(e){
+        e.preventDefault();
+        
+        var community = [];
+        $(this).find("input[name='community[]']").each(function(i){
+            
+            if($(this).is(":checked")){
+                community.push($(this).val());
+            }
+            
+        });    
+        $(this).find(".error_notice").hide();
+        if(community.length == 0 ){
+            $(this).find(".error_notice").show();
+        }
+
+        return false;
+    })
+
     $("#profile-edit-section form").submit(function(e){
     	e.preventDefault();
     	$.ajax({

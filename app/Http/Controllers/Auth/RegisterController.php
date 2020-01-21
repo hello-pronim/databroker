@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Community;
 
 class RegisterController extends Controller
 {
@@ -78,4 +79,13 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    
+    protected function register_nl()
+    {
+        $communities = Community::get();                
+        
+        $data = array( 'communities' );                
+        return view('auth.register_nl', compact($data));
+    }    
 }

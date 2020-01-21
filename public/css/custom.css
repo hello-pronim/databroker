@@ -304,6 +304,9 @@ i.rotated:before{
   	color: #FF6B6B;
   	vertical-align: middle;
 }
+.error_notice:before{
+	margin-right: 5px;
+}
 /*Header*/
 .fixed_bg {
 	background-color: #06038D;
@@ -1087,4 +1090,11 @@ i.rotated:before{
 	background-position: center;	
 	background-size: 60%;
 	text-align: center;
+}
+#no_thank_link{
+	text-transform: none;
+	margin-top: 38px;
+}
+#no_thank_link i{
+	margin-top: -18px;	
 }
