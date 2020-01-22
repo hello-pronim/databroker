@@ -19,7 +19,7 @@ return [
     'contact' => 'Contact',
     'match_me' => 'Match Me Up',
     'datamatch' => 'DataMatch',
-    'usecase' => 'Use Case',
+    'usecase' => 'Use Cases',
     'helpsupport' => 'Help & support',
     'news' => 'News',    
     'contact_us' => 'Contact us',
