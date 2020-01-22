@@ -62,11 +62,6 @@
 		border-top: 1px solid #DAE1E5;
 		text-align: center;
 	}
-	.container{
-		width: 100%;
-		max-width: unset;
-		margin: 0px 30px;
-	}
 	.navbar.navbar-expand-lg .navbar-nav{
 		flex-direction: row;
 		align-items: center;
