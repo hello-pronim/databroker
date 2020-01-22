@@ -10,8 +10,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 use App\Models\Business;
+use App\Models\Provider;
+use App\Models\Region;
 
 class ProfileController extends Controller
 {
@@ -48,6 +51,15 @@ class ProfileController extends Controller
         $data = array('user', 'users', 'business');
         return view('account.profile', compact($data));
 
+    }
+
+    public function company(){
+        $user = $this->getAuthUser();
+        $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();        
+        $countries = Region::where('regionType', 'country')->get(); 
+
+        $data = array('company', 'countries');
+        return view('account.company', compact($data));        
     }
    
     public function purchases(Request $request)
@@ -105,6 +117,40 @@ class ProfileController extends Controller
         $user->save();
         
         return response()->json(['success' => true, 'result' => "Updated successfully."]);
+    }
+
+    public function update_company(Request $request){
+        $fields = [
+            'companyName' => ['required', 'string', 'max:255'],
+            'regionIdx' => ['required', 'integer'],            
+            'companyURL' => ['required', 'string', 'max:255']            
+        ];    
+
+        $validator = Validator::make($request->all(), $fields);
+
+        if($validator->fails()){
+            return response()->json(array( "success" => false, 'result' => $validator->errors() ));                    
+        }
+
+        $company = [];
+        $company['companyName'] = $request->companyName;
+        $company['regionIdx'] = $request->regionIdx;
+        $company['companyURL'] = $request->companyURL;
+
+        if($request->file('companyLogo_1')){            
+            $companyLogo_path = public_path('uploads/company');
+            $fileName = "company_".$request->providerIdx.'.'.$request->file('companyLogo_1')->extension();
+            
+            if(file_exists($companyLogo_path.'/'.$request->old_companyLogo)){                                
+                File::delete($companyLogo_path.'/'.$request->old_companyLogo);
+            }
+            $request->file('companyLogo_1')->move($companyLogo_path, $fileName);  
+            $company['companyLogo'] = $fileName;  
+        }        
+        
+        Provider::where('providerIdx', $request->providerIdx)->update($company);
+
+        return response()->json(array( "success" => true, 'redirect' => route('account.company') ));
     }
 
     public function wallet(Request $request){

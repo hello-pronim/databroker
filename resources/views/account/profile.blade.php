@@ -2,13 +2,9 @@
 
 
 @section('content')
-<div class="container-fluid app-wapper profile" ng-app="myApp" ng-controller="myCtrl">
-	<div class="app-section app-reveal-section align-items-center">
-	    <div class="top-bg-image"></div>
-	    <svg class="Path_10666" viewBox="143.241 204.635 690.685 330.511">
-			<path fill="rgba(218,225,229,1)" id="Path_10666" d="M 794.2346801757813 263.7075805664063 L 653.8280029296875 369.6185302734375 C 653.7975463867188 335.0404663085938 642.9666137695313 300.1841430664063 620.5549926757813 270.4426879882813 C 565.63134765625 197.556640625 462.0213623046875 182.995361328125 389.1353759765625 237.9188385009766 C 389.1270446777344 237.9249725341797 389.119384765625 237.9326019287109 389.1094055175781 237.9395294189453 L 389.1086120605469 237.9387359619141 L 143.240966796875 423.4013671875 L 182.9316101074219 476.0725708007813 L 323.3382568359375 370.1632080078125 C 323.3689575195313 404.7398071289063 334.2004089355469 439.5968627929688 356.611572265625 469.3375854492188 C 411.5350036621094 542.2235717773438 515.1456298828125 556.7848510742188 588.0309448242188 501.8613891601563 L 833.925537109375 316.3788452148438 L 794.2346801757813 263.7075805664063 Z M 550.591796875 452.1780395507813 C 505.1453247070313 486.4237060546875 440.5414733886719 477.3448486328125 406.2949523925781 431.8983154296875 C 372.0491027832031 386.4526977539063 381.1289367675781 321.84814453125 426.5745544433594 287.6022338867188 C 472.02099609375 253.3556976318359 536.62548828125 262.4356079101563 570.8715209960938 307.8818969726563 C 605.1171875 353.3275756835938 596.0374145507813 417.9321899414063 550.591796875 452.1780395507813">
-			</path>
-		</svg>
+<div class="container-fluid app-wapper profile">
+    <div class="bg-pattern1-left"></div>
+	<div class="app-section app-reveal-section align-items-center">	    
 		<div class="container">
 			<div class="page-title text-primary">{{ trans('pages.account_information') }}</div>
 			<div class="label companyname">
@@ -19,16 +15,10 @@
 			</div>
 
             <div class="app-section profileinfo">
-                <div id="profile-display-section">
-                    <div id="edit-button" class="action-button-edit top-right flex-center">
-                        <svg viewBox="0 0 14 14" class="ic-pencil">
-                            <path fill="rgba(186,192,197,1)" id="__Color_tc" d="M 2.916659355163574 13.99999904632568 L 2.915555000305176 13.9988956451416 L 2.915780544281006 13.99867057800293 L 0 13.99999904632568 L 0 11.08349990844727 L 8.601590156555176 2.482380390167236 L 11.51824951171875 5.398880004882813 L 2.916659355163574 13.99999904632568 Z M 12.34978103637695 4.566686630249023 L 12.34922885894775 4.566142082214355 L 9.433821678161621 1.650194644927979 L 10.85680484771729 0.2272899150848389 C 11.00338077545166 0.08072225749492645 11.19804191589355 0 11.40494441986084 0 C 11.61184024810791 0 11.80669593811035 0.08072225749492645 11.95361328125 0.2272899150848389 L 13.77346420288086 2.047039985656738 C 14.07551288604736 2.349064111709595 14.07551288604736 2.841065645217896 13.77346420288086 3.143789529800415 L 12.35033321380615 4.566142082214355 L 12.34978103637695 4.566686630249023 Z">
-                            </path>
-                        </svg>
-                        <div class="label-edit">
-                            <a class="" href="#" onClick="document.getElementById('profile-edit-section').style.display = 'block';document.getElementById('profile-display-section').style.display = 'none';"><span>{{ trans('pages.edit') }}</span></a>
-                        </div>
-                    </div>
+                <div id="profile-display-section" onClick="document.getElementById('profile-edit-section').style.display = 'block';document.getElementById('profile-display-section').style.display = 'none';">                    
+                    <div id="edit-button" class="action-button-edit top-right flex-center">                        
+                        <i class="material-icons">edit</i>{{ trans('pages.edit') }}
+                    </div>                        
                         <div class="sectiontitle">{{ trans('pages.profile_information') }}</div>
                         <div class="row">
                             <div class="col-2 info-label">{{ trans('pages.name') }}:</div>
@@ -53,11 +43,9 @@
                         </div>
                     </div><!--profile-display-section-->
 
-                <div id="profile-edit-section" style="display: none;">
+                <div id="profile-edit-section" style="display: none;" onClick="document.getElementById('profile-edit-section').style.display = 'none';document.getElementById('profile-display-section').style.display = 'block';">
                     <div id="cancel-button" class="top-right flex-center">
-                        <div class="label-cancel">
-                            <a class="" href="#" onClick="document.getElementById('profile-edit-section').style.display = 'none';document.getElementById('profile-display-section').style.display = 'block';"><span>Cancel</span></a>
-                        </div>
+                       Cancel
                     </div>
                     <br />
                     <form method="POST" action="{{ route('account.profile.update') }}">

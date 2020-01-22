@@ -235,6 +235,8 @@ class DataController extends Controller
             $i++;
         }        
 
+        return response()->json(array( "success" => true ));
+
     }   
 
     public function category($category=""){

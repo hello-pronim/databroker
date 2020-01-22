@@ -197,7 +197,7 @@ h6{
     display: block;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 10px;
 }
 .bg-pattern-side:after{
 	content: "";
@@ -210,7 +210,7 @@ h6{
     display: block;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 10px;
 }
 .bg-pattern1-left{
 	position: relative;
@@ -226,7 +226,7 @@ h6{
     display: block;
     position: absolute;
     left:0;
-    top: 0;	
+    top: 10px;	
 }
 .back-icon{
 	color: #BAC0C5;
@@ -1097,4 +1097,47 @@ i.rotated:before{
 }
 #no_thank_link i{
 	margin-top: -18px;	
+}
+/*profile section*/
+#edit-button, #cancel-button{
+	color: #BAC0C5;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 0;
+	z-index: 100;
+}
+#edit-button i{
+	font-size: 18px;
+	margin-right: 5px;
+}
+.profileinfo .companylogo img{
+	border:1px solid #DAE1E5;
+	max-width: 215px;
+	max-height: 120px;    
+    margin-top: 30px;    
+}
+#company-profile-edit-section .fileupload{
+	margin-top: 30px;
+	width: 50%;
+}
+.custom-select2.no-border {
+	width: 100%;	
+}
+.custom-select2.no-border .select2 .selection .select2-selection {
+	border-radius: 0;
+    padding: 0;
+    max-height: 38px;
+    box-shadow: none;
+    background: transparent;
+    border-bottom: 1px solid #d2d2d2;
+    text-indent: 0px;
+    padding-top: 8px;   	
+}
+.custom-select2.no-border .select2 .selection .select2-selection .select2-selection__arrow{
+	top: 6px;
+}
+.custom-select2.no-border .select2.select2-container--open .selection .select2-selection:hover, .custom-select2.no-border .select2.select2-container--open .selection .select2-selection{
+	box-shadow: none;
+	background:transparent;
 }

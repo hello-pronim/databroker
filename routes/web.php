@@ -21,7 +21,9 @@ Route::get('/styleguide', function () {
 
 Route::group(['middleware' => ['auth']], function(){
 	Route::get('/profile', 'ProfileController@index')->name('account.profile');
-	Route::post('/profile/edit', 'ProfileController@update')->name('account.profile.update');
+	Route::get('/profile/company', 'ProfileController@company')->name('account.company');
+	Route::post('/profile/company', 'ProfileController@update_company')->name('account.company.update');
+	Route::post('/profile/edit', 'ProfileController@update')->name('account.profile.update');	
 	Route::get('/profile/purchases', 'ProfileController@purchases')->name('account.purchases');	
 	Route::get('/wallet', 'ProfileController@wallet')->name('account.wallet');	
 		
