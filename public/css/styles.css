@@ -1417,9 +1417,11 @@ a:hover {
 .cookie-accept .accept-btn {
     height: 40px;
     border-radius: 25px;
-    width: 150px;
+    /*width: 150px;*/
+    width: auto;
     margin: 8px 0px;
     background-color: #ffffff;
+    color: #06038D;
     text-transform: uppercase;
     font-size: small;
     font-weight: bold;
@@ -1428,7 +1430,7 @@ a:hover {
 }
 
 .cookie-accept .accept-btn:hover {
-    color: #06038D;
+    color: #4542bd;
 }
 
 body {
