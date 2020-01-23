@@ -72,7 +72,7 @@
 		        				<div class="dropdown-divider"></div>
 		        				<h5> {{ trans('home.me_seller') }} </h5>
 		        				<a class="dropdown-item" href="{{ route('account.company') }}"> {{ trans('home.company_profile') }} </a>
-		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.data_offers') }} </a>
+		        				<a class="dropdown-item" href="{{ route('data_offers_overview' )}}"> {{ trans('home.data_offers') }} </a>
 		        				<div class="dropdown-divider"></div>
 		        				<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"> {{ trans('home.signout') }} </a>
