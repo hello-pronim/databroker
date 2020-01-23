@@ -63,7 +63,7 @@ class DataController extends Controller
             ),
             array(
                 'id' => 2,
-                'title' => 'Noize Maps', 
+                'title' => 'Noise Maps', 
                 'region' => 'New York',
                 'products' => '6',
                 'status' => '',

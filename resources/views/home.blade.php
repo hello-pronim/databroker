@@ -11,10 +11,9 @@
 	            <p>{{ trans('home.one_stop_solution') }}</p>
 	        </div>
 	    </div>
-    </div>    
-    <img class="app-reveal-section-mark2" src="{{ asset('images/reveal_mark1.jpg') }}">
+    </div>        
     <div class="app-section app-reveal-section align-items-center" style="padding-top: 0;">    
-        <img class="app-reveal-section-mark" src="{{ asset('images/reveal_mark0.jpg') }}">
+        <img class="app-reveal-section-mark" src="{{ asset('images/patterns/desktop-graphic.png') }}">
     </div>
 </div>
 <div class="container-fluid app-wapper">    
@@ -109,13 +108,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace1.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -123,13 +122,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog2.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace2.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -137,13 +136,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog3.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace3.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -179,13 +178,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog1.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace1.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -193,13 +192,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog2.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace2.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -207,13 +206,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog3.png') }}" />
+							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace3.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
 				</div>	
 			</div>	

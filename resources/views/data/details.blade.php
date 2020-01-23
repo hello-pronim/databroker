@@ -18,26 +18,8 @@
 	        	<div class="row">
 	        		<div class="col-lg-8">
 	        			<img class="blog-img" src="{{ asset('uploads/offer/'.$offer['offerImage']) }}" />
-	        		</div>
-	        		<div class="col-lg-4">
-	        			<h2 class="explain">Data provided by {{ $offer['provider']->companyName }}</h2>
-	        			<h5 class="subcategory">Geo Information Service</h5>
-	        			<label class="country">{{ $offer['provider']['region']->regionName }}</label>
-	        			<label class="author"><a href="{{ $offer['provider']->companyURL }}">{{ $offer['provider']->companyName }}</a></label>
-	        			<div class="author_avatar">	        				
-	        				@if($offer['provider']->companyLogo)
-	        				<img src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}">
-	        				@endif
-	        			</div>	        			
-	        			<p class="short-desc">
-	        				{{ trans('pages.contact_data_provider') }}
-	        			</p>
-	        			<button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.send_message') }}</button>
-	        		</div>
-	        	</div>
-	        	<div class="row">
-	        		<div class="col-lg-8">	        	
-			            <div class="nav-tabs-wrapper">
+	        		      	
+			            <div class="nav-tabs-wrapper mt-30">
 			                <ul class="nav nav-tabs" data-tabs="tabs">
 			                    <li class="nav-item">
 			                        <a class="nav-link active" href="#description" data-toggle="tab">{{ trans('pages.description') }}</a>
@@ -141,6 +123,22 @@
 				                </div>
 				            </div>
 				        </div>
+	        		</div>
+
+	        		<div class="col-lg-4">
+	        			<h2 class="explain">Data provided by {{ $offer['provider']->companyName }}</h2>
+	        			<h5 class="subcategory">Geo Information Service</h5>
+	        			<label class="country">{{ $offer['provider']['region']->regionName }}</label>
+	        			<label class="author"><a href="{{ $offer['provider']->companyURL }}">{{ $offer['provider']->companyName }}</a></label>
+	        			<div class="author_avatar">	        				
+	        				@if($offer['provider']->companyLogo)
+	        				<img src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}">
+	        				@endif
+	        			</div>	        			
+	        			<p class="short-desc">
+	        				{{ trans('pages.contact_data_provider') }}
+	        			</p>
+	        			<button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.send_message') }}</button>
 	        		</div>
 	        	</div>
 	        </div>

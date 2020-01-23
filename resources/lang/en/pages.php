@@ -56,6 +56,7 @@ return [
     'what_company_name' => 'What is the name of your company?',
     'what_company_url' => 'What is the URL of your company?',
     'transactions' => 'Transactions',
+    'PUBLISH_NEW_DATA_OFFER' => 'PUBLISH NEW DATA OFFER',
 
     'profile_description' => 'You can deactivate your Databroker account anytime you want.',
 
