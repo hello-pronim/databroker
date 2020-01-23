@@ -29,8 +29,8 @@
 		</div>	
 		<div class="row mt-30">
 			<div class="col-lg-6">				
-				<div class="number-counter pt-20">
-					{{ trans('pages.advantage_databroker_reason1') }}
+				<div class="number-counter mt-20">
+					<span>{{ trans('pages.advantage_databroker_reason1') }}</span>
 				</div>
 			</div>	
 			<div class="col-lg-6 pl-15">
@@ -39,8 +39,8 @@
 		</div>
 		<div class="row mt-30">
 			<div class="col-lg-6">				
-				<div class="number-counter pt-20">
-					{{ trans('pages.advantage_databroker_reason2') }}
+				<div class="number-counter mt-20">
+					<span>{{ trans('pages.advantage_databroker_reason2') }}</span>					
 				</div>
 			</div>	
 			<div class="col-lg-6 pl-15">
@@ -49,8 +49,8 @@
 		</div>
 		<div class="row mt-30">
 			<div class="col-lg-6">				
-				<div class="number-counter pt-20">
-					{{ trans('pages.advantage_databroker_reason3') }}
+				<div class="number-counter mt-20">
+					<span>{{ trans('pages.advantage_databroker_reason3') }}</span>
 				</div>
 			</div>	
 			<div class="col-lg-6 pl-15">
