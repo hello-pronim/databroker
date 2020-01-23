@@ -46,7 +46,9 @@ Route::get('/contact', 'AboutController@contact')->name('contact');
 Route::get('/about/matchmaking', 'AboutController@matchmaking')->name('about.matchmaking'); 
 Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
 Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase'); 
-	
+
+Route::get('/help', 'HelpController@index')->name('help.overview');    	
+
 $communities = Community::get();
 $datacontroller = new DataController();
 foreach ($communities as $key => $community) {

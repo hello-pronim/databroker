@@ -51,7 +51,7 @@
                     <a class="dropdown-item" href="{{ route('about.partners') }}"> {{ trans('home.partners') }} </a>
                     <a class="dropdown-item" href="{{ route('about.matchmaking') }}"> {{ trans('home.datamatch') }} </a>
                     <a class="dropdown-item" href="{{ route('about.usecase') }}"> {{ trans('home.usecase') }} </a>
-                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.helpsupport') }} </a>
+                    <a class="dropdown-item" href="{{ route('help.overview') }}"> {{ trans('home.helpsupport') }} </a>
                     <a class="dropdown-item" href="javascript:;"> {{ trans('home.news') }} </a>
                     <a class="dropdown-item" href="javascript:;"> {{ trans('home.media_center') }} </a>
 		        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.contact_us') }} </a>
