@@ -34,8 +34,7 @@
 	        			</p>
 	        			<button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.send_message') }}</button>
 	        		</div>
-	        	</div>
-	        	<div class="row">
+	        			        
 	        		<div class="col-lg-8">	        	
 			            <div class="nav-tabs-wrapper">
 			                <ul class="nav nav-tabs" data-tabs="tabs">

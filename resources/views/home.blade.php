@@ -11,10 +11,9 @@
 	            <p>{{ trans('home.one_stop_solution') }}</p>
 	        </div>
 	    </div>
-    </div>    
-    <img class="app-reveal-section-mark2" src="{{ asset('images/reveal_mark1.jpg') }}">
+    </div>        
     <div class="app-section app-reveal-section align-items-center" style="padding-top: 0;">    
-        <img class="app-reveal-section-mark" src="{{ asset('images/reveal_mark0.jpg') }}">
+        <img class="app-reveal-section-mark" src="{{ asset('images/patterns/desktop-graphic.png') }}">
     </div>
 </div>
 <div class="container-fluid app-wapper">    
