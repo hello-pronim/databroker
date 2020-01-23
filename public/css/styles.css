@@ -870,7 +870,7 @@ img.app-partner-item {
 @media screen and (max-width: 1000px) and (min-width: 901px) {
     .app-reveal-section-notify {
         margin: 0;
-        width: 450px;
+        width: 350px;
     }
 
     .app-reveal-section-notify h1 {
@@ -1347,6 +1347,14 @@ a:hover {
     text-decoration: none;
 }
 
+.navbar-toggler{
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+}
+    .navbar-translate .app-brand{
+        display: none;
+    }
 .cookie-accept {
     position: fixed;
     opacity: 0;
