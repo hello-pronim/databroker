@@ -127,8 +127,7 @@
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
 						<div class="dropdown-container">
-	                        <div class="dropdown2" tabindex="1">
-	                            <input type="hidden" id="communityIdx" name="communityIdx" value="">
+	                        <div class="dropdown2" tabindex="1">	                            
 	                            <div class="adv-combo-wrapper">
 	                            	<select name="communityIdx">
 	                            		<option></option>

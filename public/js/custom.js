@@ -98,7 +98,7 @@ $(document).ready(function(){
     	var cur_step = $(this).closest("div.step");
     	cur_step.find('.error_notice').hide();
 
-		cur_step.find("input, textarea").each(function(key, elem){    			
+		cur_step.find("input, textarea, select").each(function(key, elem){    			
 			cur_step.find('.error_notice').removeClass('active');
 			if( $(elem).val() == "" ){
 				var elem_name = $(elem).attr("name").replace('[]','');
