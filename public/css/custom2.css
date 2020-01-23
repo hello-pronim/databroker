@@ -244,6 +244,9 @@
 .mgt60 {
 	margin-top: 60px;
 }
+.mgb60 {
+	margin-bottom: 60px;
+}
 .pd60 {
 	padding: 60px 60px;
 }
@@ -1642,4 +1645,16 @@ body .select2-search--dropdown {
 
 #hb16 .h1-small {
 	margin-right: -15px;
+}
+
+.matchmaking .avatar {
+	width: 348px;
+	height: 348px;
+
+	background: transparent url('../images/dummy/matchmaking.png') 0% 0% no-repeat padding-box;
+	background-size: contain;
+}
+
+.matchmaking ul {
+	padding-inline-start: 18px;
 }

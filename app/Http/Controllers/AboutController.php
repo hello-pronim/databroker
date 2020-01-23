@@ -186,6 +186,16 @@ class AboutController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function matchmaking(Request $request)
+    {        
+        return view('about.matchmaking');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function usecase(Request $request)
     {        
         $usecases = array( 

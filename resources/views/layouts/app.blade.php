@@ -49,7 +49,7 @@
 		        			<div class="dropdown-menu" aria-labelledby="more_dropdown">
 		        				<a class="dropdown-item" href="{{ route('about.about') }}"> {{ trans('home.about_databroker') }} </a>
                     <a class="dropdown-item" href="{{ route('about.partners') }}"> {{ trans('home.partners') }} </a>
-                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.datamatch') }} </a>
+                    <a class="dropdown-item" href="{{ route('about.matchmaking') }}"> {{ trans('home.datamatch') }} </a>
                     <a class="dropdown-item" href="{{ route('about.usecase') }}"> {{ trans('home.usecase') }} </a>
                     <a class="dropdown-item" href="javascript:;"> {{ trans('home.helpsupport') }} </a>
                     <a class="dropdown-item" href="javascript:;"> {{ trans('home.news') }} </a>
