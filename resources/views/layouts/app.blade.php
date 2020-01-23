@@ -179,7 +179,7 @@
                   </a>                  
                 </li>
                 <li class="dropdown nav-item">
-                  <a href="{{ route('data.geographic') }}" class="nav-link">
+                  <a href="{{ route('data.supply_chain') }}" class="nav-link">
                     {{ trans('home.supply_chain') }} 
                   </a>                  
                 </li>

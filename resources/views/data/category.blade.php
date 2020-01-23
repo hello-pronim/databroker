@@ -14,9 +14,9 @@
 	        			<h4 class="text-green">{{ trans('pages.explore_data_offer') }}</h4>
 			            <h1 class="mt-0">{{$category}} Community</h1>
 			            <p class="desc">
-			            	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
+			            	{{ trans('description.'.str_replace( ' ', '_', $category ).'_intro') }}
 			            </p>	            
-			            <a href="{{ route('data.community_'.strtolower($category)) }}"><button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.read_more') }}</button></a>
+			            <a href="{{ route('data.community_'.str_replace( ' ', '_', strtolower($category) )) }}"><button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.read_more') }}</button></a>
 	        		</div>	
 	        	</div>	        	
 	        </div>	        
