@@ -771,7 +771,7 @@ i.rotated:before{
 	text-transform: capitalize;
 }
 .custom-dropdown .custom-dropdown-menu .check_container{
-	width: 30%;
+	width: 32%;
 	display: inline-block;
 }
 .custom-dropdown .custom-dropdown-menu .check_container .pure-material-checkbox > span{

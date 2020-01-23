@@ -221,6 +221,14 @@ $(document).ready(function(){
         $(this).parent().find("div").toggle();
     });
 
+    $(".text-wrapper textarea").keyup(function(){
+        var text = $(this).val();
+        
+        $(this).parent().find('.char-counter span').eq(0).text(text.length);
+        var text_length = $(this).attr('maxlength');
+        $(this).parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - text.length);
+    })
+
 });
 
 /*Dropdown Menu*/
