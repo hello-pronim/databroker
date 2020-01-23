@@ -43,6 +43,7 @@ return [
 
     /*menu*/
     'explore_data_communities' => 'Explore our data communities',    
+    'communities' => 'Communities',
     'geographics' => 'Geographics',
     'environment' => 'Environment',
     'transport' => 'Transport',

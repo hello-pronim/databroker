@@ -1352,9 +1352,18 @@ a:hover {
     height: 44px;
     padding: 10px;
 }
-    .navbar-translate .app-brand{
-        display: none;
-    }
+#main_menu .app-brand{
+    display: none;
+}
+.navbar .navbar-toggler .navbar-toggler-icon{
+    color: #a5abb5;
+}
+#navbarNavDropdown .navbar-nav li.nav-item a.nav-link >i{
+    display: none;
+}
+#navbarNavDropdown .navbar-title{
+    display: none;
+}
 .cookie-accept {
     position: fixed;
     opacity: 0;
