@@ -110,6 +110,9 @@
 	}
 	#navbarNavDropdown .navbar-title{
 		display: block;
+		position: relative;
+		z-index: 3;
+		margin: 30px auto 10px 30px;
 	}
 	#navbarNavDropdown .navbar-nav li{
 		border: none;
