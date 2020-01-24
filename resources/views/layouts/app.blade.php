@@ -180,7 +180,7 @@
 			          <span class="navbar-toggler-icon"></span>
 			        </button>
   			      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <h3 class="navbar-title">{{ trans('home.communities') }}</h3>
+                <div class="navbar-title"><span class="fs-20 text-bold">{{ trans('home.communities') }}</span></div>
   			        <ul class="navbar-nav">
   			          <li class="dropdown nav-item">
     			          <a href="{{ route('data.geographic') }}" class="nav-link">
