@@ -50,7 +50,7 @@
     <div class="container">        
         <h1 class="mb-20 fs-30 text-bold text-left">{{ trans('home.trending') }}</h1>
         <div class="app-partner-items row">
-        	<div class="col-md-6 col-lg-4 col-xl-2">
+        	<div class="col-md-4 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon">
 						<img src="{{ asset('images/design/transport.svg') }}">
@@ -59,7 +59,7 @@
         		</div>
 
         	</div>
-        	<div class="col-md-6 col-lg-4 col-xl-2">
+        	<div class="col-md-4 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon">
 						<img src="{{ asset('images/design/transport.svg') }}">
@@ -68,7 +68,7 @@
         		</div>
 
         	</div>
-        	<div class="col-md-6 col-lg-4 col-xl-2">
+        	<div class="col-md-4 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/people.svg') }}">
                     </div>
@@ -76,7 +76,7 @@
         		</div>
 
         	</div>
-        	<div class="col-md-6 col-lg-4 col-xl-2">
+        	<div class="col-md-4 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/geography.svg') }}">
                     </div>
@@ -84,7 +84,7 @@
         		</div>
 
         	</div>
-        	<div class="col-md-6 col-lg-4 col-xl-2">
+        	<div class="col-md-4 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/energy.svg') }}">
                     </div>		
@@ -92,7 +92,7 @@
         		</div>
 
         	</div>
-        	<div class="col-md-6 col-lg-4 col-xl-2">
+        	<div class="col-md-4 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/geography.svg') }}">
                     </div>
@@ -104,7 +104,7 @@
 
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.new_on_marketplace') }} </h1>
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
@@ -118,7 +118,7 @@
 					</div>			
 				</div>	
 			</div>	
-			<div class="col-md-4">
+			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
@@ -132,7 +132,7 @@
 					</div>			
 				</div>	
 			</div>	
-			<div class="col-md-4">
+			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
@@ -174,7 +174,7 @@
 	<div class="container">
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.team_picks') }} </h1>
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
@@ -188,7 +188,7 @@
 					</div>			
 				</div>	
 			</div>	
-			<div class="col-md-4">
+			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
@@ -202,7 +202,7 @@
 					</div>			
 				</div>	
 			</div>	
-			<div class="col-md-4">
+			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
@@ -226,42 +226,42 @@
 	        </div>
 	    </div>
 	    <div class="app-partner-items row">
-        	<div class="col-md-2">
+        	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
 						<img src="{{ asset('images/partner_1.png') }}">
 	                </div>        
         		</div>
         	</div>
-        	<div class="col-md-2">
+        	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
 						<img src="{{ asset('images/partner_2.png') }}">
 	                </div>        
         		</div>
         	</div>
-        	<div class="col-md-2">
+        	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
 						<img src="{{ asset('images/partner_3.png') }}">
 	                </div>        
         		</div>
         	</div>
-        	<div class="col-md-2">
+        	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
 						<img src="{{ asset('images/partner_4.png') }}">
 	                </div>        
         		</div>
         	</div>
-        	<div class="col-md-2">
+        	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
 						<img src="{{ asset('images/partner_5.png') }}">
 	                </div>        
         		</div>
         	</div>
-        	<div class="col-md-2">
+        	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
 						<img src="{{ asset('images/europense.png') }}">
@@ -295,7 +295,7 @@
 	<div class="container">
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('home.top_usecase')}} </h1>
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
@@ -309,7 +309,7 @@
 					</div>			
 				</div>	
 			</div>	
-			<div class="col-md-4">
+			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
@@ -323,7 +323,7 @@
 					</div>			
 				</div>	
 			</div>	
-			<div class="col-md-4">
+			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
