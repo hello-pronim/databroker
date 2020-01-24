@@ -1665,6 +1665,11 @@ body .select2-search--dropdown {
 	padding-inline-start: 18px;
 }
 
+.gray-border {	
+	background-color: #fff;
+	border: 1px solid #DAE1E5;
+}
+
 .help .help-item-container {
 	background-color: #fff;
 	border: 1px solid #DAE1E5;
@@ -1728,3 +1733,16 @@ body .select2-search--dropdown {
 	transform: rotate(-135deg);
   	-webkit-transform: rotate(-135deg);
 }
+
+.media-center .press-item-container {
+	height: 257px;
+	padding-left: 36px;
+	padding-top: 20px;
+	padding-right: 40px;
+	padding-bottom: 40px;
+}
+
+.seeder-item-container {
+	height: 136px;
+}
+

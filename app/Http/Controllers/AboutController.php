@@ -282,4 +282,129 @@ class AboutController extends Controller
     public function contact(){
         
     }
+
+    public function media_center(){
+        $press_list = array(
+            array(
+                'id'    => 1,
+                'title' => 'Press inquries',
+                'text'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat, lectus ac accumsan dictum, eros erat tincidunt mauris, at vehicula elit nibh maximus eros.',
+                'action'=> 'Contact us',
+            ),
+            array(
+                'id'    => 2,
+                'title' => 'Databroker dao press kit',
+                'text'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat, lectus ac accumsan dictum, eros erat tincidunt mauris, at vehicula elit nibh maximus eros.',
+                'action'=> 'Download pres kit',
+            ),
+        );
+        $partners = array (
+            array(
+                'id'    => 1,
+                'logo'  => '/images/partners/Image_1.png',
+            ),
+            array(
+                'id'    => 2,
+                'logo'  => '/images/partners/Image_2.png',
+            ),
+            array(
+                'id'    => 3,
+                'logo'  => '/images/partners/Image_3.png',
+            ),
+            array(
+                'id'    => 4,
+                'logo'  => '/images/partners/Image_4.png',
+            ),
+            array(
+                'id'    => 5,
+                'logo'  => '/images/partners/Image_5.png',
+            ),
+            array(
+                'id'    => 6,
+                'logo'  => '/images/partners/Image_6.png',
+            ),
+            array(
+                'id'    => 7,
+                'logo'  => '/images/partners/Image_7.png',
+            ),
+            array(
+                'id'    => 8,
+                'logo'  => '/images/partners/Image_8.png',
+            ),
+            array(
+                'id'    => 9,
+                'logo'  => '/images/partners/Image_9.png',
+            ),
+            array(
+                'id'    => 10,
+                'logo'  => '/images/partners/Image_10.png',
+            ),
+            array(
+                'id'    => 11,
+                'logo'  => '/images/partners/Image_11.png',
+            ),
+            array(
+                'id'    => 12,
+                'logo'  => '/images/partners/Image_12.png',
+            ),
+            array(
+                'id'    => 13,
+                'logo'  => '/images/partners/Image_13.png',
+            ),
+            array(
+                'id'    => 14,
+                'logo'  => '/images/partners/Image_14.png',
+            ),
+            array(
+                'id'    => 15,
+                'logo'  => '/images/partners/Image_15.png',
+            ),
+            array(
+                'id'    => 16,
+                'logo'  => '/images/partners/Image_16.png',
+            ),
+            array(
+                'id'    => 17,
+                'logo'  => '/images/partners/Image_17.png',
+            ),
+            array(
+                'id'    => 18,
+                'logo'  => '/images/partners/Image_18.png',
+            ),
+            // array(
+            //     'id'    => 19,
+            //     'logo'  => '/images/partners/Image_19.png',
+            // ),
+            // array(
+            //     'id'    => 20,
+            //     'logo'  => '/images/partners/Image_20.png',
+            // ),
+            array(
+                'id'    => 21,
+                'logo'  => '/images/partners/Image_21.png',
+            ),
+            array(
+                'id'    => 22,
+                'logo'  => '/images/partners/Image_22.png',
+            ),
+            array(
+                'id'    => 23,
+                'logo'  => '/images/partners/Image_23.png',
+            ),
+            array(
+                'id'    => 24,
+                'logo'  => '/images/partners/Image_24.png',
+            ),
+            // array(
+            //     'id'    => 25,
+            //     'logo'  => '/images/partners/Image_25.png',
+            // ),
+            // array(
+            //     'id'    => 26,
+            //     'logo'  => '/images/partners/Image_26.png',
+            // ),
+        );
+        $data = array( 'press_list', 'partners' );
+        return view('about.media_center', compact($data));        
+    }
 }

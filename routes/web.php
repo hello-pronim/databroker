@@ -44,6 +44,7 @@ Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name(
 Route::get('/about', 'AboutController@index')->name('about.about');    
 Route::get('/contact', 'AboutController@contact')->name('contact');    
 Route::get('/about/matchmaking', 'AboutController@matchmaking')->name('about.matchmaking'); 
+Route::get('/about/media-center', 'AboutController@media_center')->name('about.media_center'); 
 Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
 Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase'); 
 
