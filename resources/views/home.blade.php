@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="container-fluid app-wapper">	
+<div class="container-fluid app-wapper header-section">	
     <div class="top-bg-image"></div>
     <div class="container">
     	<div class="app-section app-reveal-section align-items-center">

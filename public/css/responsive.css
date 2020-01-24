@@ -53,31 +53,91 @@
 	.app-monetize-section-item1 h1{
 		font-size: 24px !important;
 	}
+	.app-reveal-section{
+		padding: 30px 30px 30px 0px;
+	}
 }
 
 @media (max-width: 992px){
+	::-webkit-scrollbar {
+	    width: 0px;
+	    display: none;
+	}
 	.footer_section1 .footer-newsletter{
 		margin-top: 24px;
     	padding-top: 40px;
 		border-top: 1px solid #DAE1E5;
 		text-align: center;
 	}
-	.container{
-		width: 100%;
-		max-width: unset;
-		margin: 0px 30px;
-	}
-	.navbar.navbar-expand-lg .navbar-nav{
+	.app-top-nav-bar-container .navbar-nav{
 		flex-direction: row;
 		align-items: center;
 	}
-	.navbar.navbar-expand-lg .navbar-nav .dropdown-menu{
+	.app-top-nav-bar-container .navbar-nav .dropdown-menu{
 		position: absolute;
 		background: white;
 		height: auto;
 		overflow-y: unset;
 		padding: .3125rem 0;
     	margin: .125rem 0 0;
+	}
+	.app-top-bar-container{
+		display: none;
+	}
+	.app-nav-bar-container{
+		border: none;
+	}
+	#main_menu{
+		box-shadow: 0px 1px 4px #0000000A;
+	}
+	#main_menu >.container{
+		justify-content: space-between;
+	}
+	#main_menu .app-brand{
+		display: block;
+		margin: 5px 0px;
+	}
+	#main_menu .app-brand svg{
+		width: 183px;
+		height: 32px;
+	}
+	#account_dropdown{
+		padding: 5px 20px 5px 0px;
+	}
+	#navbarNavDropdown{
+		display: block;
+		top: 96px;
+	}
+	#navbarNavDropdown .navbar-title{
+		display: block;
+	}
+	#navbarNavDropdown .navbar-nav li{
+		border: none;
+	}
+	#navbarNavDropdown .navbar-nav li.nav-item:after {
+		display: none;
+	}
+	#navbarNavDropdown .navbar-nav li.nav-item a.nav-link{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	#navbarNavDropdown .navbar-nav li.nav-item a.nav-link >i{
+		display: block;
+	}
+	.fixed_bg{
+		position: fixed;
+		top: 0;
+		z-index: 1000;
+	}
+	.app-nav-bar-container{
+		position: fixed;
+		margin-top: 30px;
+		top: 0;
+		z-index: 1000;
+	}
+	.app-wapper.header-section{
+		margin-top: 96px;
 	}
 }
 
