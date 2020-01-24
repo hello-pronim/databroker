@@ -98,7 +98,7 @@ $(document).ready(function(){
     	var cur_step = $(this).closest("div.step");
     	cur_step.find('.error_notice').hide();
 
-		cur_step.find("input, textarea").each(function(key, elem){    			
+		cur_step.find("input, textarea, select").each(function(key, elem){    			
 			cur_step.find('.error_notice').removeClass('active');
 			if( $(elem).val() == "" ){
 				var elem_name = $(elem).attr("name").replace('[]','');
@@ -220,6 +220,14 @@ $(document).ready(function(){
         $(this).find("i").toggle();
         $(this).parent().find("div").toggle();
     });
+
+    $(".text-wrapper textarea").keyup(function(){
+        var text = $(this).val();
+        
+        $(this).parent().find('.char-counter span').eq(0).text(text.length);
+        var text_length = $(this).attr('maxlength');
+        $(this).parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - text.length);
+    })
 
 });
 

@@ -73,9 +73,9 @@
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
 						<div class="text-wrapper">
-							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}"></textarea>							
+							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>							
 							<div class="error_notice offerTitle"> This field is required</div>
-							<div class="char-counter" id="Title_rb">0 / xxx characters</div>	
+							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
 						</div>
 						
 						<br>
@@ -127,8 +127,7 @@
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
 						<div class="dropdown-container">
-	                        <div class="dropdown2" tabindex="1">
-	                            <input type="hidden" id="communityIdx" name="communityIdx" value="">
+	                        <div class="dropdown2" tabindex="1">	                            
 	                            <div class="adv-combo-wrapper">
 	                            	<select name="communityIdx">
 	                            		<option></option>
@@ -176,8 +175,8 @@
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
 						<div class="text-wrapper">
-							<textarea name="offerDescription" class="user-message" placeholder="{{ trans('pages.your_message') }}"></textarea>
-							<div class="char-counter" id="Title_rb">0 / xxx characters</div>
+							<textarea name="offerDescription" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>
+							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a><!-- goto 44 -->
@@ -209,8 +208,8 @@
 							<div class="gray-icon"><i class="fa fa-question-circle"></i></div>
 						</div>
 						<div class="text-wrapper">
-							<textarea name="useCaseContent" class="user-message" placeholder="{{ trans('pages.your_message') }}"></textarea>
-							<div class="char-counter" id="Title_rb">0 / xxx characters</div>
+							<textarea name="useCaseContent" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>
+							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>	
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>

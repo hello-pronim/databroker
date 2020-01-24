@@ -22,7 +22,7 @@
 	<div class="container">		
 	    <div class="row">
 	    	<div class="col-md-12">
-				<div class="card card-raised card-background" style="background-image: url({{ asset('images/plane.png') }})">
+				<div class="card card-raised card-background" style="background-image: url({{ asset('images/banner.jpg') }})">
 					<div class="card-body">
 						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
 						<h3 class="card-title fs-40">Weather data</h3>

@@ -295,14 +295,25 @@ i.rotated:before{
 .number-counter{
 	font-size: 20px;
 	font-weight: bold;
+	position: relative;
+	padding-left: 50px;
+	height: 54px;
+	display: table;
 }
 .number-counter:before{
 	counter-increment: section;
   	content: counter(section) ". "; 
   	font-size: 54px;
   	font-weight: bold;
-  	color: #FF6B6B;
-  	vertical-align: middle;
+  	color: #FF6B6B;  	
+  	position: absolute;
+  	left: 0;  	
+  	bottom: 0;
+  	line-height: 54px;
+}
+.number-counter span{
+	vertical-align: middle;
+	display: table-cell;
 }
 .error_notice:before{
 	margin-right: 5px;
@@ -760,7 +771,7 @@ i.rotated:before{
 	text-transform: capitalize;
 }
 .custom-dropdown .custom-dropdown-menu .check_container{
-	width: 30%;
+	width: 32%;
 	display: inline-block;
 }
 .custom-dropdown .custom-dropdown-menu .check_container .pure-material-checkbox > span{

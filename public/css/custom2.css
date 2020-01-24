@@ -244,6 +244,9 @@
 .mgt60 {
 	margin-top: 60px;
 }
+.mgb60 {
+	margin-bottom: 60px;
+}
 .pd60 {
 	padding: 60px 60px;
 }
@@ -1530,11 +1533,11 @@ body .select2-search--dropdown {
 .history-node .timeline {
 	overflow: visible;
 }
-.big {
+.history-node.big {
 	width: 30px;
 	height: 30px;
 }
-.small {
+.history-node.small {
 	width: 20px;
 	height: 20px;
 }
@@ -1642,4 +1645,41 @@ body .select2-search--dropdown {
 
 #hb16 .h1-small {
 	margin-right: -15px;
+}
+
+.matchmaking .avatar {
+	width: 348px;
+	height: 348px;
+
+	background: transparent url('../images/dummy/matchmaking.png') 0% 0% no-repeat padding-box;
+	background-size: contain;
+}
+
+.matchmaking ul {
+	padding-inline-start: 18px;
+}
+
+.help .help-item-container {
+	background-color: #fff;
+	border: 1px solid #DAE1E5;
+	height: 383px;
+}
+
+.help .help-item-container.small {
+	height: 240px;
+}
+
+.help .icon-75 {
+	width: 75px;
+	height: 75px;
+}
+
+.help .icon-cart-buying {
+	background: transparent url('../images/design/cart-buying.svg') 0% 0% no-repeat padding-box;
+	background-size: contain;
+}
+
+.help .icon-cart-selling {
+	background: transparent url('../images/design/cart-selling.svg') 0% 0% no-repeat padding-box;
+	background-size: contain;
 }
