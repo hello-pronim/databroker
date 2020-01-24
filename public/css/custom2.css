@@ -171,6 +171,10 @@
 .mg15 {
 	margin: 15px 15px;
 }
+.mgh15 {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
 .mgt15 {
 	margin-top: 15px;
 }
@@ -1533,11 +1537,13 @@ body .select2-search--dropdown {
 .history-node .timeline {
 	overflow: visible;
 }
-.history-node.big {
+.history-node.big,
+.timeline.big {
 	width: 30px;
 	height: 30px;
 }
-.history-node.small {
+.history-node.small,
+.timeline.small {
 	width: 20px;
 	height: 20px;
 }
@@ -1682,4 +1688,43 @@ body .select2-search--dropdown {
 .help .icon-cart-selling {
 	background: transparent url('../images/design/cart-selling.svg') 0% 0% no-repeat padding-box;
 	background-size: contain;
+}
+
+.help .faq-list-container {
+	width: 100%;
+}
+
+.help .faq-entry {
+	height: 60px;
+	border-bottom: 1px solid #D0D7DD;
+}
+
+.help .faq-entry.expanded {
+	height: 120px;
+}
+
+.help .faq-entry:last-of-type {
+	border-bottom: 0px solid #D0D7DD;
+}
+
+.help .faq-entry .description {
+	display: none;
+}
+
+.help .faq-entry.expanded .description {
+	display: block;
+	margin-top: 16px;
+}
+
+.help .faq-entry .dropdown-arrow {
+	border: solid #BAC0C5;
+	border-width: 0 2px 2px 0;
+	display: inline-block;
+	padding: 3px;
+	transform: rotate(45deg);
+  	-webkit-transform: rotate(45deg);  	
+}
+.help .faq-entry.expanded .dropdown-arrow {
+	transform: rotate(-135deg);
+  	-webkit-transform: rotate(-135deg);
 }

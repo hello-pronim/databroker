@@ -40,4 +40,68 @@ class HelpController extends Controller
         $data = array( 'teammates' );
         return view('help.overview', compact($data));
     }
+
+    public function buying_data(Request $request)
+    {
+        $topics = array(
+            array(
+                'id'        => 1, 
+                'title'     => 'Topic', 
+            ),
+            array(
+                'id'        => 2, 
+                'title'     => 'Lorem ipsum dolor sit amet', 
+            ),
+            array(
+                'id'        => 3, 
+                'title'     => 'Nunc varius risus sed metus bibendum, ac efficitur lorem ornare.', 
+            ),
+            array(
+                'id'        => 4, 
+                'title'     => 'Nunc varius risus sed metus bibendum, ac efficitur lorem ornare.', 
+            ),
+            array(
+                'id'        => 5, 
+                'title'     => 'Topic', 
+            ),
+            array(
+                'id'        => 6, 
+                'title'     => 'Lorem ipsum dolor sit amet', 
+            ),
+        );
+        $texts = array(
+            'title' => 'Buying data',
+            'title-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
+            'section2' => 'Top 10 FAQ',
+            'faq_explain' => '(Short explanation) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
+        );
+        $faqs = array(
+            array(
+                'id'        => '1',
+                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+            ),
+            array(
+                'id'        => '2',
+                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+            ),
+            array(
+                'id'        => '3',
+                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+            ),
+            array(
+                'id'        => '4',
+                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+            ),
+            array(
+                'id'        => '5',
+                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+            ),
+            array(
+                'id'        => '6',
+                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+            ),
+        );
+        $data = array( 'topics', 'texts', 'faqs' );
+        return view('help.buying-data', compact($data));
+    }
 }

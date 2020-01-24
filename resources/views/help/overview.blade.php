@@ -11,10 +11,12 @@
             <div class="blog-content">
                 <div class="row">
                     <div class="col-lg-4 mgh30">
-                        <div class="flex-center flex-vertical help-item-container">
-                            <div class="icon-75 icon-cart-buying"></div>
-                            <p class="h3">All about buying data</p>
-                        </div>
+                        <a href = "{{ route('help.buying_data') }}">
+                            <div class="flex-center flex-vertical help-item-container">
+                                <div class="icon-75 icon-cart-buying"></div>
+                                <p class="h3">All about buying data</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-lg-4 mgh30">
                         <div class="flex-center flex-vertical help-item-container">

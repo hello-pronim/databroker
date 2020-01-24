@@ -68,7 +68,7 @@
                         <a href="/usecases/{{ $usecase['id'] }}">
                             <div class="card card-profile card-plain">                  
                                 <div class="card-header holder">        
-                                    <img class="img" src="{{ asset('uploads/usecases/'.$usecase['image']) }}" />
+                                    <img class="img" src="{{ asset('images/usecases/'.$usecase['image']) }}" />
                                     <div class="small-image-overlay"></div>
                                 </div>
                                 <div class="card-body text-left">
