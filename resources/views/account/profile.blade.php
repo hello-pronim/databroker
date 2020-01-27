@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('additional_css')    
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+@endsection
 
 @section('content')
 <div class="container-fluid app-wapper profile">
@@ -15,9 +18,9 @@
 			</div>
 
             <div class="app-section profileinfo">
-                <div id="profile-display-section" onClick="document.getElementById('profile-edit-section').style.display = 'block';document.getElementById('profile-display-section').style.display = 'none';">                    
-                    <div id="edit-button" class="action-button-edit top-right flex-center">                        
-                        <i class="material-icons">edit</i>{{ trans('pages.edit') }}
+                <div id="profile-display-section">                    
+                    <div id="edit-button" class="action-button-edit top-right flex-center" onClick="document.getElementById('profile-edit-section').style.display = 'block';document.getElementById('profile-display-section').style.display = 'none';">
+                        <i class="material-icons">edit</i> {{ trans('pages.edit') }}
                     </div>                        
                         <div class="sectiontitle">{{ trans('pages.profile_information') }}</div>
                         <div class="row">
@@ -43,9 +46,9 @@
                         </div>
                     </div><!--profile-display-section-->
 
-                <div id="profile-edit-section" style="display: none;" onClick="document.getElementById('profile-edit-section').style.display = 'none';document.getElementById('profile-display-section').style.display = 'block';">
-                    <div id="cancel-button" class="top-right flex-center">
-                       Cancel
+                <div id="profile-edit-section" style="display: none;" >
+                    <div id="cancel-button" class="top-right flex-center" onClick="document.getElementById('profile-edit-section').style.display = 'none';document.getElementById('profile-display-section').style.display = 'block';">
+                       <i class="material-icons">close</i> Cancel
                     </div>
                     <br />
                     <form method="POST" action="{{ route('account.profile.update') }}">
@@ -92,17 +95,19 @@
                         <div class="row">
                             <div class="col-3 info-label flex-vcenter">Industry:</div>
                             <div class="col dropdown-container flex-vcenter mb-10">
-                                <div class="dropdown" tabindex="1">
-                                    <div class="select">
-                                        <span>{{ old('businessName', $user->businessName) }}</span>
-                                    </div>
-                                    <input type="hidden" id="businessName" name="businessName" value="{{$user->businessName}}">
-                                    <ul class="dropdown-menu" style="display: none;">
-                                        @foreach($business as $busi )
-                                        <li value="{{$busi->businessName}}">{{$busi->businessName}}</li>
+                                <div class="adv-combo-wrapper custom-select2 no-border">
+                                    <select id="businessName" name="businessName" data-placeholder="Search business name.">
+                                        <option></option>
+                                        @foreach ($business as $busi)
+                                            @if( $user->businessName == $busi->businessName )
+                                            <option value="{{$busi->businessName}}" selected>{{$busi->businessName}}</option>
+                                            @else
+                                            <option value="{{$busi->businessName}}">{{$busi->businessName}}</option>
+                                            @endif
                                         @endforeach
-                                    </ul>
-                                </div>                                
+                                    </select>
+                                    <div class="error_notice businessName"> This field is required</div>
+                                </div>    
                             </div>
                         </div>
                         <div class="row">
@@ -214,3 +219,6 @@
 
 @endsection
 
+@section('additional_javascript')    
+    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>        
+@endsection

@@ -2204,11 +2204,6 @@ input.input_data, select.input_data {
     padding-left: 24px;
 }
 
-.is-focused .form-control, .form-control:invalid {
-    background-image: unset; 
-}
-
-
 /*Styling Selectbox*/
 .dropdown-container .dropdown {
     width: 100%;

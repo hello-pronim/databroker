@@ -182,7 +182,10 @@ h6{
     color: #4542bd;
     border: 2px solid #4542bd;
 }
-
+.bmd-form-group{
+	padding-top: 4px;
+	width: 100%;
+}
 .bg-pattern-side{
 	position: relative;
 }
@@ -1144,6 +1147,9 @@ i.rotated:before{
     border-bottom: 1px solid #d2d2d2;
     text-indent: 0px;
     padding-top: 8px;   	
+}
+.custom-select2.no-border .select2 .selection .select2-selection:hover{
+	box-shadow: none;
 }
 .custom-select2.no-border .select2 .selection .select2-selection .select2-selection__arrow{
 	top: 6px;

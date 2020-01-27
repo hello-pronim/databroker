@@ -18,7 +18,7 @@
             <div class="app-section profileinfo">
                 <div id="company-profile-display-section">
                     <div id="edit-button" class="action-button-edit top-right flex-center" onClick="document.getElementById('company-profile-edit-section').style.display = 'block';document.getElementById('company-profile-display-section').style.display = 'none';">
-                        <i class="material-icons">edit</i>{{ trans('pages.edit') }}
+                        <i class="material-icons">edit</i> {{ trans('pages.edit') }}
                     </div>                        
                         <div class="row">
                             <div class="col-2 info-label">Company:</div>
@@ -44,7 +44,7 @@
 
                 <div id="company-profile-edit-section" style="display: none;" >
                     <div id="cancel-button" class="top-right flex-center" onClick="document.getElementById('company-profile-edit-section').style.display = 'none';document.getElementById('company-profile-display-section').style.display = 'block';">
-                       Cancel
+                       <i class="material-icons">close</i> Cancel
                     </div>
                     <br />
                     <form method="POST" action="{{ route('account.company.update') }}">
@@ -66,18 +66,18 @@
                             <div class="col-3 info-label flex-vend">Location:</div>
                             <div class="col info-text flex-vcenter">
                                 <div class="adv-combo-wrapper custom-select2 no-border">
-                                <select name="regionIdx" data-placeholder="{{ trans('pages.search_by_country') }}">
-                                    <option></option>
-                                    @foreach ($countries as $country)
-                                        @if( $country->regionIdx == $company->regionIdx )
-                                        <option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
-                                        @else
-                                        <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                <div class="error_notice regionIdx"> This field is required</div>
-                            </div>
+                                    <select name="regionIdx" data-placeholder="{{ trans('pages.search_by_country') }}">
+                                        <option></option>
+                                        @foreach ($countries as $country)
+                                            @if( $country->regionIdx == $company->regionIdx )
+                                            <option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
+                                            @else
+                                            <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <div class="error_notice regionIdx"> This field is required</div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">                                                        
