@@ -107,6 +107,7 @@
 	#navbarNavDropdown{
 		display: block;
 		top: 96px;
+		box-shadow: -5px 1px 6px #0000000A;
 	}
 	#navbarNavDropdown .navbar-title{
 		display: block;
@@ -176,5 +177,12 @@
 	.footer_section1 .readmore-inourblog-btn{
 		width: 100%;
 		margin: 30px 15px;
+	}
+	#bodyClick{
+		top: 96px;
+		opacity: 1;
+		background: transparent linear-gradient(180deg, #8180C4 0%, #98afd2 100%) 0% 0% no-repeat padding-box;
+		z-index: 800;
+		right: 0;
 	}
 }
