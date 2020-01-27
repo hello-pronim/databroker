@@ -185,19 +185,18 @@
 .mg25 {
 	margin: 25px 25px;
 }
+.mgt25 {
+	margin-top: 25px;
+}
 .mgb25 {
+	margin-bottom: 25px;
+}
+.mgh25 {
+	margin-top: 25px;
 	margin-bottom: 25px;
 }
 .pd25 {
 	padding: 25px;
-}
-
-.mgt30 {
-	margin-top: 30px;
-}
-.mgh30 {
-	margin-top: 30px;
-	margin-bottom: 30px;
 }
 
 .mg40 {
@@ -230,6 +229,9 @@
 .mgh30 {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+.mgt30 {
+	margin-top: 30px;
 }
 .mgb30 {
 	margin-bottom: 30px;
@@ -1822,4 +1824,39 @@ body .select2-search--dropdown {
   height: 14px;
   border-radius: 50%;
   background-color: #78E6D0;
+}
+
+
+.bg-half-watermark {
+	position: relative;
+}
+
+.bg-half-watermark:before {
+	content: "";
+	width: 399px;
+	height: 371px;
+
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 0px;	
+
+	background-image: url("../images/patterns/BG-half-left-desktop.svg");
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.bg-half-watermark.w-right:before {
+	right: 0px;
+	left: unset;
+	background-image: url("../images/patterns/BG-half-right-desktop.svg");
+}
+
+.bg-half-watermark-right-left .bg-half-watermark.w-left:before {
+	top: 317px;
+}
+
+.bg-half-watermark-right-left + .container {
+	min-height: 688px;
 }
