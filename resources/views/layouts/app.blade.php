@@ -423,8 +423,7 @@
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>
-    <!-- <script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>  -->
-
+    
     @yield('additional_javascript')
 
     <script src="{{ asset('js/material.min.js') }}"></script>        

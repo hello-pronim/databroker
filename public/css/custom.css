@@ -321,6 +321,13 @@ i.rotated:before{
 .error_notice:before{
 	margin-right: 5px;
 }
+.tooltip-inner {
+    min-width: 300px;
+    text-align: left;
+}
+[data-toggle="tooltip"]{
+	cursor: pointer;
+}
 /*Header*/
 .fixed_bg {
 	background-color: #06038D;
@@ -921,7 +928,7 @@ i.rotated:before{
     transition: all 0.5s ease;
 }
 .data-offer .step.current{
-	display: block;
+	display: block;	
 }
 .data-offer .text-wrapper .error_notice{
 	position: absolute;

@@ -1,5 +1,7 @@
 $(document).ready(function(){    
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     $(".dropdown-menu").each(function(){ $(this).css({right: -($(this).width()/2+20)+"px"}); });
 
     $("#register_nl_section form").submit(function(e){
@@ -117,7 +119,8 @@ $(document).ready(function(){
     		var next = cur_step.next();
 
 	    	cur_step.removeClass("current");
-	    	next.addClass('current');	
+	    	next.addClass('current', 500, function(){});	
+            window.scrollTo(0, 0); 
     	}
 
     });
@@ -126,8 +129,9 @@ $(document).ready(function(){
     	var prev = cur_step.prev();
 
     	cur_step.removeClass("current");
-    	prev.addClass('current');
+    	prev.addClass('current', 500, function(){});
 
+        window.scrollTo(0, 0); 
     });
 
     /*$("#data-offer").submit(function(e){
@@ -227,7 +231,11 @@ $(document).ready(function(){
         $(this).parent().find('.char-counter span').eq(0).text(text.length);
         var text_length = $(this).attr('maxlength');
         $(this).parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - text.length);
-    })
+    });
+
+    $("#community_box").change(function(){
+        $("#community_title i").attr("data-original-title", $(this).find("option:selected").attr("tooltip-text"));
+    });
 
 });
 
