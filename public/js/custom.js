@@ -118,8 +118,8 @@ $(document).ready(function(){
     	if( allow_next == true ){
     		var next = cur_step.next();
 
-	    	cur_step.removeClass("current");
-	    	next.addClass('current', 500, function(){});	
+	    	cur_step.removeClass("current back");
+	    	next.addClass('current');	
             window.scrollTo(0, 0); 
     	}
 
@@ -128,9 +128,8 @@ $(document).ready(function(){
     	var cur_step = $(this).closest("div.step");
     	var prev = cur_step.prev();
 
-    	cur_step.removeClass("current");
-    	prev.addClass('current', 500, function(){});
-
+    	cur_step.removeClass("current back");
+    	prev.addClass('current back');
         window.scrollTo(0, 0); 
     });
 
