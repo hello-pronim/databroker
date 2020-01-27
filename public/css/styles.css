@@ -1727,7 +1727,8 @@ body {
 }
 
 /* Span */
-.pure-material-textfield-outlined > input + span, .pure-material-textfield-outlined > textarea + span {
+.pure-material-textfield-outlined > input + span, .pure-material-textfield-outlined > textarea + span,
+.pure-material-textfield-outlined > .bmd-form-group + span {
     position: absolute;
     top: 2px;
     left: 10px;
@@ -1744,7 +1745,8 @@ body {
 }
 
 /* Corners */
-.pure-material-textfield-outlined > input + span::before, .pure-material-textfield-outlined > input + span::after, .pure-material-textfield-outlined > textarea + span::before, .pure-material-textfield-outlined > textarea + span::after {
+.pure-material-textfield-outlined > input + span::before, .pure-material-textfield-outlined > input + span::after, .pure-material-textfield-outlined > textarea + span::before, .pure-material-textfield-outlined > textarea + span::after,
+.pure-material-textfield-outlined > .bmd-form-group + span::before, .pure-material-textfield-outlined > .bmd-form-group + span::after {
     content: "";
     display: block;
     box-sizing: border-box;
@@ -1759,12 +1761,15 @@ body {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+.pure-material-textfield-outlined > .bmd-form-group + span::before,
 .pure-material-textfield-outlined > input + span::before, .pure-material-textfield-outlined > textarea + span::before {
     margin-right: 4px;
     border-left: solid 1px transparent;
     border-radius: 4px 0;
 }
 
+
+.pure-material-textfield-outlined > .bmd-form-group + span::after,
 .pure-material-textfield-outlined > input + span::after, .pure-material-textfield-outlined > textarea + span::after {
     flex-grow: 1;
     margin-left: 4px;
@@ -1773,10 +1778,12 @@ body {
 }
 
 /* Hover */
+.pure-material-textfield-outlined:hover > .bmd-form-group,
 .pure-material-textfield-outlined:hover > input, .pure-material-textfield-outlined:hover > textarea {
     /*border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87) !important;*/
 }
 
+.pure-material-textfield-outlined:hover > .bmd-form-group + span::before, .pure-material-textfield-outlined:hover > .bmd-form-group + span::after, 
 .pure-material-textfield-outlined:hover > input + span::before, .pure-material-textfield-outlined:hover > textarea + span::before, .pure-material-textfield-outlined:hover > input + span::after, .pure-material-textfield-outlined:hover > textarea + span::after {
     /*border-top-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87);*/
 }
@@ -1786,11 +1793,13 @@ body {
 }
 
 /* Placeholder-shown */
+.pure-material-textfield-outlined > .bmd-form-group,
 .pure-material-textfield-outlined > input:not(:focus):placeholder-shown, .pure-material-textfield-outlined > textarea:not(:focus):placeholder-shown {
     /* border-top-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6); */
     background:unset;
 }
 
+.pure-material-textfield-outlined > .bmd-form-group + span,
 .pure-material-textfield-outlined > input:not(:focus):placeholder-shown + span, .pure-material-textfield-outlined > textarea:not(:focus):placeholder-shown + span {
     font-size: inherit;
     line-height: 64px;
@@ -1798,6 +1807,7 @@ body {
     background: transparent;
 }
 
+.pure-material-textfield-outlined > .bmd-form-group + span::before, .pure-material-textfield-outlined > .bmd-form-group + span::after,
 .pure-material-textfield-outlined > input:not(:focus):placeholder-shown + span::before, .pure-material-textfield-outlined > textarea:not(:focus):placeholder-shown + span::before, .pure-material-textfield-outlined > input:not(:focus):placeholder-shown + span::after, .pure-material-textfield-outlined > textarea:not(:focus):placeholder-shown + span::after {
     border-top-color: transparent;
     width: auto;
@@ -1808,23 +1818,27 @@ body {
 }
 
 
+.has-error.pure-material-textfield-outlined > .bmd-form-group,
 .has-error.pure-material-textfield-outlined > input, .has-error.pure-material-textfield-outlined > textarea {
     border-color: red;
     box-shadow: 0 0 2px red;
     /* border: 0; */
 }
 
+.has-error.pure-material-textfield-outlined > .bmd-form-group.is-focused,
 .has-error.pure-material-textfield-outlined > input:focus, .has-error.pure-material-textfield-outlined > textarea:focus {
     border-color: red;
     box-shadow: 0 0 2px red;
 }
 
+.has-error.pure-material-textfield-outlined > .bmd-form-group.is-focused + span,
 .has-error.pure-material-textfield-outlined > input:focus + span, .has-error.pure-material-textfield-outlined > textarea:focus + span,
 .has-error.pure-material-textfield-outlined > input + span, .has-error.pure-material-textfield-outlined > textarea + span {
     color: red;
 }
 
 /* Focus */
+.pure-material-textfield-outlined > .bmd-form-group.is-focused,
 .pure-material-textfield-outlined > input:focus, .pure-material-textfield-outlined > textarea:focus {
     border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
     /* border-top-color: transparent; */
@@ -1833,12 +1847,14 @@ body {
     background: unset;
 }
 
+.pure-material-textfield-outlined > .bmd-form-group.is-focused,
 .pure-material-textfield-outlined > input:focus + span, .pure-material-textfield-outlined > textarea:focus + span {
     color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
     background-color: white;
     width: auto;
 }
 
+.pure-material-textfield-outlined > .bmd-form-group.is-focused + span::before, .pure-material-textfield-outlined > .bmd-form-group.is-focused + span::after,
 .pure-material-textfield-outlined > input:focus + span::before, .pure-material-textfield-outlined > input:focus + span::after, .pure-material-textfield-outlined > textarea:focus + span::before, .pure-material-textfield-outlined > textarea:focus + span::after {
     border-top-color: transparent !important;
     /*var(--pure-material-safari-helper1) !important;*/
@@ -1868,6 +1884,7 @@ body {
 /* Faster transition in Safari for less noticable fractional font-size issue */
 @media not all and (min-resolution: .001dpcm) {
     @supports (-webkit-appearance:none) {
+        .pure-material-textfield-outlined > .bmd-form-group, .pure-material-textfield-outlined > .bmd-form-group + span, .pure-material-textfield-outlined > .bmd-form-group + span::before, .pure-material-textfield-outlined > .bmd-form-group + span::after,
         .pure-material-textfield-outlined > input, .pure-material-textfield-outlined > input + span, .pure-material-textfield-outlined > textarea, .pure-material-textfield-outlined > textarea + span, .pure-material-textfield-outlined > input + span::before, .pure-material-textfield-outlined > input + span::after, .pure-material-textfield-outlined > textarea + span::before, .pure-material-textfield-outlined > textarea + span::after {
             transition-duration: 0.1s;
         }

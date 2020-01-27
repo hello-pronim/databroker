@@ -48,7 +48,7 @@
 							<p class="area">{{ trans('pages.data_offer_overview_desc1') }}<a href="" class="help-section">{{ trans('pages.help_section') }}</a>.</p>
 						</div>
 						<div class="col-6">
-							<button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>	<!-- goto #29 -->        
+							<a href="{{ route('data_offer_add_product', ['id'=>$id]) }}"><button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>	<!-- goto #29 --></a>
 						</div>
 					</div>
 					<div class="product-list">
