@@ -53,7 +53,7 @@
                     <a class="dropdown-item" href="{{ route('about.usecase') }}"> {{ trans('home.usecase') }} </a>
                     <a class="dropdown-item" href="{{ route('help.overview') }}"> {{ trans('home.helpsupport') }} </a>
                     <a class="dropdown-item" href="javascript:;"> {{ trans('home.news') }} </a>
-                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.media_center') }} </a>
+                    <a class="dropdown-item" href="{{ route('about.media_center') }}"> {{ trans('home.media_center') }} </a>
   	        				<a class="dropdown-item" href="javascript:;"> {{ trans('home.contact_us') }} </a>
   	        			</div>
   	        		</li>
@@ -268,10 +268,10 @@
   						<h5>{{ trans('home.about_databroker') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="{{ route('about.partners') }}">{{ trans('home.partners') }}</a></li> 
-  							<li><a href="javascript:;">{{ trans('home.datamatch') }}</a></li>  
+  							<li><a href="{{ route('about.matchmaking') }}">{{ trans('home.datamatch') }}</a></li>  
   							<li><a href="{{ route('about.usecase') }}">{{ trans('home.usecase') }}</a></li> 
   							<li><a href="javascript:;">{{ trans('home.updates') }}</a></li> 
-  							<li><a href="javascript:;">{{ trans('home.media_center') }}</a></li> 
+  							<li><a href="{{ route('about.media_center') }}">{{ trans('home.media_center') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.contact_us') }}</a></li> 
   						</ul>
   					</div>
@@ -344,9 +344,9 @@
 		        		</div>
 		        	</div>
 		        </div>    
-		        <div class="row">		        	
+		        <div class="row">	        	
 		        	<button class="btn readmore-inourblog-btn pure-material-button-outlined">{{ trans('home.viewall_partners') }}</button>
-		        </div>
+            </div>
   			</div>
   		</div>
 
