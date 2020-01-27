@@ -112,6 +112,9 @@ body{
 .max-h100{
 	max-height: 100px !important;
 }
+.min-h200{
+	min-height: 200px !important;
+}
 .hide{
 	display: none;
 }

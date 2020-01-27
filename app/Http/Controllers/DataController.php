@@ -95,7 +95,7 @@ class DataController extends Controller
         return view('data.offer_publish', compact($data));   
     }
 
-    public function offer_detail(Request $request)
+    public function offer_detail($id, Request $request)
     {   
         $offer = [
             'title' => 'Satellite imagery of highways',
@@ -144,7 +144,7 @@ class DataController extends Controller
                     'sell_status' => 'ready',
                 ],
             ];
-        $data = array( 'offer', 'products' );
+        $data = array( 'offer', 'products', 'id' );
         return view('data.offer_detail', compact($data));
     }
 
@@ -237,7 +237,13 @@ class DataController extends Controller
 
         return response()->json(array( "success" => true ));
 
-    }   
+    }
+
+    public function offer_add_product(Request $request) {        
+        $countries = Region::where('regionType', 'country')->get();
+        $data = array( 'countries' );
+        return view('data.offer_add_product', compact($data));
+    }
 
     public function category($category=""){
 
