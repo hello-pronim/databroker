@@ -89,7 +89,33 @@ INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Food &
 INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Pharmaceutical', 'Data for improved demand forecasting, yield and network optimisation, manufacturing performance, and available-to-promise accuracy.');
 INSERT INTO `databroker_new`.`themes` (`themeName`, `themeText`) VALUES ('Retail', 'Data for real-time delivery management, improved order picking and vendor management, automated product sourcing and segmented supply chains.');
 
+//2020-01-27
+CREATE TABLE IF NOT EXISTS `databroker_new`.`regionProducts` (
+  `regionIdx` INT(11) NOT NULL,
+  `productIdx` INT(11) NOT NULL,
+  PRIMARY KEY (`regionIdx`, `productIdx`),
+  INDEX `fk_regions_has_offerProducts_offerProducts1_idx` (`productIdx` ASC) VISIBLE,
+  INDEX `fk_regions_has_offerProducts_regions1_idx` (`regionIdx` ASC) VISIBLE,
+  CONSTRAINT `fk_regions_has_offerProducts_regions1`
+    FOREIGN KEY (`regionIdx`)
+    REFERENCES `databroker_new`.`regions` (`regionIdx`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_regions_has_offerProducts_offerProducts1`
+    FOREIGN KEY (`productIdx`)
+    REFERENCES `databroker_new`.`offerProducts` (`productIdx`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
+
+ALTER TABLE `databroker_new`.`offerProducts` 
+CHANGE COLUMN `productType` `productType` VARCHAR(20) NULL DEFAULT NULL ,
+CHANGE COLUMN `productBidType` `productBidType` VARCHAR(20) NULL DEFAULT NULL ;
+
+ALTER TABLE `databroker_new`.`offerProducts` 
+ADD COLUMN `productLicenseUrl` VARCHAR(255) NULL AFTER `productInstruction`;
 
 
 

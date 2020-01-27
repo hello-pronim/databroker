@@ -12,7 +12,10 @@ use App\Models\Offer;
 use App\Models\Theme;
 use App\Models\OfferTheme;
 use App\Models\OfferSample;
+use App\Models\OfferProduct;
 use App\Models\OfferCountry;
+use App\Models\ProductCountry;
+use App\Models\RegionProduct;
 use App\Models\UseCase;
 
 class DataController extends Controller
@@ -52,39 +55,10 @@ class DataController extends Controller
         return view('data.offers', compact($data));
     }
 
-    public function offers_overview(Request $request){        
-        $offers = array( 
-            array(
-                'id' => 1,
-                'title' => 'Satellite imagery of highways', 
-                'region' => 'Europe',
-                'products' => 'not added yet',
-                'status' => 'active',
-            ),
-            array(
-                'id' => 2,
-                'title' => 'Noise Maps', 
-                'region' => 'New York',
-                'products' => '6',
-                'status' => '',
-            ),
-            array(
-                'id' => 3,
-                'title' => 'Flood Maps', 
-                'region' => 'Worldwide',
-                'products' => '3',
-                'status' => '',
-            ),
-            array(
-                'id' => 4,
-                'title' => 'Traffic Maps', 
-                'region' => 'Worldwide',
-                'products' => '3',
-                'status' => '',
-            ),
-        );
-
-        $data = array( 'offers' );
+    public function offers_overview(Request $request){                
+        $offers = Offer::with(['offerproduct', 'region'])->join('providers', 'providers.providerIdx', '=',  'offers.providerIdx')->where('providers.userIdx', Auth::id())->get();
+        
+        $data = array( 'offers');
         return view('data.offers_overview', compact($data));
     }
 
@@ -239,10 +213,52 @@ class DataController extends Controller
 
     }
 
-    public function offer_add_product(Request $request) {        
+    public function offer_add_product($offerIdx , Request $request) {        
+        $offer = Offer::with(['region'])->where('offers.OfferIdx', $offerIdx)->first();
+        $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
-        $data = array( 'countries' );
+
+        $data = array( 'countries', 'offer', 'regions' );
         return view('data.offer_add_product', compact($data));
+    }
+
+    public function offer_submit_product(Request $request) {
+        $product_data = [];
+
+        $product_data['offerIdx'] = $request->offerIdx;
+        $product_data['productType'] = $request->format;
+        //$product_data['productMoreInfo'] = $request->productMoreInfo;
+        $product_data['productBidType'] = $request->period;
+        $period = $product_data['productBidType'].'_period';
+        $product_data['productAccessDays'] = $request->$period;        
+        if( $request->period == "nobidding" ){
+            $product_data['productPrice'] = $request->nobidding_price;    
+        } elseif ($request->period == "buyer_bid") {            
+            $product_data['productPrice'] = $request->buyer_bid_price;    
+        }
+        $product_data['productMoreInfo'] = $request->productMoreInfo;
+        $product_data['productTitle'] = $request->productTitle;
+        $product_data['productLicenseUrl'] = $request->licenceUrl;
+        $product_data['productStatus'] = 1;
+
+        $offer_obj = OfferProduct::create($product_data);
+        $productIdx = $offer_obj['productIdx'];
+
+        $productcountry_data = [];
+        $productcountry_data['productIdx'] = $productIdx;
+        $country = explode(',', $request->offercountry);
+
+        if( count( $country ) > 0 ){
+            for( $i=0; $i< count($country); $i++ ){
+                $productcountry_data['regionIdx'] = $country[$i];
+                RegionProduct::create($productcountry_data);
+            }            
+        }else{
+            $productcountry_data['regionIdx'] = $country;
+            RegionProduct::create($productcountry_data);
+        }
+        
+        return response()->json(array( "success" => true ));
     }
 
     public function category($category=""){

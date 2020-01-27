@@ -32,6 +32,10 @@ class Offer extends Model
         return $this->belongsTo('App\Models\OfferSample', 'offerIdx', 'offerIdx');
     }    
 
+    public function offerproduct(){
+        return $this->belongsTo('App\Models\OfferProduct', 'offerIdx', 'offerIdx');
+    }    
+
     public function usecase(){
     	return $this->belongsTo('App\Models\UseCase', 'offerIdx', 'offerIdx');
     }

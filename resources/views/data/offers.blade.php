@@ -103,7 +103,7 @@
 				                            <span>{{ trans('pages.other') }}</span>
 				                        </label>
 				                    </div>			                    
-				                    <div class="adv-combo-wrapper custom-select2" style="display: none;">
+				                    <div class="adv-combo-wrapper custom-select2 mt-10" style="display: none;">
 					                    <select class="" name="region[]" data-placeholder="{{ trans('pages.search_by_country') }}">
 											<option></option>
 					                    	@foreach ($countries as $country)

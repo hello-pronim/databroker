@@ -27,7 +27,7 @@ body{
 	font-weight: bold;
 }
 .text-normal{
-	font-weight: normal;
+	font-weight: normal !important;
 }
 .text-green{
 	color:#78E6D0 !important;
@@ -93,6 +93,13 @@ body{
 }
 .ml-15{
 	margin-left: 15px;
+}
+.mr-15{
+	margin-right: 15px;
+}
+.mlr-20{
+	margin-left: 20px;
+	margin-right: 20px;
 }
 .pt-20{
 	padding-top: 20px;
@@ -330,6 +337,8 @@ i.rotated:before{
 }
 [data-toggle="tooltip"]{
 	cursor: pointer;
+	line-height: 24px;
+	font-size: 20px;
 }
 /*Header*/
 .fixed_bg {
@@ -933,7 +942,7 @@ i.rotated:before{
 .data-offer .step.current{
 	display: block;	
 }
-.data-offer .text-wrapper .error_notice{
+.text-wrapper .error_notice{
 	position: absolute;
 	left: 0px;
 	bottom: 0px;
@@ -1167,4 +1176,25 @@ i.rotated:before{
 .custom-select2.no-border .select2.select2-container--open .selection .select2-selection:hover, .custom-select2.no-border .select2.select2-container--open .selection .select2-selection{
 	box-shadow: none;
 	background:transparent;
+}
+/*data offer product publish*/
+.period .custom-select2{
+	display: inline-block;
+	min-width: 200px;
+}
+.period .period_select{
+	display: none;
+}
+.period input{
+	max-width: 150px;
+	padding-left: 30px;
+}
+.period .currency {
+	position: absolute;
+    left: 14px;
+    padding-top: 10px;
+    font-size: 18px;
+}
+.period .period_select >label{
+	width: auto;
 }

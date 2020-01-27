@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/data/offers/overview', 'DataController@offers_overview')->name('data_offers_overview');	
 	Route::get('/data/offers/{id}', 'DataController@offer_detail')->where('id', '[0-9]+')->name('data_offer_detail');
 	Route::get('/data/offers/{id}/product/add', 'DataController@offer_add_product')->where('id', '[0-9]+')->name('data_offer_add_product');
+	Route::post('/data/product/add', 'DataController@offer_submit_product')->name('data_offer_submit_product');
 	Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
 	
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');			

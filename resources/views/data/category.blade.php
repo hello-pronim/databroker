@@ -53,7 +53,7 @@
 	                            <div class="select">
 	                                <span>{{ trans('pages.all_regions') }}</span>
 	                            </div>	                            
-	                            <ul class="custom-dropdown-menu region-select" style="display: none;">
+	                            <ul class="custom-dropdown-menu region-select mt-10" style="display: none;">
 				                    <div class="adv-combo-wrapper custom-select2">
 					                    <select data-placeholder="{{ trans('pages.search_by_country') }}">
 					                    	<option></option>
