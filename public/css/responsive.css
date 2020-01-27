@@ -144,11 +144,37 @@
 	}
 }
 
-@media ( max-width: 568px ){
+@media ( max-width: 576px ){
+	.col-xs-6{
+		max-width: 50%;
+		flex: 0 0 50%;
+		position: relative;
+	    width: 100%;
+	    min-height: 1px;
+	    padding-right: 15px;
+	    padding-left: 15px;
+	}
 	.auth-section h1{
 		font-size: 48px !important;
 	}
 	.auth-section .h4-intro{		
 		font-size: 20px !important;
+	}
+	.app-reveal-section{
+		padding: 0px;
+		top: 0px;
+	}
+	.app-reveal-section-mark{
+		display: block;
+	    width: 100%;
+	    position: relative;
+	    top: 0;
+	}
+	.app-partner-item .img img{
+		max-height: 100%;
+	}
+	.footer_section1 .readmore-inourblog-btn{
+		width: 100%;
+		margin: 30px 15px;
 	}
 }

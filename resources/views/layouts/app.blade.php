@@ -344,9 +344,9 @@
 		        		</div>
 		        	</div>
 		        </div>    
-		        <div class="row">		        	
+		        <div class="row">	        	
 		        	<button class="btn readmore-inourblog-btn pure-material-button-outlined">{{ trans('home.viewall_partners') }}</button>
-		        </div>
+            </div>
   			</div>
   		</div>
 

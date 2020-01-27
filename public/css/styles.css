@@ -1157,7 +1157,7 @@ img.app-partner-item {
 
     .app-peek-section h1 {
         font-size: 1.8rem;
-        text-align: left;
+        line-height: 1.5;
     }
 
     .app-reveal-section-notify {
@@ -1185,10 +1185,10 @@ img.app-partner-item {
         text-align: left;
     }
 
-    .app-monetize-section-item0 {
+    /*.app-monetize-section-item0 {
         margin: 0;
         margin-bottom: 10px;
-    }
+    }*/
 
     .app-monetize-section-item1 h1 {
         font-size: 1.8rem;
