@@ -167,17 +167,17 @@ class AboutController extends Controller
             //     'logo'  => '/images/partners/Image_26.png',
             // ),
         );
-        $partners2 = array (
+        $resellers = array (
             array(
                 'id'    => 1,
-                'logo'  => '/images/partners/Image_1.png',
+                'logo'  => '/images/partners/Image_25.png',
             ),
             array(
                 'id'    => 2,
-                'logo'  => '/images/partners/Image_2.png',
+                'logo'  => '/images/partners/Image_26.png',
             ),
         );
-        $data = array( 'partners', 'partners2' );
+        $data = array( 'partners', 'resellers' );
         return view('about.partners', compact($data));
     }
 

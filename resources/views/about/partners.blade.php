@@ -70,10 +70,10 @@
         </div>
         <div id="partner-list2" class="">
             <div class="row">
-                @foreach ( $partners2 as $partner )
+                @foreach ( $resellers as $reseller )
                 <div class="col-lg-2 partner-cell-wrapper flex-center pd15 flex-vertical">
                     <div class="partner-cell pd25 flex-center flex-vertical">
-                        <div class="partner-logo" style="background-image: url('{{asset($partner['logo'])}}');"></div>
+                        <div class="partner-logo" style="background-image: url('{{asset($reseller['logo'])}}');"></div>
                     </div>
                 </div>
                 @endforeach
