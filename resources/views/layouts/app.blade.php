@@ -223,7 +223,7 @@
   					<div class="col-md-12 col-lg-3 footer-newsletter">
   						<h5>{{ trans('home.signupbox') }}</h5>
               <p class="text-thick-grey fs-18"> {{ trans('home.signupbox_desc') }} </p>
-              <button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.signup') }}</button>
+              <a href="{{ route('register') }}"><button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.signup') }}</button></a>
 
   					</div>
   				</div>
