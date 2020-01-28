@@ -110,9 +110,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
-ALTER TABLE `databroker_new`.`offerProducts` 
-CHANGE COLUMN `productType` `productType` VARCHAR(20) NULL DEFAULT NULL ,
-CHANGE COLUMN `productBidType` `productBidType` VARCHAR(20) NULL DEFAULT NULL ;
+ALTER TABLE `databroker_new`.`offerProducts` CHANGE COLUMN `productType` `productType` VARCHAR(20) NULL DEFAULT NULL , CHANGE COLUMN `productBidType` `productBidType` VARCHAR(20) NULL DEFAULT NULL ;
 
 ALTER TABLE `databroker_new`.`offerProducts` 
 ADD COLUMN `productLicenseUrl` VARCHAR(255) NULL AFTER `productInstruction`;

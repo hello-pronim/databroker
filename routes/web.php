@@ -19,7 +19,7 @@ Route::get('/styleguide', function () {
     return view('styleguide');
 });
 
-// Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth']], function(){
 	Route::get('/profile', 'ProfileController@index')->name('account.profile');
 	Route::get('/profile/company', 'ProfileController@company')->name('account.company');
 	Route::post('/profile/company', 'ProfileController@update_company')->name('account.company.update');
@@ -37,7 +37,7 @@ Route::get('/styleguide', function () {
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');			
 
 	Route::get('/bids', 'ProfileController@bids')->name('profile.bids');
-// });
+});
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
