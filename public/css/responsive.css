@@ -132,7 +132,7 @@
 	.fixed_bg{
 		position: fixed;
 		top: 0;
-		z-index: 1000;
+		z-index: 1001;
 	}
 	.app-nav-bar-container{
 		position: fixed;
@@ -142,6 +142,12 @@
 	}
 	.app-wapper.header-section{
 		margin-top: 96px;
+	}
+	.app-wapper.profile{
+		margin-top: 96px;
+	}
+	.app-partner-item .img img{
+		max-height: 100%;
 	}
 }
 
@@ -184,5 +190,11 @@
 		background: transparent linear-gradient(180deg, #8180C4 0%, #98afd2 100%) 0% 0% no-repeat padding-box;
 		z-index: 800;
 		right: 0;
+	}
+	.users .Buttons_Round_Hero{
+		width: 100%;
+	}
+	.fixed_bg .navbar-expand-lg .navbar-nav .dropdown-menu{
+		right: 0!important;
 	}
 }
