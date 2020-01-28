@@ -293,9 +293,9 @@ class AboutController extends Controller
             ),
             array(
                 'id'    => 2,
-                'title' => 'Databroker dao press kit',
+                'title' => 'Databroker  kit',
                 'text'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat, lectus ac accumsan dictum, eros erat tincidunt mauris, at vehicula elit nibh maximus eros.',
-                'action'=> 'Download pres kit',
+                'action'=> 'Download press kit',
             ),
         );
         $partners = array (
