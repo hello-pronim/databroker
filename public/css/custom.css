@@ -372,6 +372,7 @@ i.rotated:before{
 }
 .fixed_bg .navbar-expand-lg .navbar-nav .dropdown-menu{
 	border:2px solid #dae1e5;	
+	background-color: white;
 	top:120%;
 	width: fit-content;	
 	right:calc(-50%);
