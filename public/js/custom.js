@@ -290,7 +290,48 @@ $(document).ready(function(){
     });
 
     product_period();
+    $(".data_publish").click(function(e){
+        e.preventDefault();
 
+        var data_type = $(this).attr('data-type')
+        var data_id = $(this).attr('data-id')
+        if(data_type && data_id){
+            $.ajax({
+                type: "post",
+                url : '/data/update-status',
+                data : {update:'publish', dataType: data_type, dataId: data_id},
+                dataType: 'json',
+                success: function(res){
+                    if(res.success == true){
+                        window.location.reload();    
+                    }
+                }
+            });
+        }        
+    });
+
+    $(".data_unpublish").click(function(){
+        $("#unpublishModal").find("input[name='data_type']").val($(this).attr('data-type'));
+        $("#unpublishModal").find("input[name='data_id']").val($(this).attr('data-id'));
+    });
+    $("#unpublishModal button.unpublish").click(function(e){
+        e.preventDefault();
+        var data_type = $(this).closest('.modal').find("input[name='data_type']").val();
+        var data_id = $(this).closest('.modal').find("input[name='data_id']").val();
+        if(data_type && data_id){
+            $.ajax({
+                type: "post",
+                url : '/data/update-status',
+                data : {update: 'unpublish', dataType: data_type, dataId: data_id},
+                dataType: 'json',
+                success: function(res){
+                    if(res.success == true){
+                        window.location.reload();    
+                    }
+                }
+            });
+        }        
+    });
 
 });
 

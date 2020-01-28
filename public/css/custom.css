@@ -3,8 +3,14 @@ body{
 }
 /* Colors */
 .btn-transparent{
-	background-color: transparent;	
+	background-color: transparent;		
 }	
+.btn.active, .btn.btn-default.active, .btn.btn-default:active, .btn:active, .open>.btn.btn-default.dropdown-toggle, .open>.btn.dropdown-toggle, .show>.btn.btn-default.dropdown-toggle, .show>.btn.dropdown-toggle{
+	color: #BAC0C5;
+}
+.btn.btn-default.focus, .btn.btn-default:focus, .btn.focus, .btn:focus{
+	color: #BAC0C5;
+}
 .btn-transparent:hover, .btn-transparent:focus, .btn-transparent:active{
 	background-color: transparent;	
 }

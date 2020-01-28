@@ -257,4 +257,23 @@ class DataController extends Controller
         $data = array(  );
         return view('data.offer_product_publish_confirm', compact($data));
     }
+
+    public function data_update_status(Request $request){
+        if($request->update == "unpublish"){
+            if($request->dataType == "offer"){
+                Offer::where('offerIdx', $request->dataId)->update(array( "status" => 0 ));
+            }elseif($request->dataType == "product"){
+                OfferProduct::where('productIdx', $request->dataId)->update(array( "productStatus" => 0 ));
+            }    
+        }elseif ($request->update == "publish"){
+            if($request->dataType == "offer"){
+                Offer::where('offerIdx', $request->dataId)->update(array( "status" => 1 ));
+            }elseif($request->dataType == "product"){
+                OfferProduct::where('productIdx', $request->dataId)->update(array( "productStatus" => 1 ));
+            }    
+        }
+        
+        return response()->json(array( "success" => true ));        
+    }
+
 }
