@@ -28,7 +28,13 @@
 		            		<span>{{ $region->regionName }}</span>
 		            	@endforeach
 		            </p>
-					<span class="offer-products"><span class="label">{{ trans('pages.data_products') }}: </span> {{ $offer['offerproduct']->product_count }} </span>					
+					<span class="offer-products"><span class="label">{{ trans('pages.data_products') }}: </span> 
+					@if(isset($offer['offerproduct']))
+					{{ $offer['offerproduct']->product_count }}
+					@else
+					0
+					@endif
+					</span>					
 				</a>
 			@endforeach
 
