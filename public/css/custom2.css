@@ -1010,7 +1010,7 @@ th.col-since {
 	color: #78E6D0;
 }
 
-.data-offer.overview .offer .offer-title {
+.data-offer.overview .offer .offer-title, .data-offer.detail .offer .offer-title {
 	font-size: 21px;
 	font-weight: bold;
 	line-height: 24px;
@@ -1019,7 +1019,7 @@ th.col-since {
 	color: #020A09;
 }
 
-.data-offer.overview .offer .region {
+.data-offer.overview .offer .region, .data-offer.detail .offer .region {
 	font-size: 14px;
 	font-weight: bold;
 	line-height: 24px;
@@ -1111,6 +1111,10 @@ a.link-market:not([href]):not([tabindex]), a.link-market:not([href]):not([tabind
 	color: #FF6B6B;
 }
 
+.data-offer.detail .product-container .product-fields .field-access .value {
+	text-transform: capitalize;	
+}
+
 .data-offer.detail .product-container .product-fields-block {
 	margin-top: 18px;
 }
@@ -1186,8 +1190,6 @@ a.link-market:not([href]):not([tabindex]), a.link-market:not([href]):not([tabind
 	letter-spacing: 0.37px;
 	color: #020A09;
 }
-
-
 
 /* --------------------------------------------------------- */
 

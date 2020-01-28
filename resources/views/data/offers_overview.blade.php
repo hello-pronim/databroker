@@ -11,7 +11,7 @@
 			<div class="col-lg-6">
 				<div class="blog-header mt-60">
 		            <h1>{{ trans('pages.Data_offers_overview') }}</h1>			            
-		            <p class="area">{{ trans('pages.data_offer_overview_desc1') }}<a href="javascript:;" class="help-section">{{ trans('pages.help_section') }}</a>.</p>
+		            <p class="area">{{ trans('pages.data_offer_overview_desc1') }}<a href="javascript:;" class="help-section">{{ trans('pages.help_section') }}</a></p>
 		        </div>		        
 			</div>
 			<div class="col-lg-6">
@@ -20,7 +20,7 @@
 		</div>
 		<div class="gridview col2" id="23">			
 			@foreach ($offers as $offer)			
-				<a class="cell offer {{$offer['status']}}" href="/data/offers/{{$offer['offerIdx']}}">
+				<a class="cell offer @if ($offer['status'] == 1) {{ 'active' }} @endif" href="/data/offers/{{$offer['offerIdx']}}">
 					<span class="iconify right-arrow" data-icon="bx:bx-right-arrow-alt" data-inline="false"></span>
 					<p class="offer-title">{{$offer['offerTitle']}}</p>
 					<p class="offer-location region">
@@ -28,7 +28,7 @@
 		            		<span>{{ $region->regionName }}</span>
 		            	@endforeach
 		            </p>
-					<span class="offer-products"><span class="label">{{ trans('pages.data_products') }}: </span> 1 </span>
+					<span class="offer-products"><span class="label">{{ trans('pages.data_products') }}: </span> {{ $offer['offerproduct']->product_count }} </span>					
 				</a>
 			@endforeach
 

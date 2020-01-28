@@ -78,11 +78,12 @@ return [
     'select_region' => 'Select Region',
 
     'Data_offers_overview' => 'My data offers & products',
-    'data_offer_overview_desc1' => 'Here you can find an overview of all your data offers. To see individual data products, or to add products to a data offer, click on the relevant data offer.
-        Need help with adding new data offers and products, and on installing the API needed to transfer data to other parties? Check out our ',
+    'data_offer_overview_desc1' => 'Before you can sell or share a data product, you need to make sure that the Data eXchange Controller (DXC) has been installed and that you have activated the data product using its unique ID.
+
+        Need help? You can find detailed instructions in our ',
     'help_section' => 'Help & support centre.',
     'publish_a_data_offer' => 'PUBLISH A DATA OFFER',
-    'data_products' => 'Data products',
+    'data_products' => 'Number of data products',
     'contact_data_provider' => 'Contact this data provider for any questions, or to prepare a specific dataset based on your needs.',
 
     'explore_data_offer' => 'Explore data offers in',
@@ -91,11 +92,12 @@ return [
     'Back_to_data_offer_overview' => 'Back to data offer overview',
     'Data_offer' => 'Data offer',
     'Ready_to_sell' => 'Ready to sell',
-    'sell_pending_hint' => 'To enable selling, go to the Data Exchange Controller and declare this data product using this ID.',
+    'sell_pending_hint' => 'This data product is published on the marketplace but not yet available for purchase. To make it available for purchase, go to your Data Exchange Controller and activate it using the following ID.',
     'id' => 'ID',
     'Copy_ID' => 'Copy ID',
+    'publish' => 'Publish',
     'published' => 'Published',
-    'unpublish' => 'Unpublish',
+    'unpublish' => 'Unpublish',    
     'unpublished' => 'Unpublished',
     'hidden_numbers' => '**************************',
     'ADD_DATA_PRODUCT' => 'ADD DATA PRODUCT',

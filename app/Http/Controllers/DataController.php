@@ -56,8 +56,8 @@ class DataController extends Controller
     }
 
     public function offers_overview(Request $request){                
-        $offers = Offer::with(['offerproduct', 'region'])->join('providers', 'providers.providerIdx', '=',  'offers.providerIdx')->where('providers.userIdx', Auth::id())->get();
-        
+        $offers = Offer::getProduct(Auth::id());
+
         $data = array( 'offers');
         return view('data.offers_overview', compact($data));
     }
@@ -71,53 +71,9 @@ class DataController extends Controller
 
     public function offer_detail($id, Request $request)
     {   
-        $offer = [
-            'title' => 'Satellite imagery of highways',
-            'region' => 'Europe',
-            'publish_status' => 'Published',            
-        ];
-        $products = [
-                [
-                    'title' => 'Satellite imagery of buildings and roads', 
-                    'region' => 'Belgium',
-                    'format' => 'API flow',
-                    'price' => '€500 / DTX xxx',
-                    'price_status' => '',
-                    'period' => '1 day',
-                    'status' => 'Unpublished',
-                    'sell_status' => '',
-                ],
-                [
-                    'title' => 'Satellite imagery of highways', 
-                    'region' => 'Belgium - Flanders',
-                    'format' => 'One file (xml)',
-                    'price' => '€500 / DTX xxx',
-                    'price_status' => 'Bidding possible',
-                    'period' => '1 month',
-                    'status' => 'published',
-                    'sell_status' => 'pending',
-                ],
-                [
-                    'title' => 'Satellite imagery of buildings and roads', 
-                    'region' => 'Germany - Berlin',
-                    'format' => 'Stream',
-                    'price' => 'Price not set.',
-                    'price_status' => 'Only bidding.',
-                    'period' => '1 year',
-                    'status' => 'published',
-                    'sell_status' => 'pending',
-                ],
-                [
-                    'title' => 'Satellite imagery of buildings and roads', 
-                    'region' => 'Flanders',
-                    'format' => 'Stream',
-                    'price' => 'Price not set.',
-                    'price_status' => 'Only bidding.',
-                    'period' => '',
-                    'status' => 'published',
-                    'sell_status' => 'ready',
-                ],
-            ];
+        $offer = Offer::with(['region'])->where('offers.offerIdx', '=', $id)->first();
+        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $id)->get();
+
         $data = array( 'offer', 'products', 'id' );
         return view('data.offer_detail', compact($data));
     }
@@ -147,6 +103,7 @@ class DataController extends Controller
         $offer_data['offerDescription'] = $request->offerDescription;
         $offer_data['communityIdx'] = $request->communityIdx;
         $offer_data['providerIdx'] = $providerIdx;
+        $offer_data['status'] = 1;
 
         $offer_obj = Offer::create($offer_data);
         $offerIdx = $offer_obj['offerIdx'];

@@ -115,5 +115,8 @@ ALTER TABLE `databroker_new`.`offerProducts` CHANGE COLUMN `productType` `produc
 ALTER TABLE `databroker_new`.`offerProducts` 
 ADD COLUMN `productLicenseUrl` VARCHAR(255) NULL AFTER `productInstruction`;
 
+ALTER TABLE `databroker_new`.`offers` 
+ADD COLUMN `status` TINYINT(2) NULL AFTER `themes`;
+
 
 
