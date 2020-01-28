@@ -31,7 +31,7 @@
 }
 
 .h3 {
-	text-align: left;
+	/*text-align: left;*/
 	font-family: DM Sans;
 	font-weight: bold;
 	font-size: 21px;
@@ -55,7 +55,7 @@
 }
 
 .para {
-	text-align: left;
+	/*text-align: left;*/
 	font-family: DM Sans;
 	font-weight: normal;
 	font-size: 18px;
