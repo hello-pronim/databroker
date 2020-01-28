@@ -225,10 +225,13 @@ h6{
     right: 0;
     top: 10px;
 }
-.bg-pattern1-left{
+
+.bg-pattern1-left,
+.bg-pattern1-right {
 	position: relative;
 }
-.bg-pattern1-left:before{
+.bg-pattern1-left:before,
+.bg-pattern1-right:before {
 	content: "";
 	background-image: url("../images/patterns/BG-left-desktop.svg");
 	background-position: right;
@@ -238,9 +241,14 @@ h6{
     height: 400px;
     display: block;
     position: absolute;
-    left:0;
+    left: 0px;
     top: 10px;	
 }
+.bg-pattern1-right:before {
+	background-image: url("../images/patterns/BG-right-desktop.svg");
+	right: 0px;
+}
+
 .back-icon{
 	color: #BAC0C5;
 	font-size: 14px;

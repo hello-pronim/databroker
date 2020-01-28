@@ -290,4 +290,9 @@ class DataController extends Controller
             
         return response()->json($dataoffer);
     }
+
+    public function offer_publish_confirm(Request $request){
+        $data = array(  );
+        return view('data.offer_publish_confirm', compact($data));
+    }
 }
