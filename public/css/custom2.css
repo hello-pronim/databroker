@@ -313,6 +313,10 @@
 	align-items: center;
 	/*justify-content: space-between;*/
 }
+.flex-vfill {
+	display: flex;
+	align-items: stretch;
+}
 .flex-vend{
 	display: flex;
 	align-items: flex-end;
