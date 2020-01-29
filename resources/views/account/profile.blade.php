@@ -18,33 +18,35 @@
 			</div>
 
             <div class="app-section profileinfo">
-                <div id="profile-display-section">                    
-                    <div id="edit-button" class="action-button-edit top-right flex-center" onClick="document.getElementById('profile-edit-section').style.display = 'block';document.getElementById('profile-display-section').style.display = 'none';">
-                        <i class="material-icons">edit</i> {{ trans('pages.edit') }}
-                    </div>                        
+                <div id="profile-display-section">       
+                    <div class="profile-section-header flex-vcenter-justify mb-10">                
                         <div class="sectiontitle">{{ trans('pages.profile_information') }}</div>
-                        <div class="row">
-                            <div class="col-2 info-label">{{ trans('pages.name') }}:</div>
-                            <div class="col info-text">{{ $user->firstname }} {{ $user->lastname }}</div>
+                        <div id="edit-button" class="action-button-edit flex-center" onClick="document.getElementById('profile-edit-section').style.display = 'block';document.getElementById('profile-display-section').style.display = 'none';">
+                            <i class="material-icons">edit</i> {{ trans('pages.edit') }}
                         </div>
+                    </div>             
+                    <div class="row">
+                        <div class="col-2 col-sm-4 info-label">{{ trans('pages.name') }}:</div>
+                        <div class="col info-text">{{ $user->firstname }} {{ $user->lastname }}</div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-2 info-label">{{ trans('pages.email_address') }}:</div>
-                            <div class="col info-text">{{ $user->emailAddress }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2 info-label">{{ trans('pages.job_title') }}:</div>
-                            <div class="col info-text">{{ $user->jobTitle }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2 info-label">{{ trans('pages.industry') }}:</div>
-                            <div class="col info-text">{{ $user->businessName }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2 info-label">{{ trans('pages.Password') }}:</div>
-                            <div class="col info-text">**************</div>
-                        </div>
-                    </div><!--profile-display-section-->
+                    <div class="row">
+                        <div class="col-2 col-sm-4 info-label">{{ trans('pages.email_address') }}:</div>
+                        <div class="col info-text">{{ $user->emailAddress }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 col-sm-4 info-label">{{ trans('pages.job_title') }}:</div>
+                        <div class="col info-text">{{ $user->jobTitle }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 col-sm-4 info-label">{{ trans('pages.industry') }}:</div>
+                        <div class="col info-text">{{ $user->businessName }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 info-label">{{ trans('pages.Password') }}:</div>
+                        <div class="col info-text">**************</div>
+                    </div>
+                </div><!--profile-display-section-->
 
                 <div id="profile-edit-section" style="display: none;" >
                     <div id="cancel-button" class="top-right flex-center" onClick="document.getElementById('profile-edit-section').style.display = 'none';document.getElementById('profile-display-section').style.display = 'block';">

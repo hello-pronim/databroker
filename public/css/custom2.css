@@ -377,6 +377,7 @@
 	white-space: nowrap;
 	line-height: 27px;
 	margin-top: -1.5px;
+	margin-bottom: 10px;
 	font-weight: normal;
 	font-size: 18px;
 	color: #020A09;	/* $color-basic */
