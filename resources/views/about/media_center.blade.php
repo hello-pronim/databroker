@@ -12,8 +12,7 @@
     <div class="container">
         <div class="app-section align-items-center mgb30">
             <div class="blog-header">
-                <h1 class="h1-small mgt60">Press & media</h1>
-                <div class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.</div>
+                <h1 class="h1-small mgt60">Media centre</h1>
             </div>          
             <div class="blog-content">
                 <div class="press-list">
@@ -30,12 +29,13 @@
                     </div>
                 </div>
                 <div class="">
-                    <p class="h2 text-left mgt30">They are talking about us</p>
+                    <p class="h2 text-left mgt30">Databroker in the media</p>
+                    <p class="para">Browse some of the media coverage we've received.</p>
                     <div class="partner-list">
                         <div class="row">
                             @foreach ( $partners as $partner )
-                            <div class="col-lg-2 partner-cell-wrapper flex-center pd15 flex-vertical">
-                                <div class="partner-cell pd25 flex-center flex-vertical">
+                            <div class="col-lg-2 partner-cell-wrapper flex-vfill pd15">
+                                <div class="partner-cell pd25 flex-vfill">
                                     <div class="partner-logo" style="background-image: url('{{asset($partner['logo'])}}');"></div>
                                 </div>
                             </div>
