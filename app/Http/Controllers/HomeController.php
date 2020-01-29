@@ -25,4 +25,13 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function test(){
+        $this->sendEmail("template", [
+            'from'=>"peterjackson0120@gmail.com", 
+            'to'=>'peterpan120@yandex.com', 
+            'name'=>'Test', 
+            'subject'=>'Test'
+        ]);
+    }
 }

@@ -311,7 +311,7 @@ body {
 .app-monetize-section-item1 h1 {
     font-weight: bold;
     color: black;
-    line-height: 1;
+    line-height: 1.5;
 }
 
 .app-monetize-section-item1 h3 {
@@ -762,7 +762,7 @@ img.app-partner-item {
 
 .app-footer-link a {
     color: #AAAAAA;
-    font-size: 12px;
+    font-size: 14px;
     display: inline-block;
     padding-right: 20px;
 }
@@ -1367,6 +1367,11 @@ a:hover {
 }
 #navbarNavDropdown .navbar-title{
     display: none;
+}
+#Group_2476 .table th.col-since{
+    font-size: 14px;
+    line-height: 30px;
+    color: rgba(140,145,150,1);
 }
 .cookie-accept {
     position: fixed;

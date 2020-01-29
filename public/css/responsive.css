@@ -157,8 +157,6 @@
 		max-height: 100%;
 	}
 
-
-
 	.h1-big {
 		font-size: 42px;
 		line-height: 44px;
@@ -574,6 +572,36 @@
 		width: 100% !important;
 	}
 
+	.profileinfo {
+		width: 100%;
+	}
+	.app-section.users {
+		width: 100%;
+	}
+	.bg-pattern1-left:before, .bg-pattern1-right:before{
+		width: 360px;
+		height: 220px;
+	}
+	.page-title{
+		font-size: 30px;
+		line-height: 36px;
+	}
+	.profileinfo{
+		margin-top: 50px;
+	} 
+	.info-label{
+		margin-right: 50px;
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+	.app-reveal-section{
+		padding-top: 50px;
+		padding-bottom: 0px;
+	}
+	.app-partner-items div.app-partner-item{
+		min-height: 136px;
+	}
+
 }
 
 @media ( max-width: 576px ){
@@ -621,5 +649,22 @@
 	}
 	.fixed_bg .navbar-expand-lg .navbar-nav .dropdown-menu{
 		right: 0!important;
+	}
+	.bg-pattern1-left:before, .bg-pattern1-right:before{
+		width: 300px;
+		height: 170px;
+	}
+	.profileinfo{
+		margin-top: 30px;
+	} 
+	#edit-button{
+		display: none;
+	}
+	.info-label{
+		flex: 0 0 25%;
+    	max-width: 25%;
+	}
+	.app-monetize-section-item1 h1{
+		text-align: center;
 	}
 }

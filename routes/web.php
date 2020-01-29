@@ -54,7 +54,9 @@ Route::get('/about/partners', 'AboutController@partners')->name('about.partners'
 Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase'); 
 
 Route::get('/help', 'HelpController@index')->name('help.overview');    	
-Route::get('/help/buying-data', 'HelpController@buying_data')->name('help.buying_data');    	
+Route::get('/help/buying-data', 'HelpController@buying_data')->name('help.buying_data');    
+
+Route::get('/emailtest', 'HomeController@test')->name('test.email'); 	
 
 $communities = Community::get();
 $datacontroller = new DataController();
