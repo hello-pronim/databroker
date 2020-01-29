@@ -625,10 +625,12 @@ th.col-since {
 .purchase-item h4{
 	margin:0px;
 	font-size: 21px;
+	line-height: 28px;
 	color: #020A09;	
 }
 .purchase-item .seller .price{
 	font-size: 21px;
+	line-height: 30px;
 	color: #FF6B6B;
 	font-weight: bold;
 }

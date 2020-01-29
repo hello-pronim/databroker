@@ -146,6 +146,9 @@
 	.app-wapper.profile{
 		margin-top: 96px;
 	}
+	.app-wapper.app-purchase-wapper{
+		margin-top: 96px;
+	}
 	.app-partner-item .img img{
 		max-height: 100%;
 	}
@@ -197,7 +200,7 @@
 		font-size: 20px !important;
 	}
 	.app-reveal-section{
-		padding: 30px 30px 0px 0px;
+		padding: 30px 0px 0px;
 		top: 0px;
 	}
 	.app-reveal-section-mark{
@@ -242,5 +245,8 @@
 	}
 	.app-monetize-section-item1 h1{
 		text-align: center;
+	}
+	.readmore-inourblog-btn{
+		width: 100%;
 	}
 }

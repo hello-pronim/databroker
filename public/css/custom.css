@@ -629,6 +629,7 @@ i.rotated:before{
 /*Blogs*/
 .blog-header h1, .cat-header h1{
 	font-size: 40px;
+	line-height: 44px;
 	font-weight: bold;
 	color: #06038D;	
 }
