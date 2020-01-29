@@ -167,17 +167,17 @@ class AboutController extends Controller
             //     'logo'  => '/images/partners/Image_26.png',
             // ),
         );
-        $partners2 = array (
+        $resellers = array (
             array(
                 'id'    => 1,
-                'logo'  => '/images/partners/Image_1.png',
+                'logo'  => '/images/partners/Image_25.png',
             ),
             array(
                 'id'    => 2,
-                'logo'  => '/images/partners/Image_2.png',
+                'logo'  => '/images/partners/Image_26.png',
             ),
         );
-        $data = array( 'partners', 'partners2' );
+        $data = array( 'partners', 'resellers' );
         return view('about.partners', compact($data));
     }
 
@@ -287,15 +287,15 @@ class AboutController extends Controller
         $press_list = array(
             array(
                 'id'    => 1,
-                'title' => 'Press inquries',
-                'text'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat, lectus ac accumsan dictum, eros erat tincidunt mauris, at vehicula elit nibh maximus eros.',
-                'action'=> 'Contact us',
+                'title' => 'Media inquiries',
+                'text'  => 'We’re always happy to work with journalists from around the world to discuss the rising value and importance of data in general, or Databroker’s peer-to-peer data marketplace in particular. If you’re a member of the media and would like to talk with us, please get in touch.',
+                'action'=> 'CONTACT US',
             ),
             array(
                 'id'    => 2,
-                'title' => 'Databroker dao press kit',
-                'text'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat, lectus ac accumsan dictum, eros erat tincidunt mauris, at vehicula elit nibh maximus eros.',
-                'action'=> 'Download pres kit',
+                'title' => 'Databroker media kit',
+                'text'  => 'Our media kit contains everything you need to write about Databroker, including web-friendly logos, photos of our team, short biographies of our founders, a company overview and a summary of what our platform offers.',
+                'action'=> 'DOWNLOAD OUR MEDIA KIT',
             ),
         );
         $partners = array (

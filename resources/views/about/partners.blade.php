@@ -11,11 +11,12 @@
     <div class="container">
         <div class="app-section app-reveal-section align-items-center">
             <div class="blog-header">
-                <div class="h1-small">Partners</div>
+                <div class="h1-small">Databroker partner network</div>
                 <div class="row">
-                    <div class="col-lg-6 para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.</div>
+                    <div class="col-lg-6 para">We are proud to work with a global network of trusted partners. Together we share the vision of transforming data into real business value, for both data buyers and sellers.</div>
                     <div class="col-lg-6 flex-end">
-                        <button class="button customize-btn pull-right">INTERESTED IN A PARTNERSHIP?</button>
+                        <div class="h4_intro text-right mgh30">Interested in teaming up with Databroker?</div>
+                        <button class="button customize-btn pull-right">LET’S CONNECT</button>
                     </div>
                 </div>
             </div>  
@@ -29,8 +30,8 @@
                 <div id="partner-list" class="mgh30">
                     <div class="row">
                         @foreach ( $partners as $partner )
-                        <div class="col-lg-2 partner-cell-wrapper flex-center pd15 flex-vertical">
-                            <div class="partner-cell pd25 flex-center flex-vertical">
+                        <div class="col-lg-2 partner-cell-wrapper flex-vfill pd15">
+                            <div class="partner-cell pd25 flex-vfill">
                                 <div class="partner-logo" style="background-image: url('{{asset($partner['logo'])}}');"></div>
                             </div>
                         </div>
@@ -70,10 +71,10 @@
         </div>
         <div id="partner-list2" class="">
             <div class="row">
-                @foreach ( $partners2 as $partner )
-                <div class="col-lg-2 partner-cell-wrapper flex-center pd15 flex-vertical">
-                    <div class="partner-cell pd25 flex-center flex-vertical">
-                        <div class="partner-logo" style="background-image: url('{{asset($partner['logo'])}}');"></div>
+                @foreach ( $resellers as $reseller )
+                <div class="col-lg-2 partner-cell-wrapper flex-vfill pd15">
+                    <div class="partner-cell pd25 flex-vfill">
+                        <div class="partner-logo" style="background-image: url('{{asset($reseller['logo'])}}');"></div>
                     </div>
                 </div>
                 @endforeach

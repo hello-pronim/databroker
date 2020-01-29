@@ -3,8 +3,14 @@ body{
 }
 /* Colors */
 .btn-transparent{
-	background-color: transparent;	
+	background-color: transparent;		
 }	
+.btn.active, .btn.btn-default.active, .btn.btn-default:active, .btn:active, .open>.btn.btn-default.dropdown-toggle, .open>.btn.dropdown-toggle, .show>.btn.btn-default.dropdown-toggle, .show>.btn.dropdown-toggle{
+	color: #BAC0C5;
+}
+.btn.btn-default.focus, .btn.btn-default:focus, .btn.focus, .btn:focus{
+	color: #BAC0C5;
+}
 .btn-transparent:hover, .btn-transparent:focus, .btn-transparent:active{
 	background-color: transparent;	
 }
@@ -18,10 +24,13 @@ body{
 	color:white !important;
 }
 .text-thick-grey{
-	color:#8C9196;
+	color:#8C9196 !important;
+}
+.text-black{
+	color: #020A09 !important;
 }
 .text-grey{
-	color:#BAC0C5;
+	color:#BAC0C5 !important;
 }
 .text-bold{
 	font-weight: bold;
@@ -58,6 +67,9 @@ body{
 	margin:0 10px;
 }
 /*General style*/
+.m0-auto{
+	margin: 0 auto;
+}
 .mb-10{
 	margin-bottom: 10px !important;
 }
@@ -93,6 +105,9 @@ body{
 }
 .ml-15{
 	margin-left: 15px;
+}
+.ml-30{
+	margin-left: 30px;
 }
 .mr-15{
 	margin-right: 15px;
@@ -187,10 +202,9 @@ h6{
     margin: 20px 0px;
     background-color: transparent;
 }
-
 .custom-btn1:hover {
     color: #4542bd;
-    border: 2px solid #4542bd;
+    border: 2px solid #4542bd;    
 }
 .bmd-form-group{
 	padding-top: 4px;
@@ -420,6 +434,12 @@ i.rotated:before{
 	color:#8c9196;
 	font-weight: 500;
 }
+.fixed_bg a{
+	color: #fff;
+}
+.fixed_bg a:hover{
+	color: #bbb !important;
+}
 .fixed_bg .dropdown-menu a.dropdown-item:hover{
 	background-color:#06038D !important;	
 }
@@ -443,15 +463,12 @@ i.rotated:before{
 #main_menu .navbar-collapse{
 	flex-grow: 0;
 }
-
 #main_menu .navbar-nav li{
 	border-left:1px solid #DAE1E5;
 }
-
 #main_menu .navbar-nav li:first-child{
 	border:none;
 }
-
 #main_menu .navbar-nav li a{
 	padding:0.35rem 1rem;
 	font-weight: bold;
@@ -459,7 +476,9 @@ i.rotated:before{
 	color: #8C9196;
 	font-size: 16px;
 }
-
+#main_menu .navbar-nav li:hover a{
+	color: #06038D;	
+}
 /*Homepage*/
 .card{
 	border:none;
@@ -632,11 +651,11 @@ i.rotated:before{
 	line-height: 44px;
 	font-weight: bold;
 	color: #06038D;	
+	line-height: 46px;
 }
 .blog-header p.area{
 	font-size: 18px;
-	color: #020A09;
-	margin-top: -10px;
+	color: #020A09;	
 }
 .blog-header p.area span:after{
 	content: ",";

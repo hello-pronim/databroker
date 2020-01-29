@@ -32,10 +32,12 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/data/offers/{id}', 'DataController@offer_detail')->where('id', '[0-9]+')->name('data_offer_detail');
 	Route::get('/data/offers/{id}/product/add', 'DataController@offer_add_product')->where('id', '[0-9]+')->name('data_offer_add_product');
 	Route::post('/data/product/add', 'DataController@offer_submit_product')->name('data_offer_submit_product');
+	Route::get('/data/product/confirmation', 'DataController@offer_product_publish_confirm')->name('data_offer_product_publish_confirm');
 	Route::get('/data/offers/{id}/confirmation', 'DataController@offer_publish_confirm')->where('id', '[0-9]+')->name('data_offer_publish_confirm');
 	Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
 	
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');			
+	Route::post('/data/update-status', 'DataController@data_update_status')->name('data.update_status');			
 
 	Route::get('/bids', 'ProfileController@bids')->name('profile.bids');
 });

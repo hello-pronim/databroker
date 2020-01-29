@@ -173,6 +173,10 @@ body {
     margin: 33px;
 }
 
+.btn.btn-default.focus, .btn.btn-default:focus, .btn.btn-default:hover, .btn.focus, .btn:focus, .btn:hover{
+    background-color: transparent;
+}
+
 .our-blog-btn {
     color: white;
     float: right;
