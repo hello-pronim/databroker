@@ -91,7 +91,7 @@
         		<h3 class="text-bold">Publish your data offer in any of our data communities</h3>
         		<div class="row">
         			@foreach ($communities as $community)
-                        <div class="col-md-4 mt-10 text-bold fs-18">{{ $community->communityName }}</div>
+                        <div class="col-md-4 mt-10 text-bold fs-18"><a href="{{ route('data.'.str_replace( ' ', '_', strtolower($community->communityName))) }}">{{ $community->communityName }}</a></div>
                     @endforeach  
         		</div>
         	</div>

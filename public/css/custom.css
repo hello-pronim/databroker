@@ -650,11 +650,11 @@ i.rotated:before{
 	font-size: 40px;
 	font-weight: bold;
 	color: #06038D;	
+	line-height: 46px;
 }
 .blog-header p.area{
 	font-size: 18px;
-	color: #020A09;
-	margin-top: -10px;
+	color: #020A09;	
 }
 .blog-header p.area span:after{
 	content: ",";
