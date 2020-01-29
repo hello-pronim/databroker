@@ -30,8 +30,8 @@
                 <div id="partner-list" class="mgh30">
                     <div class="row">
                         @foreach ( $partners as $partner )
-                        <div class="col-lg-2 partner-cell-wrapper flex-center pd15 flex-vertical">
-                            <div class="partner-cell pd25 flex-center flex-vertical">
+                        <div class="col-lg-2 partner-cell-wrapper flex-vfill pd15">
+                            <div class="partner-cell pd25 flex-vfill">
                                 <div class="partner-logo" style="background-image: url('{{asset($partner['logo'])}}');"></div>
                             </div>
                         </div>
@@ -72,8 +72,8 @@
         <div id="partner-list2" class="">
             <div class="row">
                 @foreach ( $resellers as $reseller )
-                <div class="col-lg-2 partner-cell-wrapper flex-center pd15 flex-vertical">
-                    <div class="partner-cell pd25 flex-center flex-vertical">
+                <div class="col-lg-2 partner-cell-wrapper flex-vfill pd15">
+                    <div class="partner-cell pd25 flex-vfill">
                         <div class="partner-logo" style="background-image: url('{{asset($reseller['logo'])}}');"></div>
                     </div>
                 </div>
