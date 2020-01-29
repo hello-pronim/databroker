@@ -409,13 +409,28 @@
 }
 
 @media (max-width: 767px) {
-
+/*
+	.container-fluid {
+		margin: 24px 24px;
+		display: flex;		
+	}
 	.container {
+		flex: 1;
+		max-width: unset;
+		width: unset;		
+		padding-left: 0px;
+		padding-right: 0px;
+		margin-left: 0px;
+		margin-right: 0px;
+	}	*/
+	.container {
+		width: 100%;
 		max-width: 100%;
-		width: 100%;		
-		padding-left: 24px;
 		padding-right: 24px;
-	}	
+		padding-left: 24px;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
 	
 	.mg40 {
 		margin: 30px;
@@ -551,6 +566,14 @@
 	#hn20 {
 		margin-top: 10px;
 	}
+
+	.square-xs {
+		height: 0px !important;
+		padding-bottom: 100% !important;
+		margin-bottom: 0px !important;
+		width: 100% !important;
+	}
+
 }
 
 @media ( max-width: 576px ){

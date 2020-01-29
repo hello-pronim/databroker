@@ -124,13 +124,12 @@
                 <div class="h2 mgb40">The team</div>
                 <div class="teammembers row mgb40">
                     @foreach ($teammates as $member)
-                    <div class="cell member col-lg-3 col-sm-6 col-xs-6 flex-center mgt40 mgb40">
-                        <div class="text-center">
-                            <div class="partner-logo avatar" style="background-image: url('{{asset($member['avatar'])}}');"></div>
+                    <div class="cell member col-lg-3 col-sm-6 col-xs-6 flex-vertical flex-vcenter text-center mgt40 mgb40">
+                            <div class="partner-logo avatar square-xs" style="background-image: url('{{asset($member['avatar'])}}');"></div>
                             <div class="name mgt25">{{$member['name']}}</div>
                             <div class="teamtitle para-small">{{$member['title']}}</div>
-                            <a class="flex-center mg15"><div class="databroker-icon linkedin"></div></a>
-                        </div>
+                            <div class="spacer"></div>
+                            <a class="icon-wrapper flex-center mg15"><div class="databroker-icon linkedin"></div></a>
                     </div>
                     @endforeach
                 </div>

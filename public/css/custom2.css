@@ -324,6 +324,7 @@
 }
 
 .flex-vertical {
+	display: flex;
 	flex-direction: column;
 }
 
@@ -1498,6 +1499,10 @@ body .select2-search--dropdown {
     background-repeat: no-repeat;
 }
 
+.flex-vertical .partner-logo {
+	flex: unset;
+}
+
 .blog-cell-wrapper {
 }
 
@@ -1763,6 +1768,10 @@ body .select2-search--dropdown {
 	border-radius: 107px;
 }
 
+.teammembers .cell .spacer {
+	flex: 1 1 auto;
+}
+
 #hb16 .h1-small {
 	margin-right: -15px;
 }
@@ -1958,4 +1967,10 @@ body .select2-search--dropdown {
 
 .bg-half-watermark-right-left + .container {
 	min-height: 688px;
+}
+
+.square {
+	height: 0px;
+	padding-bottom: 100%;
+	margin-bottom: 0px;
 }
