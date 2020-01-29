@@ -168,10 +168,15 @@
 	} 
 	.info-label{
 		margin-right: 50px;
+		flex: 0 0 25%;
+		max-width: 25%;
 	}
 	.app-reveal-section{
 		padding-top: 50px;
 		padding-bottom: 0px;
+	}
+	.app-partner-items div.app-partner-item{
+		min-height: 136px;
 	}
 }
 

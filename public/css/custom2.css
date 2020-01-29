@@ -324,6 +324,15 @@
 	justify-content: center;
 	/*align-items: center;*/
 }
+.justify-center{
+	justify-content: center;
+}
+.justify-between{
+	justify-content: space-between;
+}
+.justify-end{
+	justify-content: flex-end;
+}
 
 .pull-right {
 	/*align-self: flex-end;*/
@@ -473,7 +482,7 @@ th.col-since {
 	color: rgba(140,145,150,1);
 }
 .action-button-delete {
-	width: 73px;
+	width: 100%;
 }
 .action-button-delete .ic-delete-16 {
 	width: 16px;
