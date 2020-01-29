@@ -19,4 +19,11 @@ class OfferProduct extends Model
         'productIdx', 'offerIdx', 'productType', 'productTitle', 'productMoreInfo', 'productAccessDays', 'productBidType', 'productPrice', 'productInstruction', 'productStatus', 'productLicenseUrl'
     ];    
 
+    public function offer(){
+        return $this->hasMany('App\Models\Offer', 'offerIdx', 'offerIdx');
+    }
+
+    public function region(){
+    	return $this->belongsToMany('App\Models\Region', 'App\Models\RegionProduct', 'productIdx', 'regionIdx');
+    }
 }

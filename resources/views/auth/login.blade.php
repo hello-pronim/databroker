@@ -6,7 +6,7 @@
         <div class="row justify-content-center auth-section">
             <div class="col-xl-6 col-lg-6 col-md-10" id="login_section">
                 <h1 class="h1-smaller color-primary text-center text-primary" id="login_title">Please sign in</h1>
-                <p class="text-center h4-intro mb-50">To your account </p>
+                <p class="text-center h4-intro mb-50">To {{ $action }} </p>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
@@ -39,18 +39,19 @@
                         <div class="col-6 text-right">
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link text-grey" id="forgot_pass_link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Password?') }}
+                                    {{ __('Forgot your password?') }}
                                 </a>
                             @endif
                         </div>
                     </div>
 
                     <hr>
-                    <p class="h4-intro">No account yet?</p>
-                    <p class="paragraph-small text-bold">Let's get you set up on Databroker first! It's free!</p>
+                    <p class="h4-intro">Don’t have an account yet?</p>
+                    <p class="paragraph-small text-bold">Then let’s get you set up!</p>
                     <a id="register_link" href="{{ route('register') }}">
                         <button type="button" class="btn custom-btn1 pure-material-button-outlined">{{ __('REGISTER NOW') }}</button>
                     </a>
+                    <label class="ml-30">It’s free!</label>
 
                 </form>
 

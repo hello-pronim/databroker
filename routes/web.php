@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
 	
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');			
+	Route::post('/data/update-status', 'DataController@data_update_status')->name('data.update_status');			
 
 	Route::get('/bids', 'ProfileController@bids')->name('profile.bids');
 });

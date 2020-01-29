@@ -131,7 +131,7 @@
 									</label>
 									<div class="period_select">
 										<label class="pure-material-textfield-outlined">
-					                        <span class="currency">€</span><input type="number" step="0.01" name="nobidding_price" class="form-control2 input_data" placeholder="0.0" value=""> 
+					                        <span class="currency">€ </span><input type="number" step="0.01" name="nobidding_price" class="form-control2 input_data" placeholder="0.0" value=""> 
 					                    </label>
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">
@@ -155,7 +155,7 @@
 									</label>
 				                	<div class="period_select">
 										<label class="pure-material-textfield-outlined">
-					                        <span class="currency">€</span><input type="number" step="0.01" name="buyer_bid_price" class="form-control2 input_data" placeholder="0.0" value=""> 
+					                        <span class="currency">€ </span><input type="number" step="0.01" name="buyer_bid_price" class="form-control2 input_data" placeholder="0.0" value=""> 
 					                    </label>
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use App\Models\Region;
 use App\Models\Community;
 use App\Models\Theme;
@@ -74,6 +75,16 @@ class Offer extends Model
         $result = $dataoffer->limit(12)->get();
 
         return $result;                    
+    }
+
+    protected static function getProduct($user_id){
+        $dataproduct = Offer::with(['region', 'offerproduct' => function($query){
+                $query->select( DB::raw('count(*) as product_count, offerIdx'))->groupby('offerIdx');
+            }])                        
+            ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+            ->where('providers.userIdx', '=', $user_id)->get();
+
+        return $dataproduct;
     }
 
 }

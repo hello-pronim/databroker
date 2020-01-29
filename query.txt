@@ -112,8 +112,9 @@ DEFAULT CHARACTER SET = utf8;
 
 ALTER TABLE `databroker_new`.`offerProducts` CHANGE COLUMN `productType` `productType` VARCHAR(20) NULL DEFAULT NULL , CHANGE COLUMN `productBidType` `productBidType` VARCHAR(20) NULL DEFAULT NULL ;
 
-ALTER TABLE `databroker_new`.`offerProducts` 
-ADD COLUMN `productLicenseUrl` VARCHAR(255) NULL AFTER `productInstruction`;
+ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `productLicenseUrl` VARCHAR(255) NULL AFTER `productInstruction`;
+
+ALTER TABLE `databroker_new`.`offers` ADD COLUMN `status` TINYINT(2) NULL AFTER `themes`;
 
 
 

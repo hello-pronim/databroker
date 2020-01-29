@@ -21,6 +21,7 @@ return [
     'email_address' => 'Email Address',
     'company' => 'Company',
     'password' => 'Password',
-    'confirm_password' => 'Confirm Password'
+    'confirm_password' => 'Confirm Password',
+    'login' => 'Login'
 
 ];
