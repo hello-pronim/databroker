@@ -20,6 +20,9 @@
                         <div class="mgl30 adv-combo-wrapper custom-select2 geocommunity-wrapper">
                             <select name="geocommunity" data-placeholder="Geographics Community">
                                 <option></option>
+                                @foreach ( $communities as $community )
+                                <option value="{{$community->communityIdx}}">{{ $community->communityName }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

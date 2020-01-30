@@ -274,8 +274,9 @@ class AboutController extends Controller
                 'image' => 'Agriculture.png',
             ),
         );
+        $communities = Community::all();
 
-        $data = array( 'usecases', 'usecases2' );
+        $data = array( 'usecases', 'usecases2', 'communities' );
         return view('about.usecase', compact($data));
     }
 
