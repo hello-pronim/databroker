@@ -168,7 +168,7 @@ class DataController extends Controller
             $i++;
         }        
 
-        return response()->json(array( "success" => true ));
+        return response()->json(array( "success" => true, 'redirect' => route('data_offer_publish_confirm') ));
 
     }
 
@@ -217,7 +217,8 @@ class DataController extends Controller
             RegionProduct::create($productcountry_data);
         }
         
-        return response()->json(array( "success" => true ));
+        $offerid = $request->offerIdx;
+        return response()->json(array( "success" => true, 'offerid' => $offerid, 'redirect' => route('data_offer_product_publish_confirm', ['id'=>$offerid]) ));
     }
 
     public function category($category=""){

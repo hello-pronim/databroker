@@ -169,7 +169,9 @@ $(document).ready(function(){
                 dataType: 'json',
                 success:function(response){                    
                     if(response.success == true ){
-                        window.location.href = "/data/offers/"+ $('input[name="offerIdx"]').val();
+                        console.log(response);
+                        // window.location.href = "/data/offers/"+ $('input[name="offerIdx"]').val();
+                        window.location.href = response.redirect;
                     }
                 }
             });
