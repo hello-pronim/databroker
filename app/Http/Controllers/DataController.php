@@ -91,10 +91,12 @@ class DataController extends Controller
         $provider_obj = Provider::create($provider_data);
         $providerIdx = $provider_obj['providerIdx'];
 
-        $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
-        $request->file('companyLogo_1')->move($companyLogo_path, $fileName);
-        
-        Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));
+        if($request->file('companyLogo_1')!= null){
+            $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
+            $request->file('companyLogo_1')->move($companyLogo_path, $fileName);
+            
+            Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));    
+        }        
 
         $offer_data = [];
         $offerImage_path = public_path('uploads/offer');

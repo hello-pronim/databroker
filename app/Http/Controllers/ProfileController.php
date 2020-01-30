@@ -136,8 +136,8 @@ class ProfileController extends Controller
         $company['companyName'] = $request->companyName;
         $company['regionIdx'] = $request->regionIdx;
         $company['companyURL'] = $request->companyURL;
-
-        if($request->file('companyLogo_1')){            
+        
+        if($request->file('companyLogo_1')!=null){            
             $companyLogo_path = public_path('uploads/company');
             $fileName = "company_".$request->providerIdx.'.'.$request->file('companyLogo_1')->extension();
             
