@@ -168,7 +168,7 @@ class DataController extends Controller
             $i++;
         }        
 
-        return response()->json(array( "success" => true, 'redirect' => route('data_offer_publish_confirm') ));
+        return response()->json(array( "success" => true, 'redirect' => route('data_offer_publish_confirm', ['id'=>$offerIdx]) ));
 
     }
 
@@ -251,9 +251,9 @@ class DataController extends Controller
         return response()->json($dataoffer);
     }
 
-    public function offer_publish_confirm(Request $request){
-        $data = array(  );
-        return view('data.offer_publish_confirm', compact($data));
+    public function offer_publish_confirm($id, Request $request){
+        $data = array( 'offerId' => $id );
+        return view('data.offer_publish_confirm', $data);
     }
 
     public function offer_product_publish_confirm(Request $request){
