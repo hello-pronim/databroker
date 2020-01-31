@@ -91,10 +91,12 @@ class DataController extends Controller
         $provider_obj = Provider::create($provider_data);
         $providerIdx = $provider_obj['providerIdx'];
 
-        $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
-        $request->file('companyLogo_1')->move($companyLogo_path, $fileName);
-        
-        Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));
+        if($request->file('companyLogo_1')!= null){
+            $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
+            $request->file('companyLogo_1')->move($companyLogo_path, $fileName);
+            
+            Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));    
+        }        
 
         $offer_data = [];
         $offerImage_path = public_path('uploads/offer');
@@ -166,7 +168,7 @@ class DataController extends Controller
             $i++;
         }        
 
-        return response()->json(array( "success" => true ));
+        return response()->json(array( "success" => true, 'redirect' => route('data_offer_publish_confirm', ['id'=>$offerIdx]) ));
 
     }
 
@@ -215,7 +217,8 @@ class DataController extends Controller
             RegionProduct::create($productcountry_data);
         }
         
-        return response()->json(array( "success" => true ));
+        $offerid = $request->offerIdx;
+        return response()->json(array( "success" => true, 'offerid' => $offerid, 'redirect' => route('data_offer_product_publish_confirm', ['id'=>$offerid]) ));
     }
 
     public function category($category=""){
@@ -248,9 +251,9 @@ class DataController extends Controller
         return response()->json($dataoffer);
     }
 
-    public function offer_publish_confirm(Request $request){
-        $data = array(  );
-        return view('data.offer_publish_confirm', compact($data));
+    public function offer_publish_confirm($id, Request $request){
+        $data = array( 'offerId' => $id );
+        return view('data.offer_publish_confirm', $data);
     }
 
     public function offer_product_publish_confirm(Request $request){

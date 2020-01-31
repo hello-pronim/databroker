@@ -1307,7 +1307,10 @@ a.link-market:not([href]):not([tabindex]), a.link-market:not([href]):not([tabind
 .adv-combo-wrapper .select2 .selection .select2-selection {
     cursor: pointer;
     display: block;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -1989,4 +1992,13 @@ body .select2-search--dropdown {
 	height: 0px;
 	padding-bottom: 100%;
 	margin-bottom: 0px;
+}
+
+.usecases .adv-combo-wrapper .select2-container--default .select2-selection--single span {
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 17px;
+	letter-spacing: 0.23px;
+	color: #262733;
+	opacity: 0.55;
 }
