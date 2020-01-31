@@ -61,9 +61,7 @@
 @media (max-width: 991px){
 
 	.container {
-		max-width: 706px;
-		padding-left: 0px;
-		padding-right: 0px;
+		max-width: 736px;
 	}	
 
 	::-webkit-scrollbar {
@@ -156,10 +154,20 @@
 	.app-wapper.app-purchase-wapper{
 		margin-top: 96px;
 	}
+	.app-wapper.app-bids-wapper{
+		margin-top: 96px;
+	}
 	.app-partner-item .img img{
 		max-height: 100%;
 	}
 
+	.fixed_bg .navbar-expand-lg .navbar-nav .dropdown-menu{
+		right: 0!important;
+	}
+	.app-brand img, .app-brand svg {
+	    height: 32px;
+	    width: 187px;
+	}
 	.h1-big {
 		font-size: 42px;
 		line-height: 44px;
@@ -650,9 +658,6 @@
 	.users .Buttons_Round_Hero{
 		width: 100%;
 	}
-	.fixed_bg .navbar-expand-lg .navbar-nav .dropdown-menu{
-		right: 0!important;
-	}
 	.bg-pattern1-left:before, .bg-pattern1-right:before{
 		width: 300px;
 		height: 170px;
@@ -672,5 +677,13 @@
 	}
 	.readmore-inourblog-btn{
 		width: 100%;
+	}
+	.more_dropdown div{
+		left: 0px;
+		right: auto;
+	}
+	.more_dropdown div::after{
+		left: 64px;
+		right: auto;
 	}
 }
