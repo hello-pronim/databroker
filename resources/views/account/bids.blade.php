@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid app-wapper">
+<div class="container-fluid app-wapper app-bids-wapper">
 	<div class="bg-pattern1-left"></div>
     <div class="container">
     	<div class="app-section app-reveal-section align-items-center data-detail">    		
