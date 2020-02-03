@@ -155,7 +155,11 @@
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
 						<div class="buttons flex-vcenter">
+							@if ($current_step == 'before')
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
+							@else
+							<span></span>
+							@endif
 							<button type="button" class="customize-btn btn-next">{{ trans('pages.next') }}</button>
 						</div>
 					</div>
