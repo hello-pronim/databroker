@@ -51,7 +51,15 @@ class DataController extends Controller
         $countries = Region::where('regionType', 'country')->get();
         $communities = Community::all();
 
-        $data = array( 'regions', 'countries', 'communities' );
+        $user = $this->getAuthUser();
+        $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
+        if (!$company) {
+            $current_step = 'before';
+        } else {
+            $current_step = 'step1';
+        }
+
+        $data = array( 'regions', 'countries', 'communities', 'current_step' );
         return view('data.offers', compact($data));
     }
 
@@ -83,20 +91,27 @@ class DataController extends Controller
         $provider_data = [];
         $companyLogo_path = public_path('uploads/company');
                 
-        $provider_data['userIdx'] = Auth::id();
-        $provider_data['regionIdx'] = $request->regionIdx;
-        $provider_data['companyName'] = $request->companyName;        
-        $provider_data['companyURL'] = $request->companyUrl;        
+        $user = $this->getAuthUser();
+        $providerIdx = -1;
+        $provider_obj = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
+        if (!$provider_obj) {
+            $provider_data['userIdx'] = Auth::id();
+            $provider_data['regionIdx'] = $request->regionIdx;
+            $provider_data['companyName'] = $request->companyName;        
+            $provider_data['companyURL'] = $request->companyUrl;        
 
-        $provider_obj = Provider::create($provider_data);
-        $providerIdx = $provider_obj['providerIdx'];
+            $provider_obj = Provider::create($provider_data);
+            $providerIdx = $provider_obj['providerIdx'];    
 
-        if($request->file('companyLogo_1')!= null){
-            $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
-            $request->file('companyLogo_1')->move($companyLogo_path, $fileName);
-            
-            Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));    
-        }        
+            if($request->file('companyLogo_1')!= null){
+                $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
+                $request->file('companyLogo_1')->move($companyLogo_path, $fileName);
+                
+                Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));    
+            }
+        } else {
+            $providerIdx = $provider_obj['providerIdx'];    
+        }   
 
         $offer_data = [];
         $offerImage_path = public_path('uploads/offer');
@@ -253,8 +268,18 @@ class DataController extends Controller
     }
 
     public function offer_publish_confirm($id, Request $request){
-        $data = array( 'offerId' => $id );
-        return view('data.offer_publish_confirm', $data);
+        $offerId = $id;
+        $offer = Offer::find($id);
+        
+        $communityIdx = $offer['communityIdx'];
+        $community = Community::find($communityIdx);
+        // $offer_plain = json_encode($offer);
+        // $community_plain = json_encode($community);
+        $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
+        $link_to_market = route('data.'.$community_route);
+
+        $data = array( 'offerId', 'link_to_market' ); //, 'offer_plain', 'community_plain'
+        return view('data.offer_publish_confirm', compact($data));
     }
 
     public function offer_product_publish_confirm(Request $request){
@@ -278,6 +303,11 @@ class DataController extends Controller
         }
         
         return response()->json(array( "success" => true ));        
+    }
+
+    public function getAuthUser ()
+    {
+        return Auth::user();
     }
 
 }

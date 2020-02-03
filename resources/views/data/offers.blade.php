@@ -11,11 +11,15 @@
     <div class="container">
     	<form method="post" action="{{ route('data.add_offer') }}" id="data-offer">
     		@csrf    		
-	    	<div id="before" class="app-section app-reveal-section align-items-center step current">
+    		@if ($current_step == 'before')
+    		<div id="before" class="app-section app-reveal-section align-items-center step current">
+    		@else
+	    	<div id="before" class="app-section app-reveal-section align-items-center step">
+	    	@endif
 	    		<div class="row">
 	    			<div class="col-lg-6">
 	    				<div class="blog-header">
-				            <h1>Before we start</h1>			            
+				            <h1>Before we start</h1>
 				            <p class="area">Please tell us a little more about your company.<br>
 							This information will be published in the marketplace along with your data offer.</p>
 				        </div>
@@ -53,7 +57,11 @@
 	    			</div>
 	    		</div>	        
 		    </div>	
+    		@if ($current_step == 'step1')
+	    	<div id="step1" class="app-section app-reveal-section align-items-center step current">
+	    	@else  
 	    	<div id="step1" class="app-section app-reveal-section align-items-center step">  
+	    	@endif
 	    		<div class="row header">  	
 		    		<div class="col col-9">
 						<div class="page-title text-primary">{{ trans('pages.data_offer_step_1') }}</div>		
@@ -147,7 +155,11 @@
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
 						<div class="buttons flex-vcenter">
+							@if ($current_step == 'before')
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
+							@else
+							<span></span>
+							@endif
 							<button type="button" class="customize-btn btn-next">{{ trans('pages.next') }}</button>
 						</div>
 					</div>

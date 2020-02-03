@@ -17,10 +17,10 @@
 		            <div class="h1-big text-center color-blue">Your data offer has been published successfully on the marketplace</div>
 		        </div>		        
 		        <div class="blog-content">
-		            <div class="h2">You can access it via the My data offers & products section of your account and edit it any time.</div>
-		            <p class="para"><b>IMPORTANT</b>: To be able to sell or share data related to this data offer, you need to create specific data products. You can do this now, or at any time, via the My data offers and products section of your account.</p>
+		            <div class="h2">You can access it via the <a href="{{route('data_offers_overview')}}">My data offers & products</a> section of your account and edit it any time.</div>
+		            <p class="para"><b>IMPORTANT</b>: To be able to sell or share data related to this data offer, you need to create specific data products. You can do this now, or at any time, via the <a href="{{route('data_offers_overview')}}">My data offers and products</a> section of your account.</p>
 		            <div class="flex-center mgt30">
-		            	<a href="{{route('data_offers_overview')}}"><button class="primary-btn mgr30">VIEW ON THE MARKETPLACE</button></a>
+		            	<a href="{{$link_to_market}}"><button class="primary-btn mgr30">VIEW ON THE MARKETPLACE</button></a>
 		            	<a href="{{route('data_offer_add_product', ['id'=>$offerId])}}"><button class="secondary-btn">ADD DATA PRODUCTS NOW</button></a>
 		            </div>
 		        </div>
