@@ -91,20 +91,27 @@ class DataController extends Controller
         $provider_data = [];
         $companyLogo_path = public_path('uploads/company');
                 
-        $provider_data['userIdx'] = Auth::id();
-        $provider_data['regionIdx'] = $request->regionIdx;
-        $provider_data['companyName'] = $request->companyName;        
-        $provider_data['companyURL'] = $request->companyUrl;        
+        $user = $this->getAuthUser();
+        $providerIdx = -1;
+        $provider_obj = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
+        if (!$provider_obj) {
+            $provider_data['userIdx'] = Auth::id();
+            $provider_data['regionIdx'] = $request->regionIdx;
+            $provider_data['companyName'] = $request->companyName;        
+            $provider_data['companyURL'] = $request->companyUrl;        
 
-        $provider_obj = Provider::create($provider_data);
-        $providerIdx = $provider_obj['providerIdx'];
+            $provider_obj = Provider::create($provider_data);
+            $providerIdx = $provider_obj['providerIdx'];    
 
-        if($request->file('companyLogo_1')!= null){
-            $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
-            $request->file('companyLogo_1')->move($companyLogo_path, $fileName);
-            
-            Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));    
-        }        
+            if($request->file('companyLogo_1')!= null){
+                $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
+                $request->file('companyLogo_1')->move($companyLogo_path, $fileName);
+                
+                Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));    
+            }
+        } else {
+            $providerIdx = $provider_obj['providerIdx'];    
+        }   
 
         $offer_data = [];
         $offerImage_path = public_path('uploads/offer');
