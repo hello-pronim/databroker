@@ -1038,7 +1038,7 @@ i.rotated:before{
 	font-weight: bold;
 	color: #020A09;
 	display: table-cell;
-    padding-right: 25px;
+    padding-right: 10px;
     white-space: nowrap;
 }
 .cat-body .cat-select{
@@ -1068,6 +1068,12 @@ i.rotated:before{
 #offer-list .card .card-header img{
 	min-height: 270px;
     max-height: 270px;
+}
+.community-filter .community >div{
+	min-width: 294px;
+}
+.community-filter .theme{
+	padding-left: 25px;
 }
 /*wallet page*/
 #wallet .download i{

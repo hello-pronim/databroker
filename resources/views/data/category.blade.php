@@ -22,9 +22,9 @@
 	        </div>	        
 	        <div class="app-monetize-section-item0 ml-0 mt-20"></div>
 	        <div class="cat-body">
-	        	<div class="row">
+	        	<div class="row community-filter">
 	        		@csrf    		
-	        		<div class="col-lg-4">
+	        		<div class="col-xl-4 col col-lg-8 mb-20 community">
 	        			<label class="cat-label">{{ trans('pages.explore') }}</label>	        	
 	                    <div class="adv-combo-wrapper custom-select2 cat-select">
 		                    <select id="community" data-placeholder="{{ trans('pages.select_by_community') }}" class="no-search">
@@ -34,8 +34,8 @@
 	                            @endforeach
 		                    </select>	                        
 		                </div>
-	        		</div>
-	        		<div class="col-lg-4">
+	        		</div>	        		
+	        		<div class="col-xl-4 col-lg-6 mb-20 theme">
 	        			<label class="cat-label">{{ trans('pages.for_data_about') }}</label>	        		
 	                    <div class="adv-combo-wrapper custom-select2 cat-select">
 		                    <select id="theme" data-placeholder="{{ trans('pages.all_themes') }}" class="no-search">
@@ -46,7 +46,7 @@
 		                    </select>	                        
 		                </div>
 	        		</div>
-	        		<div class="col-lg-4">
+	        		<div class="col-xl-4 col-lg-6 mb-20">
 	        			<label class="cat-label">{{ trans('pages.in') }}</label>
 	        			<div class="custom-dropdown-container cat-select">
 	                        <div id="region" class="custom-dropdown" tabindex="1">
@@ -67,6 +67,7 @@
 	                            	@foreach ($regions as $region)
 					                    <span class="region" region-id="{{$region->regionIdx}}">{{$region->regionName}}</span>
 					                @endforeach
+					                
 	                            </ul>
 	                        </div>	                        
 	                    </div>  

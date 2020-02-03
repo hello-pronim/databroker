@@ -222,10 +222,10 @@ $(document).ready(function(){
             }            
         });  
         $('#theme').val('all');      
-        var community_name = $("#community").find("option:selected").attr("community-name").toLowerCase();
-
-        window.location.href = window.location.origin + "/" + community_name.replace(' ','_');
-
+        var community_name = $("#community").find("option:selected").attr("community-name");
+        if( community_name ){
+            window.location.href = window.location.origin + "/" + community_name.toLowerCase().replace(' ','_');
+        }
     });
 
     $("#theme").change(function(){                
@@ -260,8 +260,7 @@ $(document).ready(function(){
             url : '/offer/filter',
             data : data,
             dataType: 'json',
-            success: function(res){
-                console.log(res);
+            success: function(res){                
                 var list= "";
                 $.each(res, function(key, elem){                                       
                    
