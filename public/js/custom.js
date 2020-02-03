@@ -237,8 +237,8 @@ $(document).ready(function(){
                 $.each(res, function(key, elem){                                       
                    
                     list += 
-                        '<div class="col-md-4">' +
-                            '<div class="card card-profile card-plain">' +
+                        '<div class="col-md-4 mb-20">' +
+                            '<div class="card card-profile card-plain mb-0">' +
                                 '<div class="card-header">' +
                                     '<a href="/data/'+elem.offerIdx+'">' +
                                         '<img class="img" src="/uploads/offer/'+elem.offerImage+'" />'+
