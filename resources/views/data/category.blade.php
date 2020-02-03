@@ -28,7 +28,7 @@
 	        			<label class="cat-label">{{ trans('pages.explore') }}</label>	        	
 	                    <div class="adv-combo-wrapper custom-select2 cat-select">
 		                    <select id="community" data-placeholder="{{ trans('pages.select_by_community') }}" class="no-search">
-		                    	<option></option>
+		                    	<option value="all">All Communities</option>
 		                    	@foreach ($communities as $community)
 	                                <option value="{{$community->communityIdx}}">{{ $community->communityName }}</option>
 	                            @endforeach
@@ -39,9 +39,9 @@
 	        			<label class="cat-label">{{ trans('pages.for_data_about') }}</label>	        		
 	                    <div class="adv-combo-wrapper custom-select2 cat-select">
 		                    <select id="theme" data-placeholder="{{ trans('pages.all_themes') }}" class="no-search">
-		                    	<option></option>
+		                    	<option value="all">All themes</option>
 		                    	@foreach ($themes as $theme)
-	                                <option value="{{$theme->themeIdx}}">{{ $theme->themeName }}</option>
+	                                <option value="{{$theme->themeIdx}}" community-id="{{ $theme->communityIdx }}">{{ $theme->themeName }}</option>
 	                            @endforeach
 		                    </select>	                        
 		                </div>
@@ -51,7 +51,7 @@
 	        			<div class="custom-dropdown-container cat-select">
 	                        <div id="region" class="custom-dropdown" tabindex="1">
 	                            <div class="select">
-	                                <span>{{ trans('pages.all_regions') }}</span>
+	                                <span>Select Region</span>
 	                            </div>	                            
 	                            <ul class="custom-dropdown-menu region-select mt-10" style="display: none;">
 				                    <div class="adv-combo-wrapper custom-select2">
@@ -74,14 +74,14 @@
 	        	</div>
 	        </div>	        
     	</div>		    
-    	<h1 class="mb-20 fs-30 text-bold text-left"> Explore {{ count($dataoffer) }} data offers </h1>   
+    	<h1 id="offer-count" class="mb-20 fs-30 text-bold text-left"> Explore <span>{{ count($dataoffer) }}</span> data offers </h1>   
     	<div id="offer-list">
 			<div class="row">
 				@php
 					$makematching = rand(0, count($dataoffer)-1);					
 				@endphp
 				@foreach ( $dataoffer as $index => $offer )
-				<div class="col-md-4">
+				<div class="col-md-4 mb-20">
 					<div class="card card-profile card-plain mb-0">					
 						<div class="card-header">
 							<a href="/data/{{ $offer['offerIdx'] }}">
@@ -100,9 +100,9 @@
 					</div>	
 				</div>						
 					@if( $index == $makematching )
-					<div class="col-md-4 makematching">
+					<div class="col-md-4 makematching mb-20">
 						<div>
-							<div class="card card-profile card-plain">
+							<div class="card card-profile card-plain mb-0">
 								<div class="card-body">
 									<div class="app-monetize-section-item0 mb-40"></div>
 									<p class="fs-18">Can't find what you are looking for?</p>
@@ -115,9 +115,10 @@
 					@endif
 				@endforeach							
 	  		</div>
-  		</div> 	
-  		@if (count($dataoffer) > 12 )
-  		<div class="text-center"><button type="button" class="btn btn-round sendmessage-btn">Load More</button></div>
+  		</div> 	  		
+  		<input type="hidden" name="totalcount" value="{{ $totalcount }}">
+  		@if ( count($dataoffer) < $totalcount )  		
+  		<div class="text-center"><button id="offer_loadmore" type="button" class="btn btn-round sendmessage-btn">Load More</button></div>
   		@endif
     </div>      
 </div>

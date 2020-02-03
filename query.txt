@@ -116,5 +116,9 @@ ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `productLicenseUrl` VARC
 
 ALTER TABLE `databroker_new`.`offers` ADD COLUMN `status` TINYINT(2) NULL AFTER `themes`;
 
+//2020-02-03
+UPDATE `databroker_new`.`themes` SET `themeName` = 'Electronics' WHERE (`themeIdx` = '43');
+
+
 
 

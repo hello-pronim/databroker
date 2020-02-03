@@ -60,11 +60,11 @@ class Offer extends Model
                   ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
                   ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx');
 
-        if($param->community){
+        if($param->community && $param->community != 'all'){            
             $dataoffer->where('communities.communityIdx', $param->community);
         }   
 
-        if($param->theme){
+        if($param->theme && $param->theme != 'all' ){
             $dataoffer->where('themes.themeIdx', $param->theme);
         }   
 
@@ -72,7 +72,11 @@ class Offer extends Model
             $dataoffer->where('regions.regionIdx', $param->region);
         }   
 
-        $result = $dataoffer->limit(12)->get();
+        if( !isset($param->loadmore) || $param->loadmore == "false" ){
+            $result = $dataoffer->offset(0)->limit(11)->get();            
+        }else{
+            $result = $dataoffer->offset($param->loadmore-1)->limit(3)->get();
+        }        
 
         return $result;                    
     }

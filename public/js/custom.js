@@ -184,9 +184,19 @@ $(document).ready(function(){
     	console.log($(this).serialize());
     });*/
 
+    var theme_select_obj = $("#theme option");
+    
     $("#community").change(function(){                
         //window.location.href = '/'+ community.toLowerCase().replace(" ", "_");
         filter_dataoffer();
+        $("#theme").html(theme_select_obj);
+
+        var community = $("#community").val();
+        $.each( $("#theme option"), function(key, elem){                        
+            if( community != 'all' && $(elem).attr('value') != 'all' && community  != $(elem).attr("community-id") ){
+                $(elem).remove();
+            }            
+        });        
     });
 
     $("#theme").change(function(){                
@@ -205,7 +215,7 @@ $(document).ready(function(){
         filter_dataoffer();
     });
 
-    function filter_dataoffer(){
+    function filter_dataoffer(loadmore=false){
         var crsf = $("input[name='_token']").val();        
         var community = $("#community").val();
         var theme = $("#theme").val();
@@ -214,7 +224,7 @@ $(document).ready(function(){
        
         region = region1==""?region2:region1;
         if(region == "all") region = "";
-        var data = {_token: crsf, community: community, theme:theme, region:region}
+        var data = {_token: crsf, community: community, theme:theme, region:region, loadmore:loadmore }
         
         $.ajax({
             type: "post",
@@ -252,8 +262,19 @@ $(document).ready(function(){
                         '</div>';                    
                 });
 
-                list = '<div class="row">' + list + '</div>';
-                $("#offer-list").html(list);
+                //list = '<div class="row">' + list + '</div>';
+                var offercount = $("#offer-count span");
+                if(loadmore == false){
+                    $("#offer-list .row").html(list);   
+                    offercount.html( res.length );
+                }else{
+                    $("#offer-list .row").append(list);    
+                    offercount.html( parseInt(offercount.text()) + res.length );
+                }   
+                var totalcount = $("input[name='totalcount']").val();
+                if( parseInt(offercount.text()) >= totalcount ){
+                    $("#offer_loadmore").parent().remove();
+                }
             }
         });
 
@@ -333,6 +354,10 @@ $(document).ready(function(){
                 }
             });
         }        
+    });
+    $("#offer_loadmore").click(function(){
+        console.log($("#offer-list .card").length);
+        filter_dataoffer($("#offer-list .card").length);
     });
 
 });
