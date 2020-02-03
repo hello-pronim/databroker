@@ -159,7 +159,7 @@
                     </a>
                   </li>
                   <li class="dropdown nav-item">
-                    <a href="{{ route('data.geographic') }}" class="nav-link">
+                    <a href="{{ route('data.supply_chain') }}" class="nav-link">
                       <span>{{ trans('home.supply_chain') }} </span>
                       <i class="material-icons">chevron_right</i>
                     </a>

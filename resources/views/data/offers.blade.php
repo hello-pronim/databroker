@@ -25,20 +25,24 @@
 			                    <select name="regionIdx" data-placeholder="{{ trans('pages.search_by_country') }}">
 			                    	<option></option>
 			                    	@foreach ($countries as $country)
+			                    	@if($country->regionIdx == $company['regionIdx'])    
+			                    		<option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
+			                    	@else
 		                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
+		                            @endif
 		                            @endforeach
 			                    </select>
 		                        <div class="error_notice regionIdx"> This field is required</div>
 			                </div>
 		                    <label class="pure-material-textfield">{{ trans('pages.what_company_name') }}</label>
 		                    <label class="pure-material-textfield-outlined">
-		                        <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="">
+		                        <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="{{$company['companyName']}}">
 		                        <span>{{ trans('pages.enter_name') }}</span>	                        
 		                        <div class="error_notice companyName"> This field is required</div>
 		                    </label>
 		                    <label class="pure-material-textfield">{{ trans('pages.what_company_url') }}</label>
 		                    <label class="pure-material-textfield-outlined">
-		                        <input type="text" id="companyUrl" name="companyUrl" class="form-control input_data" placeholder=" "  value="">
+		                        <input type="text" id="companyUrl" name="companyUrl" class="form-control input_data" placeholder=" "  value="{{$company['companyURL']}}">
 		                        <span>{{ trans('pages.enter_url') }}</span>	                        
 		                    </label>
 		                    <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>

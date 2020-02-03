@@ -51,7 +51,10 @@ class DataController extends Controller
         $countries = Region::where('regionType', 'country')->get();
         $communities = Community::all();
 
-        $data = array( 'regions', 'countries', 'communities' );
+        $user = $this->getAuthUser();
+        $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();   
+
+        $data = array( 'regions', 'countries', 'communities', 'company' );
         return view('data.offers', compact($data));
     }
 
@@ -228,7 +231,7 @@ class DataController extends Controller
         $countries = Region::where('regionType', 'country')->get();
         $themes = Theme::get();
         
-        $dataoffer = Offer::with(['region', 'provider', 'usecase'])->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')->where('communities.communityName', ucfirst($category))->limit(12)->get();
+        $dataoffer = Offer::with(['region', 'provider', 'usecase'])->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')->where('communities.communityName', ucfirst($category))->limit(11)->get();
         
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes' );                
         return view('data.category', compact($data));
@@ -277,6 +280,11 @@ class DataController extends Controller
         }
         
         return response()->json(array( "success" => true ));        
+    }
+
+    public function getAuthUser ()
+    {
+        return Auth::user();
     }
 
 }

@@ -77,9 +77,12 @@
     	<h1 class="mb-20 fs-30 text-bold text-left"> Explore {{ count($dataoffer) }} data offers </h1>   
     	<div id="offer-list">
 			<div class="row">
-				@foreach ( $dataoffer as $offer )
+				@php
+					$makematching = rand(0, count($dataoffer)-1);					
+				@endphp
+				@foreach ( $dataoffer as $index => $offer )
 				<div class="col-md-4">
-					<div class="card card-profile card-plain">					
+					<div class="card card-profile card-plain mb-0">					
 						<div class="card-header">
 							<a href="/data/{{ $offer['offerIdx'] }}">
 								<img class="img" src="{{ asset('uploads/offer/'.$offer['offerImage']) }}" />
@@ -95,8 +98,22 @@
 							<a href="{{ $offer['provider']->companyURL }}"><img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" /></a>
 						</div>
 					</div>	
-				</div>	
-				@endforeach			
+				</div>						
+					@if( $index == $makematching )
+					<div class="col-md-4 makematching">
+						<div>
+							<div class="card card-profile card-plain">
+								<div class="card-body">
+									<div class="app-monetize-section-item0 mb-40"></div>
+									<p class="fs-18">Can't find what you are looking for?</p>
+									<p class="fs-21 text-bold mb-40">Try our matchmaking service. It's free!</p>
+									<a><button type="button" class="btn match-me-up-btn pure-material-button-outlined">Discover</button></a>
+								</div>
+							</div>	
+						</div>						
+					</div>	
+					@endif
+				@endforeach							
 	  		</div>
   		</div> 	
   		@if (count($dataoffer) > 12 )
