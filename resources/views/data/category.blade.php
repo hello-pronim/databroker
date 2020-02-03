@@ -117,7 +117,8 @@
 	  		</div>
   		</div> 	  		
   		<input type="hidden" name="totalcount" value="{{ $totalcount }}">
-  		@if ( count($dataoffer) < $totalcount )  		
+  		<input type="hidden" name="per_page" value="{{ $per_page }}">
+  		@if ( $totalcount > $per_page )  		
   		<div class="text-center"><button id="offer_loadmore" type="button" class="btn btn-round sendmessage-btn">Load More</button></div>
   		@endif
     </div>      
