@@ -50,24 +50,28 @@
 				            </div>
 				            <div class="tab-pane" id="use_cases">
 				                <h2>{{ trans('pages.use_case') }}</h2>
+				                @if( $offer['usecase'] )
 				                <p>{{ $offer['usecase']->useCaseContent }}</p>
+				                @endif
 				            </div>
 				            <div class="tab-pane" id="samples">
 				                <h2>{{ trans('pages.samples') }}</h2>
-				                @foreach($offersample as $sample)
-				                	@if( explode("-", $sample['sampleType'])[0] == 'file')
-				                	<div class="file">
-				                		<p>{{$sample['sampleDescription']}}</p>
-				                		<a class="download" href="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}"><i class="material-icons">get_app</i><span>{{$sample['sampleFileName']}}</span></a>
-				                	</div>	
-				                	@endif				                	
-				                	@if( explode("-", $sample['sampleType'])[0] == 'image')				                	
-				                		<div class="image">					                		
-					                		<img src="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}">
+				                @if( $offersample )
+					                @foreach($offersample as $sample)
+					                	@if( explode("-", $sample['sampleType'])[0] == 'file')
+					                	<div class="file">
 					                		<p>{{$sample['sampleDescription']}}</p>
-				                		</div>
-				                	@endif				                	
-				                @endforeach	
+					                		<a class="download" href="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}"><i class="material-icons">get_app</i><span>{{$sample['sampleFileName']}}</span></a>
+					                	</div>	
+					                	@endif				                	
+					                	@if( explode("-", $sample['sampleType'])[0] == 'image')				                	
+					                		<div class="image">					                		
+						                		<img src="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}">
+						                		<p>{{$sample['sampleDescription']}}</p>
+					                		</div>
+					                	@endif				                	
+					                @endforeach
+				                @endif	
 				            </div>
 				            <div class="tab-pane" id="this_data">
 				                <h2>Buy this data</h2>
