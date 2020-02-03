@@ -873,6 +873,10 @@ th.col-since {
 	margin-left: 16px;
 }
 
+.data-offer .imageuploadify .imageuploadify-images-list.hide {
+	display: none;
+}
+
 /* customize miageuploadify */
 .data-offer .imageuploadify .imageuploadify-image-block {
 	width: 100%;
