@@ -1268,8 +1268,9 @@ i.rotated:before{
 	width: auto;
 }
 /*data offer list*/
-.makematching{
+.makematching >div{
 	box-shadow: 0 0 2px rgb(123, 126, 129);
+	height: 100%;
 	align-items: center;
-	display: flex;
+	display: flex;		
 }
