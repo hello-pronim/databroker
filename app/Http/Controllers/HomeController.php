@@ -47,6 +47,6 @@ class HomeController extends Controller
             'to'=>'peterjackson0120@gmail.com', 
             'name'=>'Test', 
             'subject'=>'Test'
-        ]);
+        ]);                                                                                                   
     }
 }

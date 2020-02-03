@@ -174,16 +174,25 @@
                       <h4>Follow us on social media</h4>
                       <div class="app-footer-social-link">
                           <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/facebook.png') }}">
+                            <img src="{{ asset('/images/social/facebook.png') }}">
                           </a>
                           <a href="https://www.twitter.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/twitter.png') }}">
+                            <img src="{{ asset('/images/social/twitter.png') }}">
                           </a>
                           <a href="https://www.pinterest.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/pinterest.png') }}">
+                            <img src="{{ asset('/images/social/pinterest.png') }}">
                           </a>
                           <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/linkedin.png') }}">
+                            <img src="{{ asset('/images/social/linkedin.png') }}">
+                          </a>   
+                          <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                            <img src="{{ asset('/images/social/medium.png') }}">
+                          </a>   
+                          <a href="https://www.github.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                            <img src="{{ asset('/images/social/github.png') }}">
+                          </a>   
+                          <a href="https://www.telegram.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                            <img src="{{ asset('/images/social/telegram.png') }}">
                           </a>                          
                       </div>
                   </div>                  
