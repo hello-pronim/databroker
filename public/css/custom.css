@@ -57,6 +57,9 @@ body{
 .fs-20{
 	font-size: 20px !important;
 }
+.fs-21{
+	font-size: 21px !important;
+}
 .fs-30{
 	font-size: 30px !important;
 }
@@ -70,11 +73,17 @@ body{
 .m0-auto{
 	margin: 0 auto;
 }
+.mt-0{
+	margin-bottom: 0px  !important;
+}
 .mb-10{
 	margin-bottom: 10px !important;
 }
 .mb-20{
 	margin-bottom: 20px !important;
+}
+.mb-40{
+	margin-bottom: 40px !important;
 }
 .mb-50{
 	margin-bottom: 50px !important;
@@ -484,7 +493,7 @@ i.rotated:before{
 .card{
 	border:none;
 	border-radius: 0px;
-	box-shadow: none;
+	box-shadow: none;	
 }
 .card .card-header{
 	padding: 0px;
@@ -1257,4 +1266,10 @@ i.rotated:before{
 }
 .period .period_select >label{
 	width: auto;
+}
+/*data offer list*/
+.makematching{
+	box-shadow: 0 0 2px rgb(123, 126, 129);
+	align-items: center;
+	display: flex;
 }

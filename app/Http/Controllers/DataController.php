@@ -228,7 +228,7 @@ class DataController extends Controller
         $countries = Region::where('regionType', 'country')->get();
         $themes = Theme::get();
         
-        $dataoffer = Offer::with(['region', 'provider', 'usecase'])->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')->where('communities.communityName', ucfirst($category))->limit(12)->get();
+        $dataoffer = Offer::with(['region', 'provider', 'usecase'])->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')->where('communities.communityName', ucfirst($category))->limit(11)->get();
         
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes' );                
         return view('data.category', compact($data));
