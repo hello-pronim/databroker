@@ -486,7 +486,7 @@ i.rotated:before{
 	color: #8C9196;
 	font-size: 16px;
 }
-#main_menu .navbar-nav li:hover a{
+#main_menu .navbar-nav li a.active, #main_menu .navbar-nav li:hover a{
 	color: #06038D;	
 }
 /*Homepage*/

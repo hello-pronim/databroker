@@ -30,7 +30,7 @@
 		                    <select id="community" data-placeholder="{{ trans('pages.select_by_community') }}" class="no-search">
 		                    	<option value="all">All Communities</option>
 		                    	@foreach ($communities as $community)
-	                                <option value="{{$community->communityIdx}}">The {{ $community->communityName }} community</option>
+	                                <option value="{{$community->communityIdx}}" community-name="{{ $community->communityName }}">The {{ $community->communityName }} community</option>
 	                            @endforeach
 		                    </select>	                        
 		                </div>

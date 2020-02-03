@@ -1,4 +1,28 @@
-$(document).ready(function(){    
+$(document).ready(function(){  
+
+    var path = window.location.pathname;
+    $.each( $("#topnav .nav-link"), function(key, elem){
+        if( $(elem).attr("href") == window.location.href ){
+            $(elem).addClass('active');
+        }
+    });
+
+    $.each($("#community option"), function(key, elem){        
+        var option_text = window.location.pathname.slice(1);
+        if($(elem).attr("community-name")){
+            if( $(elem).attr("community-name").toLowerCase()  == option_text.replace("_", " ") ){
+                $(elem).prop('selected', true);
+            }            
+        }        
+    });
+
+    var community = $("#community").val();
+    $.each( $("#theme option"), function(key, elem){                        
+        if( community != 'all' && $(elem).attr('value') != 'all' && community  != $(elem).attr("community-id") ){
+            $(elem).remove();
+        }            
+    });
+    $('#theme').val('all');
 
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -196,7 +220,12 @@ $(document).ready(function(){
             if( community != 'all' && $(elem).attr('value') != 'all' && community  != $(elem).attr("community-id") ){
                 $(elem).remove();
             }            
-        });        
+        });  
+        $('#theme').val('all');      
+        var community_name = $("#community").find("option:selected").attr("community-name").toLowerCase();
+
+        window.location.href = window.location.origin + "/" + community_name.replace(' ','_');
+
     });
 
     $("#theme").change(function(){                

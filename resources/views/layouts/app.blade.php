@@ -116,7 +116,7 @@
 			        </button>
   			      <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-title"><span class="fs-20 text-bold">{{ trans('home.communities') }}</span></div>
-  			        <ul class="navbar-nav">
+  			        <ul class="navbar-nav" id="topnav">
   			          <li class="dropdown nav-item">
     			          <a href="{{ route('data.geographic') }}" class="nav-link">
     			            <span>{{ trans('home.geographics') }} </span>
