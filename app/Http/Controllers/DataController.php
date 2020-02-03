@@ -52,9 +52,14 @@ class DataController extends Controller
         $communities = Community::all();
 
         $user = $this->getAuthUser();
-        $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();   
+        $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
+        if (!$company) {
+            $current_step = 'before';
+        } else {
+            $current_step = 'step1';
+        }
 
-        $data = array( 'regions', 'countries', 'communities', 'company' );
+        $data = array( 'regions', 'countries', 'communities', 'current_step' );
         return view('data.offers', compact($data));
     }
 

@@ -11,11 +11,15 @@
     <div class="container">
     	<form method="post" action="{{ route('data.add_offer') }}" id="data-offer">
     		@csrf    		
-	    	<div id="before" class="app-section app-reveal-section align-items-center step current">
+    		@if ($current_step == 'before')
+    		<div id="before" class="app-section app-reveal-section align-items-center step current">
+    		@else
+	    	<div id="before" class="app-section app-reveal-section align-items-center step">
+	    	@endif
 	    		<div class="row">
 	    			<div class="col-lg-6">
 	    				<div class="blog-header">
-				            <h1>Before we start</h1>			            
+				            <h1>Before we start</h1>
 				            <p class="area">Please tell us a little more about your company.<br>
 							This information will be published in the marketplace along with your data offer.</p>
 				        </div>
@@ -25,24 +29,20 @@
 			                    <select name="regionIdx" data-placeholder="{{ trans('pages.search_by_country') }}">
 			                    	<option></option>
 			                    	@foreach ($countries as $country)
-			                    	@if($country->regionIdx == $company['regionIdx'])    
-			                    		<option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
-			                    	@else
 		                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
-		                            @endif
 		                            @endforeach
 			                    </select>
 		                        <div class="error_notice regionIdx"> This field is required</div>
 			                </div>
 		                    <label class="pure-material-textfield">{{ trans('pages.what_company_name') }}</label>
 		                    <label class="pure-material-textfield-outlined">
-		                        <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="{{$company['companyName']}}">
+		                        <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="">
 		                        <span>{{ trans('pages.enter_name') }}</span>	                        
 		                        <div class="error_notice companyName"> This field is required</div>
 		                    </label>
 		                    <label class="pure-material-textfield">{{ trans('pages.what_company_url') }}</label>
 		                    <label class="pure-material-textfield-outlined">
-		                        <input type="text" id="companyUrl" name="companyUrl" class="form-control input_data" placeholder=" "  value="{{$company['companyURL']}}">
+		                        <input type="text" id="companyUrl" name="companyUrl" class="form-control input_data" placeholder=" "  value="">
 		                        <span>{{ trans('pages.enter_url') }}</span>	                        
 		                    </label>
 		                    <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
@@ -57,7 +57,11 @@
 	    			</div>
 	    		</div>	        
 		    </div>	
+    		@if ($current_step == 'step1')
+	    	<div id="step1" class="app-section app-reveal-section align-items-center step current">
+	    	@else  
 	    	<div id="step1" class="app-section app-reveal-section align-items-center step">  
+	    	@endif
 	    		<div class="row header">  	
 		    		<div class="col col-9">
 						<div class="page-title text-primary">{{ trans('pages.data_offer_step_1') }}</div>		
