@@ -267,8 +267,18 @@ class DataController extends Controller
     }
 
     public function offer_publish_confirm($id, Request $request){
-        $data = array( 'offerId' => $id );
-        return view('data.offer_publish_confirm', $data);
+        $offerId = $id;
+        $offer = Offer::find($id);
+        
+        $communityIdx = $offer['communityIdx'];
+        $community = Community::find($communityIdx);
+        // $offer_plain = json_encode($offer);
+        // $community_plain = json_encode($community);
+        $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
+        $link_to_market = route('data.'.$community_route);
+
+        $data = array( 'offerId', 'link_to_market' ); //, 'offer_plain', 'community_plain'
+        return view('data.offer_publish_confirm', compact($data));
     }
 
     public function offer_product_publish_confirm(Request $request){

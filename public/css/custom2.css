@@ -2002,3 +2002,26 @@ body .select2-search--dropdown {
 	color: #262733;
 	opacity: 0.55;
 }
+
+a {
+	color: #78E6D0;
+}
+a:link {
+	color: #78E6D0;
+    text-decoration: none;
+}
+
+a:visited {
+	color: #78E6D0;
+    text-decoration: none;
+}
+
+a:hover {
+	color: #78E6D0;
+    text-decoration: none;
+}
+
+a:active {
+	color: #78E6D0;
+    text-decoration: none;
+}
