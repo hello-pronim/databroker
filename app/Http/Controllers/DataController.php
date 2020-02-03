@@ -51,7 +51,10 @@ class DataController extends Controller
         $countries = Region::where('regionType', 'country')->get();
         $communities = Community::all();
 
-        $data = array( 'regions', 'countries', 'communities' );
+        $user = $this->getAuthUser();
+        $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();   
+
+        $data = array( 'regions', 'countries', 'communities', 'company' );
         return view('data.offers', compact($data));
     }
 
@@ -277,6 +280,11 @@ class DataController extends Controller
         }
         
         return response()->json(array( "success" => true ));        
+    }
+
+    public function getAuthUser ()
+    {
+        return Auth::user();
     }
 
 }
