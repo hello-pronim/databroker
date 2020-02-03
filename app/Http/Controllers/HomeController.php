@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -26,12 +27,26 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function sendEmail($tplName, $params){
+        $from = $params['from'];
+        $to = $params['to'];
+        $name = $params['name'];
+        $subject = $params['subject'];
+
+        Mail::send('email.'.$tplName, $params,
+            function($mail) use ($from, $to, $name, $subject){
+                $mail->from($from, $name);
+                $mail->to($to, $to);
+                $mail->subject($subject);
+        });
+    }
+
     public function test(){
         $this->sendEmail("template", [
-            'from'=>"greenhal2001@gmail.com", 
-            'to'=>'pe@jts.ec', 
+            'from'=>"yuriyes43@gmail.com", 
+            'to'=>'peterjackson0120@gmail.com', 
             'name'=>'Test', 
             'subject'=>'Test'
-        ]);
+        ]);                                                                                                   
     }
 }
