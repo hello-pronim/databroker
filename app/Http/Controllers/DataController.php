@@ -71,10 +71,16 @@ class DataController extends Controller
     }
 
     public function offer_publish(Request $request){
-        $communities = Community::get();
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'publish your data offer');
+        }
+        else{
+            $communities = Community::get();
 
-        $data = array('communities');
-        return view('data.offer_publish', compact($data));   
+            $data = array('communities');
+            return view('data.offer_publish', compact($data)); 
+        }  
     }
 
     public function offer_detail($id, Request $request)
@@ -311,4 +317,24 @@ class DataController extends Controller
         return Auth::user();
     }
 
+    public function send_message() {
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'contact the data provider');
+        }
+    }
+
+    public function buy_data(){
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'buy this data');
+        }
+    }
+
+    public function send_bid(){
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'send a bid for this data');
+        }
+    }
 }
