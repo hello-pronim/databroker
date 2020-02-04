@@ -92,7 +92,9 @@
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<button type="button" class="customize-btn">Buy Now</button>
+					                			<a href="/data/buy_data">
+					                				<button type="button" class="customize-btn">Buy Now</button>
+					                			</a>
 					                		</div>	
 				                		</div>				                		
 				                	</div>
@@ -107,8 +109,12 @@
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<button type="button" class="customize-btn">Send a bid to the seller</button>
-					                			<button type="button" class=" customize-btn">Buy Now</button>
+					                			<a href="/data/send_bid">
+					                				<button type="button" class="customize-btn">Send a bid to the seller</button>
+					                			</a>
+					                			<a href="/data/buy_data">
+					                				<button type="button" class="customize-btn">Buy Now</button>
+					                			</a>
 					                		</div>	
 				                		</div>				                		
 				                	</div>
@@ -123,7 +129,9 @@
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<button type="button" class="customize-btn">Buy Now</button>
+					                			<a href="/data/buy_data">
+					                				<button type="button" class="customize-btn">Buy Now</button>
+					                			</a>
 					                		</div>	
 				                		</div>				                		
 				                	</div>	
@@ -145,7 +153,7 @@
 	        			<p class="short-desc">
 	        				{{ trans('pages.contact_data_provider') }}
 	        			</p>
-	        			<button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.send_message') }}</button>
+	        			<a href="/data/send_message"><button  type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.send_message') }}</button></a>
 	        		</div>
 	        	</div>
 	        </div>
