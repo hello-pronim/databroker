@@ -89,6 +89,7 @@ $(document).ready(function(){
     });
 
     $(".custom-dropdown .custom-dropdown-menu button").click(function(){
+        
     	var select_box = $(this).parent().parent();
     	select_box.toggle();
     	var show_box = $(this).closest('.custom-dropdown').find('>.select');
@@ -115,9 +116,33 @@ $(document).ready(function(){
             regionIdx.push(select_box.find(".custom-select2 select").val());    
             region.push(select_box.find(".custom-select2 select").find("option:checked").text());
         }        
-    	
+    	        
     	show_box.find("span").html(region.join(','));
     	$("input[name='offercountry']").val(regionIdx.join(','));
+    });
+
+    $("#region.custom-dropdown .custom-dropdown-menu select").change(function(){        
+        var select_box = $(this).parent().parent();
+        select_box.toggle();
+        
+        var region = $(this).val();
+        var regionName = $(this).find("option:selected").text();
+
+        var show_box = $(this).closest('.custom-dropdown').find('>.select');
+        show_box.find("span").html(regionName);
+
+        $("input[name='region']").val(region);
+    });
+
+    $("#region.custom-dropdown .custom-dropdown-menu span.region").click(function(){        
+       var select_box = $(this).parent();
+       select_box.toggle();
+
+       $("input[name='region']").val( $(this).attr("region-id") );
+       var show_box = $(this).closest('.custom-dropdown').find('>.select');
+       var regionName = $(this).text();
+       show_box.find("span").html(regionName);
+       
     });
 
     $(".data-offer .step button.btn-next").click(function(e){

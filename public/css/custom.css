@@ -1075,6 +1075,15 @@ i.rotated:before{
 .community-filter .theme{
 	padding-left: 25px;
 }
+#region .adv-combo-wrapper .select2 .selection .select2-selection{
+	box-shadow: none;
+	border-bottom: 1px solid #DAE1E5;
+    border-radius: 0px;
+    margin-bottom: 20px;
+}
+#region .adv-combo-wrapper .select2 .selection .select2-selection .select2-selection__arrow{
+	background-image:url('../images/design/icon-action-search_24px.svg');
+}
 /*wallet page*/
 #wallet .download i{
 	font-size: 16px;
