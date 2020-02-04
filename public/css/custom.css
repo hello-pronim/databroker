@@ -690,12 +690,15 @@ i.rotated:before{
 	width: 100%;	
 }
 .blog-content .explain{
-	font-size: 30px;
+	font-size: 24px;
 	font-weight: bold;
 	color: #020A09;
 }
+.blog-content .short-desc{
+	font-size: 16px;
+}
 .blog-content .subcategory, .blog-content .country{
-	font-size: 18px;	
+	font-size: 16px;	
 	color: #020A09;
 	display: block;
 	margin:10px 0;
