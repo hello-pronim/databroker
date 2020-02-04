@@ -885,7 +885,7 @@ i.rotated:before{
 .custom-dropdown-container .custom-dropdown:focus {
     outline-color: transparent;
 }
-.custom-dropdown-container .custom-dropdown:before {
+.custom-dropdown-container .custom-dropdown >div:before {
     content: ' ';
     width: 30px;
     height: 30px;
