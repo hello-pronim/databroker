@@ -251,7 +251,7 @@
 			</div>				
   		</div>   
   		<div class="mt-40 text-center">		        	
-        	<a href="{{ route('data.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="btn btn-round sendmessage-btn">View Data Offer</button></a>
+        	<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="btn btn-round sendmessage-btn">View Data Offer</button></a>
         </div>
     </div>    
 </div>  
