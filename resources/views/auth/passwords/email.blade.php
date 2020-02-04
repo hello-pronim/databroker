@@ -19,10 +19,10 @@
                     <div class="row">
                         <div class="col-md-6 mb-0">
                             <label class="pure-material-textfield-outlined mt-20">
-                                <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input type="text" id="email" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress') }}" required autocomplete="emailAddress" autofocus>
                                 <span>Email Address</span>
                                 <div class="error_notice"> This field is required</div>
-                                @error('email')
+                                @error('emailAddress')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
