@@ -415,6 +415,9 @@
 	#hn20 {
 		margin-top: 197px;
 	}
+	.site_footer_logo_container >img{
+		width: 272px;
+	}
 }
 
 @media (max-width: 767px) {

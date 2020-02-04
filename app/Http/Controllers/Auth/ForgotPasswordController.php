@@ -19,4 +19,21 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+    protected function validateEmail(Request $request)
+    {
+        $request->validate(['emailAddress' => 'required|email']);
+    }
+
+    protected function credentials(Request $request)
+    {
+        return $request->only('emailAddress');
+    }
+
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        return back()
+                ->withInput($request->only('emailAddress'))
+                ->withErrors(['emailAddress' => trans($response)]);
+    }
 }
