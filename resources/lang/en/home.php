@@ -38,6 +38,7 @@ return [
     'lets_started' => 'Let’s get started',
     'cookie_desc' => 'We use cookies to give you the best possible experience on Databroker, and to provide web analytics that help us improve our site. To find out more, check out our Cookie policy.',
     'accept_cookie' => 'Accept Cookies',
+    'cookie_more' => 'Read more about cookies',
     'meta_title' => 'Welcome to Databroker | The marketplace for data',
     'meta_desc' => 'Join the biggest community of data buyers and sellers worldwide on our peer-to-peer data marketplace. Need data? Find it. Got data? Monetise it.',
 
