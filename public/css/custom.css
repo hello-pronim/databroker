@@ -675,7 +675,9 @@ i.rotated:before{
 	content: '';
 }
 .blog-header p.category{
-	font-size: 18px;
+	font-size: 18px;	
+}
+.blog-header p.category a{
 	color: #78E6D0;
 }
 .blog-content{

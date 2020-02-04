@@ -53,14 +53,14 @@
             <div class="col-md-4 col-lg-3">
               <h5>{{ trans('home.explore_data_communities') }}</h5>
               <ul class="list-unstyled" data-turbolinks="false"> 
-                <li><a href="{{ route('data.geographic') }}">{{ trans('home.geographics') }}</a></li> 
-                <li><a href="{{ route('data.environment') }}">{{ trans('home.environment') }}</a></li> 
-                <li><a href="{{ route('data.transport') }}">{{ trans('home.transport') }}</a></li> 
-                <li><a href="{{ route('data.people') }}">{{ trans('home.people') }}</a></li> 
-                <li><a href="{{ route('data.agriculture') }}">{{ trans('home.agriculture') }}</a></li> 
-                <li><a href="{{ route('data.energy') }}">{{ trans('home.energy') }}</a></li> 
-                <li><a href="{{ route('data.economy') }}">{{ trans('home.economy') }}</a></li> 
-                <li><a href="{{ route('data.supply_chain') }}">{{ trans('home.supply_chain') }}</a></li>                
+                <li><a href="{{ route('data_community.geographic') }}">{{ trans('home.geographics') }}</a></li> 
+                <li><a href="{{ route('data_community.environment') }}">{{ trans('home.environment') }}</a></li> 
+                <li><a href="{{ route('data_community.transport') }}">{{ trans('home.transport') }}</a></li> 
+                <li><a href="{{ route('data_community.people') }}">{{ trans('home.people') }}</a></li> 
+                <li><a href="{{ route('data_community.agriculture') }}">{{ trans('home.agriculture') }}</a></li> 
+                <li><a href="{{ route('data_community.energy') }}">{{ trans('home.energy') }}</a></li> 
+                <li><a href="{{ route('data_community.economy') }}">{{ trans('home.economy') }}</a></li> 
+                <li><a href="{{ route('data_community.supply_chain') }}">{{ trans('home.supply_chain') }}</a></li>                
               </ul>
             </div>
             <div class="col-md-4 col-lg-3">

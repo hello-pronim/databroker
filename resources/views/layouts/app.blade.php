@@ -118,49 +118,49 @@
                 <div class="navbar-title"><span class="fs-20 text-bold">{{ trans('home.communities') }}</span></div>
   			        <ul class="navbar-nav" id="topnav">
   			          <li class="dropdown nav-item">
-    			          <a href="{{ route('data.geographic') }}" class="nav-link">
+    			          <a href="{{ route('data_community.geographic') }}" class="nav-link">
     			            <span>{{ trans('home.geographics') }} </span>
                       <i class="material-icons">chevron_right</i> 
     			          </a>
   			          </li>
   			          <li class="dropdown nav-item">
-  			            <a href="{{ route('data.environment') }}" class="nav-link">
+  			            <a href="{{ route('data_community.environment') }}" class="nav-link">
   			              <span>{{ trans('home.environment') }} </span>
                       <i class="material-icons">chevron_right</i>
   			            </a>
   			          </li>
   			          <li class="dropdown nav-item">
-  			            <a href="{{ route('data.transport') }}" class="nav-link">
+  			            <a href="{{ route('data_community.transport') }}" class="nav-link">
   			              <span>{{ trans('home.transport') }} </span>
                       <i class="material-icons">chevron_right</i>
   			            </a>
   			          </li>			          
                   <li class="dropdown nav-item">
-                    <a href="{{ route('data.people') }}" class="nav-link">
+                    <a href="{{ route('data_community.people') }}" class="nav-link">
                       <span>{{ trans('home.people') }} </span>
                       <i class="material-icons">chevron_right</i>
                     </a>
                   </li>
                   <li class="dropdown nav-item">
-                    <a href="{{ route('data.agriculture') }}" class="nav-link">
+                    <a href="{{ route('data_community.agriculture') }}" class="nav-link">
                       <span>{{ trans('home.agriculture') }} </span>
                       <i class="material-icons">chevron_right</i>
                     </a>
                   </li>
                   <li class="dropdown nav-item">
-                    <a href="{{ route('data.energy') }}" class="nav-link">
+                    <a href="{{ route('data_community.energy') }}" class="nav-link">
                       <span>{{ trans('home.energy') }} </span>
                       <i class="material-icons">chevron_right</i>
                     </a>
                   </li>
                   <li class="dropdown nav-item">
-                    <a href="{{ route('data.economy') }}" class="nav-link">
+                    <a href="{{ route('data_community.economy') }}" class="nav-link">
                       <span>{{ trans('home.economy') }} </span>
                       <i class="material-icons">chevron_right</i>
                     </a>
                   </li>
                   <li class="dropdown nav-item">
-                    <a href="{{ route('data.supply_chain') }}" class="nav-link">
+                    <a href="{{ route('data_community.supply_chain') }}" class="nav-link">
                       <span>{{ trans('home.supply_chain') }} </span>
                       <i class="material-icons">chevron_right</i>
                     </a>
@@ -189,14 +189,14 @@
   					<div class="col-md-4 col-lg-3">
   						<h5>{{ trans('home.explore_data_communities') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
-  							<li><a href="{{ route('data.geographic') }}">{{ trans('home.geographics') }}</a></li> 
-                <li><a href="{{ route('data.environment') }}">{{ trans('home.environment') }}</a></li> 
-                <li><a href="{{ route('data.transport') }}">{{ trans('home.transport') }}</a></li> 
-                <li><a href="{{ route('data.people') }}">{{ trans('home.people') }}</a></li> 
-                <li><a href="{{ route('data.agriculture') }}">{{ trans('home.agriculture') }}</a></li> 
-                <li><a href="{{ route('data.energy') }}">{{ trans('home.energy') }}</a></li> 
-                <li><a href="{{ route('data.economy') }}">{{ trans('home.economy') }}</a></li> 
-                <li><a href="{{ route('data.supply_chain') }}">{{ trans('home.supply_chain') }}</a></li>   							
+  							<li><a href="{{ route('data_community.geographic') }}">{{ trans('home.geographics') }}</a></li> 
+                <li><a href="{{ route('data_community.environment') }}">{{ trans('home.environment') }}</a></li> 
+                <li><a href="{{ route('data_community.transport') }}">{{ trans('home.transport') }}</a></li> 
+                <li><a href="{{ route('data_community.people') }}">{{ trans('home.people') }}</a></li> 
+                <li><a href="{{ route('data_community.agriculture') }}">{{ trans('home.agriculture') }}</a></li> 
+                <li><a href="{{ route('data_community.energy') }}">{{ trans('home.energy') }}</a></li> 
+                <li><a href="{{ route('data_community.economy') }}">{{ trans('home.economy') }}</a></li> 
+                <li><a href="{{ route('data_community.supply_chain') }}">{{ trans('home.supply_chain') }}</a></li>   							
   						</ul>
   					</div>
   					<div class="col-md-4 col-lg-3">

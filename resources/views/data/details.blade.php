@@ -3,8 +3,11 @@
 @section('content')
 <div class="container-fluid app-wapper">
 	<div class="bg-pattern1-left"></div>
-    <div class="container">
-    	<div class="app-section app-reveal-section align-items-center data-detail">    		
+    <div class="container">    	
+    	<div class="app-section app-reveal-section align-items-center data-detail">     		
+    		@if($prev_route)
+    		<a href="{{ route($prev_route) }}" class="back-icon text-grey"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
+    		@endif
 	        <div class="blog-header">
 	            <h1>{{ $offer['offerTitle'] }}</h1>	            
 	            <p class="area">
@@ -12,7 +15,7 @@
 	            		<span>{{ $region->regionName }}</span>
 	            	@endforeach
 	            </p>
-	            <p class="category">{{ $offer['community']->communityName }}</p>
+	            <p class="category"> Published in : <a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($offer['community']->communityName) )) }}" >{{ $offer['community']->communityName }}</a></p>
 	        </div>	        
 	        <div class="blog-content">
 	        	<div class="row">
@@ -146,8 +149,7 @@
 	        		</div>
 	        	</div>
 	        </div>
-	    </div>	
-	    <a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>    
+	    </div>		    
     </div>      
 </div>
 

@@ -66,7 +66,7 @@ foreach ($communities as $key => $community) {
 	$data = array('datacontroller'=>$datacontroller, 'community'=>$community);
 	Route::get('/'.$community_route, function() use($data){			
 		return $data['datacontroller']->category($data['community']->communityName);
-	})->name('data.'.$community_route);	
+	})->name('data_community.'.$community_route);	
 	
 	Route::get('/community/'.$community_route, function() use($data){			
 		return $data['datacontroller']->community($data['community']->communityName);
