@@ -85,7 +85,7 @@
                         <div class="error_notice"> This field is required</div>
                     </div>
 
-                    <label class="pure-material-textfield-outlined">
+                    <label class="pure-material-textfield-outlined" style="display: none">
                         <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" "  value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
                         <span>{{ trans('auth.enter_your_industry') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
@@ -111,7 +111,7 @@
                         <div class="error_notice"> This field is required</div>
                     </div>
 
-                    <label class="pure-material-textfield-outlined">
+                    <label class="pure-material-textfield-outlined" style="display: none">
                         <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle') }}" autocomplete="jobTitle" autofocus>
                         <span>{{ trans('auth.enter_your_role') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>

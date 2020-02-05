@@ -55,6 +55,8 @@ class RegisterController extends Controller
             'emailAddress' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],  
             'term_conditions' => ['required']          
+        ], [
+            'password.regex'=>'Password should contain A~Z, a~z, 0~9'
         ]);
         return $result;
     }

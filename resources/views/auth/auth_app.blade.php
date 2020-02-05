@@ -227,7 +227,7 @@
                 $(this).parents('.dropdown-container .dropdown').find('span').text($(this).text());
                 $(this).parents('.dropdown-container .dropdown').find('span').addClass("chosen");
                 $(this).parents('.dropdown-container .dropdown').find('input').attr('value', $(this).attr('value')).change();
-            });           
+            });
         });
     </script>
     </body>
