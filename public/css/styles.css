@@ -1373,6 +1373,11 @@ a:hover {
     line-height: 30px;
     color: rgba(140,145,150,1);
 }
+#register_section .register-actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .cookie-accept {
     display: flex;
     align-items: center;
@@ -2285,6 +2290,9 @@ input.input_data, select.input_data {
     position: relative;
 }
 
+.auth-section .dropdown-container {
+    margin: 10px 0px 8px;
+}
 .dropdown-container {
     margin: 10px 0px 17px;
     padding-bottom: 10px;
