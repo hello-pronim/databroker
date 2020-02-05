@@ -20,6 +20,8 @@ return [
     'last_name' => 'Last Name',
     'email_address' => 'Email Address',
     'company' => 'Company',
+    'enter_your_industry'=> 'Please enter your industry',
+    'enter_your_role'=> 'Please enter your role',
     'password' => 'Password',
     'confirm_password' => 'Confirm Password',
     'login' => 'Login'

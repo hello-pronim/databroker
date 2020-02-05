@@ -689,4 +689,10 @@
 		left: 64px;
 		right: auto;
 	}
+	.primary-btn, .customize-btn{
+		width: 100%;
+	}
+	#register_section .register-actions{
+		flex-direction: column;
+	}
 }

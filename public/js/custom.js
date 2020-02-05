@@ -26,6 +26,8 @@ $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip();
 
+    $(".blog-content .tab-content .tab-pane:first-child").addClass("active");
+
     $(".dropdown-menu").each(function(){ $(this).css({right: -($(this).width()/2+20)+"px"}); });
 
     $("#register_nl_section form").submit(function(e){

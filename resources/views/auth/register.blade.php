@@ -59,7 +59,7 @@
                             <div class="select">
                                 <span>Which industry are you in?</span>
                             </div>
-                            <input type="hidden" id="businessName" name="businessName" value="Agriculture/Mining/Forestry">
+                            <input type="hidden" id="businessName2" name="businessName2" value="Agriculture/Mining/Forestry">
                             <ul class="dropdown-menu" style="display: none;">
                                 <li value="Agriculture/Mining/Forestry">Agriculture/Mining/Forestry</li>
                                 <li value="Advertising/Media/Publishing">Advertising/Media/Publishing</li>
@@ -85,12 +85,23 @@
                         <div class="error_notice"> This field is required</div>
                     </div>
 
+                    <label class="pure-material-textfield-outlined">
+                        <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" "  value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
+                        <span>{{ trans('auth.enter_your_industry') }}</span>
+                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
+                        @error('businessName')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </label>
+
                     <div class="dropdown-container">
                         <div class="dropdown" tabindex="1">
                             <div class="select">
                                 <span>What role do you have?</span>
                             </div>
-                            <input type="hidden" id="jobTitle" name="jobTitle" value="Technical">
+                            <input type="hidden" id="jobTitle2" name="jobTitle2" value="Technical">
                             <ul class="dropdown-menu" style="display: none;">
                                 <li value="Business">Business</li>
                                 <li value="Technical">Technical</li>
@@ -99,6 +110,17 @@
                         </div>
                         <div class="error_notice"> This field is required</div>
                     </div>
+
+                    <label class="pure-material-textfield-outlined">
+                        <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle') }}" autocomplete="jobTitle" autofocus>
+                        <span>{{ trans('auth.enter_your_role') }}</span>
+                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
+                        @error('jobTitle')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </label>
 
                     <label class="pure-material-textfield-outlined">
                         <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="" autofocus>
@@ -133,18 +155,13 @@
                     </div> 
                     <br>                       
                     
-                    <div class="form-group row mb-0">                        
-                        <div class="col-md-6">                                
-                            <button type="submit" class="customize-btn">CREATE ACCOUNT</button>
-                        </div>
-
-                        <div class="col-md-6 text-right">
-                            @if (Route::has('login'))
-                                <a class="btn btn-link text-grey" id="login_link" href="{{ route('login') }}">
-                                    {{ __('Already have an account?') }}
-                                </a>
-                            @endif
-                        </div>
+                    <div class="register-actions form-group mb-0">
+                        <button type="submit" class="customize-btn">CREATE ACCOUNT</button>
+                        @if (Route::has('login'))
+                            <a class="text-grey" id="login_link" href="{{ route('login') }}">
+                                {{ __('Already have an account?') }}
+                            </a>
+                        @endif
                     </div>
 
                 </form>
