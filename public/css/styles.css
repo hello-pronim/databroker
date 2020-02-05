@@ -2291,7 +2291,9 @@ input.input_data, select.input_data {
 }
 
 .auth-section .dropdown-container {
-    margin: 10px 0px 8px;
+    padding: 10px 0px;
+    margin-top: 0px;
+    margin-bottom: 0.5rem;
 }
 .dropdown-container {
     margin: 10px 0px 17px;
