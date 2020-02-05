@@ -91,10 +91,17 @@ class DataController extends Controller
 
     public function offer_detail($id, Request $request)
     {   
+        $offerId = $id;
         $offer = Offer::with(['region'])->where('offers.offerIdx', '=', $id)->first();
+        
+        $communityIdx = $offer['communityIdx'];
+        $community = Community::find($communityIdx);
+        $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
+        $link_to_market = route('data_community.'.$community_route);
+
         $products = OfferProduct::with(['region'])->where('offerIdx', '=', $id)->get();
 
-        $data = array( 'offer', 'products', 'id' );
+        $data = array( 'offer', 'products', 'id', 'link_to_market' );
         return view('data.offer_detail', compact($data));
     }
 
