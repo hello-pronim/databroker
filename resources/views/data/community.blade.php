@@ -15,7 +15,7 @@
 							pressure, wind around your location. Now available for 
 							all countries in Europe.)							
 						</p>
-						<a href="{{ route('data.'.str_replace( ' ', '_', strtolower($community))) }}" class="btn btn-round readmore">
+						<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" class="btn btn-round readmore">
 							{{ trans('pages.view_dataoffer') }}
 						</a>										
 					</div>
@@ -33,7 +33,7 @@
 	    	@endforeach	    	
 	    </div> 	
 	    <div class="mt-40 text-center">		        	
-        	<a href="{{ route('data.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.view_dataoffer') }}</button></a>
+        	<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.view_dataoffer') }}</button></a>
         </div>
 
         <h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('pages.discover_improve_business')}} </h1>
@@ -251,7 +251,7 @@
 			</div>				
   		</div>   
   		<div class="mt-40 text-center">		        	
-        	<a href="{{ route('data.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="btn btn-round sendmessage-btn">View Data Offer</button></a>
+        	<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="btn btn-round sendmessage-btn">View Data Offer</button></a>
         </div>
     </div>    
 </div>  

@@ -34,7 +34,6 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::post('/data/product/add', 'DataController@offer_submit_product')->name('data_offer_submit_product');
 	Route::get('/data/offers/{id}/product/confirmation', 'DataController@offer_product_publish_confirm')->where('id', '[0-9]+')->name('data_offer_product_publish_confirm');
 	Route::get('/data/offers/{id}/confirmation', 'DataController@offer_publish_confirm')->where('id', '[0-9]+')->name('data_offer_publish_confirm');
-	Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
 	
 	Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');			
 	Route::post('/data/update-status', 'DataController@data_update_status')->name('data.update_status');			
@@ -45,6 +44,10 @@ Route::group(['middleware' => ['auth']], function(){
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
 Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name('data_details');
+Route::get('/data/send_message', 'DataController@send_message')->name('data.send_message');	
+Route::get('/data/buy_data', 'DataController@buy_data')->name('data.buy_data');	
+Route::get('/data/send_bid', 'DataController@send_bid')->name('data.send_bid');	
+Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
 
 Route::get('/about', 'AboutController@index')->name('about.about');    
 Route::get('/contact', 'AboutController@contact')->name('contact');    
@@ -66,7 +69,7 @@ foreach ($communities as $key => $community) {
 	$data = array('datacontroller'=>$datacontroller, 'community'=>$community);
 	Route::get('/'.$community_route, function() use($data){			
 		return $data['datacontroller']->category($data['community']->communityName);
-	})->name('data.'.$community_route);	
+	})->name('data_community.'.$community_route);	
 	
 	Route::get('/community/'.$community_route, function() use($data){			
 		return $data['datacontroller']->community($data['community']->communityName);

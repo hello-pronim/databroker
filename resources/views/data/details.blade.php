@@ -3,8 +3,11 @@
 @section('content')
 <div class="container-fluid app-wapper">
 	<div class="bg-pattern1-left"></div>
-    <div class="container">
-    	<div class="app-section app-reveal-section align-items-center data-detail">    		
+    <div class="container">    	
+    	<div class="app-section app-reveal-section align-items-center data-detail">     		
+    		@if($prev_route)
+    		<a href="{{ route($prev_route) }}" class="back-icon text-grey"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
+    		@endif
 	        <div class="blog-header">
 	            <h1>{{ $offer['offerTitle'] }}</h1>	            
 	            <p class="area">
@@ -12,7 +15,7 @@
 	            		<span>{{ $region->regionName }}</span>
 	            	@endforeach
 	            </p>
-	            <p class="category">{{ $offer['community']->communityName }}</p>
+	            <p class="category"> Published in : <a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($offer['community']->communityName) )) }}" >{{ $offer['community']->communityName }}</a></p>
 	        </div>	        
 	        <div class="blog-content">
 	        	<div class="row">
@@ -89,7 +92,9 @@
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<button type="button" class="customize-btn">Buy Now</button>
+					                			<a href="/data/buy_data">
+					                				<button type="button" class="customize-btn">Buy Now</button>
+					                			</a>
 					                		</div>	
 				                		</div>				                		
 				                	</div>
@@ -104,8 +109,12 @@
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<button type="button" class="customize-btn">Send a bid to the seller</button>
-					                			<button type="button" class=" customize-btn">Buy Now</button>
+					                			<a href="/data/send_bid">
+					                				<button type="button" class="customize-btn">Send a bid to the seller</button>
+					                			</a>
+					                			<a href="/data/buy_data">
+					                				<button type="button" class="customize-btn">Buy Now</button>
+					                			</a>
 					                		</div>	
 				                		</div>				                		
 				                	</div>
@@ -120,7 +129,9 @@
 					                		<div class="col-md-6 text-right">
 					                			<p class="price">$500</p>
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<button type="button" class="customize-btn">Buy Now</button>
+					                			<a href="/data/buy_data">
+					                				<button type="button" class="customize-btn">Buy Now</button>
+					                			</a>
 					                		</div>	
 				                		</div>				                		
 				                	</div>	
@@ -142,12 +153,11 @@
 	        			<p class="short-desc">
 	        				{{ trans('pages.contact_data_provider') }}
 	        			</p>
-	        			<button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.send_message') }}</button>
+	        			<a href="/data/send_message"><button  type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.send_message') }}</button></a>
 	        		</div>
 	        	</div>
 	        </div>
-	    </div>	
-	    <a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>    
+	    </div>		    
     </div>      
 </div>
 

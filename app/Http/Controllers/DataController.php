@@ -40,8 +40,14 @@ class DataController extends Controller
         $offer = Offer::with(['region', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
 
         $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->get();
+        
+        $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
                 
-        $data = array('offer' => $offer, 'offersample' => $offersample);
+        if(  strpos($prev_route, 'data_community.') === false ){
+            $prev_route = '';
+        }
+
+        $data = array('offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route);
 
         return view('data.details')->with($data);
     }
@@ -71,10 +77,16 @@ class DataController extends Controller
     }
 
     public function offer_publish(Request $request){
-        $communities = Community::get();
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'publish your data offer');
+        }
+        else{
+            $communities = Community::get();
 
-        $data = array('communities');
-        return view('data.offer_publish', compact($data));   
+            $data = array('communities');
+            return view('data.offer_publish', compact($data)); 
+        }  
     }
 
     public function offer_detail($id, Request $request)
@@ -277,7 +289,7 @@ class DataController extends Controller
         // $offer_plain = json_encode($offer);
         // $community_plain = json_encode($community);
         $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
-        $link_to_market = route('data.'.$community_route);
+        $link_to_market = route('data_community.'.$community_route);
 
         $data = array( 'offerId', 'link_to_market' ); //, 'offer_plain', 'community_plain'
         return view('data.offer_publish_confirm', compact($data));
@@ -311,4 +323,24 @@ class DataController extends Controller
         return Auth::user();
     }
 
+    public function send_message() {
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'contact the data provider');
+        }
+    }
+
+    public function buy_data(){
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'buy this data');
+        }
+    }
+
+    public function send_bid(){
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'send a bid for this data');
+        }
+    }
 }

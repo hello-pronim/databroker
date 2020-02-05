@@ -43,8 +43,8 @@ class HomeController extends Controller
 
     public function test(){
         $this->sendEmail("template", [
-            'from'=>"yuriyes43@gmail.com", 
-            'to'=>'peterjackson0120@gmail.com', 
+            'from'=>'peterjackson0120@gmail.com', 
+            'to'=>"yuriyes43@gmail.com", 
             'name'=>'Test', 
             'subject'=>'Test'
         ]);                                                                                                   

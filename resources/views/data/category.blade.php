@@ -50,9 +50,10 @@
 	        			<label class="cat-label">{{ trans('pages.in') }}</label>
 	        			<div class="custom-dropdown-container cat-select">
 	                        <div id="region" class="custom-dropdown" tabindex="1">
+	                        	<input type="hidden" name="region" value="">
 	                            <div class="select">
 	                                <span>Select Region</span>
-	                            </div>	                            
+	                            </div>
 	                            <ul class="custom-dropdown-menu region-select mt-10" style="display: none;">
 				                    <div class="adv-combo-wrapper custom-select2">
 					                    <select data-placeholder="{{ trans('pages.search_by_country') }}">
@@ -66,8 +67,7 @@
 	                            	<span class="region" region-id="all">{{ trans('pages.all_regions') }}</span>
 	                            	@foreach ($regions as $region)
 					                    <span class="region" region-id="{{$region->regionIdx}}">{{$region->regionName}}</span>
-					                @endforeach
-					                
+					                @endforeach					                
 	                            </ul>
 	                        </div>	                        
 	                    </div>  

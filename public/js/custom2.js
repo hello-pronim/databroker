@@ -15,6 +15,10 @@ $(document).ready(function() {
         $('select.no-search').select2({
         	 minimumResultsForSearch: -1
         });
+
+        $("#region select").select2({
+            dropdownCssClass : 'region_dropdown'
+        });
     }
 
     if ($('.faq-entry .dropdown-arrow').length > 0) {
