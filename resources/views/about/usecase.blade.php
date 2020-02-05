@@ -10,18 +10,21 @@
     <div class="bg-pattern1-left"></div>
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
-            <div class="blog-header">
-                <h1 class="h1-small">Discover how data can improve your business</h1>
+            <div class="blog-header row">                
+                <div class="col-md-8">
+                    <h1 class="h1-small">Get inspired by real-life use cases for data</h1>
+                    <p class="fs-18">Looking for inspiration for how data can help supercharge your business? Browse our use cases to discover practical and innovative ways that data can solve real-life challenges, lead to better decision-making and drive more strategic business moves.</p>
+                </div>                
             </div>          
             <div class="blog-content">
                 <div class="row">
                     <div class="col-lg-4 flex-vcenter mgh30">
                         <h4 class="h4_intro">Explore use cases in</h4>                  
                         <div class="mgl30 adv-combo-wrapper custom-select2 geocommunity-wrapper">
-                            <select name="geocommunity" data-placeholder="Geographics Community">
-                                <option></option>
+                            <select name="geocommunity" class="no-search">
+                                <option value="all">All Communities</option>
                                 @foreach ( $communities as $community )
-                                <option value="{{$community->communityIdx}}">{{ $community->communityName }}</option>
+                                <option value="{{$community->communityIdx}}">{{ $community->communityName }} Community</option>
                                 @endforeach
                             </select>
                         </div>
@@ -56,9 +59,9 @@
         <div class="section_splitor_gray"></div>
         <div class="bg-pattern1-both flex-center flex-vertical">
             <div class="divider-green mgb30"></div>
-            <div class="h2">Don't miss any use case updates!</div>
-            <div class="para mgb40">Sign up to our newsletter</div>
-            <button type="button" class="customize-btn button mgt15">SIGN UP</button>
+            <div class="h2">Find out about new use cases</div>
+            <div class="para mgb40">Sign up for our NewsBytes!</div>
+            <a href="{{route('auth.register_nl')}}"><button type="button" class="customize-btn button mgt15">SIGN UP</button></a>
         </div>
         <div class="section_splitor_gray h713"></div>
     </div>    
@@ -87,7 +90,7 @@
                 </div>
             </div>
             <div class="flex-center">
-                <button type="button" class="button blue-outline w225">SEE MORE</button>
+                <button type="button" class="button blue-outline w225">LOAD MORE</button>
             </div>
         </div>
     </div>
