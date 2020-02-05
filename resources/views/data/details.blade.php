@@ -142,9 +142,9 @@
 
 	        		<div class="col-lg-4">
 	        			<h2 class="explain">Data provided by {{ $offer['provider']->companyName }}</h2>
-	        			<h5 class="subcategory">Geo Information Service</h5>
+	        			<h5 class="subcategory">{{$user_info['businessName']}} Service</h5>
 	        			<label class="country">{{ $offer['provider']['region']->regionName }}</label>
-	        			<label class="author"><a href="{{ $offer['provider']->companyURL }}">{{ $offer['provider']->companyName }}</a></label>
+	        			<label class="author"><a target="_blank" href="{{ $offer['provider']->companyURL }}">{{ $offer['provider']->companyURL }}</a></label>
 	        			<div class="author_avatar">	        				
 	        				@if($offer['provider']->companyLogo)
 	        				<img src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}">

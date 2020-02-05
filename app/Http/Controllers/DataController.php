@@ -17,6 +17,7 @@ use App\Models\OfferCountry;
 use App\Models\ProductCountry;
 use App\Models\RegionProduct;
 use App\Models\UseCase;
+use App\User;
 
 class DataController extends Controller
 {
@@ -38,16 +39,19 @@ class DataController extends Controller
     public function details(Request $request)
     {        
         $offer = Offer::with(['region', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
-
+        $user_info = User::where('userIdx', $offer->provider->userIdx)->first();
+        
         $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->get();
         
         $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
-                
+        
+        $user = $this->getAuthUser();
+
         if(  strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
         }
 
-        $data = array('offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route);
+        $data = array('offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user' => $user, 'user_info' => $user_info);
 
         return view('data.details')->with($data);
     }
