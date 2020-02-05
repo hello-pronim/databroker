@@ -16,8 +16,7 @@
 	            	@endforeach
 	            </p>
 	            <p class="category"> Published in : <a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($offer['community']->communityName) )) }}" >{{ $offer['community']->communityName }}</a>
-	            	<label>
-		            	<span>asdssdfsf</span><span>ffeeesss</span>
+	            	<label>		            	
 		            	@foreach($offer['theme'] as $theme)
 		            		<span>{{ $theme->themeName }}</span>
 		            	@endforeach
