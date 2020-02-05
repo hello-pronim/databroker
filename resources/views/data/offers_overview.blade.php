@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'My data offers & products | Databroker ')
+@section('description', '')
+
 @section('additional_css')
 @endsection
 
@@ -11,7 +14,8 @@
 			<div class="col-lg-6">
 				<div class="blog-header mt-60">
 		            <h1>{{ trans('pages.Data_offers_overview') }}</h1>			            
-		            <p class="area">{{ trans('pages.data_offer_overview_desc1') }}<a href="javascript:;" class="help-section">{{ trans('pages.help_section') }}</a></p>
+		            <p class="para">Here you can find an overview of all your data offers. To see individual data products, or to add products to a data offer, click on the relevant data offer.</p>
+		            <p class="para">Need help with adding new data offers and products, and on installing the API needed to transfer data to other parties? Check out our <a href="{{ route('help.buying_data') }}" class="help-section">{{ trans('pages.help_section') }}</a></p><!-- #60 Selling data Help_buying/selling -->
 		        </div>		        
 			</div>
 			<div class="col-lg-6">
@@ -28,11 +32,11 @@
 		            		<span>{{ $region->regionName }}</span>
 		            	@endforeach
 		            </p>
-					<span class="offer-products"><span class="label">{{ trans('pages.data_products') }}: </span> 
-					@if(isset($offer['offerproduct']))
-					{{ $offer['offerproduct']->product_count }}
+					<span class="offer-products"> 
+					@if(isset($offer['offerproduct']) && $offer['offerproduct']->product_count > 0)
+					<span class="label">{{ trans('pages.data_products') }}: </span>{{ $offer['offerproduct']->product_count }}
 					@else
-					0
+					none added yet
 					@endif
 					</span>					
 				</a>
