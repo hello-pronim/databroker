@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Data products | Databroker ')
+@section('description', '')
+
 @section('additional_css')
 @endsection
 
@@ -28,7 +31,7 @@
 									{{ trans('pages.unpublished') }}
 								@endif
 							</span>
-							<a class="link-market" href="javascript:;">{{ trans('pages.view_on_marketplace') }}</a>
+							<a class="link-market" href="{{$link_to_market}}">{{ trans('pages.view_on_marketplace') }}</a>
 						</div>
 						<div class="buttons">
 							<a class="icon-button btn-edit">
@@ -64,7 +67,8 @@
 						<div class="col-6">
 							<span class="label text-black">{{ trans('pages.data_products') }}: </span>
 							<span class="count">{{ count($products) }}</span>
-							<p class="area fs-18">{{ trans('pages.data_offer_overview_desc1') }}<a href="" class="link-market">{{ trans('pages.help_section') }}</a></p>
+							<p class="para">Before you can sell or share a data product, you need to make sure that the Data eXchange Controller (DXC) has been installed and that you have activated the data product using its unique ID.</p>
+							<p class="para">Need help? You can find detailed instructions in our <a href="{{ route('help.buying_data') }}" class="link-market">{{ trans('pages.help_section') }}</a></p>
 						</div>
 						<div class="col-6">
 							<a href="{{ route('data_offer_add_product', ['id'=>$id]) }}"><button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>	<!-- goto #29 --></a>

@@ -2060,5 +2060,12 @@ a:hover {
 
 a:active {
 	color: #78E6D0;
-    text-decoration: none;
+}
+
+a.back-icon,
+a.back-icon:link,
+a.back-icon:visited,
+a.back-icon:hover,
+a.back-icon:active {
+	color: #BAC0C5;
 }
