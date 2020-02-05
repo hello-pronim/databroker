@@ -11,7 +11,8 @@
 			<div class="col-lg-6">
 				<div class="blog-header mt-60">
 		            <h1>{{ trans('pages.Data_offers_overview') }}</h1>			            
-		            <p class="area">{{ trans('pages.data_offer_overview_desc1') }}<a href="javascript:;" class="help-section">{{ trans('pages.help_section') }}</a></p>
+		            <p class="para">Here you can find an overview of all your data offers. To see individual data products, or to add products to a data offer, click on the relevant data offer.</p>
+		            <p class="para">Need help with adding new data offers and products, and on installing the API needed to transfer data to other parties? Check out our <a href="javascript:;" class="help-section">{{ trans('pages.help_section') }}</a></p><!-- #60 Selling data Help_buying/selling -->
 		        </div>		        
 			</div>
 			<div class="col-lg-6">
