@@ -95,8 +95,13 @@
 				            </div>
 				            @endif
 				            <div class="tab-pane" id="this_data">
-				                <h2>Buy data</h2>
-				                <p>You can buy the data products already prepared by the data provider, or request the data provider to prepare the specific dataset you need. When you buy data, a link to access or download the data will be offered to you via email. You can also access this link via the purchases-section in your account.</p>
+				                <h2>Buy this data</h2>
+				                <p>If the data provider has already defined data products that can be purchased directly, you’ll find these below. When you buy a data product, you’ll receive an email link to access or download the data. 
+
+								This link will also be available in the Purchases section of your account. 
+
+								If you don’t see the data you need below, you can contact the data provider directly to request specific data.
+								</p>
 
 				                <div class="buy_lists">
 				                	<div class="buy_list">
