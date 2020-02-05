@@ -680,6 +680,23 @@ i.rotated:before{
 .blog-header p.category a{
 	color: #78E6D0;
 }
+.blog-header p.category span{
+	color: #78E6D0;
+	text-transform: capitalize;	
+	font-size: 18px;
+}
+.blog-header p.category label span:first-child:before{
+	content: "/";
+	margin-right: 5px;
+	margin-left: 5px;
+}
+.blog-header p.category span:after{
+	content: ",";
+	margin-right: 5px;
+}
+.blog-header p.category span:last-child:after{
+	content: '';
+}
 .blog-content{
 	padding-top: 30px;
 }
