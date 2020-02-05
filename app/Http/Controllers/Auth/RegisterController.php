@@ -67,14 +67,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $businessName = $data['businessName2']===NULL?$data['businessName']:$data['businessName2'];
+        $jobTitle = $data['jobTitle2']===NULL?$data['jobTitle']:$data['jobTitle2'];
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'emailAddress' => $data['emailAddress'],
             'companyName' => $data['companyName'],
-            'businessName' => $data['businessName'],
-            'jobTitle' => $data['jobTitle'],
-            'jobTitle' => $data['jobTitle'],
+            'businessName' => $businessName,
+            'jobTitle' => $jobTitle,
             'userStatus' => 1,
             'password' => Hash::make($data['password']),
         ]);
