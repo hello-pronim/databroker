@@ -1253,6 +1253,15 @@ i.rotated:before{
 	background-size: 60%;
 	text-align: center;
 }
+.cta_box{
+	border: 1px solid #DAE1E5;	
+	padding: 30px 90px;
+	background-image: url('../images/patterns/BG-left-desktop.svg');
+	background-repeat: no-repeat;
+	background-position: left center;	
+	background-size: 35%;
+	text-align: left;
+}
 #no_thank_link{
 	text-transform: none;
 	margin-top: 38px;
