@@ -11,7 +11,7 @@
                     @csrf
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                        <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
                         <span>{{ trans('auth.first_name') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'First Name']) }}</div>
                         @error('firstname')
@@ -22,7 +22,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="lastname" name="lastname" class="form-control input_data @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                        <input type="text" id="lastname" name="lastname" class="form-control input_data @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ old('lastname') }}" autocomplete="lastname" autofocus>
                         <span>{{ trans('auth.last_name') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
                         @error('lastname')
@@ -33,7 +33,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress') }}" required autocomplete="email" autofocus>
+                        <input type="text" id="email" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress') }}" autocomplete="email" autofocus>
                         <span>{{ trans('auth.email_address') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
                         @error('emailAddress')
@@ -44,7 +44,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ old('companyName') }}" required autocomplete="company" autofocus>
+                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ old('companyName') }}" autocomplete="company" autofocus>
                         <span>{{ trans('auth.company') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company']) }}</div>
                         @error('companyName')
@@ -101,7 +101,7 @@
                     </div>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="" required autofocus>
+                        <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="" autofocus>
                         <span>{{ trans('auth.password') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Password']) }}</div>
                         @error('password')
@@ -112,7 +112,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="password" id="password-confirm" name="password_confirmation" class="form-control input_data @error('password-confirm')  is-invalid @enderror" placeholder=" "  value="" required autofocus>
+                        <input type="password" id="password-confirm" name="password_confirmation" class="form-control input_data @error('password-confirm')  is-invalid @enderror" placeholder=" "  value="" autofocus>
                         <span>{{ trans('auth.confirm_password') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Confirm Password']) }}</div>
                         @error('password-confirm')
@@ -125,7 +125,7 @@
                     <div class="form-check">
                         <label class="form-check-label">                
                             <input type="checkbox" class="form-check-input" name="term_conditions" value="true">
-                            <b class="">Yes, I accept Databroker’s <font style="color: #78E6D0;">terms and conditions</font> and <font style="color: #78E6D0;">the privacy policy</font></b>
+                            <p class="text-black fs-18 lh-27">Yes, I accept Databroker’s <a href="#" target="_blank"><font style="color: #78E6D0;">terms and conditions</font></a> and <a href="#" target="_blank"><font style="color: #78E6D0;">the privacy policy</font></a></p>
                             <span class="form-check-sign">
                                 <span class="custom-check check @error('term_conditions') is-invalid @enderror"></span>
                             </span>                                                        
