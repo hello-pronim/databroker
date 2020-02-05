@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'My data offers & products | Databroker ')
+@section('description', '')
+
 @section('additional_css')
 @endsection
 
