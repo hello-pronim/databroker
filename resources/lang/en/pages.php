@@ -84,7 +84,7 @@ return [
     'help_section' => 'Help & support centre.',
     'publish_a_data_offer' => 'PUBLISH A DATA OFFER',
     'data_products' => 'Number of data products',
-    'contact_data_provider' => 'Contact this data provider for any questions, or to prepare a specific dataset based on your needs.',
+    'contact_data_provider' => 'Questions about this data? <br> Or want to request specific data from this provider?',
 
     'explore_data_offer' => 'Explore data offers in',
     'all_themes' => 'All themes',

@@ -151,9 +151,9 @@
 	        				@endif
 	        			</div>	        			
 	        			<p class="short-desc">
-	        				{{ trans('pages.contact_data_provider') }}
+	        				{!! trans('pages.contact_data_provider') !!}
 	        			</p>
-	        			<a href="/data/send_message"><button  type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.send_message') }}</button></a>
+	        			<a href="/data/send_message"><button  type="button" class="btn btn-round sendmessage-btn">CONTACT THE DATA PROVIDER</button></a>
 	        		</div>
 	        	</div>
 	        </div>
