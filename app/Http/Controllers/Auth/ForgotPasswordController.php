@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
@@ -30,6 +32,11 @@ class ForgotPasswordController extends Controller
         return $request->only('emailAddress');
     }
 
+    protected function sendResetLinkResponse(Request $request, $response)
+    {
+        return back()->with('status', trans($response));
+    }
+    
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
         return back()

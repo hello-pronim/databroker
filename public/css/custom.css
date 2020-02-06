@@ -1113,11 +1113,20 @@ i.rotated:before{
 	min-height: 270px;
     max-height: 270px;
 }
+.community-filter .community{
+	display: flex;
+	align-items: center;
+}
 .community-filter .community >div{
 	min-width: 294px;
 }
 .community-filter .theme{
-	padding-left: 25px;
+	display: flex;
+	align-items: center;
+}
+.community-filter .region{
+	display: flex;
+	align-items: center;
 }
 #region .adv-combo-wrapper .select2 .selection .select2-selection{
 	box-shadow: none;

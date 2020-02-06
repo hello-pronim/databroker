@@ -38,7 +38,7 @@ class ResetPasswordController extends Controller
         return [
             'token' => 'required',
             'emailAddress' => 'required|email',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|confirmed|min:8|string|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
         ];
     }
     protected function credentials(Request $request)

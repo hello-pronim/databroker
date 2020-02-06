@@ -81,7 +81,3 @@ Route::post('/register_nl', 'Auth\RegisterController@create_nl')->name('auth.cre
 
 Auth::routes(['verify' => true]);
 Auth::routes();
-
-
-
-
