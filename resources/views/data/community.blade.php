@@ -13,7 +13,7 @@
 							{{ trans('description.'.str_replace( ' ', '_', $community).'_intro') }}
 						</p>
 						<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" class="btn btn-round readmore mt-30">
-							See data offers
+							{{ trans('pages.view_dataoffer') }}
 						</a>										
 					</div>
 				</div>
@@ -33,7 +33,7 @@
         	<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.view_dataoffer') }}</button></a>
         </div>
 
-        <h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('pages.discover_improve_business')}} </h1>
+        <h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('pages.discover_improve_business', ['community' => strtolower($community)])}} </h1>
 		<div class="row">			
 			<div class="col-md-4">
 				<div class="card card-profile card-plain">
@@ -106,6 +106,7 @@
 	<div class="container">
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.team_picks') }} </h1>
 		<div class="row">
+			@foreach($offers as $offer)		
 			<div class="col-md-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
@@ -114,40 +115,16 @@
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
-						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace1.png') }}" />
+						<h4 class="offer-title card-title">{{$offer['offerTitle']}}</h4>
+						<h6 class="card-category offer-location">
+							@foreach($offer['region'] as $region)
+			            		<span>{{ $region->regionName }}</span>
+			            	@endforeach</h6>
+						<a href="{{ $offer['provider']->companyURL }}"><img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" /></a>
 					</div>			
 				</div>	
-			</div>	
-			<div class="col-md-4">
-				<div class="card card-profile card-plain">
-					<div class="card-header">
-						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog2.png') }}" />
-						</a>
-					</div>
-					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
-						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace2.png') }}" />
-					</div>			
-				</div>	
-			</div>	
-			<div class="col-md-4">
-				<div class="card card-profile card-plain">
-					<div class="card-header">
-						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog3.png') }}" />
-						</a>
-					</div>
-					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
-						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace3.png') }}" />
-					</div>			
-				</div>	
-			</div>	
+			</div>
+			@endforeach
   		</div>
 
 	    <div class="app-section app-monetize-section align-items-center">
