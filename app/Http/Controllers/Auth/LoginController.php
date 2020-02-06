@@ -70,7 +70,7 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            'emailAddress' => 'required|email|string',
+            'email' => 'required|email|string',
             'password' => 'required|string',
         ]);
     }
@@ -78,7 +78,7 @@ class LoginController extends Controller
     
     public function username()
     {
-        return 'emailAddress';
+        return 'email';
     }
 
   

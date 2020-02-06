@@ -33,10 +33,10 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress') }}" autocomplete="email" autofocus>
+                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" autocomplete="email" autofocus>
                         <span>{{ trans('auth.email_address') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
-                        @error('emailAddress')
+                        @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -54,7 +54,7 @@
                         @enderror
                     </label>
 
-                    <div class="dropdown-container">
+                    <div class="industry-dropdown dropdown-container">
                         <div class="dropdown" tabindex="1">
                             <div class="select">
                                 <span>Which industry are you in?</span>
@@ -85,7 +85,7 @@
                         <div class="error_notice"> This field is required</div>
                     </div>
 
-                    <label class="pure-material-textfield-outlined">
+                    <label class="other-industry pure-material-textfield-outlined" style="display: none">
                         <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" "  value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
                         <span>{{ trans('auth.enter_your_industry') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
@@ -96,7 +96,7 @@
                         @enderror
                     </label>
 
-                    <div class="dropdown-container">
+                    <div class="role-dropdown dropdown-container">
                         <div class="dropdown" tabindex="1">
                             <div class="select">
                                 <span>What role do you have?</span>
@@ -111,7 +111,7 @@
                         <div class="error_notice"> This field is required</div>
                     </div>
 
-                    <label class="pure-material-textfield-outlined">
+                    <label class="other-role pure-material-textfield-outlined" style="display: none">
                         <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle') }}" autocomplete="jobTitle" autofocus>
                         <span>{{ trans('auth.enter_your_role') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>

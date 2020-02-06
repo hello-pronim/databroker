@@ -157,6 +157,9 @@
 	.app-wapper.app-bids-wapper{
 		margin-top: 96px;
 	}
+	.app-wapper.partners{
+		margin-top: 96px;
+	}
 	.app-partner-item .img img{
 		max-height: 100%;
 	}

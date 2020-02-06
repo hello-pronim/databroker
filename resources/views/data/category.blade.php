@@ -46,7 +46,7 @@
 		                    </select>	                        
 		                </div>
 	        		</div>
-	        		<div class="col-xl-4 col-lg-6 mb-20">
+	        		<div class="col-xl-4 col-lg-6 mb-20 region">
 	        			<label class="cat-label">{{ trans('pages.in') }}</label>
 	        			<div class="custom-dropdown-container cat-select">
 	                        <div id="region" class="custom-dropdown" tabindex="1">
