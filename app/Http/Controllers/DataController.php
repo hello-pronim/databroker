@@ -282,10 +282,16 @@ class DataController extends Controller
 
     public function community($community=""){         
 
-        $communities = Community::get();        
+        $offers = Offer::with(['region', 'provider', 'usecase'])
+            ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+            //->where('communities.communityName', ucfirst($community))
+            //->where('offers.status', 1)
+            ->limit(3)
+            ->get();
+
         $themes = Theme::get_theme_by_community($community);
         
-        $data = array( 'community', 'communities', 'themes' );                
+        $data = array( 'community', 'offers', 'themes' );                
         return view('data.community', compact($data));
     }    
 

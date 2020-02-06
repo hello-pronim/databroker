@@ -6,7 +6,7 @@ return [
         Description
     */
 
-    'Geographic_intro' => 'The Geographics community includes data that helps us better understand the Earth’s physical characteristics and how we make use of it, in order to make decisions about urban planning, business development and more.',
+    'Geographics_intro' => 'The Geographics community includes data that helps us better understand the Earth’s physical characteristics and how we make use of it, in order to make decisions about urban planning, business development and more.',
     'Environment_intro' => 'The Environment community includes data that can help us better understand the complex inter-relationships between humans and the natural world, and as a result, contribute to protecting both human health and the environment.',
     'Transport_intro' => 'The Transport community includes data about the movement of people and goods, traffic, transport safety and the transport industry in general. By understanding behaviours, choices and needs, we can develop the policies and solutions of the future.',
     'People_intro' => 'The People community includes data about the characteristics and behaviour of individuals and groups of people that can provide valuable insights into how they live, and how we can better meet their current and future needs.',

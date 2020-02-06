@@ -14,7 +14,7 @@ class Community extends Model
      * @var array
      */
     protected $fillable = [
-        'communityName'
+        'communityName', 'communityDescription'
     ];
     
 }

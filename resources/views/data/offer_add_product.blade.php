@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Add a new data product | Databroker')
+@section('description', '')
+
 @section('additional_css')	
 	<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection

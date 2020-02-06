@@ -168,7 +168,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>
+        <p class="para">
         	Unpublishing a data offer means the related data products will no longer be available for purchase.
 
 			Are you sure you want to unpublish?
@@ -177,8 +177,8 @@
       <input type="hidden" name="data_type" value="">
       <input type="hidden" name="data_id" value="">
       <div class="modal-footer">        
-        <button type="button" class="btn btn-primary btn-round unpublish">Yes, Unpublish</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="button primary-btn unpublish">Yes, Unpublish</button>
+        <button type="button" class="button secondary-btn" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>

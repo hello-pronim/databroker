@@ -1,5 +1,8 @@
 @extends('layouts.data')
 
+@section('title', 'Publishing a data offer | Databroker')
+@section('description', '')
+
 @section('additional_css')
 	<link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
