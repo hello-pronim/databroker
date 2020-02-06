@@ -61,7 +61,7 @@ return [
     'profile_description' => 'You can deactivate your Databroker account anytime you want.',
 
     'data_offer_step_1' => 'Step 1 of 4: Basic information about your data offer',
-    'data_offer_step_2' => 'Step 2 of 4: Description of the data',
+    'data_offer_step_2' => 'Step 2 of 4: More details about your data ',
     'data_offer_step_3' => 'Step 3 of 4: Use cases',
     'data_offer_step_4' => 'Step 4 of 4: Examples',
     'data_offer_step_1_description' => 'What data are you offering?',
