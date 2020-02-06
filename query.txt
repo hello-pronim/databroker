@@ -1,4 +1,4 @@
-INSERT INTO `Businesses` (`businessIdx`, `businessName`, `created_at`, `updated_at`) VALUES
+﻿INSERT INTO `Businesses` (`businessIdx`, `businessName`, `created_at`, `updated_at`) VALUES
 (1, 'Agriculture/Mining/Forestry', NULL, NULL),
 (2, 'Advertising/Media/Publishing', NULL, NULL),
 (3, 'Automotive', NULL, NULL),
@@ -121,7 +121,12 @@ UPDATE `databroker_new`.`themes` SET `themeName` = 'Electronics' WHERE (`themeId
 
 //2020-02-05
 UPDATE `databroker_new`.`communities` SET `communityName` = 'Geographics' WHERE (`communityIdx` = '1');
-
+//2020-02-06
+CREATE TABLE `databroker_new`.`password_resets`( `email` VARCHAR(64), `token` VARCHAR(64), `created_at` TIMESTAMP );
+ALTER TABLE `databroker_new`.`users` CHANGE `emailAddress` `email` VARCHAR(255) CHARSET armscii8 COLLATE armscii8_general_ci NULL;
+ALTER TABLE `databroker_new`.`contacts` CHANGE `emailAddress` `email` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL;
+ALTER TABLE `databroker_new`.`orders` CHANGE `emailAddress` `email` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL;
+ALTER TABLE `databroker_new`.`subscriptions` CHANGE `emailAddress` `email` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL;
 
 
 
