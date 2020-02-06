@@ -2077,3 +2077,13 @@ a.back-icon:active {
 .profile .action-button-delete .material-icons {
 	font-size: 20px;
 }
+
+.modal-dialog .modal-footer button {
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.modal-dialog .modal-footer .button {
+	height: 36px;
+}
+
