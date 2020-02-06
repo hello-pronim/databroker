@@ -273,7 +273,7 @@ class DataController extends Controller
             ->where('offers.status', 1)
             ->limit($per_page)
             ->get();
-        $totalcount = Offer::join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')->where('communities.communityName', ucfirst($category))->get()->count();
+        $totalcount = Offer::join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')->where('communities.communityName', ucfirst($category))->where('offers.status', 1)->get()->count();
 
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page' );                
         return view('data.category', compact($data));

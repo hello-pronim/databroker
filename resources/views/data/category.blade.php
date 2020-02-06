@@ -108,7 +108,7 @@
 									<div class="app-monetize-section-item0 mb-40"></div>
 									<p class="fs-18">Can't find what you are looking for?</p>
 									<p class="fs-21 text-bold mb-40">Try our matchmaking service. It's free!</p>
-									<a><button type="button" class="btn match-me-up-btn pure-material-button-outlined">Discover</button></a>
+									<a href="{{route('about.matchmaking')}}"><button type="button" class="btn match-me-up-btn pure-material-button-outlined">Discover</button></a>
 								</div>
 							</div>	
 						</div>						
