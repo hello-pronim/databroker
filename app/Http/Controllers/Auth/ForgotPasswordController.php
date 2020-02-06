@@ -24,12 +24,12 @@ class ForgotPasswordController extends Controller
 
     protected function validateEmail(Request $request)
     {
-        $request->validate(['emailAddress' => 'required|email']);
+        $request->validate(['email' => 'required|email']);
     }
 
     protected function credentials(Request $request)
     {
-        return $request->only('emailAddress');
+        return $request->only('email');
     }
 
     protected function sendResetLinkResponse(Request $request, $response)
@@ -40,7 +40,7 @@ class ForgotPasswordController extends Controller
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
         return back()
-                ->withInput($request->only('emailAddress'))
-                ->withErrors(['emailAddress' => trans($response)]);
+                ->withInput($request->only('email'))
+                ->withErrors(['email' => trans($response)]);
     }
 }

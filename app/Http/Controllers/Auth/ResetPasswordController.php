@@ -30,27 +30,27 @@ class ResetPasswordController extends Controller
     public function showResetForm(Request $request, $token = null)
     {
         return view('auth.passwords.reset')->with(
-            ['token' => $token, 'emailAddress' => $request->email]
+            ['token' => $token, 'email' => $request->email]
         );
     }
     protected function rules()
     {
         return [
             'token' => 'required',
-            'emailAddress' => 'required|email',
+            'email' => 'required|email',
             'password' => 'required|confirmed|min:8|string|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
         ];
     }
     protected function credentials(Request $request)
     {
         return $request->only(
-            'emailAddress', 'password', 'password_confirmation', 'token'
+            'email', 'password', 'password_confirmation', 'token'
         );
     }
     protected function sendResetFailedResponse(Request $request, $response)
     {
         return redirect()->back()
-                    ->withInput($request->only('emailAddress'))
-                    ->withErrors(['emailAddress' => trans($response)]);
+                    ->withInput($request->only('email'))
+                    ->withErrors(['email' => trans($response)]);
     }
 }

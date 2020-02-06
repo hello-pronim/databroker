@@ -33,10 +33,10 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="emailAddress" class="form-control input_data @error('emailAddress')  is-invalid @enderror" placeholder=" "  value="{{ old('emailAddress') }}" autocomplete="email" autofocus>
+                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" autocomplete="email" autofocus>
                         <span>{{ trans('auth.email_address') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
-                        @error('emailAddress')
+                        @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

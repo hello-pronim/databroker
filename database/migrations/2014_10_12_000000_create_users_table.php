@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('userIdx');
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('emailAddress')->unique();
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('companyName');
             $table->string('businessName');

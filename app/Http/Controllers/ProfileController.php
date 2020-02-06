@@ -74,7 +74,7 @@ class ProfileController extends Controller
         $fields = [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'emailAddress' => ['required', 'string', 'email', 'max:255']
+            'email' => ['required', 'string', 'email', 'max:255']
         ];
 
         // if any of the password fields present, validate
@@ -100,7 +100,7 @@ class ProfileController extends Controller
         
         $user->firstname = $request->input('firstname');
         $user->lastname = $request->input('lastname');
-        $user->emailAddress = $request->input('emailAddress');
+        $user->email = $request->input('email');
         $user->jobTitle = $request->input('jobTitle');
         $user->businessName = $request->input('businessName');
 
@@ -168,7 +168,7 @@ class ProfileController extends Controller
         return Validator::make($data, [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'emailAddress' => ['required', 'string', 'email', 'max:255', 'unique:users']
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
         ]);
     }
 }

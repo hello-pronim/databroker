@@ -37,7 +37,7 @@
 
                     <div class="row">
                         <div class="col-2 info-label">{{ trans('pages.email_address') }}:</div>
-                        <div class="col info-text">{{ $user->emailAddress }}</div>
+                        <div class="col info-text">{{ $user->email }}</div>
                     </div>
                     <div class="row">
                         <div class="col-2 info-label">{{ trans('pages.job_title') }}:</div>
@@ -85,11 +85,11 @@
                         <div class="row">
                             <div class="col-3 info-label flex-vend">Email address:</div>
                             <div class="col info-text flex-vcenter">
-                                <input type="text" id="emailAddress" name="emailAddress" class="form-control" placeholder=" "  value="{{ old('emailAddress', $user->emailAddress) }}" autocomplete="emailAddress" autofocus>
+                                <input type="text" id="email" name="email" class="form-control" placeholder=" "  value="{{ old('email', $user->email) }}" autocomplete="email" autofocus>
                             </div>
                         </div>
                         <div class="row">                                                        
-                            <span class="invalid-feedback emailAddress ml-15" role="alert">
+                            <span class="invalid-feedback email ml-15" role="alert">
                                 <strong></strong>
                             </span>                            
                         </div>
