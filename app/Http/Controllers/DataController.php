@@ -282,7 +282,7 @@ class DataController extends Controller
 
     public function community($community=""){         
 
-        $communities = Community::get();        
+        $communities = Community::where('communityName', $community)->first();        
         $themes = Theme::get_theme_by_community($community);
         
         $data = array( 'community', 'communities', 'themes' );                

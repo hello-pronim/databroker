@@ -4,19 +4,16 @@
 <div class="container-fluid app-wapper">	
     <div class="container">
     	<div class="row">
-	    	<div class="col-md-12">
-				<div class="card card-raised card-background" style="background-image: url({{ asset('images/blogs/geographics.png') }})">
-					<div class="card-body">
-						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
+	    	<div class="col-md-12">	    		
+				<div class="card card-raised card-background" style="background-image: url({{ asset('images/communities/'.str_replace( ' ', '_', $community).'/hero.jpg') }})">
+					<div class="hero_overlay_bg"></div>
+					<div class="card-body">						
 						<h3 class="card-title fs-40">{{ $community }}</h3>
-						<p class="card-description text-white">
-							Short description (eg. Get current weather and daily
-							forecasts. iteractive maps show precipitation, clouds,
-							pressure, wind around your location. Now available for 
-							all countries in Europe.)							
+						<p class="text-white fs-18">
+							{{ trans('description.'.str_replace( ' ', '_', $community).'_intro') }}
 						</p>
-						<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" class="btn btn-round readmore">
-							{{ trans('pages.view_dataoffer') }}
+						<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" class="btn btn-round readmore mt-30">
+							See data offers
 						</a>										
 					</div>
 				</div>
