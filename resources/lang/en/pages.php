@@ -68,7 +68,7 @@ return [
     'data_offer_step_2_description' => 'What are the main characteristics of the data you can offer?',
     'data_offer_step_3_description' => 'What are some typical use cases for your data? What business challenges could this data help a company solve?',
     'data_offer_step_4_description' => 'Can you upload some screenshots or other representations of the data to show what it looks like?',
-    'data_offer_image_upload_description1' => 'Uploading some screenshots or other visual representations of the data can help potential buyers better understand the quality and relevance what you are offering.',
+    'data_offer_image_upload_description1' => 'Uploading some screenshots or other representations of the data can help potential buyers better understand the quality and relevance of the data you can offer. You could upload an image file or pdf showing a sample of a possible data product.',
     'data_offer_image_upload_description2' => 'Or browse our image database and pick one',
     'previous_step' => 'Previous step',
     'publish_on_marketplace' => 'PUBLISH ON MARKETPLACE',

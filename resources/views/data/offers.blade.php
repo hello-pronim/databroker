@@ -1,6 +1,6 @@
 @extends('layouts.data')
 
-@section('title', 'Publishing a data offer | Step 2 | Databroker')
+@section('title', 'Publishing a data offer | Databroker')
 @section('description', '')
 
 @section('additional_css')
@@ -172,7 +172,7 @@
 					</div>
 				</div>
 		    </div>	
-	    	<div id="step2" class="app-section app-reveal-section align-items-center step current">  
+	    	<div id="step2" class="app-section app-reveal-section align-items-center step">  
 	    		<div class="row header">  	
 		    		<div class="col col-9">
 						<div class="page-title text-primary">{{ trans('pages.data_offer_step_2') }}</div>		
