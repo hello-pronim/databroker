@@ -791,66 +791,84 @@ a.dropdown-toggle:after{
 	color: #020A09 !important;
 	border-bottom: 2px solid #78E6D0 !important;
 }
-.blog-content .tab-content .tab-pane h2{
+.blog-content .link-content .link-box{
+	position: relative;
+	padding: 10px 0px;
+}
+.blog-content .link-content .link-box:before{
+	content: '';
+	border-top: 2px solid #78E6D0;
+	width: 60px;
+	display: block;
+	position: absolute;
+	top: 0px;	
+}
+.blog-content .link-content .link-box:first-child{
+	padding-top: 0px;
+}
+.blog-content .link-content .link-box:first-child:before{
+	content: none;
+}
+.blog-content .link-content .link-box h2{
 	font-size: 30px;
 	font-weight: bold;
 }
-.blog-content .tab-content .tab-pane p{
+.blog-content .link-content .link-box p{
 	font-size: 18px;
 }
-.blog-content .tab-content .tab-pane .region{
+.blog-content .link-content .link-box .region{
 	padding: 15px 0px;
 }
-.blog-content .tab-content .tab-pane .region label{
+.blog-content .link-content .link-box .region label{
 	font-size: 18px;
 	color: #8C9196;
 }
-.blog-content .tab-content .tab-pane .region span{
+.blog-content .link-content .link-box .region span{
 	font-size: 18px;
 	color: #020A09;
 }
-.blog-content .tab-content .tab-pane .region span >span:after{
+.blog-content .link-content .link-box .region span >span:after{
 	content: ",";
 }
-.blog-content .tab-content .tab-pane .region span >span:last-child:after{
+.blog-content .link-content .link-box .region span >span:last-child:after{
 	content: "";
 }
-.blog-content .tab-content .tab-pane .download i{
+.blog-content .link-content .link-box .download i{
 	color: #BAC0C5;
 }
 
-.blog-content .tab-content .tab-pane .download span{
+.blog-content .link-content .link-box .download span{
 	color: #BAC0C5;
 	font-size: 14px;
 	vertical-align: top;
 	margin-left: 10px;
 }
-.blog-content .tab-content .tab-pane .buy_lists{
+.blog-content .link-content .link-box .buy_lists{
 	margin-top: 30px;
 }
-.blog-content .tab-content .tab-pane .buy_lists .buy_list {
+.blog-content .link-content .link-box .buy_lists .buy_list {
 	border-top: 1px solid #D0D7DD;	
 	padding-top: 30px;
 }
-.blog-content .tab-content .tab-pane .buy_lists .buy_list h3{
+.blog-content .link-content .link-box .buy_lists .buy_list h3{
 	font-size: 20px;
 	color: #020A09;
 	margin: 0px;
 	font-weight: bold;
 }
-.blog-content .tab-content .tab-pane .buy_lists .buy_list label{
+.blog-content .link-content .link-box .buy_lists .buy_list label{
 	font-size: 18px;
 }
-.blog-content .tab-content .tab-pane .buy_lists .buy_list a{
+.blog-content .link-content .link-box .buy_lists .buy_list a{
 	font-size: 14px;
 	color: #020A09;
 }
-.blog-content .tab-content .tab-pane .buy_lists .buy_list .price {
+.blog-content .link-content .link-box .buy_lists .buy_list .price {
 	font-size: 20px;
 	color: #FF6B6B;
 	font-weight: bold;
 }
-.blog-content .tab-content .tab-pane .buy_lists .buy_list button{
+.blog-content .link-content .link-box .buy_lists .buy_list button{
 	display: inline-block;
 	font-size: 14px;
 	width:auto;

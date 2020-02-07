@@ -29,30 +29,30 @@
 	        			<img class="blog-img" src="{{ asset('uploads/offer/'.$offer['offerImage']) }}" />
 	        		      	
 			            <div class="nav-tabs-wrapper mt-30">
-			                <ul class="nav nav-tabs" data-tabs="tabs">
+			                <ul class="nav nav-tabs">
 			                	@if( $offer['offerDescription'] )
 			                    <li class="nav-item">
-			                        <a class="nav-link active" href="#description" data-toggle="tab">{{ trans('pages.description') }}</a>
+			                        <a class="nav-link active" href="#description">{{ trans('pages.description') }}</a>
 			                    </li>
 			                    @endif
 			                    @if( $offer['usecase'] )
 			                    <li class="nav-item">
-			                        <a class="nav-link" href="#use_cases" data-toggle="tab">{{ trans('pages.use_case') }}</a>
+			                        <a class="nav-link" href="#use_cases">{{ trans('pages.use_case') }}</a>
 			                    </li>
 			                    @endif
 			                    @if( $offer['samples'] )
 			                    <li class="nav-item">
-			                        <a class="nav-link" href="#samples" data-toggle="tab">{{ trans('pages.samples') }}</a>
+			                        <a class="nav-link" href="#samples">{{ trans('pages.samples') }}</a>
 			                    </li>
 			                    @endif			                    
 			                    <li class="nav-item">
-			                        <a class="nav-link" href="#this_data" data-toggle="tab">{{ trans('pages.buy_this_data') }}</a>
+			                        <a class="nav-link" href="#this_data">{{ trans('pages.buy_this_data') }}</a>
 			                    </li>
 			                </ul>
 			            </div>				        
-				        <div class="tab-content">
+				        <div class="link-content">
 				        	@if( $offer['offerDescription'] )
-				            <div class="tab-pane" id="description">
+				            <div class="link-box" id="description">
 				            	<h2>{{ trans('pages.description') }}</h2>
 				                <p>{{ $offer['offerDescription'] }}</p>
 				                <div class="region">
@@ -66,7 +66,7 @@
 				            </div>
 				            @endif
 			                @if( $offer['usecase'] )
-				            <div class="tab-pane" id="use_cases">
+				            <div class="link-box" id="use_cases">
 				                <h2>{{ trans('pages.use_case') }}</h2>
 				                @if( $offer['usecase'] )
 				                <p>{{ $offer['usecase']->useCaseContent }}</p>
@@ -74,7 +74,7 @@
 				            </div>
 				            @endif
 			                @if( $offer['samples'] )
-				            <div class="tab-pane" id="samples">
+				            <div class="link-box" id="samples">
 				                <h2>{{ trans('pages.samples') }}</h2>
 				                @if( $offersample )
 					                @foreach($offersample as $sample)
@@ -94,7 +94,7 @@
 				                @endif	
 				            </div>
 				            @endif
-				            <div class="tab-pane" id="this_data">
+				            <div class="link-box" id="this_data">
 				                <h2>Buy this data</h2>
 				                <p>If the data provider has already defined data products that can be purchased directly, you’ll find these below. When you buy a data product, you’ll receive an email link to access or download the data. 
 
