@@ -1,4 +1,13 @@
 $(document).ready(function(){  
+    document.querySelectorAll('.nav-item a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
 
     var path = window.location.pathname;
     $.each( $("#topnav .nav-link"), function(key, elem){
