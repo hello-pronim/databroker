@@ -784,7 +784,7 @@ a.dropdown-toggle:after{
 	font-size: 18px;
 	text-transform: capitalize;
 }
-.blog-content .nav-tabs-wrapper .nav-item a:hover{
+.blog-content .nav-tabs-wrapper .nav-item a:hover, .blog-content .nav-tabs-wrapper .nav-item a:active, .blog-content .nav-tabs-wrapper .nav-item a:focus{
 	color: #020A09 !important;
 }
 .blog-content .nav-tabs-wrapper .nav-item a.active{

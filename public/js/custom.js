@@ -440,6 +440,11 @@ $('.dropdown-container .dropdown .dropdown-menu li').click(function () {
     $(this).parents('.dropdown-container .dropdown').find('span').text($(this).text());
     $(this).parents('.dropdown-container .dropdown').find('input').attr('value', $(this).attr('value')).change();
 });
+
+$(".nav-tabs .nav-link").click(function(){
+    $(".nav-tabs .nav-link").removeClass('active');
+    $(this).addClass('active');
+});
 /*End Dropdown Menu*/
 
 
