@@ -151,7 +151,7 @@
 					                				<button type="button" class="customize-btn mti-20">SEND BID</button>
 					                			</a>
 					                			@elseif($product->productBidType == 'free')
-					                			<a href="/data/buy_data">
+					                			<a href="javascript:;">
 					                				<button type="button" class="customize-btn">GET DATA</button>
 					                			</a>
 					                			@endif
@@ -164,7 +164,7 @@
 				                		<div class="cta_box col-12">
 						        			<h3 class="text-bold">Questions about this data? </h3>
 						        			<p class="fs-18">Or want to request specific data from this provider?</p>
-						        			<a href="http://dev.databroker.com/contact">
+						        			<a href="javascript:;">
 						        				<button type="button" class="btn btn-round sendmessage-btn">CONTACT THE DATA PROVIDER</button>
 						        			</a>
 						        		</div>
@@ -188,7 +188,7 @@
 	        			<p class="short-desc">
 	        				{!! trans('pages.contact_data_provider') !!}
 	        			</p>
-	        			<a href="/data/send_message"><button  type="button" class="btn btn-round sendmessage-btn">CONTACT THE DATA PROVIDER</button></a>
+	        			<a href="javascript:;"><button  type="button" class="btn btn-round sendmessage-btn">CONTACT THE DATA PROVIDER</button></a>
 	        		</div>
 	        	</div>
 	        </div>

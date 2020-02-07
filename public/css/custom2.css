@@ -1198,8 +1198,8 @@ a.link-market:not([href]):not([tabindex]), a.link-market:not([href]):not([tabind
 }
 
 .divider-green {
-	border: 2px solid #78E6D0;
-	width: 28px;
+	border-top: 2px solid #78E6D0;
+	width: 50px;
 	height: 0px;
 }
 
