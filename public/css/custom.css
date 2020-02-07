@@ -448,6 +448,10 @@ i.rotated:before{
 	transform: rotate(-135deg);
   	-webkit-transform: rotate(-135deg);    
 }
+.more_info.dropdown-menu:before{
+	left: 68px;
+	right: auto;
+}
 .fixed_bg .dropdown-toggle:after{
 	content: "";
 	border: solid white;

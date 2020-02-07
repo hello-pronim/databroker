@@ -120,7 +120,7 @@
 					                			<p><label class="text-grey">{{ trans('pages.format') }} : </label> <span>{{ $product->productType }}</span></p>
 					                			<a href="javascript:;" id="more_info" class="dropdown-toggle" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">More Info</a>
 					                			@if($product->productMoreInfo)
-					                			<div class="dropdown-menu" aria-labelledby="more_info">
+					                			<div class="dropdown-menu more_info" aria-labelledby="more_info">
 					                				<p class="pd-15">{{ $product->productMoreInfo }}</p>
 					                			</div>
 					                			@endif

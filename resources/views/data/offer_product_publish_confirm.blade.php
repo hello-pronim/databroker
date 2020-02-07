@@ -28,7 +28,7 @@
 					</div>
 		            <div class="flex-center mgt30">
 		            	<a href="{{ route('data_offers_overview') }}"><button class="primary-btn mgr30">GO TO DATA PRODUCT IN YOUR ACCOUNT</button></a>
-		            	<a href="{{ route('data.community_geographics') }}"><button class="secondary-btn">VIEW DATA PRODUCT ON THE MARKETPLACE</button></a>
+		            	<a href="{{ route('data_community.geographics') }}"><button class="secondary-btn">VIEW DATA PRODUCT ON THE MARKETPLACE</button></a>
 		            </div>
 		        </div>
 			</div>
