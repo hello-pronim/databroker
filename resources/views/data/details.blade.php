@@ -44,10 +44,12 @@
 			                    <li class="nav-item">
 			                        <a class="nav-link" href="#samples">{{ trans('pages.samples') }}</a>
 			                    </li>
-			                    @endif			                    
+			                    @endif		
+			                    @if( $products )	                    
 			                    <li class="nav-item">
 			                        <a class="nav-link" href="#this_data">{{ trans('pages.buy_this_data') }}</a>
 			                    </li>
+			                    @endif
 			                </ul>
 			            </div>				        
 				        <div class="link-content">
@@ -94,6 +96,7 @@
 				                @endif	
 				            </div>
 				            @endif
+				            @if($products)
 				            <div class="link-box" id="this_data">
 				                <h2>Buy this data</h2>
 				                <p>If the data provider has already defined data products that can be purchased directly, you’ll find these below. When you buy a data product, you’ll receive an email link to access or download the data. 
@@ -168,6 +171,7 @@
 				                	</div>
 				                </div>
 				            </div>
+				            @endif
 				        </div>
 	        		</div>
 
