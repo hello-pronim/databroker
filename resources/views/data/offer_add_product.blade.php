@@ -129,7 +129,7 @@
 
 								<div>
 									<label class="container para">I will set a price. No bidding is possible.	
-									  <input type="radio" name="period" value="nobidding">
+									  <input type="radio" name="period" value="price">
 									  <span class="checkmark"></span>
 									</label>
 									<div class="period_select">
@@ -153,7 +153,7 @@
 
 				                <div>
 				                	<label class="container para">I will set a price, but buyers can also send bids. 
-									  <input type="radio" name="period" value="buyer_bid">
+									  <input type="radio" name="period" value="price_bid">
 									  <span class="checkmark"></span>
 									</label>
 				                	<div class="period_select">
@@ -176,7 +176,7 @@
 				                </div>							
 				                <div>
 				                	<label class="container para">I will not set a price. Interested parties can send bids.
-									  <input type="radio" name="period">
+									  <input type="radio" name="period" value="bid">
 									  <span class="checkmark"></span>
 									</label>	
 									<div class="period_select">									

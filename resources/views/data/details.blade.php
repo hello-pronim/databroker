@@ -83,7 +83,7 @@
 					                		<p>{{$sample['sampleDescription']}}</p>
 					                		<a class="download" href="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}"><i class="material-icons">get_app</i><span>{{$sample['sampleFileName']}}</span></a>
 					                	</div>	
-					                	@endif				                	
+					                	@endif					                	
 					                	@if( explode("-", $sample['sampleType'])[0] == 'image')				                	
 					                		<div class="image">					                		
 						                		<img src="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}">
@@ -104,60 +104,58 @@
 								</p>
 
 				                <div class="buy_lists">
-				                	<div class="buy_list">
+				                	@foreach($products as $product)
+				                	<div class="buy_list">				                		
 				                		<div class="row">
 				                			<div class="col-md-6">
-					                			<h3>Satellite imagery of buildings and roads</h3>	
-					                			<label class="country">Belgium</label>
-					                			<p><label class="text-grey">{{ trans('pages.format') }} : </label> <span>Stream</span></p>
-					                			<a href="javascript:;">More Info <i class="material-icons">arrow_drop_down</i></a>
+					                			<h3>{{$product->productTitle}}</h3>	
+					                			<label class="country offer-location">
+					                				@foreach($product['region'] as $region)
+				            							<span>{{ $region->regionName }}</span>
+				            						@endforeach
+				            					</label>
+					                			<p><label class="text-grey">{{ trans('pages.format') }} : </label> <span>{{ $product->productType }}</span></p>
+					                			<a href="javascript:;" id="more_info" class="dropdown-toggle" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">More Info</a>
+					                			@if($product->productMoreInfo)
+					                			<div class="dropdown-menu" aria-labelledby="more_info">
+					                				<p class="pd-15">{{ $product->productMoreInfo }}</p>
+					                			</div>
+					                			@endif
 					                		</div>
 					                		<div class="col-md-6 text-right">
-					                			<p class="price">$500</p>
-					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
+					                			@if($product->productPrice>0 && $product->productBidType != 'free')
+					                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }}</p>
+					                			@else
+					                			<p class="price">FREE</p>
+					                			@endif
+
+					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 {{ $product->productAccessDays }}</span></p>
+					                			@if($product->productBidType == 'price')
 					                			<a href="/data/buy_data">
 					                				<button type="button" class="customize-btn">Buy Now</button>
 					                			</a>
+					                			@elseif($product->productBidType == 'bid')
+					                			<a href="/data/buy_data">
+					                				<button type="button" class="customize-btn">SEND BID</button>
+					                			</a>
+					                			@elseif($product->productBidType == 'price_bid')
+					                			<a href="/data/buy_data">
+					                				<button type="button" class="customize-btn">Buy Now</button>
+					                			</a>
+					                			<br>
+					                			Or send a bid
+					                			<a href="/data/buy_data">
+					                				<button type="button" class="customize-btn mti-20">SEND BID</button>
+					                			</a>
+					                			@elseif($product->productBidType == 'free')
+					                			<a href="/data/buy_data">
+					                				<button type="button" class="customize-btn">GET DATA</button>
+					                			</a>
+					                			@endif
 					                		</div>	
 				                		</div>				                		
 				                	</div>
-				                	<div class="buy_list">
-				                		<div class="row">
-				                			<div class="col-md-6">
-					                			<h3>Satellite imagery of buildings and roads</h3>	
-					                			<label class="country">Belgium</label>
-					                			<p><label class="text-grey">{{ trans('pages.format') }} : </label> <span>Stream</span></p>
-					                			<a href="javascript:;">More Info <i class="material-icons">get_app</i></a>
-					                		</div>
-					                		<div class="col-md-6 text-right">
-					                			<p class="price">$500</p>
-					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<a href="/data/send_bid">
-					                				<button type="button" class="customize-btn">Send a bid to the seller</button>
-					                			</a>
-					                			<a href="/data/buy_data">
-					                				<button type="button" class="customize-btn">Buy Now</button>
-					                			</a>
-					                		</div>	
-				                		</div>				                		
-				                	</div>
-				                	<div class="buy_list">
-				                		<div class="row">
-				                			<div class="col-md-6">
-					                			<h3>Satellite imagery of buildings and roads</h3>	
-					                			<label class="country">Belgium</label>
-					                			<p><label class="text-grey">{{ trans('pages.format') }} : </label> <span>Stream</span></p>
-					                			<a href="javascript:;">More Info <i class="material-icons">get_app</i></a>
-					                		</div>
-					                		<div class="col-md-6 text-right">
-					                			<p class="price">$500</p>
-					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 year</span></p>
-					                			<a href="/data/buy_data">
-					                				<button type="button" class="customize-btn">Buy Now</button>
-					                			</a>
-					                		</div>	
-				                		</div>				                		
-				                	</div>	
+				                	@endforeach				                	
 
 				                	<div class="row">
 				                		<div class="cta_box col-12">

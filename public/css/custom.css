@@ -106,6 +106,9 @@ body{
 .mt-60{
 	margin-top: 60px;	
 }
+.mti-20{
+	margin-top: -20px !important;
+}
 .mt-80{
 	margin-top: 80px;	
 }
@@ -124,6 +127,9 @@ body{
 .mlr-20{
 	margin-left: 20px;
 	margin-right: 20px;
+}
+.pd-15{
+	padding: 15px;
 }
 .pt-20{
 	padding-top: 20px;
@@ -415,8 +421,8 @@ i.rotated:before{
 .fixed_bg .navbar .navbar-nav .nav-item.dropdown{
 	padding-left: 20px;
 }
-.fixed_bg .navbar-expand-lg .navbar-nav .dropdown-menu{
-	border:2px solid #dae1e5;	
+.dropdown-menu{
+	/*border:2px solid #dae1e5;	*/
 	background-color: white;
 	top:120%;
 	width: fit-content;	
@@ -429,7 +435,7 @@ i.rotated:before{
     font-weight: 700;
     margin-bottom: 0px;
 }
-.fixed_bg .navbar-expand-lg .navbar-nav .dropdown-menu:before{
+.dropdown-menu:before{
 	content: "";
 	position: absolute;
     top: -7px;
@@ -458,6 +464,12 @@ i.rotated:before{
 	transform: rotate(-135deg);
   	-webkit-transform: rotate(-135deg);
   	top: 14px;
+}
+a.dropdown-toggle[aria-expanded='true']:after{
+	transform: rotate(180deg);
+}
+a.dropdown-toggle:after{
+	margin-left: 9px;
 }
 
 .fixed_bg .navbar-expand-lg .navbar-nav .dropdown-menu .dropdown-item{	

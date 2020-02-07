@@ -45,13 +45,15 @@ class DataController extends Controller
         
         $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
         
+        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->get();
+
         $user = $this->getAuthUser();
 
         if(  strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
         }
 
-        $data = array('offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user' => $user, 'user_info' => $user_info);
+        $data = array('offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user' => $user, 'user_info' => $user_info, 'products' => $products);
 
         return view('data.details')->with($data);
     }

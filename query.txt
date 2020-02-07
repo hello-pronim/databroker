@@ -128,6 +128,12 @@ ALTER TABLE `databroker_new`.`contacts` CHANGE `emailAddress` `email` VARCHAR(25
 ALTER TABLE `databroker_new`.`orders` CHANGE `emailAddress` `email` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL;
 ALTER TABLE `databroker_new`.`subscriptions` CHANGE `emailAddress` `email` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL;
 
+//2020-02-07
+UPDATE `databroker_new`.`offerProducts` SET `productBidType` = 'price_bid' WHERE (`productIdx` = '4');
+UPDATE `databroker_new`.`offerProducts` SET `productBidType` = 'price_bid' WHERE (`productIdx` = '5');
+UPDATE `databroker_new`.`offerProducts` SET `productBidType` = 'price' WHERE (`productIdx` = '3');
+
+
 
 
 
