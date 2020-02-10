@@ -715,6 +715,7 @@ th.col-since {
 .data-offer .text-wrapper,
 .buying-data .text-wrapper {
 	display: flex;
+	flex-direction: column;
 	position: relative;
 	padding-bottom: 30px;
 	margin-bottom: 6px;
@@ -2084,3 +2085,6 @@ a.back-icon:active {
 	min-width: 170px;
 }
 
+.history-block .h1-small {
+	letter-spacing: 0.4px;
+}
