@@ -2086,3 +2086,6 @@ a.back-icon:active {
 	height: 36px;
 }
 
+.history-block .h1-small {
+	letter-spacing: 0.4px;
+}
