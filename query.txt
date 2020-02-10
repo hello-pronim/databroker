@@ -133,7 +133,16 @@ UPDATE `databroker_new`.`offerProducts` SET `productBidType` = 'price_bid' WHERE
 UPDATE `databroker_new`.`offerProducts` SET `productBidType` = 'price_bid' WHERE (`productIdx` = '5');
 UPDATE `databroker_new`.`offerProducts` SET `productBidType` = 'price' WHERE (`productIdx` = '3');
 
-
+//2020-02-10
+CREATE TABLE IF NOT EXISTS `databroker_new`.`linked_users` (
+  `linkedIdx` INT(11) NOT NULL AUTO_INCREMENT,
+  `invite_userIdx` INT(11) NULL DEFAULT NULL,
+  `linked_email` VARCHAR(100) NULL DEFAULT NULL,
+  `created_at` DATETIME NULL DEFAULT NULL,
+  `updated_at` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`linkedIdx`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 

@@ -594,7 +594,8 @@ a.dropdown-toggle:after{
 	margin-bottom: 10px;
 }
 .app-partner-items div.app-partner-item .info-title{
-	max-height: 28px;
+	max-height: 30px;
+	min-height: 30px;
 }
 .app-partner-item .icon img{
 	width: 30%;
@@ -618,6 +619,9 @@ a.dropdown-toggle:after{
 	font-weight: bold;
 	text-align: center;
 	margin-top: -1rem;
+}
+.more_email{
+	cursor: pointer;
 }
 /*footer section1*/
 .footer_section1 h5{
@@ -1367,6 +1371,14 @@ a.dropdown-toggle:after{
 .custom-select2.no-border .select2.select2-container--open .selection .select2-selection:hover, .custom-select2.no-border .select2.select2-container--open .selection .select2-selection{
 	box-shadow: none;
 	background:transparent;
+}
+.users table td{
+	border-top: none;
+	border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.users table thead th{
+	border:none;
+	padding-bottom: 0px;
 }
 /*data offer product publish*/
 .period .custom-select2{

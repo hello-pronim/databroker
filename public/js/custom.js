@@ -424,6 +424,10 @@ $(document).ready(function(){
         filter_dataoffer($("#offer-list .card").length);
     });
 
+    $('#inviteModal .more_email').click(function(){
+
+    });
+
 });
 
 /*Dropdown Menu*/

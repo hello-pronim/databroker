@@ -209,13 +209,53 @@
 				    </tr>
 				  </tbody>
 				</table>
-				<button type="button" class="button secondary-btn">{{ trans('pages.INVITE_USERS') }}</button>
-				<div class="description">
+				<button type="button" class="button secondary-btn" data-toggle="modal" data-target="#inviteModal">{{ trans('pages.INVITE_USERS') }}</button>
+				<div class="description mt-10">
 					<span>{{ trans('pages.profile_description') }} </span><span style="color:rgba(120,230,208,1);">{{ trans('pages.Read_more') }}</span>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="unpublishModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="post" post>
+            @csrf
+            <input type="hidden" name="invite_userIdx" value="{{$user->userIdx}}">
+            <p class="para">
+                An email will be sent to these recipients, inviting them to register on Databroker
+            </p>    
+            <div class="email_lists cat-body">
+                <label class="pure-material-textfield-outlined">
+                    <input type="text" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
+                    <span>Email 1</span>                         
+                </label>
+                <label class="pure-material-textfield-outlined">
+                    <input type="text" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
+                    <span>Email 2</span>                         
+                </label>
+                <label class="pure-material-textfield-outlined">
+                    <input type="text" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
+                    <span>Email 3</span>                         
+                </label>                
+            </div>
+            <a class="more_email pull-right mb-20" href="javascript:;">+ more</a>
+        </form>        
+      </div>            
+      <div class="modal-footer">        
+        <button type="button" class="button primary-btn unpublish">Invite</button>
+        <button type="button" class="button secondary-btn" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 @endsection

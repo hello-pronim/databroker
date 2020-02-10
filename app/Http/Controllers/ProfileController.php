@@ -45,7 +45,7 @@ class ProfileController extends Controller
         // TODO
 
         $users = User::all();
-        $users = null;
+            
         $business = Business::all();
 
         $data = array('user', 'users', 'business');
