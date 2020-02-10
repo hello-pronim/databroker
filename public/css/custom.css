@@ -684,6 +684,20 @@ a.dropdown-toggle:after{
 	/*border: 1px solid transparent !important;*/
 	color: #eb4444;
 }
+.auth-section textarea{
+	width: 100%;
+	min-height: 200px;
+    border: 2px solid #e9e9e9;
+    border-radius: 24px;
+    padding: 12px 24px;
+    font-size: inherit;
+}
+.auth-section textarea:focus{
+	border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+.auth-section textarea::placeholder{
+	color: #87888e;
+}
 #forgot_pass_link, #login_link{
 	text-transform: none;
 	font-weight: bold;

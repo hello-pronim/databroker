@@ -56,6 +56,7 @@ Route::get('/about/media-center', 'AboutController@media_center')->name('about.m
 Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
 Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase'); 
 
+Route::get('/contacts', 'HomeController@contacts')->name('contacts');    	
 Route::get('/help', 'HelpController@index')->name('help.overview');    	
 Route::get('/help/buying-data', 'HelpController@buying_data')->name('help.buying_data');    
 

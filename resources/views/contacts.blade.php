@@ -187,7 +187,197 @@
           </div>
         </dir>
 
-        @yield('content')
+        
+		<div class="container-fluid app-wapper bg-pattern-side">
+		    <div class="container">
+		        <div class="row justify-content-center mt-30 auth-section">
+		            <div class="col-md-8" id="register_nl_section">
+		                <h1 class="text-primary text-center text-bold">{{trans('contacts.get_in_touch')}}</h1>
+		                <p class="text-center fs-16"> 
+		                	Want to know more about our DataMatch service? About becoming a partner? Or maybe you didn’t find the answer to your questions in our <a href="#">Help & support centre</a> or <a href="#">Media centre?</a><br/><br/>
+			                Tell us how we can help, and we’ll get back to you!<br/><br/>
+							You can also use this form to give us your feedback on Databroker – we’d love to hear it! 
+						</p>
+		                <br>
+		                <form method="POST">
+		                    @csrf
+		                    <div class="text-wrapper">
+								<textarea name="offerTitle" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>							
+								<div class="error_notice offerTitle"> This field is required</div>
+								<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
+							</div>
+
+		                    <label class="pure-material-textfield-outlined">
+		                        <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
+		                        <span>{{ trans('contacts.first_name') }}</span>
+		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'First Name']) }}</div>
+		                        @error('firstname')
+		                            <span class="invalid-feedback" role="alert">
+		                                <strong>{{ $message }}</strong>
+		                            </span>
+		                        @enderror
+		                    </label>
+
+		                    <label class="pure-material-textfield-outlined">
+		                        <input type="text" id="lastname" name="lastname" class="form-control input_data @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ old('lastname') }}" autocomplete="lastname" autofocus>
+		                        <span>{{ trans('contacts.last_name') }}</span>
+		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
+		                        @error('lastname')
+		                            <span class="invalid-feedback" role="alert">
+		                                <strong>{{ $message }}</strong>
+		                            </span>
+		                        @enderror
+		                    </label>
+
+		                    <label class="pure-material-textfield-outlined">
+		                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" autocomplete="email" autofocus>
+		                        <span>{{ trans('contacts.email_address') }}</span>
+		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
+		                        @error('email')
+		                            <span class="invalid-feedback" role="alert">
+		                                <strong>{{ $message }}</strong>
+		                            </span>
+		                        @enderror
+		                    </label>
+
+		                    <label class="pure-material-textfield-outlined">
+		                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ old('companyName') }}" autocomplete="company" autofocus>
+		                        <span>{{ trans('contacts.company') }}</span>
+		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company']) }}</div>
+		                        @error('companyName')
+		                            <span class="invalid-feedback" role="alert">
+		                                <strong>{{ $message }}</strong>
+		                            </span>
+		                        @enderror
+		                    </label>
+
+		                    <label class="pure-material-textfield-outlined">
+		                        <input type="text" id="country" name="country" class="form-control input_data @error('country')  is-invalid @enderror" placeholder=" "  value="{{ old('country') }}" autocomplete="country" autofocus>
+		                        <span>{{ trans('contacts.country') }}</span>
+		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Country']) }}</div>
+		                        @error('country')
+		                            <span class="invalid-feedback" role="alert">
+		                                <strong>{{ $message }}</strong>
+		                            </span>
+		                        @enderror
+		                    </label>
+
+
+		                    <div class="industry-dropdown dropdown-container">
+		                        <div class="dropdown" tabindex="1">
+		                            <div class="select">
+		                                <span>Which industry are you in?</span>
+		                            </div>
+		                            <input type="hidden" id="businessName2" name="businessName2" value="Agriculture/Mining/Forestry">
+		                            <ul class="dropdown-menu" style="display: none;">
+		                                <li value="Agriculture/Mining/Forestry">Agriculture/Mining/Forestry</li>
+		                                <li value="Advertising/Media/Publishing">Advertising/Media/Publishing</li>
+		                                <li value="Automotive">Automotive</li>
+		                                <li value="Construction/Engineering/Infrstructure">Construction/Engineering/Infrstructure</li>
+		                                <li value="Chemicals">Chemicals</li>
+		                                <li value="Creative">Creative</li>
+		                                <li value="Education">Education</li>
+		                                <li value="Energy/Utilities">Energy/Utilities</li>
+		                                <li value="Financial services &amp; insurance">Financial services &amp; insurance</li>
+		                                <li value="Government/Non-profit">Government/Non-profit</li>
+		                                <li value="Healthcare">Healthcare</li>
+		                                <li value="Hospitality/Tourism">Hospitality/Tourism</li>
+		                                <li value="IT services">IT services</li>
+		                                <li value="Manufacturing">Manufacturing</li>
+		                                <li value="Pharmaceutical/Biotech">Pharmaceutical/Biotech</li>
+		                                <li value="Retail/Consumer goods">Retail/Consumer goods</li>
+		                                <li value="Telecommunications/Electronics">Telecommunications/Electronics</li>
+		                                <li value="Transportation/Logistics">Transportation/Logistics</li>
+		                                <li value="">Other industry</li>
+		                            </ul>
+		                        </div>
+		                        <div class="error_notice"> This field is required</div>
+		                    </div>
+
+		                    <label class="other-industry pure-material-textfield-outlined" style="display: none">
+		                        <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" "  value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
+		                        <span>{{ trans('contacts.enter_your_industry') }}</span>
+		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Your industry']) }}</div>
+		                        @error('businessName')
+		                            <span class="invalid-feedback" role="alert">
+		                                <strong>{{ $message }}</strong>
+		                            </span>
+		                        @enderror
+		                    </label>
+
+		                    <div class="role-dropdown dropdown-container">
+		                        <div class="dropdown" tabindex="1">
+		                            <div class="select">
+		                                <span>What role do you have?</span>
+		                            </div>
+		                            <input type="hidden" id="jobTitle2" name="jobTitle2" value="Technical">
+		                            <ul class="dropdown-menu" style="display: none;">
+		                                <li value="Business">Business</li>
+		                                <li value="Technical">Technical</li>
+		                                <li value="">Other</li>
+		                            </ul>
+		                        </div>
+		                        <div class="error_notice"> This field is required</div>
+		                    </div>
+
+		                    <label class="other-role pure-material-textfield-outlined" style="display: none">
+		                        <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle') }}" autocomplete="jobTitle" autofocus>
+		                        <span>{{ trans('contacts.enter_your_role') }}</span>
+		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Your role']) }}</div>
+		                        @error('jobTitle')
+		                            <span class="invalid-feedback" role="alert">
+		                                <strong>{{ $message }}</strong>
+		                            </span>
+		                        @enderror
+		                    </label>
+		                    <p class="fs-18 text-bold mt-30">
+		                    	We’d love to know a little more about your interests.<br/>
+								Which data communities are most relevant for you?
+							</p>
+		                    <div class="row mt-30">
+		                        @foreach ($communities as $community)
+		                        <div class="col-md-4">
+		                            <div class="form-check">
+		                                <label class="form-check-label">
+		                                    <input type="checkbox" class="form-check-input" name="community[]" value="{{$community['communityIdx']}}">
+		                                    <p class="text-black fs-16 lh-24">{{$community['communityName']}}</p>
+		                                    <span class="form-check-sign">
+		                                        <span class="custom-check check"></span>
+		                                    </span>
+		                                </label>
+		                            </div>
+		                        </div>    
+		                        @endforeach
+		                        <div class="error_notice">Please choose at least one.</div>
+		                    </div>    
+		                    <div class="row mt-30">
+		                    	<div class="col-md-12">
+			                    	<div class="form-check">
+				                        <label class="form-check-label">                
+				                            <input type="checkbox" class="form-check-input" name="term_conditions" value="true">
+				                            <p class="text-black fs-16 lh-24">Yes I would also like to receive updates about Databroker and be among the first to get notified about the launch.</p>
+				                            <span class="form-check-sign">
+				                                <span class="custom-check check @error('term_conditions') is-invalid @enderror"></span>
+				                            </span>                                                        
+				                        </label>                                                   
+				                    </div> 
+				                </div>
+		                    </div>
+		                    
+		                    <div class="form-group row mb-0">                        
+		                        <div class="col-md-6">                                
+		                            <button type="submit" class="customize-btn">Sign Up</button>
+		                        </div>
+		                    </div>
+
+		                </form>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+
+
   		<div class="container-fluid app-wapper">
   			<div class="section_splitor_green"></div>
   			<div class="container footer_section1">
@@ -220,25 +410,24 @@
   						<h5>{{ trans('home.helpsupport') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="javascript:;">{{ trans('home.buying_data') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.selling_data') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.privacy_security') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.our_gurantee') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.file_complaint') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 
+			                <li><a href="javascript:;">{{ trans('home.selling_data') }}</a></li> 
+			                <li><a href="javascript:;">{{ trans('home.privacy_security') }}</a></li> 
+			                <li><a href="javascript:;">{{ trans('home.our_gurantee') }}</a></li> 
+			                <li><a href="javascript:;">{{ trans('home.file_complaint') }}</a></li> 
+			                <li><a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 
   						</ul>
   					</div>
   					<div class="col-md-12 col-lg-3 footer-newsletter">
   						<h5>{{ trans('home.signupbox') }}</h5>
-              <p class="text-thick-grey fs-18"> {{ trans('home.signupbox_desc') }} </p>
-              <a href="{{ route('register') }}"><button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.signup') }}</button></a>
-
+		              	<p class="text-thick-grey fs-18"> {{ trans('home.signupbox_desc') }} </p>
+		              	<a href="{{ route('register') }}"><button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.signup') }}</button></a>
   					</div>
   				</div>
 
   				<div class="app-section app-monetize-section align-items-center">
 			        <div class="app-monetize-section-item0"></div>
 			        <div class="app-monetize-section-item1">
-			            <h1 class="fs-30">Databroker is supported by our trusted partners.</h1>	            			            
+			            <h1 class="fs-30">Databroker is supported by our trusted partners.</h1>         
 			        </div>
 			    </div>
 			    <div class="app-partner-items row">
@@ -342,8 +531,7 @@
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>
     
     @yield('additional_javascript')
-
-    <script src="{{ asset('js/material.min.js') }}"></script>        
+      
     <script src="{{ asset('js/app.js') }}"></script>        
     <script src="{{ asset('js/custom.js') }}"></script>   
     <script src="{{ asset('js/custom2.js') }}"></script>   
@@ -351,19 +539,37 @@
     
     <script type="text/javascript">
         $(function(){
+        	console.log("AAAAAAAAAAAAAAAAAAAA");
+        	console.log(typeof $.cookie('databroker_cookie'));
             $(".close_button-container").click(function(){
+                $(".cookie-accept").css('display', 'none!important');
                 $(".cookie-accept").animate({ opacity: 0, bottom: "-160px", display: 'none' });
-                $(".cookie-accept").css('display', 'none');
             });
             $(".cookie-accept .accept-btn").click(function(){
                 $.cookie('databroker_cookie', (new Date()), { expires: 365, path: '/' });
+                $(".cookie-accept").css('display', 'none!important');
                 $(".cookie-accept").animate({ opacity: 0, bottom: "-160px", display: 'none' });
-                $(".cookie-accept").css('display', 'none');
             })
             if(typeof $.cookie('databroker_cookie') == "undefined")
-                $(".cookie-accept").animate({ opacity: 1, bottom: "0px" });           
+                $(".cookie-accept").animate({ opacity: 1, bottom: "0px" });         
+            else $(".cookie-accept").css('display', 'none!important');
+            $('.dropdown-container.industry-dropdown .dropdown .dropdown-menu li').click(function () {
+              console.log($(this).attr('value'));
+                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').text($(this).text());
+                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').addClass("chosen");
+                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
+                if($(this).attr('value')==="") $(".other-industry").css('display', 'block');
+                else $(".other-industry").css('display', 'none');
+            });
+            $('.dropdown-container.role-dropdown .dropdown .dropdown-menu li').click(function () {
+              console.log($(this).attr('value'));
+                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').text($(this).text());
+                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').addClass("chosen");
+                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
+                if($(this).attr('value')==="") $(".other-role").css('display', 'block');
+                else $(".other-role").css('display', 'none');
+            });      
         });
     </script>
     </body>
 </html>
-

@@ -217,11 +217,11 @@
     <script type="text/javascript">
         $(function(){
             $(".close_button-container").click(function(){
-                $(".cookie-accept").animate({ opacity: 0, bottom: "-400px" });
+                $(".cookie-accept").animate({ opacity: 0, bottom: "-160px" });
             });
             $(".cookie-accept .accept-btn").click(function(){
                 $.cookie('databroker_cookie', (new Date()), { expires: 365, path: '/' });
-                $(".cookie-accept").animate({ opacity: 0, bottom: "-400px" });
+                $(".cookie-accept").animate({ opacity: 0, bottom: "-160px" });
             })
             if(typeof $.cookie('databroker_cookie') == "undefined")
                 $(".cookie-accept").animate({ opacity: 1, bottom: "0px" });           
