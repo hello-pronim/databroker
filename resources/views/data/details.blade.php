@@ -146,9 +146,9 @@
 					                				<button type="button" class="customize-btn">Buy Now</button>
 					                			</a>
 					                			<br>
-					                			Or send a bid
+					                			<span>Or send a bid</span>
 					                			<a href="/data/buy_data">
-					                				<button type="button" class="customize-btn mti-20">SEND BID</button>
+					                				<button type="button" class="customize-btn">SEND BID</button>
 					                			</a>
 					                			@elseif($product->productBidType == 'free')
 					                			<a href="javascript:;">
