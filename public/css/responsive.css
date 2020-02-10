@@ -145,19 +145,7 @@
 		top: 0;
 		z-index: 1000;
 	}
-	.app-wapper.header-section{
-		margin-top: 96px;
-	}
-	.app-wapper.profile{
-		margin-top: 96px;
-	}
-	.app-wapper.app-purchase-wapper{
-		margin-top: 96px;
-	}
-	.app-wapper.app-bids-wapper{
-		margin-top: 96px;
-	}
-	.app-wapper.partners{
+	#bodyContent{
 		margin-top: 96px;
 	}
 	.app-partner-item .img img{

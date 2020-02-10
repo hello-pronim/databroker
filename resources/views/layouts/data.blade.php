@@ -41,7 +41,7 @@
         
     </head>
     <body>       
-      <div class="auth" class="container-fluid app-wapper app-top-bar-container">
+      <div id="layoutHeader" class="container-fluid app-wapper app-top-bar-container">
           <div class="app-top-bar align-items-center">
               <div class="row app-brand">
                     <a href="{{route('home') }}">
@@ -51,8 +51,9 @@
               <div class="clear"></div>
           </div>
       </div>        
-
-      @yield('content')
+      <div id="layoutContent">
+        @yield('content')
+      </div>
   		<div class="container-fluid app-wapper">
         <div class="section_splitor_green"></div>
         <div class="container footer_section1">
@@ -159,48 +160,48 @@
         </div>
       </div>
 
-        <div class="container-fluid app-wapper footer-section">
-          <div class="container">
-            <div class="app-section app-footer-section align-items-center">
-              <div class="app-footer-link">
-                      <!--a href="">Terms and Conditions</a-->
-                      <a href="/terms-conditions">{{ trans('home.terms_conditions') }}</a>
-                      <a href="/privacy-policy">{{ trans('home.privacy_policy') }}</a>
-                      <a href="/cookie-policy" style="padding-right: 0;">{{ trans('home.cookie_policy') }}</a>
-                  </div>
-                  <div class="site_footer_logo_container">
-                      <img src="{{ asset('/images/logos/site_footer_logo.png') }}">               
-                  </div>
-                  <div class="app-footer-social-link-container">
-                      <h4>Follow us on social media</h4>
-                      <div class="app-footer-social-link">
-                          <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/social/facebook.png') }}">
-                          </a>
-                          <a href="https://www.twitter.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/social/twitter.png') }}">
-                          </a>
-                          <a href="https://www.pinterest.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/social/pinterest.png') }}">
-                          </a>
-                          <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/social/linkedin.png') }}">
-                          </a>   
-                          <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/social/medium.png') }}">
-                          </a>   
-                          <a href="https://www.github.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/social/github.png') }}">
-                          </a>   
-                          <a href="https://www.telegram.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/social/telegram.png') }}">
-                          </a>                          
-                      </div>
-                  </div>                  
-              </div>
-          </div>            
-        </div>
-        <span class="et_pb_scroll_top et-pb-icon" title="TOP"></span>
+      <div class="container-fluid app-wapper footer-section">
+        <div class="container">
+          <div class="app-section app-footer-section align-items-center">
+            <div class="app-footer-link">
+                    <!--a href="">Terms and Conditions</a-->
+                    <a href="/terms-conditions">{{ trans('home.terms_conditions') }}</a>
+                    <a href="/privacy-policy">{{ trans('home.privacy_policy') }}</a>
+                    <a href="/cookie-policy" style="padding-right: 0;">{{ trans('home.cookie_policy') }}</a>
+                </div>
+                <div class="site_footer_logo_container">
+                    <img src="{{ asset('/images/logos/site_footer_logo.png') }}">               
+                </div>
+                <div class="app-footer-social-link-container">
+                    <h4>Follow us on social media</h4>
+                    <div class="app-footer-social-link">
+                        <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/facebook.png') }}">
+                        </a>
+                        <a href="https://www.twitter.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/twitter.png') }}">
+                        </a>
+                        <a href="https://www.pinterest.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/pinterest.png') }}">
+                        </a>
+                        <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/linkedin.png') }}">
+                        </a>   
+                        <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/medium.png') }}">
+                        </a>   
+                        <a href="https://www.github.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/github.png') }}">
+                        </a>   
+                        <a href="https://www.telegram.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/telegram.png') }}">
+                        </a>                          
+                    </div>
+                </div>                  
+            </div>
+        </div>            
+      </div>
+      <span class="et_pb_scroll_top et-pb-icon" title="TOP"></span>
 
     <script src="{{ asset('js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
@@ -217,11 +218,11 @@
     <script type="text/javascript">
         $(function(){
             $(".close_button-container").click(function(){
-                $(".cookie-accept").animate({ opacity: 0, bottom: "-400px" });
+                $(".cookie-accept").animate({ opacity: 0, bottom: "-160px" });
             });
             $(".cookie-accept .accept-btn").click(function(){
                 $.cookie('databroker_cookie', (new Date()), { expires: 365, path: '/' });
-                $(".cookie-accept").animate({ opacity: 0, bottom: "-400px" });
+                $(".cookie-accept").animate({ opacity: 0, bottom: "-160px" });
             })
             if(typeof $.cookie('databroker_cookie') == "undefined")
                 $(".cookie-accept").animate({ opacity: 1, bottom: "0px" });           

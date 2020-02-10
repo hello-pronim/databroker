@@ -2232,6 +2232,7 @@ body {
 
 .error_notice {
     font-size: 12px;
+    line-height: 18px;
     color: #e71010;
     text-indent: 35px;
     display: none;

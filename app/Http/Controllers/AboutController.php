@@ -281,7 +281,23 @@ class AboutController extends Controller
     }
 
     public function contact(){
-        
+        $user = Auth::user();
+        if(!$user){
+            return redirect('/login')->with('target', 'use our DataMatch service');
+        }else{
+            $communities = Community::get();  
+            $data = array( 'communities' );
+            return view('about.contact', compact($data));
+        }
+    }
+
+    public function send(){
+        $user = Auth::user();
+        if(!$user){
+            return redirect('/login')->with('target', 'use our DataMatch service');
+        }else{
+            return view('about.contact_success');
+        }
     }
 
     public function media_center(){

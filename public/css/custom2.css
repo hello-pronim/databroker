@@ -718,6 +718,7 @@ th.col-since {
 .data-offer .text-wrapper,
 .buying-data .text-wrapper {
 	display: flex;
+	flex-direction: column;
 	position: relative;
 	padding-bottom: 30px;
 	margin-bottom: 6px;
