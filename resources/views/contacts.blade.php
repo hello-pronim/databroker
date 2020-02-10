@@ -539,8 +539,6 @@
     
     <script type="text/javascript">
         $(function(){
-        	console.log("AAAAAAAAAAAAAAAAAAAA");
-        	console.log(typeof $.cookie('databroker_cookie'));
             $(".close_button-container").click(function(){
                 $(".cookie-accept").css('display', 'none!important');
                 $(".cookie-accept").animate({ opacity: 0, bottom: "-160px", display: 'none' });
@@ -552,9 +550,8 @@
             })
             if(typeof $.cookie('databroker_cookie') == "undefined")
                 $(".cookie-accept").animate({ opacity: 1, bottom: "0px" });         
-            else $(".cookie-accept").css('display', 'none!important');
+            else $(".cookie-accept").css('display', 'none');
             $('.dropdown-container.industry-dropdown .dropdown .dropdown-menu li').click(function () {
-              console.log($(this).attr('value'));
                 $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').text($(this).text());
                 $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').addClass("chosen");
                 $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
@@ -562,7 +559,6 @@
                 else $(".other-industry").css('display', 'none');
             });
             $('.dropdown-container.role-dropdown .dropdown .dropdown-menu li').click(function () {
-              console.log($(this).attr('value'));
                 $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').text($(this).text());
                 $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').addClass("chosen");
                 $(this).parents('.dropdown-container.role-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();

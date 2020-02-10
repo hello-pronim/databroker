@@ -216,6 +216,7 @@
             })
             if(typeof $.cookie('databroker_cookie') == "undefined")
                 $(".cookie-accept").animate({ opacity: 1, bottom: "0px" });
+            else $(".cookie-accept").css('display', 'none');
             $('.dropdown-container .dropdown').click(function () {
                 $(this).attr('tabindex', 1).focus();
                 $(this).toggleClass('active');
