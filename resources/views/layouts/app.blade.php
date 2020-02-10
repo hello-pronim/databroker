@@ -186,8 +186,9 @@
             </div>
           </div>
         </dir>
-
+      <div id="bodyContent">
         @yield('content')
+      </div>
   		<div class="container-fluid app-wapper">
   			<div class="section_splitor_green"></div>
   			<div class="container footer_section1">
@@ -340,10 +341,10 @@
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>
+<!--     <script src="{{ asset('js/material.min.js') }}"></script> -->
     
     @yield('additional_javascript')
-
-    <script src="{{ asset('js/material.min.js') }}"></script>        
+       
     <script src="{{ asset('js/app.js') }}"></script>        
     <script src="{{ asset('js/custom.js') }}"></script>   
     <script src="{{ asset('js/custom2.js') }}"></script>   
@@ -363,6 +364,23 @@
             if(typeof $.cookie('databroker_cookie') == "undefined")
                 $(".cookie-accept").animate({ opacity: 1, bottom: "0px" }); 
             else $(".cookie-accept").css('display', 'none');
+
+            $('.dropdown-container.industry-dropdown .dropdown .dropdown-menu li').click(function () {
+              console.log($(this).attr('value'));
+                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').text($(this).text());
+                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').addClass("chosen");
+                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
+                if($(this).attr('value')==="") $(".other-industry").css('display', 'block');
+                else $(".other-industry").css('display', 'none');
+            });
+            $('.dropdown-container.role-dropdown .dropdown .dropdown-menu li').click(function () {
+              console.log($(this).attr('value'));
+                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').text($(this).text());
+                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').addClass("chosen");
+                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
+                if($(this).attr('value')==="") $(".other-role").css('display', 'block');
+                else $(".other-role").css('display', 'none');
+            });
         });
     </script>
     </body>

@@ -91,7 +91,7 @@
                 <p class="center">
                     {{ trans('pages.tell_us_data_partner')}}
                     <span class="height-space" style="display: block;"></span>
-                    <a href="{{ route('contacts') }}">
+                    <a href="{{ route('contact') }}">
                         <button style="width: 270px;" type="button" class="btn match-me-up-btn pure-material-button-outlined">TRY OUR DATAMATCH SERVICE</button>
                     </a>                     
                 </p> 

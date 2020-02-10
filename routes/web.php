@@ -50,13 +50,13 @@ Route::get('/data/send_bid', 'DataController@send_bid')->name('data.send_bid');
 Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
 
 Route::get('/about', 'AboutController@index')->name('about.about');    
-Route::get('/contact', 'AboutController@contact')->name('contact');    
+Route::get('/contact', 'AboutController@contact')->name('contact'); 
+Route::post('/contact', 'AboutController@send')->name('contact.send');       
 Route::get('/about/matchmaking', 'AboutController@matchmaking')->name('about.matchmaking'); 
 Route::get('/about/media-center', 'AboutController@media_center')->name('about.media_center'); 
 Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
 Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase'); 
-
-Route::get('/contacts', 'HomeController@contacts')->name('contacts');    	
+    	
 Route::get('/help', 'HelpController@index')->name('help.overview');    	
 Route::get('/help/buying-data', 'HelpController@buying_data')->name('help.buying_data');    
 

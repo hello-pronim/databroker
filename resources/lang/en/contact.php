@@ -21,5 +21,7 @@ return [
     'company'=>'Company',
     'country'=>'Country',
     'enter_your_industry'=>'Enter your industry',
-    'enter_your_role'=>'Enter your role'
+    'enter_your_role'=>'Enter your role',
+    'send'=>'Send',
+    'received_success'=>'We successfully received your message.'
 ];
