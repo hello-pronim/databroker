@@ -7,7 +7,6 @@
             <div class="col-md-8">
             	<div class="success-msg">
 					<h1 class="text-primary text-center text-bold">{{trans('contact.received_success')}}</h1>
-					<p class="text-bold fs-24 mt-10">The Databroker dao team will contact you soon.</p>
 				</div>
 			</div>
 		</div>
