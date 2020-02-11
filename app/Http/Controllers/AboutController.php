@@ -14,6 +14,7 @@ use App\Models\OfferTheme;
 use App\Models\OfferSample;
 use App\Models\OfferCountry;
 use App\Models\UseCase;
+use App\Models\Contact;
 
 class AboutController extends Controller
 {
@@ -291,11 +292,21 @@ class AboutController extends Controller
         }
     }
 
-    public function send(){
+    public function send(Request $request){
         $user = Auth::user();
         if(!$user){
             return redirect('/login')->with('target', 'use our DataMatch service');
         }else{
+            $businessName = $request->businessName2===NULL?$request->businessName:$request->businessName2;
+            $jobTitle = $request->jobTitle2===NULL?$request->jobTitle:$request->jobTitle2;
+
+            $contact_data['firstname'] = $request->firstname;
+            $contact_data['lastname'] = $request->lastname;
+            $contact_data['email'] = $request->email;        
+            $contact_data['companyName'] = $request->companyName;
+            $contact_data['jobTitle'] = $jobTitle;
+            $contact_data['content'] = $request->userMsg;
+            $contact_obj = Contact::create($contact_data);
             return view('about.contact_success');
         }
     }
