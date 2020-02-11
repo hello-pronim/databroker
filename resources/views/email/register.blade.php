@@ -34,6 +34,7 @@
 			#footer{background-color: #f8f8f8; padding: 50px 0px 20px 0px;}
 			#bodyTable{width: 100%;}
 			#app-brand svg{width: 260px;height: 45px;margin: 50px 0px;}
+			#socialIcons .social-button{color: transparent;}
 			#socialIcons .social-button img{display: inline-block;cursor: pointer;width: 50px;height: 50px;margin-right: 0.25rem;margin-bottom: 0.25rem;}
 			#socialIcons .social-button:hover, #socialIcons .social-button:focus {-webkit-transform: rotate(360deg);-ms-transform: rotate(360deg);transform: rotate(360deg);}
 			.text-highlight{color: #78E6D0;}
@@ -64,7 +65,7 @@
 													<tr>
 														<td>
 															<a href="/">
-										                        <img src="{{ asset('images/logos/site_logo.png') }}"/>               
+										                        <img src="{{ asset('images/logos/site_logo.png') }}" style="width: 300px; margin-bottom: 30px;"/>
 									                    	</a>
 									                    </td>
 									                </tr>

@@ -9,15 +9,15 @@
                 <p class="text-center fs-16"> 
                 	Want to know more about our DataMatch service? About becoming a partner? Or maybe you didn’t find the answer to your questions in our <a href="#">Help & support centre</a> or <a href="#">Media centre?</a><br/><br/>
 	                Tell us how we can help, and we’ll get back to you!<br/><br/>
-    							You can also use this form to give us your feedback on Databroker – we’d love to hear it! 
-    						</p>
+					You can also use this form to give us your feedback on Databroker – we’d love to hear it! 
+				</p>
                 <br>
                 <form method="POST" action="{{ route('contact.send') }}">
                     @csrf
                     <div class="text-wrapper">
-      								<textarea name="userMsg" class="user-message @error('userMsg') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="1000" autofocus></textarea>							
-      								<div class="error_notice userMsg"> This field is required</div>
-      							</div>
+						<textarea name="userMsg" class="user-message @error('userMsg') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="1000" autofocus></textarea>							
+						<div class="error_notice userMsg"> This field is required</div>
+					</div>
 
                     <label class="pure-material-textfield-outlined">
                         <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
@@ -62,12 +62,6 @@
                             </span>
                         @enderror
                     </label>
-
-                      <label class="pure-material-textfield-outlined">
-                          <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="">
-                          <span>{{ trans('pages.enter_name') }}</span>                          
-                          <div class="error_notice companyName"> This field is required</div>
-                      </label>
 
                     <label class="pure-material-textfield-outlined">
                         <input type="text" id="country" name="country" class="form-control input_data @error('country')  is-invalid @enderror" placeholder=" "  value="{{ old('country') }}" autocomplete="country" autofocus>

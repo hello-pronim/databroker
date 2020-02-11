@@ -104,9 +104,9 @@ class RegisterController extends Controller
 
         Mail::send('email.'.$tplName, $params,
             function($mail) use ($from, $to, $name, $subject){
-                $mail->from($from, $name);
-                $mail->to($to, $to);
-                $mail->subject($subject);
+                // $mail->from($from, $name);
+                // $mail->to($to, $to);
+                // $mail->subject($subject);
         });
     }
 
