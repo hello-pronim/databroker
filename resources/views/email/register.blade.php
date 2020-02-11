@@ -34,7 +34,7 @@
 			#footer{background-color: #f8f8f8; padding: 50px 0px 20px 0px;}
 			#bodyTable{width: 100%;}
 			#app-brand svg{width: 260px;height: 45px;margin: 50px 0px;}
-			#socialIcons .social-button{display: inline-block;position: relative;cursor: pointer;width: 46px;height: 46px;border: 0.125rem solid transparent;padding: 0;
+			/*#socialIcons .social-button{display: inline-block;position: relative;cursor: pointer;width: 46px;height: 46px;border: 0.125rem solid transparent;padding: 0;
 				text-decoration: none;text-align: center;color: #fefefe;font-size: 20px;font-weight: normal;line-height: 46px;border-radius: 50%;transition: all 0.5s ease;margin-right: 0.25rem;margin-bottom: 0.25rem;}
 			#socialIcons .social-button:hover, #socialIcons .social-button:focus {-webkit-transform: rotate(360deg);-ms-transform: rotate(360deg);transform: rotate(360deg);}
 			#socialIcons .social-button.facebook {background: #3556A2;}
@@ -48,7 +48,7 @@
 			#socialIcons .social-button.pinterest:hover, #socialIcons .social-button.pinterest:focus {color: #cb2027;background: #fefefe;border-color: #cb2027;}
 			#socialIcons .social-button.linkedin {background: #0098D4;}
 			#socialIcons .social-button.linkedin:before {font-family: "FontAwesome";content: "\f0e1"; font-size: 20px;}
-			#socialIcons .social-button.linkedin:hover, #socialIcons .social-button.linkedin:focus {color: #007bb5;background: #fefefe;border-color: #007bb5;}
+			#socialIcons .social-button.linkedin:hover, #socialIcons .social-button.linkedin:focus {color: #007bb5;background: #fefefe;border-color: #007bb5;}*/
 			.text-highlight{color: #78E6D0;}
 			.text-grey{color: #DAE1E5;}
 			.d-block{display: block;}
@@ -207,10 +207,18 @@
 												<tbody>
 													<tr>
 														<td>
-															<a class="social-button facebook" href="#"></a>
-															<a class="social-button twitter" href="#"></a>
-															<a class="social-button pinterest" href="#"></a>
-															<a class="social-button linkedin" href="#"></a>
+															<a class="social-button facebook" href="#">
+																<img src="{{ asset('images/social/facebook.png') }}"/>
+															</a>
+															<a class="social-button twitter" href="#">
+																<img src="{{ asset('images/social/twitter.png') }}"/>
+															</a>
+															<a class="social-button pinterest" href="#">
+																<img src="{{ asset('images/social/pinterest.png') }}"/>
+															</a>
+															<a class="social-button linkedin" href="#">
+																<img src="{{ asset('images/social/linkedin.png') }}"/>
+															</a>
 														</td>
 													</tr>
 												</tbody>
