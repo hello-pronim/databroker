@@ -44,7 +44,7 @@ class ProfileController extends Controller
 
         // TODO
 
-        $users = User::all();
+        $users = User::where('companyName', $user->companyName)->where('userIdx', '<>' ,$user->userIdx)->get();
             
         $business = Business::all();
 
@@ -161,6 +161,22 @@ class ProfileController extends Controller
         $user = Auth::user();
         
         return view('account.bids');
+    }
+
+    public function invite_user(Request $request){
+        $data = $request->all();
+        
+        if( $data ){
+            return response()->json(array( "success" => true, 'users' => $data['linked_email'] )); 
+        }
+    }
+
+    public function delete(Request $request){
+        if($request->user_id){
+            User::where('userIdx', $request->user_id)->delete();    
+        }
+        
+        return response()->json(array( "success" => true) );
     }
 
     protected function validator(array $data)

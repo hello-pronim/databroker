@@ -419,13 +419,82 @@ $(document).ready(function(){
             });
         }        
     });
-    $("#offer_loadmore").click(function(){
-        console.log($("#offer-list .card").length);
+    $("#offer_loadmore").click(function(){        
         filter_dataoffer($("#offer-list .card").length);
     });
 
-    $('#inviteModal .more_email').click(function(){
+    $('#inviteModal .more_email').click(function(e){
+        e.preventDefault();
+        var emails_number = $(".email_lists label").length;
+        var input_field = '<label class="pure-material-textfield-outlined">'+
+                                '<input type="email" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">'+
+                                '<span>Email '+(emails_number+1)+'</span>'+
+                                '<div class="error_notice">Email format is incorrect.</div>'+
+                           '</label>';
+            
+        $(".email_lists").append(input_field);        
+    });
 
+    $('a[data-target="#deleteModal"]').click(function(){
+        console.log($(this).attr('user-id') );
+        $('#deleteModal').find("input[name='list_userIdx']").val( $(this).attr('user-id') );
+    });
+
+    function isEmail(email) {
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return regex.test(email);
+    }
+
+    $('#inviteModal .invite').click(function(e){
+        var flag = false;
+        var flag_a = false;
+        $.each($('#inviteModal').find('input[type="email"]'), function(index, elem){
+            if($(elem).val()!=""){
+                $("#inviteModal .email_lists>.error_notice").hide();
+                if(isEmail($(elem).val()) == false){
+                    $(elem).parent().find(".error_notice").show();                    
+                    flag = false;                     
+                }else{
+                    $(elem).parent().find(".error_notice").hide();                                    
+                    flag = true; 
+                }  
+                flag_a = true;                                    
+            }            
+        });
+        if(flag_a==false){
+            $("#inviteModal .email_lists>.error_notice").show();
+        }
+        if(flag){            
+            $.ajax({
+                type: "post",
+                url : '/invite',
+                data : $("#inviteModal form").serialize(),
+                dataType: 'json',
+                success: function(res){
+                    console.log(res);
+                    if(res.success == true){
+                        //window.location.reload();    
+                    }
+                }
+            });
+        }    
+    });
+
+    $('#deleteModal .confirm').click(function(e){
+        var user_id = $("#deleteModal").find("input[name='list_userIdx']").val();        
+        if(user_id){
+            $.ajax({
+                type: "post",
+                url : '/user/delete',
+                data : {user_id: user_id, _token:$("#deleteModal").find('input[name="_token"]').val()},
+                dataType: 'json',
+                success: function(res){
+                    if(res.success == true){
+                        window.location.reload();    
+                    }
+                }
+            });
+        }    
     });
 
 });

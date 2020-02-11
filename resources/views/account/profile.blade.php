@@ -156,6 +156,7 @@
 				<div class="sectiontitle">
 					<span>Other users linked to this account</span>
 				</div>
+                @if(sizeof($users) >0 )
 				<table class="table">
 				  <thead>
 				    <tr>
@@ -165,11 +166,13 @@
 				    </tr>
 				  </thead>
 				  <tbody>
+                    @foreach($users as $company_user)
 				    <tr>
-				      <td class="col-name">Marks Spencer (administrator)</td>
-				      <td class="col-since">02/02/2007</td>
+				      <td class="col-name">{{ $company_user->firstname }} {{ $company_user->lastname }} @if($company_user->userStatus == 1) (administrator) @endif</td>
+				      <td class="col-since">{{ date('d/m/Y', strtotime($company_user->created_at)) }}</td>
+                      @if($user->userStatus == 1)
 				      <td class="col-action">
-                        <a class="action-button-delete" data-toggle="modal">
+                        <a class="action-button-delete" data-toggle="modal" data-target="#deleteModal" user-id="{{ $company_user->userIdx }}">
                             <div class="flex-center justify-end color-gray5">
                                 <i class="icon material-icons ">
                                     cancel
@@ -178,38 +181,15 @@
                             </div>
                         </a>
 	    			  </td>
+                      @endif
 				    </tr>
-				    <tr>
-				      <td class="col-name">Sarah Collins</td>
-				      <td class="col-since">12/09/2011</td>
-				      <td class="col-action">
-                        <a class="action-button-delete" data-toggle="modal">
-                            <div class="flex-center justify-end color-gray5">
-                                <i class="icon material-icons ">
-                                    cancel
-                                </i>                                
-                                <span class="label-delete">{{ trans('pages.Delete') }}</span>
-                            </div>
-                        </a>
-	    				</td>
-				    </tr>
-				    <tr>
-				      <td class="col-name">Lisa Daniels</td>
-				      <td class="col-since">24/12/2014</td>
-				      <td class="col-action">
-                        <a class="action-button-delete" data-toggle="modal">
-                            <div class="flex-center justify-end color-gray5">
-                                <i class="icon material-icons ">
-                                    cancel
-                                </i>                                
-                                <span class="label-delete">{{ trans('pages.Delete') }}</span>
-                            </div>
-                        </a>
-	  					</td>
-				    </tr>
+                    @endforeach				    
 				  </tbody>
 				</table>
-				<button type="button" class="button secondary-btn" data-toggle="modal" data-target="#inviteModal">{{ trans('pages.INVITE_USERS') }}</button>
+                @endif
+                @if($user->userStatus == 1)
+				<button type="button" class="button secondary-btn mt-20" data-toggle="modal" data-target="#inviteModal">{{ trans('pages.INVITE_USERS') }}</button>
+                @endif
 				<div class="description mt-10">
 					<span>{{ trans('pages.profile_description') }} </span><span style="color:rgba(120,230,208,1);">{{ trans('pages.Read_more') }}</span>
 				</div>
@@ -234,24 +214,53 @@
                 An email will be sent to these recipients, inviting them to register on Databroker
             </p>    
             <div class="email_lists cat-body">
+                <div class="error_notice">Please add email address.</div>
                 <label class="pure-material-textfield-outlined">
-                    <input type="text" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
-                    <span>Email 1</span>                         
+                    <input type="email" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
+                    <span>Email 1</span>                    
+                    <div class="error_notice">Email format is incorrect.</div>
                 </label>
                 <label class="pure-material-textfield-outlined">
-                    <input type="text" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
-                    <span>Email 2</span>                         
+                    <input type="email" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
+                    <span>Email 2</span> 
+                    <div class="error_notice">Email format is incorrect.</div>                        
                 </label>
                 <label class="pure-material-textfield-outlined">
-                    <input type="text" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
-                    <span>Email 3</span>                         
+                    <input type="email" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
+                    <span>Email 3</span> 
+                    <div class="error_notice">Email format is incorrect.</div>                        
                 </label>                
             </div>
             <a class="more_email pull-right mb-20" href="javascript:;">+ more</a>
         </form>        
       </div>            
       <div class="modal-footer">        
-        <button type="button" class="button primary-btn unpublish">Invite</button>
+        <button type="button" class="button primary-btn invite">Invite</button>
+        <button type="button" class="button secondary-btn" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="unpublishModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="post" post>
+            @csrf
+            <input type="hidden" name="list_userIdx" value="">
+            <p class="para">
+                Are you sure you want to delete this user?
+            </p>                
+        </form>        
+      </div>            
+      <div class="modal-footer">        
+        <button type="button" class="button primary-btn confirm">Confirm</button>
         <button type="button" class="button secondary-btn" data-dismiss="modal">Cancel</button>
       </div>
     </div>

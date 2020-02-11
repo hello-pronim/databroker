@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::post('/profile/edit', 'ProfileController@update')->name('account.profile.update');	
 	Route::get('/profile/purchases', 'ProfileController@purchases')->name('account.purchases');	
 	Route::get('/wallet', 'ProfileController@wallet')->name('account.wallet');	
+	Route::post('/user/delete', 'ProfileController@delete')->name('account.delete');	
+	Route::post('/invite', 'ProfileController@invite_user')->name('account.invite_user');	
 		
 	Route::get('/data/offers', 'DataController@offers')->name('data_offers');		//should rename as publish
 	Route::get('/data/offers/overview', 'DataController@offers_overview')->name('data_offers_overview');	
