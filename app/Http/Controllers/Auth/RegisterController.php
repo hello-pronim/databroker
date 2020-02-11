@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Community;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -71,6 +72,15 @@ class RegisterController extends Controller
     {
         $businessName = $data['businessName2']===NULL?$data['businessName']:$data['businessName2'];
         $jobTitle = $data['jobTitle2']===NULL?$data['jobTitle']:$data['jobTitle2'];
+
+        $this->sendEmail("register", [
+            'from'=>'yuriyes43@gmail.com', 
+            'to'=>$data['email'], 
+            'subject'=>'Databroker', 
+            'name'=>'Databroker',
+            'userData'=>$data
+        ]);   
+
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
@@ -81,9 +91,25 @@ class RegisterController extends Controller
             'userStatus' => 1,
             'password' => Hash::make($data['password']),
         ]);
+
     }
 
     
+    public function sendEmail($tplName, $params){
+
+        $from = $params['from'];
+        $to = $params['to'];
+        $name = $params['name'];
+        $subject = $params['subject'];
+
+        Mail::send('email.'.$tplName, $params,
+            function($mail) use ($from, $to, $name, $subject){
+                $mail->from($from, $name);
+                $mail->to($to, $to);
+                $mail->subject($subject);
+        });
+    }
+
     protected function register_nl()
     {
         $communities = Community::get();                
