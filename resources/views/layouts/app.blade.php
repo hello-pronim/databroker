@@ -62,7 +62,7 @@
               @if( Auth::user() )
   	        	<ul class="navbar-nav right">			        		
   	        		<li class="nav-item dropdown">
-  	        			<a class="nav-link dropdown-toggle" id="account_dropdown" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false"><i class="icon material-icons mdl-badge" data-badge="!">person</i>{{ trans('home.account') }}</a>
+  	        			<a class="nav-link dropdown-toggle" id="account_dropdown" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false"><i class="icon material-icons mdl-badge">person</i><!-- <i class="icon material-icons mdl-badge" data-badge="!">person</i> -->{{ trans('home.account') }}</a>
   	        			<div class="dropdown-menu" aria-labelledby="account_dropdown">                                        
   	        				<h4> {{ Auth::user()->firstname. ' '. Auth::user()->lastname }} </h4>                    
   	        				<a class="dropdown-item" href="{{ route('account.profile') }}"> {{ trans('home.profile_account_info') }} </a>
