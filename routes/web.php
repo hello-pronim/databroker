@@ -51,7 +51,10 @@ Route::get('/data/buy_data', 'DataController@buy_data')->name('data.buy_data');
 Route::get('/data/send_bid', 'DataController@send_bid')->name('data.send_bid');	
 Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
 
-Route::get('/about', 'AboutController@index')->name('about.about');    
+Route::get('/about', 'AboutController@index')->name('about.about');  
+Route::get('/terms_conditions', 'AboutController@terms_conditions')->name('about.terms_conditions');   
+Route::get('/privacy_policy', 'AboutController@privacy_policy')->name('about.privacy_policy');   
+Route::get('/cookie_policy', 'AboutController@cookie_policy')->name('about.cookie_policy');    
 Route::get('/contact', 'AboutController@contact')->name('contact'); 
 Route::post('/contact', 'AboutController@send')->name('contact.send');       
 Route::get('/about/matchmaking', 'AboutController@matchmaking')->name('about.matchmaking'); 

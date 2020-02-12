@@ -12,10 +12,10 @@
 					You can also use this form to give us your feedback on Databroker – we’d love to hear it! 
 				</p>
                 <br>
-                <form method="POST" action="{{ route('contact.send') }}">
+                <form method="POST" action="{{ route('contact.send') }}" id="contactForm">
                     @csrf
                     <div class="text-wrapper">
-						<textarea name="userMsg" class="user-message @error('userMsg') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="1000" autofocus></textarea>							
+						<textarea name="userMsg" class="user-message @error('userMsg') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="1000" autofocus>{{ old('userMsg')}}</textarea>
 						<div class="error_notice userMsg"> This field is required</div>
 					</div>
 
