@@ -435,4 +435,16 @@ class AboutController extends Controller
         $data = array( 'press_list', 'partners' );
         return view('about.media_center', compact($data));        
     }
+
+    public function terms_conditions(){
+        return view('about.terms_conditions');
+    }
+
+    public function privacy_policy(){
+        return view('about.privacy_policy');
+    }
+
+    public function cookie_policy(){
+        return view('about.cookie_policy');
+    }
 }

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers\Auth;
 
@@ -50,7 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $validator =  Validator::make($data, [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -59,7 +59,12 @@ class RegisterController extends Controller
         ], [
             'password.regex'=>'Password should contain A~Z, a~z, 0~9'
         ]);
-        return $result;
+
+        if ($validator->fails()) {
+            return redirect(url()->previous() .'#registerForm')
+                    ->withErrors($validator)
+                    ->withInput();
+        }
     }
 
     /**

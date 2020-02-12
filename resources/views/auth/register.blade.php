@@ -7,7 +7,7 @@
             <div class="col-md-8" id="register_section">
                 <h1 class="h1-smaller text-primary text-center" id="register_title">Get started with Databroker</h1>
                 <br>
-                <form method="POST" action="{{ route('register') }}">
+                <form id="registerForm" method="POST" action="{{ route('register') }}">
                     @csrf
 
                     <label class="pure-material-textfield-outlined">
@@ -147,7 +147,7 @@
                     <div class="form-check">
                         <label class="form-check-label">                
                             <input type="checkbox" class="form-check-input" name="term_conditions" value="true">
-                            <p class="text-black fs-18 lh-27">Yes, I accept Databroker’s <a href="#" target="_blank"><font style="color: #78E6D0;">terms and conditions</font></a> and <a href="#" target="_blank"><font style="color: #78E6D0;">the privacy policy</font></a></p>
+                            <p class="text-black fs-18 lh-27">Yes, I accept Databroker’s <a href="{{ route('about.terms_conditions') }}" target="_blank"><font style="color: #78E6D0;">terms and conditions</font></a> and <a href="{{ route('about.privacy_policy') }}" target="_blank"><font style="color: #78E6D0;">the privacy policy</font></a></p>
                             <span class="form-check-sign">
                                 <span class="custom-check check @error('term_conditions') is-invalid @enderror"></span>
                             </span>                                                        
@@ -163,7 +163,6 @@
                             </a>
                         @endif
                     </div>
-
                 </form>
             </div>
         </div>
