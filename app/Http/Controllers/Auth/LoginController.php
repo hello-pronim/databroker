@@ -75,11 +75,16 @@ class LoginController extends Controller
         ]);
     }
 
-    
+    public function logout(){
+        Auth:logout();
+        flash()->info('Bye', 'You have been successfully logged out!');
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
+    }
+
     public function username()
     {
         return 'email';
     }
 
-  
+    
 }

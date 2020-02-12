@@ -143,7 +143,6 @@
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
 						                			@elseif($product->productBidType == 'price_bid')
-						                			<span>Or send a bid</span>
 						                			<a href="/data/buy_data">
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
