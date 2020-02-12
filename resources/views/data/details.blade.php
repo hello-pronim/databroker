@@ -143,14 +143,14 @@
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
 						                			@elseif($product->productBidType == 'price_bid')
+						                			<span>Or send a bid</span>
+						                			<a href="/data/buy_data">
+						                				<button type="button" class="customize-btn">SEND BID</button>
+						                			</a>
 						                			<a href="/data/buy_data">
 						                				<button type="button" class="customize-btn">Buy Now</button>
 						                			</a>
 						                			<br>
-						                			<span class="ml-15">Or send a bid</span>
-						                			<a href="/data/buy_data">
-						                				<button type="button" class="customize-btn">SEND BID</button>
-						                			</a>
 						                			@elseif($product->productBidType == 'free')
 						                			<a href="javascript:;">
 						                				<button type="button" class="customize-btn">GET DATA</button>
