@@ -50,7 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $validator =  Validator::make($data, [
+        return Validator::make($data, [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -59,12 +59,6 @@ class RegisterController extends Controller
         ], [
             'password.regex'=>'Password should contain A~Z, a~z, 0~9'
         ]);
-
-        if ($validator->fails()) {
-            return redirect(url()->previous() .'#registerForm')
-                    ->withErrors($validator)
-                    ->withInput();
-        }
     }
 
     /**
@@ -73,6 +67,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
     protected function create(array $data)
     {
         $businessName = $data['businessName2']===NULL?$data['businessName']:$data['businessName2'];

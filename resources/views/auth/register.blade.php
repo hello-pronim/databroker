@@ -169,3 +169,13 @@
     </div>
 </div>
 @endsection
+
+@section('additional_javascript')
+<script type="text/javascript">
+    $(function(){
+        console.log($('#registerForm .is-invalid'));
+        if($('#registerForm .is-invalid').length>0)
+            $('html, body').scrollTop($("#registerForm .is-invalid:first-child").offset().top-30);
+    });
+</script>
+@endsection
