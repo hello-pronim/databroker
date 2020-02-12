@@ -262,7 +262,6 @@ class DataController extends Controller
     }
 
     public function category($category=""){
-
         $communities = Community::get();
         $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
@@ -273,6 +272,7 @@ class DataController extends Controller
             ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
             ->where('communities.communityName', ucfirst($category))
             ->where('offers.status', 1)
+            ->orderby('offers.offerIdx', 'DESC')
             ->limit($per_page)
             ->get();
         $totalcount = Offer::join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')->where('communities.communityName', ucfirst($category))->where('offers.status', 1)->get()->count();
