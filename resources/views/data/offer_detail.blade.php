@@ -34,11 +34,13 @@
 							<a class="link-market" href="{{$link_to_market}}">{{ trans('pages.view_on_marketplace') }}</a>
 						</div>
 						<div class="buttons">
-							<a class="icon-button btn-edit">
-								<i class="icon material-icons">
-									edit
-								</i>
-								{{ trans('pages.edit') }}
+							<a href="{{route('data_offer_edit', ['id'=>$id])}}">
+								<span class="icon-button btn-edit color-gray5" >
+									<i class="icon material-icons">
+										edit
+									</i>
+									{{ trans('pages.edit') }}
+								</span>
 							</a>
 							<span class="seperator">|</span>
 						@if ( $offer['status'] == 1 )							
