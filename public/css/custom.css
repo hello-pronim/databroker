@@ -118,8 +118,14 @@ body{
 .ml-0{
 	margin-left: 0px;
 }
+.ml-10{
+	margin-left: 10px;
+}
 .ml-15{
 	margin-left: 15px;
+}
+.ml-20{
+	margin-left: 20px;
 }
 .ml-30{
 	margin-left: 30px;

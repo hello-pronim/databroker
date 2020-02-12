@@ -98,7 +98,7 @@
 				            @endif
 				            @if( sizeof($products ) > 0 )
 				            <div class="link-box" id="this_data">
-				                <h2>Buy this data</h2>
+				                <h2>Buy data</h2>
 				                <p>If the data provider has already defined data products that can be purchased directly, you’ll find these below. When you buy a data product, you’ll receive an email link to access or download the data. 
 
 								This link will also be available in the Purchases section of your account. 
@@ -109,8 +109,8 @@
 				                <div class="buy_lists">
 				                	@foreach($products as $product)
 				                	<div class="buy_list">				                		
-				                		<div class="row">
-				                			<div class="col-md-6">
+				                		<div class="flex-row justify-content-between">
+				                			<div class="text-left">
 					                			<h3>{{$product->productTitle}}</h3>	
 					                			<label class="country offer-location">
 					                				@foreach($product['region'] as $region)
@@ -125,7 +125,7 @@
 					                			</div>
 					                			@endif
 					                		</div>
-					                		<div class="col-md-6 text-right">
+					                		<div class="text-right">
 					                			@if($product->productPrice>0 && $product->productBidType != 'free')
 					                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }}</p>
 					                			@else
@@ -133,28 +133,30 @@
 					                			@endif
 
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 {{ $product->productAccessDays }}</span></p>
-					                			@if($product->productBidType == 'price')
-					                			<a href="/data/buy_data">
-					                				<button type="button" class="customize-btn">Buy Now</button>
-					                			</a>
-					                			@elseif($product->productBidType == 'bid')
-					                			<a href="/data/buy_data">
-					                				<button type="button" class="customize-btn">SEND BID</button>
-					                			</a>
-					                			@elseif($product->productBidType == 'price_bid')
-					                			<a href="/data/buy_data">
-					                				<button type="button" class="customize-btn">Buy Now</button>
-					                			</a>
-					                			<br>
-					                			<span>Or send a bid</span>
-					                			<a href="/data/buy_data">
-					                				<button type="button" class="customize-btn">SEND BID</button>
-					                			</a>
-					                			@elseif($product->productBidType == 'free')
-					                			<a href="javascript:;">
-					                				<button type="button" class="customize-btn">GET DATA</button>
-					                			</a>
-					                			@endif
+					                			<div class="flex-row align-items-center justify-content-end">
+						                			@if($product->productBidType == 'price')
+						                			<a href="/data/buy_data">
+						                				<button type="button" class="customize-btn">Buy Now</button>
+						                			</a>
+						                			@elseif($product->productBidType == 'bid')
+						                			<a href="/data/buy_data">
+						                				<button type="button" class="customize-btn">SEND BID</button>
+						                			</a>
+						                			@elseif($product->productBidType == 'price_bid')
+						                			<a href="/data/buy_data">
+						                				<button type="button" class="customize-btn">Buy Now</button>
+						                			</a>
+						                			<br>
+						                			<span class="ml-15">Or send a bid</span>
+						                			<a href="/data/buy_data">
+						                				<button type="button" class="customize-btn">SEND BID</button>
+						                			</a>
+						                			@elseif($product->productBidType == 'free')
+						                			<a href="javascript:;">
+						                				<button type="button" class="customize-btn">GET DATA</button>
+						                			</a>
+					                				@endif
+					                			</div>
 					                		</div>	
 				                		</div>				                		
 				                	</div>

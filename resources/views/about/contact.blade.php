@@ -14,10 +14,15 @@
                 <br>
                 <form method="POST" action="{{ route('contact.send') }}" id="contactForm">
                     @csrf
-                    <div class="text-wrapper">
-						<textarea name="userMsg" class="user-message @error('userMsg') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="1000" autofocus>{{ old('userMsg')}}</textarea>
-						<div class="error_notice userMsg"> This field is required</div>
-					</div>
+                    <label class="pure-material-textfield-outlined">
+						<textarea name="message" class="form-control input_data user-message @error('message') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="1000" autofocus>{{ old('message')}}</textarea>
+						<div class="error_notice">{{ trans('validation.required', ['attribute' => 'Message']) }}</div>
+                        @error('message')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</label>
 
                     <label class="pure-material-textfield-outlined">
                         <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
@@ -161,7 +166,11 @@
                             </div>
                         </div>    
                         @endforeach
-                        <div class="error_notice">Please choose at least one.</div>
+                        @error('community')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>    
 
                     <p>We’re committed to your privacy. Your details are collected and stored so we can respond to your query.</p>

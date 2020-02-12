@@ -15,7 +15,7 @@ return [
     'confirm' => 'Confirm',
     'send_message' => 'Send a Message',
     'description' => 'About this data',
-    'use_case' => 'Use Cases',
+    'use_case' => 'Use cases',
     'samples' => 'Eamples',
     'buy_this_data' => 'Buy Data',
     'other' => 'Other',
