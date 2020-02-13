@@ -42,7 +42,7 @@ class DataController extends Controller
         $offer = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
         $user_info = User::where('userIdx', $offer->provider->userIdx)->first();
         
-        $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->get();
+        $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->where('deleted', 0)->get();
         
         $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
         
@@ -135,11 +135,13 @@ class DataController extends Controller
         $offersample_path = URL::to('/uploads/offersample');
         $sample_files = OfferSample::where('offerIdx', $offerIdx)
             ->where('sampleType', 'like', 'file-%')
+            ->where('deleted', 0)
             ->orderby('sampleIdx')
             ->pluck('sampleFileName')
             ->toArray();
         $sample_images = OfferSample::where('offerIdx', $offerIdx)
             ->where('sampleType', 'like', 'image-%')
+            ->where('deleted', 0)
             ->orderby('sampleIdx')
             ->pluck('sampleFileName')
             ->toArray();
@@ -327,35 +329,51 @@ class DataController extends Controller
         $usercase_data['useCaseContent'] = $request->useCaseContent;
         UseCase::where('offerIdx', $offerIdx)->update($usercase_data);
 
-        // $offersample_data =[];
+        $i =1;        
+        while( ($fileName = $request->input('removed_offersample_files_'.$i)) != null ){ 
+            OfferSample::where('offerIdx', $offerIdx)
+                ->where('sampleFileName', $fileName)
+                ->update(['deleted' => 1]);
+            $i++;
+        }
 
-        // $offersample_path = public_path('uploads/offersample');
+        $i =1;
+        while( ($fileName = $request->input('removed_offersample_images_'.$i)) != null ){          
+            OfferSample::where('offerIdx', $offerIdx)
+                ->where('sampleFileName', $fileName)
+                ->update(['deleted' => 1]);
+            $i++;
+        }
         
-        // $i =1;        
-        // while( $request->file('offersample_files_'.$i) != null ){        
-        //     $extension = $request->file('offersample_files_'.$i)->extension();
-        //     $fileName = pathinfo($request->file('offersample_files_'.$i)->getClientOriginalName(), PATHINFO_FILENAME)."_".date('Ymd').'.'.$extension;
+
+        $offersample_data =[];
+        $offersample_data['offerIdx'] = $offerIdx;
+        $offersample_path = public_path('uploads/offersample');
+        $i =1;        
+        while( $request->file('offersample_files_'.$i) != null ){        
+            $extension = $request->file('offersample_files_'.$i)->extension();
+            $fileName = pathinfo($request->file('offersample_files_'.$i)->getClientOriginalName(), PATHINFO_FILENAME)."_".date('Ymd').'.'.$extension;
             
-        //     $request->file('offersample_files_'.$i)->move($offersample_path, $fileName);
+            $request->file('offersample_files_'.$i)->move($offersample_path, $fileName);
 
-        //     $offersample_data['sampleFileName'] = $fileName;
-        //     $offersample_data['sampleType'] = "file-".$extension;
-        //     OfferSample::create($offersample_data);    
-        //     $i++;
-        // }
+            $offersample_data['sampleFileName'] = $fileName;
+            $offersample_data['sampleType'] = "file-".$extension;
+            OfferSample::create($offersample_data);    
+            $i++;
+        }
 
-        // $i =1;
-        // while( $request->file('offersample_images_'.$i) != null ){
-        //     $extension = $request->file('offersample_images_'.$i)->extension();
-        //     $fileName = pathinfo($request->file('offersample_images_'.$i)->getClientOriginalName(), PATHINFO_FILENAME)."_".date('Ymd').'.'.$extension;
+        $i =1;
+        while( $request->file('offersample_images_'.$i) != null ){
+            $extension = $request->file('offersample_images_'.$i)->extension();
+            $fileName = pathinfo($request->file('offersample_images_'.$i)->getClientOriginalName(), PATHINFO_FILENAME)."_".date('Ymd').'.'.$extension;
             
-        //     $request->file('offersample_images_'.$i)->move($offersample_path, $fileName);
+            $request->file('offersample_images_'.$i)->move($offersample_path, $fileName);
 
-        //     $offersample_data['sampleFileName'] = $fileName;
-        //     $offersample_data['sampleType'] = "image-".$extension;
-        //     OfferSample::create($offersample_data);    
-        //     $i++;
-        // }
+            $offersample_data['sampleFileName'] = $fileName;
+            $offersample_data['sampleType'] = "image-".$extension;
+            OfferSample::create($offersample_data);    
+            $i++;
+        }
 
         return response()->json(array( "success" => true, 'redirect' => route('data_offer_publish_confirm', ['id'=>$offerIdx]) ));
     }
