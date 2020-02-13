@@ -129,6 +129,9 @@ class DataController extends Controller
 
         $usecase = UseCase::where('offerIdx', $offerId)->first();
 
+        $offer_path = URL::to('/uploads/offer');
+        $offer_images = [$offer['offerImage']];
+
         $offersample_path = URL::to('/uploads/offersample');
         $sample_files = OfferSample::where('offerIdx', $offerIdx)
             ->where('sampleType', 'like', 'file-%')
@@ -141,7 +144,7 @@ class DataController extends Controller
             ->pluck('sampleFileName')
             ->toArray();
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path' );
+        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }
