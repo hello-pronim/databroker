@@ -167,6 +167,17 @@ body{
 .hide{
 	display: none;
 }
+
+.list-style-none{
+	list-style: none;
+}
+.list-style-circle{
+	list-style-type: circle;
+}
+.list-style-disc{
+	list-style-type: disc;
+}
+
 /* Flex style*/
 .flex-row{
 	display: flex;
@@ -1462,9 +1473,9 @@ a.dropdown-toggle:after{
 	align-items: center;
 	justify-content: center;
 }
-.app-wapper-privacy-policy p{
+.app-wapper-privacy-policy p, .app-wapper-cookie-policy p{
 	margin-bottom: 0px;
 }
-.app-wapper-privacy-policy ul{
+.app-wapper-privacy-policy ul, .app-wapper-cookie-policy ul{
 	margin-bottom: 0px;
 }
