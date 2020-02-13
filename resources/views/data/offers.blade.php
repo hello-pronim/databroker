@@ -12,7 +12,11 @@
 <div class="container-fluid app-wapper data-offer">
 	<div class="bg-pattern1-left"></div>
     <div class="container">
+    	@if (isset($offer))
+    	<form method="post" action="{{ route('data.update_offer', ['id'=> $offerIdx]) }}" id="data-offer">
+    	@else
     	<form method="post" action="{{ route('data.add_offer') }}" id="data-offer">
+    	@endif
     		@csrf    		
     		@if ($current_step == 'before')
     		<div id="before" class="app-section app-reveal-section align-items-center step current">
@@ -79,11 +83,11 @@
 				<div class="row">			
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div class="section-title">{{ trans('pages.data_offer_step_1_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_offer_tooltip') }}">help</i></div>							
+							<div class="section-title">{{ trans('pages.data_offer_step_1_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_offer_tooltip') }}">help</i></div>
 						</div>
-						<div class="text-wrapper">
-							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>							
-							<div class="error_notice offerTitle"> This field is required</div>
+						<div class="text-wrapper">							
+							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">{{ $offer['offerTitle'] ?? ''}}</textarea>
+							<div class="error_notice offerTitle">This field is required</div>
 							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
 						</div>
 						
@@ -94,15 +98,27 @@
 						<div class="custom-dropdown-container">
 	                        <div class="custom-dropdown" tabindex="1">
 	                            <div class="select">
+	                            	@if (isset($regionCheckList) && count($regionCheckList) > 0)
+	                                <span>{{implode(',', array_values($regionCheckList))}}</span>
+	                            	@else
 	                                <span>Please Select</span>
+	                                @endif
 	                            </div>
+	                            @if (isset($regionCheckList))
+	                            <input type="hidden" id="offercountry" name="offercountry" value="{{implode(',', array_keys($regionCheckList))}}">
+	                            @else
 	                            <input type="hidden" id="offercountry" name="offercountry" value="">
+	                            @endif
 	                            <ul class="custom-dropdown-menu region-select" style="display: none;">
 	                            	<h4>{{ trans('pages.select_region') }}:</h4>
 	                            	@foreach ($regions as $region)
 		                               	<div class="check_container">
 					                        <label class="pure-material-checkbox">
+					                        	@if (isset($regionCheckList[$region->regionIdx]) && $regionCheckList[$region->regionIdx] != '')
+					                            <input type="checkbox" class="form-control no-block check_community" name="region[]" region="{{$region->regionName}}" value="{{$region->regionIdx}}" checked>
+					                            @else
 					                            <input type="checkbox" class="form-control no-block check_community" name="region[]" region="{{$region->regionName}}" value="{{$region->regionIdx}}">
+					                            @endif
 					                            <span>{{$region->regionName}}</span>
 					                        </label>
 					                    </div>
@@ -118,7 +134,11 @@
 					                    <select class="" name="region[]" data-placeholder="{{ trans('pages.search_by_country') }}">
 											<option></option>
 					                    	@foreach ($countries as $country)
+					                    		@if (isset($regionCheckList[$country->regionIdx]) && $regionCheckList[$country->regionIdx] != '')
+				                                <option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
+				                                @else
 				                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
+				                                @endif
 				                            @endforeach
 					                    </select>
 					                </div>
@@ -140,7 +160,11 @@
 	                            	<select id="community_box" name="communityIdx">
 	                            		<option></option>
 	                                @foreach ($communities as $community)
+	                                @if (isset($offer) && $offer['communityIdx'] == $community->communityIdx)
+		                                <option value="{{$community->communityIdx}}" tooltip-text="{{ trans('description.community_'.str_replace(' ', '_', $community->communityName)	.'_tooltip') }}" selected>{{ $community->communityName }}</option>
+		                            @else
 		                                <option value="{{$community->communityIdx}}" tooltip-text="{{ trans('description.community_'.str_replace(' ', '_', $community->communityName)	.'_tooltip') }}">{{ $community->communityName }}</option>
+		                            @endif
 		                            @endforeach  
 			                         </select>
 				                </div>	                            
@@ -153,7 +177,7 @@
 							<div class="section-title">Please add an image that can be used to represent your data offer <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>							
 							</div>
 						</div>	                    
-						<div class="fileupload">	                    	
+						<div class="fileupload">
 						    <input type="file" name="offerImage" accept='image/*' description="{{ trans('pages.data_offer_image_upload_description2') }}">
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
@@ -190,7 +214,7 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.data_offer_step_2_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_description_tooltip') }}">help</i></div>							
 						</div>
 						<div class="text-wrapper">
-							<textarea name="offerDescription" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>
+							<textarea name="offerDescription" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">{{$offer['offerDescription'] ?? ''}}</textarea>
 							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
 						</div>
 						<div class="buttons flex-vcenter">
@@ -205,7 +229,7 @@
 				</div>
 		    </div>	
 	    	<div id="step3" class="app-section app-reveal-section align-items-center step">  
-	    		<div class="row header">  	
+	    		<div class="row header">
 		    		<div class="col col-9">
 						<div class="page-title text-primary">{{ trans('pages.data_offer_step_3') }}</div>		
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
@@ -222,7 +246,7 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.data_offer_step_3_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_usecase_tooltip') }}">help</i></div>							
 						</div>
 						<div class="text-wrapper">
-							<textarea name="useCaseContent" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>
+							<textarea name="useCaseContent" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">{{$usecase['useCaseContent'] ?? ''}}</textarea>
 							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>	
 						</div>
 						<div class="buttons flex-vcenter">
@@ -255,7 +279,7 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.files') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>						
 						</div>
 						<div class="fileupload">                            
-	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf' multiple filelist>
+	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf,.zip,.rar' multiple filelist>
 	                    </div>
 						<div class="file-drag-drop-zone">
 							<div class="drag-drop-dummy">
@@ -285,7 +309,7 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>							
 						</div>
 						<div class="description1">{{ trans('pages.data_offer_image_upload_description1') }}</div>
-						<div class="fileupload">                            
+						<div class="fileupload">
 	                        <input type="file" name="offersample_images" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2') }}">
 	                    </div>
 						<div class="images-list">
@@ -300,7 +324,11 @@
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>{{ trans('pages.previous_step') }}</span></a>
+							@if (isset($offer))
+							<button type="sbumit" class="customize-btn">Update Offer</button>
+							@else
 							<button type="sbumit" class="customize-btn">{{ trans('pages.publish_on_marketplace') }}</button>
+							@endif
 						</div>
 					</div>
 					<div class="col-3">
