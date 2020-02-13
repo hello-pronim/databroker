@@ -178,7 +178,11 @@
 							</div>
 						</div>	                    
 						<div class="fileupload">
+							@if (isset($offer_path))
+						    <input type="file" name="offerImage" accept='image/*' description="{{ trans('pages.data_offer_image_upload_description2') }}" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image">
+						    @else
 						    <input type="file" name="offerImage" accept='image/*' description="{{ trans('pages.data_offer_image_upload_description2') }}">
+						    @endif
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
 						<div class="buttons flex-vcenter">
