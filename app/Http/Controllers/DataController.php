@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 use App\Models\Provider;
 use App\Models\Region;
@@ -128,7 +129,19 @@ class DataController extends Controller
 
         $usecase = UseCase::where('offerIdx', $offerId)->first();
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase' );
+        $offersample_path = URL::to('/uploads/offersample');
+        $sample_files = OfferSample::where('offerIdx', $offerIdx)
+            ->where('sampleType', 'like', 'file-%')
+            ->orderby('sampleIdx')
+            ->pluck('sampleFileName')
+            ->toArray();
+        $sample_images = OfferSample::where('offerIdx', $offerIdx)
+            ->where('sampleType', 'like', 'image-%')
+            ->orderby('sampleIdx')
+            ->pluck('sampleFileName')
+            ->toArray();
+
+        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }

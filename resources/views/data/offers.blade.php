@@ -279,7 +279,11 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.files') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>						
 						</div>
 						<div class="fileupload">                            
+							@if (isset($sample_files))
+	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf,.zip,.rar' multiple filelist  remotefile="{{ json_encode($sample_files) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="file">
+	                        @else
 	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf,.zip,.rar' multiple filelist>
+	                        @endif
 	                    </div>
 						<div class="file-drag-drop-zone">
 							<div class="drag-drop-dummy">
@@ -309,8 +313,12 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>							
 						</div>
 						<div class="description1">{{ trans('pages.data_offer_image_upload_description1') }}</div>
-						<div class="fileupload">
+						<div class="fileupload">                 
+							@if (isset($sample_files))
+	                         <input type="file" name="offersample_images" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2')}}"  remotefile="{{ json_encode($sample_images) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="image">
+	                        @else
 	                        <input type="file" name="offersample_images" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2') }}">
+	                        @endif
 	                    </div>
 						<div class="images-list">
 							<div class="row">
