@@ -165,7 +165,7 @@
 						        			<h3 class="text-bold">Questions about this data? </h3>
 						        			<p class="fs-18">Or want to request specific data from this provider?</p>
 						        			<a href="/data/send_message">
-						        				<button type="button" class="btn btn-round sendmessage-btn">CONTACT THE DATA PROVIDER</button>
+						        				<button type="button" class="secondary-btn mgh25">CONTACT THE DATA PROVIDER</button>
 						        			</a>
 						        		</div>
 				                	</div>
@@ -188,7 +188,7 @@
 	        			<p class="short-desc">
 	        				{!! trans('pages.contact_data_provider') !!}
 	        			</p>
-	        			<a href="/data/send_message"><button  type="button" class="btn btn-round sendmessage-btn">CONTACT THE DATA PROVIDER</button></a>
+	        			<a href="/data/send_message"><button  type="button" class="secondary-btn mgh25">CONTACT THE DATA PROVIDER</button></a>
 	        		</div>
 	        	</div>
 	        </div>

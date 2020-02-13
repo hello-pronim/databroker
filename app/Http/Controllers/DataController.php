@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
 use App\Models\Provider;
@@ -295,21 +296,23 @@ class DataController extends Controller
         }
 
         $offer_data = [];
-        // $offerImage_path = public_path('uploads/offer');
+        $offerImage_path = public_path('uploads/offer');
 
         $offer_data['offerTitle'] = $request->offerTitle;
         $offer_data['offerDescription'] = $request->offerDescription;
         $offer_data['communityIdx'] = $request->communityIdx;
         $offer_data['providerIdx'] = $providerIdx;
 
-        Offer::find($id)->update($offer_data);
         $offerIdx = $id;
+        $offerimagefile = $request->file('offerImage_1');
+        if ($offerimagefile != null) {
+            $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
+            $ret = $offerimagefile->move($offerImage_path, $fileName);
+            $offer_data['offerImage'] = $fileName;
+        }
 
-        // $fileName = "offer_".$offerIdx.'.'.$request->file('offerImage_1')->extension();
-        // $request->file('offerImage_1')->move($offerImage_path, $fileName);
+        Offer::find($id)->update($offer_data);
         
-        // Offer::where('offerIdx', $offerIdx)->update(array( "offerImage" => $fileName ));        
-
         $offercountry_data = [];
         OfferCountry::where('offerIdx', $offerIdx)->delete();
         $offercountry_data['offerIdx'] = $offerIdx;
