@@ -52,6 +52,7 @@ Route::get('/data/send_message', 'DataController@send_message')->name('data.send
 Route::get('/data/buy_data', 'DataController@buy_data')->name('data.buy_data');	
 Route::get('/data/send_bid', 'DataController@send_bid')->name('data.send_bid');	
 Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
+Route::get('/data/start', 'DataController@offer_start')->name('data_offer_start');
 
 Route::get('/about', 'AboutController@index')->name('about.about');  
 Route::get('/terms_conditions', 'AboutController@terms_conditions')->name('about.terms_conditions');   

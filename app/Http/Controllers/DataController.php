@@ -488,6 +488,11 @@ class DataController extends Controller
         return view('data.offer_publish_confirm', compact($data));
     }
 
+    public function offer_start(Request $request){
+        $data = array(  );
+        return view('data.offer_publish_first', compact($data));
+    }    
+
     public function offer_product_publish_confirm(Request $request){
         $data = array(  );
         return view('data.offer_product_publish_confirm', compact($data));
