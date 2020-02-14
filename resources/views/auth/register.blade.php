@@ -57,7 +57,11 @@
                     <div class="industry-dropdown dropdown-container">
                         <div class="dropdown" tabindex="1">
                             <div class="select">
+                                @if(old('businessName2'))
+                                <span class="chosen">{{ old('businessName2') }}</span>
+                                @else
                                 <span>Which industry are you in?</span>
+                                @endif
                             </div>
                             <input type="hidden" id="businessName2" name="businessName2" value="Agriculture/Mining/Forestry">
                             <ul class="dropdown-menu" style="display: none;">
@@ -99,7 +103,11 @@
                     <div class="role-dropdown dropdown-container">
                         <div class="dropdown" tabindex="1">
                             <div class="select">
+                                @if(old('jobTitle2'))
+                                <span class="chosen">{{ old('jobTitle2') }}</span>
+                                @else
                                 <span>What role do you have?</span>
+                                @endif
                             </div>
                             <input type="hidden" id="jobTitle2" name="jobTitle2" value="Technical">
                             <ul class="dropdown-menu" style="display: none;">

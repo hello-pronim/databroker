@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -66,7 +67,13 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-    
+    public function logout(Request $request){
+        Auth::logout();
+
+        return view('auth.logout_success')
+            ->with('message', 'You have been successfully logged out.');
+    }
+
     protected function validateLogin(Request $request)
     {
         $request->validate([
@@ -75,11 +82,10 @@ class LoginController extends Controller
         ]);
     }
 
-    
     public function username()
     {
         return 'email';
     }
 
-  
+    
 }
