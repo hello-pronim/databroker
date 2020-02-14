@@ -43,11 +43,6 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $action = "your account";
-        
-        if(!session()->has('url.intended'))
-        {
-            session(['url.intended' => url()->previous()]);
-        }
 
         return view('auth.login')->with('action', $action);
     }
@@ -98,20 +93,8 @@ class LoginController extends Controller
         ]);
     }
 
-    protected function sendLoginResponse(Request $request)
-    {
-        $request->session()->regenerate();
-
-        $this->clearLoginAttempts($request);
-
-        return $this->authenticated($request, $this->guard()->user())
-                ?redirect(back()): redirect()->intended($this->redirectPath());
-    }
-
     public function username()
     {
         return 'email';
     }
-
-    
 }
