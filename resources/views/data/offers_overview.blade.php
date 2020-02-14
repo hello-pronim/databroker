@@ -19,7 +19,7 @@
 		        </div>		        
 			</div>
 			<div class="col-lg-6">
-				<a href="{{ route('data_offers') }}"><button type="button" class="btn customize-btn btn-next pull-right">{{ trans('pages.PUBLISH_NEW_DATA_OFFER') }}</button></a>
+				<a href="{{ route('data_offers') }}"><button type="button" class="customize-btn btn-next pull-right">{{ trans('pages.PUBLISH_NEW_DATA_OFFER') }}</button></a>
 			</div>
 		</div>
 		<div class="gridview col2" id="23">			

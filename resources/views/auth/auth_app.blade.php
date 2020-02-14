@@ -156,9 +156,9 @@
             <div class="app-section app-footer-section align-items-center">
               <div class="app-footer-link">
                       <!--a href="">Terms and Conditions</a-->
-                      <a href="/terms-conditions">{{ trans('home.terms_conditions') }}</a>
-                      <a href="/privacy-policy">{{ trans('home.privacy_policy') }}</a>
-                      <a href="/cookie-policy" style="padding-right: 0;">{{ trans('home.cookie_policy') }}</a>
+                      <a href="{{route('about.terms_conditions')}}" target="_blank">{{ trans('home.terms_conditions') }}</a>
+                      <a href="{{route('about.privacy_policy')}}" target="_blank">{{ trans('home.privacy_policy') }}</a>
+                      <a href="{{route('about.cookie_policy')}}" target="_blank" style="padding-right: 0;">{{ trans('home.cookie_policy') }}</a>
                   </div>
                   <div class="site_footer_logo_container">
                       <img src="{{ asset('/images/logos/site_footer_logo.png') }}">               
@@ -195,6 +195,7 @@
         <span class="et_pb_scroll_top et-pb-icon" title="TOP"></span>
 
     <script src="{{ asset('js/core/jquery.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers\Auth;
 
@@ -59,7 +59,6 @@ class RegisterController extends Controller
         ], [
             'password.regex'=>'Password should contain A~Z, a~z, 0~9'
         ]);
-        return $result;
     }
 
     /**
@@ -68,6 +67,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
     protected function create(array $data)
     {
         $businessName = $data['businessName2']===NULL?$data['businessName']:$data['businessName2'];
