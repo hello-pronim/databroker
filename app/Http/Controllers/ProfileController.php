@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Business;
 use App\Models\Provider;
 use App\Models\Region;
+use App\Models\LinkedUser;
 
 class ProfileController extends Controller
 {
@@ -44,11 +45,11 @@ class ProfileController extends Controller
 
         // TODO
 
-        $users = User::where('companyName', $user->companyName)->where('userIdx', '<>' ,$user->userIdx)->get();
-            
+        $users = User::where('companyName', $user->companyName)->where('userIdx', '<>' ,$user->userIdx)->get();        
+        $invited_users = LinkedUser::where('invite_userIdx', $user->userIdx)->get();            
         $business = Business::all();
 
-        $data = array('user', 'users', 'business');
+        $data = array('user', 'users', 'invited_users', 'business');
         return view('account.profile', compact($data));
 
     }
@@ -166,14 +167,24 @@ class ProfileController extends Controller
     public function invite_user(Request $request){
         $data = $request->all();
         
-        if( $data ){
-            return response()->json(array( "success" => true, 'users' => $data['linked_email'] )); 
+        foreach ($data['linked_email'] as $key => $value) {
+            if($value){
+                $linked['invite_userIdx'] = $data['invite_userIdx'];
+                $linked['linked_email'] = $value;
+                LinkedUser::create($linked);
+            }
         }
+
+        return response()->json(array( "success" => true )); 
+        
     }
 
     public function delete(Request $request){
         if($request->user_id){
-            User::where('userIdx', $request->user_id)->delete();    
+            if($request->type == "registered")
+                User::where('userIdx', $request->user_id)->delete();    
+            if($request->type == "pendding")
+                LinkedUser::where('linkedIdx', $request->user_id)->delete();    
         }
         
         return response()->json(array( "success" => true) );

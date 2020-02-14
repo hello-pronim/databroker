@@ -435,9 +435,13 @@ $(document).ready(function(){
         $(".email_lists").append(input_field);        
     });
 
-    $('a[data-target="#deleteModal"]').click(function(){
-        console.log($(this).attr('user-id') );
+    $('a[data-target="#deleteModal"]').click(function(){        
         $('#deleteModal').find("input[name='list_userIdx']").val( $(this).attr('user-id') );
+        if( $(this).parent().parent().hasClass('invited') ){
+            $('#deleteModal').find("input[name='user_type']").val( 'pendding' );
+        }else{
+            $('#deleteModal').find("input[name='user_type']").val( 'registered' );
+        }
     });
 
     function isEmail(email) {
@@ -473,7 +477,7 @@ $(document).ready(function(){
                 success: function(res){
                     console.log(res);
                     if(res.success == true){
-                        //window.location.reload();    
+                        window.location.reload();    
                     }
                 }
             });
@@ -481,12 +485,14 @@ $(document).ready(function(){
     });
 
     $('#deleteModal .confirm').click(function(e){
-        var user_id = $("#deleteModal").find("input[name='list_userIdx']").val();        
+        var user_id = $("#deleteModal").find("input[name='list_userIdx']").val();     
+        var type = $("#deleteModal").find("input[name='user_type']").val();        
+
         if(user_id){
             $.ajax({
                 type: "post",
                 url : '/user/delete',
-                data : {user_id: user_id, _token:$("#deleteModal").find('input[name="_token"]').val()},
+                data : {user_id: user_id, _token:$("#deleteModal").find('input[name="_token"]').val(), type: type},
                 dataType: 'json',
                 success: function(res){
                     if(res.success == true){

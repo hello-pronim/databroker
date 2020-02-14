@@ -156,7 +156,7 @@
 				<div class="sectiontitle">
 					<span>Other users linked to this account</span>
 				</div>
-                @if(sizeof($users) >0 )
+                @if(sizeof($users) >0 || sizeof($invited_users) >0)
 				<table class="table">
 				  <thead>
 				    <tr>
@@ -165,9 +165,9 @@
 				      <th scope="col" class="col-action"></th>
 				    </tr>
 				  </thead>
-				  <tbody>
+				  <tbody>                      
                     @foreach($users as $company_user)
-				    <tr>
+				    <tr class="registered">
 				      <td class="col-name">{{ $company_user->firstname }} {{ $company_user->lastname }} @if($company_user->userStatus == 1) (administrator) @endif</td>
 				      <td class="col-since">{{ date('d/m/Y', strtotime($company_user->created_at)) }}</td>
                       @if($user->userStatus == 1)
@@ -183,7 +183,26 @@
 	    			  </td>
                       @endif
 				    </tr>
-                    @endforeach				    
+                    @endforeach	
+
+                    @foreach($invited_users as $invited_user)
+                    <tr class="invited">
+                      <td class="col-name">{{ $invited_user->linked_email }}</td>
+                      <td class="col-since">Pending</td>
+                      @if($user->userStatus == 1)
+                      <td class="col-action">
+                        <a class="action-button-delete" data-toggle="modal" data-target="#deleteModal" user-id="{{ $invited_user->linkedIdx }}">
+                            <div class="flex-center justify-end color-gray5">
+                                <i class="icon material-icons ">
+                                    cancel
+                                </i>                                
+                                <span class="label-delete">{{ trans('pages.Delete') }}</span>
+                            </div>
+                        </a>
+                      </td>
+                      @endif
+                    </tr>
+                    @endforeach                 
 				  </tbody>
 				</table>
                 @endif
@@ -254,6 +273,7 @@
         <form action="post" post>
             @csrf
             <input type="hidden" name="list_userIdx" value="">
+            <input type="hidden" name="user_type" value="">
             <p class="para">
                 Are you sure you want to delete this user?
             </p>                
