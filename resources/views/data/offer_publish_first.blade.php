@@ -38,7 +38,7 @@
 				<div class="mt-20">
 					<h4 class="text-bold"><span class="fs-30">4. </span> Samples (optional but recommended)</h4>
 					<p class="fs-18">Add some samples files or images to make your data offer even more clear.</p>
-					<p class="fs-18 mt-30">Done? Your data offer will be ready to be published on Databroker dao. Also some text here about the data products that can be added right away or later etc ...</p>
+					<p class="fs-18 mt-30">Done? Your data offer will be ready to be published on Databroker. Also some text here about the data products that can be added right away or later etc ...</p>
 				</div>
 				<a href="{{ route('data_offers') }}">
 					<button type="button" class="btn customize-btn btn-next">START NOW</button>
@@ -49,8 +49,8 @@
 			<div class="col-lg-4">				
 				<div class="publish_box">
         			<h4 class="text-bold">Good to know</h4>
-        			<p class="text-grey fs-18 mt-10">V You can publish your data offer and products, and make it available in the community, even when you are not yet technically setup for the transaction.</p>
-        			<p class="text-grey fs-18 mt-10">V You will be able to edit and add info about your data at any time, also when it is published.</p>
+        			<p class="text-grey fs-18 mt-10">You can publish your data offer and products, and make it available in the community, even when you are not yet technically setup for the transaction.</p>
+        			<p class="text-grey fs-18 mt-10">You will be able to edit and add info about your data at any time, also when it is published.</p>
         			<p class="text-grey text-bold fs-18 mt-10">Not sure how to start? <a href="javascript:;">View an example (pdf)</a></p>        			
         		</div>
 			</div>	
