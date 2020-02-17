@@ -15,7 +15,7 @@
 		        </div>		        
 			</div>
 			<div class="col-lg-6 flex-end">
-				<a href="{{ route('data_offers') }}">
+				<a href="{{ route('data_offer_start') }}">
 					<button type="button" class="button customize-btn btn-next pull-right">{{ trans('pages.publish_a_data_offer') }}</button>
 				</a>	
 			</div>
@@ -97,7 +97,7 @@
         	<div class="col-lg-6">
         		<div class="publish_box">
         			<h4 class="text-bold">Are you ready?</h4>
-        			<a href="{{route('data_offers')}}"><button type="button" class="button customize-btn btn-next">{{ trans('pages.publish_a_data_offer') }}</button></a>
+        			<a href="{{route('data_offer_start')}}"><button type="button" class="button customize-btn btn-next">{{ trans('pages.publish_a_data_offer') }}</button></a>
         			<p class="text-grey text-bold fs-18 mt-10">It’s free!</p>
         			<div class="app-monetize-section-item0 mt-20"></div>
 
