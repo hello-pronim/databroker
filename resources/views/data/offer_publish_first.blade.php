@@ -29,7 +29,7 @@
 				</div>
 				<div class="mt-20">
 					<h4 class="text-bold"><span class="fs-30">2. </span> Description of the data (optional but recommended)</h4>
-					<p class="fs-18">Add a description of the data. This can be some technical information, or ...</p>
+					<p class="fs-18">Add a description of the data. This can be some technical information, or you can also add some text here about the data products.  </p>
 				</div>
 				<div class="mt-20">
 					<h4 class="text-bold"><span class="fs-30">3. </span> Use cases (optional but recommended)</h4>
@@ -38,7 +38,7 @@
 				<div class="mt-20">
 					<h4 class="text-bold"><span class="fs-30">4. </span> Samples (optional but recommended)</h4>
 					<p class="fs-18">Add some samples files or images to make your data offer even more clear.</p>
-					<p class="fs-18 mt-30">Done? Your data offer will be ready to be published on Databroker. Also some text here about the data products that can be added right away or later etc ...</p>
+					<p class="fs-18 mt-30">Done? Your data offer will be ready to be published on Databroker. Also some text here about the data products that can be added right away or later etc.</p>
 				</div>
 				<a href="{{ route('data_offers') }}">
 					<button type="button" class="btn customize-btn btn-next">START NOW</button>
