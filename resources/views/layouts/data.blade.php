@@ -97,7 +97,7 @@
             <div class="col-md-12 col-lg-3 footer-newsletter">
               <h5>{{ trans('home.signupbox') }}</h5>
               <p class="text-thick-grey fs-18"> {{ trans('home.signupbox_desc') }} </p>
-              <a href="{{ route('register') }}"><button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.signup') }}</button></a>
+              <a href="{{ route('register') }}"><button type="button" class="button customize-btn mgh25">{{ trans('home.signup') }}</button></a>
 
             </div>
           </div>
@@ -154,7 +154,7 @@
             </div>    
             <div class="row">             
               <a class="m0-auto" href="{{ route('about.partners') }}">
-                <button class="btn readmore-inourblog-btn pure-material-button-outlined">{{ trans('home.viewall_partners') }}</button>  
+                <button class="button secondary-btn mgh40">{{ trans('home.viewall_partners') }}</button>  
               </a>    
             </div>
         </div>
