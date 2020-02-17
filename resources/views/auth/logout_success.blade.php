@@ -1,4 +1,4 @@
-@extends('layouts.data')
+@extends('layouts.app')
 
 @section('content')       
 <div class="container-fluid app-wapper bg-pattern-side">

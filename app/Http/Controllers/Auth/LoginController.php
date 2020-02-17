@@ -43,11 +43,6 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $action = "your account";
-        
-        if(!session()->has('url.intended'))
-        {
-            session(['url.intended' => url()->previous()]);
-        }
 
         return view('auth.login')->with('action', $action);
     }
@@ -102,6 +97,4 @@ class LoginController extends Controller
     {
         return 'email';
     }
-
-    
 }
