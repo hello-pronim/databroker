@@ -55,7 +55,7 @@ class DataController extends Controller
             $prev_route = '';
         }
 
-        $data = array('offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user' => $user, 'user_info' => $user_info, 'products' => $products);
+        $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user' => $user, 'user_info' => $user_info, 'products' => $products);
 
         return view('data.details')->with($data);
     }
@@ -528,17 +528,43 @@ class DataController extends Controller
         }
     }
 
-    public function buy_data(){
+    public function buy_data(Request $request){
         $user = $this->getAuthUser();
         if(!$user) {
            return redirect('/login')->with('target', 'buy this data');
         }
     }
 
-    public function send_bid(){
+    public function send_bid(Request $request){
         $user = $this->getAuthUser();
         if(!$user) {
            return redirect('/login')->with('target', 'send a bid for this data');
+        }else{
+            $offer = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
+            $user_info = User::where('userIdx', $offer->provider->userIdx)->first();
+            
+            $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->where('deleted', 0)->get();
+            
+            $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
+            
+            $product = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where('productIdx', '=', $request->pid)->get()->first();
+
+            $user = $this->getAuthUser();
+
+            $data['offer'] = $offer;
+            $data['user_info'] = $user_info;
+            $data['offersample'] = $offersample;
+            $data['prev_route'] = $prev_route;
+            $data['product'] = $product;
+            $data['user'] = $user;
+
+            $this->sendEmail("sendbid", [
+                'from'=>'yuriyes43@gmail.com', 
+                'to'=>$user->email, 
+                'name'=>'Databroker', 
+                'subject'=>'You’ve received a bid on a data product ',
+                'data'=>$data
+            ]);        
         }
     }
 }

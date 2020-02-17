@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
+use App\User;
 
 class ResetPasswordController extends Controller
 {
@@ -29,15 +31,18 @@ class ResetPasswordController extends Controller
 
     public function showResetForm(Request $request, $token = null)
     {
-        return view('auth.passwords.reset')->with(
-            ['token' => $token, 'email' => $request->email]
-        );
+        $user = User::where('forgottenPasswordToken', $token)->first();
+        if($user){
+            $email = $user->email;
+            return view('auth.passwords.reset')->with(
+                ['token' => $token, 'email' => $email]
+            );
+        }
     }
     protected function rules()
     {
         return [
             'token' => 'required',
-            'email' => 'required|email',
             'password' => 'required|confirmed|min:8|string|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
         ];
     }

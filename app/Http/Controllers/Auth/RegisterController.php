@@ -42,6 +42,24 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        if (session('link')) {
+            $myPath     = session('link');
+            $registerPath  = url('/register');
+            $previous   = url()->previous();
+
+            if ($previous = $registerPath) {
+                session(['link' => $myPath]);
+            }else{
+                session(['link' => $previous]);
+            }
+        } else{
+            session(['link' => url()->previous()]);
+        }
+        return view('auth.register');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -116,5 +134,10 @@ class RegisterController extends Controller
         
         $data = array( 'communities' );                
         return view('auth.register_nl', compact($data));
-    }    
+    }  
+
+    // protected function redirectTo()
+    // {
+    //     return redirect(session('link'));
+    // }
 }
