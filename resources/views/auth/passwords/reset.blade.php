@@ -6,7 +6,7 @@
         <div class="row justify-content-center auth-section">
             <div class="col-md-8">
                 <div class="card">
-                    <h1 class="h1-smaller color-primary text-center text-primary" id="login_title">Reset your password</h1>
+                    <h1 class="h1-smaller color-primary text-center text-primary" id="login_title">Please choose a new password</h1>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('password.update') }}">
