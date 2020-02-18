@@ -76,8 +76,14 @@ class Offer extends Model
             $dataoffer->where('regions.regionIdx', $param->region);
         }   
 
+        $dataoffer->where('offers.status', 1);
+
         if( !isset($param->loadmore) || $param->loadmore == "false" ){
-            $result = $dataoffer->offset(0)->orderby('offers.offerIdx', 'DESC')->limit(11)->get();            
+            if( $param->community == 'all' ){
+                $result = $dataoffer->offset(0)->orderby('offers.offerIdx', 'DESC')->limit(12)->get();                
+            }else{
+                $result = $dataoffer->offset(0)->orderby('offers.offerIdx', 'DESC')->limit(11)->get();                
+            }            
         }else{
             $result = $dataoffer->offset($param->loadmore-1)->orderby('offers.offerIdx', 'DESC')->limit(12)->get();
         }        
