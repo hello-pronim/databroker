@@ -79,7 +79,7 @@ class Offer extends Model
         if( !isset($param->loadmore) || $param->loadmore == "false" ){
             $result = $dataoffer->offset(0)->orderby('offers.offerIdx', 'DESC')->limit(11)->get();            
         }else{
-            $result = $dataoffer->offset($param->loadmore-1)->orderby('offers.offerIdx', 'DESC')->limit(3)->get();
+            $result = $dataoffer->offset($param->loadmore-1)->orderby('offers.offerIdx', 'DESC')->limit(12)->get();
         }        
 
         return $result;                    
