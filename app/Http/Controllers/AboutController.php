@@ -306,6 +306,8 @@ class AboutController extends Controller
                 'companyName' => 'required|min:2',
                 'country' => 'required|min:2',
                 'community'=> 'required|array|min:1'
+            ],[
+                'community.required'=>'Please choose at least one.'
             ]);
 
             if ($validator->fails()) {

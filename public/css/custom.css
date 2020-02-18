@@ -85,6 +85,9 @@ body{
 .mb-20{
 	margin-bottom: 20px !important;
 }
+.mb-30{
+	margin-bottom: 30px !important;
+}
 .mb-40{
 	margin-bottom: 40px !important;
 }
@@ -1499,4 +1502,5 @@ a.dropdown-toggle:after{
 	display: block;
 	font-size: 12.8px;
 	font-family:"DM Sans";
+	font-weight: bold;
 }
