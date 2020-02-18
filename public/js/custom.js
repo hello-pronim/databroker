@@ -336,11 +336,15 @@ $(document).ready(function(){
                     offercount.html( parseInt(offercount.text()) + res.length );
                 }   
                 var totalcount = $("input[name='totalcount']").val();
+                var totalcount_all = $("input[name='totalcount_all']").val();
 
                 $("#offer_loadmore").parent().removeClass('hide');
 
                 if( parseInt(offercount.text()) >= totalcount ){
                     $("#offer_loadmore").parent().addClass('hide');                    
+                }
+                if( community == "all" && parseInt(offercount.text()) < totalcount_all ){
+                     $("#offer_loadmore").parent().removeClass('hide');                       
                 }
 
             }

@@ -150,3 +150,9 @@ ALTER TABLE `databroker_new`.`offerSamples` ADD COLUMN `deleted` BOOLEAN NOT NUL
 ALTER TABLE `databroker_new`.`offerSamples` CHANGE `deleted` `deleted` TINYINT(1) DEFAULT 0 NOT NULL; 
 #2020-02-18
 ALTER TABLE `databroker_new`.`users` ADD COLUMN `remember_token` VARCHAR(255) NULL AFTER `forgottenPasswordToken`; 
+
+UPDATE `databroker_new`.`regions` SET `regionName` = 'Americas' WHERE (`regionIdx` = '248');
+UPDATE `databroker_new`.`regions` SET `regionName` = 'Africa' WHERE (`regionIdx` = '251');
+INSERT INTO `databroker_new`.`regions` (`regionName`, `regionType`) VALUES ('Antartica', 'area');
+INSERT INTO `databroker_new`.`regions` (`regionName`, `regionType`) VALUES ('Australia', 'area');
+
