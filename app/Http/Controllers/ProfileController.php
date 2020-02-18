@@ -166,12 +166,20 @@ class ProfileController extends Controller
 
     public function invite_user(Request $request){
         $data = $request->all();
-        
+        $user = $this->getAuthUser();
         foreach ($data['linked_email'] as $key => $value) {
             if($value){
                 $linked['invite_userIdx'] = $data['invite_userIdx'];
                 $linked['linked_email'] = $value;
                 LinkedUser::create($linked);
+
+                $this->sendEmail("invite", [
+                    'from'=>$user->email, 
+                    'to'=>$linked['linked_email'], 
+                    'name'=>'Databroker', 
+                    'subject'=>'You’ve been invited to join a Databroker account',
+                    'data'=>$user
+                ]);
             }
         }
 
