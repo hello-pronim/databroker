@@ -381,7 +381,10 @@
                 if($(this).attr('value')==="") $(".other-role").css('display', 'block');
                 else $(".other-role").css('display', 'none');
             });
-        });
+
+          if($('form .is-invalid').length>0)
+              $('html, body').scrollTop($("form .is-invalid:first-child").offset().top-30);
+          });
     </script>
     </body>
 </html>

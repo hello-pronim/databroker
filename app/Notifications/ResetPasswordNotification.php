@@ -41,7 +41,7 @@ class ResetPasswordNotification extends ResetPassword
                     'email'=>$this->email
                 ]
             )
-            ->subject('Need to reset your password?');
+            ->subject('Databroker Password Reset');
     }
 }
 ?>

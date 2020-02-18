@@ -79,40 +79,24 @@
 												<tbody>
 													<tr>
 														<td class="fs-40 lh-44 text-bold py-25">
-															Dear {{$data['user']->firstname}},
+															Hello!
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															{{$data['user']->firstname}} {{$data['user']->lastname}} from {{$data['user']->companyName}} has sent a bid of €{{$data['product']->productPrice}} for the following data product:
+															{{$data->firstname}} {{$data->lastname}} from {{$data->companyName}} has just invited you to join the {{$data->companyName}} Databroker account.
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-27 py-25">
+															Once you set up your account, you’ll have full access to all the features of the Databroker marketplace. Connect with data buyers and providers from all over the world and start exploring how you can create real business value from data!
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															{{$data['product']->productTitle}} - 
-															@foreach($data['offer']->region as $region)
-						            							<span>{{ $region->regionName }}</span>
-						            						@endforeach
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															{{ trans('pages.format') }} : {{$data['product']->productType}}
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															Price : €{{$data['product']->productPrice}}
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															Access to this data : {{$data['product']->productAccessDays}}
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															From : {{$data['product']->created_at}} to dd/mm/yyyy
+															<a href="{{url('/register')}}">
+																<button class="btn btn-primary">JOIN NOW</button>
+															</a>
 														</td>
 													</tr>
 												</tbody>
@@ -124,33 +108,24 @@
 											<table width="100%" class="mb-20" cellpadding="0" cellspacing="0" border="0">
 												<tbody>
 													<tr>
+														<td class="fs-30 lh-36 text-bold py-25">
+															Want to know more?
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-24 py-10">
+															<ul>
+																<li><a href="#">Visit our marketplace</a></li>
+																<li><a href="#">Find out about selling data</a></li>
+																<li><a href="#">Find out about buying data</a></li>
+																<li><a href="#">Find out about our guarantees</a></li>
+																<li>If you don’t find the answers you need, you can always <a href="#">Contact us</a></li>
+															</ul>
+														</td>
+													</tr>
+													<tr>
 														<td class="fs-18 lh-24 py-25">
-															Message: 
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-24 py-10">
-															{{$data['product']->productMoreInfo}} 
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-24 py-10">
-															<a href="#">
-																<button class="btn btn-primary">RESPOND TO BID</button>
-															</a>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<table class="mb-20" cellpadding="0" cellspacing="0" border="0">
-												<tbody>
-													<tr>
-														<td class="fs-18 lh-24 py-10">
-															If there are others in your organisation who may also be interested in buying and/or selling data, invite them to join your company account.
+															We’re looking forward to seeing you soon on Databroker!
 														</td>
 													</tr>
 												</tbody>
