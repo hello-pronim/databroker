@@ -104,11 +104,12 @@
 					<div class="col-md-4 makematching mb-20">
 						<div>
 							<div class="card card-profile card-plain mb-0">
-								<div class="card-body">
+								<div class="card-body pd-15">
 									<div class="app-monetize-section-item0 mb-40"></div>
-									<p class="fs-18">Can't find what you are looking for?</p>
-									<p class="fs-21 text-bold mb-40">Try our matchmaking service. It's free!</p>
-									<a href="{{route('about.matchmaking')}}"><button type="button" class="btn match-me-up-btn pure-material-button-outlined">Discover</button></a>
+									<p class="fs-18">Can’t find the data you need?</p>
+									<p class="fs-21 text-bold mb-40">Let our tailor-made DataMatch service find the perfect data partner for you!</p>
+									<a href="{{route('about.matchmaking')}}"><button type="button" class="btn match-me-up-btn pure-material-button-outlined">MATCH ME UP</button></a>
+									<p>It’s free!</p>
 								</div>
 							</div>	
 						</div>						
