@@ -75,7 +75,8 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],  
             'term_conditions' => ['required']          
         ], [
-            'password.regex'=>'Password should contain A~Z, a~z, 0~9'
+            'password.regex'=>'Password should contain A~Z, a~z, 0~9',
+            'term_conditions.required'=>'Please confirm that you accept Databroker’s terms and conditions and privacy policy.'
         ]);
     }
 

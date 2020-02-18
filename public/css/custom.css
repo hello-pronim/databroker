@@ -1495,3 +1495,8 @@ a.dropdown-toggle:after{
     left: -1px;
     top: -10px;
 }
+.invalid-feedback{
+	display: block;
+	font-size: 12.8px;
+	font-family:"DM Sans";
+}

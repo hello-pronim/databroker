@@ -21,7 +21,7 @@
                             <label class="pure-material-textfield-outlined mt-20">
                                 <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" autocomplete="email" autofocus>
                                 <span>Email Address</span>
-                                <div class="error_notice"> This field is required</div>
+                                <div class="error_notice">This field is required</div>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
