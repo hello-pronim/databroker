@@ -129,16 +129,16 @@
 
 								<div>
 									<label class="container para">I will set a price. No bidding is possible.	
-									  <input type="radio" name="period" value="price">
+									  <input type="radio" name="period" value="no_bidding">
 									  <span class="checkmark"></span>
 									</label>
 									<div class="period_select">
 										<label class="pure-material-textfield-outlined">
-					                        <span class="currency">€ </span><input type="number" step="0.01" name="nobidding_price" class="form-control2 input_data" placeholder="0.0" value=""> 
+					                        <span class="currency">€ </span><input type="number" step="0.01" name="no_bidding_price" class="form-control2 input_data" placeholder="0.0" value=""> 
 					                    </label>
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">
-						                    <select name="nobidding_period" data-placeholder="Please select" class="no-search">
+						                    <select name="no_bidding_period" data-placeholder="Please select" class="no-search">
 						                    	<option></option>
 						                    	<option value="day">1 day</option>
 						                    	<option value="week">1 week</option>
@@ -147,22 +147,22 @@
 						                    </select>				                    				                        
 						                </div>						                
 									</div>	
-									<div class="error_notice nobidding_price"> This field is required. </div>
-						            <div class="error_notice nobidding_period"> Please select a period.</div>
+									<div class="error_notice no_bidding_price"> This field is required. </div>
+						            <div class="error_notice no_bidding_period"> Please select a period.</div>
 				                </div>
 
 				                <div>
 				                	<label class="container para">I will set a price, but buyers can also send bids. 
-									  <input type="radio" name="period" value="price_bid">
+									  <input type="radio" name="period" value="bidding_possible">
 									  <span class="checkmark"></span>
 									</label>
 				                	<div class="period_select">
 										<label class="pure-material-textfield-outlined">
-					                        <span class="currency">€ </span><input type="number" step="0.01" name="buyer_bid_price" class="form-control2 input_data" placeholder="0.0" value=""> 
+					                        <span class="currency">€ </span><input type="number" step="0.01" name="bidding_possible_price" class="form-control2 input_data" placeholder="0.0" value=""> 
 					                    </label>
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">
-						                    <select name="buyer_bid_period" data-placeholder="Please select" class="no-search">
+						                    <select name="bidding_possible_period" data-placeholder="Please select" class="no-search">
 						                    	<option></option>
 						                    	<option value="day">1 day</option>
 						                    	<option value="week">1 week</option>
@@ -171,18 +171,18 @@
 						                    </select>				                    				                        
 						                </div>
 									</div>
-									<div class="error_notice buyer_bid_price"> This field is required. </div>
-						            <div class="error_notice buyer_bid_period"> Please select a period.</div>
+									<div class="error_notice bidding_possible_price"> This field is required. </div>
+						            <div class="error_notice bidding_possible_period"> Please select a period.</div>
 				                </div>							
 				                <div>
 				                	<label class="container para">I will not set a price. Interested parties can send bids.
-									  <input type="radio" name="period" value="bid">
+									  <input type="radio" name="period" value="bidding_only">
 									  <span class="checkmark"></span>
 									</label>	
 									<div class="period_select">									
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">
-						                    <select name="full_period" data-placeholder="Please select" class="no-search">
+						                    <select name="bidding_only_period" data-placeholder="Please select" class="no-search">
 						                    	<option></option>
 						                    	<option class="day">1 day</option>
 						                    	<option class="week">1 week</option>
@@ -191,7 +191,7 @@
 						                    </select>				                    				                        
 						                </div>
 									</div>
-									<div class="error_notice full_period"> Please select a period.</div>
+									<div class="error_notice bidding_only_period"> Please select a period.</div>
 				                </div>
 								
 			                </div>
