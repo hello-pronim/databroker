@@ -7,12 +7,6 @@
             <div class="col-lg-8 col-md-10">                
                 <h1 class="h1-smaller color-primary text-center text-primary">{{ __('Forgot your password?') }}</h1>
                 <p class="text-center text-bold fs-20">{{ __('Enter your email address and we will send you a link to reset your password.') }}</p>                
-                
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
 
                 <form method="POST" action="{{ route('password.email') }}">
                     @csrf
