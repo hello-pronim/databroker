@@ -202,7 +202,7 @@ class DataController extends Controller
         $offer_data['offerDescription'] = $request->offerDescription;
         $offer_data['communityIdx'] = $request->communityIdx;
         $offer_data['providerIdx'] = $providerIdx;
-        $offer_data['status'] = 1;
+        $offer_data['status'] = '1';
 
         $offer_obj = Offer::create($offer_data);
         $offerIdx = $offer_obj['offerIdx'];

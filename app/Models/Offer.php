@@ -18,7 +18,7 @@ class Offer extends Model
      * @var array
      */
     protected $fillable = [
-        'communityIdx', 'providerIdx', 'offerTitle', 'offerImage', 'offerDescription'
+        'offerIdx', 'communityIdx', 'providerIdx', 'offerTitle', 'offerImage', 'offerDescription', 'status', 'themes'
     ];    
 
     public function community(){
