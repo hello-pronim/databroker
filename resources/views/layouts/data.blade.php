@@ -225,7 +225,11 @@
                 $(".cookie-accept").animate({ opacity: 0, bottom: "-160px" });
             })
             if(typeof $.cookie('databroker_cookie') == "undefined")
-                $(".cookie-accept").animate({ opacity: 1, bottom: "0px" });           
+                $(".cookie-accept").animate({ opacity: 1, bottom: "0px" });      
+
+            if($('form .is-invalid').length>0)
+              $('html, body').scrollTop($("form .is-invalid:first-child").offset().top-30);
+          });     
         });
     </script>
     </body>
