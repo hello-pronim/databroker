@@ -336,9 +336,13 @@ $(document).ready(function(){
                     offercount.html( parseInt(offercount.text()) + res.length );
                 }   
                 var totalcount = $("input[name='totalcount']").val();
+
+                $("#offer_loadmore").parent().removeClass('hide');
+
                 if( parseInt(offercount.text()) >= totalcount ){
-                    $("#offer_loadmore").parent().remove();
+                    $("#offer_loadmore").parent().addClass('hide');                    
                 }
+
             }
         });
 
