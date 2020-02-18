@@ -30,7 +30,7 @@
 	    	@endforeach	    	
 	    </div> 	
 	    <div class="mt-40 text-center">		        	
-        	<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.view_dataoffer') }}</button></a>
+        	<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="button secondary-btn mgh25 w225">{{ trans('pages.view_dataoffer') }}</button></a>
         </div>
 
         <h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('pages.discover_improve_business', ['community' => strtolower($community)])}} </h1>
@@ -92,7 +92,7 @@
                     {{ trans('pages.tell_us_data_partner')}}
                     <span class="height-space" style="display: block;"></span>
                     <a href="{{ route('contact') }}">
-                        <button style="width: 270px;" type="button" class="btn match-me-up-btn pure-material-button-outlined">TRY OUR DATAMATCH SERVICE</button>
+                        <button style="width: 270px;" type="button" class="button customize-btn mgh25 w225">TRY OUR DATAMATCH SERVICE</button>
                     </a>                     
                 </p> 
                 <p class="text-free text-grey">It's free</p>               
@@ -225,7 +225,7 @@
 			</div>				
   		</div>   
   		<div class="mt-40 text-center">		        	
-        	<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="btn btn-round sendmessage-btn">View Data Offer</button></a>
+        	<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="button secondary-btn mgh25 w225">View Data Offer</button></a>
         </div>
     </div>    
 </div>  
