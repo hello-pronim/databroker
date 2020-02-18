@@ -41,7 +41,7 @@
 					<p class="fs-18 mt-30">Done? Your data offer will be ready to be published on Databroker. Also some text here about the data products that can be added right away or later etc.</p>
 				</div>
 				<a href="{{ route('data_offers') }}">
-					<button type="button" class="btn customize-btn btn-next">START NOW</button>
+					<button type="button" class="btn customize-btn btn-next">START</button>
 				</a>	
 			</div>	
 			<div class="col-lg-2">				
