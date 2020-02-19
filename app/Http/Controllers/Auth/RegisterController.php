@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Community;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use Mail;
+use App\Http\Controllers\Controller;
+use App\User;
+use App\Models\Community;
 
 class RegisterController extends Controller
 {
@@ -44,20 +46,23 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        if (session('link')) {
-            $myPath     = session('link');
-            $registerPath  = url('/register');
-            $previous   = url()->previous();
-
-            if ($previous = $registerPath) {
-                session(['link' => $myPath]);
-            }else{
-                session(['link' => $previous]);
-            }
-        } else{
-            session(['link' => url()->previous()]);
+        if(!session()->has('url.intended')){
+            session(['url.intended'=>url()->previous()]);
         }
+        
         return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ? redirect(back()) : redirect()->intended($this->redirectPath());
     }
 
     /**
@@ -93,7 +98,7 @@ class RegisterController extends Controller
         $jobTitle = $data['jobTitle2']===NULL?$data['jobTitle']:$data['jobTitle2'];
 
         $this->sendEmail("register", [
-            'from'=>'yuriyes43@gmail.com', 
+            'from'=>'peterjackson0120@gmail.com', 
             'to'=>$data['email'], 
             'subject'=>'Databroker', 
             'name'=>'Databroker',
