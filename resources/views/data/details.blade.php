@@ -40,7 +40,7 @@
 			                        <a class="nav-link" href="#use_cases">{{ trans('pages.use_case') }}</a>
 			                    </li>
 			                    @endif
-			                    @if( $offer['samples'] )
+			                    @if( $offersample )
 			                    <li class="nav-item">
 			                        <a class="nav-link" href="#samples">{{ trans('pages.samples') }}</a>
 			                    </li>
@@ -75,25 +75,23 @@
 				                @endif
 				            </div>
 				            @endif
-			                @if( $offer['samples'] )
+			                @if( $offersample)
 				            <div class="link-box" id="samples">
-				                <h2>{{ trans('pages.samples') }}</h2>
-				                @if( $offersample )
-					                @foreach($offersample as $sample)
-					                	@if( explode("-", $sample['sampleType'])[0] == 'file')
-					                	<div class="file">
+				                <h2>{{ trans('pages.samples') }}</h2>				               
+				                @foreach($offersample as $sample)
+				                	@if( explode("-", $sample['sampleType'])[0] == 'file')
+				                	<div class="file">
+				                		<p>{{$sample['sampleDescription']}}</p>
+				                		<a class="download" href="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}"><i class="material-icons">get_app</i><span>{{$sample['sampleFileName']}}</span></a>
+				                	</div>	
+				                	@endif					                	
+				                	@if( explode("-", $sample['sampleType'])[0] == 'image')				                	
+				                		<div class="image">					                		
+					                		<img src="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}">
 					                		<p>{{$sample['sampleDescription']}}</p>
-					                		<a class="download" href="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}"><i class="material-icons">get_app</i><span>{{$sample['sampleFileName']}}</span></a>
-					                	</div>	
-					                	@endif					                	
-					                	@if( explode("-", $sample['sampleType'])[0] == 'image')				                	
-					                		<div class="image">					                		
-						                		<img src="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}">
-						                		<p>{{$sample['sampleDescription']}}</p>
-					                		</div>
-					                	@endif				                	
-					                @endforeach
-				                @endif	
+				                		</div>
+				                	@endif				                	
+				                @endforeach				               
 				            </div>
 				            @endif
 				            @if( sizeof($products ) > 0 )

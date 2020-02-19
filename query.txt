@@ -156,3 +156,5 @@ UPDATE `databroker_new`.`regions` SET `regionName` = 'Africa' WHERE (`regionIdx`
 INSERT INTO `databroker_new`.`regions` (`regionName`, `regionType`) VALUES ('Antartica', 'area');
 INSERT INTO `databroker_new`.`regions` (`regionName`, `regionType`) VALUES ('Australia', 'area');
 
+ALTER TABLE `databroker_new`.`offers` CHANGE COLUMN `status` `status` VARCHAR(2) NULL DEFAULT NULL ;
+

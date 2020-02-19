@@ -202,7 +202,7 @@ class DataController extends Controller
         $offer_data['offerDescription'] = $request->offerDescription;
         $offer_data['communityIdx'] = $request->communityIdx;
         $offer_data['providerIdx'] = $providerIdx;
-        $offer_data['status'] = 1;
+        $offer_data['status'] = '1';
 
         $offer_obj = Offer::create($offer_data);
         $offerIdx = $offer_obj['offerIdx'];
@@ -399,10 +399,10 @@ class DataController extends Controller
         $product_data['productBidType'] = $request->period;
         $period = $product_data['productBidType'].'_period';
         $product_data['productAccessDays'] = $request->$period;        
-        if( $request->period == "nobidding" ){
-            $product_data['productPrice'] = $request->nobidding_price;    
-        } elseif ($request->period == "buyer_bid") {            
-            $product_data['productPrice'] = $request->buyer_bid_price;    
+        if( $request->period == "no_bidding" ){
+            $product_data['productPrice'] = $request->price_price;    
+        } elseif ($request->period == "bidding_possible") {            
+            $product_data['productPrice'] = $request->price_bid_price;    
         }
         $product_data['productMoreInfo'] = $request->productMoreInfo;
         $product_data['productTitle'] = $request->productTitle;

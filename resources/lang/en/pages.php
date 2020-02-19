@@ -16,7 +16,7 @@ return [
     'send_message' => 'Send a Message',
     'description' => 'About this data',
     'use_case' => 'Use cases',
-    'samples' => 'Eamples',
+    'samples' => 'Examples',
     'buy_this_data' => 'Buy Data',
     'other' => 'Other',
     'read_more' => 'Read More',
