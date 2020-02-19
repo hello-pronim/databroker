@@ -66,15 +66,15 @@
         		<div class="testimonials">
 	            	<div class="testimonial">
 	            		<p class="content">
-	            			"Here comes a quote of a dataprovider, illustrating the value. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet."
+	            			“The intersection of blockchain and IoT is a trend we’re seeing more and more as the industry matures. We believe enabling integration with the Databroker platform will enable the Robustel IoT ecosystem to extract massive value from their data and share insights that can improve the quality of IoT solutions world-wide” 
 	            		</p>
-	            		<p class="author">Name, role, company</p>
+	            		<p class="author">Yi Huang, Vice President of Robustel</p>
 	            	</div>
 	            	<div class="testimonial">
 	            		<p class="content">
-	            			"Here comes a quote of a dataprovider, illustrating the value. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet."
+	            			“Thanks to our collaboration with Databroker we enable our customers to sell their data in a secure, traceable and extremely easy way.”
 	            		</p>
-	            		<p class="author">Name, role, company</p>
+	            		<p class="author">Joris Huegaerts, Business Area Manager Industry Management and Automation at Phoenix Contact</p>
 	            	</div>
 	            </div>
         	</div>            

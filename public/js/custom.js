@@ -329,6 +329,8 @@ $(document).ready(function(){
 
                 if( theme_text != 'All themes' ){
                     $('.region_text').html("/" + theme_text + " Region");
+                }else{
+                    $('.region_text').html("");
                 }
                 //list = '<div class="row">' + list + '</div>';
                 var offercount = $("#offer-count span");
