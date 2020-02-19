@@ -16,7 +16,7 @@
 			            <p class="desc">
 			            	{{ trans('description.'.str_replace( ' ', '_', $category ).'_intro') }}
 			            </p>	            
-			            <a href="{{ route('data.community_'.str_replace( ' ', '_', strtolower($category) )) }}"><button type="button" class="btn btn-round sendmessage-btn">{{ trans('pages.read_more') }}</button></a>
+			            <a href="{{ route('data.community_'.str_replace( ' ', '_', strtolower($category) )) }}"><button type="button" class="button secondary-btn w225 mgh25">{{ trans('pages.read_more') }}</button></a>
 	        		</div>	
 	        	</div>	        	
 	        </div>	        
@@ -108,7 +108,7 @@
 									<div class="app-monetize-section-item0 mb-40"></div>
 									<p class="fs-18">Can’t find the data you need?</p>
 									<p class="fs-21 text-bold mb-40">Let our tailor-made DataMatch service find the perfect data partner for you!</p>
-									<a href="{{route('about.matchmaking')}}"><button type="button" class="btn match-me-up-btn pure-material-button-outlined">MATCH ME UP</button></a>
+									<a href="{{route('about.matchmaking')}}"><button type="button" class="button customize-btn mgh25 w225">MATCH ME UP</button></a>
 									<p>It’s free!</p>
 								</div>
 							</div>	
@@ -121,9 +121,7 @@
   		<input type="hidden" name="totalcount" value="{{ $totalcount }}">
   		<input type="hidden" name="totalcount_all" value="{{ $totalcount_all }}">
   		<input type="hidden" name="per_page" value="{{ $per_page }}">
-  		
-  		<div class="text-center @if ( $totalcount < $per_page ) hide @endif"><button id="offer_loadmore" type="button" class="btn btn-round sendmessage-btn">Load More</button></div>
-  		
+  		<div class="text-center @if ( $totalcount < $per_page ) hide @endif"><button id="offer_loadmore" type="button" class="button secondary-btn mgh25 w225">Load More</button></div>
     </div>      
 </div>
 
