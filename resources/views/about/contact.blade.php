@@ -152,7 +152,7 @@
       								Which data communities are most relevant for you?
       							</p>
 
-                    <div class="row mt-30">
+                    <div class="row mt-30 mb-30">
                         @foreach ($communities as $community)
                         <div class="col-md-4">
                             <div class="form-check">
@@ -167,7 +167,7 @@
                         </div>    
                         @endforeach
                         @error('community')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback pl-15" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror

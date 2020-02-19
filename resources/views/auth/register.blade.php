@@ -158,8 +158,13 @@
                             <p class="text-black fs-18 lh-27">Yes, I accept Databroker’s <a href="{{ route('about.terms_conditions') }}" target="_blank"><font style="color: #78E6D0;">terms and conditions</font></a> and <a href="{{ route('about.privacy_policy') }}" target="_blank"><font style="color: #78E6D0;">the privacy policy</font></a></p>
                             <span class="form-check-sign">
                                 <span class="custom-check check @error('term_conditions') is-invalid @enderror"></span>
-                            </span>                                                        
-                        </label>                                                   
+                            </span>                                                      
+                        </label>  
+                        @error('term_conditions')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror                                                  
                     </div> 
                     <br>                       
                     

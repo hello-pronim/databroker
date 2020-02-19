@@ -44,6 +44,9 @@ class LoginController extends Controller
     {
         $action = "your account";
 
+        if(!session()->has('url.intended'))
+            session(['url.intended'=>url()->previous()]);
+
         return view('auth.login')->with('action', $action);
     }
     
@@ -74,7 +77,8 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        return redirect()->back();
+        return $this->authenticated($request, $this->guard()->user())
+                ? redirect(back()): redirect()->intended($this->redirectPath());
     }
 
 
