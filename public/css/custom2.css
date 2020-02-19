@@ -3,7 +3,7 @@
 	font-family: DM Sans;
 	font-weight: bold;
 	font-size: 64px;
-	line-height: 64px;
+	line-height: 1em;
 	letter-spacing: 1.14px;
 	color: #06038D;
 }
@@ -13,7 +13,7 @@
 	font-family: DM Sans;
 	font-weight: bold;
 	font-size: 40px;
-	line-height: 44px;
+	line-height: 1em;
 	letter-spacing: 0.71px;
 	color: #020A09;
 	opacity: 1;
@@ -24,7 +24,7 @@
 	font-family: DM Sans;
 	font-weight: bold;
 	font-size: 30px;
-	line-height: 36px;
+	line-height: 1em;
 	letter-spacing: 0.54px;
 	color: #020A09;
 	opacity: 1;
@@ -35,7 +35,7 @@
 	font-family: DM Sans;
 	font-weight: bold;
 	font-size: 21px;
-	line-height: 28px;
+	line-height: 1em;
 	letter-spacing: 0.37px;
 	color: #020A09;
 	opacity: 1;
@@ -46,7 +46,7 @@
 	font-family: DM Sans;
 	font-weight: bold;
 	font-size: 18px;
-	line-height: 27px;
+	line-height: 1em;
 	letter-spacing: 0;
 	opacity: 1;
 }
