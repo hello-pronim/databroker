@@ -390,6 +390,44 @@ class DataController extends Controller
         return view('data.offer_add_product', compact($data));
     }
 
+    public function offer_edit_product($id, $pid, Request $request) {   
+        $offerId = $id;
+        $offer = Offer::with(['region'])->where('offers.offerIdx', '=', $id)->first();
+        $regions = Region::where('regionType', 'area')->get();
+        $countries = Region::where('regionType', 'country')->get();
+        
+        $communityIdx = $offer['communityIdx'];
+        $community = Community::find($communityIdx);
+        $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
+        $link_to_market = route('data_community.'.$community_route);
+
+        // $product = OfferProduct::with(['region'])->where('offerIdx', $id)->where('productIdx', $pid)->get();
+        $product = OfferProduct::with(['region'])->find($pid);
+
+        $regionCheckList = [];
+        foreach ($product['region'] as $p_region) {
+            $regionIdx = $p_region['regionIdx'];
+            $regionCheckList[$regionIdx] = $p_region['regionName'];
+        }
+
+        $prodTypeList = ['File', 'Api flow', 'Stream'];
+        $bidTypes = [
+            ['type'=>'free', 'label' => 'Free', 'biddable' => false],
+            ['type'=>'fixed', 'label' => 'I will set a price. No bidding is possible.', 'biddable' => true],
+            ['type'=>'mix', 'label' => 'I will set a price, but buyers can also send bids.', 'biddable' => true],
+            ['type'=>'bid', 'label' => 'I will not set a price. Interested parties can send bids.', 'biddable' => false],
+        ];
+        $accessPeriodList = [
+            ['key' => 'day', 'label' => '1 day'],
+            ['key' => 'week', 'label' => '1 week'],
+            ['key' => 'month', 'label' => '1 month'],
+            ['key' => 'year', 'label' => '1 year'],
+        ];
+
+        $data = array( 'offer', 'product', 'id', 'pid', 'link_to_market', 'countries', 'regions', 'regionCheckList', 'prodTypeList', 'accessPeriodList', 'bidTypes' );
+        return view('data.offer_edit_product', compact($data));
+    }
+
     public function offer_submit_product(Request $request) {
         $product_data = [];
 
