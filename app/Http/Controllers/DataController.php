@@ -527,13 +527,26 @@ class DataController extends Controller
     }
 
     public function offer_start(Request $request){
-        $data = array();
-        return view('data.offer_publish_first', compact($data));
+        $offer = Offer::join('providers', 'offers.providerIdx', '=',  'providers.providerIdx')
+                ->where('providers.userIdx', $this->getAuthUser()->userIdx )->get()->count();
+        if( $offer > 0 ){
+            return redirect( route('data_offers') );
+        }else{            
+            $data = array();
+            return view('data.offer_publish_first', compact($data));    
+        }
+        
     }    
 
     public function offer_second(Request $request){
-        $data = array();
-        return view('data.offer_publish_second', compact($data));
+        $offer = Offer::join('providers', 'offers.providerIdx', '=',  'providers.providerIdx')
+                ->where('providers.userIdx', $this->getAuthUser()->userIdx )->get()->count();
+        if( $offer > 0 ){
+            return redirect( route('data_offers') );
+        }else{
+            $data = array();
+            return view('data.offer_publish_second', compact($data));
+        }    
     }        
 
     public function offer_product_publish_confirm(Request $request){
