@@ -1377,7 +1377,7 @@ a.link-market:not([href]):not([tabindex]), a.link-market:not([href]):not([tabind
 }
 
 .select2-container--default .select2-results>.select2-results__options {
-	max-height: 144px;
+	max-height: 270px;
     overflow-y: auto;
 }
 
