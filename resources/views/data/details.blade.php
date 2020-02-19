@@ -132,15 +132,15 @@
 
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 {{ $product->productAccessDays }}</span></p>
 					                			<div class="flex-row align-items-center justify-content-end">
-						                			@if($product->productBidType == 'price')
+						                			@if($product->productBidType == 'no_bidding')
 						                			<a href="/data/buy_data/{{ $id }}/{{$product->productIdx}}">
 						                				<button type="button" class="customize-btn">Buy Now</button>
 						                			</a>
-						                			@elseif($product->productBidType == 'bid')
+						                			@elseif($product->productBidType == 'bidding_only')
 						                			<a href="/data/send_bid/{{ $id }}/{{$product->productIdx}}">
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
-						                			@elseif($product->productBidType == 'price_bid')
+						                			@elseif($product->productBidType == 'bidding_possible')
 						                			<a href="/data/send_bid/{{ $id }}/{{$product->productIdx}}">
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
