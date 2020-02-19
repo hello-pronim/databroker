@@ -284,6 +284,7 @@ $(document).ready(function(){
         var crsf = $("input[name='_token']").val();        
         var community = $("#community").val();
         var theme = $("#theme").val();
+        var theme_text = $("#theme option:selected").text();
         var region1 = $("#region select").val();
         var region2 = $("#region span.region.active").attr("region-id");
        
@@ -298,7 +299,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function(res){                
                 var list= "";
-                $.each(res, function(key, elem){                                       
+                $.each(res.offers, function(key, elem){                                       
                    
                     list += 
                         '<div class="col-md-4 mb-20">' +
@@ -326,26 +327,26 @@ $(document).ready(function(){
                         '</div>';                    
                 });
 
+                if( theme_text != 'all' ){
+                    $('.region').html("/" + theme_text + " Region");
+                }
                 //list = '<div class="row">' + list + '</div>';
                 var offercount = $("#offer-count span");
                 if(loadmore == false){
                     $("#offer-list .row").html(list);   
-                    offercount.html( res.length );
+                    offercount.html( res.offers.length );
                 }else{
                     $("#offer-list .row").append(list);    
-                    offercount.html( parseInt(offercount.text()) + res.length );
+                    offercount.html( parseInt(offercount.text()) + res.offers.length );
                 }   
+
                 var totalcount = $("input[name='totalcount']").val();
-                var totalcount_all = $("input[name='totalcount_all']").val();
-
+                
                 $("#offer_loadmore").parent().removeClass('hide');
-
-                if( parseInt(offercount.text()) >= totalcount ){
+                
+                if( parseInt(offercount.text()) >= totalcount || parseInt(offercount.text()) >= res.total_count ){
                     $("#offer_loadmore").parent().addClass('hide');                    
-                }
-                if( community == "all" && parseInt(offercount.text()) < totalcount_all ){
-                     $("#offer_loadmore").parent().removeClass('hide');                       
-                }
+                }                
 
             }
         });

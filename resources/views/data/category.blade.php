@@ -10,10 +10,14 @@
     	<div class="app-section app-reveal-section align-items-center pb-10">    		
 	        <div class="cat-header">
 	        	<div class="row">
-	        		<div class="col-lg-6">
+	        		<div class="col-lg-12">
 	        			<h4 class="text-green">{{ trans('pages.explore_data_offer') }}</h4>
-			            <h1 class="mt-0">{{$category}} Community</h1>
-			            <p class="desc">
+			            <h1 class="mt-0">{{$category}} Community <span class="region"></span></h1>
+			        </div>    
+			    </div>
+			    <div class="row">
+			    	<div class="col-lg-6">
+			            <p class="desc mt-10">
 			            	{{ trans('description.'.str_replace( ' ', '_', $category ).'_intro') }}
 			            </p>	            
 			            <a href="{{ route('data.community_'.str_replace( ' ', '_', strtolower($category) )) }}"><button type="button" class="button secondary-btn w225 mgh25">{{ trans('pages.read_more') }}</button></a>
@@ -118,8 +122,7 @@
 				@endforeach							
 	  		</div>
   		</div> 	  		
-  		<input type="hidden" name="totalcount" value="{{ $totalcount }}">
-  		<input type="hidden" name="totalcount_all" value="{{ $totalcount_all }}">
+  		<input type="hidden" name="totalcount" value="{{ $totalcount }}">  		
   		<input type="hidden" name="per_page" value="{{ $per_page }}">
   		<div class="text-center @if ( $totalcount < $per_page ) hide @endif"><button id="offer_loadmore" type="button" class="button secondary-btn mgh25 w225">Load More</button></div>
     </div>      
