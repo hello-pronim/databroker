@@ -436,11 +436,10 @@ class DataController extends Controller
         //$product_data['productMoreInfo'] = $request->productMoreInfo;
         $product_data['productBidType'] = $request->period;
         $period = $product_data['productBidType'].'_period';
+        $price = $product_data['productBidType'].'_price';
         $product_data['productAccessDays'] = $request->$period;        
-        if( $request->period == "no_bidding" ){
-            $product_data['productPrice'] = $request->price_price;    
-        } elseif ($request->period == "bidding_possible") {            
-            $product_data['productPrice'] = $request->price_bid_price;    
+        if( $request->period == "no_bidding" || $request->period == "bidding_possible" ){
+            $product_data['productPrice'] = $request->$price;
         }
         $product_data['productMoreInfo'] = $request->productMoreInfo;
         $product_data['productTitle'] = $request->productTitle;
