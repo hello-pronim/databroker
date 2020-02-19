@@ -328,7 +328,7 @@ $(document).ready(function(){
                 });
 
                 if( theme_text != 'all' ){
-                    $('.region').html("/" + theme_text + " Region");
+                    $('.region_text').html("/" + theme_text + " Region");
                 }
                 //list = '<div class="row">' + list + '</div>';
                 var offercount = $("#offer-count span");
