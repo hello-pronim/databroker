@@ -160,7 +160,7 @@
                     {{ trans('home.looking_supercharge_description')}}
                     <span class="height-space" style="display: block;"></span>
                     <a href="/newsletter">
-                        <button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.match_me') }}</button>
+                        <button type="button" class="button customize-btn mgh25 w225">{{ trans('home.match_me') }}</button>
                     </a>                     
                 </p>
                 <p class="text-free text-grey">It's free</p>
@@ -283,7 +283,7 @@
                     {{ trans('home.sell_or_share_desc')}}
                     <span class="height-space" style="display: block;"></span>
                     <a href="/newsletter">
-                        <button type="button" class="btn match-me-up-btn pure-material-button-outlined">{{ trans('home.lets_started') }}</button>
+                        <button type="button" class="button customize-btn mgh25 w225">{{ trans('home.lets_started') }}</button>
                     </a>                     
                 </p>                
             </div>

@@ -116,7 +116,7 @@
 											@endif
 										</span>
 										<div class="buttons">
-											<a class="icon-button btn-edit">
+											<a class="icon-button btn-edit" href="{{route('data_offer_edit_product', ['id'=>$id, 'pid'=>$product['productIdx']])}}">
 												<i class="icon material-icons">
 													edit
 												</i>
