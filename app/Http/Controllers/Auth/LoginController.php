@@ -81,9 +81,11 @@ class LoginController extends Controller
                 ? redirect(back()): redirect()->intended($this->redirectPath());
     }
 
-
     public function logout(Request $request){
         Auth::logout();
+
+        if(session()->has('url.intended'))
+            session()->forget('url.intended');
 
         return view('auth.logout_success')
             ->with('message', 'You have been successfully logged out.');
