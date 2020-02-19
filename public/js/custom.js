@@ -334,19 +334,19 @@ $(document).ready(function(){
                 }
                 //list = '<div class="row">' + list + '</div>';
                 var offercount = $("#offer-count span");
-                if(loadmore == false){
+                /*if(loadmore == false){
                     $("#offer-list .row").html(list);   
                     offercount.html( res.offers.length );
-                }else{
+                }else{*/
                     $("#offer-list .row").append(list);    
                     offercount.html( parseInt(offercount.text()) + res.offers.length );
-                }   
+                //}   
 
                 var totalcount = $("input[name='totalcount']").val();
                 
                 $("#offer_loadmore").parent().removeClass('hide');
                 
-                if( parseInt(offercount.text()) >= totalcount || parseInt(offercount.text()) >= res.total_count ){
+                if( parseInt(offercount.text()) >= res.total_count ){
                     $("#offer_loadmore").parent().addClass('hide');                    
                 }                
 
