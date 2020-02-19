@@ -327,7 +327,7 @@ $(document).ready(function(){
                         '</div>';                    
                 });
 
-                if( theme_text != 'all' ){
+                if( theme_text != 'All themes' ){
                     $('.region_text').html("/" + theme_text + " Region");
                 }
                 //list = '<div class="row">' + list + '</div>';
