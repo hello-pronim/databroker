@@ -18,7 +18,7 @@
         		<input type="hidden" name="offerIdx" value="{{ $offer['offerIdx'] }}">
         		<input type="hidden" name="productIdx" value="{{ $product['productIdx'] }}">
         		<div class="blog-header mgt60">
-	                <h1 class="h1-small">Add a new data product</h1>
+	                <h1 class="h1-small">Update data product</h1>
 	                <h3 class="h3 text-normal">This data product is related to the following data offer:</h3>
 	                <h3 class="h3"> {{ $offer['offerTitle'] }} </h3>
 	                <span class="para offer-location">
@@ -113,7 +113,7 @@
 									<div class="period_select">
 										@if ($bidtype['biddable'])
 										<label class="pure-material-textfield-outlined">
-					                        <span class="currency">€ </span><input type="number" step="0.01" name="nobidding_price" class="form-control2 input_data" placeholder="0.0" value=""> 
+					                        <span class="currency">€ </span><input type="number" step="0.01" name="{{$bidtype['type']}}_price" class="form-control2 input_data" placeholder="0.0" value="{{$product['productPrice']}}"> 
 					                    </label>
 					                    @endif
 										<span class="para mlr-20">for access to this data for</span>
@@ -126,7 +126,8 @@
 						                    </select>						                    
 						                </div>						                
 									</div>	
-									<div class="error_notice free_period"> Please select a period.</div>
+									<div class="error_notice {{$bidtype['type']}}_price"> This field is required. </div>
+									<div class="error_notice {{$bidtype['type']}}_period"> Please select a period.</div>
 				        		</div>
 				        		@endforeach								
 			                </div>

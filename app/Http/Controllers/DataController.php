@@ -413,9 +413,9 @@ class DataController extends Controller
         $prodTypeList = ['File', 'Api flow', 'Stream'];
         $bidTypes = [
             ['type'=>'free', 'label' => 'Free', 'biddable' => false],
-            ['type'=>'fixed', 'label' => 'I will set a price. No bidding is possible.', 'biddable' => true],
-            ['type'=>'mix', 'label' => 'I will set a price, but buyers can also send bids.', 'biddable' => true],
-            ['type'=>'bid', 'label' => 'I will not set a price. Interested parties can send bids.', 'biddable' => false],
+            ['type'=>'no_bidding', 'label' => 'I will set a price. No bidding is possible.', 'biddable' => true],
+            ['type'=>'bidding_possible', 'label' => 'I will set a price, but buyers can also send bids.', 'biddable' => true],
+            ['type'=>'bidding_only', 'label' => 'I will not set a price. Interested parties can send bids.', 'biddable' => false],
         ];
         $accessPeriodList = [
             ['key' => 'day', 'label' => '1 day'],
@@ -431,7 +431,14 @@ class DataController extends Controller
     public function offer_submit_product(Request $request) {
         $product_data = [];
 
-        $product_data['offerIdx'] = $request->offerIdx;
+        $isEditMode = false;
+        if (isset($request->productIdx)) {
+            //update product
+            $productIdx = $request->productIdx;
+            $isEditMode = true;
+        } else {
+            $product_data['offerIdx'] = $request->offerIdx;
+        }
         $product_data['productType'] = $request->format;
         //$product_data['productMoreInfo'] = $request->productMoreInfo;
         $product_data['productBidType'] = $request->period;
@@ -446,13 +453,20 @@ class DataController extends Controller
         $product_data['productLicenseUrl'] = $request->licenceUrl;
         $product_data['productStatus'] = 1;
 
-        $offer_obj = OfferProduct::create($product_data);
-        $productIdx = $offer_obj['productIdx'];
+        if ($isEditMode) {
+            OfferProduct::find($productIdx)->update($product_data);
+        } else {
+            $offer_obj = OfferProduct::create($product_data);
+            $productIdx = $offer_obj['productIdx'];
+        }
 
         $productcountry_data = [];
         $productcountry_data['productIdx'] = $productIdx;
         $country = explode(',', $request->offercountry);
 
+        if ($isEditMode) {
+            RegionProduct::where('productIdx', $productIdx)->delete();
+        }
         if( count( $country ) > 0 ){
             for( $i=0; $i< count($country); $i++ ){
                 $productcountry_data['regionIdx'] = $country[$i];
@@ -464,7 +478,7 @@ class DataController extends Controller
         }
         
         $offerid = $request->offerIdx;
-        return response()->json(array( "success" => true, 'offerid' => $offerid, 'redirect' => route('data_offer_product_publish_confirm', ['id'=>$offerid]) ));
+        return response()->json(array( "success" => true, 'offerid' => $offerid, 'productIdx' => $productIdx, 'redirect' => route('data_offer_product_publish_confirm', ['id'=>$offerid, 'pid'=>$productIdx]) ));
     }
 
     public function category($category=""){
