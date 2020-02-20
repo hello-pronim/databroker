@@ -75,4 +75,12 @@ $(document).ready(function() {
 
         return false;
     });
+
+    $('input[type=checkbox]').on('change', function(evt) {
+        var container = $(this).closest('.limited-check-group');
+        var limit = container.attr('max-check') || 5;
+        if($(container).find('input[type=checkbox]:checked').length > limit) {
+            this.checked = false;
+        }
+    });
 });
