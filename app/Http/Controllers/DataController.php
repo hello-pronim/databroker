@@ -73,7 +73,19 @@ class DataController extends Controller
             $current_step = 'step1';
         }
 
-        $data = array( 'regions', 'countries', 'communities', 'current_step' );
+        $themes = Theme::all();
+        $theme_map = [];
+        foreach ($themes as $theme) {
+            $idx = $theme['communityIdx'];
+            $name = $theme['themeName'];
+            $text = $theme['themeText'];
+
+            $theme_map[$idx][] = ['name' => $name, 'text' => $text];
+        }
+        // die(json_encode($theme_map));
+        $theme_json = json_encode($theme_map);
+
+        $data = array( 'regions', 'countries', 'communities', 'current_step', 'theme_json' );
         return view('data.offers', compact($data));
     }
 
@@ -147,7 +159,19 @@ class DataController extends Controller
             ->pluck('sampleFileName')
             ->toArray();
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images' );
+        $themes = Theme::all();
+        $theme_map = [];
+        foreach ($themes as $theme) {
+            $idx = $theme['communityIdx'];
+            $name = $theme['themeName'];
+            $text = $theme['themeText'];
+
+            $theme_map[$idx][] = ['name' => $name, 'text' => $text];
+        }
+        // die(json_encode($theme_map));
+        $theme_json = json_encode($theme_map);
+
+        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }
