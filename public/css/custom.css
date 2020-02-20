@@ -1498,9 +1498,17 @@ a.dropdown-toggle:after{
     left: -1px;
     top: -10px;
 }
+.feedback{
+	display: block;
+	font-size: 12.8px;
+	font-family:"DM Sans";
+	font-weight: bold;
+	color: #020A09;
+}
 .invalid-feedback{
 	display: block;
 	font-size: 12.8px;
 	font-family:"DM Sans";
 	font-weight: bold;
+	color: #f44336!important;
 }

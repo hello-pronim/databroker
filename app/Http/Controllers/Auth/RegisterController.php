@@ -11,6 +11,8 @@ use Mail;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Community;
+use App\Models\Business;
+use App\Models\LinkedUser;
 
 class RegisterController extends Controller
 {
@@ -44,9 +46,15 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function showRegistrationForm()
+    public function showRegistrationForm(Request $request)
     {        
-        return view('auth.register');
+        $email = $request->email?$request->email:"";
+        $business = $request->business?$request->business:"";
+
+        $params['email'] = $email;
+        $params['business'] = $business;
+
+        return view('auth.register')->with($params);
     }
 
     public function register(Request $request)
@@ -74,7 +82,7 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],  
-            'term_conditions' => ['required']          
+            'term_conditions' => ['required']
         ], [
             'password.regex'=>'Password should contain A~Z, a~z, 0~9',
             'term_conditions.required'=>'Please confirm that you accept Databroker’s terms and conditions and privacy policy.'
@@ -93,13 +101,19 @@ class RegisterController extends Controller
         $businessName = $data['businessName2']===NULL?$data['businessName']:$data['businessName2'];
         $jobTitle = $data['jobTitle2']===NULL?$data['jobTitle']:$data['jobTitle2'];
 
-        $this->sendEmail("register", [
-            'from'=>'peterjackson0120@gmail.com', 
-            'to'=>$data['email'], 
-            'subject'=>'Databroker', 
-            'name'=>'Databroker',
-            'userData'=>$data
-        ]);   
+        // $this->sendEmail("register", [
+        //     'from'=>'peterjackson0120@gmail.com', 
+        //     'to'=>$data['email'], 
+        //     'subject'=>'Databroker', 
+        //     'name'=>'Databroker',
+        //     'userData'=>$data
+        // ]);   
+
+        $userStatus = 1;
+        $isCompanyExist = User::where('companyName', '=', $data['companyName'])->first();
+        if($isCompanyExist) $userStatus = 2;
+        $isLinkedUser = LinkedUser::where('linked_email', '=', $data['email'])->first();
+        if($isLinkedUser) $isLinkedUser->delete();
 
         return User::create([
             'firstname' => $data['firstname'],
@@ -108,7 +122,7 @@ class RegisterController extends Controller
             'companyName' => $data['companyName'],
             'businessName' => $businessName,
             'jobTitle' => $jobTitle,
-            'userStatus' => 1,
+            'userStatus' => $userStatus,
             'password' => Hash::make($data['password']),
         ]);
 

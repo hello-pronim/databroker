@@ -177,12 +177,15 @@ class ProfileController extends Controller
                 if(!$linked_user){
                     LinkedUser::create($linked);
 
+                    $linkedUserData['user'] = $user;
+                    $linkedUserData['email'] = $linked['linked_email'];
+                    
                     $this->sendEmail("invite", [
                         'from'=>$user->email, 
                         'to'=>$linked['linked_email'], 
                         'name'=>'Databroker', 
                         'subject'=>'You’ve been invited to join a Databroker account',
-                        'data'=>$user
+                        'data'=>$linkedUserData
                     ]);
                 }
             }
