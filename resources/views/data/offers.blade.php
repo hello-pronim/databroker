@@ -6,10 +6,11 @@
 @section('additional_css')
 	<link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+	<!-- <link rel="stylesheet" href="{{ asset('bower_components/select2/select2.css') }}"> -->
 @endsection
 
 @section('content')
-<div class="container-fluid app-wapper data-offer">
+<div class="container-fluid app-wapper data-offer" ng-app="offerApp" ng-cloak ng-controller="offerCtrl">
 	<div class="bg-pattern1-left"></div>
     <div class="container">
     	@if (isset($offer))
@@ -157,7 +158,7 @@
 						<div class="dropdown-container">
 	                        <div class="dropdown2" tabindex="1">	                            
 	                            <div class="adv-combo-wrapper">
-	                            	<select id="community_box" name="communityIdx">
+	                            	<select ui-select2 id="community_box" name="communityIdx" ng-model="communityIdx" data-placeholder="Please Select">
 	                            		<option></option>
 	                                @foreach ($communities as $community)
 	                                @if (isset($offer) && $offer['communityIdx'] == $community->communityIdx)
@@ -356,7 +357,32 @@
 @endsection
 
 @section('additional_javascript')
-	<script src="{{ asset('js/plugins/imageuploadify.min.js') }}"></script>        
-	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>        
+	<script src="{{ asset('js/plugins/imageuploadify.min.js') }}"></script>
+	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>
+	<!-- <script src="{{ asset('bower_components/select2/select2.min.js') }}"></script> -->
+	<script src="{{ asset('bower_components/angular/angular.min.js') }}"></script>
+	<script src="{{ asset('bower_components/angular-ui-select2/src/select2.js') }}"></script>
+	<script type="text/javascript">
+		var communityIdx;
+		@if (isset($offer['communityIdx']))
+		communityIdx = `{{$offer['communityIdx']}}`;
+		@endif
+		var app = angular.module('offerApp', []) 
+
+		  .config(function($interpolateProvider) {
+		    // To prevent the conflict of `{{` and `}}` symbols
+		    // between Blade template engine and AngularJS templating we need
+		    // to use different symbols for AngularJS.
+
+		    $interpolateProvider.startSymbol('<%=');
+		    $interpolateProvider.endSymbol('%>');
+		  });
+
+		app.controller('offerCtrl', function($scope) {
+			if (communityIdx) {
+				$scope.communityIdx = communityIdx;
+			}
+		});
+	</script>
 @endsection
 
