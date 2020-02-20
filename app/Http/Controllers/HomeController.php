@@ -15,6 +15,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
+        
         //$this->middleware(['auth','verified']);
     }
 
@@ -28,7 +30,7 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function sendEmail($tplName, $params){
+    public function sendEmail($tplName, $params){   
         $from = $params['from'];
         $to = $params['to'];
         $name = $params['name'];

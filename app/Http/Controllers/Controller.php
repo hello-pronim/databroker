@@ -12,7 +12,12 @@ use Mail;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    
+
+    public function __construct()
+    {
+        //$this->middleware(['auth','verified']);
+    }
+
     public function sendEmail($tplName, $params){
         $from = $params['from'];
         $to = $params['to'];

@@ -26,6 +26,8 @@ class ProfileController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
+
         //$this->middleware(['auth','verified']);
     }
 
@@ -171,15 +173,18 @@ class ProfileController extends Controller
             if($value){
                 $linked['invite_userIdx'] = $data['invite_userIdx'];
                 $linked['linked_email'] = $value;
-                LinkedUser::create($linked);
+                $linked_user = LinkedUser::where('linked_email', '=', $value)->first();
+                if(!$linked_user){
+                    LinkedUser::create($linked);
 
-                $this->sendEmail("invite", [
-                    'from'=>$user->email, 
-                    'to'=>$linked['linked_email'], 
-                    'name'=>'Databroker', 
-                    'subject'=>'You’ve been invited to join a Databroker account',
-                    'data'=>$user
-                ]);
+                    $this->sendEmail("invite", [
+                        'from'=>$user->email, 
+                        'to'=>$linked['linked_email'], 
+                        'name'=>'Databroker', 
+                        'subject'=>'You’ve been invited to join a Databroker account',
+                        'data'=>$user
+                    ]);
+                }
             }
         }
 

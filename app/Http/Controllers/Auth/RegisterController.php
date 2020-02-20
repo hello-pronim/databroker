@@ -45,11 +45,7 @@ class RegisterController extends Controller
     }
 
     public function showRegistrationForm()
-    {
-        if(!session()->has('url.intended')){
-            session(['url.intended'=>url()->previous()]);
-        }
-        
+    {        
         return view('auth.register');
     }
 
@@ -142,8 +138,8 @@ class RegisterController extends Controller
         return view('auth.register_nl', compact($data));
     }  
 
-    // protected function redirectTo()
-    // {
-    //     return redirect(session('link'));
-    // }
+    protected function redirectTo()
+    {
+        return url()->previous();
+    }
 }
