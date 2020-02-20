@@ -172,6 +172,20 @@
 	                        </div>
 	                        <div class="error_notice communityIdx"> This field is required</div>
 	                    </div>    
+						
+						<div class="description-header" ng-show="themes[communityIdx].length > 0">
+							<div class="h4_intro text-left mgh25">What themes fit your data offer? (max. 3)</div>
+							<input type="hidden" id="offertheme" name="offertheme" value="">
+							<div class="row limited-check-group" max-check="3">
+                               	<div class="check_container col-xl-4"  ng-repeat="theme in themes[communityIdx]">
+			                        <label class="pure-material-checkbox">
+			                            <input type="checkbox" class="form-control no-block check_community" name="theme[]">
+			                            <span ng-bind="theme.name" class="para"></span>
+			                        </label>
+			                    </div>
+			            	</div>
+						</div>
+
 	                    <br>
 	                    <br>
 	                    <div class=" description-header flex-vcenter mb-10">
@@ -363,6 +377,7 @@
 	<script src="{{ asset('bower_components/angular/angular.min.js') }}"></script>
 	<script src="{{ asset('bower_components/angular-ui-select2/src/select2.js') }}"></script>
 	<script type="text/javascript">
+		var themes = <?php echo $theme_json; ?>;
 		var communityIdx;
 		@if (isset($offer['communityIdx']))
 		communityIdx = `{{$offer['communityIdx']}}`;
@@ -379,6 +394,7 @@
 		  });
 
 		app.controller('offerCtrl', function($scope) {
+			$scope.themes = themes;
 			if (communityIdx) {
 				$scope.communityIdx = communityIdx;
 			}
