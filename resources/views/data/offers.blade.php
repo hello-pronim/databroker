@@ -149,7 +149,8 @@
 	                            </ul>
 	                        </div>
 	                        <div class="error_notice offercountry"> This field is required</div>
-	                    </div>    
+	                    </div>  
+
 	                    <br>
 	                    <div class=" description-header flex-vcenter">
 							<div id="community_title" class="section-title">{{ trans('pages.in_which_community') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="Please select maximum 1 community">help</i><br>							
@@ -175,11 +176,11 @@
 						
 						<div class="description-header" ng-show="themes[communityIdx].length > 0">
 							<div class="h4_intro text-left mgh25">What themes fit your data offer? (max. 3)</div>
-							<input type="hidden" id="offertheme" name="offertheme" value="">
 							<div class="row limited-check-group" max-check="3">
+								<input type="hidden" id="offertheme" name="offertheme" value="">
                                	<div class="check_container col-xl-4"  ng-repeat="theme in themes[communityIdx]">
 			                        <label class="pure-material-checkbox">
-			                            <input type="checkbox" class="form-control no-block check_community" name="theme[]">
+			                            <input type="checkbox" class="form-control no-block check_theme" key="<%= theme.id %>">
 			                            <span ng-bind="theme.name" class="para"></span>
 			                        </label>
 			                    </div>
