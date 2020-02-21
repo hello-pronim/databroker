@@ -196,7 +196,7 @@ class DataController extends Controller
         $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
         $link_to_market = route('data_community.'.$community_route);
 
-        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $id)->get();
+        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $id)->orderby('updated_at', 'DESC')->get();
 
         $data = array( 'offer', 'products', 'id', 'link_to_market' );
         return view('data.offer_detail', compact($data));
