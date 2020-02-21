@@ -46,7 +46,7 @@ class Offer extends Model
     }
 
     public function theme(){
-        return $this->belongsToMany('App\Models\Region', 'App\Models\OfferTheme', 'offerIdx', 'themeIdx');
+        return $this->belongsToMany('App\Models\Theme', 'App\Models\OfferTheme', 'offerIdx', 'themeIdx');
     }
 
     protected static function filter_offer($param){

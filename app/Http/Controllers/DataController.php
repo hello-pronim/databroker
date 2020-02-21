@@ -126,7 +126,7 @@ class DataController extends Controller
         }
 
         $offerId = $id;
-        $offer = Offer::with(['region'])->where('offers.offerIdx', '=', $id)->first();
+        $offer = Offer::with(['region', 'theme'])->where('offers.offerIdx', '=', $id)->first();
         
         $communityIdx = $offer['communityIdx'];
         $community = Community::find($communityIdx);
@@ -139,6 +139,12 @@ class DataController extends Controller
         foreach ($offer['region'] as $o_region) {
             $regionIdx = $o_region['regionIdx'];
             $regionCheckList[$regionIdx] = $o_region['regionName'];
+        }
+
+        $themeCheckList = [];
+        foreach ($offer['theme'] as $o_theme) {
+            $themeIdx = $o_theme['themeIdx'];
+            $themeCheckList[$themeIdx] = $o_theme['themeName'];
         }
 
         $usecase = UseCase::where('offerIdx', $offerId)->first();
@@ -171,9 +177,10 @@ class DataController extends Controller
             $theme_map[$idx][] = ['id' => $themeIdx, 'name' => $name, 'text' => $text];
         }
         // die(json_encode($theme_map));
+        // die(json_encode($offer));
         $theme_json = json_encode($theme_map);
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json' );
+        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }

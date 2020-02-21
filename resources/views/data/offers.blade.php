@@ -180,7 +180,7 @@
 								<input type="hidden" id="offertheme" name="offertheme" value="">
                                	<div class="check_container col-xl-4"  ng-repeat="theme in themes[communityIdx]">
 			                        <label class="pure-material-checkbox">
-			                            <input type="checkbox" class="form-control no-block check_theme" key="<%= theme.id %>">
+			                            <input type="checkbox" class="form-control no-block check_theme" key="<%= theme.id %>" ng-checked="themeCheckList[theme.id]">
 			                            <span ng-bind="theme.name" class="para"></span>
 			                        </label>
 			                    </div>
@@ -380,8 +380,10 @@
 	<script type="text/javascript">
 		var themes = <?php echo $theme_json; ?>;
 		var communityIdx;
+		var themeCheckList;
 		@if (isset($offer['communityIdx']))
 		communityIdx = `{{$offer['communityIdx']}}`;
+		themeCheckList = <?php echo json_encode($themeCheckList); ?>;
 		@endif
 		var app = angular.module('offerApp', []) 
 
@@ -398,6 +400,7 @@
 			$scope.themes = themes;
 			if (communityIdx) {
 				$scope.communityIdx = communityIdx;
+				$scope.themeCheckList = themeCheckList;
 			}
 		});
 	</script>
