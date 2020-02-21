@@ -76,10 +76,6 @@
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.minmum_publishing') }}</div>
 						
 					</div>
-					<div class="col col-3 right-block">
-						<div class="font-21-bold">{{ trans('pages.not_sure_what_to_enter') }}</div>
-						<div class="example-link">{{ trans('pages.view_an_example_pdf') }}</div>
-					</div>
 				</div>
 				<div class="row">			
 					<div class="col-6">
@@ -87,9 +83,9 @@
 							<div class="section-title">{{ trans('pages.data_offer_step_1_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_offer_tooltip') }}">help</i></div>
 						</div>
 						<div class="text-wrapper">							
-							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">{{ $offer['offerTitle'] ?? ''}}</textarea>
+							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{ $offer['offerTitle'] ?? ''}}</textarea>
 							<div class="error_notice offerTitle">This field is required</div>
-							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
+							<div class="char-counter"><span>0</span> / <span>100</span> characters</div>
 						</div>
 						
 						<br>
@@ -190,7 +186,7 @@
 	                    <br>
 	                    <br>
 	                    <div class=" description-header flex-vcenter mb-10">
-							<div class="section-title">Please add an image that can be used to represent your data offer <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>							
+							<div class="section-title">Please add a nice image that fits the data offer you are publishing<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>							
 							</div>
 						</div>	                    
 						<div class="fileupload">
@@ -223,10 +219,6 @@
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
 						
 					</div>
-					<div class="col col-3 right-block">
-						<div class="font-21-bold">{{ trans('pages.not_sure_what_to_enter') }}</div>
-						<div class="example-link">{{ trans('pages.view_an_example_pdf') }}</div>
-					</div>
 				</div>
 				<div class="row">			
 					<div class="col-6">
@@ -234,8 +226,8 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.data_offer_step_2_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_description_tooltip') }}">help</i></div>							
 						</div>
 						<div class="text-wrapper">
-							<textarea name="offerDescription" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">{{$offer['offerDescription'] ?? ''}}</textarea>
-							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
+							<textarea name="offerDescription" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{$offer['offerDescription'] ?? ''}}</textarea>
+							<div class="char-counter"><span>0</span> / <span>100</span> characters</div>
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a><!-- goto 44 -->
@@ -255,10 +247,6 @@
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
 						
 					</div>
-					<div class="col col-3 right-block">
-						<div class="font-21-bold">{{ trans('pages.not_sure_what_to_enter') }}</div>
-						<div class="example-link">{{ trans('pages.view_an_example_pdf') }}</div>
-					</div>
 				</div>
 				<div class="row">			
 					<div class="col-6">
@@ -266,8 +254,8 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.data_offer_step_3_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_usecase_tooltip') }}">help</i></div>							
 						</div>
 						<div class="text-wrapper">
-							<textarea name="useCaseContent" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">{{$usecase['useCaseContent'] ?? ''}}</textarea>
-							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>	
+							<textarea name="useCaseContent" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{$usecase['useCaseContent'] ?? ''}}</textarea>
+							<div class="char-counter"><span>0</span> / <span>100</span> characters</div>	
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
@@ -287,10 +275,6 @@
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
 						<div id="Businesses_often_bec" class="description">{{ trans('pages.data_offer_step_4_description') }}</div>
 						
-					</div>
-					<div class="col col-3 right-block">
-						<div class="font-21-bold">{{ trans('pages.not_sure_what_to_enter') }}</div>
-						<div class="example-link">{{ trans('pages.view_an_example_pdf') }}</div>
 					</div>
 				</div>
 				<div class="row files-block">			
