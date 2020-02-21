@@ -27,7 +27,7 @@
 						<div class="copy-id"><a class="link-market">{{trans('pages.Copy_ID')}}</a></div>
 					</div>
 		            <div class="flex-center mgt30">
-		            	<a href="{{ route('data_offers_overview') }}"><button class="primary-btn mgr30">GO TO DATA PRODUCT IN YOUR ACCOUNT</button></a>
+		            	<a href="{{ route('data_offer_detail', ['id' => $id]) }}"><button class="primary-btn mgr30">GO TO DATA PRODUCT IN YOUR ACCOUNT</button></a>
 		            	<a href="{{ route('data_community.geographics') }}"><button class="secondary-btn">VIEW DATA PRODUCT ON THE MARKETPLACE</button></a>
 		            </div>
 		        </div>
