@@ -30,6 +30,8 @@ class DataController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
+
         //$this->middleware(['auth','verified']);
     }
 
@@ -543,6 +545,9 @@ class DataController extends Controller
     }
 
     public function category($category=""){
+
+        session(['curCommunity'=>$category]);
+
         $communities = Community::get();
         $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
@@ -564,6 +569,8 @@ class DataController extends Controller
     }
 
     public function community($community=""){         
+
+        session(['curCommunity'=>$community]);
 
         $offers = Offer::with(['region', 'provider', 'usecase'])
             ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')

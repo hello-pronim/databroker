@@ -99,7 +99,9 @@ class Offer extends Model
                 $query->select( DB::raw('count(*) as product_count, offerIdx'))->groupby('offerIdx');
             }])                        
             ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
-            ->where('providers.userIdx', '=', $user_id)->get();
+            ->where('providers.userIdx', '=', $user_id)
+            ->orderby('offers.offerIdx', 'DESC')
+            ->get();
 
         return $dataproduct;
     }

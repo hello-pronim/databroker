@@ -33,7 +33,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" autocomplete="email" autofocus>
+                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ $email ? $email : old('email') }}" autocomplete="email" autofocus>
                         <span>{{ trans('auth.email_address') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
                         @error('email')
@@ -44,7 +44,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ old('companyName') }}" autocomplete="company" autofocus>
+                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ $business? $business : old('companyName') }}" autocomplete="company" autofocus>
                         <span>{{ trans('auth.company') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company']) }}</div>
                         @error('companyName')
@@ -131,14 +131,17 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="" autofocus>
+                        <input type="password" id="password" name="password" class="form-control input_data @error('password') is-invalid @enderror" placeholder=" "  value="" autofocus>
                         <span>{{ trans('auth.password') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Password']) }}</div>
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <span class="feedback @error('password') invalid-feedback @enderror" role="alert">
+                            <strong>
+                                @if($errors->has('password')) {{$errors->first('password')}}
+                                @else
+                                Password should be more than 8 characters and contain A~Z, a~z, 0~9
+                                @endif
+                            </strong>
+                        </span>
                     </label>
 
                     <label class="pure-material-textfield-outlined">
