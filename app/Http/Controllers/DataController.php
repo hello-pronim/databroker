@@ -31,12 +31,7 @@ class DataController extends Controller
     public function __construct()
     {
         parent::__construct();
-<<<<<<< HEAD
-        //$this->middleware(['auth','verified']);        
-=======
-
         //$this->middleware(['auth','verified']);
->>>>>>> origin/dev
     }
 
     /**
