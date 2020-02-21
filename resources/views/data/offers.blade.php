@@ -6,10 +6,11 @@
 @section('additional_css')
 	<link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+	<!-- <link rel="stylesheet" href="{{ asset('bower_components/select2/select2.css') }}"> -->
 @endsection
 
 @section('content')
-<div class="container-fluid app-wapper data-offer">
+<div class="container-fluid app-wapper data-offer" ng-app="offerApp" ng-cloak ng-controller="offerCtrl">
 	<div class="bg-pattern1-left"></div>
     <div class="container">
     	@if (isset($offer))
@@ -148,7 +149,8 @@
 	                            </ul>
 	                        </div>
 	                        <div class="error_notice offercountry"> This field is required</div>
-	                    </div>    
+	                    </div>  
+
 	                    <br>
 	                    <div class=" description-header flex-vcenter">
 							<div id="community_title" class="section-title">{{ trans('pages.in_which_community') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="Please select maximum 1 community">help</i><br>							
@@ -157,7 +159,7 @@
 						<div class="dropdown-container">
 	                        <div class="dropdown2" tabindex="1">	                            
 	                            <div class="adv-combo-wrapper">
-	                            	<select id="community_box" name="communityIdx">
+	                            	<select ui-select2 id="community_box" name="communityIdx" ng-model="communityIdx" data-placeholder="Please Select">
 	                            		<option></option>
 	                                @foreach ($communities as $community)
 	                                @if (isset($offer) && $offer['communityIdx'] == $community->communityIdx)
@@ -171,6 +173,20 @@
 	                        </div>
 	                        <div class="error_notice communityIdx"> This field is required</div>
 	                    </div>    
+						
+						<div class="description-header" ng-show="themes[communityIdx].length > 0">
+							<div class="h4_intro text-left mgh25">What themes fit your data offer? (max. 3)</div>
+							<div class="row limited-check-group" max-check="3">
+								<input type="hidden" id="offertheme" name="offertheme" value="">
+                               	<div class="check_container col-xl-4"  ng-repeat="theme in themes[communityIdx]">
+			                        <label class="pure-material-checkbox">
+			                            <input type="checkbox" class="form-control no-block check_theme" key="<%= theme.id %>" ng-checked="themeCheckList[theme.id]">
+			                            <span ng-bind="theme.name" class="para"></span>
+			                        </label>
+			                    </div>
+			            	</div>
+						</div>
+
 	                    <br>
 	                    <br>
 	                    <div class=" description-header flex-vcenter mb-10">
@@ -356,7 +372,37 @@
 @endsection
 
 @section('additional_javascript')
-	<script src="{{ asset('js/plugins/imageuploadify.min.js') }}"></script>        
-	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>        
+	<script src="{{ asset('js/plugins/imageuploadify.min.js') }}"></script>
+	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>
+	<!-- <script src="{{ asset('bower_components/select2/select2.min.js') }}"></script> -->
+	<script src="{{ asset('bower_components/angular/angular.min.js') }}"></script>
+	<script src="{{ asset('bower_components/angular-ui-select2/src/select2.js') }}"></script>
+	<script type="text/javascript">
+		var themes = <?php echo $theme_json; ?>;
+		var communityIdx;
+		var themeCheckList;
+		@if (isset($offer['communityIdx']))
+		communityIdx = `{{$offer['communityIdx']}}`;
+		themeCheckList = <?php echo json_encode($themeCheckList); ?>;
+		@endif
+		var app = angular.module('offerApp', []) 
+
+		  .config(function($interpolateProvider) {
+		    // To prevent the conflict of `{{` and `}}` symbols
+		    // between Blade template engine and AngularJS templating we need
+		    // to use different symbols for AngularJS.
+
+		    $interpolateProvider.startSymbol('<%=');
+		    $interpolateProvider.endSymbol('%>');
+		  });
+
+		app.controller('offerCtrl', function($scope) {
+			$scope.themes = themes;
+			if (communityIdx) {
+				$scope.communityIdx = communityIdx;
+				$scope.themeCheckList = themeCheckList;
+			}
+		});
+	</script>
 @endsection
 
