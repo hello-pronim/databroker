@@ -98,12 +98,14 @@ class RegisterController extends Controller
         $jobTitle = $data['jobTitle2']===NULL?$data['jobTitle']:$data['jobTitle2'];
 
         $this->sendEmail("register", [
-            'from'=>'peterjackson0120@gmail.com', 
+            'from'=>'pe@jts.ec', 
             'to'=>$data['email'], 
             'subject'=>'Databroker', 
             'name'=>'Databroker',
             'userData'=>$data
         ]);   
+
+        $userStatus = 2;
 
         return User::create([
             'firstname' => $data['firstname'],
@@ -112,7 +114,7 @@ class RegisterController extends Controller
             'companyName' => $data['companyName'],
             'businessName' => $businessName,
             'jobTitle' => $jobTitle,
-            'userStatus' => 1,
+            'userStatus' => $userStatus,
             'password' => Hash::make($data['password']),
         ]);
 

@@ -12,6 +12,16 @@ use Mail;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        
+    }
     
     public function sendEmail($tplName, $params){
         $from = $params['from'];
