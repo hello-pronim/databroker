@@ -13,7 +13,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-<<<<<<< HEAD
      /**
      * Create a new controller instance.
      *
@@ -23,14 +22,7 @@ class Controller extends BaseController
     {
         
     }
-    
-=======
-    public function __construct()
-    {
-        //$this->middleware(['auth','verified']);
-    }
 
->>>>>>> origin/dev
     public function sendEmail($tplName, $params){
         $from = $params['from'];
         $to = $params['to'];
