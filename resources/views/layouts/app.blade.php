@@ -116,6 +116,7 @@
 			        </button>
   			      <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-title"><span class="fs-20 text-bold">{{ trans('home.communities') }}</span></div>
+                <input type="hidden" id="activeCommunity" value="{{ session('curCommunity')?session('curCommunity'):'' }}">
   			        <ul class="navbar-nav" id="topnav">
   			          <li class="dropdown nav-item">
     			          <a href="{{ route('data_community.geographics') }}" class="nav-link">

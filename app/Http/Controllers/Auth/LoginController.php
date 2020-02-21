@@ -81,6 +81,8 @@ class LoginController extends Controller
     public function logout(Request $request){
         Auth::logout();
 
+        session()->forget('curCommunity');
+
         return view('auth.logout_success')
             ->with('message', 'You have been successfully logged out.');
     }
