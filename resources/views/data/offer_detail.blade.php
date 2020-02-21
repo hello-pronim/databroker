@@ -73,7 +73,13 @@
 							<p class="para">Need help? You can find detailed instructions in our <a href="{{ route('help.buying_data') }}" class="link-market">{{ trans('pages.help_section') }}</a></p>
 						</div>
 						<div class="col-6">
+							@if ( $offer['status'] == 1 )	
 							<a href="{{ route('data_offer_add_product', ['id'=>$id]) }}"><button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>	<!-- goto #29 --></a>
+							@else						
+							<a class="" data-toggle="modal" data-target="#pubRecommendModal" data-id="{{ $offer['offerIdx'] }}" data-type="offer">
+								<button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>
+							</a>
+							@endif
 						</div>
 					</div>
 					<div class="product-list">
@@ -181,6 +187,31 @@
       <div class="modal-footer">        
         <button type="button" class="button primary-btn unpublish">Yes, Unpublish</button>
         <button type="button" class="button secondary-btn" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pubRecommendModal" tabindex="-1" role="dialog" aria-labelledby="pubRecommendModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="para">
+        	You need to publish the data offer first before you can actually sell the product.
+
+        	Do you want to publish the data offer?
+        </p>
+      </div>      
+      <input type="hidden" name="data_type" value="">
+      <input type="hidden" name="data_id" value="">
+      <div class="modal-footer">        
+        <button type="button" class="button primary-btn publish btn-publish data_publish" data-id="{{ $offer['offerIdx'] }}" data-type="offer">Yes, publish it!</button>
+        <a href="{{ route('data_offer_add_product', ['id'=>$id]) }}" data-window='external' data-dismiss="modal" data-target="#"><button type="button" class="button secondary-btn" data-dismiss="modal">Add product</button></a>
       </div>
     </div>
   </div>
