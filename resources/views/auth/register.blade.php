@@ -136,9 +136,10 @@
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Password']) }}</div>
                         <span class="feedback @error('password') invalid-feedback @enderror" role="alert">
                             <strong>
-                                @error('password') {{$message}}
-                                Password should be more than 8 characters and contain A~Z, a~z, 0~9 
-                                @enderror
+                                @if($errors->has('password')) {{$errors->first('password')}}
+                                @else
+                                Password should be more than 8 characters and contain A~Z, a~z, 0~9
+                                @endif
                             </strong>
                         </span>
                     </label>

@@ -18,11 +18,14 @@
                                 <input type="password" id="password" name="password" class="form-control input_data @error('password')  is-invalid @enderror" placeholder=" "  value="" autofocus>
                                 <span>{{ trans('auth.password') }}</span>
                                 <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Password']) }}</div>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <span class="feedback @error('password') invalid-feedback @enderror" role="alert">
+                                    <strong>
+                                        @if($errors->has('password')) {{$errors->first('password')}}
+                                        @else
+                                        Password should be more than 8 characters and contain A~Z, a~z, 0~9
+                                        @endif
+                                    </strong>
+                                </span>
                             </label>
 
                             <label class="pure-material-textfield-outlined">
