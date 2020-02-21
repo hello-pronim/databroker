@@ -44,9 +44,6 @@ class LoginController extends Controller
     {
         $action = "your account";
 
-        if(!session()->has('url.intended'))
-            session(['url.intended'=>url()->previous()]);
-
         return view('auth.login')->with('action', $action);
     }
     
@@ -84,8 +81,7 @@ class LoginController extends Controller
     public function logout(Request $request){
         Auth::logout();
 
-        if(session()->has('url.intended'))
-            session()->forget('url.intended');
+        session()->forget('curCommunity');
 
         return view('auth.logout_success')
             ->with('message', 'You have been successfully logged out.');

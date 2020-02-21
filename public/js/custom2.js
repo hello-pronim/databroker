@@ -75,4 +75,23 @@ $(document).ready(function() {
 
         return false;
     });
+
+    $('input[type=checkbox]').on('change', function(evt) {
+        var container = $(this).closest('.limited-check-group');
+        var limit = container.attr('max-check') || 5;
+        var checkedlist = $(container).find('input[type=checkbox]:checked');
+        if(checkedlist.length > limit) {
+            this.checked = false;
+        }
+        var resultField = $(container).find('input[type=hidden]');
+        if (resultField.length > 0) {
+            checkedlist = $(container).find('input[type=checkbox]:checked');
+            var results = [];
+            $.each(checkedlist, function(i, checkbox) {
+                let key = $(checkbox).attr('key');
+                results.push(key);
+            });
+            $(resultField).val(results.join(','));
+        }
+    });
 });

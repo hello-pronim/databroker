@@ -84,7 +84,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															{{$data->firstname}} {{$data->lastname}} from {{$data->companyName}} has just invited you to join the {{$data->companyName}} Databroker account.
+															{{$data['user']->firstname}} {{$data['user']->lastname}} from {{$data['user']->companyName}} has just invited you to join the {{$data['user']->companyName}} Databroker account.
 														</td>
 													</tr>
 													<tr>
@@ -94,7 +94,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															<a href="{{url('/register')}}">
+															<a href="{{url('/register?email='.$data['email'].'&business='.$data['user']->companyName)}}">
 																<button class="btn btn-primary">JOIN NOW</button>
 															</a>
 														</td>

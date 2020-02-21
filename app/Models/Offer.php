@@ -46,7 +46,7 @@ class Offer extends Model
     }
 
     public function theme(){
-        return $this->belongsToMany('App\Models\Region', 'App\Models\OfferTheme', 'offerIdx', 'themeIdx');
+        return $this->belongsToMany('App\Models\Theme', 'App\Models\OfferTheme', 'offerIdx', 'themeIdx');
     }
 
     protected static function filter_offer($param){
@@ -99,7 +99,9 @@ class Offer extends Model
                 $query->select( DB::raw('count(*) as product_count, offerIdx'))->groupby('offerIdx');
             }])                        
             ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
-            ->where('providers.userIdx', '=', $user_id)->get();
+            ->where('providers.userIdx', '=', $user_id)
+            ->orderby('offers.offerIdx', 'DESC')
+            ->get();
 
         return $dataproduct;
     }

@@ -35,6 +35,9 @@ body{
 .text-bold{
 	font-weight: bold;
 }
+.text-italic{
+	font-style: italic;
+}
 .text-normal{
 	font-weight: normal !important;
 }
@@ -158,6 +161,9 @@ body{
 .pl-15{
 	padding-left: 15px;
 }
+.pl-20{
+	padding-left: 20px;
+}
 .pr-15{
 	padding-right: 15px;
 }
@@ -182,6 +188,15 @@ body{
 }
 .list-style-circle{
 	list-style-type: circle;
+}
+.list-style-lower-alpha{
+	list-style-type: lower-alpha;
+}
+.list-style-lower-roman{
+	list-style-type: lower-roman;
+}
+.list-style-upper-alpha{
+	list-style-type: upper-alpha;
 }
 .list-style-disc{
 	list-style-type: disc;
@@ -1498,9 +1513,17 @@ a.dropdown-toggle:after{
     left: -1px;
     top: -10px;
 }
+.feedback{
+	display: block;
+	font-size: 12.8px;
+	font-family:"DM Sans";
+	font-weight: bold;
+	color: #020A09;
+}
 .invalid-feedback{
 	display: block;
 	font-size: 12.8px;
 	font-family:"DM Sans";
 	font-weight: bold;
+	color: #f44336!important;
 }

@@ -46,6 +46,14 @@ class ResetPasswordController extends Controller
             'password' => 'required|confirmed|min:8|string|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
         ];
     }
+
+    protected function validationErrorMessages()
+    {
+        return [
+            'password.regex'=>'Password should contain A~Z, a~z, 0~9',
+        ];
+    }
+
     protected function credentials(Request $request)
     {
         return $request->only(

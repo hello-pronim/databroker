@@ -31,7 +31,12 @@ class DataController extends Controller
     public function __construct()
     {
         parent::__construct();
+<<<<<<< HEAD
         //$this->middleware(['auth','verified']);        
+=======
+
+        //$this->middleware(['auth','verified']);
+>>>>>>> origin/dev
     }
 
     /**
@@ -74,7 +79,20 @@ class DataController extends Controller
             $current_step = 'step1';
         }
 
-        $data = array( 'regions', 'countries', 'communities', 'current_step' );
+        $themes = Theme::all();
+        $theme_map = [];
+        foreach ($themes as $theme) {
+            $idx = $theme['communityIdx'];
+            $themeIdx = $theme['themeIdx'];
+            $name = $theme['themeName'];
+            $text = $theme['themeText'];
+
+            $theme_map[$idx][] = ['id' => $themeIdx, 'name' => $name, 'text' => $text];
+        }
+        // die(json_encode($theme_map));
+        $theme_json = json_encode($theme_map);
+
+        $data = array( 'regions', 'countries', 'communities', 'current_step', 'theme_json' );
         return view('data.offers', compact($data));
     }
 
@@ -114,7 +132,7 @@ class DataController extends Controller
         }
 
         $offerId = $id;
-        $offer = Offer::with(['region'])->where('offers.offerIdx', '=', $id)->first();
+        $offer = Offer::with(['region', 'theme'])->where('offers.offerIdx', '=', $id)->first();
         
         $communityIdx = $offer['communityIdx'];
         $community = Community::find($communityIdx);
@@ -127,6 +145,12 @@ class DataController extends Controller
         foreach ($offer['region'] as $o_region) {
             $regionIdx = $o_region['regionIdx'];
             $regionCheckList[$regionIdx] = $o_region['regionName'];
+        }
+
+        $themeCheckList = [];
+        foreach ($offer['theme'] as $o_theme) {
+            $themeIdx = $o_theme['themeIdx'];
+            $themeCheckList[$themeIdx] = $o_theme['themeName'];
         }
 
         $usecase = UseCase::where('offerIdx', $offerId)->first();
@@ -148,7 +172,21 @@ class DataController extends Controller
             ->pluck('sampleFileName')
             ->toArray();
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images' );
+        $themes = Theme::all();
+        $theme_map = [];
+        foreach ($themes as $theme) {
+            $idx = $theme['communityIdx'];
+            $themeIdx = $theme['themeIdx'];
+            $name = $theme['themeName'];
+            $text = $theme['themeText'];
+
+            $theme_map[$idx][] = ['id' => $themeIdx, 'name' => $name, 'text' => $text];
+        }
+        // die(json_encode($theme_map));
+        // die(json_encode($offer));
+        $theme_json = json_encode($theme_map);
+
+        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }
@@ -225,6 +263,19 @@ class DataController extends Controller
         }else{
             $offercountry_data['regionIdx'] = $offercountry;
             OfferCountry::create($offercountry_data);
+        }
+
+        $offertheme_data = [];
+        $offertheme_data['offerIdx'] = $offerIdx;
+        $theme_list = explode(',', $request->offertheme);
+        if( count( $theme_list ) > 0 ){
+            for( $i=0; $i< count($theme_list); $i++ ){
+                $offertheme_data['themeIdx'] = $theme_list[$i];
+                OfferTheme::create($offertheme_data);
+            }            
+        }else{
+            $offertheme_data['themeIdx'] = $theme_list;
+            OfferTheme::create($offertheme_data);
         }
         
         $usercase_data = [];
@@ -303,6 +354,7 @@ class DataController extends Controller
         $offer_data['offerDescription'] = $request->offerDescription;
         $offer_data['communityIdx'] = $request->communityIdx;
         $offer_data['providerIdx'] = $providerIdx;
+        $offer_data['themes'] = $request->offertheme;
 
         $offerIdx = $id;
         $offerimagefile = $request->file('offerImage_1');
@@ -326,6 +378,20 @@ class DataController extends Controller
         }else{
             $offercountry_data['regionIdx'] = $offercountry;
             OfferCountry::create($offercountry_data);
+        }
+
+        $offertheme_data = [];
+        OfferTheme::where('offerIdx', $offerIdx)->delete();
+        $offertheme_data['offerIdx'] = $offerIdx;
+        $theme_list = explode(',', $request->offertheme);
+        if( count( $theme_list ) > 0 ){
+            for( $i=0; $i< count($theme_list); $i++ ){
+                $offertheme_data['themeIdx'] = $theme_list[$i];
+                OfferTheme::create($offertheme_data);
+            }            
+        }else{
+            $offertheme_data['themeIdx'] = $theme_list;
+            OfferTheme::create($offertheme_data);
         }
         
         $usercase_data = [];
@@ -483,6 +549,9 @@ class DataController extends Controller
     }
 
     public function category($category=""){
+
+        session(['curCommunity'=>$category]);
+
         $communities = Community::get();
         $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
@@ -504,6 +573,8 @@ class DataController extends Controller
     }
 
     public function community($community=""){         
+
+        session(['curCommunity'=>$community]);
 
         $offers = Offer::with(['region', 'provider', 'usecase'])
             ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')

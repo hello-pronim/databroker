@@ -11,7 +11,7 @@ $(document).ready(function(){
 
     var path = window.location.pathname;
     $.each( $("#topnav .nav-link"), function(key, elem){
-        if( $(elem).attr("href") == window.location.href ){
+        if( $(elem).attr("href").indexOf($('#activeCommunity').val().toLowerCase())>=0){
             $(elem).addClass('active');
         }
     });
@@ -479,6 +479,7 @@ $(document).ready(function(){
         if(flag_a==false){
             $("#inviteModal .email_lists>.error_notice").show();
         }
+        $(this).html("Inviting...");
         if(flag){            
             $.ajax({
                 type: "post",

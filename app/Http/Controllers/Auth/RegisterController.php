@@ -11,6 +11,8 @@ use Mail;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Community;
+use App\Models\Business;
+use App\Models\LinkedUser;
 
 class RegisterController extends Controller
 {
@@ -44,13 +46,15 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function showRegistrationForm()
-    {
-        if(!session()->has('url.intended')){
-            session(['url.intended'=>url()->previous()]);
-        }
-        
-        return view('auth.register');
+    public function showRegistrationForm(Request $request)
+    {        
+        $email = $request->email?$request->email:"";
+        $business = $request->business?$request->business:"";
+
+        $params['email'] = $email;
+        $params['business'] = $business;
+
+        return view('auth.register')->with($params);
     }
 
     public function register(Request $request)
@@ -78,7 +82,7 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],  
-            'term_conditions' => ['required']          
+            'term_conditions' => ['required']
         ], [
             'password.regex'=>'Password should contain A~Z, a~z, 0~9',
             'term_conditions.required'=>'Please confirm that you accept Databroker’s terms and conditions and privacy policy.'
@@ -103,9 +107,13 @@ class RegisterController extends Controller
             'subject'=>'Databroker', 
             'name'=>'Databroker',
             'userData'=>$data
-        ]);   
+        ]);    
 
-        $userStatus = 2;
+        $userStatus = 1;
+        $isCompanyExist = User::where('companyName', '=', $data['companyName'])->first();
+        if($isCompanyExist) $userStatus = 2;
+        $isLinkedUser = LinkedUser::where('linked_email', '=', $data['email'])->first();
+        if($isLinkedUser) $isLinkedUser->delete();
 
         return User::create([
             'firstname' => $data['firstname'],
@@ -144,8 +152,8 @@ class RegisterController extends Controller
         return view('auth.register_nl', compact($data));
     }  
 
-    // protected function redirectTo()
-    // {
-    //     return redirect(session('link'));
-    // }
+    protected function redirectTo()
+    {
+        return url()->previous();
+    }
 }
