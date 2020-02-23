@@ -87,7 +87,7 @@
 			                <h4 class="h4_intro text-left">In which format will the data be provided? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_data_provided_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper format">		                    
 			                    <label class="container para">File
-								  <input type="radio" checked="checked" name="format" value="File">
+								  <input type="radio" name="format" value="File">
 								  <span class="checkmark"></span>
 								</label>
 
@@ -109,7 +109,7 @@
 				        	<div class="radio-wrapper period">
 				        		<div class="mb-10">
 				        			<label class="container para">Free
-										<input type="radio" checked="checked" name="period" value="free">
+										<input type="radio" name="period" value="free">
 										<span class="checkmark"></span>
 									</label>
 									<div class="period_select">
