@@ -2088,3 +2088,8 @@ a.back-icon:active {
 .history-block .h1-small {
 	letter-spacing: 0.4px;
 }
+
+.max-h350 {
+	max-height: 350px;
+	overflow: scroll;
+}

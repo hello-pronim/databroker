@@ -2466,3 +2466,57 @@ input.input_data, select.input_data {
 .button.w225 {
     min-width: 225px;
 }
+
+.mdb-lightbox.no-margin [class*="col-"] {
+    padding: 0;
+}
+
+.mdb-lightbox [class*="col-"] {
+    padding: .5rem;
+}
+
+.mdb-lightbox figure {
+    float: left;
+    margin: 0;
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+
+figure {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
+
+.mdb-lightbox figure .img-fluid, .mdb-lightbox figure .modal-dialog.cascading-modal.modal-avatar .modal-header, .modal-dialog.cascading-modal.modal-avatar .mdb-lightbox figure .modal-header {
+    display: inline;
+}
+
+.mdb-lightbox figure img {
+    /*cursor: -webkit-zoom-in;
+    cursor: zoom-in;*/
+    border-radius: 0;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+}
+
+.img-fluid, .modal-dialog.cascading-modal.modal-avatar .modal-header, .video-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+
