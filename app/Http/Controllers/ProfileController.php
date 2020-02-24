@@ -148,8 +148,8 @@ class ProfileController extends Controller
             }
             $request->file('companyLogo_1')->move($companyLogo_path, $fileName);  
             $company['companyLogo'] = $fileName;  
-        }        
-        
+        }
+
         Provider::where('providerIdx', $request->providerIdx)->update($company);
 
         return response()->json(array( "success" => true, 'redirect' => route('account.company') ));
