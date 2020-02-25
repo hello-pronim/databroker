@@ -441,7 +441,7 @@ class DataController extends Controller
             $i++;
         }
 
-        return response()->json(array( "success" => true, 'redirect' => route('data_offer_publish_confirm', ['id'=>$offerIdx]) ));
+        return response()->json(array( "success" => true, 'redirect' => route('data_offer_update_confirm', ['id'=>$offerIdx]) ));
     }
 
     public function offer_add_product($offerIdx , Request $request) {        
@@ -605,6 +605,22 @@ class DataController extends Controller
 
         $data = array( 'offerId', 'link_to_market' ); //, 'offer_plain', 'community_plain'
         return view('data.offer_publish_confirm', compact($data));
+    }
+
+    public function offer_update_confirm($id, Request $request){
+        $offerId = $id;
+        $offer = Offer::find($id);
+        
+        $communityIdx = $offer['communityIdx'];
+        $community = Community::find($communityIdx);
+        // $offer_plain = json_encode($offer);
+        // $community_plain = json_encode($community);
+        $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
+        $link_to_market = route('data_community.'.$community_route);
+        $title = $offer['offerTitle'];
+
+        $data = array( 'offerId', 'link_to_market', 'title' ); //, 'offer_plain', 'community_plain'
+        return view('data.offer_update_confirm', compact($data));
     }
 
     public function offer_start(Request $request){
