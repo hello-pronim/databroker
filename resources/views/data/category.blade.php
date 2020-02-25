@@ -66,9 +66,9 @@
 				                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
 				                            @endforeach
 					                    </select>	                        
-					                </div>
+					                </div>	                            	
 	                            	<h5>Or {{ trans('pages.select_region') }}:</h5>
-	                            	<span class="region" region-id="all">{{ trans('pages.all_regions') }}</span>
+	                            	<!-- <span class="region" region-id="all">{{ trans('pages.all_regions') }}</span> -->
 	                            	@foreach ($regions as $region)
 					                    <span class="region" region-id="{{$region->regionIdx}}">{{$region->regionName}}</span>
 					                @endforeach					                

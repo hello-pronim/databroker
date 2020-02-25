@@ -295,7 +295,7 @@ $(document).ready(function(){
         var region2 = $("#region span.region.active").attr("region-id");
        
         region = region1==""?region2:region1;
-        if(region == "all") region = "";
+        if($("#region span.region.active").text() == "World") region = "";
         var data = {_token: crsf, community: community, theme:theme, region:region, loadmore:loadmore }
         
         $.ajax({
