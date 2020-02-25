@@ -81,7 +81,7 @@
                 <li><a href="javascript:;">{{ trans('home.buying_data') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.selling_data') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.privacy_security') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.our_gurantee') }}</a></li> 
+                <li><a href="{{ route('about.privacy_policy') }}">{{ trans('home.our_gurantee') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.file_complaint') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 
               </ul>
@@ -97,58 +97,58 @@
           <div class="app-section app-monetize-section align-items-center">
               <div class="app-monetize-section-item0"></div>
               <div class="app-monetize-section-item1">
-                  <h1 class="fs-30">Databroker is supported by our trusted partners.</h1>                               
+                  <h1 class="fs-30">We’re proud to partner with</h1>                               
               </div>
           </div>
           <div class="app-partner-items row">
-              <div class="col-md-4 col-lg-2">
-                <div class="app-partner-item">
-              <div class="img">
-                <img src="{{ asset('images/partner_1.png') }}">
-                      </div>        
-                </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
               </div>
-              <div class="col-md-4 col-lg-2">
-                <div class="app-partner-item">
-              <div class="img">
-                <img src="{{ asset('images/partner_2.png') }}">
-                      </div>        
-                </div>
-              </div>
-              <div class="col-md-4 col-lg-2">
-                <div class="app-partner-item">
-              <div class="img">
-                <img src="{{ asset('images/partner_3.png') }}">
-                      </div>        
-                </div>
-              </div>
-              <div class="col-md-4 col-lg-2">
-                <div class="app-partner-item">
-              <div class="img">
-                <img src="{{ asset('images/partner_4.png') }}">
-                      </div>        
-                </div>
-              </div>
-              <div class="col-md-4 col-lg-2">
-                <div class="app-partner-item">
-              <div class="img">
-                <img src="{{ asset('images/partner_5.png') }}">
-                      </div>        
-                </div>
-              </div>
-              <div class="col-md-4 col-lg-2">
-                <div class="app-partner-item">
-              <div class="img">
-                <img src="{{ asset('images/europense.png') }}">
-                      </div>        
-                </div>
-              </div>
-            </div>    
-            <div class="row"> 
-              <a class="m0-auto" href="{{ route('about.partners') }}">
-                <button class="btn readmore-inourblog-btn pure-material-button-outlined">{{ trans('home.viewall_partners') }}</button>  
-              </a>     
             </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
+            </div>                           
+          </div>     
+          <div class="row"> 
+            <a class="m0-auto" href="{{ route('about.partners') }}">
+              <button class="btn readmore-inourblog-btn pure-material-button-outlined">{{ trans('home.viewall_partners') }}</button>  
+            </a>     
+          </div>
         </div>
       </div>
 
