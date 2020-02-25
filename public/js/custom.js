@@ -192,9 +192,9 @@ $(document).ready(function(){
     	prev.addClass('current back');
         window.scrollTo(0, 0); 
     });
-    function isUrl(textval) {
-        var urlregex = new RegExp("^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
-        return urlregex.test(textval);
+    function isUrl(s) {
+       var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+       return regexp.test(s);
     }
     $("#add_product").submit(function(e){
         e.preventDefault();
