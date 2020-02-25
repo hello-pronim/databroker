@@ -176,9 +176,7 @@
           <div class="container">
             <div class="cookie-section">
               <div class="cookie-logo"><img src="{{asset('/images/patterns/graylogo.svg')}}"/></div>
-              <div class="mgr80">
-                <!-- <h3><span>i</span>COOKIES</h3> -->
-                <h3>A new cookie consent message will be added.</h3>
+              <div class="mgr80">                
                 <p class="para color-gray2">{{ trans('home.cookie_desc') }}</p>
               </div>
               <div class="flex-vertical">
