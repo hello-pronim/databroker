@@ -42,6 +42,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::post('/data/product/add', 'DataController@offer_submit_product')->name('data_offer_submit_product');
 		Route::get('/data/offers/{id}/product/confirmation', 'DataController@offer_product_publish_confirm')->where('id', '[0-9]+')->name('data_offer_product_publish_confirm');
 		Route::get('/data/offers/{id}/confirmation', 'DataController@offer_publish_confirm')->where('id', '[0-9]+')->name('data_offer_publish_confirm');
+		Route::get('/data/offers/{id}/confirm-update', 'DataController@offer_update_confirm')->where('id', '[0-9]+')->name('data_offer_update_confirm');
 		Route::get('/data/send_bid', 'DataController@send_bid')->name('data.send_bid');
 		
 		Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');
