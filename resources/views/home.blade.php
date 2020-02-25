@@ -37,7 +37,7 @@
 						</a>
 						<div class="card-author">
 							<p> Data provided by sigfox </p>
-							<img src="{{ asset('images/partner_4.png') }}">	
+							<img src="{{ asset('images/blogs/logo_def.jpg') }}">	
 						</div>						
 					</div>
 				</div>
@@ -159,7 +159,7 @@
                 <p class="center">
                     {{ trans('home.looking_supercharge_description')}}
                     <span class="height-space" style="display: block;"></span>
-                    <a href="/newsletter">
+                    <a href="{{ route('about.matchmaking') }}">
                         <button type="button" class="button customize-btn mgh25 w225">{{ trans('home.match_me') }}</button>
                     </a>                     
                 </p>
