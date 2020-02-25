@@ -76,12 +76,12 @@ $(document).ready(function() {
         return false;
     });
 
-    $('input[type=checkbox]').on('change', function(evt) {
-        var container = $(this).closest('.limited-check-group');
+    checkStatusChanged = (checkObj) => {
+        var container = $(checkObj).closest('.limited-check-group');
         var limit = container.attr('max-check') || 5;
         var checkedlist = $(container).find('input[type=checkbox]:checked');
         if(checkedlist.length > limit) {
-            this.checked = false;
+            checkObj.checked = false;
         }
         var resultField = $(container).find('input[type=hidden]');
         if (resultField.length > 0) {
@@ -93,5 +93,16 @@ $(document).ready(function() {
             });
             $(resultField).val(results.join(','));
         }
-    });
+    };
+
+    setupMaxLimitCheckGroup = () => {
+        console.log('setupMaxLimitCheckGroup');
+        $ele = $('.limited-check-group input[type=checkbox]');
+        $ele.on('change', function(evt) {
+            checkStatusChanged(this);
+        });
+        checkStatusChanged($ele[0]);
+    };
+    setupMaxLimitCheckGroup();
+
 });
