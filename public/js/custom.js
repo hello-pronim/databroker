@@ -192,13 +192,17 @@ $(document).ready(function(){
     	prev.addClass('current back');
         window.scrollTo(0, 0); 
     });
+    function isUrl(textval) {
+        var urlregex = new RegExp("^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
+        return urlregex.test(textval);
+    }
     $("#add_product").submit(function(e){
         e.preventDefault();
         var _this = this;
         
-        $(_this).find('.error_notice').hide();
+        $(_this).find('.error_notice').hide();               
 
-        $(_this).find("input, textarea, select").each(function(key, elem){                           
+        $(_this).find("input, textarea, select").each(function(key, elem){     
             $(_this).find('.error_notice').removeClass('active');
             if( $(elem).val() == "" ){
                 var elem_name = $(elem).attr("name").replace('[]','');
@@ -211,7 +215,9 @@ $(document).ready(function(){
                 }else{
                     $(_this).find('.error_notice.'+elem_name).show();
                 }                
-            }            
+            } else if(!isUrl($("#licenseUrl").val())){
+                $(_this).find('.error_notice.licenceUrl').show();           
+            }
         });
 
         var submit_flag = true;
