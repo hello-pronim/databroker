@@ -6,9 +6,9 @@ return [
         Home page Language Lines
     */
 
-    'publish_data_offer' => 'Publish your data offer',
+    'publish_data_offer' => 'Data to sell or share?',
     'more' => 'More',    
-    'account' => 'Account',
+    'account' => 'My account',
     'discover_our_matchmaking_service' => 'Discover our matchmaking service',
     'explore_use_cases' => 'Explore use cases',
     'help_customer_care' => 'Help & customer care',

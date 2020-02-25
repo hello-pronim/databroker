@@ -254,6 +254,36 @@ h6{
 	font-size: 12px;
 	line-height: 14px;
 }
+
+a {
+	color: #78E6D0;
+}
+a:link {
+	color: #78E6D0;
+    text-decoration: none;
+}
+
+a:visited {
+	color: #78E6D0;
+    text-decoration: none;
+}
+
+a:hover {
+	color: #78E6D0;
+    text-decoration: none;
+}
+
+a:active {
+	color: #78E6D0;
+}
+
+a.back-icon,
+a.back-icon:link,
+a.back-icon:visited,
+a.back-icon:hover,
+a.back-icon:active {
+	color: #BAC0C5;
+}
 /*General Style*/
 .sendmessage-btn{
 	border: 2px solid #06038D;
@@ -532,7 +562,7 @@ a.dropdown-toggle:after{
 	font-weight: 500;
 }
 .fixed_bg a{
-	color: #fff;
+	color: #fff;	
 }
 .fixed_bg a:hover{
 	color: #bbb !important;

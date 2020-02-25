@@ -7,7 +7,7 @@
     <div class="container">
     	<div class="app-section app-reveal-section align-items-center">
 	        <div class="app-reveal-section-notify" style="margin-bottom: 0;">
-	            <h1>Welcome to <br> databroker. </h1>
+	            <h1>Welcome to Databroker </h1>
 	            <p>{{ trans('home.one_stop_solution') }}</p>
 	        </div>
 	    </div>

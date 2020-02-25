@@ -2041,36 +2041,6 @@ body .select2-search--dropdown {
 	opacity: 0.55;
 }
 
-a {
-	color: #78E6D0;
-}
-a:link {
-	color: #78E6D0;
-    text-decoration: none;
-}
-
-a:visited {
-	color: #78E6D0;
-    text-decoration: none;
-}
-
-a:hover {
-	color: #78E6D0;
-    text-decoration: none;
-}
-
-a:active {
-	color: #78E6D0;
-}
-
-a.back-icon,
-a.back-icon:link,
-a.back-icon:visited,
-a.back-icon:hover,
-a.back-icon:active {
-	color: #BAC0C5;
-}
-
 .profile .action-button-delete .material-icons {
 	font-size: 20px;
 }

@@ -85,7 +85,8 @@
   	        		</li>
   	        	</ul>	
               @else
-                <a class="right" href="{{ route('login') }}">{{ trans('auth.login') }}</a>
+                <div class="right"><a href="{{ route('login') }}">{{ trans('auth.login') }}</a> or <a href="{{ route('register') }}">{{ trans('auth.register') }}</a>
+                </div>  
               @endif
 	        	</div>     	
         	</div>        	   	
