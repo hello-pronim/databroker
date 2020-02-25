@@ -61,34 +61,40 @@ class DataController extends Controller
         return view('data.details')->with($data);
     }
 
-    public function offers(Request $request){        
-        $regions = Region::where('regionType', 'area')->get();
-        $countries = Region::where('regionType', 'country')->get();
-        $communities = Community::all();
-
+    public function offers(Request $request){       
         $user = $this->getAuthUser();
-        $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
-        if (!$company) {
-            $current_step = 'before';
-        } else {
-            $current_step = 'step1';
+        if(!$user) {
+           return redirect('/login')->with('target', 'publish your data offer');
         }
+        else{
 
-        $themes = Theme::all();
-        $theme_map = [];
-        foreach ($themes as $theme) {
-            $idx = $theme['communityIdx'];
-            $themeIdx = $theme['themeIdx'];
-            $name = $theme['themeName'];
-            $text = $theme['themeText'];
+            $regions = Region::where('regionType', 'area')->get();
+            $countries = Region::where('regionType', 'country')->get();
+            $communities = Community::all();
+            
+            $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
+            if (!$company) {
+                $current_step = 'before';
+            } else {
+                $current_step = 'step1';
+            }
 
-            $theme_map[$idx][] = ['id' => $themeIdx, 'name' => $name, 'text' => $text];
-        }
-        // die(json_encode($theme_map));
-        $theme_json = json_encode($theme_map);
+            $themes = Theme::all();
+            $theme_map = [];
+            foreach ($themes as $theme) {
+                $idx = $theme['communityIdx'];
+                $themeIdx = $theme['themeIdx'];
+                $name = $theme['themeName'];
+                $text = $theme['themeText'];
 
-        $data = array( 'regions', 'countries', 'communities', 'current_step', 'theme_json' );
-        return view('data.offers', compact($data));
+                $theme_map[$idx][] = ['id' => $themeIdx, 'name' => $name, 'text' => $text];
+            }
+            // die(json_encode($theme_map));
+            $theme_json = json_encode($theme_map);
+
+            $data = array( 'regions', 'countries', 'communities', 'current_step', 'theme_json' );
+            return view('data.offers', compact($data));
+        }    
     }
 
     public function offers_overview(Request $request){                
@@ -99,16 +105,11 @@ class DataController extends Controller
     }
 
     public function offer_publish(Request $request){
-        $user = $this->getAuthUser();
-        if(!$user) {
-           return redirect('/login')->with('target', 'publish your data offer');
-        }
-        else{
-            $communities = Community::get();
+        
+        $communities = Community::get();
 
-            $data = array('communities');
-            return view('data.offer_publish', compact($data)); 
-        }  
+        $data = array('communities');
+        return view('data.offer_publish', compact($data)); 
     }
 
     public function offer_edit($id, Request $request)
@@ -607,25 +608,38 @@ class DataController extends Controller
     }
 
     public function offer_start(Request $request){
-        $offer = Offer::join('providers', 'offers.providerIdx', '=',  'providers.providerIdx')
-                ->where('providers.userIdx', $this->getAuthUser()->userIdx )->get()->count();
-        if( $offer > 0 ){
-            return redirect( route('data_offers') );
-        }else{            
-            $data = array();
-            return view('data.offer_publish_first', compact($data));    
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'publish your data offer');
         }
+        else{
+
+            $offer = Offer::join('providers', 'offers.providerIdx', '=',  'providers.providerIdx')
+                    ->where('providers.userIdx', $user->userIdx )->get()->count();
+            if( $offer > 0 ){
+                return redirect( route('data_offers') );
+            }else{            
+                $data = array();
+                return view('data.offer_publish_first', compact($data));    
+            }
+        }    
         
     }    
 
     public function offer_second(Request $request){
-        $offer = Offer::join('providers', 'offers.providerIdx', '=',  'providers.providerIdx')
-                ->where('providers.userIdx', $this->getAuthUser()->userIdx )->get()->count();
-        if( $offer > 0 ){
-            return redirect( route('data_offers') );
-        }else{
-            $data = array();
-            return view('data.offer_publish_second', compact($data));
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'publish your data offer');
+        }
+        else{
+            $offer = Offer::join('providers', 'offers.providerIdx', '=',  'providers.providerIdx')
+                    ->where('providers.userIdx', $user->userIdx )->get()->count();
+            if( $offer > 0 ){
+                return redirect( route('data_offers') );
+            }else{
+                $data = array();
+                return view('data.offer_publish_second', compact($data));
+            }    
         }    
     }        
 
