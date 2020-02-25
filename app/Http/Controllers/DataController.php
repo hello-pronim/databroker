@@ -94,7 +94,7 @@ class DataController extends Controller
 
             $data = array( 'regions', 'countries', 'communities', 'current_step', 'theme_json' );
             return view('data.offers', compact($data));
-        }    
+        }
     }
 
     public function offers_overview(Request $request){                
@@ -541,7 +541,12 @@ class DataController extends Controller
         }
         
         $offerid = $request->offerIdx;
-        return response()->json(array( "success" => true, 'offerid' => $offerid, 'productIdx' => $productIdx, 'redirect' => route('data_offer_product_publish_confirm', ['id'=>$offerid, 'pid'=>$productIdx]) ));
+        if ($isEditMode) {
+            return response()->json(array( "success" => true, 'offerid' => $offerid, 'productIdx' => $productIdx, 'redirect' => route('data_offer_product_update_confirm', ['id'=>$offerid, 'pid'=>$productIdx]) ));
+        } else {
+            //add product confirmation
+            return response()->json(array( "success" => true, 'offerid' => $offerid, 'productIdx' => $productIdx, 'redirect' => route('data_offer_product_publish_confirm', ['id'=>$offerid, 'pid'=>$productIdx]) ));
+        }
     }
 
     public function category($category=""){
@@ -662,6 +667,15 @@ class DataController extends Controller
     public function offer_product_publish_confirm($id, Request $request){
         $data = array('id');
         return view('data.offer_product_publish_confirm', compact($data));
+    }        
+
+    public function offer_product_update_confirm($id, $pid, Request $request){
+        $offer = Offer::find($id);
+        $product = OfferProduct::find($pid);
+        $offerTitle = $offer['offerTitle'];
+        $productTitle = $product['productTitle'];
+        $data = array('id', 'pid', 'offerTitle', 'productTitle');
+        return view('data.offer_product_update_confirm', compact($data));
     }
 
     public function data_update_status(Request $request){
