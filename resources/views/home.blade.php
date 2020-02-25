@@ -282,7 +282,7 @@
                 <p class="center">
                     {{ trans('home.sell_or_share_desc')}}
                     <span class="height-space" style="display: block;"></span>
-                    <a href="/newsletter">
+                    <a href="{{ route('data_offer_publish') }}">
                         <button type="button" class="button customize-btn mgh25 w225">{{ trans('home.lets_started') }}</button>
                     </a>                     
                 </p>                
