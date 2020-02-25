@@ -54,7 +54,7 @@
                         <div class="row">
                             <div class="col-3 info-label flex-vend">Company</div>
                             <div class="col info-text flex-vcenter">
-                                <input type="text" id="companyName" name="companyName" class="form-control" placeholder=" "  value="{{ old('companyName', $company->companyName) }}" autocomplete="companyName" autofocus>
+                                <p class="info-text mb-0">{{ $company->companyName }}</p>
                             </div>
                         </div>
                         <div class="row">                                                        

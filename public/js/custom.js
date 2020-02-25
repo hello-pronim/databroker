@@ -11,7 +11,7 @@ $(document).ready(function(){
 
     var path = window.location.pathname;
     $.each( $("#topnav .nav-link"), function(key, elem){
-        if( $(elem).attr("href").indexOf($('#activeCommunity').val().toLowerCase())>=0){
+        if( $('#activeCommunity').val() && $(elem).attr("href").indexOf($('#activeCommunity').val().toLowerCase())>=0){
             $(elem).addClass('active');
         }
     });
@@ -192,13 +192,17 @@ $(document).ready(function(){
     	prev.addClass('current back');
         window.scrollTo(0, 0); 
     });
+    function isUrl(s) {
+       var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+       return regexp.test(s);
+    }
     $("#add_product").submit(function(e){
         e.preventDefault();
         var _this = this;
         
-        $(_this).find('.error_notice').hide();
+        $(_this).find('.error_notice').hide();               
 
-        $(_this).find("input, textarea, select").each(function(key, elem){                           
+        $(_this).find("input, textarea, select").each(function(key, elem){     
             $(_this).find('.error_notice').removeClass('active');
             if( $(elem).val() == "" ){
                 var elem_name = $(elem).attr("name").replace('[]','');
@@ -211,7 +215,9 @@ $(document).ready(function(){
                 }else{
                     $(_this).find('.error_notice.'+elem_name).show();
                 }                
-            }            
+            } else if(!isUrl($("#licenseUrl").val())){
+                $(_this).find('.error_notice.licenceUrl').show();           
+            }
         });
 
         var submit_flag = true;
@@ -289,7 +295,7 @@ $(document).ready(function(){
         var region2 = $("#region span.region.active").attr("region-id");
        
         region = region1==""?region2:region1;
-        if(region == "all") region = "";
+        if($("#region span.region.active").text() == "World") region = "";
         var data = {_token: crsf, community: community, theme:theme, region:region, loadmore:loadmore }
         
         $.ajax({
@@ -338,8 +344,8 @@ $(document).ready(function(){
                     $("#offer-list .row").html(list);   
                     offercount.html( res.offers.length );
                 }else{*/
-                    $("#offer-list .row").append(list);    
-                    offercount.html( parseInt(offercount.text()) + res.offers.length );
+                    $("#offer-list .row").html(list);    
+                    offercount.html( res.offers.length );
                 //}   
 
                 var totalcount = $("input[name='totalcount']").val();

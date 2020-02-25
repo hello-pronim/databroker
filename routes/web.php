@@ -29,14 +29,14 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/wallet', 'ProfileController@wallet')->name('account.wallet');	
 		Route::post('/user/delete', 'ProfileController@delete')->name('account.delete');	
 		Route::post('/invite', 'ProfileController@invite_user')->name('account.invite_user');	
-			
-		Route::get('/data/offers', 'DataController@offers')->name('data_offers');		//should rename as publish
-		Route::get('/data/second', 'DataController@offer_second')->name('data_offer_second');
 
 		Route::get('/data/offers/overview', 'DataController@offers_overview')->name('data_offers_overview');			
 		Route::get('/data/offers/{id}', 'DataController@offer_detail')->where('id', '[0-9]+')->name('data_offer_detail');
+		Route::get('/data/offers/{id}/confirmation', 'DataController@offer_publish_confirm')->where('id', '[0-9]+')->name('data_offer_publish_confirm');
 		Route::get('/data/offers/{id}/edit', 'DataController@offer_edit')->where('id', '[0-9]+')->name('data_offer_edit');
 		Route::post('/data/offers/{id}/update', 'DataController@update_offer')->where('id', '[0-9]+')->name('data.update_offer');
+        Route::get('/data/offers/{id}/confirm-update', 'DataController@offer_update_confirm')->where('id', '[0-9]+')->name('data_offer_update_confirm');
+        		
 		Route::get('/data/offers/{id}/product/add', 'DataController@offer_add_product')->where('id', '[0-9]+')->name('data_offer_add_product');
 		Route::get('/data/offers/{id}/product/{pid}/edit', 'DataController@offer_edit_product')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data_offer_edit_product');
 		Route::post('/data/product/add', 'DataController@offer_submit_product')->name('data_offer_submit_product');
@@ -59,6 +59,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/data/send_bid/{id}/{pid}', 'DataController@send_bid')->name('data.send_bid');	
 	Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
 	Route::get('/data/start', 'DataController@offer_start')->name('data_offer_start');
+	Route::get('/data/second', 'DataController@offer_second')->name('data_offer_second');
+
+	Route::get('/data/offers', 'DataController@offers')->name('data_offers');		//should rename as publish		
 
 	Route::get('/about', 'AboutController@index')->name('about.about');  
 	Route::get('/terms_conditions', 'AboutController@terms_conditions')->name('about.terms_conditions');   

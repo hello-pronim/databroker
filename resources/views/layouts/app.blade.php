@@ -85,7 +85,8 @@
   	        		</li>
   	        	</ul>	
               @else
-                <a class="right" href="{{ route('login') }}">{{ trans('auth.login') }}</a>
+                <div class="right"><a href="{{ route('login') }}">{{ trans('auth.login') }}</a> or <a href="{{ route('register') }}">{{ trans('auth.register') }}</a>
+                </div>  
               @endif
 	        	</div>     	
         	</div>        	   	
@@ -175,9 +176,7 @@
           <div class="container">
             <div class="cookie-section">
               <div class="cookie-logo"><img src="{{asset('/images/patterns/graylogo.svg')}}"/></div>
-              <div class="mgr80">
-                <!-- <h3><span>i</span>COOKIES</h3> -->
-                <h3>A new cookie consent message will be added.</h3>
+              <div class="mgr80">                
                 <p class="para color-gray2">{{ trans('home.cookie_desc') }}</p>
               </div>
               <div class="flex-vertical">
@@ -208,8 +207,9 @@
   						</ul>
   					</div>
   					<div class="col-md-4 col-lg-3">
-  						<h5>{{ trans('home.about_databroker') }}</h5>
+  						<h5>{{ trans('home.more') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
+                <li><a href="{{ route('about.about') }}">{{ trans('home.about_databroker') }}</a></li> 
   							<li><a href="{{ route('about.partners') }}">{{ trans('home.partners') }}</a></li> 
   							<li><a href="{{ route('about.matchmaking') }}">{{ trans('home.datamatch') }}</a></li>  
   							<li><a href="{{ route('about.usecase') }}">{{ trans('home.usecase') }}</a></li> 
@@ -223,7 +223,7 @@
   						<ul class="list-unstyled" data-turbolinks="false"> 
   							<li><a href="javascript:;">{{ trans('home.buying_data') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.selling_data') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.privacy_security') }}</a></li> 
+                <li><a href="{{ route('about.privacy_policy') }}">{{ trans('home.our_gurantee') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.our_gurantee') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.file_complaint') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 
@@ -240,58 +240,58 @@
   				<div class="app-section app-monetize-section align-items-center">
 			        <div class="app-monetize-section-item0"></div>
 			        <div class="app-monetize-section-item1">
-			            <h1 class="fs-30">Databroker is supported by our trusted partners.</h1>	            			            
+			            <h1 class="fs-30">We’re proud to partner with</h1>
 			        </div>
 			    </div>
 			    <div class="app-partner-items row">
-		        	<div class="col-md-4 col-lg-2">
-		        		<div class="app-partner-item">
-							<div class="img">
-								<img src="{{ asset('images/partner_1.png') }}">
-			                </div>        
-		        		</div>
-		        	</div>
-		        	<div class="col-md-4 col-lg-2">
-		        		<div class="app-partner-item">
-							<div class="img">
-								<img src="{{ asset('images/partner_2.png') }}">
-			                </div>        
-		        		</div>
-		        	</div>
-		        	<div class="col-md-4 col-lg-2">
-		        		<div class="app-partner-item">
-							<div class="img">
-								<img src="{{ asset('images/partner_3.png') }}">
-			                </div>        
-		        		</div>
-		        	</div>
-		        	<div class="col-md-4 col-lg-2">
-		        		<div class="app-partner-item">
-							<div class="img">
-								<img src="{{ asset('images/partner_4.png') }}">
-			                </div>        
-		        		</div>
-		        	</div>
-		        	<div class="col-md-4 col-lg-2">
-		        		<div class="app-partner-item">
-							<div class="img">
-								<img src="{{ asset('images/partner_5.png') }}">
-			                </div>        
-		        		</div>
-		        	</div>
-		        	<div class="col-md-4 col-lg-2">
-		        		<div class="app-partner-item">
-							<div class="img">
-								<img src="{{ asset('images/europense.png') }}">
-			                </div>        
-		        		</div>
-		        	</div>
-		        </div>    
-		        <div class="row">	
-              <a class="m0-auto" href="{{ route('about.partners') }}">
-                <button class="button secondary-btn mgh40">{{ trans('home.viewall_partners') }}</button>  
-              </a>     
+	        	<div class="col-md-4 col-lg-2">
+	        		<div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
             </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-2">
+              <div class="app-partner-item">
+                <div class="img">
+                  <img src="{{ asset('images/blogs/logo_def.jpg') }}">
+                </div>        
+              </div>
+            </div>                           
+	        </div>    
+	        <div class="row">	
+            <a class="m0-auto" href="{{ route('about.partners') }}">
+              <button class="button secondary-btn mgh40">{{ trans('home.viewall_partners') }}</button>  
+            </a>     
+          </div>
   			</div>
   		</div>
 
@@ -309,29 +309,29 @@
 	                </div>
 	                <div class="app-footer-social-link-container">                      
                       <h4>Follow us on social media</h4>
-	                    <div class="app-footer-social-link">                          
-	                        <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
-	                          <img src="{{ asset('/images/social/facebook.png') }}">
-	                        </a>
-	                        <a href="https://www.twitter.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-	                          <img src="{{ asset('/images/social/twitter.png') }}">
-	                        </a>
-	                        <a href="https://www.pinterest.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-	                          <img src="{{ asset('/images/social/pinterest.png') }}">
-	                        </a>
-	                        <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-	                          <img src="{{ asset('/images/social/linkedin.png') }}">
-	                        </a>	 
-                          <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/social/medium.png') }}">
-                          </a>   
-                          <a href="https://www.github.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/social/github.png') }}">
-                          </a>   
-                          <a href="https://www.telegram.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                            <img src="{{ asset('/images/social/telegram.png') }}">
-                          </a>                          
-	                    </div>
+	                    <div class="app-footer-social-link">
+                        <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/facebook.png') }}">
+                        </a>
+                        <a href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/twitter.png') }}">
+                        </a>
+                        <a href="https://www.reddit.com/r/DatabrokerDAO/" rel="nofollow noopener noreferrer" target="_blank">
+                          <i class="fa fa-reddit fa-3x"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/linkedin.png') }}">
+                        </a>   
+                        <a href="https://medium.com/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/medium.png') }}">
+                        </a>   
+                        <a href="https://github.com/databrokerglobal" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/github.png') }}">
+                        </a>   
+                        <a href="https://t.me/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/telegram.png') }}">
+                        </a>                          
+                    </div>
 	                </div>	                
 	            </div>
         	</div>            

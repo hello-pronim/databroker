@@ -7,7 +7,7 @@
     <div class="container">
     	<div class="app-section app-reveal-section align-items-center">
 	        <div class="app-reveal-section-notify" style="margin-bottom: 0;">
-	            <h1>Welcome to <br> databroker. </h1>
+	            <h1>Welcome to Databroker </h1>
 	            <p>{{ trans('home.one_stop_solution') }}</p>
 	        </div>
 	    </div>
@@ -37,7 +37,7 @@
 						</a>
 						<div class="card-author">
 							<p> Data provided by sigfox </p>
-							<img src="{{ asset('images/partner_4.png') }}">	
+							<img src="{{ asset('images/blogs/logo_def.jpg') }}">	
 						</div>						
 					</div>
 				</div>
@@ -159,7 +159,7 @@
                 <p class="center">
                     {{ trans('home.looking_supercharge_description')}}
                     <span class="height-space" style="display: block;"></span>
-                    <a href="/newsletter">
+                    <a href="{{ route('about.matchmaking') }}">
                         <button type="button" class="button customize-btn mgh25 w225">{{ trans('home.match_me') }}</button>
                     </a>                     
                 </p>
@@ -229,42 +229,42 @@
         	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_1.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_2.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_3.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_4.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_5.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-4 col-lg-2 col-xl-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/europense.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
@@ -282,7 +282,7 @@
                 <p class="center">
                     {{ trans('home.sell_or_share_desc')}}
                     <span class="height-space" style="display: block;"></span>
-                    <a href="/newsletter">
+                    <a href="{{ route('data_offer_publish') }}">
                         <button type="button" class="button customize-btn mgh25 w225">{{ trans('home.lets_started') }}</button>
                     </a>                     
                 </p>                

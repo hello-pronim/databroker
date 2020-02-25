@@ -24,6 +24,7 @@ return [
     'enter_your_role'=> 'Please enter your role',
     'password' => 'Password',
     'confirm_password' => 'Confirm Password',
-    'login' => 'Login'
+    'login' => 'Sign in',
+    'register' => 'Register',
 
 ];

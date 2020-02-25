@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')       
-<div class="container-fluid app-wapper bg-pattern-side">
+<div class="container-fluid app-wapper">
     <div class="container">
         <div class="row justify-content-center mt-30 auth-section">
             <div class="col-md-8">

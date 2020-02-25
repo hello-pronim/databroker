@@ -780,6 +780,7 @@ img.app-partner-item {
 
 .app-footer-social-link-container a img {
     width: 46px;
+    vertical-align: inherit;
 }
 
 .height-space {
