@@ -72,14 +72,14 @@
               </ul>
             </div>
             <div class="col-md-4 col-lg-3">
-              <h5>{{ trans('home.about_databroker') }}</h5>
+              <h5>{{ trans('home.more') }}</h5>
               <ul class="list-unstyled" data-turbolinks="false"> 
-                <li><a href="javascript:;">{{ trans('home.partners') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.datamatch') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.partners') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.usecase') }}</a></li> 
+                <li><a href="{{ route('about.about') }}">{{ trans('home.about_databroker') }}</a></li> 
+                <li><a href="{{ route('about.partners') }}">{{ trans('home.partners') }}</a></li> 
+                <li><a href="{{ route('about.matchmaking') }}">{{ trans('home.datamatch') }}</a></li>  
+                <li><a href="{{ route('about.usecase') }}">{{ trans('home.usecase') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.updates') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.media_center') }}</a></li> 
+                <li><a href="{{ route('about.media_center') }}">{{ trans('home.media_center') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.contact_us') }}</a></li> 
               </ul>
             </div>
