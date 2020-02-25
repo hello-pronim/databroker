@@ -181,10 +181,10 @@
                         <a href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/twitter.png') }}">
                         </a>
-                        <a href="javascript:;" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://www.reddit.com/r/DatabrokerDAO/" rel="nofollow noopener noreferrer" target="_blank">
                           <i class="fa fa-reddit fa-3x"></i>
                         </a>
-                        <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/linkedin.png') }}">
                         </a>   
                         <a href="https://medium.com/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
