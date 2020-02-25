@@ -178,22 +178,22 @@
                         <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/facebook.png') }}">
                         </a>
-                        <a href="https://www.twitter.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/twitter.png') }}">
                         </a>
-                        <a href="https://www.pinterest.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
-                          <img src="{{ asset('/images/social/pinterest.png') }}">
+                        <a href="javascript:;" rel="nofollow noopener noreferrer" target="_blank">
+                          <i class="fa fa-reddit fa-3x"></i>
                         </a>
                         <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/linkedin.png') }}">
                         </a>   
-                        <a href="https://www.linkedin.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://medium.com/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/medium.png') }}">
                         </a>   
-                        <a href="https://www.github.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://github.com/databrokerglobal" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/github.png') }}">
                         </a>   
-                        <a href="https://www.telegram.com/company/databroker/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://t.me/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/telegram.png') }}">
                         </a>                          
                     </div>
