@@ -338,8 +338,8 @@ $(document).ready(function(){
                     $("#offer-list .row").html(list);   
                     offercount.html( res.offers.length );
                 }else{*/
-                    $("#offer-list .row").append(list);    
-                    offercount.html( parseInt(offercount.text()) + res.offers.length );
+                    $("#offer-list .row").html(list);    
+                    offercount.html( res.offers.length );
                 //}   
 
                 var totalcount = $("input[name='totalcount']").val();
