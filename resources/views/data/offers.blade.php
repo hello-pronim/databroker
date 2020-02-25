@@ -273,7 +273,7 @@
 		    		<div class="col col-9">
 						<div class="page-title text-primary">{{ trans('pages.data_offer_step_4') }}</div>		
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
-						<div id="Businesses_often_bec" class="description">{{ trans('pages.data_offer_step_4_description') }}</div>
+						<div id="Businesses_often_bec" class="description">{{ trans('pages.data_offer_image_upload_description1') }}</div>
 						
 					</div>
 				</div>
@@ -316,7 +316,6 @@
 						<div class=" description-header flex-vcenter">
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>							
 						</div>
-						<div class="description1">{{ trans('pages.data_offer_image_upload_description1') }}</div>
 						<div class="fileupload">                 
 							@if (isset($sample_files))
 	                         <input type="file" name="offersample_images" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2')}}"  remotefile="{{ json_encode($sample_images) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="image">
@@ -350,7 +349,7 @@
 				</div>
 		    </div>	
 		</form>
-    </div>      
+    </div>
     <div class="modal fade" id="mediaLibraryModal" tabindex="-1" role="dialog" aria-labelledby="mediaLibraryModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
