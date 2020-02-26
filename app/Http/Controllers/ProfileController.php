@@ -61,7 +61,11 @@ class ProfileController extends Controller
         $countries = Region::where('regionType', 'country')->get(); 
 
         $data = array('company', 'countries');
-        return view('account.company', compact($data));        
+        if($company){
+            return view('account.company', compact($data));     
+        }else{
+            return redirect(route('data_offer_provider'));
+        }
     }
    
     public function purchases(Request $request)

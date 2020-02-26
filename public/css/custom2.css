@@ -1919,7 +1919,7 @@ body .select2-search--dropdown {
 	padding-left: 36px;
 	padding-top: 20px;
 	padding-right: 40px;
-	padding-bottom: 40px;
+	padding-bottom: 10px;
 }
 
 .seeder-item-container {

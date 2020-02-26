@@ -1,7 +1,7 @@
 @extends('auth.auth_app')
 
 @section('content')
-<div class="container-fluid app-wapper bg-pattern-side">
+<div class="container-fluid app-wapper app-wapper-register bg-pattern-side">
     <div class="container">
         <div class="row justify-content-center auth-section">
             <div class="col-md-8" id="register_section">
@@ -138,7 +138,7 @@
                             <strong>
                                 @if($errors->has('password')) {{$errors->first('password')}}
                                 @else
-                                Password should be more than 8 characters and contain A~Z, a~z, 0~9
+                                Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.
                                 @endif
                             </strong>
                         </span>

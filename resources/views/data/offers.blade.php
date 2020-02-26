@@ -18,58 +18,8 @@
     	@else
     	<form method="post" action="{{ route('data.add_offer') }}" id="data-offer">
     	@endif
-    		@csrf    		
-    		@if ($current_step == 'before')
-    		<div id="before" class="app-section app-reveal-section align-items-center step current">
-    		@else
-	    	<div id="before" class="app-section app-reveal-section align-items-center step">
-	    	@endif
-	    		<div class="row">
-	    			<div class="col-lg-6">
-	    				<div class="blog-header">
-				            <h1>Before we start</h1>
-				            <p class="area">Please tell us a little more about your company.<br>
-							This information will be published in the marketplace along with your data offer.</p>
-				        </div>
-				        <div class="blog-content">
-				        	<label class="pure-material-textfield">Which country are you located in? </label>
-				        	<div class="adv-combo-wrapper custom-select2">
-			                    <select name="regionIdx" data-placeholder="{{ trans('pages.search_by_country') }}">
-			                    	<option></option>
-			                    	@foreach ($countries as $country)
-		                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
-		                            @endforeach
-			                    </select>
-		                        <div class="error_notice regionIdx"> This field is required</div>
-			                </div>
-		                    <label class="pure-material-textfield">{{ trans('pages.what_company_name') }}</label>
-		                    <label class="pure-material-textfield-outlined">
-		                        <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="">
-		                        <span>{{ trans('pages.enter_name') }}</span>	                        
-		                        <div class="error_notice companyName"> This field is required</div>
-		                    </label>
-		                    <label class="pure-material-textfield">{{ trans('pages.what_company_url') }}</label>
-		                    <label class="pure-material-textfield-outlined">
-		                        <input type="text" id="companyUrl" name="companyUrl" class="form-control input_data" placeholder=" "  value="">
-		                        <span>{{ trans('pages.enter_url') }}</span>	                        
-		                    </label>
-		                    <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
-		                    <div class="fileupload">	                    	
-					            <input type="file" name="companyLogo" accept='image/*'>
-					            <div class="error_notice companyLogo"> This field is required</div>
-		                    </div>
-		                    <div class="buttons text-right">						
-								<button type="button" class="customize-btn btn-next pull-right">{{ trans('pages.next') }}</button>
-							</div>
-				        </div>	
-	    			</div>
-	    		</div>	        
-		    </div>	
-    		@if ($current_step == 'step1')
+    		@csrf
 	    	<div id="step1" class="app-section app-reveal-section align-items-center step current">
-	    	@else  
-	    	<div id="step1" class="app-section app-reveal-section align-items-center step">  
-	    	@endif
 	    		<div class="row header">  	
 		    		<div class="col col-9">
 						<div class="page-title text-primary">{{ trans('pages.data_offer_step_1') }}</div>		
@@ -198,11 +148,6 @@
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
 						<div class="buttons flex-vcenter">
-							@if ($current_step == 'before')
-							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
-							@else
-							<span></span>
-							@endif
 							<button type="button" class="customize-btn btn-next">{{ trans('pages.next') }}</button>
 						</div>
 					</div>

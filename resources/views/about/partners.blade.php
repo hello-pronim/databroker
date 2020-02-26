@@ -11,12 +11,12 @@
     <div class="container">
         <div class="app-section app-reveal-section align-items-center">
             <div class="blog-header">
-                <div class="h1-small">Databroker partner network</div>
+                <h1>Databroker partner network</h1>
                 <div class="row">
                     <div class="col-lg-6 para">We are proud to work with a global network of trusted partners. Together we share the vision of transforming data into real business value, for both data buyers and sellers.</div>
                     <div class="col-lg-6 flex-end">
                         <div class="h4_intro text-right mgh30">Interested in teaming up with Databroker?</div>
-                        <button class="button customize-btn pull-right">LET’S CONNECT</button>
+                        <a href="{{route('contact')}}"><button class="button customize-btn pull-right">LET’S CONNECT</button></a>
                     </div>
                 </div>
             </div>  
@@ -24,7 +24,7 @@
             <div class="blog-content">
                 <div class="row">
                     <div class="col-lg-4 flex-vcenter mgh30">
-                        <div class="h4_intro">Technology partners</div>
+                        <h3 class="text-bold">Technology partners</h3>
                     </div>
                 </div>
                 <div id="partner-list" class="mgh30">
@@ -67,7 +67,7 @@
     </div>    
     <div class="container">
         <div class="app-section align-items-center">
-            <div class="h3">Integrators & resellers</div>
+            <h3 class="text-bold">Integrators & resellers</h3>
         </div>
         <div id="partner-list2" class="">
             <div class="row">
