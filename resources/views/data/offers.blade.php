@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid app-wapper data-offer" ng-app="offerApp" ng-cloak ng-controller="offerCtrl">
+<div class="container-fluid app-wapper data-offer" ng-app="offerApp" ng-cloak ng-controller="offerCtrl as ctrl">
 	<div class="bg-pattern1-left"></div>
     <div class="container">
     	@if (isset($offer))
@@ -163,7 +163,7 @@
 		                            @else
 		                                <option value="{{$community->communityIdx}}" tooltip-text="{{ trans('description.community_'.str_replace(' ', '_', $community->communityName)	.'_tooltip') }}">{{ $community->communityName }}</option>
 		                            @endif
-		                            @endforeach  
+		                            @endforeach
 			                         </select>
 				                </div>	                            
 	                        </div>
@@ -174,7 +174,7 @@
 							<div class="h4_intro text-left mgh25">What themes fit your data offer? (max. 3)</div>
 							<div class="row limited-check-group" max-check="3">
 								<input type="hidden" id="offertheme" name="offertheme" value="">
-                               	<div class="check_container col-xl-4"  ng-repeat="theme in themes[communityIdx]">
+                               	<div class="check_container col-xl-4"  ng-repeat="theme in themes[communityIdx]" ng-init="$last && ctrl.selectedCommunity();">
 			                        <label class="pure-material-checkbox">
 			                            <input type="checkbox" class="form-control no-block check_theme" key="<%= theme.id %>" ng-checked="themeCheckList[theme.id]">
 			                            <span ng-bind="theme.name" class="para"></span>
@@ -273,7 +273,7 @@
 		    		<div class="col col-9">
 						<div class="page-title text-primary">{{ trans('pages.data_offer_step_4') }}</div>		
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
-						<div id="Businesses_often_bec" class="description">{{ trans('pages.data_offer_step_4_description') }}</div>
+						<div id="Businesses_often_bec" class="description">{{ trans('pages.data_offer_image_upload_description1') }}</div>
 						
 					</div>
 				</div>
@@ -316,7 +316,6 @@
 						<div class=" description-header flex-vcenter">
 							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>							
 						</div>
-						<div class="description1">{{ trans('pages.data_offer_image_upload_description1') }}</div>
 						<div class="fileupload">                 
 							@if (isset($sample_files))
 	                         <input type="file" name="offersample_images" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2')}}"  remotefile="{{ json_encode($sample_images) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="image">
@@ -350,7 +349,7 @@
 				</div>
 		    </div>	
 		</form>
-    </div>      
+    </div>
     <div class="modal fade" id="mediaLibraryModal" tabindex="-1" role="dialog" aria-labelledby="mediaLibraryModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -495,6 +494,15 @@
 			if (communityIdx) {
 				$scope.communityIdx = communityIdx;
 				$scope.themeCheckList = themeCheckList;
+			}
+
+			this.selectedCommunity = function () {
+				try {
+					console.log('selectedCommunity', setupMaxLimitCheckGroup);
+					setupMaxLimitCheckGroup();
+				} catch (e) {
+					//
+				}
 			}
 		});
 	</script>
