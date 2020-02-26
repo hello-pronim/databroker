@@ -70,14 +70,8 @@
 					                        </label>
 					                    </div>
 					                @endforeach    
-				                    
-				                    <div class="check_container">
-				                        <label class="pure-material-checkbox">
-				                            <input type="checkbox" class="form-control no-block check_community" id="to_be_definded">
-				                            <span>{{ trans('pages.other') }}</span>
-				                        </label>
-				                    </div>			                    
-				                    <div class="adv-combo-wrapper custom-select2 mt-10" style="display: none;">
+
+				                    <div class="adv-combo-wrapper custom-select2 mt-10">
 					                    <select class="" name="region[]" data-placeholder="{{ trans('pages.search_by_country') }}">
 											<option></option>
 					                    	@foreach ($countries as $country)
@@ -117,7 +111,7 @@
 			                         </select>
 				                </div>	                            
 	                        </div>
-	                        <div class="error_notice communityIdx"> This field is required</div>
+	                        <div class="error_notice communityIdx"> Please select maximum 1 community</div>
 	                    </div>    
 						
 						<div class="description-header" ng-show="themes[communityIdx].length > 0">
@@ -131,6 +125,7 @@
 			                        </label>
 			                    </div>
 			            	</div>
+	                        <div class="error_notice offertheme"> Please choose maximum 3 themes</div>
 						</div>
 
 	                    <br>
