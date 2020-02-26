@@ -72,8 +72,8 @@ return [
     'data_offer_image_upload_description2' => 'Or browse our image database and pick one',
     'previous_step' => 'Previous step',
     'publish_on_marketplace' => 'PUBLISH ON MARKETPLACE',
-    'for_what_region' => 'For what region do you have this data available?',
-    'in_which_community' => 'In which community do you want to publish your data offer?',
+    'for_what_region' => 'Which region does the data cover?',
+    'in_which_community' => 'Which community should this offer be published in?',
     'or_add_country' => 'Or add country',
     'select_region' => 'Select Region',
 

@@ -136,13 +136,13 @@
 						</div>	                    
 						<div class="fileupload">
 							@if (isset($offer_path))
-						    <input type="file" name="offerImage" accept='image/*' description="{{ trans('pages.data_offer_image_upload_description2') }}" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image">
+						    <input type="file" name="offerImage" accept='image/*' description="Or <a href=''>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image">
 						    @else
-						    <input type="file" name="offerImage" accept='image/*' description="{{ trans('pages.data_offer_image_upload_description2') }}">
+						    <input type="file" name="offerImage" accept='image/*' description="Or <a href=''>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" >
 						    @endif
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
-						<div class="buttons flex-vcenter">
+						<div class="buttons text-right">
 							<button type="button" class="customize-btn btn-next">{{ trans('pages.next') }}</button>
 						</div>
 					</div>
