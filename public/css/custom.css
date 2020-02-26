@@ -1165,13 +1165,14 @@ a.dropdown-toggle:after{
     -webkit-animation: slide-left .3s ease-out;
     -moz-animation: slide-left .3s ease-out;
 }
-.data-offer #before.step.current{
+.data-offer #step1.step.current {
     display: block;
     animation: none;
     -webkit-animation: none;
     -moz-animation: none;
 }
-.data-offer .step.current.back{
+.data-offer #step1.step.current.back,
+.data-offer .step.current.back {
     display: block;
     
     -webkit-animation: slide-right .3s ease-out;
