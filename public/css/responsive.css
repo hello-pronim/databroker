@@ -313,7 +313,7 @@
 
 	.history-container {
 		display: flex;
-		min-height: 800px;
+		min-height: 1400px;
 	}
 
 	.history-container .col-history {
@@ -388,23 +388,26 @@
 
 
 	.history-connector.solid {
-		height: 628px;
+		height: 1000px;
 	}
 
 	.history-connector.dot {
-		height: 110px;
+		height: 300px;
 	}
 
 	#hn16 {
 	}
-	#hn18 {
+	#hn17 {
 		margin-top: 192px;
+	}
+	#hn18 {
+		margin-top: 250px;
 	}
 	#hn19 {
-		margin-top: 192px;
+		margin-top: 220px;
 	}
 	#hn20 {
-		margin-top: 197px;
+		margin-top: 280px;
 	}
 	.site_footer_logo_container >img{
 		width: 272px;
@@ -559,6 +562,9 @@
 	}
 
 	#hn16 {
+	}
+	#hn17 {
+		margin-top: 10px;
 	}
 	#hn18 {
 		margin-top: 10px;
