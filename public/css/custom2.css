@@ -123,6 +123,13 @@
 	color: #BAC0C5;
 }
 
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
 
 /* icons */
 .databroker-icon {
@@ -1609,7 +1616,7 @@ body .select2-search--dropdown {
 .history-container {
 	display: flex;
 	position: relative;
-	min-height: 856px;
+	min-height: 1256px;
 	width: 100%;
 	margin-top: 80px;
 	margin-bottom: 80px;
@@ -1690,20 +1697,26 @@ body .select2-search--dropdown {
 #hn16 .history-line {
 	border: 1.5px solid #06038D;
 }
-#hn18 {
+#hn17 {
 	margin-top: 140px;
 }
-#hn18 .history-line {
+#hn17 .history-line {
 	border: 1.5px solid #2643A0;
 }
-#hn19 {
+#hn18 {
 	margin-top: 182px;
 }
-#hn19 .history-line {
+#hn18 .history-line {
 	border: 1.5px solid #5097B8;
 }
-#hn20 {
+#hn19 {
 	margin-top: 172px;
+}
+#hn19 .history-line {
+	border: 1.5px solid #78E6D0;
+}
+#hn20 {
+	margin-top: 252px;
 }
 #hn20 .history-line {
 	border: 1.5px solid #78E6D0;
@@ -1775,7 +1788,7 @@ body .select2-search--dropdown {
 	/*top: 90px;	/* 63 + 30 - 3 */
 	margin-top: 30px;
 	width: 3px;
-	height: 542px;
+	height: 802px;
 	background: transparent linear-gradient(180deg, #06038D 0%, #78E6D0 100%) 0% 0% no-repeat padding-box;
 }
 

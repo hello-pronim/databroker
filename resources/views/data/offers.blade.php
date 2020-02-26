@@ -22,7 +22,7 @@
 	    	<div id="step1" class="app-section app-reveal-section align-items-center step current">
 	    		<div class="row header">  	
 		    		<div class="col col-9">
-						<div class="page-title text-primary">{{ trans('pages.data_offer_step_1') }}</div>		
+						<div class="h1-small mgh15 text-primary">{{ trans('pages.data_offer_step_1') }}</div>		
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.minmum_publishing') }}</div>
 						
 					</div>
@@ -30,17 +30,17 @@
 				<div class="row">			
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div class="section-title">{{ trans('pages.data_offer_step_1_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_offer_tooltip') }}">help</i></div>
+							<div class="h4_intro">{{ trans('pages.data_offer_step_1_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_offer_tooltip') }}">help</i></div>
 						</div>
 						<div class="text-wrapper">							
 							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{ $offer['offerTitle'] ?? ''}}</textarea>
-							<div class="error_notice offerTitle">This field is required</div>
+							<div class="error_notice offerTitle"> Please give a concise description the data you are offering.</div>
 							<div class="char-counter"><span>0</span> / <span>100</span> characters</div>
 						</div>
 						
 						<br>
 						<div class=" description-header flex-vcenter">
-							<div class="section-title">{{ trans('pages.for_what_region') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_region_tooltip') }}">help</i></div>
+							<div class="h4_intro">{{ trans('pages.for_what_region') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_region_tooltip') }}">help</i></div>
 						</div>
 						<div class="custom-dropdown-container">
 	                        <div class="custom-dropdown" tabindex="1">
@@ -70,14 +70,8 @@
 					                        </label>
 					                    </div>
 					                @endforeach    
-				                    
-				                    <div class="check_container">
-				                        <label class="pure-material-checkbox">
-				                            <input type="checkbox" class="form-control no-block check_community" id="to_be_definded">
-				                            <span>{{ trans('pages.other') }}</span>
-				                        </label>
-				                    </div>			                    
-				                    <div class="adv-combo-wrapper custom-select2 mt-10" style="display: none;">
+
+				                    <div class="adv-combo-wrapper custom-select2 mt-10">
 					                    <select class="" name="region[]" data-placeholder="{{ trans('pages.search_by_country') }}">
 											<option></option>
 					                    	@foreach ($countries as $country)
@@ -94,12 +88,12 @@
 									</div>
 	                            </ul>
 	                        </div>
-	                        <div class="error_notice offercountry"> This field is required</div>
+	                        <div class="error_notice offercountry"> Please select at least one region.</div>
 	                    </div>  
 
 	                    <br>
 	                    <div class=" description-header flex-vcenter">
-							<div id="community_title" class="section-title">{{ trans('pages.in_which_community') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="Please select maximum 1 community">help</i><br>							
+							<div id="community_title" class="h4_intro">{{ trans('pages.in_which_community') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="Please select maximum 1 community">help</i><br>							
 							</div>
 						</div>
 						<div class="dropdown-container">
@@ -117,11 +111,11 @@
 			                         </select>
 				                </div>	                            
 	                        </div>
-	                        <div class="error_notice communityIdx"> This field is required</div>
+	                        <div class="error_notice communityIdx"> Please select maximum 1 community</div>
 	                    </div>    
 						
 						<div class="description-header" ng-show="themes[communityIdx].length > 0">
-							<div class="h4_intro text-left mgh25">What themes fit your data offer? (max. 3)</div>
+							<div class="h4_intro text-left mgh25">Which of these themes best fit your data offer? </div>
 							<div class="row limited-check-group" max-check="3">
 								<input type="hidden" id="offertheme" name="offertheme" value="">
                                	<div class="check_container col-xl-4"  ng-repeat="theme in themes[communityIdx]" ng-init="$last && ctrl.selectedCommunity();">
@@ -131,23 +125,24 @@
 			                        </label>
 			                    </div>
 			            	</div>
+	                        <div class="error_notice offertheme"> Please choose maximum 3 themes</div>
 						</div>
 
 	                    <br>
 	                    <br>
 	                    <div class=" description-header flex-vcenter mb-10">
-							<div class="section-title">Please add a nice image that fits the data offer you are publishing<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>							
+							<div class="h4_intro">Please add an image that can be used to represent your data offer<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>							
 							</div>
 						</div>	                    
 						<div class="fileupload">
 							@if (isset($offer_path))
-						    <input type="file" name="offerImage" accept='image/*' description="{{ trans('pages.data_offer_image_upload_description2') }}" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image">
+						    <input type="file" name="offerImage" accept='image/*' description="Or <a href=''>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image">
 						    @else
-						    <input type="file" name="offerImage" accept='image/*' description="{{ trans('pages.data_offer_image_upload_description2') }}">
+						    <input type="file" name="offerImage" accept='image/*' description="Or <a href=''>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" >
 						    @endif
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
-						<div class="buttons flex-vcenter">
+						<div class="buttons text-right">
 							<button type="button" class="customize-btn btn-next">{{ trans('pages.next') }}</button>
 						</div>
 					</div>
@@ -160,7 +155,7 @@
 	    	<div id="step2" class="app-section app-reveal-section align-items-center step">  
 	    		<div class="row header">  	
 		    		<div class="col col-9">
-						<div class="page-title text-primary">{{ trans('pages.data_offer_step_2') }}</div>		
+						<div class="h1-small mgh15 text-primary">{{ trans('pages.data_offer_step_2') }}</div>		
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
 						
 					</div>
@@ -168,7 +163,7 @@
 				<div class="row">			
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.data_offer_step_2_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_description_tooltip') }}">help</i></div>							
+							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.data_offer_step_2_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_description_tooltip') }}">help</i></div>							
 						</div>
 						<div class="text-wrapper">
 							<textarea name="offerDescription" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{$offer['offerDescription'] ?? ''}}</textarea>
@@ -188,7 +183,7 @@
 	    	<div id="step3" class="app-section app-reveal-section align-items-center step">  
 	    		<div class="row header">
 		    		<div class="col col-9">
-						<div class="page-title text-primary">{{ trans('pages.data_offer_step_3') }}</div>		
+						<div class="h1-small mgh15 text-primary">{{ trans('pages.data_offer_step_3') }}</div>		
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
 						
 					</div>
@@ -196,7 +191,7 @@
 				<div class="row">			
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.data_offer_step_3_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_usecase_tooltip') }}">help</i></div>							
+							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.data_offer_step_3_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_usecase_tooltip') }}">help</i></div>							
 						</div>
 						<div class="text-wrapper">
 							<textarea name="useCaseContent" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{$usecase['useCaseContent'] ?? ''}}</textarea>
@@ -216,7 +211,7 @@
 	    	<div id="step4" class="app-section app-reveal-section align-items-center step">  
 	    		<div class="row header">  	
 		    		<div class="col col-9">
-						<div class="page-title text-primary">{{ trans('pages.data_offer_step_4') }}</div>		
+						<div class="h1-small mgh15 text-primary">{{ trans('pages.data_offer_step_4') }}</div>		
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
 						<div id="Businesses_often_bec" class="description">{{ trans('pages.data_offer_image_upload_description1') }}</div>
 						
@@ -225,7 +220,7 @@
 				<div class="row files-block">			
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.files') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>						
+							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.files') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>						
 						</div>
 						<div class="fileupload">                            
 							@if (isset($sample_files))
@@ -259,13 +254,13 @@
 				<div class="row images-block">			
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div id="Our_Most_Valuable_Fe_ra" class="section-title">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>							
+							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>							
 						</div>
 						<div class="fileupload">                 
 							@if (isset($sample_files))
-	                         <input type="file" name="offersample_images" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2')}}"  remotefile="{{ json_encode($sample_images) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="image">
+	                         <input type="file" name="offersample_images" accept='image/*' multiple remotefile="{{ json_encode($sample_images) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="image">
 	                        @else
-	                        <input type="file" name="offersample_images" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2') }}">
+	                        <input type="file" name="offersample_images" accept='image/*' multiple>
 	                        @endif
 	                    </div>
 						<div class="images-list">

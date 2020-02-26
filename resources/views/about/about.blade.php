@@ -68,36 +68,48 @@
                             </svg>
                             <div class="history-line"></div>
                             <div id="chb16" class="history-block ">
-                                <div class="h3 color-green">It started in 2016</div>
+                                <div class="h3 color-green">2016</div>
                                 <div class="h1-small color-blue">Creation of Databroker</div>
-                                <p class="para">The idea behind Databroker originates within SettleMint, its sister company, in late 2016. The team starts work on a proof-of-concept based on SettleMint’s low-code blockchain platform.</p>
+                                <p class="para">The idea behind Databroker originates within SettleMint, its sister company, in Belgium in late 2016. The team, led by two tech visionaries Matthew Van Niekerk and Roderik van der Veer, starts work on a proof-of-concept based on SettleMint’s low-code blockchain middleware.</p>
                             </div>
                         </div>
-                        <div id="hn18" class="history-node small right">
+                        <div id="hn17" class="history-node small right">
                             <svg class="timeline small">
                                 <ellipse fill="rgba(255,255,255,1)" stroke="#2643A0" stroke-width="5px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" rx="10" ry="10" cx="10" cy="10">
                                 </ellipse>                            
                             </svg>
                             <div class="history-line"></div>
                             <div id="chb18" class="history-block ">
-                                <div class="h3 color-green">2018</div>
-                                <div class="h1-small color-blue">V1 Protoype, DXT tokens</div>
-                                <p class="para">The first prototype of DataBroker DAO, the first global data marketplace for trading data, sees the light of day in 2018. A total of 225 million DTX tokens are created, corresponding to the expected number of sensors that will be connected to DataBroker DAO in the year 2024.</p>
+                                <div class="h3 color-green">2017</div>
+                                <div class="h1-small color-blue">Alpha release, DTX tokens</div>
+                                <p class="para">A prototype of DataBroker DAO, “the first global marketplace for trading local IoT data”, sees the light of day. Platform validation with end users in Europe, the Middle East and Asia. DTX token sale – a total of 225 million DTX tokens are created, corresponding to the expected number of sensors that will be connected to DataBroker DAO in the year 2024.</p>
                             </div>
                         </div>
-                        <div id="hn19" class="history-node small left">
+                        <div id="hn18" class="history-node small left">
                             <svg class="timeline small">
                                 <ellipse fill="rgba(255,255,255,1)" stroke="#5097B8" stroke-width="5px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" rx="10" ry="10" cx="10" cy="10">
                                 </ellipse>                            
                             </svg>
                             <div class="history-line"></div>
                             <div id="chb19" class="history-block ">
-                                <div class="h3 color-green">2019</div>
-                                <div class="h1-small color-blue">V2 Alpha release</div>
-                                <p class="para">The next release of Databroker DAO sees DTX tokens being staked to ensure the quality of data being sold, and allows potential buyers to easily search and find the sensor data they need and purchase it with DTX tokens.</p>
+                                <div class="h3 color-green">2018</div>
+                                <div class="h1-small color-blue">Beta release</div>
+                                <p class="para">The next release of Databroker DAO sees DTX tokens being staked to ensure the quality of data being sold, and allows potential buyers to easily search and find the sensor data they need and purchase it with DTX tokens. Building DataBroker DAO alliances: Ericsson 5G Life Campus, Rivetz...</p>
                             </div>
                         </div>
-                        <div id="hn20" class="history-node small right">
+                        <div id="hn19" class="history-node small right">
+                            <svg class="timeline small">
+                                <ellipse fill="rgba(255,255,255,1)" stroke="#78E6D0" stroke-width="5px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" rx="10" ry="10" cx="10" cy="10">
+                                </ellipse>                            
+                            </svg>
+                            <div class="history-line"></div>
+                            <div id="chb20" class="history-block ">
+                                <div class="h3 color-green">2019</div>
+                                <div class="h1-small color-blue">Revisioning, rebranding and retooling</div>
+                                <p class="para">In a year full of transformation, Databroker DAO is rebranded as Databroker, the scope is extended from IoT data to all kinds of data, and the whole concept is redesigned to convey the new message: Databroker is the marketplace for data. The team focuses on building the platform and onboarding new partners that share our vision.</p>
+                            </div>
+                        </div>
+                        <div id="hn20" class="history-node small left">
                             <svg class="timeline small">
                                 <ellipse fill="rgba(255,255,255,1)" stroke="#78E6D0" stroke-width="5px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" rx="10" ry="10" cx="10" cy="10">
                                 </ellipse>                            
@@ -105,8 +117,11 @@
                             <div class="history-line"></div>
                             <div id="chb20" class="history-block ">
                                 <div class="h3 color-green">2020</div>
-                                <div class="h1-small color-blue">V3 Commercial release</div>
-                                <p class="para">2020 sees the rebranding of the Databroker platform, and the first commercial version of the marketplace where data buyers and data sellers can meet each other autonomously. Ongoing focus is on onboarding of data sellers and gaining commercial traction.</p>
+                                <div class="h1-small color-blue">Commercial release</div>
+                                <p class="para">The first commercial version of the marketplace for data is launched.</p>
+                                <p class="para">Data buyers and sellers can connect via the Databroker platform and exchange data securely on a peer-to-peer basis.</p>
+                                <p class="para">For buyers who have trouble finding the data they need, our free, tailor-made DataMatch service helps identify and match potential data partners from our wide global network.</p>
+                                <p class="para">And data-rich organizations like network operators, network service enablers and smart cities can leverage our white-labeled Platform-as-a-Service (PaaS) solution to operate their own data exchange platforms for public and private data sharing.</p>
                             </div>
                         </div>
                     </div>
