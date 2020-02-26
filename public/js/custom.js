@@ -345,7 +345,7 @@ $(document).ready(function(){
                     offercount.html( res.offers.length );
                 }else{
                     $("#offer-list .row").append(list);    
-                    offercount.html( offercount.text() + res.offers.length );
+                    offercount.html( parseInt( offercount.text() ) + res.offers.length );
                 }   
 
                 var totalcount = $("input[name='totalcount']").val();
