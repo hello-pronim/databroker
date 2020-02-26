@@ -1160,20 +1160,17 @@ a.dropdown-toggle:after{
 }
 .data-offer .step.current{
     display: block;
-    
     animation: slide-left .3s ease-out;
     -webkit-animation: slide-left .3s ease-out;
     -moz-animation: slide-left .3s ease-out;
 }
-.data-offer #before.step.current{
-    display: block;
-    animation: none;
-    -webkit-animation: none;
-    -moz-animation: none;
+.data-offer .step:first-of-type{
+	animation: unset!important;
+    -webkit-animation: unset!important;
+    -moz-animation: unset!important;
 }
 .data-offer .step.current.back{
     display: block;
-    
     -webkit-animation: slide-right .3s ease-out;
     -moz-animation: slide-right .3s ease-out;
 }
