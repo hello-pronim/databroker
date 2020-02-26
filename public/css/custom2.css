@@ -123,6 +123,13 @@
 	color: #BAC0C5;
 }
 
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
 
 /* icons */
 .databroker-icon {
