@@ -207,15 +207,15 @@ class DataController extends Controller
 
         $provider_data = [];
         $companyLogo_path = public_path('uploads/company');
-                
+        
         $user = $this->getAuthUser();
         $providerIdx = -1;
         $provider_obj = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
         if (!$provider_obj) {
             $provider_data['userIdx'] = Auth::id();
             $provider_data['regionIdx'] = $request->regionIdx;
-            $provider_data['companyName'] = $request->companyName;        
-            $provider_data['companyURL'] = $request->companyUrl;        
+            $provider_data['companyName'] = $request->companyName;
+            $provider_data['companyURL'] = $request->companyUrl;
 
             $provider_obj = Provider::create($provider_data);
             $providerIdx = $provider_obj['providerIdx'];    

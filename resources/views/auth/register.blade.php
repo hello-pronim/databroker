@@ -1,7 +1,7 @@
 @extends('auth.auth_app')
 
 @section('content')
-<div class="container-fluid app-wapper bg-pattern-side">
+<div class="container-fluid app-wapper app-wapper-register bg-pattern-side">
     <div class="container">
         <div class="row justify-content-center auth-section">
             <div class="col-md-8" id="register_section">

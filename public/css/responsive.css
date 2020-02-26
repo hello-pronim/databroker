@@ -686,4 +686,7 @@
 	#register_section .register-actions{
 		flex-direction: column;
 	}
+	.app-wapper.app-wapper-register::after{
+		display: none!important;
+	}
 }
