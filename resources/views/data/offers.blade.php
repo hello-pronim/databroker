@@ -258,9 +258,9 @@
 						</div>
 						<div class="fileupload">                 
 							@if (isset($sample_files))
-	                         <input type="file" name="offersample_images" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2')}}"  remotefile="{{ json_encode($sample_images) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="image">
+	                         <input type="file" name="offersample_images" accept='image/*' multiple remotefile="{{ json_encode($sample_images) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="image">
 	                        @else
-	                        <input type="file" name="offersample_images" accept='image/*' multiple description="{{ trans('pages.data_offer_image_upload_description2') }}">
+	                        <input type="file" name="offersample_images" accept='image/*' multiple>
 	                        @endif
 	                    </div>
 						<div class="images-list">
