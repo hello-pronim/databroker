@@ -1,5 +1,12 @@
 body{
-	counter-reset: section; 
+	counter-reset: section;
+	font-family: DM Sans !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  { /*autofilled input background color*/
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 /* Colors */
 .btn-transparent{
