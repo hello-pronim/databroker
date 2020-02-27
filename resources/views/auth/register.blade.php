@@ -33,7 +33,11 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ $email ? $email : old('email') }}" readonly="$email?$true:false"autocomplete="email" autofocus>
+                        @if($email!='')
+                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" " value="{{$email}}" readonly autocomplete="email" autofocus>
+                        @else
+                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" " value="{{ old('email') }}" autocomplete="email" autofocus>
+                        @endif
                         <span>{{ trans('auth.email_address') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
                         @error('email')
@@ -44,7 +48,11 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ $business? $business : old('companyName') }}" readonly="$business?true:false"autocomplete="company" autofocus>
+                        @if($business!='')
+                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ $business }}" readonly autocomplete="company" autofocus>
+                        @else
+                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ old('companyName') }}" autocomplete="company" autofocus>
+                        @endif
                         <span>{{ trans('auth.company') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company']) }}</div>
                         @error('companyName')

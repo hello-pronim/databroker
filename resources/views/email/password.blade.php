@@ -145,18 +145,27 @@
 												<tbody>
 													<tr>
 														<td>
-															<a class="social-button facebook" href="#">
-																<img src="{{ asset('images/social/facebook.png') }}"/>
-															</a>
-															<a class="social-button twitter" href="#">
-																<img src="{{ asset('images/social/twitter.png') }}"/>
-															</a>
-															<a class="social-button pinterest" href="#">
-																<img src="{{ asset('images/social/pinterest.png') }}"/>
-															</a>
-															<a class="social-button linkedin" href="#">
-																<img src="{{ asset('images/social/linkedin.png') }}"/>
-															</a>
+															<a class="social-button facebook" href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/facebook.png') }}">
+									                        </a>
+									                        <a class="social-button facebook" href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/twitter.png') }}">
+									                        </a>
+									                        <a class="social-button facebook" href="https://www.reddit.com/r/DatabrokerDAO/" rel="nofollow noopener noreferrer" target="_blank">
+									                          <i class="fa fa-reddit fa-3x"></i>
+									                        </a>
+									                        <a class="social-button facebook" href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/linkedin.png') }}">
+									                        </a>   
+									                        <a class="social-button facebook" href="https://medium.com/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/medium.png') }}">
+									                        </a>   
+									                        <a class="social-button facebook" href="https://github.com/databrokerglobal" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/github.png') }}">
+									                        </a>   
+									                        <a class="social-button facebook" href="https://t.me/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/telegram.png') }}">
+									                        </a>                          
 														</td>
 													</tr>
 												</tbody>
