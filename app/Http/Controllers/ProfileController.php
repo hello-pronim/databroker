@@ -181,7 +181,7 @@ class ProfileController extends Controller
                     LinkedUser::create($linked);
 
                     $linkedUserData['user'] = $user;
-                    $linkedUserData['email'] = $linked['linked_email'];
+                    $linkedUserData['email'] = base64_encode($linked['linked_email']);
                     
                     $this->sendEmail("invite", [
                         'from'=>$user->email, 
