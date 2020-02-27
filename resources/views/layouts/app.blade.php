@@ -317,7 +317,8 @@
                           <img src="{{ asset('/images/social/twitter.png') }}">
                         </a>
                         <a href="https://www.reddit.com/r/DatabrokerDAO/" rel="nofollow noopener noreferrer" target="_blank">
-                          <i class="fa fa-reddit fa-3x"></i>
+                          <!-- <i class="fa fa-reddit fa-3x"></i> -->
+                          <img src="{{ asset('/images/social/reddit.png') }}">
                         </a>
                         <a href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/linkedin.png') }}">

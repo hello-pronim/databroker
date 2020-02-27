@@ -43,8 +43,8 @@
 			.color-black{color: #020A09;}
 			.text-center{text-align: center;}
 			.text-bold{font-weight: bold;}
-			.text-link{cursor: pointer;}
-			.text-link:hover{color: #06038D;}
+			.text-link{color: #78E6D0; cursor: pointer;}
+			.text-link a{color: #78E6D0; cursor: pointer;}
 			.btn{width: 100%;height: 80px;border-radius: 40px;margin: 10px 0px;text-transform: uppercase;font-size: 24px;line-height: 30px;font-weight: bold;cursor: pointer;outline: none;}
 			.btn.btn-primary{background: #FF6B6B 0% 0% no-repeat padding-box;border: none;color: white;}
 			.btn.btn-secondary{background-color: white;border: 2px solid #06038D;color: #06038D;}
@@ -123,23 +123,15 @@
 								<tbody>
 									<tr>
 										<td>
-											<table class="mb-50" width="100%" cellpadding="0" cellspacing="0" border="0">
+											<table id="socialIcons" width="100%" class="mb-50 text-center" cellpadding="0" cellspacing="0" border="0" style="background-color: #06038D">
 												<tbody>
 													<tr>
-														<td class="text-center text-bold fs-30 lh-36 py-25">
-															We'd love to hear from you!
+														<td class="pt-30">
+															<img src="{{asset('/images/logos/site_footer_logo.png')}}" style="width: 272px">
 														</td>
 													</tr>
-												</tbody>
-											</table>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<table id="socialIcons" width="100%" class="mb-50 text-center" cellpadding="0" cellspacing="0" border="0">
-												<tbody>
 													<tr>
-														<td>
+														<td class="py-30">
 															<a class="social-button facebook" href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
 									                          <img src="{{ asset('/images/social/facebook.png') }}">
 									                        </a>
@@ -147,7 +139,7 @@
 									                          <img src="{{ asset('/images/social/twitter.png') }}">
 									                        </a>
 									                        <a class="social-button facebook" href="https://www.reddit.com/r/DatabrokerDAO/" rel="nofollow noopener noreferrer" target="_blank">
-									                          <i class="fa fa-reddit fa-3x"></i>
+									                          <img src="{{ asset('/images/social/reddit.png') }}">
 									                        </a>
 									                        <a class="social-button facebook" href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
 									                          <img src="{{ asset('/images/social/linkedin.png') }}">
@@ -163,16 +155,16 @@
 									                        </a>                          
 														</td>
 													</tr>
+													<tr>
+														<td class="pb-30">
+															<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2020 Databroker. All Rights Reserved.</span>
+															<div class="text-grey d-block text-center fs-14 lh-21">
+																<span class="text-link">help@databroker.com</span> | 1(800)123-90-87
+															</div>
+														</td>
+													</tr>
 												</tbody>
 											</table>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2020 Databroker. All Rights Reserved.</span>
-											<div class="text-grey d-block text-center fs-14 lh-21">
-												<span class="text-link">help@databroker.com</span> | 1(800)123-90-87
-											</div>
 										</td>
 									</tr>
 								</tbody>
