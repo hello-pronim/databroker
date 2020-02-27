@@ -15,11 +15,11 @@
 			<div class="h1">Account info</div>
 			<div class="label companyname1">
 				<span>Account name: </span>
-                <span class="adminname">{{$user->companyName}}</span>
+                <span class="adminname">{{$admin->companyName}}</span>
 			</div>
 			<div class="label ">
     			<span>Administrator: </span>
-                <span class="adminname">{{$user->firstname}} {{$user->lastname}}</span>
+                <span class="adminname">{{$admin->firstname}} {{$admin->lastname}}</span>
 			</div>
 
             <div class="app-section profileinfo">
