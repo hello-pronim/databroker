@@ -159,10 +159,15 @@
 									</tr>
 									<tr>
 										<td>
-											<table id="socialIcons" width="100%" class="mb-50 text-center" cellpadding="0" cellspacing="0" border="0">
+											<table id="socialIcons" width="100%" class="mb-50 text-center" cellpadding="0" cellspacing="0" border="0" style="background-color: #06038D">
 												<tbody>
 													<tr>
-														<td>
+														<td class="py-25">
+															<img src="{{asset('/images/logos/site_footer_logo.png')}}">
+														</td>
+													</tr>
+													<tr>
+														<td class="py-25">
 															<a class="social-button facebook" href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
 									                          <img src="{{ asset('/images/social/facebook.png') }}">
 									                        </a>
@@ -186,16 +191,16 @@
 									                        </a>                          
 														</td>
 													</tr>
+													<tr>
+														<td class="py-25">
+															<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2020 Databroker. All Rights Reserved.</span>
+															<div class="text-grey d-block text-center fs-14 lh-21">
+																<span class="text-link">help@databroker.com</span> | 1(800)123-90-87
+															</div>
+														</td>
+													</tr>
 												</tbody>
 											</table>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2020 Databroker. All Rights Reserved.</span>
-											<div class="text-grey d-block text-center fs-14 lh-21">
-												<span class="text-link">help@databroker.com</span> | 1(800)123-90-87
-											</div>
 										</td>
 									</tr>
 								</tbody>
