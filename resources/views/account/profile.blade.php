@@ -26,9 +26,11 @@
                 <div id="profile-display-section">       
                     <div class="profile-section-header flex-vcenter-justify mb-10">                
                         <div class="sectiontitle">My profile</div>
+                        @if($user->userStatus==1)
                         <div id="edit-button" class="action-button-edit flex-center" onClick="document.getElementById('profile-edit-section').style.display = 'block';document.getElementById('profile-display-section').style.display = 'none';">
                             <i class="material-icons">edit</i> {{ trans('pages.edit') }}
                         </div>
+                        @endif
                     </div>             
                     <div class="row">
                         <div class="col-2 info-label">{{ trans('pages.name') }}:</div>
