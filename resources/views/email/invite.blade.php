@@ -26,8 +26,11 @@
 			.mb-20{margin-bottom: 20px;}
 			.mb-30{margin-bottom: 30px;}
 			.mb-50{margin-bottom: 50px;}
+			.pt-30{padding-top: 30px;}
+			.pb-30{padding-bottom: 30px;}
 			.py-10{padding-top: 10px; padding-bottom: 10px;}
 			.py-25{padding-top: 25px; padding-bottom: 25px;}
+			.py-50{padding-top: 50px; padding-bottom: 50px;}
 			.w-100{width: 100%;}
 			#container{max-width: 750px;margin: auto;padding: 30px 25px;background-color: #f8f8f8;}
 			#body >tbody >tr >td{background-color: white; padding: 30px 50px;}
@@ -162,12 +165,12 @@
 											<table id="socialIcons" width="100%" class="mb-50 text-center" cellpadding="0" cellspacing="0" border="0" style="background-color: #06038D">
 												<tbody>
 													<tr>
-														<td class="py-25">
-															<img src="{{asset('/images/logos/site_footer_logo.png')}}">
+														<td class="pt-30">
+															<img src="{{asset('/images/logos/site_footer_logo.png')}}" style="width: 272px">
 														</td>
 													</tr>
 													<tr>
-														<td class="py-25">
+														<td class="py-50">
 															<a class="social-button facebook" href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
 									                          <img src="{{ asset('/images/social/facebook.png') }}">
 									                        </a>
@@ -175,7 +178,7 @@
 									                          <img src="{{ asset('/images/social/twitter.png') }}">
 									                        </a>
 									                        <a class="social-button facebook" href="https://www.reddit.com/r/DatabrokerDAO/" rel="nofollow noopener noreferrer" target="_blank">
-									                          <i class="fa fa-reddit fa-3x"></i>
+									                          <img src="{{ asset('/images/social/reddit.png') }}">
 									                        </a>
 									                        <a class="social-button facebook" href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
 									                          <img src="{{ asset('/images/social/linkedin.png') }}">
@@ -192,7 +195,7 @@
 														</td>
 													</tr>
 													<tr>
-														<td class="py-25">
+														<td class="pb-30">
 															<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2020 Databroker. All Rights Reserved.</span>
 															<div class="text-grey d-block text-center fs-14 lh-21">
 																<span class="text-link">help@databroker.com</span> | 1(800)123-90-87
