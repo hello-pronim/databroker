@@ -50,7 +50,7 @@
 			.btn.btn-secondary{background-color: white;border: 2px solid #06038D;color: #06038D;}
 		</style>
 	</head>
-	<body>	
+	<body style="font-family: DM Sans !important;">	
 		<div id="container">
 			<table id="body" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<tbody>
@@ -178,11 +178,6 @@
 															We'd love to hear from you!
 														</td>
 													</tr>
-													<tr>
-														<td class="fs-18 lh-24 d-block text-center">
-															Help us improve by sharing your feedback in this short <a href="#" class="color-black">survey</a>.
-														</td>
-													</tr>
 												</tbody>
 											</table>
 										</td>
@@ -222,8 +217,10 @@
 									</tr>
 									<tr>
 										<td>
-											<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2019 Databroker. All Rights Reserved.</span>
-											<span class="text-grey d-block text-center fs-14 lh-21"><span class="text-link">help@databroker.com</span> | 1(800)123-90-87</span>
+											<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2020 Databroker. All Rights Reserved.</span>
+											<div class="text-grey d-block text-center fs-14 lh-21">
+												<span class="text-link">help@databroker.com</span> | 1(800)123-90-87
+											</div>
 										</td>
 									</tr>
 								</tbody>
