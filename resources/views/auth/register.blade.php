@@ -33,7 +33,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ $email ? $email : old('email') }}" autocomplete="email" autofocus>
+                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ $email ? $email : old('email') }}" readonly="$email?$true:false"autocomplete="email" autofocus>
                         <span>{{ trans('auth.email_address') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
                         @error('email')
@@ -44,7 +44,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ $business? $business : old('companyName') }}" autocomplete="company" autofocus>
+                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ $business? $business : old('companyName') }}" readonly="$business?true:false"autocomplete="company" autofocus>
                         <span>{{ trans('auth.company') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company']) }}</div>
                         @error('companyName')
@@ -122,7 +122,7 @@
                     <label class="other-role pure-material-textfield-outlined" style="display: none">
                         <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle') }}" autocomplete="jobTitle" autofocus>
                         <span>{{ trans('auth.enter_your_role') }}</span>
-                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
+                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Job title']) }}</div>
                         @error('jobTitle')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -50,7 +50,9 @@ class ProfileController extends Controller
         $invited_users = LinkedUser::where('invite_userIdx', $user->userIdx)->get();            
         $business = Business::all();
 
-        $data = array('user', 'users', 'invited_users', 'business');
+        $admin = User::where('companyName', $user->companyName)->where('userStatus', '=', 1)->get()->first(); 
+
+        $data = array('admin', 'user', 'users', 'invited_users', 'business');
         return view('account.profile', compact($data));
 
     }
@@ -181,7 +183,7 @@ class ProfileController extends Controller
                     LinkedUser::create($linked);
 
                     $linkedUserData['user'] = $user;
-                    $linkedUserData['email'] = $linked['linked_email'];
+                    $linkedUserData['email'] = base64_encode($linked['linked_email']);
                     
                     $this->sendEmail("invite", [
                         'from'=>$user->email, 

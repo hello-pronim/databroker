@@ -48,8 +48,8 @@ class RegisterController extends Controller
 
     public function showRegistrationForm(Request $request)
     {        
-        $email = $request->email?$request->email:"";
-        $business = $request->business?$request->business:"";
+        $email = $request->e?base64_decode($request->e):"";
+        $business = $request->b?base64_decode($request->b):"";
 
         $params['email'] = $email;
         $params['business'] = $business;

@@ -94,7 +94,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															<a href="{{url('/register?email='.$data['email'].'&business='.$data['user']->companyName)}}">
+															<a href="{{url('/register?e='.$data['email'].'&b='.base64_encode($data['user']->companyName))}}">
 																<button class="btn btn-primary">JOIN NOW</button>
 															</a>
 														</td>

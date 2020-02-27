@@ -19,7 +19,7 @@
     	<form method="post" action="{{ route('data.add_offer') }}" id="data-offer">
     	@endif
     		@csrf    		
-            <div id="before" class="app-section app-reveal-section align-items-center step current">
+            <div class="app-section app-reveal-section align-items-center">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="blog-header">
