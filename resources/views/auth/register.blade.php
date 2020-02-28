@@ -98,9 +98,21 @@
                             <div class="adv-combo-wrapper">
                                 <select id="jobTitle2" name="jobTitle2" placeholder="What role do you have?">
                                     <option></option>
+                                    @if(old('jobTitle2')=='Business')
+                                    <option value="Business" selected>Business</option>
+                                    @else
                                     <option value="Business">Business</option>
+                                    @endif
+                                    @if(old('jobTitle2')=='Technical')
+                                    <option value="Technical" selected>Technical</option>
+                                    @else
                                     <option value="Technical">Technical</option>
+                                    @endif
+                                    @if(old('jobTitle2')=='Other')
+                                    <option value="Other" selected>Other</option>
+                                    @else
                                     <option value="Other">Other</option>
+                                    @endif
                                  </select>
                             </div>                              
                         </div>

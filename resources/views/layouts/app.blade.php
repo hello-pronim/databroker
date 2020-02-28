@@ -367,20 +367,17 @@
                 $(".cookie-accept").animate({ opacity: 1, bottom: "0px" }); 
             else $(".cookie-accept").css('display', 'none');
 
-            $('.dropdown-container.industry-dropdown .dropdown .dropdown-menu li').click(function () {
-              console.log($(this).attr('value'));
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').text($(this).text());
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').addClass("chosen");
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
-                if($(this).attr('value')==="") $(".other-industry").css('display', 'block');
+            if($('#businessName2').val()=='Other industry') $(".other-industry").css('display', 'block'); //other industry
+            else $(".other-industry").css('display', 'none');
+            $('#businessName2').change(function () {
+                if($(this).val()=='Other industry') $(".other-industry").css('display', 'block'); //other industry
                 else $(".other-industry").css('display', 'none');
             });
-            $('.dropdown-container.role-dropdown .dropdown .dropdown-menu li').click(function () {
-              console.log($(this).attr('value'));
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').text($(this).text());
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').addClass("chosen");
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
-                if($(this).attr('value')==="") $(".other-role").css('display', 'block');
+
+            if($('#jobTitle2').val()=='Other') $(".other-role").css('display', 'block'); //other industry
+            else $(".other-role").css('display', 'none');
+            $('#jobTitle2').change(function () {
+                if($(this).val()=='Other') $(".other-role").css('display', 'block'); //other role
                 else $(".other-role").css('display', 'none');
             });
 

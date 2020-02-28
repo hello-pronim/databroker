@@ -102,7 +102,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $businessName = $data['businessName2']==='Other industry'?$data['businessName']:$data['businessName2'];
-        $jobTitle = $data['jobTitle2']===NULL?$data['jobTitle']:$data['jobTitle2'];
+        $jobTitle = $data['jobTitle2']==='Other'?$data['jobTitle']:$data['jobTitle2'];
 
         $this->sendEmail("register", [
             'from'=>'pe@jts.ec', 
@@ -131,27 +131,12 @@ class RegisterController extends Controller
 
     }
 
-    
-    public function sendEmail($tplName, $params){
-
-        $from = $params['from'];
-        $to = $params['to'];
-        $name = $params['name'];
-        $subject = $params['subject'];
-
-        Mail::send('email.'.$tplName, $params,
-            function($mail) use ($from, $to, $name, $subject){
-                // $mail->from($from, $name);
-                // $mail->to($to, $to);
-                // $mail->subject($subject);
-        });
-    }
-
     protected function register_nl()
     {
-        $communities = Community::get();                
+        $communities = Community::get();
+        $businesses = Business::get();
         
-        $data = array( 'communities' );                
+        $data = array( 'communities', 'businesses' );                
         return view('auth.register_nl', compact($data));
     }  
 
