@@ -213,11 +213,12 @@
 														<td class="pb-30">
 															<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2020 Databroker. All Rights Reserved.</span>
 															<div class="text-grey d-block text-center fs-14 lh-21">
-																<span class="text-link">help@databroker.com</span> | 1(800)123-90-87
+																<span class="text-link">hello@databroker.online</span>
 															</div>
 														</td>
 													</tr>
 												</tbody>
+											</table>
 										</td>
 									</tr>
 								</tbody>

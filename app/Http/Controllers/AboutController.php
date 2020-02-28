@@ -10,6 +10,7 @@ use App\Models\Provider;
 use App\Models\Region;
 use App\Models\Community;
 use App\Models\Offer;
+use App\Models\Business;
 use App\Models\Theme;
 use App\Models\OfferTheme;
 use App\Models\OfferSample;
@@ -289,7 +290,8 @@ class AboutController extends Controller
 
     public function contact(){
         $communities = Community::get();  
-        $data = array( 'communities' );
+        $businesses = Business::get();
+        $data = array( 'communities', 'businesses' );
         return view('about.contact', compact($data));
     }
 
@@ -316,8 +318,8 @@ class AboutController extends Controller
                         ->withInput();
             }
 
-            $businessName = $request->businessName2===NULL?$request->businessName:$request->businessName2;
-            $jobTitle = $request->jobTitle2===NULL?$request->jobTitle:$request->jobTitle2;
+            $businessName = $request->businessName2==='Other industry'?$request->businessName:$request->businessName2;
+            $jobTitle = $request->jobTitle2==='Other'?$request->jobTitle:$request->jobTitle2;
 
             $contact_data['firstname'] = $request->firstname;
             $contact_data['lastname'] = $request->lastname;

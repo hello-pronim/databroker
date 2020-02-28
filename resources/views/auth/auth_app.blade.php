@@ -240,19 +240,10 @@
                 else $(".other-industry").css('display', 'none');
             });
 
-            if($('#jobTitle2').val()=='Other') $(".other-industry").css('display', 'block'); //other industry
+            if($('#jobTitle2').val()=='Other') $(".other-role").css('display', 'block'); //other industry
             else $(".other-role").css('display', 'none');
             $('#jobTitle2').change(function () {
                 if($(this).val()=='Other') $(".other-role").css('display', 'block'); //other role
-                else $(".other-role").css('display', 'none');
-            });
-            
-            $('.dropdown-container.role-dropdown .dropdown .dropdown-menu li').click(function () {
-              console.log($(this).attr('value'));
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').text($(this).text());
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').addClass("chosen");
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
-                if($(this).attr('value')==="") $(".other-role").css('display', 'block');
                 else $(".other-role").css('display', 'none');
             });
 
