@@ -28,7 +28,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/profile/purchases', 'ProfileController@purchases')->name('account.purchases');	
 		Route::get('/wallet', 'ProfileController@wallet')->name('account.wallet');	
 		Route::post('/user/delete', 'ProfileController@delete')->name('account.delete');	
-		Route::post('/invite', 'ProfileController@invite_user')->name('account.invite_user');	
+		Route::post('/invite', 'ProfileController@invite_user')->name('account.invite_user');
 
 		Route::get('/data/offers/overview', 'DataController@offers_overview')->name('data_offers_overview');			
 		Route::get('/data/offers/{id}', 'DataController@offer_detail')->where('id', '[0-9]+')->name('data_offer_detail');

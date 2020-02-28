@@ -97,7 +97,7 @@
             <div class="col-md-12 col-lg-3 footer-newsletter">
               <h5>{{ trans('home.signupbox') }}</h5>
               <p class="text-thick-grey fs-18"> {{ trans('home.signupbox_desc') }} </p>
-              <a href="{{ route('register') }}"><button type="button" class="button customize-btn mgh25">{{ trans('home.signup') }}</button></a>
+              <a href="{{ route('auth.register_nl') }}"><button type="button" class="button customize-btn mgh25">{{ trans('home.signup') }}</button></a>
 
             </div>
           </div>
