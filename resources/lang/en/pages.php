@@ -44,6 +44,7 @@ return [
     'name' => 'Name',
     'email_address' => 'Email address',
     'job_title' => 'Job title',
+    'role' => 'Role',
     'industry' => 'Industry',
     'Password' => 'Password',
     'Active_Since' => 'Active Since',

@@ -48,11 +48,11 @@ class ProfileController extends Controller
 
         $users = User::where('companyName', $user->companyName)->where('userIdx', '<>' ,$user->userIdx)->get();        
         $invited_users = LinkedUser::where('invite_userIdx', $user->userIdx)->get();            
-        $business = Business::all();
+        $businesses = Business::get();
 
         $admin = User::where('companyName', $user->companyName)->where('userStatus', '=', 1)->get()->first(); 
 
-        $data = array('admin', 'user', 'users', 'invited_users', 'business');
+        $data = array('admin', 'user', 'users', 'invited_users', 'businesses');
         return view('account.profile', compact($data));
 
     }
@@ -82,7 +82,7 @@ class ProfileController extends Controller
         $fields = [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255']
+            'email' => ['required', 'string', 'email', 'max:255', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix']
         ];
 
         // if any of the password fields present, validate
@@ -110,7 +110,12 @@ class ProfileController extends Controller
         $user->lastname = $request->input('lastname');
         $user->email = $request->input('email');
         $user->jobTitle = $request->input('jobTitle');
-        $user->businessName = $request->input('businessName');
+        $user->businessName = $request->input('businessName2')!='Other industry'
+                                ? $request->input('businessName2')
+                                : $request->input('businessName');
+        $user->role = $request->input('role2')!='Other'
+                                ? $request->input('role2')
+                                : $request->input('role');
 
         if ($updatePassword == true)
         {
