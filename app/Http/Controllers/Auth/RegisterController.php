@@ -102,7 +102,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $businessName = $data['businessName2']==='Other industry'?$data['businessName']:$data['businessName2'];
-        $jobTitle = $data['jobTitle2']==='Other'?$data['jobTitle']:$data['jobTitle2'];
+        $role = $data['role2']==='Other'?$data['role']:$data['role2'];
 
         $this->sendEmail("register", [
             'from'=>'pe@jts.ec', 
@@ -124,7 +124,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'companyName' => $data['companyName'],
             'businessName' => $businessName,
-            'jobTitle' => $jobTitle,
+            'role' => $role,
             'userStatus' => $userStatus,
             'password' => Hash::make($data['password']),
         ]);

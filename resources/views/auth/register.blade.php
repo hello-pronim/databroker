@@ -94,21 +94,21 @@
                     </label>
 
                     <div class="dropdown-container">
-                        <div class="dropdown2 job_list" tabindex="1">                                
+                        <div class="dropdown2 role_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
-                                <select id="jobTitle2" name="jobTitle2" placeholder="What role do you have?">
+                                <select id="role2" name="role2" placeholder="What role do you have?">
                                     <option></option>
-                                    @if(old('jobTitle2')=='Business')
+                                    @if(old('role2')=='Business')
                                     <option value="Business" selected>Business</option>
                                     @else
                                     <option value="Business">Business</option>
                                     @endif
-                                    @if(old('jobTitle2')=='Technical')
+                                    @if(old('role2')=='Technical')
                                     <option value="Technical" selected>Technical</option>
                                     @else
                                     <option value="Technical">Technical</option>
                                     @endif
-                                    @if(old('jobTitle2')=='Other')
+                                    @if(old('role2')=='Other')
                                     <option value="Other" selected>Other</option>
                                     @else
                                     <option value="Other">Other</option>
@@ -119,10 +119,10 @@
                     </div>    
 
                     <label class="other-role pure-material-textfield-outlined" style="display: none">
-                        <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle') }}" autocomplete="jobTitle" autofocus>
+                        <input type="text" id="role" name="role" class="form-control input_data @error('role')  is-invalid @enderror" placeholder=" "  value="{{ old('role') }}" autocomplete="role" autofocus>
                         <span>{{ trans('auth.enter_your_role') }}</span>
-                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Job title']) }}</div>
-                        @error('jobTitle')
+                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Role']) }}</div>
+                        @error('role')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

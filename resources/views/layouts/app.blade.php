@@ -374,9 +374,9 @@
                 else $(".other-industry").css('display', 'none');
             });
 
-            if($('#jobTitle2').val()=='Other') $(".other-role").css('display', 'block'); //other industry
+            if($('#role2').val()=='Other') $(".other-role").css('display', 'block'); //other industry
             else $(".other-role").css('display', 'none');
-            $('#jobTitle2').change(function () {
+            $('#role2').change(function () {
                 if($(this).val()=='Other') $(".other-role").css('display', 'block'); //other role
                 else $(".other-role").css('display', 'none');
             });

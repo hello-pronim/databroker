@@ -18,9 +18,9 @@ $(document).ready(function() {
             width: '100%'
         });
 
-        $job_list = $('.job_list .adv-combo-wrapper select');
-        $job_list.select2({
-            placeholder: $job_list.attr('placeholder') || 'Please select',
+        $role_list = $('.role_list .adv-combo-wrapper select');
+        $role_list.select2({
+            placeholder: $role_list.attr('placeholder') || 'Please select',
             width: '100%'
         });
 

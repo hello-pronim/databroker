@@ -116,7 +116,7 @@
 												<tbody>
 													<tr>
 														<td class="fs-30 lh-36 text-bold py-25">
-															How does Databroke work?
+															How does Databroker work?
 														</td>
 													</tr>
 													<tr>

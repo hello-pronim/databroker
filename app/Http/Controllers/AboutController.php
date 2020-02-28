@@ -319,13 +319,13 @@ class AboutController extends Controller
             }
 
             $businessName = $request->businessName2==='Other industry'?$request->businessName:$request->businessName2;
-            $jobTitle = $request->jobTitle2==='Other'?$request->jobTitle:$request->jobTitle2;
+            $role = $request->role2==='Other'?$request->role:$request->role2;
 
             $contact_data['firstname'] = $request->firstname;
             $contact_data['lastname'] = $request->lastname;
             $contact_data['email'] = $request->email;        
             $contact_data['companyName'] = $request->companyName;
-            $contact_data['jobTitle'] = $jobTitle;
+            $contact_data['role'] = $role;
             $contact_data['content'] = $request->message;
             $contact_obj = Contact::create($contact_data);
             return view('about.contact_success');
