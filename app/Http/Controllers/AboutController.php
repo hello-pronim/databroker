@@ -301,7 +301,7 @@ class AboutController extends Controller
             $validator = Validator::make($request->all(),[
                 'firstname' => 'required|min:2',
                 'lastname' => 'required|min:2',
-                'email' => 'required|max:255|email',
+                'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
                 'message' => 'required|min:5|max:1000',
                 'companyName' => 'required|min:2',
                 'country' => 'required|min:2',

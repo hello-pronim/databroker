@@ -53,6 +53,7 @@ class RegisterController extends Controller
 
         $params['email'] = $email;
         $params['business'] = $business;
+        $params['businesses'] = Business::get();
 
         return view('auth.register')->with($params);
     }
@@ -80,7 +81,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
             'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],  
             'term_conditions' => ['required']
         ], [
