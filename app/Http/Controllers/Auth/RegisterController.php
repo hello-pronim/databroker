@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
-            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],  
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
             'term_conditions' => ['required']
         ], [
             'password.min'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
@@ -101,7 +101,7 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        $businessName = $data['businessName2']===NULL?$data['businessName']:$data['businessName2'];
+        $businessName = $data['businessName2']==='Other industry'?$data['businessName']:$data['businessName2'];
         $jobTitle = $data['jobTitle2']===NULL?$data['jobTitle']:$data['jobTitle2'];
 
         $this->sendEmail("register", [
