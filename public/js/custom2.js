@@ -12,6 +12,18 @@ $(document).ready(function() {
         	width: '100%',
         });
 
+        $business_list = $('.business_list .adv-combo-wrapper select');
+        $business_list.select2({
+            placeholder: $business_list.attr('placeholder') || 'Please select',
+            width: '100%'
+        });
+
+        $job_list = $('.job_list .adv-combo-wrapper select');
+        $job_list.select2({
+            placeholder: $job_list.attr('placeholder') || 'Please select',
+            width: '100%'
+        });
+
         $('select.no-search').select2({
         	 minimumResultsForSearch: -1
         });

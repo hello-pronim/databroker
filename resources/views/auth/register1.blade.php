@@ -1,11 +1,7 @@
 @extends('auth.auth_app')
 
-@section('additional_css')
-    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
-@endsection
-
 @section('content')
-<div class="container-fluid app-wapper app-wapper-register bg-pattern-side" ng-app="signupApp" ng-cloak ng-controller="signupCtrl as ctrl">
+<div class="container-fluid app-wapper app-wapper-register bg-pattern-side">
     <div class="container">
         <div class="row justify-content-center auth-section">
             <div class="col-md-8" id="register_section">
@@ -65,25 +61,44 @@
                             </span>
                         @enderror
                     </label>
-                    <div class="dropdown-container">
-                        <div class="dropdown2 business_list" tabindex="1">                                
-                            <div class="adv-combo-wrapper">
-                                <select id="businessName2" name="businessName2" placeholder="Which industry are you in?">
-                                    <option></option>
-                                @foreach ($businesses as $business)
-                                    @if(old('businessName2')==$business->businessName)
-                                    <option value="{{$business->businessName}}" selected>{{ $business->businessName }}</option>
-                                    @else
-                                    <option value="{{$business->businessName}}">{{ $business->businessName }}</option>
-                                    @endif
-                                @endforeach
-                                 </select>
-                            </div>                              
+
+                    <div class="industry-dropdown dropdown-container">
+                        <div class="dropdown" tabindex="1">
+                            <div class="select">
+                                @if(old('businessName2'))
+                                <span class="chosen">{{ old('businessName2') }}</span>
+                                @else
+                                <span>Which industry are you in?</span>
+                                @endif
+                            </div>
+                            <input type="hidden" id="businessName2" name="businessName2" value="Agriculture/Mining/Forestry">
+                            <ul class="dropdown-menu" style="display: none;">
+                                <li value="Agriculture/Mining/Forestry">Agriculture/Mining/Forestry</li>
+                                <li value="Advertising/Media/Publishing">Advertising/Media/Publishing</li>
+                                <li value="Automotive">Automotive</li>
+                                <li value="Construction/Engineering/Infrstructure">Construction/Engineering/Infrstructure</li>
+                                <li value="Chemicals">Chemicals</li>
+                                <li value="Creative">Creative</li>
+                                <li value="Education">Education</li>
+                                <li value="Energy/Utilities">Energy/Utilities</li>
+                                <li value="Financial services &amp; insurance">Financial services &amp; insurance</li>
+                                <li value="Government/Non-profit">Government/Non-profit</li>
+                                <li value="Healthcare">Healthcare</li>
+                                <li value="Hospitality/Tourism">Hospitality/Tourism</li>
+                                <li value="IT services">IT services</li>
+                                <li value="Manufacturing">Manufacturing</li>
+                                <li value="Pharmaceutical/Biotech">Pharmaceutical/Biotech</li>
+                                <li value="Retail/Consumer goods">Retail/Consumer goods</li>
+                                <li value="Telecommunications/Electronics">Telecommunications/Electronics</li>
+                                <li value="Transportation/Logistics">Transportation/Logistics</li>
+                                <li value="">Other industry</li>
+                            </ul>
                         </div>
-                    </div>    
+                        <div class="error_notice"> This field is required</div>
+                    </div>
 
                     <label class="other-industry pure-material-textfield-outlined" style="display: none">
-                        <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" " value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
+                        <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" "  value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
                         <span>{{ trans('auth.enter_your_industry') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
                         @error('businessName')
@@ -93,18 +108,24 @@
                         @enderror
                     </label>
 
-                    <div class="dropdown-container">
-                        <div class="dropdown2 job_list" tabindex="1">                                
-                            <div class="adv-combo-wrapper">
-                                <select id="jobTitle2" name="jobTitle2" placeholder="What role do you have?">
-                                    <option></option>
-                                    <option value="Business">Business</option>
-                                    <option value="Technical">Technical</option>
-                                    <option value="Other">Other</option>
-                                 </select>
-                            </div>                              
+                    <div class="role-dropdown dropdown-container">
+                        <div class="dropdown" tabindex="1">
+                            <div class="select">
+                                @if(old('jobTitle2'))
+                                <span class="chosen">{{ old('jobTitle2') }}</span>
+                                @else
+                                <span>What role do you have?</span>
+                                @endif
+                            </div>
+                            <input type="hidden" id="jobTitle2" name="jobTitle2" value="Technical">
+                            <ul class="dropdown-menu" style="display: none;">
+                                <li value="Business">Business</li>
+                                <li value="Technical">Technical</li>
+                                <li value="">Other</li>
+                            </ul>
                         </div>
-                    </div>    
+                        <div class="error_notice"> This field is required</div>
+                    </div>
 
                     <label class="other-role pure-material-textfield-outlined" style="display: none">
                         <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle') }}" autocomplete="jobTitle" autofocus>
@@ -171,7 +192,4 @@
         </div>
     </div>
 </div>
-@endsection
-@section('additional_javascript')
-    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>
 @endsection

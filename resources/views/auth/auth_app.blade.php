@@ -32,7 +32,8 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('css/v4-shims.css') }}">        
-        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">      
+        <link rel="stylesheet" href="{{ asset('css/custom2.css') }}">
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
         
     </head>
@@ -206,7 +207,8 @@
     
     @yield('additional_javascript')
 
-    <script src="{{ asset('js/app.js') }}"></script>        
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/custom2.js') }}"></script>
         
     <script type="text/javascript">
         $(function(){
@@ -231,14 +233,20 @@
                 $(this).removeClass('active');
                 $('.dropdown-container .dropdown-menu').slideUp(300);
             });
-            $('.dropdown-container.industry-dropdown .dropdown .dropdown-menu li').click(function () {
-              console.log($(this).attr('value'));
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').text($(this).text());
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').addClass("chosen");
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
-                if($(this).attr('value')==="") $(".other-industry").css('display', 'block');
+            if($('#businessName2').val()=='Other industry') $(".other-industry").css('display', 'block'); //other industry
+            else $(".other-industry").css('display', 'none');
+            $('#businessName2').change(function () {
+                if($(this).val()=='Other industry') $(".other-industry").css('display', 'block'); //other industry
                 else $(".other-industry").css('display', 'none');
             });
+
+            if($('#jobTitle2').val()=='Other') $(".other-industry").css('display', 'block'); //other industry
+            else $(".other-role").css('display', 'none');
+            $('#jobTitle2').change(function () {
+                if($(this).val()=='Other') $(".other-role").css('display', 'block'); //other role
+                else $(".other-role").css('display', 'none');
+            });
+            
             $('.dropdown-container.role-dropdown .dropdown .dropdown-menu li').click(function () {
               console.log($(this).attr('value'));
                 $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').text($(this).text());
