@@ -26,6 +26,9 @@
 
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/material.min.css') }}">
+
+        @yield('additional_css')
+
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('css/v4-shims.css') }}">        
@@ -89,7 +92,7 @@
             <div class="col-md-12 col-lg-3 footer-newsletter">
               <h5>{{ trans('home.signupbox') }}</h5>
               <p class="text-thick-grey fs-18"> {{ trans('home.signupbox_desc') }} </p>
-              <a href="{{ route('register') }}"><button type="button" class="button customize-btn mgh25 w225">{{ trans('home.signup') }}</button></a>
+              <a href="{{ route('auth.register_nl') }}"><button type="button" class="button customize-btn mgh25 w225">{{ trans('home.signup') }}</button></a>
 
             </div>
           </div>
