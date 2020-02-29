@@ -171,7 +171,7 @@
                   <div class="app-footer-social-link-container">                      
                       <h4>Follow us on social media</h4>
                       <div class="app-footer-social-link">
-                        <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://www.facebook.com/Databroker.global/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/facebook.png') }}">
                         </a>
                         <a href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">
