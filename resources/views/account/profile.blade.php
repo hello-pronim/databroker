@@ -277,9 +277,6 @@
                 @if($user->userStatus == 1)
 				<button type="button" class="button secondary-btn mt-20" data-toggle="modal" data-target="#inviteModal">{{ trans('pages.INVITE_USERS') }}</button>
                 @endif
-				<div class="description mt-10">
-					<span>{{ trans('pages.profile_description') }} </span><span style="color:rgba(120,230,208,1);">{{ trans('pages.Read_more') }}</span>
-				</div>
 			</div>
 		</div>
 	</div>
