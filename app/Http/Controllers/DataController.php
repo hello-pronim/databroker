@@ -729,19 +729,20 @@ class DataController extends Controller
                         ->withInput();
             }
 
-            $email = $request->input('email');
+            $email_from = $request->input('email');
+            $email_to = $request->input('email_to');
             $message = $request->input('message');
             $id = $request->input('id');
             $company_name = $request->input('company_name');
 
             $this->sendEmail("send_message_contact", [
-                'from'=>'cg@jts.ec', 
-                'to'=>$email, 
+                'from'=>$email_from, 
+                'to'=>$email_to, 
                 'name'=>'Databroker', 
                 'subject'=>'You’ve received a message on a data product from User',
                 'data'=>$message
             ]);
-            
+
             $data['id'] = $id;
             $data['company_name'] = $company_name;
             return view('data.send_message_success')->with($data);

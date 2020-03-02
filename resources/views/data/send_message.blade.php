@@ -46,7 +46,7 @@
                                     </label>
                                     <input type="text" id="id" name="id" class="form-control input_data" value="{{ $offer_info->offerIdx }}" hidden>
                                     <input type="text" id="company_name" name="company_name" class="form-control input_data" value="{{ $provide_info->companyName }}" hidden>
-
+                                    <input type="text" id="email_to" name="email_to" class="form-control input_data" value="{{ $provider_info->email }}" hidden>
                                     <div class="form-group row mb-0">                        
                                         <div class="col-md-6">                                
                                             <button type="submit" class="customize-btn">{{ trans('data.send_message') }}</button>
