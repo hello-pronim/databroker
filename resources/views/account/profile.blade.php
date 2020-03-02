@@ -46,6 +46,10 @@
                         <div class="col info-text">{{ $user->jobTitle }}</div>
                     </div>
                     <div class="row">
+                        <div class="col-2 info-label">{{ trans('pages.role') }}:</div>
+                        <div class="col info-text">{{ $user->role }}</div>
+                    </div>
+                    <div class="row">
                         <div class="col-2 info-label">{{ trans('pages.industry') }}:</div>
                         <div class="col info-text">{{ $user->businessName }}</div>
                     </div>
@@ -62,86 +66,148 @@
                     <br />
                     <form method="POST" action="{{ route('account.profile.update') }}">
                         @csrf
-                        <div class="row">
-                            <div class="col-3 info-label flex-vend">First name:</div>
-                            <div class="col info-text flex-vcenter">
-                                <input type="text" id="firstname" name="firstname" class="form-control" placeholder=" "  value="{{ old('firstname', $user->firstname) }}" autocomplete="firstname" autofocus>
-                            </div>
-                        </div>
-                        <div class="row">                                                        
-                            <span class="invalid-feedback firstname ml-15" role="alert">
-                                <strong></strong>
-                            </span>                            
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label flex-vend">Last name:</div>
-                            <div class="col info-text flex-vcenter">
-                                <input type="text" id="lastname" name="lastname" class="form-control" placeholder=" "  value="{{ old('lastname', $user->lastname) }}" autocomplete="lastname" autofocus>
-                            </div>
-                        </div>
-                        <div class="row">                                                        
-                            <span class="invalid-feedback lastname ml-15" role="alert">
-                                <strong></strong>
-                            </span>                            
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label flex-vend">Email address:</div>
-                            <div class="col info-text flex-vcenter">
-                                <input type="text" id="email" name="email" class="form-control" placeholder=" "  value="{{ old('email', $user->email) }}" autocomplete="email" autofocus>
-                            </div>
-                        </div>
-                        <div class="row">                                                        
-                            <span class="invalid-feedback email ml-15" role="alert">
-                                <strong></strong>
-                            </span>                            
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label flex-vend">Job title:</div>
-                            <div class="col info-text flex-vcenter">
-                                <input type="text" id="jobTitle" name="jobTitle" class="form-control" placeholder=" "  value="{{ old('jobTitle', $user->jobTitle) }}" autocomplete="jobTitle" autofocus>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label flex-vcenter">Industry:</div>
-                            <div class="col dropdown-container flex-vcenter mb-10">
-                                <div class="adv-combo-wrapper custom-select2 no-border">
-                                    <select id="businessName" name="businessName" data-placeholder="Search business name.">
+
+                        <label class="pure-material-textfield-outlined">
+                            <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname', $user->firstname) }}" autocomplete="firstname" autofocus>
+                            <span>{{ trans('auth.first_name') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'First Name']) }}</div>
+                            @error('firstname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+
+                        <label class="pure-material-textfield-outlined">
+                            <input type="text" id="lastname" name="lastname" class="form-control input_data @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ old('lastname', $user->lastname) }}" autocomplete="lastname" autofocus>
+                            <span>{{ trans('auth.last_name') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
+                            @error('lastname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+
+                        <label class="pure-material-textfield-outlined">
+                            <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" " value="{{ old('email', $user->email) }}" autocomplete="email" autofocus>
+                            <span>{{ trans('auth.email_address') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+
+                        <label class="pure-material-textfield-outlined">
+                            <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle', $user->jobTitle) }}" autocomplete="company" autofocus>
+                            <span>{{ trans('auth.jobTitle') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Job title']) }}</div>
+                            @error('jobTitle')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+
+                        <div class="dropdown-container">
+                            <div class="dropdown2 business_list" tabindex="1">                                
+                                <div class="adv-combo-wrapper">
+                                    <select id="businessName2" name="businessName2" placeholder="Which industry are you in?">
                                         <option></option>
-                                        @foreach ($business as $busi)
-                                            @if( $user->businessName == $busi->businessName )
-                                            <option value="{{$busi->businessName}}" selected>{{$busi->businessName}}</option>
-                                            @else
-                                            <option value="{{$busi->businessName}}">{{$busi->businessName}}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                    <div class="error_notice businessName"> This field is required</div>
-                                </div>    
+                                    @foreach ($businesses as $business)
+                                        @if($user->businessName==$business->businessName)
+                                        <option value="{{$business->businessName}}" selected>{{ $business->businessName }}</option>
+                                        @else
+                                        <option value="{{$business->businessName}}">{{ $business->businessName }}</option>
+                                        @endif
+                                    @endforeach
+                                     </select>
+                                </div>                              
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label flex-vend">Old password:</div>
-                            <div class="col info-text flex-vcenter">
-                                <input type="password" id="oldPassword" name="oldPassword" class="form-control" placeholder=" "  value="{{ old('oldPassword') }}" autocomplete="password" autofocus>
+                        </div>    
+
+                        <label class="other-industry pure-material-textfield-outlined" style="display: none">
+                            <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" " value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
+                            <span>{{ trans('auth.enter_your_industry') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
+                            @error('businessName')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+
+                        <div class="dropdown-container">
+                            <div class="dropdown2 role_list" tabindex="1">                                
+                                <div class="adv-combo-wrapper">
+                                    <select id="role2" name="role2" placeholder="What role do you have?">
+                                        <option></option>
+                                        @if($user->role=='Business')
+                                        <option value="Business" selected>Business</option>
+                                        @else
+                                        <option value="Business">Business</option>
+                                        @endif
+                                        @if($user->role=='Technical')
+                                        <option value="Technical" selected>Technical</option>
+                                        @else
+                                        <option value="Technical">Technical</option>
+                                        @endif
+                                        @if($user->role=='Other')
+                                        <option value="Other" selected>Other</option>
+                                        @else
+                                        <option value="Other">Other</option>
+                                        @endif
+                                     </select>
+                                </div>                              
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label flex-vend">New password:</div>
-                            <div class="col info-text flex-vcenter">
-                                <input type="password" id="password" name="password" class="form-control" placeholder=" "  value="" autofocus>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label flex-vend">Confirm password:</div>
-                            <div class="col info-text flex-vcenter">
-                                <input type="password" id="password-confirm" name="password_confirmation" class="form-control" placeholder=" "  value="" autofocus>
-                            </div>
-                        </div>
-                        <div class="row">                                                        
-                            <span class="invalid-feedback password ml-15" role="alert">
-                                <strong></strong>
-                            </span>                            
-                        </div>
+                        </div>    
+
+                        <label class="other-role pure-material-textfield-outlined" style="display: none">
+                            <input type="text" id="role" name="role" class="form-control input_data @error('role')  is-invalid @enderror" placeholder=" "  value="{{ old('role') }}" autocomplete="role" autofocus>
+                            <span>{{ trans('auth.enter_your_role') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Role']) }}</div>
+                            @error('role')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+
+                        <label class="pure-material-textfield-outlined">
+                            <input type="password" id="oldPassword" name="oldPassword" class="form-control input_data" placeholder=" "  value="{{ old('oldPassword') }}" autocomplete="password" autofocus>
+                            <span>{{ trans('auth.old_password') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Old password']) }}</div>
+                            @error('role')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+
+                        <label class="pure-material-textfield-outlined">
+                            <input type="password" id="password" name="password" class="form-control input_data" placeholder=" "  value="{{ old('password') }}" autocomplete="password" autofocus>
+                            <span>{{ trans('auth.new_password') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Password']) }}</div>
+                            @error('role')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+
+                        <label class="pure-material-textfield-outlined">
+                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control input_data" placeholder=" "  value="{{ old('password_confirmation') }}" autocomplete="password" autofocus>
+                            <span>{{ trans('auth.confirm_password') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Confirm password']) }}</div>
+                            @error('role')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+
                         <div class="row">
                             <div class="col info-text flex-vend">
                                 <button type="submit" class="customize-btn">UPDATE PROFILE</button>
@@ -211,9 +277,6 @@
                 @if($user->userStatus == 1)
 				<button type="button" class="button secondary-btn mt-20" data-toggle="modal" data-target="#inviteModal">{{ trans('pages.INVITE_USERS') }}</button>
                 @endif
-				<div class="description mt-10">
-					<span>{{ trans('pages.profile_description') }} </span><span style="color:rgba(120,230,208,1);">{{ trans('pages.Read_more') }}</span>
-				</div>
 			</div>
 		</div>
 	</div>

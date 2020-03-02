@@ -1561,13 +1561,3 @@ a.dropdown-toggle:after{
 	font-weight: bold;
 	color: #f44336!important;
 }
-#profile-edit-section .form-control{
-	background-image: none;
-	border-bottom: 2px solid #d2d2d2;
-	font-size: 16px;
-	color: rgba(0, 0, 0, 0.87);
-}
-#profile-edit-section .form-control:focus{
-	background-image: none;
-	border-bottom: 2px solid rgb(var(--pure-material-primary-rgb, 33, 150, 243));
-}

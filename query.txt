@@ -179,3 +179,6 @@ UPDATE themes SET communityIdx = 8 WHERE themeName IN ('National accounts', 'Gov
 
 UPDATE themes SET communityIdx = 9 WHERE themeName IN ('Automotive', 'Chemicals', 'Electronics', 'Food & beverage', 'Pharmaceutical', 'Retail');
  
+#2020-02-28
+ALTER TABLE `databroker_new`.`users` ADD COLUMN `role` VARCHAR(255) NULL AFTER `businessName`; 
+ALTER TABLE `databroker_new`.`contacts` CHANGE `jobTitle` `role` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL;

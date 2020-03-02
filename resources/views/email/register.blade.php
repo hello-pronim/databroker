@@ -116,7 +116,7 @@
 												<tbody>
 													<tr>
 														<td class="fs-30 lh-36 text-bold py-25">
-															How does Databroke work?
+															How does Databroker work?
 														</td>
 													</tr>
 													<tr>
@@ -186,7 +186,7 @@
 													</tr>
 													<tr>
 														<td class="py-30">
-															<a class="social-button facebook" href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
+															<a class="social-button facebook" href="https://www.facebook.com/Databroker.global/" rel="nofollow noopener noreferrer" target="_blank">
 									                          <img src="{{ asset('/images/social/facebook.png') }}">
 									                        </a>
 									                        <a class="social-button facebook" href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">

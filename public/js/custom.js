@@ -481,7 +481,7 @@ $(document).ready(function(){
         if(flag_a==false){
             $("#inviteModal .email_lists>.error_notice").show();
         }
-        $(this).html("Inviting...");
+        $(this).html("Inviting");
         if(flag){            
             $.ajax({
                 type: "post",

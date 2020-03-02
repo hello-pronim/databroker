@@ -171,7 +171,7 @@
                   <div class="app-footer-social-link-container">                      
                       <h4>Follow us on social media</h4>
                       <div class="app-footer-social-link">
-                        <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://www.facebook.com/Databroker.global/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/facebook.png') }}">
                         </a>
                         <a href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">
@@ -240,9 +240,9 @@
                 else $(".other-industry").css('display', 'none');
             });
 
-            if($('#jobTitle2').val()=='Other') $(".other-role").css('display', 'block'); //other industry
+            if($('#role2').val()=='Other') $(".other-role").css('display', 'block'); //other industry
             else $(".other-role").css('display', 'none');
-            $('#jobTitle2').change(function () {
+            $('#role2').change(function () {
                 if($(this).val()=='Other') $(".other-role").css('display', 'block'); //other role
                 else $(".other-role").css('display', 'none');
             });
