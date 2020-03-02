@@ -182,3 +182,8 @@ UPDATE themes SET communityIdx = 9 WHERE themeName IN ('Automotive', 'Chemicals'
 #2020-02-28
 ALTER TABLE `databroker_new`.`users` ADD COLUMN `role` VARCHAR(255) NULL AFTER `businessName`; 
 ALTER TABLE `databroker_new`.`contacts` CHANGE `jobTitle` `role` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL;
+
+#2020-03-02
+UPDATE `databroker_new`.`regions` SET `regionName` = 'Oceania' WHERE (`regionIdx` = '253');
+UPDATE `databroker_new`.`regions` SET `regionName` = 'North America' WHERE (`regionIdx` = '248');
+INSERT INTO `databroker_new`.`regions` (`regionName`, `regionType`) VALUES ('South America', 'area');
