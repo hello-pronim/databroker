@@ -232,7 +232,7 @@
   					<div class="col-md-12 col-lg-3 footer-newsletter">
   						<h5>{{ trans('home.signupbox') }}</h5>
               <p class="text-thick-grey fs-18"> {{ trans('home.signupbox_desc') }} </p>
-              <a href="{{ route('register') }}"><button type="button" class="button customize-btn mgh25">{{ trans('home.signup') }}</button></a>
+              <a href="{{ route('auth.register_nl') }}"><button type="button" class="button customize-btn mgh25">{{ trans('home.signup') }}</button></a>
 
   					</div>
   				</div>
@@ -310,14 +310,15 @@
 	                <div class="app-footer-social-link-container">                      
                       <h4>Follow us on social media</h4>
 	                    <div class="app-footer-social-link">
-                        <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://www.facebook.com/Databroker.global/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/facebook.png') }}">
                         </a>
                         <a href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/twitter.png') }}">
                         </a>
                         <a href="https://www.reddit.com/r/DatabrokerDAO/" rel="nofollow noopener noreferrer" target="_blank">
-                          <i class="fa fa-reddit fa-3x"></i>
+                          <!-- <i class="fa fa-reddit fa-3x"></i> -->
+                          <img src="{{ asset('/images/social/reddit.png') }}">
                         </a>
                         <a href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/linkedin.png') }}">
@@ -366,20 +367,17 @@
                 $(".cookie-accept").animate({ opacity: 1, bottom: "0px" }); 
             else $(".cookie-accept").css('display', 'none');
 
-            $('.dropdown-container.industry-dropdown .dropdown .dropdown-menu li').click(function () {
-              console.log($(this).attr('value'));
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').text($(this).text());
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').addClass("chosen");
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
-                if($(this).attr('value')==="") $(".other-industry").css('display', 'block');
+            if($('#businessName2').val()=='Other industry') $(".other-industry").css('display', 'block'); //other industry
+            else $(".other-industry").css('display', 'none');
+            $('#businessName2').change(function () {
+                if($(this).val()=='Other industry') $(".other-industry").css('display', 'block'); //other industry
                 else $(".other-industry").css('display', 'none');
             });
-            $('.dropdown-container.role-dropdown .dropdown .dropdown-menu li').click(function () {
-              console.log($(this).attr('value'));
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').text($(this).text());
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').addClass("chosen");
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
-                if($(this).attr('value')==="") $(".other-role").css('display', 'block');
+
+            if($('#role2').val()=='Other') $(".other-role").css('display', 'block'); //other industry
+            else $(".other-role").css('display', 'none');
+            $('#role2').change(function () {
+                if($(this).val()=='Other') $(".other-role").css('display', 'block'); //other role
                 else $(".other-role").css('display', 'none');
             });
 

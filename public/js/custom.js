@@ -95,10 +95,6 @@ $(document).ready(function(){
     	$(this).parent().find(">ul").toggle();
     });
 
-    $("#to_be_definded").on("click", function(){
-    	$(".custom-dropdown .custom-select2").toggle();
-    });
-
     $(".custom-dropdown .custom-dropdown-menu button").click(function(){
         
     	var select_box = $(this).parent().parent();
@@ -123,7 +119,7 @@ $(document).ready(function(){
     		}
     		
     	});
-        if(select_box.find(".custom-select2 select").val() && $("#to_be_definded").is(":checked") ){
+        if(select_box.find(".custom-select2 select").val()){
             regionIdx.push(select_box.find(".custom-select2 select").val());    
             region.push(select_box.find(".custom-select2 select").find("option:checked").text());
         }        
@@ -485,7 +481,7 @@ $(document).ready(function(){
         if(flag_a==false){
             $("#inviteModal .email_lists>.error_notice").show();
         }
-        $(this).html("Inviting...");
+        $(this).html("Inviting");
         if(flag){            
             $.ajax({
                 type: "post",

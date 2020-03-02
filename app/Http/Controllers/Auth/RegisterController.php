@@ -48,11 +48,12 @@ class RegisterController extends Controller
 
     public function showRegistrationForm(Request $request)
     {        
-        $email = $request->email?$request->email:"";
-        $business = $request->business?$request->business:"";
+        $email = $request->e?base64_decode($request->e):"";
+        $business = $request->b?base64_decode($request->b):"";
 
         $params['email'] = $email;
         $params['business'] = $business;
+        $params['businesses'] = Business::get();
 
         return view('auth.register')->with($params);
     }
@@ -80,11 +81,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],  
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
             'term_conditions' => ['required']
         ], [
-            'password.regex'=>'Password should contain A~Z, a~z, 0~9',
+            'password.min'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
+            'password.required'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
+            'password.regex'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
             'term_conditions.required'=>'Please confirm that you accept Databroker’s terms and conditions and privacy policy.'
         ]);
     }
@@ -98,8 +101,8 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        $businessName = $data['businessName2']===NULL?$data['businessName']:$data['businessName2'];
-        $jobTitle = $data['jobTitle2']===NULL?$data['jobTitle']:$data['jobTitle2'];
+        $businessName = $data['businessName2']==='Other industry'?$data['businessName']:$data['businessName2'];
+        $role = $data['role2']==='Other'?$data['role']:$data['role2'];
 
         $this->sendEmail("register", [
             'from'=>'pe@jts.ec', 
@@ -121,34 +124,19 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'companyName' => $data['companyName'],
             'businessName' => $businessName,
-            'jobTitle' => $jobTitle,
+            'role' => $role,
             'userStatus' => $userStatus,
             'password' => Hash::make($data['password']),
         ]);
 
     }
 
-    
-    public function sendEmail($tplName, $params){
-
-        $from = $params['from'];
-        $to = $params['to'];
-        $name = $params['name'];
-        $subject = $params['subject'];
-
-        Mail::send('email.'.$tplName, $params,
-            function($mail) use ($from, $to, $name, $subject){
-                // $mail->from($from, $name);
-                // $mail->to($to, $to);
-                // $mail->subject($subject);
-        });
-    }
-
     protected function register_nl()
     {
-        $communities = Community::get();                
+        $communities = Community::get();
+        $businesses = Business::get();
         
-        $data = array( 'communities' );                
+        $data = array( 'communities', 'businesses' );                
         return view('auth.register_nl', compact($data));
     }  
 

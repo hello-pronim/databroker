@@ -26,8 +26,12 @@
 			.mb-20{margin-bottom: 20px;}
 			.mb-30{margin-bottom: 30px;}
 			.mb-50{margin-bottom: 50px;}
+			.pt-30{padding-top: 30px;}
+			.pb-30{padding-bottom: 30px;}
 			.py-10{padding-top: 10px; padding-bottom: 10px;}
 			.py-25{padding-top: 25px; padding-bottom: 25px;}
+			.py-30{padding-top: 30px; padding-bottom: 30px;}
+			.py-50{padding-top: 50px; padding-bottom: 50px;}
 			.w-100{width: 100%;}
 			#container{max-width: 750px;margin: auto;padding: 30px 25px;background-color: #f8f8f8;}
 			#body >tbody >tr >td{background-color: white; padding: 30px 50px;}
@@ -43,14 +47,14 @@
 			.color-black{color: #020A09;}
 			.text-center{text-align: center;}
 			.text-bold{font-weight: bold;}
-			.text-link{cursor: pointer;}
-			.text-link:hover{color: #06038D;}
+			.text-link{color: #78E6D0; cursor: pointer;}
+			.text-link a{color: #78E6D0; cursor: pointer;}
 			.btn{width: 100%;height: 80px;border-radius: 40px;margin: 10px 0px;text-transform: uppercase;font-size: 24px;line-height: 30px;font-weight: bold;cursor: pointer;outline: none;}
 			.btn.btn-primary{background: #FF6B6B 0% 0% no-repeat padding-box;border: none;color: white;}
 			.btn.btn-secondary{background-color: white;border: 2px solid #06038D;color: #06038D;}
 		</style>
 	</head>
-	<body>	
+	<body style="font-family: DM Sans !important;">	
 		<div id="container">
 			<table id="body" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<tbody>
@@ -94,7 +98,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															<a href="{{url('/register?email='.$data['email'].'&business='.$data['user']->companyName)}}">
+															<a href="{{url('/register?e='.$data['email'].'&b='.base64_encode($data['user']->companyName))}}">
 																<button class="btn btn-primary">JOIN NOW</button>
 															</a>
 														</td>
@@ -142,54 +146,52 @@
 				<tbody>
 					<tr>
 						<td>
-							<table id="footerTable" class="mb-50" width="100%" height="100%" cellpadding="0" cellspacing="0" role="presentation" >
+							<table id="footerTable" width="100%" height="100%" cellpadding="0" cellspacing="0" role="presentation" >
 								<tbody>
 									<tr>
 										<td>
-											<table class="mb-50" width="100%" cellpadding="0" cellspacing="0" border="0">
+											<table id="socialIcons" width="100%" class="text-center" cellpadding="0" cellspacing="0" border="0" style="background-color: #06038D">
 												<tbody>
 													<tr>
-														<td class="text-center text-bold fs-30 lh-36 py-25">
-															We'd love to hear from you!
+														<td class="pt-30">
+															<img src="{{asset('/images/logos/site_footer_logo.png')}}" style="width: 272px">
 														</td>
 													</tr>
 													<tr>
-														<td class="fs-18 lh-24 d-block text-center">
-															Help us improve by sharing your feedback in this short <a href="#" class="color-black">survey</a>.
+														<td class="py-30">
+															<a class="social-button facebook" href="https://www.facebook.com/Databroker.global/" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/facebook.png') }}">
+									                        </a>
+									                        <a class="social-button facebook" href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/twitter.png') }}">
+									                        </a>
+									                        <a class="social-button facebook" href="https://www.reddit.com/r/DatabrokerDAO/" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/reddit.png') }}">
+									                        </a>
+									                        <a class="social-button facebook" href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/linkedin.png') }}">
+									                        </a>   
+									                        <a class="social-button facebook" href="https://medium.com/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/medium.png') }}">
+									                        </a>   
+									                        <a class="social-button facebook" href="https://github.com/databrokerglobal" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/github.png') }}">
+									                        </a>   
+									                        <a class="social-button facebook" href="https://t.me/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
+									                          <img src="{{ asset('/images/social/telegram.png') }}">
+									                        </a>                          
+														</td>
+													</tr>
+													<tr>
+														<td class="pb-30">
+															<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2020 Databroker. All Rights Reserved.</span>
+															<div class="text-grey d-block text-center fs-14 lh-21">
+																<span class="text-link">hello@databroker.online</span>
+															</div>
 														</td>
 													</tr>
 												</tbody>
 											</table>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<table id="socialIcons" width="100%" class="mb-50 text-center" cellpadding="0" cellspacing="0" border="0">
-												<tbody>
-													<tr>
-														<td>
-															<a class="social-button facebook" href="#">
-																<img src="{{ asset('images/social/facebook.png') }}"/>
-															</a>
-															<a class="social-button twitter" href="#">
-																<img src="{{ asset('images/social/twitter.png') }}"/>
-															</a>
-															<a class="social-button pinterest" href="#">
-																<img src="{{ asset('images/social/pinterest.png') }}"/>
-															</a>
-															<a class="social-button linkedin" href="#">
-																<img src="{{ asset('images/social/linkedin.png') }}"/>
-															</a>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2019 Databroker. All Rights Reserved.</span>
-											<span class="text-grey d-block text-center fs-14 lh-21"><span class="text-link">help@databroker.com</span> | 1(800)123-90-87</span>
 										</td>
 									</tr>
 								</tbody>

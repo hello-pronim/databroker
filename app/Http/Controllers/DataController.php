@@ -71,14 +71,6 @@ class DataController extends Controller
             $regions = Region::where('regionType', 'area')->get();
             $countries = Region::where('regionType', 'country')->get();
             $communities = Community::all();
-            
-            $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
-            if (!$company) {
-                $current_step = 'before';
-            } else {
-                $current_step = 'step1';
-            }
-
             $themes = Theme::all();
             $theme_map = [];
             foreach ($themes as $theme) {
@@ -92,7 +84,7 @@ class DataController extends Controller
             // die(json_encode($theme_map));
             $theme_json = json_encode($theme_map);
 
-            $data = array( 'regions', 'countries', 'communities', 'current_step', 'theme_json' );
+            $data = array( 'regions', 'countries', 'communities', 'theme_json' );
             return view('data.offers', compact($data));
         }
     }
@@ -120,12 +112,6 @@ class DataController extends Controller
         $communities = Community::all();
 
         $user = $this->getAuthUser();
-        $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
-        if (!$company) {
-            $current_step = 'before';
-        } else {
-            $current_step = 'step1';
-        }
 
         $offerId = $id;
         $offer = Offer::with(['region', 'theme'])->where('offers.offerIdx', '=', $id)->first();
@@ -207,15 +193,15 @@ class DataController extends Controller
         return;
         $provider_data = [];
         $companyLogo_path = public_path('uploads/company');
-                
+        
         $user = $this->getAuthUser();
         $providerIdx = -1;
         $provider_obj = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
         if (!$provider_obj) {
             $provider_data['userIdx'] = Auth::id();
             $provider_data['regionIdx'] = $request->regionIdx;
-            $provider_data['companyName'] = $request->companyName;        
-            $provider_data['companyURL'] = $request->companyUrl;        
+            $provider_data['companyName'] = $request->companyName;
+            $provider_data['companyURL'] = $request->companyUrl;
 
             $provider_obj = Provider::create($provider_data);
             $providerIdx = $provider_obj['providerIdx'];    
@@ -630,39 +616,46 @@ class DataController extends Controller
 
     public function offer_start(Request $request){
         $user = $this->getAuthUser();
-        if(!$user) {
-           return redirect('/login')->with('target', 'publish your data offer');
-        }
-        else{
-
+        if($user){
             $offer = Offer::join('providers', 'offers.providerIdx', '=',  'providers.providerIdx')
                     ->where('providers.userIdx', $user->userIdx )->get()->count();
-            if( $offer > 0 ){
+            if( $offer > 0 )
                 return redirect( route('data_offers') );
-            }else{            
-                $data = array();
-                return view('data.offer_publish_first', compact($data));    
-            }
-        }    
-        
+        }
+
+        return view('data.offer_publish_first');    
     }    
 
     public function offer_second(Request $request){
         $user = $this->getAuthUser();
-        if(!$user) {
-           return redirect('/login')->with('target', 'publish your data offer');
-        }
-        else{
+        if($user){
             $offer = Offer::join('providers', 'offers.providerIdx', '=',  'providers.providerIdx')
                     ->where('providers.userIdx', $user->userIdx )->get()->count();
-            if( $offer > 0 ){
-                return redirect( route('data_offers') );
-            }else{
-                $data = array();
-                return view('data.offer_publish_second', compact($data));
-            }    
+            if( $offer > 0 ) return redirect( route('data_offers') );
         }    
+        return view('data.offer_publish_second');
     }        
+
+    public function offer_provider(Request $request){
+        $user = $this->getAuthUser();
+        if(!$user){
+            return redirect('/login');
+        }else{
+            $provider = Provider::where('userIdx', $user->userIdx)->first();
+            if($provider)
+                return redirect( route('data_offers') );
+            else{
+                //$regions = Region::where('regionType', 'area')->get();
+                $countries = Region::where('regionType', 'country')->get();
+                //$communities = Community::all();
+                
+                $company = User::where('userIdx', $user->userIdx)->first()['companyName'];
+                $data = array('countries', 'company');
+
+                return view('data.offer_provider', compact($data));
+            }
+        }
+    }
 
     public function offer_product_publish_confirm($id, Request $request){
         $data = array('id');

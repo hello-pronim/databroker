@@ -1,5 +1,12 @@
 body{
-	counter-reset: section; 
+	counter-reset: section;
+	font-family: DM Sans !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  { /*autofilled input background color*/
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 /* Colors */
 .btn-transparent{
@@ -1160,20 +1167,17 @@ a.dropdown-toggle:after{
 }
 .data-offer .step.current{
     display: block;
-    
     animation: slide-left .3s ease-out;
     -webkit-animation: slide-left .3s ease-out;
     -moz-animation: slide-left .3s ease-out;
 }
-.data-offer #before.step.current{
-    display: block;
-    animation: none;
-    -webkit-animation: none;
-    -moz-animation: none;
+.data-offer .step:first-of-type{
+	animation: unset!important;
+    -webkit-animation: unset!important;
+    -moz-animation: unset!important;
 }
 .data-offer .step.current.back{
     display: block;
-    
     -webkit-animation: slide-right .3s ease-out;
     -moz-animation: slide-right .3s ease-out;
 }
@@ -1459,7 +1463,7 @@ a.dropdown-toggle:after{
     max-height: 38px;
     box-shadow: none;
     background: transparent;
-    border-bottom: 1px solid #d2d2d2;
+    border-bottom: 2px solid #d2d2d2;
     text-indent: 0px;
     padding-top: 8px;   	
 }

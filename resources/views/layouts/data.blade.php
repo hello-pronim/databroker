@@ -97,7 +97,7 @@
             <div class="col-md-12 col-lg-3 footer-newsletter">
               <h5>{{ trans('home.signupbox') }}</h5>
               <p class="text-thick-grey fs-18"> {{ trans('home.signupbox_desc') }} </p>
-              <a href="{{ route('register') }}"><button type="button" class="button customize-btn mgh25">{{ trans('home.signup') }}</button></a>
+              <a href="{{ route('auth.register_nl') }}"><button type="button" class="button customize-btn mgh25">{{ trans('home.signup') }}</button></a>
 
             </div>
           </div>
@@ -175,7 +175,7 @@
                 <div class="app-footer-social-link-container">
                     <h4>Follow us on social media</h4>
                     <div class="app-footer-social-link">
-                        <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://www.facebook.com/Databroker.global/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/facebook.png') }}">
                         </a>
                         <a href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">

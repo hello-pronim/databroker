@@ -13,16 +13,19 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
+    'failed' => 'The combination of this email adress and password is not correct. Please try again.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     /*register*/
     'first_name' => 'First Name',
     'last_name' => 'Last Name',
     'email_address' => 'Email Address',
     'company' => 'Company',
+    'jobTitle' => 'Job title',
     'enter_your_industry'=> 'Please enter your industry',
     'enter_your_role'=> 'Please enter your role',
     'password' => 'Password',
+    'old_password' => 'Old password',
+    'new_password' => 'New password',
     'confirm_password' => 'Confirm Password',
     'login' => 'Sign in',
     'register' => 'Register',

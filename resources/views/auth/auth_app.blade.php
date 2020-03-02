@@ -26,10 +26,14 @@
 
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/material.min.css') }}">
+
+        @yield('additional_css')
+
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('css/v4-shims.css') }}">        
-        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">      
+        <link rel="stylesheet" href="{{ asset('css/custom2.css') }}">
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
         
     </head>
@@ -89,7 +93,7 @@
             <div class="col-md-12 col-lg-3 footer-newsletter">
               <h5>{{ trans('home.signupbox') }}</h5>
               <p class="text-thick-grey fs-18"> {{ trans('home.signupbox_desc') }} </p>
-              <a href="{{ route('register') }}"><button type="button" class="button customize-btn mgh25 w225">{{ trans('home.signup') }}</button></a>
+              <a href="{{ route('auth.register_nl') }}"><button type="button" class="button customize-btn mgh25 w225">{{ trans('home.signup') }}</button></a>
 
             </div>
           </div>
@@ -167,7 +171,7 @@
                   <div class="app-footer-social-link-container">                      
                       <h4>Follow us on social media</h4>
                       <div class="app-footer-social-link">
-                        <a href="https://www.facebook.com/DataBroker/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://www.facebook.com/Databroker.global/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/facebook.png') }}">
                         </a>
                         <a href="https://twitter.com/databroker_gl" rel="nofollow noopener noreferrer" target="_blank">
@@ -203,7 +207,8 @@
     
     @yield('additional_javascript')
 
-    <script src="{{ asset('js/app.js') }}"></script>        
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/custom2.js') }}"></script>
         
     <script type="text/javascript">
         $(function(){
@@ -228,20 +233,17 @@
                 $(this).removeClass('active');
                 $('.dropdown-container .dropdown-menu').slideUp(300);
             });
-            $('.dropdown-container.industry-dropdown .dropdown .dropdown-menu li').click(function () {
-              console.log($(this).attr('value'));
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').text($(this).text());
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('span').addClass("chosen");
-                $(this).parents('.dropdown-container.industry-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
-                if($(this).attr('value')==="") $(".other-industry").css('display', 'block');
+            if($('#businessName2').val()=='Other industry') $(".other-industry").css('display', 'block'); //other industry
+            else $(".other-industry").css('display', 'none');
+            $('#businessName2').change(function () {
+                if($(this).val()=='Other industry') $(".other-industry").css('display', 'block'); //other industry
                 else $(".other-industry").css('display', 'none');
             });
-            $('.dropdown-container.role-dropdown .dropdown .dropdown-menu li').click(function () {
-              console.log($(this).attr('value'));
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').text($(this).text());
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('span').addClass("chosen");
-                $(this).parents('.dropdown-container.role-dropdown .dropdown').find('input').attr('value', $(this).attr('value')).change();
-                if($(this).attr('value')==="") $(".other-role").css('display', 'block');
+
+            if($('#role2').val()=='Other') $(".other-role").css('display', 'block'); //other industry
+            else $(".other-role").css('display', 'none');
+            $('#role2').change(function () {
+                if($(this).val()=='Other') $(".other-role").css('display', 'block'); //other role
                 else $(".other-role").css('display', 'none');
             });
 

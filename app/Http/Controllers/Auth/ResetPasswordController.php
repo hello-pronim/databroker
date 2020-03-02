@@ -50,7 +50,9 @@ class ResetPasswordController extends Controller
     protected function validationErrorMessages()
     {
         return [
-            'password.regex'=>'Password should contain A~Z, a~z, 0~9',
+            'password.required'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
+            'password.min'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
+            'password.regex'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
         ];
     }
 
