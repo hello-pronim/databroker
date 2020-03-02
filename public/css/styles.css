@@ -2401,12 +2401,12 @@ input.input_data, select.input_data {
 .primary-btn:hover,
 .customize-btn:hover {
     background-color: #E15757;
-    box-shadow: 0px 15px 25px #FF6B6B33;
+    /*box-shadow: 0px 15px 25px #FF6B6B33;*/
 }
 .primary-btn:active,
 .customize-btn:active {
     background-color: #E15757;
-    box-shadow: 0px 2px 4px #FF6B6B4D;
+    /*box-shadow: 0px 2px 4px #FF6B6B4D;*/
 }
 .primary-btn,
 .customize-btn {
@@ -2417,7 +2417,7 @@ input.input_data, select.input_data {
     min-width: 225px;
     color: white;
     background: #FF6B6B 0% 0% no-repeat padding-box;
-    box-shadow: 0px 15px 25px #FF6B6B26;
+    /*box-shadow: 0px 15px 25px #FF6B6B26;*/
     text-transform: uppercase;
     font-size: small;
     font-weight: bold;
