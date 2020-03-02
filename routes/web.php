@@ -54,15 +54,15 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 
 	Route::get('/', 'HomeController@index')->name('home');
 	Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
-	Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name('data_details');
-	Route::get('/data/send_message', 'DataController@send_message')->name('data.send_message');	
+	Route::get('/data/{id}', 'DataController@details')->where(['id', '[0-9]+'])->name('data_details');
+	Route::get('/data/send_message/{id}/{pid}/{uid}', 'DataController@send_message')->name('data.send_message');	
 	Route::get('/data/buy_data/{id}/{pid}', 'DataController@buy_data')->name('data.buy_data');	
 	Route::get('/data/send_bid/{id}/{pid}', 'DataController@send_bid')->name('data.send_bid');	
 	Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');
 	Route::get('/data/start', 'DataController@offer_start')->name('data_offer_start');
 	Route::get('/data/second', 'DataController@offer_second')->name('data_offer_second');
 	Route::get('/data/provider', 'DataController@offer_provider')->name('data_offer_provider');
-	Route::post('/data/send_message', 'DataController@post_send_message')->name('data.post_send_message');
+	Route::post('/data/post_send_message', 'DataController@post_send_message')->name('data.post_send_message');
 
 	Route::get('/data/offers', 'DataController@offers')->name('data_offers');		//should rename as publish		
 
