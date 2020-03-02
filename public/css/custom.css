@@ -1557,3 +1557,18 @@ a.dropdown-toggle:after{
 	font-weight: bold;
 	color: #f44336!important;
 }
+.xh_loading{
+	position: relative;
+}
+.xh_loading.on:before{
+	content: "";
+	background-image: url("../images/loading.gif");
+	display: block;
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	right: -60px;
+	top: -5px;
+	z-index: 100;
+	background-size: contain;
+}

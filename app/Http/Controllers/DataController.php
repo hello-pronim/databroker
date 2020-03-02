@@ -204,7 +204,7 @@ class DataController extends Controller
     }
 
     public function add_offer(Request $request){
-
+        return;
         $provider_data = [];
         $companyLogo_path = public_path('uploads/company');
                 

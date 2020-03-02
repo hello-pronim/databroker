@@ -336,13 +336,13 @@
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>{{ trans('pages.previous_step') }}</span></a>
 							@if (isset($offer))
-							<button type="sbumit" class="customize-btn">Update Offer</button>
+							<button type="sbumit" class="customize-btn xh_loading">Update Offer</button>
 							@else
-							<button type="sbumit" class="customize-btn">{{ trans('pages.publish_on_marketplace') }}</button>
+							<button type="sbumit" class="customize-btn xh_loading">{{ trans('pages.publish_on_marketplace') }}</button>
 							@endif
 						</div>
 					</div>
-					<div class="col-3">
+					<div class="col-3">						
 					</div>
 					<div class="col-3">
 					</div>
