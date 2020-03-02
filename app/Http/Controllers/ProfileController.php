@@ -136,10 +136,16 @@ class ProfileController extends Controller
         $fields = [
             'companyName' => ['required', 'string', 'max:255'],
             'regionIdx' => ['required', 'integer'],            
-            'companyURL' => ['required', 'string', 'max:255']            
+            'companyURL' => ['required', 'string', 'max:255', "regex: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/"]            
         ];    
+        $messages = [
+            'companyName.required'=>'The company name is required.',
+            'regionIdx.required'=>'The region is required.',
+            'companyURL.required'=>'The company url is required.',
+            'companyURL.regex'=>'The url format is invalid.'
+        ];
 
-        $validator = Validator::make($request->all(), $fields);
+        $validator = Validator::make($request->all(), $fields, $messages);
 
         if($validator->fails()){
             return response()->json(array( "success" => false, 'result' => $validator->errors() ));                    

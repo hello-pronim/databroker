@@ -48,6 +48,7 @@ return [
     'role' => 'Role',
     'industry' => 'Industry',
     'Password' => 'Password',
+    'url'=>'Url',
     'Active_Since' => 'Active Since',
     'Delete' => 'Delete',
     'edit' => 'Edit',
