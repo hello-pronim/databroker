@@ -1561,3 +1561,39 @@ a.dropdown-toggle:after{
 	font-weight: bold;
 	color: #f44336!important;
 }
+
+#send-msg-ul{
+	list-style: none;
+	padding-left: 18px;
+}
+
+#send-msg-ul li::before{
+	content: "\2022";
+    color: #78E6D0;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.col-md-6.col-sm-12 .app-section.app-reveal-section.align-items-center.usecases .mgt60{
+	padding-top: 0px;
+}
+.app-section.app-reveal-section.align-items-center.usecases.send-message
+{
+	padding-top: 40px;
+}
+.send-message-mgt60
+{
+	padding-top: 0px !important ;
+}
+#send-message-row{
+	padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+#send-message-row h2{
+	margin-bottom: 0px !important;
+}
+#send-message-row h2.h4_intro.text-left{
+	margin-top: 0px !important;
+}

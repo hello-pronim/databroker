@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Provider;
 use App\Models\Region;
@@ -20,6 +21,7 @@ use App\Models\ProductCountry;
 use App\Models\RegionProduct;
 use App\Models\UseCase;
 use App\User;
+use App\Models\Business;
 
 class DataController extends Controller
 {
@@ -699,6 +701,42 @@ class DataController extends Controller
         if(!$user) {
            return redirect('/login')->with('target', 'contact the data provider');
         }
+        return view('data.send_message');
+    }
+
+    public function post_send_message(Request $request)
+    {
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'contact the data provider');
+        }else
+        {
+            $validator = Validator::make($request->all(),[
+                'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+                'message' => 'required|min:5|max:1000',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect(url()->previous())
+                        ->withErrors($validator)
+                        ->withInput();
+            }
+
+            // $email = $request->input('email');
+            // $data = $request->input('message');
+
+            // $this->sendEmail("send_message_contact", [
+            //     'from'=>$email, 
+            //     'to'=>'yuriyes43@gmail.com', 
+            //     'name'=>'Databroker-User', 
+            //     'subject'=>'You’ve received a bid on a data product from User',
+            //     'data'=>$data
+            // ]);   
+
+            return view('data.send_message_success');
+        }
+     
+
     }
 
     public function buy_data(Request $request){
