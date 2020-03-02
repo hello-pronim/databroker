@@ -62,7 +62,7 @@ class ProfileController extends Controller
         $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();        
         $countries = Region::where('regionType', 'country')->get(); 
 
-        $data = array('company', 'countries');
+        $data = array('company', 'countries', 'user');
         if($company){
             return view('account.company', compact($data));     
         }else{

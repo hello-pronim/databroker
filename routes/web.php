@@ -63,6 +63,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/data/second', 'DataController@offer_second')->name('data_offer_second');
 	Route::get('/data/provider', 'DataController@offer_provider')->name('data_offer_provider');
 	Route::post('/data/send_message', 'DataController@post_send_message')->name('data.post_send_message');
+	Route::post('/data/provider', 'DataController@save_offer_provider')->name('save_data_offer_provider');
 
 	Route::get('/data/offers', 'DataController@offers')->name('data_offers');		//should rename as publish		
 

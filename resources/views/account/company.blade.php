@@ -10,7 +10,7 @@
     <div class="bg-pattern1-left"></div>
 	<div class="app-section app-reveal-section align-items-center">	    
 		<div class="container">
-			<div class="page-title text-primary">{{ trans('pages.company_profile') }}</div>
+			<div class="page-title text-primary">{{ trans('pages.update_company_profile') }}</div>
 			<div class="label companyname">
 				<span>{{ trans('pages.company_profile_desc') }}</span>
 			</div>			
@@ -54,7 +54,11 @@
                         <div class="row">
                             <div class="col-3 info-label flex-vend">Company</div>
                             <div class="col info-text flex-vcenter">
-                                <p class="info-text mb-0">{{ $company->companyName }}</p>
+                                @if($user->userStatus==1)
+                                    <input type="text" id="companyName" name="companyName" class="form-control" placeholder=" "  value="{{ old('companyName', $company->companyName) }}" autocomplete="companyName" autofocus>
+                                @else
+                                    <input type="text" id="companyName" name="companyName" class="form-control" placeholder=" "  value="{{ old('companyName', $company->companyName) }}" autocomplete="companyName" autofocus readonly>
+                                @endif
                             </div>
                         </div>
                         <div class="row">                                                        
