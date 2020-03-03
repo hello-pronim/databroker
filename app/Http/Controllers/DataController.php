@@ -42,7 +42,7 @@ class DataController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function details(Request $request)
-    {        
+    {   
         $offer = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
         $user_info = User::where('userIdx', $offer->provider->userIdx)->first();
         
