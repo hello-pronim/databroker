@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 
 use App\Models\Business;
 use App\Models\Provider;
+use App\Models\Company;
 use App\Models\Region;
 use App\Models\LinkedUser;
 
@@ -46,11 +47,11 @@ class ProfileController extends Controller
 
         // TODO
 
-        $users = User::where('companyName', $user->companyName)->where('userIdx', '<>' ,$user->userIdx)->get();        
+        $users = User::where('companyIdx', $user->companyIdx)->where('userIdx', '<>' ,$user->userIdx)->get();        
         $invited_users = LinkedUser::where('invite_userIdx', $user->userIdx)->get();            
         $businesses = Business::get();
 
-        $admin = User::where('companyName', $user->companyName)->where('userStatus', '=', 1)->get()->first(); 
+        $admin = User::where('companyIdx', $user->companyIdx)->where('userStatus', '=', 1)->get()->first(); 
 
         $data = array('admin', 'user', 'users', 'invited_users', 'businesses');
         return view('account.profile', compact($data));
@@ -58,16 +59,11 @@ class ProfileController extends Controller
     }
 
     public function company(){
-        $user = $this->getAuthUser();
-        $company = Provider::with('Region')->where('userIdx', $user->userIdx)->first();        
+        $user = $this->getAuthUser();    
         $countries = Region::where('regionType', 'country')->get(); 
-
-        $data = array('company', 'countries', 'user');
-        if($company){
-            return view('account.company', compact($data));     
-        }else{
-            return redirect(route('data_offer_provider'));
-        }
+        $company = Company::with('region')->join('users', 'users.companyIdx', '=', 'companies.companyIdx')->where('userIdx', $user->userIdx)->first();
+        $data = array('countries', 'user', 'company');
+        return view('account.company', compact($data));
     }
    
     public function purchases(Request $request)
@@ -158,7 +154,7 @@ class ProfileController extends Controller
         
         if($request->file('companyLogo_1')!=null){            
             $companyLogo_path = public_path('uploads/company');
-            $fileName = "company_".$request->providerIdx.'.'.$request->file('companyLogo_1')->extension();
+            $fileName = "company_".$request->companyIdx.'.'.$request->file('companyLogo_1')->extension();
             
             if(file_exists($companyLogo_path.'/'.$request->old_companyLogo)){                                
                 File::delete($companyLogo_path.'/'.$request->old_companyLogo);
@@ -167,7 +163,7 @@ class ProfileController extends Controller
             $company['companyLogo'] = $fileName;  
         }
 
-        Provider::where('providerIdx', $request->providerIdx)->update($company);
+        Company::where('companyIdx', $request->companyIdx)->update($company);
 
         return response()->json(array( "success" => true, 'redirect' => route('account.company') ));
     }
