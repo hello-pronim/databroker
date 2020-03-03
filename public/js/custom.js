@@ -67,6 +67,7 @@ $(document).ready(function(){
     		dataType: 'json',
     		success:function(response){
     			$("span.invalid-feedback").hide();
+                $('.is-invalid').removeClass('is-invalid');
     			$("span.invalid-feedback").find("strong").empty();
     			if(response.success == false ){
     				$.each(response.result, function(key, value){    					
@@ -76,7 +77,8 @@ $(document).ready(function(){
     						});    						
     					}else{
     						$("span.invalid-feedback."+key).find("strong").text(value);
-    					}    					
+    					}    				
+                        $('#'+key).addClass('is-invalid');	
     					$("span.invalid-feedback."+key).show();
     				});
     			}else{

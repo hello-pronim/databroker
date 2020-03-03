@@ -52,8 +52,9 @@ class ProfileController extends Controller
         $businesses = Business::get();
 
         $admin = User::where('companyIdx', $user->companyIdx)->where('userStatus', '=', 1)->get()->first(); 
+        $company = Company::where('companyIdx', '=', $user->companyIdx)->get()->first();
 
-        $data = array('admin', 'user', 'users', 'invited_users', 'businesses');
+        $data = array('admin', 'user', 'users', 'invited_users', 'businesses', 'company');
         return view('account.profile', compact($data));
 
     }
