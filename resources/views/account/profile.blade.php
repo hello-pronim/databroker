@@ -15,7 +15,7 @@
 			<div class="h1">Account info</div>
 			<div class="label companyname1">
 				<span>Account name: </span>
-                <span class="adminname">{{$admin->companyName}}</span>
+                <span class="adminname">{{$company->companyName}}</span>
 			</div>
 			<div class="label ">
     			<span>Administrator: </span>
