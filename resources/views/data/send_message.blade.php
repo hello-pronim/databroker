@@ -10,9 +10,9 @@
         <div class="row send-massage" id="send-message-row">
                     <div class="row justify-content-center mt-30 auth-section">
                         <div class="col-md-12">
-                            <h2 class="text-primary text-center text-bold">{{trans('data.send_a message_to')}} {{ $provide_info->companyName }}</h1>
+                            <h2 class="text-primary text-center text-bold">{{trans('data.send_a message_to')}} {{ $offer->provider->companyName }}</h1>
                             <h2 class="h4_intro text-left"> 
-                                Related to {{ $offer_info->offerTitle }} for {{ $region_info->regionName }}
+                                Related to {{ $offer->offerTitle }} for {{ $offer->region[0]->regionName }}
                             </h2>
                             <br>
                         </div>
@@ -44,8 +44,8 @@
                                             </span>
                                         @enderror
                                     </label>
-                                    <input type="text" id="id" name="id" class="form-control input_data" value="{{ $offer_info->offerIdx }}" hidden>
-                                    <input type="text" id="company_name" name="company_name" class="form-control input_data" value="{{ $provide_info->companyName }}" hidden>
+                                    <input type="text" id="id" name="id" class="form-control input_data" value="{{ $offer->offerIdx }}" hidden>
+                                    <input type="text" id="company_name" name="company_name" class="form-control input_data" value="{{ $offer->provider->companyName }}" hidden>
                                     <input type="text" id="email_to" name="email_to" class="form-control input_data" value="{{ $provider_info->email }}" hidden>
                                     <div class="form-group row mb-0">                        
                                         <div class="col-md-6">                                

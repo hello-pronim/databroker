@@ -708,14 +708,9 @@ class DataController extends Controller
         if(!$user) {
            return redirect('/login')->with('target', 'contact the data provider');
         }
-        $offer_info = Offer::find($id); //offer id
-        $provide_info = Provider::find($pid); //proivde id
-        $provider_info = User::find($uid); // proivder id
-        $region_info = Region::find($provide_info->regionIdx); // region id
-        $data['offer_info'] = $offer_info;
-        $data['provide_info'] = $provide_info;
-        $data['provider_info'] = $provider_info;
-        $data['region_info'] = $region_info;
+        
+        $data['offer'] = Offer::with(['provider','region'])->find($id);
+        $data['provider_info'] = User::find($uid); // proivder id
         return view('data.send_message')->with($data);
     }
 
