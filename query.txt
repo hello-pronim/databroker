@@ -197,7 +197,6 @@ UPDATE `databroker_new`.`regions` SET `regionName` = 'Asia' WHERE (`regionIdx` =
 #2020-03-03
 CREATE TABLE IF NOT EXISTS `databroker_new`.`companies` (
   `companyIdx` INT(11) NOT NULL AUTO_INCREMENT,
-  `userIdx` INT(11) NOT NULL,
   `regionIdx` INT(11) NOT NULL,
   `companyName` VARCHAR(255) NULL DEFAULT NULL,
   `companyURL` VARCHAR(255) NULL DEFAULT NULL,
@@ -205,13 +204,7 @@ CREATE TABLE IF NOT EXISTS `databroker_new`.`companies` (
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`companyIdx`),
-  INDEX `fk_companies_users1_idx` (`userIdx` ASC) VISIBLE,
   INDEX `fk_companies_regions1_idx` (`regionIdx` ASC) VISIBLE,
-  CONSTRAINT `fk_companies_users1`
-    FOREIGN KEY (`userIdx`)
-    REFERENCES `databroker_new`.`users` (`userIdx`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_companies_regions1`
     FOREIGN KEY (`regionIdx`)
     REFERENCES `databroker_new`.`regions` (`regionIdx`)
@@ -219,5 +212,21 @@ CREATE TABLE IF NOT EXISTS `databroker_new`.`companies` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+ALTER TABLE `databroker_new`.`users` 
+DROP COLUMN `companyName`,
+ADD COLUMN `companyIdx` INT NULL AFTER `updated_at`;
+
+ALTER TABLE `databroker_new`.`users` 
+ADD CONSTRAINT `fk_users_companies1`
+  FOREIGN KEY (`companyIdx`)
+  REFERENCES `databroker_new`.`companies` (`companyIdx`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `databroker_new`.`users` 
+CHANGE COLUMN `companyIdx` `companyIdx` INT NULL DEFAULT NULL AFTER `userIdx`;
+
+
 
 
