@@ -100,17 +100,6 @@
                             @enderror
                         </label>
 
-                        <label class="pure-material-textfield-outlined">
-                            <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle', $user->jobTitle) }}" autocomplete="company" autofocus>
-                            <span>{{ trans('auth.jobTitle') }}</span>
-                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Job title']) }}</div>
-                            @error('jobTitle')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </label>
-
                         <div class="dropdown-container">
                             <div class="dropdown2 business_list" tabindex="1">                                
                                 <div class="adv-combo-wrapper">
@@ -133,6 +122,17 @@
                             <span>{{ trans('auth.enter_your_industry') }}</span>
                             <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
                             @error('businessName')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+
+                        <label class="pure-material-textfield-outlined">
+                            <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data @error('jobTitle')  is-invalid @enderror" placeholder=" "  value="{{ old('jobTitle', $user->jobTitle) }}" autocomplete="jobTitle" autofocus>
+                            <span>{{ trans('auth.jobTitle') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Job title']) }}</div>
+                            @error('jobTitle')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
