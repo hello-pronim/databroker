@@ -59,7 +59,6 @@ class DataController extends Controller
         }
 
         $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user' => $user, 'user_info' => $user_info, 'products' => $products);
-
         return view('data.details')->with($data);
     }
 
@@ -696,12 +695,20 @@ class DataController extends Controller
         return Auth::user();
     }
 
-    public function send_message() {
+    public function send_message($id, $pid, $uid) {
         $user = $this->getAuthUser();
         if(!$user) {
            return redirect('/login')->with('target', 'contact the data provider');
         }
-        return view('data.send_message');
+        $offer_info = Offer::find($id); //offer id
+        $provide_info = Provider::find($pid); //proivde id
+        $provider_info = User::find($uid); // proivder id
+        $region_info = Region::find($provide_info->regionIdx); // region id
+        $data['offer_info'] = $offer_info;
+        $data['provide_info'] = $provide_info;
+        $data['provider_info'] = $provider_info;
+        $data['region_info'] = $region_info;
+        return view('data.send_message')->with($data);
     }
 
     public function post_send_message(Request $request)
@@ -722,18 +729,23 @@ class DataController extends Controller
                         ->withInput();
             }
 
-            // $email = $request->input('email');
-            // $data = $request->input('message');
+            $email_from = $request->input('email');
+            $email_to = $request->input('email_to');
+            $message = $request->input('message');
+            $id = $request->input('id');
+            $company_name = $request->input('company_name');
 
-            // $this->sendEmail("send_message_contact", [
-            //     'from'=>$email, 
-            //     'to'=>'yuriyes43@gmail.com', 
-            //     'name'=>'Databroker-User', 
-            //     'subject'=>'You’ve received a bid on a data product from User',
-            //     'data'=>$data
-            // ]);   
+            $this->sendEmail("send_message_contact", [
+                'from'=>$email_from, 
+                'to'=>$email_to, 
+                'name'=>'Databroker', 
+                'subject'=>'You’ve received a message on a data product from User',
+                'data'=>$message
+            ]);
 
-            return view('data.send_message_success');
+            $data['id'] = $id;
+            $data['company_name'] = $company_name;
+            return view('data.send_message_success')->with($data);
         }
      
 
