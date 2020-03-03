@@ -26,29 +26,36 @@
                         <div class="blog-content">
                             <label class="pure-material-textfield">Which country are you located in? </label>
                             <div class="adv-combo-wrapper custom-select2">
-                                <select name="regionIdx" data-placeholder="{{ trans('pages.search_by_country') }}">
+                                <select id="regionIdx" name="regionIdx" class="" data-placeholder="{{ trans('pages.search_by_country') }}">
                                     <option></option>
                                     @foreach ($countries as $country)
                                         <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
                                     @endforeach
                                 </select>
-                                <div class="error_notice regionIdx"> This field is required</div>
+                                <div class="invalid-feedback regionIdx">
+                                    <strong></strong>
+                                </div>
                             </div>
                             <label class="pure-material-textfield">{{ trans('pages.what_company_name') }}</label>
                             <label class="pure-material-textfield-outlined">
                                 <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="">
                                 <span>{{ trans('pages.enter_name') }}</span>                            
-                                <div class="error_notice companyName"> This field is required</div>
+                                <div class="invalid-feedback companyName">
+                                    <strong></strong>
+                                </div>
                             </label>
                             <label class="pure-material-textfield">{{ trans('pages.what_company_url') }}</label>
                             <label class="pure-material-textfield-outlined">
-                                <input type="text" id="companyUrl" name="companyUrl" class="form-control input_data" placeholder=" "  value="">
-                                <span>{{ trans('pages.enter_url') }}</span>                         
+                                <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="">
+                                <span>{{ trans('pages.enter_url') }}</span> 
+                                <div class="invalid-feedback companyURL">
+                                    <strong></strong>
+                                </div>                        
                             </label>
                             <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
                             <div class="fileupload data-offer">                            
                                 <input type="file" name="companyLogo" accept='image/*'>
-                                <div class="error_notice companyLogo"> This field is required</div>
+                                <div class="invalid-feedback companyLogo"></div>
                             </div>
                             <div class="buttons text-right">    
                                 <button type="submit" class="customize-btn btn-next pull-right">{{ trans('pages.save') }}</button>
