@@ -241,10 +241,6 @@ $(document).ready(function(){
 
         return false;
     });
-    /*$("#data-offer").submit(function(e){
-    	e.preventDefault();    
-    	console.log($(this).serialize());
-    });*/
 
     var theme_select_obj = $("#theme option");
     

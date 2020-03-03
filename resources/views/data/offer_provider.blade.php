@@ -10,14 +10,10 @@
 @endsection
 
 @section('content')
-<div class="container-fluid app-wapper data-offer" ng-app="offerApp" ng-cloak ng-controller="offerCtrl as ctrl">
+<div class="container-fluid app-wapper data-offer">
 	<div class="bg-pattern1-left"></div>
     <div class="container">
-    	@if (isset($offer))
-    	<form method="post" action="{{ route('data.update_offer', ['id'=> $offerIdx]) }}" id="data-offer">
-    	@else
-    	<form method="post" action="{{ route('data.add_offer') }}" id="data-offer">
-    	@endif
+    	<form method="post" action="{{ route('save_data_offer_provider') }}">
     		@csrf    		
             <div class="app-section app-reveal-section align-items-center">
                 <div class="row">
@@ -50,14 +46,12 @@
                                 <span>{{ trans('pages.enter_url') }}</span>                         
                             </label>
                             <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
-                            <div class="fileupload">                            
+                            <div class="fileupload data-offer">                            
                                 <input type="file" name="companyLogo" accept='image/*'>
                                 <div class="error_notice companyLogo"> This field is required</div>
                             </div>
                             <div class="buttons text-right">    
-                                <a href="{{ route('data_offers')}}">
-                                    <button type="button" class="customize-btn btn-next pull-right">{{ trans('pages.next') }}</button>
-                                </a>
+                                <button type="submit" class="customize-btn btn-next pull-right">{{ trans('pages.save') }}</button>
                             </div>
                         </div>  
                     </div>

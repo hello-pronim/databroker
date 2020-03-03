@@ -181,7 +181,7 @@
               </div>
               <div class="flex-vertical">
                 <button type="button" class="btn accept-btn pure-material-button-outlined">{{ trans('home.accept_cookie') }}</button>
-                <a href="#"><span>{{ trans('home.cookie_more')}}</span></a>
+                <a href="{{route('about.cookie_policy')}}"><span>{{ trans('home.cookie_more')}}</span></a>
               </div>
             </div>
           </div>
@@ -215,7 +215,7 @@
   							<li><a href="{{ route('about.usecase') }}">{{ trans('home.usecase') }}</a></li> 
   							<li><a href="javascript:;">{{ trans('home.updates') }}</a></li> 
   							<li><a href="{{ route('about.media_center') }}">{{ trans('home.media_center') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.contact_us') }}</a></li> 
+                <li><a href="{{ route('contact') }}">{{ trans('home.contact_us') }}</a></li> 
   						</ul>
   					</div>
   					<div class="col-md-4 col-lg-3">
@@ -349,8 +349,7 @@
        
     <script src="{{ asset('js/app.js') }}"></script>        
     <script src="{{ asset('js/custom.js') }}"></script>   
-    <script src="{{ asset('js/custom2.js') }}"></script>   
-
+    <script src="{{ asset('js/custom2.js') }}"></script>
     
     <script type="text/javascript">
         $(function(){

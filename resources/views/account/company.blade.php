@@ -10,7 +10,7 @@
     <div class="bg-pattern1-left"></div>
 	<div class="app-section app-reveal-section align-items-center">	    
 		<div class="container">
-			<div class="page-title text-primary">{{ trans('pages.company_profile') }}</div>
+			<div class="page-title text-primary">{{ trans('pages.update_company_profile') }}</div>
 			<div class="label companyname">
 				<span>{{ trans('pages.company_profile_desc') }}</span>
 			</div>			
@@ -51,22 +51,22 @@
                         @csrf
                         <input type="hidden" id="providerIdx" name="providerIdx" value="{{ $company->providerIdx }}">
                         <input type="hidden" name="old_companyLogo" value="{{ $company->companyLogo }}">
-                        <div class="row">
-                            <div class="col-3 info-label flex-vend">Company</div>
-                            <div class="col info-text flex-vcenter">
-                                <p class="info-text mb-0">{{ $company->companyName }}</p>
-                            </div>
-                        </div>
-                        <div class="row">                                                        
-                            <span class="invalid-feedback companyName ml-15" role="alert">
+                        <label class="pure-material-textfield-outlined">
+                            @if($user->userStatus==1)
+                            <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="{{ old('companyName', $user->companyName) }}" autocomplete="company" autofocus>
+                            @else
+                            <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="{{ old('companyName', $user->companyName) }}" autocomplete="company" autofocus readonly>
+                            @endif
+                            <span>{{ trans('auth.company') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company name']) }}</div>
+                            <span class="invalid-feedback companyName" role="alert">
                                 <strong></strong>
-                            </span>                            
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label flex-vend">Location:</div>
-                            <div class="col info-text flex-vcenter">
-                                <div class="adv-combo-wrapper custom-select2 no-border">
-                                    <select name="regionIdx" data-placeholder="{{ trans('pages.search_by_country') }}">
+                            </span>
+                        </label>
+                        <div class="dropdown-container">
+                            <div class="dropdown2 business_list" tabindex="1">                                
+                                <div class="adv-combo-wrapper">
+                                    <select id="regionIdx" name="regionIdx" placeholder="{{trans('pages.search_by_country')}}">
                                         <option></option>
                                         @foreach ($countries as $country)
                                             @if( $country->regionIdx == $company->regionIdx )
@@ -75,27 +75,18 @@
                                             <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
                                             @endif
                                         @endforeach
-                                    </select>
-                                    <div class="error_notice regionIdx"> This field is required</div>
-                                </div>
+                                     </select>
+                                </div>                              
                             </div>
-                        </div>
-                        <div class="row">                                                        
-                            <span class="invalid-feedback lastname ml-15" role="alert">
+                        </div>    
+                        <label class="pure-material-textfield-outlined">
+                            <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="{{ old('companyURL', $company->companyURL) }}" autocomplete="company" autofocus>
+                            <span>{{ trans('pages.url') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company name']) }}</div>
+                            <span class="invalid-feedback companyURL" role="alert">
                                 <strong></strong>
-                            </span>                            
-                        </div>
-                        <div class="row">
-                            <div class="col-3 info-label flex-vend">URL:</div>
-                            <div class="col info-text flex-vcenter">
-                                <input type="text" id="companyURL" name="companyURL" class="form-control" placeholder=" "  value="{{ old('companyURL', $company->companyURL) }}" autocomplete="companyURL" autofocus>
-                            </div>
-                        </div>
-                        <div class="row">                                                        
-                            <span class="invalid-feedback companyURL ml-15" role="alert">
-                                <strong></strong>
-                            </span>                            
-                        </div>                       
+                            </span>
+                        </label>            
                         <div class="fileupload data-offer">                            
                             <input type="file" name="companyLogo" accept='image/*'>
                             <div class="error_notice companyLogo"> This field is required</div>
