@@ -171,7 +171,7 @@ class DataController extends Controller
         // die(json_encode($offer));
         $theme_json = json_encode($theme_map);
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList' );
+        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }
@@ -196,7 +196,7 @@ class DataController extends Controller
         $user = $this->getAuthUser();
         $providerIdx = -1;
         $provider_obj = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
-        if (!$provider_obj) {
+        if ($provider_obj) {
             $providerIdx = $provider_obj['providerIdx'];
 
             $offer_data = [];
@@ -291,7 +291,7 @@ class DataController extends Controller
         $user = $this->getAuthUser();
         $providerIdx = -1;
         $provider_obj = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
-        if (!$provider_obj) {
+        if ($provider_obj) {
             $providerIdx = $provider_obj['providerIdx'];
 
             $offer_data = [];

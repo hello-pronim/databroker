@@ -26,11 +26,9 @@
                 <div id="profile-display-section">       
                     <div class="profile-section-header flex-vcenter-justify mb-10">                
                         <div class="sectiontitle">My profile</div>
-                        @if($user->userStatus==1)
                         <div id="edit-button" class="action-button-edit flex-center" onClick="document.getElementById('profile-edit-section').style.display = 'block';document.getElementById('profile-display-section').style.display = 'none';">
                             <i class="material-icons">edit</i> {{ trans('pages.edit') }}
                         </div>
-                        @endif
                     </div>             
                     <div class="row">
                         <div class="col-2 info-label">{{ trans('pages.name') }}:</div>
@@ -68,7 +66,7 @@
                         @csrf
 
                         <label class="pure-material-textfield-outlined">
-                            <input type="text" id="firstname" name="firstname" class="form-control input_data" placeholder=" "  value="{{ old('firstname', $user->firstname) }}" autocomplete="firstname" autofocus>
+                            <input type="text" id="firstname" name="firstname" class="form-control input_data" placeholder=" "  value="{{ $user->firstname }}" autocomplete="firstname" autofocus>
                             <span>{{ trans('auth.first_name') }}</span>
                             <div class="error_notice">{{ trans('validation.required', ['attribute' => 'First Name']) }}</div>
                             <span class="invalid-feedback firstname" role="alert">
@@ -77,16 +75,15 @@
                         </label>
 
                         <label class="pure-material-textfield-outlined">
-                            <input type="text" id="lastname" name="lastname" class="form-control input_data" placeholder=" "  value="{{ old('lastname', $user->lastname) }}" autocomplete="lastname" autofocus>
+                            <input type="text" id="lastname" name="lastname" class="form-control input_data" placeholder=" "  value="{{ $user->lastname }}" autocomplete="lastname" autofocus>
                             <span>{{ trans('auth.last_name') }}</span>
                             <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
                             <span class="invalid-feedback lastname" role="alert">
                                 <strong></strong>
                             </span>
                         </label>
-
                         <label class="pure-material-textfield-outlined">
-                            <input type="text" id="email" name="email" class="form-control input_data" placeholder=" " value="{{ old('email', $user->email) }}" autocomplete="email" autofocus>
+                            <input type="text" id="email" name="email" class="form-control input_data" placeholder=" " value="{{ $user->email }}" autocomplete="email" autofocus>
                             <span>{{ trans('auth.email_address') }}</span>
                             <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
                             <span class="invalid-feedback email" role="alert">
@@ -112,7 +109,7 @@
                         </div>    
 
                         <label class="other-industry pure-material-textfield-outlined" style="display: none">
-                            <input type="text" id="businessName" name="businessName" class="form-control input_data" placeholder=" " value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
+                            <input type="text" id="businessName" name="businessName" class="form-control input_data" placeholder=" " value="{{ $user->businessName }}" autocomplete="businessName" autofocus>
                             <span>{{ trans('auth.enter_your_industry') }}</span>
                             <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
                             <span class="invalid-feedback busienssName" role="alert">
@@ -121,7 +118,7 @@
                         </label>
 
                         <label class="pure-material-textfield-outlined">
-                            <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data" placeholder=" "  value="{{ old('jobTitle', $user->jobTitle) }}" autocomplete="jobTitle" autofocus>
+                            <input type="text" id="jobTitle" name="jobTitle" class="form-control input_data" placeholder=" "  value="{{ $user->jobTitle }}" autocomplete="jobTitle" autofocus>
                             <span>{{ trans('auth.jobTitle') }}</span>
                             <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Job title']) }}</div>
                             <span class="invalid-feedback jobTitle" role="alert">
@@ -158,7 +155,7 @@
                         </div>    
 
                         <label class="other-role pure-material-textfield-outlined" style="display: none">
-                            <input type="text" id="role" name="role" class="form-control input_data @error('role')  is-invalid @enderror" placeholder=" "  value="{{ old('role') }}" autocomplete="role" autofocus>
+                            <input type="text" id="role" name="role" class="form-control input_data" placeholder=" "  value="{{ $user->role }}" autocomplete="role" autofocus>
                             <span>{{ trans('auth.enter_your_role') }}</span>
                             <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Role']) }}</div>
                             <span class="invalid-feedback role" role="alert">
