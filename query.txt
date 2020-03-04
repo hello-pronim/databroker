@@ -240,4 +240,5 @@ ADD CONSTRAINT `fk_companies_regions1`
   REFERENCES `databroker_new`.`regions` (`regionIdx`);
 
 
+ALTER TABLE `databroker_new`.`contacts` CHANGE `firstname` `firstname` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `lastname` `lastname` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `email` `email` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `companyName` `companyName` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, ADD COLUMN `regionIdx` INT(11) NOT NULL AFTER `role`, CHANGE `content` `content` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL; 
 

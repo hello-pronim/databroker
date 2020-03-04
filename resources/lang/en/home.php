@@ -63,7 +63,7 @@ return [
     'signupbox_desc' => 'The latest updates delivered straight to your inbox!',
     'viewall_partners' => 'View all our partners',
     'terms_conditions' => 'Terms and conditions',
-    'privacy_policy' => 'Privacy Policy',
+    'privacy_policy' => 'Privacy policy',
     'cookie_policy' => 'Cookie policy',
 
     'one_stop_solution' => 'your one-stop solution for buying and selling data',
