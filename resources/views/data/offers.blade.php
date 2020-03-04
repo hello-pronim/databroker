@@ -117,10 +117,11 @@
 						
 						<div class="description-header" ng-show="themes[communityIdx].length > 0">
 							<div class="h4_intro text-left mgh25">Which of these themes best fit your data offer? </div>
+							<p class="para" style="margin-top: -20px">Please choose maximum 3 themes</p>
 							<div class="row limited-check-group" max-check="3">
 								<input type="hidden" id="offertheme" name="offertheme" value="">
-                               	<div class="check_container col-xl-4"  ng-repeat="theme in themes[communityIdx]" ng-init="$last && ctrl.selectedCommunity();">
-			                        <label class="pure-material-checkbox">
+                               	<div class="check_container col-xl-6"  ng-repeat="theme in themes[communityIdx]" ng-init="$last && ctrl.selectedCommunity();">
+			                        <label class="pure-material-checkbox flex-vcenter">
 			                            <input type="checkbox" class="form-control no-block check_theme" key="<%= theme.id %>" ng-checked="themeCheckList[theme.id]">
 			                            <span ng-bind="theme.name" class="para"></span>
 			                        </label>
@@ -132,7 +133,7 @@
 	                    <br>
 	                    <br>
 	                    <div class=" description-header flex-vcenter mb-10">
-							<div class="h4_intro">Please add an image that can be used to represent your data offer<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>							
+							<div class="h4_intro">Please add an image that can be used to represent your data offer <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>							
 							</div>
 						</div>	                    
 						<div class="fileupload">

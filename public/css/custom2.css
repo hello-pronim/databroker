@@ -2064,3 +2064,13 @@ body .select2-search--dropdown {
 	max-height: 350px;
 	overflow: scroll;
 }
+
+.pure-material-checkbox > span {
+	display: flex;
+	/*align-items: center;*/
+}
+
+.pure-material-checkbox > span::before {
+	flex: 24px 0 0;
+}
+
