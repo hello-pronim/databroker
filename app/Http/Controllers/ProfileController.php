@@ -117,7 +117,7 @@ class ProfileController extends Controller
         if ($updatePassword == true)
         {
             if (!Hash::check($oldPassword, $user->password)) {                                
-                return response()->json(array("success" => false, 'result' => array('password'=> "Old password is not correct.")));
+                return response()->json(array("success" => false, 'result' => array('oldPassword'=> "Old password is not correct.")));
             }else {
                 $user->password = Hash::make($request->input('password'));
             }
