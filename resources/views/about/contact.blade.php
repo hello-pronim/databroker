@@ -114,7 +114,7 @@
                     <label class="other-industry pure-material-textfield-outlined" style="display: none">
                         <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" " value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
                         <span>{{ trans('auth.enter_your_industry') }}</span>
-                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
+                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Other industry']) }}</div>
                         @error('businessName')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
