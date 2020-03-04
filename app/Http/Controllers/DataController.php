@@ -68,7 +68,9 @@ class DataController extends Controller
            return redirect('/login')->with('target', 'publish your data offer');
         }
         else{
-
+            $provider = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
+            if(!$provider)
+                return redirect(route('data_offer_provider'));
             $regions = Region::where('regionType', 'area')->get();
             $countries = Region::where('regionType', 'country')->get();
             $communities = Community::all();
@@ -169,7 +171,7 @@ class DataController extends Controller
         // die(json_encode($offer));
         $theme_json = json_encode($theme_map);
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'current_step', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList' );
+        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }
@@ -194,7 +196,7 @@ class DataController extends Controller
         $user = $this->getAuthUser();
         $providerIdx = -1;
         $provider_obj = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
-        if (!$provider_obj) {
+        if ($provider_obj) {
             $providerIdx = $provider_obj['providerIdx'];
 
             $offer_data = [];
@@ -282,135 +284,117 @@ class DataController extends Controller
 
             return response()->json(array( "success" => true, 'redirect' => route('data_offer_publish_confirm', ['id'=>$offerIdx]) ));
         }
-        else return response()->json(array( "success" => false, 'redirect' => route('data_offers') ));
+        else return response()->json(array( "success" => false, 'redirect' => route('data_offer_provider') ));
     }
 
     public function update_offer($id, Request $request){
-
-        $provider_data = [];
-        $companyLogo_path = public_path('uploads/company');
-                
         $user = $this->getAuthUser();
         $providerIdx = -1;
         $provider_obj = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
-        if (!$provider_obj) {
-            $provider_data['userIdx'] = Auth::id();
-            $provider_data['regionIdx'] = $request->regionIdx;
-            $provider_data['companyName'] = $request->companyName;        
-            $provider_data['companyURL'] = $request->companyUrl;        
+        if ($provider_obj) {
+            $providerIdx = $provider_obj['providerIdx'];
 
-            $provider_obj = Provider::create($provider_data);
-            $providerIdx = $provider_obj['providerIdx'];    
+            $offer_data = [];
+            $offerImage_path = public_path('uploads/offer');
 
-            if($request->file('companyLogo_1')!= null){
-                $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
-                $request->file('companyLogo_1')->move($companyLogo_path, $fileName);
-                
-                Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));    
+            $offer_data['offerTitle'] = $request->offerTitle;
+            $offer_data['offerDescription'] = $request->offerDescription;
+            $offer_data['communityIdx'] = $request->communityIdx;
+            $offer_data['providerIdx'] = $providerIdx;
+            $offer_data['themes'] = $request->offertheme;
+
+            $offerIdx = $id;
+            $offerimagefile = $request->file('offerImage_1');
+            if ($offerimagefile != null) {
+                $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
+                $ret = $offerimagefile->move($offerImage_path, $fileName);
+                $offer_data['offerImage'] = $fileName;
             }
-        } else {
-            $providerIdx = $provider_obj['providerIdx'];    
-        }
 
-        $offer_data = [];
-        $offerImage_path = public_path('uploads/offer');
-
-        $offer_data['offerTitle'] = $request->offerTitle;
-        $offer_data['offerDescription'] = $request->offerDescription;
-        $offer_data['communityIdx'] = $request->communityIdx;
-        $offer_data['providerIdx'] = $providerIdx;
-        $offer_data['themes'] = $request->offertheme;
-
-        $offerIdx = $id;
-        $offerimagefile = $request->file('offerImage_1');
-        if ($offerimagefile != null) {
-            $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
-            $ret = $offerimagefile->move($offerImage_path, $fileName);
-            $offer_data['offerImage'] = $fileName;
-        }
-
-        Offer::find($id)->update($offer_data);
-        
-        $offercountry_data = [];
-        OfferCountry::where('offerIdx', $offerIdx)->delete();
-        $offercountry_data['offerIdx'] = $offerIdx;
-        $offercountry = explode(',', $request->offercountry);
-        if( count( $offercountry ) > 0 ){
-            for( $i=0; $i< count($offercountry); $i++ ){
-                $offercountry_data['regionIdx'] = $offercountry[$i];
+            Offer::find($id)->update($offer_data);
+            
+            $offercountry_data = [];
+            OfferCountry::where('offerIdx', $offerIdx)->delete();
+            $offercountry_data['offerIdx'] = $offerIdx;
+            $offercountry = explode(',', $request->offercountry);
+            if( count( $offercountry ) > 0 ){
+                for( $i=0; $i< count($offercountry); $i++ ){
+                    $offercountry_data['regionIdx'] = $offercountry[$i];
+                    OfferCountry::create($offercountry_data);
+                }            
+            }else{
+                $offercountry_data['regionIdx'] = $offercountry;
                 OfferCountry::create($offercountry_data);
-            }            
-        }else{
-            $offercountry_data['regionIdx'] = $offercountry;
-            OfferCountry::create($offercountry_data);
-        }
+            }
 
-        $offertheme_data = [];
-        OfferTheme::where('offerIdx', $offerIdx)->delete();
-        $offertheme_data['offerIdx'] = $offerIdx;
-        $theme_list = explode(',', $request->offertheme);
-        if( count( $theme_list ) > 0 ){
-            for( $i=0; $i< count($theme_list); $i++ ){
-                $offertheme_data['themeIdx'] = $theme_list[$i];
+            $offertheme_data = [];
+            OfferTheme::where('offerIdx', $offerIdx)->delete();
+            $offertheme_data['offerIdx'] = $offerIdx;
+            $theme_list = explode(',', $request->offertheme);
+            if( count( $theme_list ) > 0 ){
+                for( $i=0; $i< count($theme_list); $i++ ){
+                    $offertheme_data['themeIdx'] = $theme_list[$i];
+                    OfferTheme::create($offertheme_data);
+                }            
+            }else{
+                $offertheme_data['themeIdx'] = $theme_list;
                 OfferTheme::create($offertheme_data);
-            }            
-        }else{
-            $offertheme_data['themeIdx'] = $theme_list;
-            OfferTheme::create($offertheme_data);
-        }
-        
-        $usercase_data = [];
-
-        $usercase_data['useCaseContent'] = $request->useCaseContent;
-        UseCase::where('offerIdx', $offerIdx)->update($usercase_data);
-
-        $i =1;        
-        while( ($fileName = $request->input('removed_offersample_files_'.$i)) != null ){ 
-            OfferSample::where('offerIdx', $offerIdx)
-                ->where('sampleFileName', $fileName)
-                ->update(['deleted' => 1]);
-            $i++;
-        }
-
-        $i =1;
-        while( ($fileName = $request->input('removed_offersample_images_'.$i)) != null ){          
-            OfferSample::where('offerIdx', $offerIdx)
-                ->where('sampleFileName', $fileName)
-                ->update(['deleted' => 1]);
-            $i++;
-        }
-        
-
-        $offersample_data =[];
-        $offersample_data['offerIdx'] = $offerIdx;
-        $offersample_path = public_path('uploads/offersample');
-        $i =1;        
-        while( $request->file('offersample_files_'.$i) != null ){        
-            $extension = $request->file('offersample_files_'.$i)->extension();
-            $fileName = pathinfo($request->file('offersample_files_'.$i)->getClientOriginalName(), PATHINFO_FILENAME)."_".date('Ymd').'.'.$extension;
+            }
             
-            $request->file('offersample_files_'.$i)->move($offersample_path, $fileName);
+            $usercase_data = [];
 
-            $offersample_data['sampleFileName'] = $fileName;
-            $offersample_data['sampleType'] = "file-".$extension;
-            OfferSample::create($offersample_data);    
-            $i++;
-        }
+            $usercase_data['useCaseContent'] = $request->useCaseContent;
+            UseCase::where('offerIdx', $offerIdx)->update($usercase_data);
 
-        $i =1;
-        while( $request->file('offersample_images_'.$i) != null ){
-            $extension = $request->file('offersample_images_'.$i)->extension();
-            $fileName = pathinfo($request->file('offersample_images_'.$i)->getClientOriginalName(), PATHINFO_FILENAME)."_".date('Ymd').'.'.$extension;
+            $i =1;        
+            while( ($fileName = $request->input('removed_offersample_files_'.$i)) != null ){ 
+                OfferSample::where('offerIdx', $offerIdx)
+                    ->where('sampleFileName', $fileName)
+                    ->update(['deleted' => 1]);
+                $i++;
+            }
+
+            $i =1;
+            while( ($fileName = $request->input('removed_offersample_images_'.$i)) != null ){          
+                OfferSample::where('offerIdx', $offerIdx)
+                    ->where('sampleFileName', $fileName)
+                    ->update(['deleted' => 1]);
+                $i++;
+            }
             
-            $request->file('offersample_images_'.$i)->move($offersample_path, $fileName);
 
-            $offersample_data['sampleFileName'] = $fileName;
-            $offersample_data['sampleType'] = "image-".$extension;
-            OfferSample::create($offersample_data);    
-            $i++;
-        }
+            $offersample_data =[];
+            $offersample_data['offerIdx'] = $offerIdx;
+            $offersample_path = public_path('uploads/offersample');
+            $i =1;        
+            while( $request->file('offersample_files_'.$i) != null ){        
+                $extension = $request->file('offersample_files_'.$i)->extension();
+                $fileName = pathinfo($request->file('offersample_files_'.$i)->getClientOriginalName(), PATHINFO_FILENAME)."_".date('Ymd').'.'.$extension;
+                
+                $request->file('offersample_files_'.$i)->move($offersample_path, $fileName);
 
-        return response()->json(array( "success" => true, 'redirect' => route('data_offer_update_confirm', ['id'=>$offerIdx]) ));
+                $offersample_data['sampleFileName'] = $fileName;
+                $offersample_data['sampleType'] = "file-".$extension;
+                OfferSample::create($offersample_data);    
+                $i++;
+            }
+
+            $i =1;
+            while( $request->file('offersample_images_'.$i) != null ){
+                $extension = $request->file('offersample_images_'.$i)->extension();
+                $fileName = pathinfo($request->file('offersample_images_'.$i)->getClientOriginalName(), PATHINFO_FILENAME)."_".date('Ymd').'.'.$extension;
+                
+                $request->file('offersample_images_'.$i)->move($offersample_path, $fileName);
+
+                $offersample_data['sampleFileName'] = $fileName;
+                $offersample_data['sampleType'] = "image-".$extension;
+                OfferSample::create($offersample_data);    
+                $i++;
+            }
+
+            return response()->json(array( "success" => true, 'redirect' => route('data_offer_update_confirm', ['id'=>$offerIdx]) ));
+        } else 
+            return response()->json(array( "success" => false, 'redirect' => route('data_offer_provider') ));
     }
 
     public function offer_add_product($offerIdx , Request $request) {        
@@ -641,8 +625,27 @@ class DataController extends Controller
     }
 
     public function save_offer_provider(Request $request){
+
+        $fields = [
+            'companyName' => ['required', 'string', 'max:255'],
+            'regionIdx' => ['required', 'integer'],            
+            'companyURL' => ['required', 'string', 'max:255', "regex: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/"]            
+        ];    
+        $messages = [
+            'companyName.required'=>'The company name is required.',
+            'regionIdx.required'=>'The region is required.',
+            'companyURL.required'=>'The company url is required.',
+            'companyURL.regex'=>'The url format is invalid.'
+        ];
+
+        $validator = Validator::make($request->all(), $fields, $messages);
+
+        if($validator->fails()){
+            return response()->json(array( "success" => false, 'result' => $validator->errors() ));                    
+        }
+
         $provider_data = [];
-        $companyLogo_path = public_path('uploads/company');
+        $providerCompanyLogo_path = public_path('uploads/provider');
         
         $user = $this->getAuthUser();
         $providerIdx = -1;
@@ -651,18 +654,19 @@ class DataController extends Controller
             $provider_data['userIdx'] = Auth::id();
             $provider_data['regionIdx'] = $request->regionIdx;
             $provider_data['companyName'] = $request->companyName;
-            $provider_data['companyURL'] = $request->companyUrl;
+            $provider_data['companyURL'] = $request->companyURL;
 
             $provider_obj = Provider::create($provider_data);
             $providerIdx = $provider_obj['providerIdx'];  
 
             if($request->file('companyLogo_1')!= null){
                 $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
-                $request->file('companyLogo_1')->move($companyLogo_path, $fileName);
+                $request->file('companyLogo_1')->move($providerCompanyLogo_path, $fileName);
                 
                 Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));    
             }
         }
+
         return response()->json(array( "success" => true, 'redirect' => route('data_offers') ));
     }
 

@@ -187,3 +187,46 @@ ALTER TABLE `databroker_new`.`contacts` CHANGE `jobTitle` `role` VARCHAR(255) CH
 UPDATE `databroker_new`.`regions` SET `regionName` = 'Oceania' WHERE (`regionIdx` = '253');
 UPDATE `databroker_new`.`regions` SET `regionName` = 'North America' WHERE (`regionIdx` = '248');
 INSERT INTO `databroker_new`.`regions` (`regionName`, `regionType`) VALUES ('South America', 'area');
+
+UPDATE `databroker_new`.`regions` SET `regionName` = 'South America' WHERE (`regionIdx` = '249');
+UPDATE `databroker_new`.`regions` SET `regionName` = 'Oceania' WHERE (`regionIdx` = '254');
+UPDATE `databroker_new`.`regions` SET `regionName` = 'Antartica' WHERE (`regionIdx` = '253');
+UPDATE `databroker_new`.`regions` SET `regionName` = 'Africa' WHERE (`regionIdx` = '252');
+UPDATE `databroker_new`.`regions` SET `regionName` = 'Asia' WHERE (`regionIdx` = '251');
+
+#2020-03-03
+CREATE TABLE IF NOT EXISTS `databroker_new`.`companies` (
+  `companyIdx` INT(11) NOT NULL AUTO_INCREMENT,
+  `regionIdx` INT(11) NOT NULL,
+  `companyName` VARCHAR(255) NULL DEFAULT NULL,
+  `companyURL` VARCHAR(255) NULL DEFAULT NULL,
+  `companyLogo` VARCHAR(255) NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`companyIdx`),
+  INDEX `fk_companies_regions1_idx` (`regionIdx` ASC) VISIBLE,
+  CONSTRAINT `fk_companies_regions1`
+    FOREIGN KEY (`regionIdx`)
+    REFERENCES `databroker_new`.`regions` (`regionIdx`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+ALTER TABLE `databroker_new`.`users` 
+DROP COLUMN `companyName`,
+ADD COLUMN `companyIdx` INT NULL AFTER `updated_at`;
+
+ALTER TABLE `databroker_new`.`users` 
+ADD CONSTRAINT `fk_users_companies1`
+  FOREIGN KEY (`companyIdx`)
+  REFERENCES `databroker_new`.`companies` (`companyIdx`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `databroker_new`.`users` 
+CHANGE COLUMN `companyIdx` `companyIdx` INT NULL DEFAULT NULL AFTER `userIdx`;
+
+
+
+

@@ -1613,4 +1613,6 @@ a.dropdown-toggle:after{
 #send-message-row h2.h4_intro.text-left{
 	margin-top: 0px !important;
 }
-
+.is-invalid +.select2-container .select2-selection{
+	border-color: #f44336!important;
+}

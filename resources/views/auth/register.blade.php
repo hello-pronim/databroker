@@ -13,7 +13,7 @@
                 <br>
                 <form id="registerForm" method="POST" action="{{ route('register') }}">
                     @csrf
-
+                    <input type="hidden" name="companyIdx" value="{{$company?$company->companyIdx:0}}">
                     <label class="pure-material-textfield-outlined">
                         <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
                         <span>{{ trans('auth.first_name') }}</span>
@@ -52,8 +52,8 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        @if($business!='')
-                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ $business }}" readonly autocomplete="company" autofocus>
+                        @if($company)
+                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ $company->companyName }}" readonly autocomplete="company" autofocus>
                         @else
                         <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ old('companyName') }}" autocomplete="company" autofocus>
                         @endif

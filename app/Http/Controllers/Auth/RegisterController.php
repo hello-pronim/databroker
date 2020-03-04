@@ -11,6 +11,7 @@ use Mail;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Community;
+use App\Models\Company;
 use App\Models\Business;
 use App\Models\LinkedUser;
 
@@ -49,10 +50,11 @@ class RegisterController extends Controller
     public function showRegistrationForm(Request $request)
     {        
         $email = $request->e?base64_decode($request->e):"";
-        $business = $request->b?base64_decode($request->b):"";
+        $companyIdx = $request->cid?$request->cid:"";
+        $company = Company::where('companyIdx', '=', $companyIdx)->get()->first();
 
         $params['email'] = $email;
-        $params['business'] = $business;
+        $params['company'] = $company;
         $params['businesses'] = Business::get();
 
         return view('auth.register')->with($params);
@@ -113,22 +115,26 @@ class RegisterController extends Controller
         ]);    
 
         $userStatus = 1;
-        $isCompanyExist = User::where('companyName', '=', $data['companyName'])->first();
-        if($isCompanyExist) $userStatus = 2;
+        if($data['companyIdx']!=0) $userStatus = 2;
         $isLinkedUser = LinkedUser::where('linked_email', '=', $data['email'])->first();
         if($isLinkedUser) $isLinkedUser->delete();
-
+        $companyIdx = $data['companyIdx'];
+        if($data['companyIdx']==0){
+            $companyObj = Company::create([
+                'companyName'=>$data['companyName']
+            ]);
+            $companyIdx = $companyObj['companyIdx'];
+        }
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
-            'companyName' => $data['companyName'],
+            'companyIdx'=> $companyIdx,
             'businessName' => $businessName,
             'role' => $role,
             'userStatus' => $userStatus,
             'password' => Hash::make($data['password']),
         ]);
-
     }
 
     protected function register_nl()
