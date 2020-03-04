@@ -107,7 +107,7 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">How will you handle pricing?</h4>
+			                <h4 class="h4_intro text-left">How will you handle pricing for this data product?</h4>
 			                <h4 class="h4_intro text-left">Please take into account a 10% transaction fee for Databroker.<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper period">
 				        		<div class="mb-10">
