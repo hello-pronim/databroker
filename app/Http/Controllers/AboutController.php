@@ -297,42 +297,39 @@ class AboutController extends Controller
     }
 
     public function send(Request $request){
-        $user = Auth::user();
-        if(!$user){
-            return redirect('/login')->with('target', 'use our DataMatch service');
-        }else{
-            $validator = Validator::make($request->all(),[
-                'firstname' => 'required|min:2',
-                'lastname' => 'required|min:2',
-                'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
-                'message' => 'required|min:5|max:1000',
-                'companyName' => 'required|min:2',
-                'regionIdx' => 'required',
-                'community'=> 'required|array|min:1'
-            ],[
-                'community.required'=>'Please choose at least one.',
-                'regionIdx.required'=>'The country field is required.'
-            ]);
+        $validator = Validator::make($request->all(),[
+            'firstname' => 'required|min:2',
+            'lastname' => 'required|min:2',
+            'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'message' => 'required|min:5|max:1000',
+            'companyName' => 'required|min:2',
+            'regionIdx' => 'required',
+            'community'=> 'required|array|min:1'
+        ],[
+            'community.required'=>'Please choose at least one.',
+            'regionIdx.required'=>'The country field is required.'
+        ]);
 
-            if ($validator->fails()) {
-                return redirect(url()->previous())
-                        ->withErrors($validator)
-                        ->withInput();
-            }
-
-            $businessName = $request->businessName2==='Other industry'?$request->businessName:$request->businessName2;
-            $role = $request->role2==='Other'?$request->role:$request->role2;
-
-            $contact_data['firstname'] = $request->firstname;
-            $contact_data['lastname'] = $request->lastname;
-            $contact_data['email'] = $request->email;        
-            $contact_data['companyName'] = $request->companyName;
-            $contact_data['regionIdx'] = $request->regionIdx;
-            $contact_data['role'] = $role;
-            $contact_data['content'] = $request->message;
-            $contact_obj = Contact::create($contact_data);
-            return view('about.contact_success');
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                    ->withErrors($validator)
+                    ->withInput();
         }
+
+        $businessName = $request->businessName2==='Other industry'?$request->businessName:$request->businessName2;
+        $role = $request->role2==='Other'?$request->role:$request->role2;
+
+        $contact_data['firstname'] = $request->firstname;
+        $contact_data['lastname'] = $request->lastname;
+        $contact_data['email'] = $request->email;        
+        $contact_data['companyName'] = $request->companyName;
+        $contact_data['regionIdx'] = $request->regionIdx;
+        $contact_data['businessName'] = $businessName;
+        $contact_data['role'] = $role;
+        $contact_data['content'] = $request->message;
+        $contact_data['communities'] = json_encode($request->community);
+        $contact_obj = Contact::create($contact_data);
+        return view('about.contact_success');
     }
 
     public function media_center(){

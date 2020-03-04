@@ -291,6 +291,7 @@ $(document).ready(function(){
         var region2 = $("#region span.region.active").attr("region-id");
        
         region = region1==""?region2:region1;
+        var region_text = $('#region .select >span').html();
         if($("#region span.region.active").text() == "World") region = "";
         var data = {_token: crsf, community: community, theme:theme, region:region, loadmore:loadmore }
         
@@ -330,10 +331,12 @@ $(document).ready(function(){
                 });
 
                 if( theme_text != 'All themes' ){
-                    $('.region_text').html("/" + theme_text + " Region");
+                    $('.theme_text').html("/" + theme_text);
                 }else{
-                    $('.region_text').html("");
+                    $('.theme_text').html("");
                 }
+                if(region) $('.region_text').html("/" + region_text);
+                else $('.region_text').html("");
                 //list = '<div class="row">' + list + '</div>';
                 var offercount = $("#offer-count span");
                 if(loadmore == false){

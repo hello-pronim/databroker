@@ -11,6 +11,6 @@ class Contact extends Model
     protected $primaryKey = 'contactIdx';
 
     protected $fillable = [
-        'firstname', 'lastname', 'email', 'companyName', 'regionIdx', 'role', 'content'
+        'firstname', 'lastname', 'email', 'companyName', 'regionIdx', 'role', 'businessName', 'content', 'communities'
     ];
 }
