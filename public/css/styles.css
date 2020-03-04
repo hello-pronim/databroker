@@ -265,10 +265,10 @@ body {
 }
 
 .section_splitor {
-    background: url(../images/patterns/section_splitor.png);
+    background: url(../images/patterns/section_splitor.png) repeat fixed;
     height: 70px;
     margin-bottom: 60px;    
-    background-size: contain;
+    background-size: 40px 65px;
     margin: 50px auto;
 }
 
