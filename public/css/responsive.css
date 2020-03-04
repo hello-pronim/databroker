@@ -696,3 +696,15 @@
 		display: none!important;
 	}
 }
+
+@media (min-width: 1200px) {
+	#footer-section-container {
+	  max-width: 1300px;
+	}
+  }
+
+  @media (min-width: 1600px) {
+	#footer-section-container {
+	  max-width: 1440px;
+	}
+  }
