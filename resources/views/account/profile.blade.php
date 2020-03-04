@@ -279,6 +279,7 @@
             <p class="para">
                 An email will be sent to these recipients, inviting them to register on Databroker
             </p>    
+            <p class="invalid-feedback text-center" style="display: none">The email is successfully sent.</p>
             <div class="email_lists cat-body">
                 <div class="error_notice">Please add email address.</div>
                 <label class="pure-material-textfield-outlined">
@@ -302,7 +303,7 @@
       </div>            
       <div class="modal-footer">        
         <button type="button" class="button primary-btn invite">Invite</button>
-        <button type="button" class="button secondary-btn" data-dismiss="modal">Cancel</button>
+        <button type="button" class="button secondary-btn" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

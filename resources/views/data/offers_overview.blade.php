@@ -36,7 +36,7 @@
 					@if(isset($offer['offerproduct']) && $offer['offerproduct']->product_count > 0)
 					<span class="label">{{ trans('pages.data_products') }}: </span>{{ $offer['offerproduct']->product_count }}
 					@else
-					none added yet
+					<span class="label">{{ trans('pages.data_products') }}: </span>none added yet
 					@endif
 					</span>					
 				</a>
