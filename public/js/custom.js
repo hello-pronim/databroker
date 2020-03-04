@@ -367,7 +367,7 @@ $(document).ready(function(){
         $(this).find("i").toggle();
         $(this).parent().find("div").toggle();
     });
-    if( $(".text-wrapper textarea").parent().find('.char-counter span')){
+    if( $(".text-wrapper textarea").length>0){
         $(".text-wrapper textarea").parent().find('.char-counter span').eq(0).text($(".text-wrapper textarea").val().length);
         var text_length = $(".text-wrapper textarea").attr('maxlength');
         $(".text-wrapper textarea").parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - $(".text-wrapper textarea").val().length);
