@@ -176,11 +176,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <p class="para">
-        	Unpublishing a data offer means the related data products will no longer be available for purchase.
-
-			Are you sure you want to unpublish?
-        </p>
+        <p class="para">Unpublishing this data product means it will no longer be available for purchase.</p>
+        <p class="para">Are you sure you want to unpublish?</p>
       </div>      
       <input type="hidden" name="data_type" value="">
       <input type="hidden" name="data_id" value="">

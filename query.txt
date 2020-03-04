@@ -227,6 +227,20 @@ ADD CONSTRAINT `fk_users_companies1`
 ALTER TABLE `databroker_new`.`users` 
 CHANGE COLUMN `companyIdx` `companyIdx` INT NULL DEFAULT NULL AFTER `userIdx`;
 
+#2020-03-04
+INSERT INTO `databroker_new`.`regions` (`regionIdx`, `regionName`) VALUES ('255', 'Other');
+
+ALTER TABLE `databroker_new`.`companies` 
+DROP FOREIGN KEY `fk_companies_regions1`;
+ALTER TABLE `databroker_new`.`companies` 
+CHANGE COLUMN `regionIdx` `regionIdx` INT NOT NULL DEFAULT 255 ;
+ALTER TABLE `databroker_new`.`companies` 
+ADD CONSTRAINT `fk_companies_regions1`
+  FOREIGN KEY (`regionIdx`)
+  REFERENCES `databroker_new`.`regions` (`regionIdx`);
 
 
+ALTER TABLE `databroker_new`.`contacts` CHANGE `firstname` `firstname` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `lastname` `lastname` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `email` `email` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `companyName` `companyName` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, ADD COLUMN `regionIdx` INT(11) NOT NULL AFTER `role`, CHANGE `content` `content` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL; 
 
+ALTER TABLE `databroker_new`.`contacts` ADD COLUMN `businessName` VARCHAR(255) NULL AFTER `role`; 
+ALTER TABLE `databroker_new`.`contacts` ADD COLUMN `communities` VARCHAR(255) NULL AFTER `content`; 

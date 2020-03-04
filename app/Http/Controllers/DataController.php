@@ -57,7 +57,7 @@ class DataController extends Controller
         if(  strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
         }
-
+    
         $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user' => $user, 'user_info' => $user_info, 'products' => $products);
         return view('data.details')->with($data);
     }
@@ -184,7 +184,7 @@ class DataController extends Controller
         $communityIdx = $offer['communityIdx'];
         $community = Community::find($communityIdx);
         $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
-        $link_to_market = route('data_community.'.$community_route);
+        $link_to_market = '/data/'.$id;
 
         $products = OfferProduct::with(['region'])->where('offerIdx', '=', $id)->orderby('updated_at', 'DESC')->get();
 
@@ -574,7 +574,7 @@ class DataController extends Controller
         // $offer_plain = json_encode($offer);
         // $community_plain = json_encode($community);
         $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
-        $link_to_market = route('data_community.'.$community_route);
+        $link_to_market = '/data/'.$id;
         $title = $offer['offerTitle'];
 
         $data = array( 'offerId', 'link_to_market', 'title' ); //, 'offer_plain', 'community_plain'

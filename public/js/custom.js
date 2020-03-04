@@ -302,6 +302,7 @@ $(document).ready(function(){
         var region2 = $("#region span.region.active").attr("region-id");
        
         region = region1==""?region2:region1;
+        var region_text = $('#region .select >span').html();
         if($("#region span.region.active").text() == "World") region = "";
         var data = {_token: crsf, community: community, theme:theme, region:region, loadmore:loadmore }
         
@@ -341,10 +342,12 @@ $(document).ready(function(){
                 });
 
                 if( theme_text != 'All themes' ){
-                    $('.region_text').html("/" + theme_text + " Region");
+                    $('.theme_text').html("/" + theme_text);
                 }else{
-                    $('.region_text').html("");
+                    $('.theme_text').html("");
                 }
+                if(region) $('.region_text').html("/" + region_text);
+                else $('.region_text').html("");
                 //list = '<div class="row">' + list + '</div>';
                 var offercount = $("#offer-count span");
                 if(loadmore == false){
@@ -378,13 +381,17 @@ $(document).ready(function(){
         $(this).find("i").toggle();
         $(this).parent().find("div").toggle();
     });
-
+    if( $(".text-wrapper textarea").length>0){
+        $(".text-wrapper textarea").parent().find('.char-counter span').eq(0).text($(".text-wrapper textarea").val().length);
+        var text_length = $(".text-wrapper textarea").attr('maxlength');
+        $(".text-wrapper textarea").parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - $(".text-wrapper textarea").val().length);
+    }
     $(".text-wrapper textarea").keyup(function(){
         var text = $(this).val();
         
-        $(this).parent().find('.char-counter span').eq(0).text(text.length);
+        $(this).parent().find('.char-counter span').eq(0).text(text.length());
         var text_length = $(this).attr('maxlength');
-        $(this).parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - text.length);
+        $(this).parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - text.length());
     });
 
     $("#community_box").change(function(){

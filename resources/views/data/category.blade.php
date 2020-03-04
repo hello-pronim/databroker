@@ -12,7 +12,7 @@
 	        	<div class="row">
 	        		<div class="col-lg-12">
 	        			<h4 class="text-green">{{ trans('pages.explore_data_offer') }}</h4>
-			            <h1 class="mt-0">{{$category}} Community <span class="region_text"></span></h1>
+			            <h1 class="mt-0">{{$category}} Community <span class="theme_text"></span><span class="region_text"></span></h1>
 			        </div>    
 			    </div>
 			    <div class="row">

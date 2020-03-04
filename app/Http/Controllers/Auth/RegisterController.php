@@ -11,6 +11,7 @@ use Mail;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Community;
+use App\Models\Region;
 use App\Models\Company;
 use App\Models\Business;
 use App\Models\LinkedUser;
@@ -120,7 +121,7 @@ class RegisterController extends Controller
         if($isLinkedUser) $isLinkedUser->delete();
         $companyIdx = $data['companyIdx'];
         if($data['companyIdx']==0){
-            $companyObj = Company::create([
+            $companyObj = Company::create([                
                 'companyName'=>$data['companyName']
             ]);
             $companyIdx = $companyObj['companyIdx'];
@@ -141,10 +142,45 @@ class RegisterController extends Controller
     {
         $communities = Community::get();
         $businesses = Business::get();
+        $countries = Region::where('regionType', 'country')->get(); 
         
-        $data = array( 'communities', 'businesses' );                
+        $data = array( 'communities', 'businesses', 'countries' );                
         return view('auth.register_nl', compact($data));
     }  
+
+    protected function create_nl(Request $request){
+        $validator = Validator::make($request->all(),[
+            'firstname' => 'required|min:2',
+            'lastname' => 'required|min:2',
+            'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'companyName' => 'required|min:2',
+            'regionIdx' => 'required',
+            'community'=> 'required|array|min:1'
+        ],[
+            'community.required'=>'Please choose at least one.',
+            'regionIdx.required'=>'The country field is required.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+
+        $businessName = $request->businessName2==='Other industry'?$request->businessName:$request->businessName2;
+        $role = $request->role2==='Other'?$request->role:$request->role2;
+
+        $subscription['firstname'] = $request->firstname;
+        $subscription['lastname'] = $request->lastname;
+        $subscription['email'] = $request->email;        
+        $subscription['companyName'] = $request->companyName;
+        $subscription['regionIdx'] = $request->regionIdx;
+        $subscription['role'] = $role;
+        var_dump($subscription);
+        exit;
+        $subscriptionObj = Contact::create($subscription);
+        return view('about.contact_success');
+    }
 
     protected function redirectTo()
     {
