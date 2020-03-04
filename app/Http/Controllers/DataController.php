@@ -574,7 +574,7 @@ class DataController extends Controller
         // $offer_plain = json_encode($offer);
         // $community_plain = json_encode($community);
         $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
-        $link_to_market = route('data_community.'.$community_route);
+        $link_to_market = '/data/'.$id;
         $title = $offer['offerTitle'];
 
         $data = array( 'offerId', 'link_to_market', 'title' ); //, 'offer_plain', 'community_plain'
