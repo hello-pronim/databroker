@@ -112,7 +112,7 @@
                     </label>
 
                     <div class="dropdown-container">
-                        <div class="dropdown2 job_list" tabindex="1">                                
+                        <div class="dropdown2 role_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
                                 <select id="role2" name="role2" placeholder="What role do you have?">
                                     <option></option>
