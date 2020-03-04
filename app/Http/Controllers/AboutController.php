@@ -291,7 +291,8 @@ class AboutController extends Controller
     public function contact(){
         $communities = Community::get();  
         $businesses = Business::get();
-        $data = array( 'communities', 'businesses' );
+        $countries = Region::where('regionType', 'country')->get(); 
+        $data = array( 'communities', 'businesses', 'countries' );
         return view('about.contact', compact($data));
     }
 
@@ -306,10 +307,11 @@ class AboutController extends Controller
                 'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
                 'message' => 'required|min:5|max:1000',
                 'companyName' => 'required|min:2',
-                'country' => 'required|min:2',
+                'regionIdx' => 'required',
                 'community'=> 'required|array|min:1'
             ],[
-                'community.required'=>'Please choose at least one.'
+                'community.required'=>'Please choose at least one.',
+                'regionIdx.required'=>'The country field is required.'
             ]);
 
             if ($validator->fails()) {
@@ -325,6 +327,7 @@ class AboutController extends Controller
             $contact_data['lastname'] = $request->lastname;
             $contact_data['email'] = $request->email;        
             $contact_data['companyName'] = $request->companyName;
+            $contact_data['regionIdx'] = $request->regionIdx;
             $contact_data['role'] = $role;
             $contact_data['content'] = $request->message;
             $contact_obj = Contact::create($contact_data);

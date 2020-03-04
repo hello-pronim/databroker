@@ -24,6 +24,12 @@ $(document).ready(function() {
             width: '100%'
         });
 
+        $region_list = $('.region_list .adv-combo-wrapper select');
+        $region_list.select2({
+            placeholder: $region_list.attr('placeholder') || 'Please select',
+            width: '100%'
+        });
+
         $('select.no-search').select2({
         	 minimumResultsForSearch: -1
         });
