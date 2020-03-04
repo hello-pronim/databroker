@@ -17,8 +17,8 @@
         		@csrf        		
         		<input type="hidden" name="offerIdx" value="{{ $offer['offerIdx'] }}">
         		<div class="blog-header mgt60">
-	                <h1 class="h1-small">You are adding a new data product.</h1>
-	                <h3 class="h3 text-normal">Related data offer:</h3>
+	                <h1 class="h1-small">Add a new data product</h1>
+	                <h3 class="h3 text-normal">This data product is related to the following data offer:</h3>
 	                <h3 class="h3"> {{ $offer['offerTitle'] }} </h3>
 	                @if($offer['region'])
 	                <span class="para offer-location">
@@ -32,10 +32,10 @@
 	            <div class="content">
 	            	<div class="row">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">What is the data product you are selling?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_product_tooltip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">What is the specific data product are you selling? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_product_tooltip') }}">help</i></h4>
 
 							<div class="text-wrapper">
-								<textarea name="productTitle" class="round-textbox user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>							
+								<textarea name="productTitle" class="round-textbox user-message min-h100" placeholder="{{ trans('pages.your_message') }}"  maxlength="100"></textarea>							
 								<div class="error_notice productTitle"> This field is required</div>
 								<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
 							</div>
@@ -43,7 +43,7 @@
 					</div>
 	            	<div class="row">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">For what region?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_datacover_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">Which region does the data cover? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_datacover_tooptip') }}">help</i></h4>
 				        	<div class="custom-dropdown-container">
 		                        <div class="custom-dropdown" tabindex="1">
 		                            <div class="select">
@@ -61,13 +61,8 @@
 						                    </div>
 						                @endforeach    
 					                    
-					                    <div class="check_container">
-					                        <label class="pure-material-checkbox">
-					                            <input type="checkbox" class="form-control no-block check_community" id="to_be_definded">
-					                            <span>{{ trans('pages.other') }}</span>
-					                        </label>
-					                    </div>			                    
-					                    <div class="adv-combo-wrapper custom-select2 mt-10" style="display: none;">
+					                    <h4 class="h4_intro text-left">Or add country</h4>
+					                    <div class="adv-combo-wrapper custom-select2 mt-10">
 						                    <select class="" name="region[]" data-placeholder="{{ trans('pages.search_by_country') }}">
 												<option></option>
 						                    	@foreach ($countries as $country)
@@ -86,7 +81,7 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">In what format will you provide the data?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_data_provided_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">In which format will the data be provided? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_data_provided_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper format">		                    
 			                    <label class="container para">File
 								  <input type="radio" name="format" value="File">
@@ -107,16 +102,15 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">How will you handle pricing for this data product?</h4>
-			                <h4 class="h4_intro text-left">Please take into account a 10% transaction fee for Databroker.<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">How will you handle pricing for this data product? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper period">
 				        		<div class="mb-10">
-				        			<label class="container para">The data is free
+				        			<label class="container para">FREE
 										<input type="radio" name="period" value="free">
 										<span class="checkmark"></span>
 									</label>
 									<div class="period_select">
-										<span class="para mlr-20">for access to this data for</span>
+										<span class="para mlr-20">for access to this data for </span>
 							        	<div class="adv-combo-wrapper custom-select2">
 						                    <select name="free_period" data-placeholder="Please select" class="no-search">
 						                    	<option></option>
@@ -131,7 +125,7 @@
 				        		</div>		                    		                    
 
 								<div>
-									<label class="container para">I will set a price, the buyer cannot bid
+									<label class="container para">I will set a price. No bidding is possible.
 									  <input type="radio" name="period" value="no_bidding">
 									  <span class="checkmark"></span>
 									</label>
@@ -149,13 +143,15 @@
 						                    	<option value="year">1 year</option>
 						                    </select>				                    				                        
 						                </div>						                
-									</div>	
-									<div class="error_notice no_bidding_price"> This field is required. </div>
-						            <div class="error_notice no_bidding_period"> Please select a period.</div>
+									</div>
+									<div>
+										<div class="error_notice no_bidding_price"> This field is required. </div>
+							            <div class="error_notice no_bidding_period"> Please select a period.</div>
+							        </div>
 				                </div>
 
 				                <div>
-				                	<label class="container para">I will set a price, but the buyer can also bid
+				                	<label class="container para">I will set a price, but buyers can also send bids.
 									  <input type="radio" name="period" value="bidding_possible">
 									  <span class="checkmark"></span>
 									</label>
@@ -178,7 +174,7 @@
 						            <div class="error_notice bidding_possible_period"> Please select a period.</div>
 				                </div>							
 				                <div>
-				                	<label class="container para">I will not set a price, only bidding
+				                	<label class="container para">I will not set a price. Interested parties can send bids.
 									  <input type="radio" name="period" value="bidding_only">
 									  <span class="checkmark"></span>
 									</label>	
@@ -202,21 +198,21 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">Do you have any extra relevant information for potential buyers about this data? (optional)<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_potential_buyer_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">Is there any additional information that might be useful for a potential buyer? (optional) <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_potential_buyer_tooptip') }}">help</i></h4>
 				        	<div class="text-wrapper">
-								<textarea name="productMoreInfo" class="round-textbox user-message min-h200" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>
-								<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
+								<textarea name="productMoreInfo" class="round-textbox user-message min-h200" placeholder="{{ trans('pages.your_message') }}" maxlength="999"></textarea>
+								<div class="char-counter"><span>0</span> / <span>999</span> characters</div>
 							</div>
 						</div>
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">Provide a URL where the buyer can read the data license<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_license_url_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">Please provide a URL where the buyer can consult the data licence. <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_license_url_tooptip') }}">help</i></h4>
 				        	<label class="pure-material-textfield-outlined">
 		                        <input type="text" id="licenseUrl" name="licenceUrl" class="form-control2 input_data" placeholder=" "  value="">
 		                        <span>{{ trans('pages.enter_url') }}</span>	                        
 		                    </label>
-		                   	<div class="error_notice licenceUrl"> You must provide a URL where the buyer can consult the data licence. </div>
+		                   	<div class="error_notice licenceUrl"> You must provide a URL where the buyer can consult the data licence.</div>
 						</div>
 					</div>
 					<div class="row mgt40">
