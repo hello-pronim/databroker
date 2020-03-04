@@ -72,16 +72,27 @@
                         @enderror
                     </label>
 
-                    <label class="pure-material-textfield-outlined">
-                        <input type="text" id="country" name="country" class="form-control input_data @error('country')  is-invalid @enderror" placeholder=" "  value="{{ old('country') }}" autocomplete="country" autofocus>
-                        <span>{{ trans('contact.country') }}</span>
-                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Country']) }}</div>
-                        @error('country')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </label>
+                    <div class="dropdown-container">
+                        <div class="dropdown2 region_list" tabindex="1">                                
+                            <div class="adv-combo-wrapper">
+                                <select id="regionIdx" class="@error('regionIdx') is-invalid @enderror"name="regionIdx" placeholder="Country">
+                                    <option></option>
+                                    @foreach ($countries as $country)
+                                        @if( $country->regionIdx == old('regionIdx') )
+                                        <option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
+                                        @else
+                                        <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
+                                        @endif
+                                    @endforeach
+                                 </select>
+                                 @error('regionIdx')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>                              
+                        </div>
+                    </div>    
 
                     <div class="dropdown-container">
                         <div class="dropdown2 business_list" tabindex="1">                                
