@@ -156,18 +156,29 @@ $(document).ready(function(){
        
     });
 
-    $(".data-offer .step button.btn-next").click(function(e){
-    	var cur_step = $(this).closest("div.step");
+    var validate = function (cur_step, elem) {                
+        cur_step.find('.error_notice').removeClass('active'); 
+        cur_step.find('.error_notice').hide();
+        if( $(elem).val() === "" && $(elem).attr('remotefile') === undefined){
+            var elem_name = $(elem).attr("name").replace('[]','');
+            cur_step.find('.error_notice.'+elem_name).show();                   
+        }           
+    };
+    $(".data-offer .step").each(function(key, elem){
+    	var cur_step = $(this);
     	cur_step.find('.error_notice').hide();
 
-		cur_step.find("input, textarea, select").each(function(key, elem){    			
-			cur_step.find('.error_notice').removeClass('active');
-			if( $(elem).val() === "" && $(elem).attr('remotefile') === ""){
-				var elem_name = $(elem).attr("name").replace('[]','');
-				cur_step.find('.error_notice.'+elem_name).show();    				
-			}			
-		});
+        cur_step.find("input, textarea, select").on('blur', function (evt) {
+            validate(cur_step, evt.target);
+        });
+    });
 	
+    $(".data-offer .step button.btn-next").click(function(e){
+        var cur_step = $(this).closest("div.step");
+
+        // cur_step.find("input, textarea, select").each(function(key, elem) {
+        //     validate(cur_step, elem);
+        // });
     	var allow_next = true;
     	cur_step.find('.error_notice').each(function(key, elem){    		
     		if( $(elem).css('display') == "block"){
