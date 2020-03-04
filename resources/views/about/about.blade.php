@@ -30,14 +30,14 @@
                             <p class="para">
                                 For those who have trouble finding the data they need, we offer a tailor-made DataMatch service. Based on your specific needs, our DataMatch Advisor searches for potential data partners from our wide global network, and contacts you when they find what you need. At no extra cost.
                             </p>
-                            <a href="javascript;"><span class="color-green">Discover our DataMatch service</span></a><!-- Link to 40_Matchmaking service -->
+                            <a ><span class="color-green">Discover our DataMatch service</span></a>&nbsp;&nbsp;(Coming soon)<!-- Link to 40_Matchmaking service -->
                         </div>
                         <div>
                             <h3 class="text-bold">Platform-as-a-Service solution (Paas)</h3>
                             <p class="para">
                                 Databroker is also available as white-labeled Platform-as-a-Service solution (PaaS), allowing data-rich companies to achieve, and even exceed their business ambitions by operating their own data exchange platform.
                             </p>
-                            <a href="javascript;"><span class="color-green">Interested in finding out about our PaaS solution?</span></a><!-- Link to 110_Contact -->
+                            <a ><span class="color-green">Interested in finding out about our PaaS solution?</span></a>&nbsp;&nbsp;(Coming soon)<!-- Link to 110_Contact -->
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
         </div>  
     </div>
 </div>
-<div class="container-fluid app-wapper">
+<div class="container-fluid app-wapper" id="container-responsive-about">
     <div class="section_splitor_green"></div>
     <div class="container">
         <div class="app-section flex-vcenter flex-vertical story-section">
@@ -68,9 +68,9 @@
                             </svg>
                             <div class="history-line"></div>
                             <div id="chb16" class="history-block ">
-                                <div class="h3 color-green">2016</div>
-                                <div class="h1-small color-blue">Creation of Databroker</div>
-                                <p class="para">The idea behind Databroker originates within SettleMint, its sister company, in Belgium in late 2016. The team, led by two tech visionaries Matthew Van Niekerk and Roderik van der Veer, starts work on a proof-of-concept based on SettleMint’s low-code blockchain middleware.</p>
+                                <div class="h3 color-green" id="f-color-green">2016</div>
+                                <div class="h1-small color-blue f" >Creation of Databroker</div>
+                                <p class="para f">The idea behind Databroker originates within SettleMint, its sister company, in Belgium in late 2016. The team, led by two tech visionaries Matthew Van Niekerk and Roderik van der Veer, starts work on a proof-of-concept based on SettleMint’s low-code blockchain middleware.</p>
                             </div>
                         </div>
                         <div id="hn17" class="history-node small right">
@@ -81,8 +81,8 @@
                             <div class="history-line"></div>
                             <div id="chb18" class="history-block ">
                                 <div class="h3 color-green">2017</div>
-                                <div class="h1-small color-blue">Alpha release, DTX tokens</div>
-                                <p class="para">A prototype of DataBroker DAO, “the first global marketplace for trading local IoT data”, sees the light of day. Platform validation with end users in Europe, the Middle East and Asia. DTX token sale – a total of 225 million DTX tokens are created, corresponding to the expected number of sensors that will be connected to DataBroker DAO in the year 2024.</p>
+                                <div class="h1-small color-blue s">Alpha release, DTX tokens</div>
+                                <p class="para s">A prototype of DataBroker DAO, “the first global marketplace for trading local IoT data”, sees the light of day. Platform validation with end users in Europe, the Middle East and Asia. DTX token sale – a total of 225 million DTX tokens are created, corresponding to the expected number of sensors that will be connected to DataBroker DAO in the year 2024.</p>
                             </div>
                         </div>
                         <div id="hn18" class="history-node small left">
@@ -92,9 +92,9 @@
                             </svg>
                             <div class="history-line"></div>
                             <div id="chb19" class="history-block ">
-                                <div class="h3 color-green">2018</div>
-                                <div class="h1-small color-blue">Beta release</div>
-                                <p class="para">The next release of Databroker DAO sees DTX tokens being staked to ensure the quality of data being sold, and allows potential buyers to easily search and find the sensor data they need and purchase it with DTX tokens. Building DataBroker DAO alliances: Ericsson 5G Life Campus, Rivetz...</p>
+                                <div class="h3 color-green" id="t-color-green">2018</div>
+                                <div class="h1-small color-blue t">Beta release</div>
+                                <p class="para t">The next release of Databroker DAO sees DTX tokens being staked to ensure the quality of data being sold, and allows potential buyers to easily search and find the sensor data they need and purchase it with DTX tokens. Building DataBroker DAO alliances: Ericsson 5G Life Campus, Rivetz...</p>
                             </div>
                         </div>
                         <div id="hn19" class="history-node small right">
@@ -104,9 +104,9 @@
                             </svg>
                             <div class="history-line"></div>
                             <div id="chb20" class="history-block ">
-                                <div class="h3 color-green">2019</div>
-                                <div class="h1-small color-blue">Revisioning, rebranding and retooling</div>
-                                <p class="para">In a year full of transformation, Databroker DAO is rebranded as Databroker, the scope is extended from IoT data to all kinds of data, and the whole concept is redesigned to convey the new message: Databroker is the marketplace for data. The team focuses on building the platform and onboarding new partners that share our vision.</p>
+                                <div class="h3 color-green" id="fo-color-green">2019</div>
+                                <div class="h1-small color-blue fo">Revisioning, rebranding and retooling</div>
+                                <p class="para fo">In a year full of transformation, Databroker DAO is rebranded as Databroker, the scope is extended from IoT data to all kinds of data, and the whole concept is redesigned to convey the new message: Databroker is the marketplace for data. The team focuses on building the platform and onboarding new partners that share our vision.</p>
                             </div>
                         </div>
                         <div id="hn20" class="history-node small left">
@@ -116,12 +116,12 @@
                             </svg>
                             <div class="history-line"></div>
                             <div id="chb20" class="history-block ">
-                                <div class="h3 color-green">2020</div>
-                                <div class="h1-small color-blue">Commercial release</div>
-                                <p class="para">The first commercial version of the marketplace for data is launched.</p>
-                                <p class="para">Data buyers and sellers can connect via the Databroker platform and exchange data securely on a peer-to-peer basis.</p>
-                                <p class="para">For buyers who have trouble finding the data they need, our free, tailor-made DataMatch service helps identify and match potential data partners from our wide global network.</p>
-                                <p class="para">And data-rich organizations like network operators, network service enablers and smart cities can leverage our white-labeled Platform-as-a-Service (PaaS) solution to operate their own data exchange platforms for public and private data sharing.</p>
+                                <div class="h3 color-green" id="fi-color-green">2020</div>
+                                <div class="h1-small color-blue fi">Commercial release</div>
+                                <p class="para fi">The first commercial version of the marketplace for data is launched.</p>
+                                <p class="para fi">Data buyers and sellers can connect via the Databroker platform and exchange data securely on a peer-to-peer basis.</p>
+                                <p class="para fi">For buyers who have trouble finding the data they need, our free, tailor-made DataMatch service helps identify and match potential data partners from our wide global network.</p>
+                                <p class="para fi">And data-rich organizations like network operators, network service enablers and smart cities can leverage our white-labeled Platform-as-a-Service (PaaS) solution to operate their own data exchange platforms for public and private data sharing.</p>
                             </div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
             <div class="divider-green"></div>
             <div class="h2 mgt30">Dont' miss any updates!</div>
             <div class="">Sign up to our newsletter</div>
-            <a href="/register"><button class="button customize-btn mgt60">SIGN UP</button></a>
+            <a href="/register_nl"><button class="button customize-btn mgt60">NEWSLETTER SIGN UP</button></a>
         </div>
     </div>
 </div>   

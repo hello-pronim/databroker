@@ -698,13 +698,21 @@
 }
 
 @media (min-width: 1200px) {
+	.col-lg-6.flex-vcenter.mg30.matchmaking
+	{
+		margin-left: 90px;
+	}
 	#footer-section-container {
 	  max-width: 1300px;
 	}
   }
 
-  @media (min-width: 1600px) {
-	#footer-section-container {
-	  max-width: 1440px;
+@media (min-width: 1600px) {
+	.col-lg-6.flex-vcenter.mg30.matchmaking
+	{
+		margin-left: 10px;
 	}
-  }
+	#footer-section-container {
+		max-width: 1440px;
+	}
+}
