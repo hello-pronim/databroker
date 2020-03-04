@@ -67,16 +67,20 @@ $(document).ready(function(){
     		dataType: 'json',
     		success:function(response){
     			$("span.invalid-feedback").hide();
+                $('.is-invalid').removeClass('is-invalid');
     			$("span.invalid-feedback").find("strong").empty();
     			if(response.success == false ){
-    				$.each(response.result, function(key, value){    					
+    				$.each(response.result, function(key, value){    		
+                    console.log(key);
+                    console.log(value);			
     					if(typeof value == 'object'){
     						$.each(value, function(a, b){    							
     							$("span.invalid-feedback."+key).find("strong").append(b+"<br>");
     						});    						
     					}else{
     						$("span.invalid-feedback."+key).find("strong").text(value);
-    					}    					
+    					}    				
+                        $('#'+key).addClass('is-invalid');	
     					$("span.invalid-feedback."+key).show();
     				});
     			}else{
@@ -486,6 +490,7 @@ $(document).ready(function(){
                 dataType: 'json',
                 success: function(res){
                     console.log(res);
+                    $("#inviteModal .invalid-feedback").css('display', 'block');
                     if(res.success == true){
                         window.location.reload();    
                     }

@@ -71,6 +71,7 @@
 					                    </div>
 					                @endforeach    
 
+					                <h4 class="h4_intro text-left">Or add country</h4>
 				                    <div class="adv-combo-wrapper custom-select2 mt-10">
 					                    <select class="" name="region[]" data-placeholder="{{ trans('pages.search_by_country') }}">
 											<option></option>
@@ -191,7 +192,7 @@
 				<div class="row">			
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.data_offer_step_3_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_usecase_tooltip') }}">help</i></div>							
+							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro text-left">{{ trans('pages.data_offer_step_3_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_usecase_tooltip') }}">help</i></div>							
 						</div>
 						<div class="text-wrapper">
 							<textarea name="useCaseContent" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{$usecase['useCaseContent'] ?? ''}}</textarea>

@@ -21,7 +21,7 @@ return [
     'offer_sample_file_tooltip' => 'You can upload up to 3 files of any kind. Maximum file size XMB.',
     'offer_usecase_tooltip' => 'Providing some use cases helps potential buyers understand how they might be able to use your data to enrich their business.',
     'offer_description_tooltip' => 'Describing the data offer in more detail helps potential buyers decide whether or not they are interested in your offer. For example, you might want to explain how the data is collected, whether or not it requires special processing etc.',
-    'community_Geographic_tooltip' => 'Data about geographic locations, physical and human characteristics of places, human-environment interaction, movement of people good and ideas.',
+    'community_Geographics_tooltip' => 'Data about geographic locations, physical and human characteristics of places, human-environment interaction, movement of people good and ideas.',
     'community_Environment_tooltip' => 'Data on natural resources, emissions, biodiversity, waste and recycling, hazardous substances, resource productivity, taxes and climate change.',
     'community_Transport_tooltip' => 'Data about transport of goods and people, traffic, safety and the transport industry in general, including employment, infrastructure and equipment.',
     'community_People_tooltip' => 'Data about population, health, education and training, labour market, income, social inclusion and living conditions, culture, crime and equality.',
@@ -29,11 +29,15 @@ return [
     'community_Energy_tooltip' => 'Data about energy balances, stocks and supply, transformation and consumption, energy prices, and energy infrastructure and capacities.',
     'community_Economy_tooltip' => 'Data about national accounts, government finance and EDP, exchange and interest rates, economic globalisation, digital economy and society, and commerce.',
     'community_Supply_Chain_tooltip' => 'Data related to supply chains in the automotive, chemical, electronics, food and beverage, pharmaceutical and retail sectors.',
-    'offer_image_tooltip' => 'Please choose a high-quality JPG file. Minimum dimensions 1920 x 1024 pixels; maximum file size 500KB.',
+    'offer_image_tooltip' => "Please choose a high-quality JPG file. Minimum dimensions 1920 x 1024 pixels; maximum file size 500KB.
+    If you choose to upload an image, please make sure you have the necessary rights to use it.",
     'what_product_tooltip' => 'Give a descriptive title e.g. Satellite imagery of road networks – GSD 1-5m.',
     'product_datacover_tooptip' => 'You can select one or more regions, or add individual countries.',
     'product_data_provided_tooptip' => 'You can provide data as a one-off file or stream that can be accessed during a defined period, or as an API that can be called during a defined period.',
-    'product_pricing_tooptip' => 'When you sell data, Databroker charges a transaction fee of 10% of the sale',
+    'product_pricing_tooptip' => 'When you sell data, Databroker charges a transaction fee of 10% of the sale price.
+
+This means that, at the end of the 30-day warranty period we credit your wallet with the earnings, minus the 10% transaction fee.
+',
     'product_potential_buyer_tooptip' => 'Potential buyers see this information alongside the title of your data product. If there is anything they need to know about this specific data product, you can mention it here.',
     'product_license_url_tooptip' => 'The data you are selling is an asset that needs to be protected. Which is why the rights to use that data are governed by a licence, configured by you. To purchase your data, the buyer needs to accept the terms of the data licence, and is then legally bound to comply with your conditions of use.',
 ];
