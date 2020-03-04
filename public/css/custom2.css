@@ -1608,6 +1608,7 @@ body .select2-search--dropdown {
 
 .history-container {
 	display: flex;
+	justify-content: center;
 	position: relative;
 	min-height: 1256px;
 	width: 100%;
@@ -1665,7 +1666,7 @@ body .select2-search--dropdown {
 .history-line {
 	position: absolute;
 	height: 0px;
-	width: 217px;
+	width: 213px;
 	top: 15px;
 }
 .big.left .history-line {
@@ -1675,7 +1676,7 @@ body .select2-search--dropdown {
 	left: 30px;
 }
 .small .history-line{	
-	width: 227px;
+	width: 223px;
 	top: 10px;
 }
 .small.left .history-line {
@@ -1717,7 +1718,7 @@ body .select2-search--dropdown {
 
 .history-node .history-block {
 	position: absolute;
-	width: 458px;
+	width: 460px;
 }
 
 .big.left .history-block {	
@@ -1751,12 +1752,6 @@ body .select2-search--dropdown {
 }
 
 .col-history-connectors-layer {
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-
 	display: flex;
 	align-items: center;
 	/*justify-content: center;*/
@@ -1788,7 +1783,7 @@ body .select2-search--dropdown {
 .history-connector.dot {
 	/*top: 632px;	/* 90+ 542 */
 	width: 0px;
-	height: 259px;
+	height: 500px;
 	border: 1.5px dashed #78E6D0;
 }
 .history-connector.arrow {
