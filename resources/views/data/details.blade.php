@@ -40,7 +40,7 @@
 			                        <a class="nav-link" href="#use_cases">{{ trans('pages.use_case') }}</a>
 			                    </li>
 			                    @endif
-			                    @if( $offersample )
+			                    @if( sizeof($offersample) >0 )
 			                    <li class="nav-item">
 			                        <a class="nav-link" href="#samples">{{ trans('pages.samples') }}</a>
 			                    </li>
@@ -75,7 +75,7 @@
 				                @endif
 				            </div>
 				            @endif
-			                @if( $offersample)
+			                @if( sizeof($offersample)>0 )
 				            <div class="link-box" id="samples">
 				                <h2>{{ trans('pages.samples') }}</h2>				               
 				                @foreach($offersample as $sample)

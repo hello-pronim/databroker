@@ -57,7 +57,7 @@ class DataController extends Controller
         if(  strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
         }
-
+    
         $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user' => $user, 'user_info' => $user_info, 'products' => $products);
         return view('data.details')->with($data);
     }
