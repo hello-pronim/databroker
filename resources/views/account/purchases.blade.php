@@ -71,7 +71,6 @@
                                                     <div class="price">
                                                         €500 <span class="color-black">(tax incl.)</span>/ DTX300
                                                     </div>
-                                                    <a class="text-green">Request invoice from seller</a>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
@@ -165,7 +164,6 @@
                                                     <div class="price">
                                                         €500 <span class="color-black">(tax incl.)</span>/ DTX300
                                                     </div>
-                                                    <a class="text-green">Request invoice from seller</a>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
@@ -259,7 +257,6 @@
                                                     <div class="price">
                                                         €500 <span class="color-black">(tax incl.)</span>/ DTX300
                                                     </div>
-                                                    <a class="text-green">Request invoice from seller</a>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
