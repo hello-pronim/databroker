@@ -115,6 +115,7 @@
 										<label class="pure-material-textfield-outlined">
 					                        <span class="currency">€ </span><input type="number" step="0.01" name="{{$bidtype['type']}}_price" class="form-control2 input_data" placeholder="0.0" value="{{$product['productPrice']}}"> 
 					                    </label>
+					                    <span>(tax incl.)</span>
 					                    @endif
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">

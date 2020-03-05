@@ -16,7 +16,7 @@
 		            		<p>Seller Company Name</p>
 		            		<div class="mt-20">
 		            			<label>Format:</label><span>API Flow</span> <br>
-		            			<label>Price:</label><span class="text-warning">€500</span> <br>
+		            			<label>Price:</label><span class="text-warning">€500</span> <span>(tax incl.)</span><br>
 		            			<label>Access to this data:</label><span>1 day</span>
 		            		</div>
 		            	</div>	
@@ -26,7 +26,7 @@
 		            		<p>Seller Company Name</p>
 		            		<div class="mt-20">
 		            			<label>Format:</label><span>API Flow</span> <br>
-		            			<label>Price:</label><span class="text-warning">€500</span> <br>
+		            			<label>Price:</label><span class="text-warning">€500</span> <span>(tax incl.)</span><br>
 		            			<label>Access to this data:</label><span>1 day</span>
 		            		</div>
 		            	</div>	
@@ -36,7 +36,7 @@
 		            		<p>Seller Company Name</p>
 		            		<div class="mt-20">
 		            			<label>Format:</label><span>API Flow</span> <br>
-		            			<label>Price:</label><span class="text-warning">€500</span> <br>
+		            			<label>Price:</label><span class="text-warning">€500</span> <span>(tax incl.)</span><br>
 		            			<label>Access to this data:</label><span>1 day</span>
 		            		</div>
 		            	</div>	
@@ -57,6 +57,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€500</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -98,6 +99,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€500</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -124,6 +126,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€500</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -158,6 +161,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€500</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -194,6 +198,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€800</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -220,6 +225,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€800</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -261,6 +267,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€800</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -295,6 +302,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€1200</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -331,6 +339,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€1200</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -372,6 +381,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€1200</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -398,6 +408,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€500</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
@@ -432,6 +443,7 @@
 		            				</div>
 		            				<div class="col-md-10">
 		            					<span class="text-warning">€500</span>
+		            					<span>(tax incl.)</span>
 		            				</div>
 		            			</div>
 		            			<div class="row">
