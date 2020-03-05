@@ -658,6 +658,7 @@ class DataController extends Controller
             $provider_data['regionIdx'] = $request->regionIdx;
             $provider_data['companyName'] = $request->companyName;
             $provider_data['companyURL'] = $request->companyURL;
+            $provider_data['companyVAT'] = $request->companyVAT;
             $provider_data['companyLogo'] = Company::where('companyIdx', '=', $user->companyIdx)->first()['companyLogo'];
 
             $provider_obj = Provider::create($provider_data);
@@ -671,7 +672,7 @@ class DataController extends Controller
             // }
         }
 
-        return response()->json(array( "success" => true, 'redirect' => route('data_offers') ));
+        return redirect(route('data_offers'));
     }
 
     public function offer_product_publish_confirm($id, Request $request){

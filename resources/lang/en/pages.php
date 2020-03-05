@@ -58,6 +58,7 @@ return [
     'Purchases' => 'Purchases',
     'what_company_name' => 'What is the name of your company?',
     'what_company_url' => 'Company website',
+    'company_vat' => 'VAT number',
     'transactions' => 'Transactions',
     'PUBLISH_NEW_DATA_OFFER' => 'PUBLISH NEW DATA OFFER',
 

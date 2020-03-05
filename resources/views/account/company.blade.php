@@ -35,6 +35,10 @@
                         <div class="col-2 info-label">URL:</div>
                         <div class="col info-text"><a class="text-green" href="{{ $company->companyURL }}">{{ $company->companyURL?$company->companyURL:"" }}</a></div>
                     </div>
+                    <div class="row">
+                        <div class="col-2 info-label">VAT number:</div>
+                        <div class="col info-text">{{ $company->companyVAT?$company->companyVAT:"" }}</div>
+                    </div>
                     <div class="row">                            
                         <div class="col companylogo">
                             @if($company->companyLogo)
@@ -80,11 +84,19 @@
                         <label class="pure-material-textfield-outlined">
                             <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="{{ old('companyURL', $company->companyURL) }}" autocomplete="company" autofocus>
                             <span>{{ trans('pages.url') }}</span>
-                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company name']) }}</div>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company URL']) }}</div>
                             <span class="invalid-feedback companyURL" role="alert">
                                 <strong></strong>
                             </span>
-                        </label>            
+                        </label>    
+                        <label class="pure-material-textfield-outlined">
+                            <input type="text" id="companyVAT" name="companyVAT" class="form-control input_data" placeholder=" "  value="{{ old('companyVAT', $company->companyVAT) }}" autocomplete="company" autofocus>
+                            <span>{{ trans('pages.company_vat') }}</span>
+                            <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company VAT']) }}</div>
+                            <span class="invalid-feedback companyVAT" role="alert">
+                                <strong></strong>
+                            </span>
+                        </label>        
                         <div class="fileupload data-offer">                            
                             <input type="file" id="companyLogo" name="companyLogo" accept='image/*'>
                             <span class="invalid-feedback companyLogo">
