@@ -1610,7 +1610,7 @@ body .select2-search--dropdown {
 	display: flex;
 	justify-content: center;
 	position: relative;
-	min-height: 1256px;
+	/*min-height: 1256px;*/
 	width: 100%;
 	margin-top: 80px;
 	margin-bottom: 80px;

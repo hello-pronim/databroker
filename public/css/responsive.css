@@ -313,7 +313,8 @@
 
 	.history-container {
 		display: flex;
-		min-height: 1400px;
+		justify-content: flex-start;
+		/*min-height: 1400px;*/
 	}
 
 	.history-container .col-history {
@@ -339,6 +340,7 @@
 	}
 
 	.col-history-connectors-layer {
+		justify-content: flex-start;
 		align-items: flex-start;
 	}
 
@@ -392,7 +394,7 @@
 	}
 
 	.history-connector.dot {
-		height: 300px;
+		height: 400px;
 	}
 
 	#hn16 {
