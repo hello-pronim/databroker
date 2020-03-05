@@ -8,7 +8,7 @@
 @section('content')
 <!--- xd #57 -->
 <div class="container-fluid app-wapper about matchmaking">
-    <div class="bg-pattern1-left"></div>
+    <div class="bg-pattern1-left" id="matchmaking-background"></div>
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
             <div class="blog-header">
@@ -20,7 +20,7 @@
                     <div class="col-lg-3 avatar-wrapper">
                         <div class="avatar"></div>
                     </div>
-                    <div class="col-lg-6 flex-vcenter mg30">
+                    <div class="col-lg-6 flex-vcenter mg30 matchmaking">
                         <div>
                             <p class="h4_intro text-left">Hi, I’m Vincent, your DataMatch Advisor!</p>
                             <p class="para">Are you looking for specific data that’s hard to find? We work with you to understand exactly what you need, and then use our wide network to find the perfect data match for you.</p>
@@ -39,7 +39,7 @@
                     </ul>
                 </div>
                 <div class="flex-vcenter">
-                    <button class="customize-btn">Yes, I want to be matched up</button><!-- goto 74 -->
+                    <button class="customize-btn">Yes, I want to be matched up</button><!-- goto 74 --><span>&nbsp;&nbsp;(Coming soon)</span>
                     <div class="mg15 pd15">It's free</div>
                 </div>
             </div>

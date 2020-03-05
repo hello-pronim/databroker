@@ -36,7 +36,7 @@ return [
     'signout' => 'Sign Out',
     'signup' => 'Sign up',
     'lets_started' => 'Let’s get started',
-    'cookie_desc' => 'We use cookies to give you the best possible experience on Databroker, and to provide web analytics that help us improve our site. To find out more, check out our Cookie policy.',
+    'cookie_desc' => 'We use cookies to give you the best possible experience on Databroker, and to provide web analytics that help us improve our site. To find out more, check out our',
     'accept_cookie' => 'Accept Cookies',
     'cookie_more' => 'Read more about cookies',
     'meta_title' => 'Welcome to Databroker | The marketplace for data',

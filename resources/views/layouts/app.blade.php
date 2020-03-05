@@ -177,7 +177,7 @@
             <div class="cookie-section">
               <div class="cookie-logo"><img src="{{asset('/images/patterns/graylogo.svg')}}"/></div>
               <div class="mgr80">                
-                <p class="para color-gray2">{{ trans('home.cookie_desc') }}</p>
+                <p class="para color-gray2">{{ trans('home.cookie_desc') }} <a href="{{route('about.cookie_policy')}}" id="accept-cookie-policy">Cookie policy</a></p>
               </div>
               <div class="flex-vertical">
                 <button type="button" class="btn accept-btn pure-material-button-outlined">{{ trans('home.accept_cookie') }}</button>
