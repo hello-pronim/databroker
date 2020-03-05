@@ -69,7 +69,7 @@
                                                         Seller company name
                                                     </h4>
                                                     <div class="price">
-                                                        €500 <span class="color-black">(tax incl.)</span>/ DTX300
+                                                        €500 <span class="color-black">(tax incl.)</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -162,7 +162,7 @@
                                                         Seller company name
                                                     </h4>
                                                     <div class="price">
-                                                        €500 <span class="color-black">(tax incl.)</span>/ DTX300
+                                                        €500 <span class="color-black">(tax incl.)</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -255,7 +255,7 @@
                                                         Seller company name
                                                     </h4>
                                                     <div class="price">
-                                                        €500 <span class="color-black">(tax incl.)</span>/ DTX300
+                                                        €500 <span class="color-black">(tax incl.)</span>
                                                     </div>
                                                 </div>
                                             </div>
