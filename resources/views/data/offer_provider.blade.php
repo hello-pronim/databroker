@@ -51,11 +51,7 @@
                             </label>
                             <label class="pure-material-textfield">{{ trans('pages.what_company_url') }}</label>
                             <label class="pure-material-textfield-outlined">
-                                @if($user->userStatus==1)
-                                <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyURL:''}}">
-                                @else
                                 <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyURL:''}}" readonly>
-                                @endif
                                 <span>{{ trans('pages.enter_url') }}</span>
                                 <div class="invalid-feedback companyURL">
                                     <strong></strong>
