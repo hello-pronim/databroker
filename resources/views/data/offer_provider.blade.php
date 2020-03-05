@@ -57,6 +57,14 @@
                                     <strong></strong>
                                 </div>
                             </label>
+                            <label class="pure-material-textfield">{{ trans('pages.company_vat') }}</label>
+                            <label class="pure-material-textfield-outlined">
+                                <input type="text" id="companyVAT" name="companyVAT" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyVAT:''}}" readonly>
+                                <span>{{ trans('pages.company_vat') }}</span>
+                                <div class="invalid-feedback companyVAT">
+                                    <strong></strong>
+                                </div>
+                            </label>
                             <!-- <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
                             <div class="fileupload data-offer">
                                 <input type="file" id="companyLogo" class="companyLogo" name="companyLogo" accept='image/*'>

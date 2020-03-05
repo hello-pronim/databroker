@@ -133,13 +133,15 @@ class ProfileController extends Controller
         $fields = [
             'companyName' => ['required', 'string', 'max:255'],
             'regionIdx' => ['required', 'integer'],            
-            'companyURL' => ['required', 'string', 'max:255', "regex: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/"]            
+            'companyURL' => ['required', 'string', 'max:255', "regex: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/"],
+            'companyVAT'=>['required', 'string', 'max:255']            
         ];    
         $messages = [
             'companyName.required'=>'The company name is required.',
             'regionIdx.required'=>'The region is required.',
             'companyURL.required'=>'The company url is required.',
-            'companyURL.regex'=>'The url format is invalid.'
+            'companyURL.regex'=>'The url format is invalid.',
+            'companyVAT.regex'=>'The company VAT number is required.'
         ];
 
         $validator = Validator::make($request->all(), $fields, $messages);
@@ -154,6 +156,7 @@ class ProfileController extends Controller
         $company['companyName'] = $request->companyName;
         $company['regionIdx'] = $request->regionIdx;
         $company['companyURL'] = $request->companyURL;
+        $company['companyVAT'] = $request->companyVAT;
         
         if($request->file('companyLogo_1')!=null){            
             $companyLogo_path = public_path('uploads/company');
@@ -173,6 +176,7 @@ class ProfileController extends Controller
             $updatedProvider['regionIdx'] = $request->regionIdx;
             $updatedProvider['companyName'] = $request->companyName;
             $updatedProvider['companyURL'] = $request->companyURL;
+            $updatedProvider['companyVAT'] = $request->companyVAT;
             if($request->file('companyLogo_1')!=null)
                 $updatedProvider['companyLogo'] = $fileName;
             Provider::where('providerIdx', '=', $provider->providerIdx)->update($updatedProvider);
