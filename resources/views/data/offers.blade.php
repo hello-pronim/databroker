@@ -222,13 +222,13 @@
 				<div class="row files-block">			
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.files') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>						
+							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.files') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>						
 						</div>
-						<div class="fileupload">                            
+						<div class="fileupload fileupload-file">                            
 							@if (isset($sample_files))
-	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf,.zip,.rar' multiple filelist  remotefile="{{ json_encode($sample_files) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="file">
+	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf,.zip,.rar' multiple filelist  title="SELECT FILE" remotefile="{{ json_encode($sample_files) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="file">
 	                        @else
-	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf,.zip,.rar' multiple filelist>
+	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf,.zip,.rar' multiple filelist title="SELECT FILE">
 	                        @endif
 	                    </div>
 						<div class="file-drag-drop-zone">
@@ -256,13 +256,13 @@
 				<div class="row images-block">			
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>							
+							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>							
 						</div>
 						<div class="fileupload">                 
 							@if (isset($sample_files))
-	                         <input type="file" name="offersample_images" accept='image/*' multiple remotefile="{{ json_encode($sample_images) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="image">
+	                         <input type="file" name="offersample_images" accept='image/*' multiple remotefile="{{ json_encode($sample_images) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="image" title="SELECT IMAGE" fileType="images">
 	                        @else
-	                        <input type="file" name="offersample_images" accept='image/*' multiple>
+	                        <input type="file" name="offersample_images" accept='image/*' title="SELECT IMAGE" fileType="images" multiple>
 	                        @endif
 	                    </div>
 						<div class="images-list">
