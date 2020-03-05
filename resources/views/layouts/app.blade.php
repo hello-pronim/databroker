@@ -110,10 +110,10 @@
   			    <div class="container">
               <div class="row app-brand">
           			<a href=" {{route('home') }}">
-                  <img src="{{ asset('/images/logos/site_logo.png') }}" />                                                
+                  <img src="{{ asset('/images/logos/site_logo.png') }}" id="top-bar-img"/>                                                
                 </a>    
               </div>
-			        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="top-bar-menu-btn">
 			          <span class="sr-only">Toggle navigation</span>
 			          <span class="navbar-toggler-icon"></span>
 			          <span class="navbar-toggler-icon"></span>

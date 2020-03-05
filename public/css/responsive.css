@@ -782,6 +782,18 @@
 	#top-nav-right{
 		margin-bottom: 10px;
 	}
+	#top-bar-img{
+		margin-top: 30px;
+	}
+	#top-bar-menu-btn{
+		margin-top: 30px;
+	}
+	#navbarNavDropdown{
+		top: 126px;
+	}
+	.navbar-collapse.collapse.show{
+		transform: translate3d(0,0,0);
+	}
 }
 @media (min-width: 768px) {
 	.cookie-accept .container .row .mgr80{
