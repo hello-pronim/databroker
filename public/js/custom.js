@@ -382,16 +382,18 @@ $(document).ready(function(){
         $(this).parent().find("div").toggle();
     });
     if( $(".text-wrapper textarea").length>0){
-        $(".text-wrapper textarea").parent().find('.char-counter span').eq(0).text($(".text-wrapper textarea").val().length);
-        var text_length = $(".text-wrapper textarea").attr('maxlength');
-        $(".text-wrapper textarea").parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - $(".text-wrapper textarea").val().length);
+        $(".text-wrapper textarea").each(function(index, element){
+            $(element).parent().find('.char-counter span').eq(0).text($(element).val().length);
+            var text_length = $(element).attr('maxlength');
+            $(element).parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - $(element).val().length);
+        });
     }
     $(".text-wrapper textarea").keyup(function(){
         var text = $(this).val();
         
-        $(this).parent().find('.char-counter span').eq(0).text(text.length());
+        $(this).parent().find('.char-counter span').eq(0).text(text.length);
         var text_length = $(this).attr('maxlength');
-        $(this).parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - text.length());
+        $(this).parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - text.length);
     });
 
     $("#community_box").change(function(){

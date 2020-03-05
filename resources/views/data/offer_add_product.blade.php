@@ -37,7 +37,7 @@
 							<div class="text-wrapper">
 								<textarea name="productTitle" class="round-textbox user-message min-h100" placeholder="{{ trans('pages.your_message') }}"  maxlength="100"></textarea>							
 								<div class="error_notice productTitle"> This field is required</div>
-								<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
+								<div class="char-counter"><span>0</span> / <span>100</span> characters</div>
 							</div>
 						</div>
 					</div>
