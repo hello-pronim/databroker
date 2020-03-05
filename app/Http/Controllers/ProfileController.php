@@ -148,6 +148,8 @@ class ProfileController extends Controller
             return response()->json(array( "success" => false, 'result' => $validator->errors() ));                    
         }
 
+
+        $user = $this->getAuthUser();
         $company = [];
         $company['companyName'] = $request->companyName;
         $company['regionIdx'] = $request->regionIdx;
@@ -165,6 +167,16 @@ class ProfileController extends Controller
         }
 
         Company::where('companyIdx', $request->companyIdx)->update($company);
+
+        $providers = Provider::where('userIdx', '=', $user->userIdx)->get();
+        foreach($providers as $index=>$provider){
+            $updatedProvider['regionIdx'] = $request->regionIdx;
+            $updatedProvider['companyName'] = $request->companyName;
+            $updatedProvider['companyURL'] = $request->companyURL;
+            if($request->file('companyLogo_1')!=null)
+                $updatedProvider['companyLogo'] = $fileName;
+            Provider::where('providerIdx', '=', $provider->providerIdx)->update($updatedProvider);
+        }
 
         return response()->json(array( "success" => true, 'redirect' => route('account.company') ));
     }

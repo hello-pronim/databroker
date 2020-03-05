@@ -57,7 +57,7 @@ return [
     'users' => 'Users',
     'Purchases' => 'Purchases',
     'what_company_name' => 'What is the name of your company?',
-    'what_company_url' => 'Company website.',
+    'what_company_url' => 'Company website',
     'transactions' => 'Transactions',
     'PUBLISH_NEW_DATA_OFFER' => 'PUBLISH NEW DATA OFFER',
 
