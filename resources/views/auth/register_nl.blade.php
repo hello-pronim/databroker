@@ -16,7 +16,7 @@
                     @csrf
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
+                        <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname') is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
                         <span>{{ trans('contact.first_name') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'First Name']) }}</div>
                         @error('firstname')
@@ -27,7 +27,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="lastname" name="lastname" class="form-control input_data @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ old('lastname') }}" autocomplete="lastname" autofocus>
+                        <input type="text" id="lastname" name="lastname" class="form-control input_data @error('lastname') is-invalid @enderror" placeholder=" "  value="{{ old('lastname') }}" autocomplete="lastname" autofocus>
                         <span>{{ trans('contact.last_name') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
                         @error('lastname')
@@ -38,7 +38,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" autocomplete="email" autofocus>
+                        <input type="text" id="email" name="email" class="form-control input_data @error('email') is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" autocomplete="email" autofocus>
                         <span>{{ trans('contact.email_address') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
                         @error('email')
@@ -49,7 +49,7 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
-                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ old('companyName') }}" autocomplete="company" autofocus>
+                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName') is-invalid @enderror" placeholder=" "  value="{{ old('companyName') }}" autocomplete="company" autofocus>
                         <span>{{ trans('contact.company') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company']) }}</div>
                         @error('companyName')
@@ -62,7 +62,7 @@
                     <div class="dropdown-container">
                         <div class="dropdown2 region_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
-                                <select id="regionIdx" class="@error('regionIdx') is-invalid @enderror"name="regionIdx" placeholder="Country">
+                                <select id="regionIdx" class="@error('regionIdx') is-invalid @enderror" name="regionIdx" placeholder="Country">
                                     <option></option>
                                     @foreach ($countries as $country)
                                         @if( $country->regionIdx == old('regionIdx') )
@@ -99,7 +99,7 @@
                     </div>    
 
                     <label class="other-industry pure-material-textfield-outlined" style="display: none">
-                        <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" " value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
+                        <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName') is-invalid @enderror" placeholder=" " value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
                         <span>{{ trans('auth.enter_your_industry') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Other industry']) }}</div>
                         @error('businessName')
@@ -135,7 +135,7 @@
                     </div>    
 
                     <label class="other-role pure-material-textfield-outlined" style="display: none">
-                        <input type="text" id="role" name="role" class="form-control input_data @error('role')  is-invalid @enderror" placeholder=" "  value="{{ old('role') }}" autocomplete="role" autofocus>
+                        <input type="text" id="role" name="role" class="form-control input_data @error('role') is-invalid @enderror" placeholder=" "  value="{{ old('role') }}" autocomplete="role" autofocus>
                         <span>{{ trans('auth.enter_your_role') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Role']) }}</div>
                         @error('role')

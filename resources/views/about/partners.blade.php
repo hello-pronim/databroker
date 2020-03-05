@@ -30,11 +30,19 @@
                 <div id="partner-list" class="mgh30">
                     <div class="row">
                         @foreach ( $partners as $partner )
-                        <div class="col-lg-2 partner-cell-wrapper flex-vfill pd15">
-                            <div class="partner-cell pd25 flex-vfill">
-                                <div class="partner-logo" style="background-image: url('{{asset($partner['logo'])}}');"></div>
+                            @if($partner['link']!="")        
+                            <a href="{{$partner['link']}}" target="_blank" class="col-lg-2 partner-cell-wrapper flex-vfill pd15">
+                                <div class="partner-cell pl-25 pr-25 flex-vfill @if($partner['logo']=='') partner-cell-empty @endif">
+                                    <div class="partner-logo" style="background-image: url('{{asset($partner['logo'])}}');"></div>
+                                </div>
+                            </a>
+                            @else
+                            <div class="col-lg-2 partner-cell-wrapper flex-vfill pd15">
+                                <div class="partner-cell pl-25 pr-25 flex-vfill @if($partner['logo']=='') partner-cell-empty @endif">
+                                    <div class="partner-logo" style="background-image: url('{{asset($partner['logo'])}}');"></div>
+                                </div>
                             </div>
-                        </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>

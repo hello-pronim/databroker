@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Libraries;
 /**
  * Super-simple, minimum abstraction MailChimp API v3 wrapper
  * MailChimp API v3: http://developer.mailchimp.com https://github.com/drewm/mailchimp-api
@@ -30,8 +30,7 @@ class MailChimp
     public function __construct()
     {
         //Grab API key from config instead
-        $this->ci =& get_instance();
-        $this->api_key = $this->ci->config->item('Mailchimp_api_key');
+        $this->api_key = env('MailChimp_API_KEY');
 
         list(, $datacentre)  = explode('-', $this->api_key);
         $this->api_endpoint  = str_replace('<dc>', $datacentre, $this->api_endpoint);

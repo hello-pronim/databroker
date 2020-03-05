@@ -26,10 +26,15 @@
                         <div class="blog-content">
                             <label class="pure-material-textfield">Which country are you located in? </label>
                             <div class="adv-combo-wrapper custom-select2">
-                                <select id="regionIdx" name="regionIdx" class="" data-placeholder="{{ trans('pages.search_by_country') }}">
+                                <input type="hidden" name="regionIdx" value="{{$company->regionIdx}}">
+                                <select id="regionIdx" name="regionIdx" class="" placeholder="{{ trans('pages.search_by_country') }}" disabled>
                                     <option></option>
                                     @foreach ($countries as $country)
+                                        @if($country->regionIdx == $company->regionIdx)
+                                        <option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
+                                        @else
                                         <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback regionIdx">
@@ -38,24 +43,32 @@
                             </div>
                             <label class="pure-material-textfield">{{ trans('pages.what_company_name') }}</label>
                             <label class="pure-material-textfield-outlined">
-                                <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="">
-                                <span>{{ trans('pages.enter_name') }}</span>                            
+                                <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyName:''}}" readonly>
+                                <span>{{ trans('pages.company_name') }}</span>                            
                                 <div class="invalid-feedback companyName">
                                     <strong></strong>
                                 </div>
                             </label>
                             <label class="pure-material-textfield">{{ trans('pages.what_company_url') }}</label>
                             <label class="pure-material-textfield-outlined">
-                                <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="">
-                                <span>{{ trans('pages.enter_url') }}</span> 
+                                <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyURL:''}}" readonly>
+                                <span>{{ trans('pages.enter_url') }}</span>
                                 <div class="invalid-feedback companyURL">
                                     <strong></strong>
-                                </div>                        
+                                </div>
                             </label>
-                            <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
-                            <div class="fileupload data-offer">                            
-                                <input type="file" name="companyLogo" accept='image/*'>
-                                <div class="invalid-feedback companyLogo"></div>
+                            <!-- <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
+                            <div class="fileupload data-offer">
+                                <input type="file" id="companyLogo" class="companyLogo" name="companyLogo" accept='image/*'>
+                                <div class="invalid-feedback companyLogo">
+                                    <strong></strong>
+                                </div>
+                            </div> -->            
+                            <label class="pure-material-textfield">Company logo</label>              
+                            <div class="companylogo">
+                                @if($company->companyLogo)
+                                <img src="{{ asset('/uploads/company/'.$company->companyLogo) }}">
+                                @endif
                             </div>
                             <div class="buttons text-right">    
                                 <button type="submit" class="customize-btn btn-next pull-right">{{ trans('pages.save') }}</button>
