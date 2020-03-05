@@ -171,8 +171,14 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 .pl-20{
 	padding-left: 20px;
 }
+.pl-25{
+	padding-left: 25px;
+}
 .pr-15{
 	padding-right: 15px;
+}
+.pr-25{
+	padding-right: 25px;
 }
 .pr-40{
 	padding-right: 40px;

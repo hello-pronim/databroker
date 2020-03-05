@@ -1546,14 +1546,20 @@ body .select2-search--dropdown {
 	flex: 1 1 auto;
 	border: 1px solid #DAE1E5;
 	background: #FFFFFF 0% 0% no-repeat padding-box;
+	justify-content: center;
+}
+.partner-cell-empty {
+	border: none!important;
 }
 
 .partner-logo {	
-	width: 100%;
 	flex: 1 1 auto;
 	background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
+    filter: saturate(0%) brightness(99%);
+    backface-visibility: hidden;
+    max-width: 75%;
 }
 
 .flex-vertical .partner-logo {

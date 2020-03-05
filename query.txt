@@ -244,3 +244,5 @@ ALTER TABLE `databroker_new`.`contacts` CHANGE `firstname` `firstname` VARCHAR(2
 
 ALTER TABLE `databroker_new`.`contacts` ADD COLUMN `businessName` VARCHAR(255) NULL AFTER `role`; 
 ALTER TABLE `databroker_new`.`contacts` ADD COLUMN `communities` VARCHAR(255) NULL AFTER `content`; 
+
+ALTER TABLE `databroker_new`.`subscriptions` CHANGE `firstname` `firstname` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `lastname` `lastname` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `email` `email` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `companyName` `companyName` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, ADD COLUMN `regionIdx` INT(11) NOT NULL AFTER `companyName`, CHANGE `jobTitle` `role` VARCHAR(255) CHARSET armscii8 COLLATE armscii8_general_ci NULL, CHANGE `communities` `communities` VARCHAR(300) CHARSET utf8 COLLATE utf8_general_ci NOT NULL; 

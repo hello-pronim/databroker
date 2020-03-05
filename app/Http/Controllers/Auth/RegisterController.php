@@ -9,12 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Mail;
 use App\Http\Controllers\Controller;
+use App\Libraries\MailChimp;
+
 use App\User;
 use App\Models\Community;
 use App\Models\Region;
 use App\Models\Company;
 use App\Models\Business;
 use App\Models\LinkedUser;
+use App\Models\Subscription;
 
 class RegisterController extends Controller
 {
@@ -175,11 +178,24 @@ class RegisterController extends Controller
         $subscription['email'] = $request->email;        
         $subscription['companyName'] = $request->companyName;
         $subscription['regionIdx'] = $request->regionIdx;
+        $subscription['businessName'] = $businessName;
         $subscription['role'] = $role;
-        var_dump($subscription);
-        exit;
-        $subscriptionObj = Contact::create($subscription);
-        return view('about.contact_success');
+        $subscription['communities'] = json_encode($request->community);
+
+        $subscriptionObj = Subscription::where('email', '=', $request->email)->get()->first();
+        if($subscriptionObj) $subscriptionObj->delete();
+
+        $subscriptionObj = Subscription::create($subscription);
+
+        $mailchimp = new MailChimp();
+        $list_id = '4076927107';
+        $result = $mailchimp->post("lists/$list_id/members", [
+            'email_address' => $subscription['email'],
+            'merge_fields' => ['FNAME'=> $subscription['firstname'], 'LNAME'=> $subscription['lastname']],
+            'status'        => 'subscribed',
+        ]);
+
+        return view('auth.register_nl_success');
     }
 
     protected function redirectTo()

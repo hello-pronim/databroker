@@ -68,112 +68,124 @@ class AboutController extends Controller
         $partners = array (
             array(
                 'id'    => 1,
-                'logo'  => '/images/partners/Image_0_1.png',
+                'logo'  => '/images/partners/ericsson.png',
+                'link'  => 'http://www.blog-ericssonfrance.com/2018/11/13/databroker-dao-rejoint-le-5g-life-campus-dericsson-a-hasselt-en-belgique/'
             ),
             array(
                 'id'    => 2,
-                'logo'  => '/images/partners/Image_0_2.png',
+                'logo'  => '/images/partners/techzine.png',
+                'link'  => 'https://www.techzine.be/nieuws/29548/belgen-op-mwc-settlemint-laat-zien-waartoe-blockchain-in-staat-is.html'
             ),
             array(
                 'id'    => 3,
-                'logo'  => '/images/partners/Image_0_3.png',
+                'logo'  => '/images/partners/LeVif.png',
+                'link'  => 'https://datanews.levif.be/ict/start-ups/une-start-up-de-louvain-ouvre-une-plate-forme-de-commerce-pour-donnees-iot/article-normal-1073539.html?cookie_check=1552640905'
             ),
             array(
                 'id'    => 4,
-                'logo'  => '/images/partners/Image_0_4.png',
+                'logo'  => '/images/partners/datanews.png',
+                'link'  => 'https://datanews.knack.be/ict/start-ups/leuvense-start-up-opent-handelsplatform-voor-iot-data/article-normal-1412063.html?cookie_check=1552640929'
             ),
             array(
                 'id'    => 5,
-                'logo'  => '/images/partners/Image_0_5.png',
+                'logo'  => '/images/partners/PRNews.png',
+                'link'  => 'https://eprnews.com/internet-of-things-marketplace-databroker-dao-continues-at-full-speed-announcing-3-new-alliance-members-and-listing-on-tokenjar-359835/'
             ),
             array(
                 'id'    => 6,
-                'logo'  => '/images/partners/Image_1.png',
+                'logo'  => '/images/partners/inc.png',
+                'link'  => 'https://www.inc.com/darren-heitner/the-internet-of-things-doesnt-have-to-be-confusing-heres-how-your-business-can-get-in-on-600-billion-market.html'
             ),
             array(
                 'id'    => 7,
-                'logo'  => '/images/partners/Image_2.png',
+                'logo'  => '/images/partners/TechBullion.png',
+                'link'  => 'https://www.techbullion.com/interview-with-matthew-van-niekerk-founder-of-databroker-dao-on-databroker-dao-token-sale/'
             ),
             array(
                 'id'    => 8,
-                'logo'  => '/images/partners/Image_3.png',
+                'logo'  => '/images/partners/detijd.png',
+                'link'  => 'https://www.tijd.be/dossier/blockchain/leuvenaars-halen-virtuele-miljoenen-op-voor-handel-in-sensordata/10012926.html'
             ),
             array(
                 'id'    => 9,
-                'logo'  => '/images/partners/Image_4.png',
+                'logo'  => '/images/partners/criptonotcias.png',
+                'link'  => 'https://www.criptonoticias.com/publicidad/databroker-dao-anuncio-fechas-road-show-china-duplica-recompensas-venta-token/'
             ),
             array(
                 'id'    => 10,
-                'logo'  => '/images/partners/Image_5.png',
+                'logo'  => '/images/partners/Reuters.png',
+                'link'  => 'https://www.reuters.com/brandfeatures/venture-capital/article?id=32112'
             ),
             array(
                 'id'    => 11,
-                'logo'  => '/images/partners/Image_6.png',
+                'logo'  => '/images/partners/Medium.png',
+                'link'  => 'https://medium.com/databrokerdao/is-databroker-dao-taking-on-iota-342dc1481812'
             ),
             array(
                 'id'    => 12,
-                'logo'  => '/images/partners/Image_7.png',
+                'logo'  => '/images/partners/smartbelgium.png',
+                'link'  => 'https://smartbelgium.belfius.be/deelnemers/databroker-dao-is-eerste-marktplaats-iot-data/'
             ),
             array(
                 'id'    => 13,
-                'logo'  => '/images/partners/Image_8.png',
+                'logo'  => '/images/partners/jinse.png',
+                'link'  => 'http://www.jinse.com/news/blockchain/116602.html'
             ),
             array(
                 'id'    => 14,
-                'logo'  => '/images/partners/Image_9.png',
+                'logo'  => '/images/partners/momenta_partners.png',
+                'link'  => 'https://www.momenta.partners/edge/unlocking-the-value-of-sensor-data-through-the-marketplace-part-1'
             ),
             array(
                 'id'    => 15,
-                'logo'  => '/images/partners/Image_10.png',
+                'logo'  => '/images/partners/identitymindglobal.png',
+                'link'  => 'https://cdn2.hubspot.net/hubfs/459645/IDM-DatabrokerDAO-CaseStudy.pdf?t=1505774771437'
             ),
             array(
                 'id'    => 16,
-                'logo'  => '/images/partners/Image_11.png',
+                'logo'  => '/images/partners/BlockchainNews.png',
+                'link'  => 'https://www.the-blockchain.com/2017/10/14/announcing-first-members-databrokerdao-alliance/'
             ),
             array(
                 'id'    => 17,
-                'logo'  => '/images/partners/Image_12.png',
+                'logo'  => '/images/partners/demorgen.png',
+                'link'  => 'https://myprivacy.persgroep.net/?siteKey=6OfBU0sZ5RFXpOOK&callbackUrl=https://www.demorgen.be/privacy-wall/accept?redirectUri=/economie/geld-ophalen-was-nog-nooit-zo-makkelijk-maar-is-het-ook-veilig-b4b9bc32/'
             ),
             array(
                 'id'    => 18,
-                'logo'  => '/images/partners/Image_13.png',
+                'logo'  => '/images/partners/dsdestandaard.png',
+                'link'  => 'http://www.standaard.be/cnt/dmf20170914_03072983'
             ),
             array(
                 'id'    => 19,
-                'logo'  => '/images/partners/Image_14.png',
+                'logo'  => '',
+                'link'  => ''
             ),
             array(
                 'id'    => 20,
-                'logo'  => '/images/partners/Image_15.png',
+                'logo'  => '',
+                'link'  => ''
             ),
             array(
                 'id'    => 21,
-                'logo'  => '/images/partners/Image_16.png',
+                'logo'  => '/images/partners/globenewswire.png',
+                'link'  => 'https://www.globenewswire.com/news-release/2017/08/31/1106159/0/en/Medici-Ventures-Portfolio-Company-SettleMint-Announces-Token-Sale-for-DataBroker-DAO-Beginning-September-18-2017.html'
             ),
             array(
                 'id'    => 22,
-                'logo'  => '/images/partners/Image_17.png',
+                'logo'  => '/images/partners/marketwatch.png',
+                'link'  => 'https://www.marketwatch.com/press-release/medici-ventures-portfolio-company-settlemint-announces-token-sale-for-databroker-dao-beginning-september-18-2017-2017-08-31'
             ),
             array(
                 'id'    => 23,
-                'logo'  => '/images/partners/Image_18.png',
+                'logo'  => '',
+                'link'  => ''
             ),
             array(
                 'id'    => 24,
-                'logo'  => '/images/partners/Image_21.png',
-            ),
-            array(
-                'id'    => 25,
-                'logo'  => '/images/partners/Image_22.png',
-            ),
-            array(
-                'id'    => 26,
-                'logo'  => '/images/partners/Image_23.png',
-            ),
-            array(
-                'id'    => 27,
-                'logo'  => '/images/partners/Image_24.png',
-            ),
+                'logo'  => '',
+                'link'  => ''
+            )
         );
         $resellers = array (
             array(
@@ -352,112 +364,124 @@ class AboutController extends Controller
         $partners = array (
             array(
                 'id'    => 1,
-                'logo'  => '/images/partners/Image_0_1.png',
+                'logo'  => '/images/partners/ericsson.png',
+                'link'  => 'http://www.blog-ericssonfrance.com/2018/11/13/databroker-dao-rejoint-le-5g-life-campus-dericsson-a-hasselt-en-belgique/'
             ),
             array(
                 'id'    => 2,
-                'logo'  => '/images/partners/Image_0_2.png',
+                'logo'  => '/images/partners/techzine.png',
+                'link'  => 'https://www.techzine.be/nieuws/29548/belgen-op-mwc-settlemint-laat-zien-waartoe-blockchain-in-staat-is.html'
             ),
             array(
                 'id'    => 3,
-                'logo'  => '/images/partners/Image_0_3.png',
+                'logo'  => '/images/partners/LeVif.png',
+                'link'  => 'https://datanews.levif.be/ict/start-ups/une-start-up-de-louvain-ouvre-une-plate-forme-de-commerce-pour-donnees-iot/article-normal-1073539.html?cookie_check=1552640905'
             ),
             array(
                 'id'    => 4,
-                'logo'  => '/images/partners/Image_0_4.png',
+                'logo'  => '/images/partners/datanews.png',
+                'link'  => 'https://datanews.knack.be/ict/start-ups/leuvense-start-up-opent-handelsplatform-voor-iot-data/article-normal-1412063.html?cookie_check=1552640929'
             ),
             array(
                 'id'    => 5,
-                'logo'  => '/images/partners/Image_0_5.png',
+                'logo'  => '/images/partners/PRNews.png',
+                'link'  => 'https://eprnews.com/internet-of-things-marketplace-databroker-dao-continues-at-full-speed-announcing-3-new-alliance-members-and-listing-on-tokenjar-359835/'
             ),
             array(
                 'id'    => 6,
-                'logo'  => '/images/partners/Image_1.png',
+                'logo'  => '/images/partners/inc.png',
+                'link'  => 'https://www.inc.com/darren-heitner/the-internet-of-things-doesnt-have-to-be-confusing-heres-how-your-business-can-get-in-on-600-billion-market.html'
             ),
             array(
                 'id'    => 7,
-                'logo'  => '/images/partners/Image_2.png',
+                'logo'  => '/images/partners/TechBullion.png',
+                'link'  => 'https://www.techbullion.com/interview-with-matthew-van-niekerk-founder-of-databroker-dao-on-databroker-dao-token-sale/'
             ),
             array(
                 'id'    => 8,
-                'logo'  => '/images/partners/Image_3.png',
+                'logo'  => '/images/partners/detijd.png',
+                'link'  => 'https://www.tijd.be/dossier/blockchain/leuvenaars-halen-virtuele-miljoenen-op-voor-handel-in-sensordata/10012926.html'
             ),
             array(
                 'id'    => 9,
-                'logo'  => '/images/partners/Image_4.png',
+                'logo'  => '/images/partners/criptonotcias.png',
+                'link'  => 'https://www.criptonoticias.com/publicidad/databroker-dao-anuncio-fechas-road-show-china-duplica-recompensas-venta-token/'
             ),
             array(
                 'id'    => 10,
-                'logo'  => '/images/partners/Image_5.png',
+                'logo'  => '/images/partners/Reuters.png',
+                'link'  => 'https://www.reuters.com/brandfeatures/venture-capital/article?id=32112'
             ),
             array(
                 'id'    => 11,
-                'logo'  => '/images/partners/Image_6.png',
+                'logo'  => '/images/partners/Medium.png',
+                'link'  => 'https://medium.com/databrokerdao/is-databroker-dao-taking-on-iota-342dc1481812'
             ),
             array(
                 'id'    => 12,
-                'logo'  => '/images/partners/Image_7.png',
+                'logo'  => '/images/partners/smartbelgium.png',
+                'link'  => 'https://smartbelgium.belfius.be/deelnemers/databroker-dao-is-eerste-marktplaats-iot-data/'
             ),
             array(
                 'id'    => 13,
-                'logo'  => '/images/partners/Image_8.png',
+                'logo'  => '/images/partners/jinse.png',
+                'link'  => 'http://www.jinse.com/news/blockchain/116602.html'
             ),
             array(
                 'id'    => 14,
-                'logo'  => '/images/partners/Image_9.png',
+                'logo'  => '/images/partners/momenta_partners.png',
+                'link'  => 'https://www.momenta.partners/edge/unlocking-the-value-of-sensor-data-through-the-marketplace-part-1'
             ),
             array(
                 'id'    => 15,
-                'logo'  => '/images/partners/Image_10.png',
+                'logo'  => '/images/partners/identitymindglobal.png',
+                'link'  => 'https://cdn2.hubspot.net/hubfs/459645/IDM-DatabrokerDAO-CaseStudy.pdf?t=1505774771437'
             ),
             array(
                 'id'    => 16,
-                'logo'  => '/images/partners/Image_11.png',
+                'logo'  => '/images/partners/BlockchainNews.png',
+                'link'  => 'https://www.the-blockchain.com/2017/10/14/announcing-first-members-databrokerdao-alliance/'
             ),
             array(
                 'id'    => 17,
-                'logo'  => '/images/partners/Image_12.png',
+                'logo'  => '/images/partners/demorgen.png',
+                'link'  => 'https://myprivacy.persgroep.net/?siteKey=6OfBU0sZ5RFXpOOK&callbackUrl=https://www.demorgen.be/privacy-wall/accept?redirectUri=/economie/geld-ophalen-was-nog-nooit-zo-makkelijk-maar-is-het-ook-veilig-b4b9bc32/'
             ),
             array(
                 'id'    => 18,
-                'logo'  => '/images/partners/Image_13.png',
+                'logo'  => '/images/partners/dsdestandaard.png',
+                'link'  => 'http://www.standaard.be/cnt/dmf20170914_03072983'
             ),
             array(
                 'id'    => 19,
-                'logo'  => '/images/partners/Image_14.png',
+                'logo'  => '',
+                'link'  => ''
             ),
             array(
                 'id'    => 20,
-                'logo'  => '/images/partners/Image_15.png',
+                'logo'  => '',
+                'link'  => ''
             ),
             array(
                 'id'    => 21,
-                'logo'  => '/images/partners/Image_16.png',
+                'logo'  => '/images/partners/globenewswire.png',
+                'link'  => 'https://www.globenewswire.com/news-release/2017/08/31/1106159/0/en/Medici-Ventures-Portfolio-Company-SettleMint-Announces-Token-Sale-for-DataBroker-DAO-Beginning-September-18-2017.html'
             ),
             array(
                 'id'    => 22,
-                'logo'  => '/images/partners/Image_17.png',
+                'logo'  => '/images/partners/marketwatch.png',
+                'link'  => 'https://www.marketwatch.com/press-release/medici-ventures-portfolio-company-settlemint-announces-token-sale-for-databroker-dao-beginning-september-18-2017-2017-08-31'
             ),
             array(
                 'id'    => 23,
-                'logo'  => '/images/partners/Image_18.png',
+                'logo'  => '',
+                'link'  => ''
             ),
             array(
                 'id'    => 24,
-                'logo'  => '/images/partners/Image_21.png',
-            ),
-            array(
-                'id'    => 25,
-                'logo'  => '/images/partners/Image_22.png',
-            ),
-            array(
-                'id'    => 26,
-                'logo'  => '/images/partners/Image_23.png',
-            ),
-            array(
-                'id'    => 27,
-                'logo'  => '/images/partners/Image_24.png',
-            ),
+                'logo'  => '',
+                'link'  => ''
+            )
         );
         $data = array( 'press_list', 'partners' );
         return view('about.media_center', compact($data));        
