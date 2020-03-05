@@ -770,6 +770,18 @@
 	#cookie-accept-btn{
 		width: 100%;
 	}
+	.navbar.navbar-expand-lg.app-top-nav-bar-container .container{
+		text-align: center;
+	}
+	#top-nav-item{
+		margin: auto;
+	}
+	#top-nav-item-dropdown{
+		margin: auto;
+	}
+	#top-nav-right{
+		margin-bottom: 10px;
+	}
 }
 @media (min-width: 768px) {
 	.cookie-accept .container .row .mgr80{
