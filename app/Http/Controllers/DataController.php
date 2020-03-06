@@ -695,8 +695,11 @@ class DataController extends Controller
         $userIdx = Provider::where('providerIdx', '=', $providerIdx)->first()['userIdx'];
         $companyIdx = User::where('userIdx', '=', $userIdx)->first()['companyIdx'];
         $datetime = time();
-        $rnd = substr(md5(microtime()),rand(0,26),12);
-        $uniqueId = $companyIdx.$communityIdx.$datetime.$rnd;
+        $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 12);
+        $companyIdx = str_pad($companyIdx, 5, '0', STR_PAD_LEFT);
+        $communityIdx = str_pad($communityIdx, 5, '0', STR_PAD_LEFT);
+        $uniqueId = $companyIdx . $communityIdx . $datetime . $rnd;
+        
         $data = array('id', 'uniqueId');
         return view('data.offer_product_publish_confirm', compact($data));
     }        
