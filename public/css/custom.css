@@ -25,7 +25,7 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 	color: #06038D !important;
 }
 .text-warning{
-	color: #FF6B6B !important;
+	color: #F44336 !important;
 }
 .text-white{
 	color:white !important;
@@ -1665,4 +1665,7 @@ a.dropdown-toggle:after{
 }
 .is-invalid +.select2-container .select2-selection{
 	border-color: #f44336!important;
+}
+.btn-disabled{
+	background-color: #c4c7ca !important;
 }

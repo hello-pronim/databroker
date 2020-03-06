@@ -88,7 +88,7 @@
               <ul class="list-unstyled" data-turbolinks="false"> 
                 <li><a href="javascript:;">{{ trans('home.buying_data') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.selling_data') }}</a></li> 
-                <li><a href="{{ route('about.privacy_policy') }}">{{ trans('home.our_gurantee') }}</a></li> 
+                <li><a href="{{ route('about.privacy_policy') }}">{{ trans('home.privacy_security') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.our_gurantee') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.file_complaint') }}</a></li> 
                 <li><a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 

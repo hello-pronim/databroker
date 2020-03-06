@@ -14,7 +14,7 @@ class Provider extends Model
      * @var array
      */
     protected $fillable = [
-        'userIdx', 'regionIdx', 'companyName', 'companyURL', 'companyLogo'
+        'userIdx', 'regionIdx', 'companyName', 'companyURL', 'companyLogo', 'companyVAT'
     ];
 
     public function user(){
