@@ -44,7 +44,7 @@
                                                         Price:
                                                     </div>
                                                     <div class="col-8 field-value">
-                                                        €500
+                                                        <span>€500 (tax incl.)</span>
                                                     </div>
                                                 </div>
                                                 <div class="row field-row">
@@ -69,9 +69,8 @@
                                                         Seller company name
                                                     </h4>
                                                     <div class="price">
-                                                        €500 / DTX300
+                                                        €500 <span class="color-black">(tax incl.)</span>
                                                     </div>
-                                                    <a class="text-green">Request invoice from seller</a>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
@@ -138,7 +137,7 @@
                                                         Price:
                                                     </div>
                                                     <div class="col-8 field-value">
-                                                        €500
+                                                        <span>€500 (tax incl.)</span>
                                                     </div>
                                                 </div>
                                                 <div class="row field-row">
@@ -163,9 +162,8 @@
                                                         Seller company name
                                                     </h4>
                                                     <div class="price">
-                                                        €500 / DTX300
+                                                        €500 <span class="color-black">(tax incl.)</span>
                                                     </div>
-                                                    <a class="text-green">Request invoice from seller</a>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
@@ -232,7 +230,7 @@
                                                         Price:
                                                     </div>
                                                     <div class="col-8 field-value">
-                                                        €500
+                                                        <span>€500 (tax incl.)</span>
                                                     </div>
                                                 </div>
                                                 <div class="row field-row">
@@ -257,9 +255,8 @@
                                                         Seller company name
                                                     </h4>
                                                     <div class="price">
-                                                        €500 / DTX300
+                                                        €500 <span class="color-black">(tax incl.)</span>
                                                     </div>
-                                                    <a class="text-green">Request invoice from seller</a>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">

@@ -99,7 +99,12 @@
 									</div>
 									<div class="row field-price">
 										<div class="col col-3"><span class="label">{{ trans('pages.price') }}</span></div>
-										<div class="col-9 value text-warning"><span class="currency">€ </span>{{ round($product['productPrice']) }}</div>
+										<div class="col-9">
+											<span class="value text-warning">
+												<span class="currency">€ </span>{{ round($product['productPrice']) }}
+											</span>
+											<span>(tax incl.)</span>
+										</div>
 									</div>
 									<div class="row field-access">	
 										<div class="col col-3"></div>

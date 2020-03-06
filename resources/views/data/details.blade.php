@@ -125,7 +125,7 @@
 					                		</div>
 					                		<div class="text-right">
 					                			@if($product->productPrice>0 && $product->productBidType != 'free')
-					                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }}</p>
+					                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }} <span class="color-black">(tax incl.)</span></p>
 					                			@else
 					                			<p class="price">FREE</p>
 					                			@endif

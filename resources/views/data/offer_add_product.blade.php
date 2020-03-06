@@ -37,7 +37,7 @@
 							<div class="text-wrapper">
 								<textarea name="productTitle" class="round-textbox user-message min-h100" placeholder="{{ trans('pages.your_message') }}"  maxlength="100"></textarea>							
 								<div class="error_notice productTitle"> This field is required</div>
-								<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
+								<div class="char-counter"><span>0</span> / <span>100</span> characters</div>
 							</div>
 						</div>
 					</div>
@@ -133,6 +133,7 @@
 										<label class="pure-material-textfield-outlined">
 					                        <span class="currency">€ </span><input type="number" step="0.01" name="no_bidding_price" class="form-control2 input_data" placeholder="0.0" value=""> 
 					                    </label>
+					                    <span>(tax incl.)</span>
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">
 						                    <select name="no_bidding_period" data-placeholder="Please select" class="no-search">
@@ -159,6 +160,7 @@
 										<label class="pure-material-textfield-outlined">
 					                        <span class="currency">€ </span><input type="number" step="0.01" name="bidding_possible_price" class="form-control2 input_data" placeholder="0.0" value=""> 
 					                    </label>
+					                    <span>(tax incl.)</span>
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">
 						                    <select name="bidding_possible_period" data-placeholder="Please select" class="no-search">

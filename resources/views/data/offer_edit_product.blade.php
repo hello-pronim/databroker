@@ -34,9 +34,9 @@
 			                <h4 class="h4_intro text-left">What is the data product you are selling? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_product_tooltip') }}">help</i></h4>
 
 							<div class="text-wrapper">
-								<textarea name="productTitle" class="round-textbox user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">{{$product['productTitle']}}</textarea>							
+								<textarea name="productTitle" class="round-textbox user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{$product['productTitle']}}</textarea>							
 								<div class="error_notice productTitle"> This field is required</div>
-								<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
+								<div class="char-counter"><span>0</span> / <span>100</span> characters</div>
 							</div>
 						</div>
 					</div>
@@ -115,6 +115,7 @@
 										<label class="pure-material-textfield-outlined">
 					                        <span class="currency">€ </span><input type="number" step="0.01" name="{{$bidtype['type']}}_price" class="form-control2 input_data" placeholder="0.0" value="{{$product['productPrice']}}"> 
 					                    </label>
+					                    <span>(tax incl.)</span>
 					                    @endif
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">
@@ -137,10 +138,10 @@
 	            		<div class="col-lg-6">
 			                <h4 class="h4_intro text-left">Is there any additional information that might be useful for a potential buyer? (optional) <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_potential_buyer_tooptip') }}">help</i></h4>
 				        	<div class="text-wrapper">
-								<textarea name="productMoreInfo" class="round-textbox user-message min-h200" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">
+								<textarea name="productMoreInfo" class="round-textbox user-message min-h200" placeholder="{{ trans('pages.your_message') }}" maxlength="100">
 									{{$product['productMoreInfo']}}
 								</textarea>
-								<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
+								<div class="char-counter"><span>0</span> / <span>100</span> characters</div>
 							</div>
 						</div>
 					</div>

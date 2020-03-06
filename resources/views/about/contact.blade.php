@@ -19,7 +19,7 @@
                 <form method="POST" action="{{ route('contact.send') }}" id="contactForm">
                     @csrf
                     <label class="pure-material-textfield-outlined">
-						<textarea name="message" class="form-control input_data user-message @error('message') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="1000" autofocus>{{ old('message')}}</textarea>
+						<textarea name="message" class="form-control input_data user-message @error('message') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="100" autofocus>{{ old('message')}}</textarea>
 						<div class="error_notice">{{ trans('validation.required', ['attribute' => 'Message']) }}</div>
                         @error('message')
                             <span class="invalid-feedback" role="alert">
