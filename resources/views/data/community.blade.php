@@ -138,42 +138,42 @@
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_1.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_2.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_3.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_4.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_5.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/europense.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>

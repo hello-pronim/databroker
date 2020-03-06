@@ -32,7 +32,7 @@
 	            <div class="content">
 	            	<div class="row">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">What is the data product you are selling?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_product_tooltip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">What is the specific data product are you selling? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_product_tooltip') }}">help</i></h4>
 
 							<div class="text-wrapper">
 								<textarea name="productTitle" class="round-textbox user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>							
@@ -43,7 +43,7 @@
 					</div>
 	            	<div class="row">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">For what region?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_datacover_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">Which region does the data cover?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_datacover_tooptip') }}">help</i></h4>
 				        	<div class="custom-dropdown-container">
 		                        <div class="custom-dropdown" tabindex="1">
 		                            <div class="select">
@@ -86,7 +86,7 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">In what format will you provide the data?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_data_provided_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">In which format will the data be provided?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_data_provided_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper format">		                    
 			                    <label class="container para">File
 								  <input type="radio" name="format" value="File">
@@ -108,7 +108,10 @@
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
 			                <h4 class="h4_intro text-left">How will you handle pricing for this data product?</h4>
-			                <h4 class="h4_intro text-left">Please take into account a 10% transaction fee for Databroker.<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
+							<h4 class="h4_intro text-left">When you sell data, Databroker charges a transaction fee of 10% of the sale price.<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
+							<h4 class="h4_intro text-left">
+								This means that, at the end of the 30-day warranty period we credit your wallet with the earnings, minus the 10% transaction fee.
+							</h4>
 				        	<div class="radio-wrapper period">
 				        		<div class="mb-10">
 				        			<label class="container para">The data is free
@@ -202,7 +205,7 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">Do you have any extra relevant information for potential buyers about this data? (optional)<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_potential_buyer_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">Is there any additional information that might be useful for a potential buyer? (optional)<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_potential_buyer_tooptip') }}">help</i></h4>
 				        	<div class="text-wrapper">
 								<textarea name="productMoreInfo" class="round-textbox user-message min-h200" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>
 								<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>

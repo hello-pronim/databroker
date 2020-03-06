@@ -83,84 +83,84 @@
 	            				<tr>
 	            					<td>1</td>
 	            					<td>(unnamed)</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td></td>
 	            					<td></td>
 	            				</tr>
 	            				<tr>
 	            					<td>2</td>
 	            					<td>__cfduid</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td>Necessary</td>
 	            					<td>Identification of trusted web traffic.</td>
 	            				</tr>
 	            				<tr>
 	            					<td>3</td>
 	            					<td>_fbp</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td>Marketing</td>
 	            					<td>Used by Facebook to deliver advertisement.</td>
 	            				</tr>
 	            				<tr>
 	            					<td>4</td>
 	            					<td>_ga</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td>Statistics</td>
 	            					<td>Unique ID registration for statistical data generation.</td>
 	            				</tr>
 	            				<tr>
 	            					<td>5</td>
 	            					<td>_gat</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td>Statistics</td>
 	            					<td>Used by Google Analytics to throttle request rate.</td>
 	            				</tr>
 	            				<tr>
 	            					<td>6</td>
 	            					<td>_gat_UA-79513961-1</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td></td>
 	            					<td></td>
 	            				</tr>
 	            				<tr>
 	            					<td>7</td>
 	            					<td>_gid</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td>Statistics</td>
 	            					<td>Unique ID registration for statistical data generation.</td>
 	            				</tr>
 	            				<tr>
 	            					<td>8</td>
 	            					<td>_hjCookieTest</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td></td>
 	            					<td></td>
 	            				</tr>
 	            				<tr>
 	            					<td>9</td>
 	            					<td>_hjid (HTML)</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td></td>
 	            					<td></td>
 	            				</tr>
 	            				<tr>
 	            					<td>10</td>
 	            					<td>_hjid (HTTP)</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td></td>
 	            					<td></td>
 	            				</tr> 
 	            				<tr>
 	            					<td>11</td>
 	            					<td>_hjIncludedInSample</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td>Marketing</td>
 	            					<td>Determines if the user's navigation should be registered in a certain statistical placeholder.</td>
 	            				</tr>
 	            				<tr>
 	            					<td>12</td>
 	            					<td>MCPopupClosed</td>
-	            					<td>.databrokerdao.com</td>
+	            					<td>.databroker.online</td>
 	            					<td></td>
 	            					<td></td>
 	            				</tr>
