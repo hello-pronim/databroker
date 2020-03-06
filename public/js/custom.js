@@ -300,6 +300,7 @@ $(document).ready(function(){
         var theme_text = $("#theme option:selected").text();
         var region1 = $("#region select").val();
         var region2 = $("#region span.region.active").attr("region-id");
+        console.log("Theme:"+theme);
        
         region = region1==""?region2:region1;
         var region_text = $('#region .select >span').html();

@@ -631,14 +631,16 @@ class DataController extends Controller
             'companyName' => ['required', 'string', 'max:255'],
             'regionIdx' => ['required', 'integer'],
             'companyURL' => ['required', 'string', 'max:255', "regex: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/"],
-            //'companyLogo'=>'required'            
+            'companyVAT'=>['required'],
+            'companyLogo'=>['required']            
         ];
         $messages = [
             'companyName.required'=>'The company name is required.',
             'regionIdx.required'=>'The region is required.',
             'companyURL.required'=>'The company url is required.',
-            'companyURL.regex'=>'The url format is invalid.',
-            //'companyLogo.required'=>'The company logo is required.'
+            'companyURL.regex'=>'The url format is is invalid.',
+            'companyVAT.required'=>'The company VAT number is required.',
+            'companyLogo.required'=>'The company logo is required.'
         ];
 
         $validator = Validator::make($request->all(), $fields, $messages);
@@ -648,7 +650,7 @@ class DataController extends Controller
         }
 
         $provider_data = [];
-        $providerCompanyLogo_path = public_path('uploads/provider');
+        $providerCompanyLogo_path = public_path('uploads/company');
         
         $user = $this->getAuthUser();
         $providerIdx = -1;
@@ -659,17 +661,28 @@ class DataController extends Controller
             $provider_data['companyName'] = $request->companyName;
             $provider_data['companyURL'] = $request->companyURL;
             $provider_data['companyVAT'] = $request->companyVAT;
-            $provider_data['companyLogo'] = Company::where('companyIdx', '=', $user->companyIdx)->first()['companyLogo'];
+            $provider_data['companyLogo'] = $request->companyLogo;
 
             $provider_obj = Provider::create($provider_data);
-            // $providerIdx = $provider_obj['providerIdx'];  
 
-            // if($request->file('companyLogo_1')!= null){
-            //     $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
-            //     $request->file('companyLogo_1')->move($providerCompanyLogo_path, $fileName);
+            $providerIdx = $provider_obj['providerIdx'];  
+
+            if($request->file('companyLogo_1')!= null){
+                $fileName = "company_".$providerIdx.'.'.$request->file('companyLogo_1')->extension();
+                $request->file('companyLogo_1')->move($providerCompanyLogo_path, $fileName);
+                $provider_data['companyLogo'] = $fileName;
                 
-            //     Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));    
-            // }
+                Provider::where('providerIdx', $providerIdx)->update(array( "companyLogo" => $fileName ));    
+            }
+
+            if($request->companyIdx!=0){
+                $companyObj=Company::where('companyIdx', '=', $request->companyIdx)->update([
+                    'regionIdx'=>$request->regionIdx,
+                    'companyURL'=>$request->companyURL,
+                    'companyVAT'=>$request->companyVAT,
+                    'companyLogo'=>$provider_data['companyLogo']
+                ]);
+            }
         }
 
         return redirect(route('data_offers'));
