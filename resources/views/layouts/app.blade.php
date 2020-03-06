@@ -42,52 +42,56 @@
     <body>
         <nav class="fixed_bg">
         	<div class="navbar navbar-expand-lg app-top-nav-bar-container">
-        		<div class="container">        		
-  	    			<ul class="navbar-nav left">
-  	        		<li class="nav-item"><a class="nav-link" href="{{ route('data_offer_publish') }}">{{ trans('home.publish_data_offer') }}</a></li>
-  	        		<li class="nav-item dropdown">
-  	        			<a class="nav-link dropdown-toggle" id="more_dropdown" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">{{ trans('home.more') }}</a>
-  	        			<div class="dropdown-menu" aria-labelledby="more_dropdown">
-  	        				<a class="dropdown-item" href="{{ route('about.about') }}"> {{ trans('home.about_databroker') }} </a>
-                    <a class="dropdown-item" href="{{ route('about.partners') }}"> {{ trans('home.partners') }} </a>
-                    <a class="dropdown-item" href="{{ route('about.matchmaking') }}"> {{ trans('home.datamatch') }} </a>
-                    <a class="dropdown-item" href="{{ route('about.usecase') }}"> {{ trans('home.usecase') }} </a>
-                    <a class="dropdown-item" href="{{ route('help.overview') }}"> {{ trans('home.helpsupport') }} </a>
-                    <a class="dropdown-item" href="javascript:;"> {{ trans('home.news') }} </a>
-                    <a class="dropdown-item" href="{{ route('about.media_center') }}"> {{ trans('home.media_center') }} </a>
-  	        				<a class="dropdown-item" href="{{ route('contact')}}"> {{ trans('home.contact_us') }} </a>
-  	        			</div>
-  	        		</li>
-  	        	</ul>	
-              @if( Auth::user() )
-  	        	<ul class="navbar-nav right">			        		
-  	        		<li class="nav-item dropdown">
-  	        			<a class="nav-link dropdown-toggle" id="account_dropdown" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false"><i class="icon material-icons mdl-badge">person</i><!-- <i class="icon material-icons mdl-badge" data-badge="!">person</i> -->{{ trans('home.account') }}</a>
-  	        			<div class="dropdown-menu" aria-labelledby="account_dropdown">                                        
-  	        				<h4> {{ Auth::user()->firstname. ' '. Auth::user()->lastname }} </h4>                    
-  	        				<a class="dropdown-item" href="{{ route('account.profile') }}"> {{ trans('home.profile_account_info') }} </a>
-  	        				<!-- <a class="dropdown-item" href="{{ route('account.wallet') }}"> {{ trans('home.wallet') }} </a> -->
-  	        				<div class="dropdown-divider"></div>
-  	        				<h5> {{ trans('home.me_buyer') }} </h5>
-  	        				<a class="dropdown-item" href="{{ route('profile.bids') }}"> {{ trans('home.bids') }} </a>
-  	        				<a class="dropdown-item" href="{{ route('account.purchases') }}"> {{ trans('home.purchases') }} </a>
-  	        				<div class="dropdown-divider"></div>
-  	        				<h5> {{ trans('home.me_seller') }} </h5>
-  	        				<a class="dropdown-item" href="{{ route('account.company') }}"> {{ trans('home.company_profile') }} </a>
-  	        				<a class="dropdown-item" href="{{ route('data_offers_overview' )}}"> {{ trans('home.data_offers') }} </a>
-  	        				<div class="dropdown-divider"></div>
-  	        				<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();"> {{ trans('home.signout') }} </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-  	        			</div>
-  	        		</li>
-  	        	</ul>	
-              @else
-                <div class="right"><a href="{{ route('login') }}">{{ trans('auth.login') }}</a> or <a href="{{ route('register') }}">{{ trans('auth.register') }}</a>
-                </div>  
-              @endif
+        		<div class="container">
+                <div class="col-md-10 col-sm-12">
+                    <ul class="navbar-nav left">
+                      <li class="nav-item" id="top-nav-item"><a class="nav-link" href="{{ route('data_offer_publish') }}">{{ trans('home.publish_data_offer') }}</a></li>
+                      <li class="nav-item dropdown" id="top-nav-item-dropdown">
+                        <a class="nav-link dropdown-toggle" id="more_dropdown" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">{{ trans('home.more') }}</a>
+                        <div class="dropdown-menu" aria-labelledby="more_dropdown">
+                          <a class="dropdown-item" href="{{ route('about.about') }}"> {{ trans('home.about_databroker') }} </a>
+                          <a class="dropdown-item" href="{{ route('about.partners') }}"> {{ trans('home.partners') }} </a>
+                          <a class="dropdown-item" href="{{ route('about.matchmaking') }}"> {{ trans('home.datamatch') }} </a>
+                          <a class="dropdown-item" href="{{ route('about.usecase') }}"> {{ trans('home.usecase') }} </a>
+                          <a class="dropdown-item" href="{{ route('help.overview') }}"> {{ trans('home.helpsupport') }} </a>
+                          <a class="dropdown-item" href="javascript:;"> {{ trans('home.news') }} </a>
+                          <a class="dropdown-item" href="{{ route('about.media_center') }}"> {{ trans('home.media_center') }} </a>
+                          <a class="dropdown-item" href="{{ route('contact')}}"> {{ trans('home.contact_us') }} </a>
+                        </div>
+                      </li>
+                    </ul>	
+                </div>
+                <div class="col-md-2 col-sm-12">
+                      @if( Auth::user() )
+                      <ul class="navbar-nav right">			        		
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" id="account_dropdown" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false"><i class="icon material-icons mdl-badge">person</i><!-- <i class="icon material-icons mdl-badge" data-badge="!">person</i> -->{{ trans('home.account') }}</a>
+                          <div class="dropdown-menu" aria-labelledby="account_dropdown">                                        
+                            <h4> {{ Auth::user()->firstname. ' '. Auth::user()->lastname }} </h4>                    
+                            <a class="dropdown-item" href="{{ route('account.profile') }}"> {{ trans('home.profile_account_info') }} </a>
+                            <!-- <a class="dropdown-item" href="{{ route('account.wallet') }}"> {{ trans('home.wallet') }} </a> -->
+                            <div class="dropdown-divider"></div>
+                            <h5> {{ trans('home.me_buyer') }} </h5>
+                            <a class="dropdown-item" href="{{ route('profile.bids') }}"> {{ trans('home.bids') }} </a>
+                            <a class="dropdown-item" href="{{ route('account.purchases') }}"> {{ trans('home.purchases') }} </a>
+                            <div class="dropdown-divider"></div>
+                            <h5> {{ trans('home.me_seller') }} </h5>
+                            <a class="dropdown-item" href="{{ route('account.company') }}"> {{ trans('home.company_profile') }} </a>
+                            <a class="dropdown-item" href="{{ route('data_offers_overview' )}}"> {{ trans('home.data_offers') }} </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"> {{ trans('home.signout') }} </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                          </div>
+                        </li>
+                      </ul>	
+                      @else
+                        <div class="right" id="top-nav-right"><a href="{{ route('login') }}">{{ trans('auth.login') }}</a> or <a href="{{ route('register') }}">{{ trans('auth.register') }}</a>
+                        </div>  
+                      @endif
+                </div>
 	        	</div>     	
         	</div>        	   	
         </nav>
@@ -106,10 +110,10 @@
   			    <div class="container">
               <div class="row app-brand">
           			<a href=" {{route('home') }}">
-                  <img src="{{ asset('/images/logos/site_logo.png') }}" />                                                
+                  <img src="{{ asset('/images/logos/site_logo.png') }}" id="top-bar-img"/>                                                
                 </a>    
               </div>
-			        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="top-bar-menu-btn">
 			          <span class="sr-only">Toggle navigation</span>
 			          <span class="navbar-toggler-icon"></span>
 			          <span class="navbar-toggler-icon"></span>
@@ -176,12 +180,18 @@
           <div class="container">
             <div class="cookie-section">
               <div class="cookie-logo"><img src="{{asset('/images/patterns/graylogo.svg')}}"/></div>
-              <div class="mgr80">                
-                <p class="para color-gray2">{{ trans('home.cookie_desc') }} <a href="{{route('about.cookie_policy')}}" id="accept-cookie-policy">Cookie policy</a></p>
-              </div>
-              <div class="flex-vertical">
-                <button type="button" class="btn accept-btn pure-material-button-outlined">{{ trans('home.accept_cookie') }}</button>
-                <a href="{{route('about.cookie_policy')}}"><span>{{ trans('home.cookie_more')}}</span></a>
+              <div class="row">
+                  <div class="col-md-10 col-sm-12">
+                      <div class="mgr80">                
+                        <p class="para color-gray2">{{ trans('home.cookie_desc') }} <a href="{{route('about.cookie_policy')}}" id="accept-cookie-policy">Cookie policy</a></p>
+                      </div>
+                  </div>
+                  <div class="col-md-2 col-sm-12">
+                      <div class="flex-vertical">
+                        <button type="button" class="btn accept-btn pure-material-button-outlined" id="cookie-accept-btn">{{ trans('home.accept_cookie') }}</button>
+                        <a href="{{route('about.cookie_policy')}}"><span>{{ trans('home.cookie_more')}}</span></a>
+                      </div>
+                  </div>
               </div>
             </div>
           </div>
