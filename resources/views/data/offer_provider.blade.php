@@ -20,14 +20,22 @@
                     <div class="col-lg-6">
                         <div class="blog-header">
                             <h1>Before we start</h1>
+                            @if($user->userStatus==1)
                             <p class="area">Please tell us a little more about your company.<br>
                             This information will be published in the marketplace along with your data offer.</p>
+                            @else
+                            <p class="area">Please check the below information about your company.</p>
+                            @endif
                         </div>
                         <div class="blog-content">
-                            <label class="pure-material-textfield">Which country are you located in? </label>
+                            <label class="pure-material-textfield">The country you are located in</label>
                             <div class="adv-combo-wrapper custom-select2">
+                                @if($user->userStatus==1)
+                                <select id="regionIdx" name="regionIdx" class="" placeholder="{{ trans('pages.search_by_country') }}">
+                                @else                                
                                 <input type="hidden" name="regionIdx" value="{{$company->regionIdx}}">
                                 <select id="regionIdx" name="regionIdx" class="" placeholder="{{ trans('pages.search_by_country') }}" disabled>
+                                @endif
                                     <option></option>
                                     @foreach ($countries as $country)
                                         @if($country->regionIdx == $company->regionIdx)
@@ -41,17 +49,22 @@
                                     <strong></strong>
                                 </div>
                             </div>
-                            <label class="pure-material-textfield">{{ trans('pages.what_company_name') }}</label>
+                            <label class="pure-material-textfield">The name of your company</label>
                             <label class="pure-material-textfield-outlined">
+                                <input type="hidden" name="companyIdx" value="{{$company?$company->companyIdx:0}}">
                                 <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyName:''}}" readonly>
-                                <span>{{ trans('pages.company_name') }}</span>                            
+                                <span>{{ trans('pages.company_name') }}</span>
                                 <div class="invalid-feedback companyName">
                                     <strong></strong>
                                 </div>
                             </label>
                             <label class="pure-material-textfield">{{ trans('pages.what_company_url') }}</label>
                             <label class="pure-material-textfield-outlined">
+                                @if($user->userStatus==1)
+                                <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyURL:''}}">
+                                @else
                                 <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyURL:''}}" readonly>
+                                @endif
                                 <span>{{ trans('pages.enter_url') }}</span>
                                 <div class="invalid-feedback companyURL">
                                     <strong></strong>
@@ -59,27 +72,43 @@
                             </label>
                             <label class="pure-material-textfield">{{ trans('pages.company_vat') }}</label>
                             <label class="pure-material-textfield-outlined">
+                                @if($user->userStatus==1)
+                                <input type="text" id="companyVAT" name="companyVAT" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyVAT:''}}">
+                                @else
                                 <input type="text" id="companyVAT" name="companyVAT" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyVAT:''}}" readonly>
+                                @endif
                                 <span>{{ trans('pages.company_vat') }}</span>
                                 <div class="invalid-feedback companyVAT">
                                     <strong></strong>
                                 </div>
                             </label>
-                            <!-- <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
+                            @if($company->companyLogo)
+                            <label class="pure-material-textfield">Company logo</label>              
+                            <div class="companylogo">
+                                <input type="hidden" name="companyLogo" value="{{$company->companyLogo}}">
+                                <img src="{{ asset('/uploads/company/'.$company->companyLogo) }}">
+                            </div>
+                            @elseif($user->userStatus==1)
+                            <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
                             <div class="fileupload data-offer">
                                 <input type="file" id="companyLogo" class="companyLogo" name="companyLogo" accept='image/*'>
                                 <div class="invalid-feedback companyLogo">
                                     <strong></strong>
                                 </div>
-                            </div> -->            
-                            <label class="pure-material-textfield">Company logo</label>              
-                            <div class="companylogo">
-                                @if($company->companyLogo)
-                                <img src="{{ asset('/uploads/company/'.$company->companyLogo) }}">
+                            </div>    
+                            @endif
+                            <p class="para text-warning">We need all your company details to create a Data Offer</p>
+                            @if($user->userStatus!=1)
+                            <p class="para">If you need to change these details, please contact your administrator.</p>
+                            @endif
+                            <div class="buttons text-right">
+                                @if($user->userStatus==1)
+                                <button type="submit" class="customize-btn btn-next pull-right">{{ trans('pages.next') }}</button>
+                                @elseif($company->regionIdx==255 || $company->companyURL==null || $company->companyVAT==null || $company->companyLogo==null)
+                                <button type="submit" class="customize-btn btn-next pull-right btn-disabled" disabled>{{ trans('pages.next') }}</button>
+                                @else
+                                <button type="submit" class="customize-btn btn-next pull-right">{{ trans('pages.next') }}</button>
                                 @endif
-                            </div>
-                            <div class="buttons text-right">    
-                                <button type="submit" class="customize-btn btn-next pull-right">{{ trans('pages.save') }}</button>
                             </div>
                         </div>  
                     </div>

@@ -240,7 +240,7 @@
 										document.pdf
 										<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
 									</div>
-									<div class="file-entry flex-vcenter">
+									<div class="file-entry flex-vcenter">																				
 										document.xxx
 										<div class="icon-delete"><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></div>
 									</div>
