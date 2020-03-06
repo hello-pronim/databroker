@@ -688,8 +688,16 @@ class DataController extends Controller
         return redirect(route('data_offers'));
     }
 
-    public function offer_product_publish_confirm($id, Request $request){
-        $data = array('id');
+    public function offer_product_publish_confirm($id, $pid, Request $request){
+        $offer = Offer::where('offerIdx', '=', $id)->first();
+        $providerIdx = $offer['providerIdx'];
+        $communityIdx = $offer['communityIdx'];
+        $userIdx = Provider::where('providerIdx', '=', $providerIdx)->first()['userIdx'];
+        $companyIdx = User::where('userIdx', '=', $userIdx)->first()['companyIdx'];
+        $datetime = time();
+        $rnd = substr(md5(microtime()),rand(0,26),12);
+        $uniqueId = $companyIdx.$communityIdx.$datetime.$rnd;
+        $data = array('id', 'uniqueId');
         return view('data.offer_product_publish_confirm', compact($data));
     }        
 
