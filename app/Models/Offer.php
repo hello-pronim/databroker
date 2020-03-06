@@ -52,7 +52,7 @@ class Offer extends Model
     protected static function filter_offer($param){
         
         if($param->region){
-            $dataoffer = Offer::with(['provider'])->select('offers.*', 'regions.*') 
+            $dataoffer = Offer::with(['provider'])->select('offers.*', 'regions.*')
                         ->leftjoin('offerCountries', 'offerCountries.offerIdx', '=',  'offers.offerIdx')
                         ->leftjoin('regions', 'regions.regionIdx', '=',  'offerCountries.regionIdx');
         }else{
@@ -81,9 +81,9 @@ class Offer extends Model
 
         if( !isset($param->loadmore) || $param->loadmore == "false" ){
             if( $param->community == 'all' ){
-                $result = $dataoffer->offset(0)->orderby('offers.offerIdx', 'DESC')->limit(12)->get();                
+                $result = $dataoffer->offset(0)->orderby('offers.offerIdx', 'DESC')->limit(12)->distinct('offers')->get();                
             }else{
-                $result = $dataoffer->offset(0)->orderby('offers.offerIdx', 'DESC')->limit(11)->get();                
+                $result = $dataoffer->offset(0)->orderby('offers.offerIdx', 'DESC')->limit(11)->distinct('offers')->get();                
             }            
         }else{
             $result = $dataoffer->offset($param->loadmore-1)->orderby('offers.offerIdx', 'DESC')->limit(12)->get();
