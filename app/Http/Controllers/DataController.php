@@ -626,6 +626,7 @@ class DataController extends Controller
     }
 
     public function save_offer_provider(Request $request){
+        $user = $this->getAuthUser();
 
         $fields = [
             'companyName' => ['required', 'string', 'max:255'],
@@ -646,13 +647,17 @@ class DataController extends Controller
         $validator = Validator::make($request->all(), $fields, $messages);
 
         if($validator->fails()){
-            return response()->json(array( "success" => false, 'result' => $validator->errors() ));                    
+            if($request->providerCompanyLogo)
+                return redirect(url()->previous())
+                        ->withErrors($validator)
+                        ->withInput();
+            else
+                return response()->json(array( "success" => false, 'result' => $validator->errors() ));                    
         }
 
         $provider_data = [];
         $providerCompanyLogo_path = public_path('uploads/company');
         
-        $user = $this->getAuthUser();
         $providerIdx = -1;
         $provider_obj = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
         if (!$provider_obj) {
@@ -684,8 +689,10 @@ class DataController extends Controller
                 ]);
             }
         }
-
-        return redirect(route('data_offers'));
+        if($request->file('companyLogo_1')!= null)
+            return response()->json(array( "success" => true, 'redirect' => route('data_offers') ));
+        else 
+            return redirect(route('data_offers'));
     }
 
     public function offer_product_publish_confirm($id, $pid, Request $request){

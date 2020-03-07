@@ -2235,12 +2235,11 @@ body {
     font-size: 12px;
     line-height: 18px;
     color: #e71010;
-    text-indent: 35px;
     display: none;
     font-family: 'DM Sans';
 }
 
-.error_notice:before {
+/*.error_notice:before {
     content: 'i';
     display: inline-block;
     width: 12px;
@@ -2251,7 +2250,7 @@ body {
     text-align: center;
     font-size: 12px;
     line-height: 11px;
-}
+}*/
 
 input.input_data {
     border-radius: 24px;

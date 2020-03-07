@@ -31,7 +31,7 @@
                             <label class="pure-material-textfield">The country you are located in</label>
                             <div class="adv-combo-wrapper custom-select2">
                                 @if($user->userStatus==1)
-                                <select id="regionIdx" name="regionIdx" class="" placeholder="{{ trans('pages.search_by_country') }}">
+                                <select id="regionIdx" name="regionIdx" class="@error('regionIdx') is-invalid @enderror" placeholder="{{ trans('pages.search_by_country') }}">
                                 @else                                
                                 <input type="hidden" name="regionIdx" value="{{$company->regionIdx}}">
                                 <select id="regionIdx" name="regionIdx" class="" placeholder="{{ trans('pages.search_by_country') }}" disabled>
@@ -46,13 +46,13 @@
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback regionIdx">
-                                    <strong></strong>
+                                    <strong>@error('regionIdx') {{$message}} @enderror</strong>
                                 </div>
                             </div>
                             <label class="pure-material-textfield">The name of your company</label>
                             <label class="pure-material-textfield-outlined">
                                 <input type="hidden" name="companyIdx" value="{{$company?$company->companyIdx:0}}">
-                                <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyName:''}}" readonly>
+                                <input type="text" id="companyName" name="companyName" class="form-control input_data" placeholder=" "  value="{{old('companyName', $company->companyName)}}" readonly>
                                 <span>{{ trans('pages.company_name') }}</span>
                                 <div class="invalid-feedback companyName">
                                     <strong></strong>
@@ -61,39 +61,40 @@
                             <label class="pure-material-textfield">{{ trans('pages.what_company_url') }}</label>
                             <label class="pure-material-textfield-outlined">
                                 @if($user->userStatus==1)
-                                <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyURL:''}}">
+                                <input type="text" id="companyURL" name="companyURL" class="form-control input_data @error('companyURL') is-invalid @enderror" placeholder=" "  value="{{old('companyURL', $company->companyURL)}}">
                                 @else
-                                <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyURL:''}}" readonly>
+                                <input type="text" id="companyURL" name="companyURL" class="form-control input_data" placeholder=" "  value="{{old('companyURL', $company->companyURL)}}" readonly>
                                 @endif
                                 <span>{{ trans('pages.enter_url') }}</span>
                                 <div class="invalid-feedback companyURL">
-                                    <strong></strong>
+                                    <strong>@error('companyURL') {{$message}} @enderror</strong>
                                 </div>
                             </label>
                             <label class="pure-material-textfield">{{ trans('pages.company_vat') }}</label>
                             <label class="pure-material-textfield-outlined">
                                 @if($user->userStatus==1)
-                                <input type="text" id="companyVAT" name="companyVAT" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyVAT:''}}">
+                                <input type="text" id="companyVAT" name="companyVAT" class="form-control input_data @error('companyVAT') is-invalid @enderror" placeholder=" "  value="{{old('companyVAT', $company->companyVAT)}}">
                                 @else
-                                <input type="text" id="companyVAT" name="companyVAT" class="form-control input_data" placeholder=" "  value="{{$company?$company->companyVAT:''}}" readonly>
+                                <input type="text" id="companyVAT" name="companyVAT" class="form-control input_data" placeholder=" "  value="{{old('companyVAT', $company->companyVAT)}}" readonly>
                                 @endif
                                 <span>{{ trans('pages.company_vat') }}</span>
                                 <div class="invalid-feedback companyVAT">
-                                    <strong></strong>
+                                    <strong>@error('companyVAT') {{$message}} @enderror</strong>
                                 </div>
                             </label>
                             @if($company->companyLogo)
                             <label class="pure-material-textfield">Company logo</label>              
-                            <div class="companylogo">
+                            <div class="companylogo w-50">
                                 <input type="hidden" name="companyLogo" value="{{$company->companyLogo}}">
-                                <img src="{{ asset('/uploads/company/'.$company->companyLogo) }}">
+                                <inptu type="hidden" name="providerCompanyLogo" value="{{$company->companyLogo}}">
+                                <img class="w-100" src="{{ asset('/uploads/company/'.$company->companyLogo) }}">
                             </div>
                             @elseif($user->userStatus==1)
                             <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
-                            <div class="fileupload data-offer">
+                            <div class="fileupload data-offer w-50">
                                 <input type="file" id="companyLogo" class="companyLogo" name="companyLogo" accept='image/*'>
                                 <div class="invalid-feedback companyLogo">
-                                    <strong></strong>
+                                    <strong>@error('companyLogo') {{$message}} @enderror</strong>
                                 </div>
                             </div>    
                             @endif
