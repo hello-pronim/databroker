@@ -242,3 +242,5 @@ ADD CONSTRAINT `fk_companies_regions1`
 
 ALTER TABLE `databroker_new`.`contacts` CHANGE `firstname` `firstname` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `lastname` `lastname` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `email` `email` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `companyName` `companyName` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL, ADD COLUMN `regionIdx` INT(11) NOT NULL AFTER `role`, CHANGE `content` `content` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NOT NULL; 
 
+#2020-03-07
+UPDATE databroker_new.regions SET regionName = 'Antarctic' WHERE regionIdx = 253 AND regionType = 'area';
