@@ -685,7 +685,7 @@ class DataController extends Controller
             }
         }
 
-        return redirect(route('data_offers'));
+        return redirect(route('data_offer_second'));
     }
 
     public function offer_product_publish_confirm($id, Request $request){
