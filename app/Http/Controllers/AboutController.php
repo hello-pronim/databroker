@@ -17,6 +17,7 @@ use App\Models\OfferSample;
 use App\Models\OfferCountry;
 use App\Models\UseCase;
 use App\Models\Contact;
+use Response;
 
 class AboutController extends Controller
 {
@@ -349,7 +350,7 @@ class AboutController extends Controller
                 'title' => 'Databroker media kit',
                 'text'  => 'Our media kit contains everything you need to write about Databroker, including web-friendly logos, photos of our team, short biographies of our founders, a company overview and a summary of what our platform offers.',
                 'action'=> 'DOWNLOAD OUR MEDIA KIT',
-                'link'=>''
+                'link'=> 'download.data-toolkit'
             ),
         );
         $partners = array (
@@ -476,5 +477,14 @@ class AboutController extends Controller
 
     public function cookie_policy(){
         return view('about.cookie_policy');
+    }
+
+    public function download(){
+        //PDF file is stored under project/public/download/Databroker-Press-Kit.zip
+        $file= public_path(). "/download/Databroker-Press-Kit.zip";
+        $headers = array(
+                'Content-Type: application/pdf',
+                );
+        return Response::download($file, 'Databroker-Press-Kit.zip', $headers);
     }
 }

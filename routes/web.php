@@ -86,6 +86,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 
 	Route::get('/emailtest', 'HomeController@test')->name('test.email'); 	
 
+	Route::get('/download/data-toolkit', 'AboutController@download')->name('download.data-toolkit');
+
 	$communities = Community::get();
 	$datacontroller = new DataController();
 	foreach ($communities as $key => $community) {
