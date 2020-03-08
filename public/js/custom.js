@@ -161,7 +161,7 @@ $(document).ready(function(){
         cur_step.find('.error_notice').hide();
         if( $(elem).val() === "" && $(elem).attr('remotefile') === undefined){
             var elem_name = $(elem).attr("name").replace('[]','');
-            cur_step.find('.error_notice.'+elem_name).show();                   
+            cur_step.find('.error_notice.'+elem_name).show();            
         }           
     };
     $(".data-offer .step").each(function(key, elem){

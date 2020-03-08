@@ -42,7 +42,7 @@
 					<p class="fs-18">Uploading some screenshots or other visual representations of the data can help potential buyers better understand the quality and relevance what you are offering. </p>
 					<p class="fs-18 mt-30">Done? Your offer is live on the marketplace!</p>
 				</div>
-				<a href="{{ route('data_offer_provider') }}">
+				<a href="{{ route('data_offers') }}">
 					<button type="button" class="btn customize-btn btn-next">START</button>
 				</a>	
 			</div>	
