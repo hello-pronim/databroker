@@ -12,6 +12,7 @@ use App\Models\Provider;
 use App\Models\Region;
 use App\Models\Company;
 use App\Models\Community;
+use App\Models\Gallery;
 use App\Models\Offer;
 use App\Models\Theme;
 use App\Models\OfferTheme;
@@ -85,10 +86,29 @@ class DataController extends Controller
 
                 $theme_map[$idx][] = ['id' => $themeIdx, 'name' => $name, 'text' => $text];
             }
-            // die(json_encode($theme_map));
             $theme_json = json_encode($theme_map);
 
-            $data = array( 'regions', 'countries', 'communities', 'theme_json' );
+            $gallery = Gallery::where('category', 'community')->get();
+            $gallery_map = [];
+            foreach ($gallery as $g_row) {
+                $id = $g_row['id'];
+                $category = $g_row['category'];
+                $content = $g_row['content'];
+                $subcontent = $g_row['subcontent'];
+                $sequence = $g_row['sequence'];
+                $path = $g_row['path'];
+                $thumb = $g_row['thumb'];
+
+                if (!isset($gallery_map[$content]))
+                    $gallery_map[$content] = [];
+                if (!isset($gallery_map[$content][$subcontent]))
+                    $gallery_map[$content][$subcontent] = [];
+                $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'url' => $path, 'thumb' => $thumb];
+            }
+
+            // die(json_encode($gallery_map));
+
+            $data = array( 'regions', 'countries', 'communities', 'theme_json', 'gallery_map' );
             return view('data.offers', compact($data));
         }
     }

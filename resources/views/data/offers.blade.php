@@ -22,7 +22,7 @@
 	    	<div id="step1" class="app-section app-reveal-section align-items-center step current">
 	    		<div class="row header">  	
 		    		<div class="col col-9">
-						<div class="h1-small mgh15 text-primary">{{ trans('pages.data_offer_step_1') }}</div>		
+						<div class="h1-small mgh15 text-primary">{{ trans('pages.data_offer_step_1') }}</div>
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.minmum_publishing') }}</div>
 						
 					</div>
@@ -69,7 +69,7 @@
 					                            <span>{{$region->regionName}}</span>
 					                        </label>
 					                    </div>
-					                @endforeach    
+					                @endforeach
 
 					                <h4 class="h4_intro text-left">Or add country</h4>
 				                    <div class="adv-combo-wrapper custom-select2 mt-10">
@@ -84,7 +84,7 @@
 				                            @endforeach
 					                    </select>
 					                </div>
-	                                <div class="buttons flex-vcenter">						
+	                                <div class="buttons flex-vcenter">
 										<button type="button" class="customize-btn">{{ trans('pages.confirm') }}</button>
 									</div>
 	                            </ul>
@@ -94,11 +94,11 @@
 
 	                    <br>
 	                    <div class=" description-header flex-vcenter">
-							<div id="community_title" class="h4_intro">{{ trans('pages.in_which_community') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="Please select maximum 1 community">help</i><br>							
+							<div id="community_title" class="h4_intro">{{ trans('pages.in_which_community') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="Please select maximum 1 community">help</i><br>
 							</div>
 						</div>
 						<div class="dropdown-container">
-	                        <div class="dropdown2" tabindex="1">	                            
+	                        <div class="dropdown2" tabindex="1">
 	                            <div class="adv-combo-wrapper">
 	                            	<select ui-select2 id="community_box" name="communityIdx" ng-model="communityIdx" data-placeholder="Please Select">
 	                            		<option></option>
@@ -110,7 +110,7 @@
 		                            @endif
 		                            @endforeach
 			                         </select>
-				                </div>	                            
+				                </div>
 	                        </div>
 	                        <div class="error_notice communityIdx"> Please select maximum 1 community</div>
 	                    </div>    
@@ -133,14 +133,14 @@
 	                    <br>
 	                    <br>
 	                    <div class=" description-header flex-vcenter mb-10">
-							<div class="h4_intro">Please add an image that can be used to represent your data offer <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>							
+							<div class="h4_intro">Please add an image that can be used to represent your data offer <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>
 							</div>
 						</div>	                    
 						<div class="fileupload">
 							@if (isset($offer_path))
-						    <input type="file" name="offerImage" accept='image/*' description="Or <a href=''>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image">
+						    <input type="file" name="offerImage" accept='image/*' description="Or <a data-toggle='modal' data-target='#mediaLibraryModal' data-id='123123' data-type='offer'>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image">
 						    @else
-						    <input type="file" name="offerImage" accept='image/*' description="Or <a href=''>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" >
+						    <input type="file" name="offerImage" accept='image/*' description="Or <a data-toggle='modal' data-target='#mediaLibraryModal' data-id='123123' data-type='offer'>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" >
 						    @endif
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
@@ -155,17 +155,17 @@
 				</div>
 		    </div>	
 	    	<div id="step2" class="app-section app-reveal-section align-items-center step">  
-	    		<div class="row header">  	
+	    		<div class="row header">
 		    		<div class="col col-9">
 						<div class="h1-small mgh15 text-primary">{{ trans('pages.data_offer_step_2') }}</div>		
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
 						
 					</div>
 				</div>
-				<div class="row">			
+				<div class="row">
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.data_offer_step_2_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_description_tooltip') }}">help</i></div>							
+							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.data_offer_step_2_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_description_tooltip') }}">help</i></div>
 						</div>
 						<div class="text-wrapper">
 							<textarea name="offerDescription" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{$offer['offerDescription'] ?? ''}}</textarea>
@@ -190,7 +190,7 @@
 						
 					</div>
 				</div>
-				<div class="row">			
+				<div class="row">
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
 							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro text-left">{{ trans('pages.data_offer_step_3_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_usecase_tooltip') }}">help</i></div>							
@@ -211,7 +211,7 @@
 				</div>
 		    </div>	
 	    	<div id="step4" class="app-section app-reveal-section align-items-center step">  
-	    		<div class="row header">  	
+	    		<div class="row header">
 		    		<div class="col col-9">
 						<div class="h1-small mgh15 text-primary">{{ trans('pages.data_offer_step_4') }}</div>		
 						<div id="Businesses_often_bec" class="sub-title">{{ trans('pages.optional_but_recommended') }}</div>
@@ -219,7 +219,7 @@
 						
 					</div>
 				</div>
-				<div class="row files-block">			
+				<div class="row files-block">
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
 							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.files') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>						
@@ -253,10 +253,10 @@
 					<div class="col-3">
 					</div>
 				</div>
-				<div class="row images-block">			
+				<div class="row images-block">
 					<div class="col-6">
 						<div class=" description-header flex-vcenter">
-							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>							
+							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>
 						</div>
 						<div class="fileupload">                 
 							@if (isset($sample_files))
@@ -284,7 +284,7 @@
 							@endif
 						</div>
 					</div>
-					<div class="col-3">						
+					<div class="col-3">
 					</div>
 					<div class="col-3">
 					</div>
@@ -295,7 +295,7 @@
     <div class="modal fade" id="mediaLibraryModal" tabindex="-1" role="dialog" aria-labelledby="mediaLibraryModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
-	      <div class="modal-header">        
+	      <div class="modal-header">
 	      	<h3 class="h3">Meida Library</h3>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
@@ -304,101 +304,23 @@
 	      <div class="modal-body">
 	      	<div class="row">
 	      		<div class="col-xl-12">
-	      			<div class="mdb-lightbox no-margi22n max-h350">
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
-			      		<figure class="col-xl-4">
-			      			<a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg" data-size="1600x1067">
-				              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
-				            </a>
-			      		</figure>
+	      			<div class="gallery column3 max-h350">
+			      		<div class="mdb-lightbox col-xl-4 flex-center thumb-container" ng-repeat="image in media.images" ng-click="imgClick(image)">
+			      			<img src='<%= image.thumb %>' class="thumb" />
+			      		</div>
 			      	</div>
 	      		</div>
 	      	</div>
 	      </div>      
 	      <input type="hidden" name="data_type" value="">
 	      <input type="hidden" name="data_id" value="">
-	      <div class="modal-footer">        
-	        <!-- <button type="button" class="button primary-btn publish btn-publish data_publish">OK</button> -->
-	      </div>
+	      <div class="modal-footer">
+              <div class="buttons flex-vcenter" ng-hide="media.current==='community'">
+                <!-- <button type="button" class="button primary-btn publish btn-publish data_publish">OK</button> -->
+                <a href="javascript:;" class="back-icon" ng-click="backToCommunity()"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
+                <button type="button" class="customize-btn btn-next" data-dismiss="modal" ng-hide="media.selected===-1" ng-click="logoSelected()">OK</button>
+            </div>
+          </div>
 	    </div>
 	  </div>
 	</div>
@@ -436,6 +358,65 @@
 			if (communityIdx) {
 				$scope.communityIdx = communityIdx;
 				$scope.themeCheckList = themeCheckList;
+			}
+
+			$scope.media = {
+				current: 'community',
+				selected: -1,
+				images: [],
+				mediaMap: <?php echo json_encode($gallery_map); ?>
+			};
+
+			var prepareCommunities = function () {
+				var mediaMap = $scope.media.mediaMap;
+				var images = [];
+				angular.forEach(mediaMap, function(subMap, category) {
+					var obj = subMap[0][1];
+					// obj.url = obj.url.replace(/\\/g, '/');
+				  	this.push(obj);
+				}, images);
+				$scope.media.current = 'community';
+				$scope.media.images = images;
+				$scope.media.selected = undefined;
+			};
+
+			var prepareCommunityImages = function (community) {
+				var mediaMap = $scope.media.mediaMap;
+				console.log(mediaMap);
+				var images = [];
+				angular.forEach(mediaMap[community][''], function(img, seq) {
+					// img.url = img.url.replace(/\\/g, '/');
+					this.push(img);
+				}, images);
+				$scope.media.current = 'image';
+				$scope.media.images = images;
+				console.log($scope.media);
+			};
+			prepareCommunities();
+			console.log($scope.media);
+
+			$scope.imgClick = function (img) {
+				console.log('click', img);
+				var current = $scope.media.current;
+				if (current === 'community') {
+					prepareCommunityImages(img.id);
+				// } else if (current === 'theme') {
+				// 	//
+				} else {
+					// if ()
+					$scope.media.selected = img;
+				}
+			}
+
+			$scope.backToCommunity = function () {
+				prepareCommunities();
+			}
+
+			$scope.logoSelected = function () {
+				var selected = $scope.media.selected;
+				if (selected) {
+					var url = selected.url;
+				}
 			}
 
 			this.selectedCommunity = function () {
