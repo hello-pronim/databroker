@@ -41,7 +41,7 @@
 					By using unique IDs for each data product, the DXC ‘opens’ a gateway allowing the buyer to access only the data product they have purchased from you.</p>
 				</div>
 
-				<a href="{{ route('data_offer_second') }}">
+				<a href="{{ route('data_offer_provider') }}">
 					<button type="button" class="btn customize-btn btn-next">OK, LET’S CONTINUE</button>
 				</a>	
 			</div>	

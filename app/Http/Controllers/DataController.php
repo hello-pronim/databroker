@@ -12,6 +12,7 @@ use App\Models\Provider;
 use App\Models\Region;
 use App\Models\Company;
 use App\Models\Community;
+use App\Models\Gallery;
 use App\Models\Offer;
 use App\Models\Theme;
 use App\Models\OfferTheme;
@@ -85,10 +86,29 @@ class DataController extends Controller
 
                 $theme_map[$idx][] = ['id' => $themeIdx, 'name' => $name, 'text' => $text];
             }
-            // die(json_encode($theme_map));
             $theme_json = json_encode($theme_map);
 
-            $data = array( 'regions', 'countries', 'communities', 'theme_json' );
+            $gallery = Gallery::where('category', 'community')->get();
+            $gallery_map = [];
+            foreach ($gallery as $g_row) {
+                $id = $g_row['id'];
+                $category = $g_row['category'];
+                $content = $g_row['content'];
+                $subcontent = $g_row['subcontent'];
+                $sequence = $g_row['sequence'];
+                $path = $g_row['path'];
+                $thumb = $g_row['thumb'];
+
+                if (!isset($gallery_map[$content]))
+                    $gallery_map[$content] = [];
+                if (!isset($gallery_map[$content][$subcontent]))
+                    $gallery_map[$content][$subcontent] = [];
+                $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'url' => $path, 'thumb' => $thumb];
+            }
+
+            // die(json_encode($gallery_map));
+
+            $data = array( 'regions', 'countries', 'communities', 'theme_json', 'gallery_map' );
             return view('data.offers', compact($data));
         }
     }
@@ -626,13 +646,14 @@ class DataController extends Controller
     }
 
     public function save_offer_provider(Request $request){
+        $user = $this->getAuthUser();
 
         $fields = [
             'companyName' => ['required', 'string', 'max:255'],
             'regionIdx' => ['required', 'integer'],
             'companyURL' => ['required', 'string', 'max:255', "regex: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/"],
             'companyVAT'=>['required'],
-            'companyLogo'=>['required']            
+            'companyLogo'=>['required']
         ];
         $messages = [
             'companyName.required'=>'The company name is required.',
@@ -646,13 +667,17 @@ class DataController extends Controller
         $validator = Validator::make($request->all(), $fields, $messages);
 
         if($validator->fails()){
-            return response()->json(array( "success" => false, 'result' => $validator->errors() ));                    
+            if($request->providerCompanyLogo)
+                return redirect(url()->previous())
+                        ->withErrors($validator)
+                        ->withInput();
+            else
+                return response()->json(array( "success" => false, 'result' => $validator->errors() ));                    
         }
 
         $provider_data = [];
         $providerCompanyLogo_path = public_path('uploads/company');
         
-        $user = $this->getAuthUser();
         $providerIdx = -1;
         $provider_obj = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
         if (!$provider_obj) {
@@ -684,12 +709,27 @@ class DataController extends Controller
                 ]);
             }
         }
-
-        return redirect(route('data_offers'));
+        if($request->file('companyLogo_1')!= null)
+            return response()->json(array( "success" => true, 'redirect' => route('data_offers') ));
+        else 
+            return redirect(route('data_offers'));
     }
 
-    public function offer_product_publish_confirm($id, Request $request){
-        $data = array('id');
+    public function offer_product_publish_confirm($id, $pid, Request $request){
+        $offer = Offer::where('offerIdx', '=', $id)->first();
+        $providerIdx = $offer['providerIdx'];
+        $communityIdx = $offer['communityIdx'];
+        $userIdx = Provider::where('providerIdx', '=', $providerIdx)->first()['userIdx'];
+        $companyIdx = User::where('userIdx', '=', $userIdx)->first()['companyIdx'];
+        $datetime = time();
+        $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 12);
+
+        $companyIdx = base_convert($companyIdx, 10, 26);
+        $communityIdx = base_convert($communityIdx, 10, 26);
+        $companyIdx = str_pad($companyIdx, 5, '0', STR_PAD_LEFT);
+        $communityIdx = str_pad($communityIdx, 5, '0', STR_PAD_LEFT);
+        $uniqueId = $companyIdx . $communityIdx . $datetime . $rnd;
+        $data = array('id', 'uniqueId');
         return view('data.offer_product_publish_confirm', compact($data));
     }        
 

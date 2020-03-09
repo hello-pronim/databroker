@@ -50,15 +50,13 @@ class Offer extends Model
     }
 
     protected static function filter_offer($param){
-        
         if($param->region){
             $dataoffer = Offer::with(['provider'])->select('offers.*', 'regions.*')
                         ->leftjoin('offerCountries', 'offerCountries.offerIdx', '=',  'offers.offerIdx')
                         ->leftjoin('regions', 'regions.regionIdx', '=',  'offerCountries.regionIdx');
         }else{
             $dataoffer = Offer::with(['region', 'provider'])->select('offers.*'); 
-        }        
-        
+        }   
 
         $dataoffer->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
                   ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
@@ -70,7 +68,7 @@ class Offer extends Model
 
         if($param->theme && $param->theme != 'all' ){
             $dataoffer->where('themes.themeIdx', $param->theme);
-        }   
+        }
 
         if($param->region){
             $dataoffer->where('regions.regionIdx', $param->region);

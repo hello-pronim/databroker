@@ -146,7 +146,7 @@
 	background: transparent url('../images/Pinterest.png') 0% 0% no-repeat padding-box;
 }
 .databroker-icon.linkedin {
-	background: transparent url('../images/linkedin-circled-96.png') 0% 0% no-repeat padding-box;
+	background: transparent url('../images/social/linkedin-circled.png') 0% 0% no-repeat padding-box;
 	background-size: contain;
 }
 .databroker-icon.medium {
@@ -724,7 +724,7 @@ th.col-since {
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	padding-bottom: 30px;
+	padding-bottom: 15px;
 	margin-bottom: 6px;
 }
 
@@ -2080,3 +2080,60 @@ body .select2-search--dropdown {
 .pure-material-checkbox > span::before {
 	flex: 24px 0 0;
 }
+
+.modal-footer .buttons {
+	width: 100%;
+	justify-content: space-between;
+}
+
+.gallery {
+	display: flex;
+    /*justify-content: space-between;*/
+    flex-wrap: wrap;
+}
+
+.gallery .thumb {
+	background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.column3 .thumb-container {
+	position: relative;
+	width: 30%;
+    padding-bottom: 20%;
+}
+
+.thumb {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	
+	object-fit: cover;
+	padding-bottom: 0px;
+
+	/*background-color: #333;*/
+	/*padding: 6px;
+    border: 1px solid #dddddd;*/
+}
+
+/*div.thumb.selected {
+	background: #0088cc;
+}*/
+
+.thumb img {
+	object-fit: cover;
+	padding-bottom: 0px;
+	-webkit-user-drag: none;
+
+	display: block;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+
+    vertical-align: middle;
+    border: 0;
+}
+

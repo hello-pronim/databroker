@@ -42,7 +42,7 @@
 					<p class="fs-18">Uploading some screenshots or other visual representations of the data can help potential buyers better understand the quality and relevance what you are offering. </p>
 					<p class="fs-18 mt-30">Done? Your offer is live on the marketplace!</p>
 				</div>
-				<a href="{{ route('data_offer_provider') }}">
+				<a href="{{ route('data_offers') }}">
 					<button type="button" class="btn customize-btn btn-next">START</button>
 				</a>	
 			</div>	
@@ -53,7 +53,6 @@
         			<h4 class="text-bold">Good to know</h4>
         			<p class="text-grey fs-18 mt-10">You can publish data offers and products even before you are technically ready to actually start selling or sharing data i.e. have set up the Data eXchange Controller.</p>
         			<p class="text-grey fs-18 mt-10">You can edit the details of your data offer at any time, and even unpublish temporarily if you need to.</p>
-        			<p class="text-grey text-bold fs-18 mt-10">Not sure where to start? <a href="javascript:;">See an example (pdf)</a></p>        			
         		</div>
 			</div>	
 		</div>		

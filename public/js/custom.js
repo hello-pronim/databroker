@@ -161,7 +161,7 @@ $(document).ready(function(){
         cur_step.find('.error_notice').hide();
         if( $(elem).val() === "" && $(elem).attr('remotefile') === undefined){
             var elem_name = $(elem).attr("name").replace('[]','');
-            cur_step.find('.error_notice.'+elem_name).show();                   
+            cur_step.find('.error_notice.'+elem_name).show();            
         }           
     };
     $(".data-offer .step").each(function(key, elem){
@@ -561,7 +561,23 @@ $(".nav-tabs .nav-link").click(function(){
     $(this).addClass('active');
 });
 /*End Dropdown Menu*/
-
-
-
-
+$("#copyToClipboard").click(function(){
+    console.log("clicked");
+    var copyText = $("#uniqueId").html();
+    console.log(copyText);
+    copyTextToClipboard(copyText);
+});
+function copyTextToClipboard(text) {
+    var textArea = document.createElement( "textarea" );
+    textArea.value = text;
+    document.body.appendChild( textArea );
+    textArea.select();
+    try {
+        var successful = document.execCommand( 'copy' );
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Copying text command was ' + msg);
+    } catch (err) {
+        console.log('Oops, unable to copy');
+    }
+    document.body.removeChild( textArea );
+}
