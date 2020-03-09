@@ -250,3 +250,7 @@ ALTER TABLE `databroker_new`.`subscriptions` CHANGE `firstname` `firstname` VARC
 #2020-03-05
 ALTER TABLE `databroker_new`.`companies` ADD COLUMN `companyVAT` VARCHAR(255) NULL AFTER `companyURL`;
 ALTER TABLE `databroker_new`.`providers` ADD COLUMN `companyVAT` VARCHAR(255) NULL AFTER `companyURL`;
+
+#2020-03-07
+UPDATE databroker_new.regions SET regionName = 'Antarctic' WHERE regionIdx = 253 AND regionType = 'area';
+
