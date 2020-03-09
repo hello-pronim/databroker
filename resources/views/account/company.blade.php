@@ -78,6 +78,9 @@
                                             @endif
                                         @endforeach
                                      </select>
+                                     <span class="invalid-feedback regionIdx" role="alert">
+                                        <strong></strong>
+                                    </span>
                                 </div>                              
                             </div>
                         </div>    

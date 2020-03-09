@@ -183,6 +183,12 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 .pr-40{
 	padding-right: 40px;
 }
+.w-100{
+	width: 100%;
+}
+.w-50{
+	width: 50%;
+}
 .min-h100{
 	min-height: 100px !important;
 }
