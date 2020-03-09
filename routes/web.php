@@ -40,7 +40,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/data/offers/{id}/product/add', 'DataController@offer_add_product')->where('id', '[0-9]+')->name('data_offer_add_product');
 		Route::get('/data/offers/{id}/product/{pid}/edit', 'DataController@offer_edit_product')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data_offer_edit_product');
 		Route::post('/data/product/add', 'DataController@offer_submit_product')->name('data_offer_submit_product');
-		Route::get('/data/offers/{id}/product/confirmation', 'DataController@offer_product_publish_confirm')->where('id', '[0-9]+')->name('data_offer_product_publish_confirm');
+		Route::get('/data/offers/{id}/product/{pid}/confirmation', 'DataController@offer_product_publish_confirm')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data_offer_product_publish_confirm');
 		Route::get('/data/offers/{id}/product/{pid}/confirm-update', 'DataController@offer_product_update_confirm')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data_offer_product_update_confirm');
 		Route::get('/data/offers/{id}/confirmation', 'DataController@offer_publish_confirm')->where('id', '[0-9]+')->name('data_offer_publish_confirm');
 		Route::get('/data/offers/{id}/confirm-update', 'DataController@offer_update_confirm')->where('id', '[0-9]+')->name('data_offer_update_confirm');
@@ -85,6 +85,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/help/buying-data', 'HelpController@buying_data')->name('help.buying_data');    
 
 	Route::get('/emailtest', 'HomeController@test')->name('test.email'); 	
+
+	Route::get('/download/data-toolkit', 'AboutController@download')->name('download.data-toolkit');
 
 	$communities = Community::get();
 	$datacontroller = new DataController();

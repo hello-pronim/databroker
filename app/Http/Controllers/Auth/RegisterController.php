@@ -124,9 +124,12 @@ class RegisterController extends Controller
         if($isLinkedUser) $isLinkedUser->delete();
         $companyIdx = $data['companyIdx'];
         if($data['companyIdx']==0){
-            $companyObj = Company::create([                
-                'companyName'=>$data['companyName']
-            ]);
+            $companyObj = Company::where('CompanyName', '=', $data['companyName'])->first();
+            if(!$companyObj)
+                $companyObj = Company::create([                
+                    'companyName'=>$data['companyName']
+                ]);
+            else $userStatus=2;
             $companyIdx = $companyObj['companyIdx'];
         }
         return User::create([

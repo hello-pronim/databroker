@@ -138,42 +138,42 @@
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_1.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_2.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_3.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_4.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/partner_5.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
         	<div class="col-md-2">
         		<div class="app-partner-item">
 					<div class="img">
-						<img src="{{ asset('images/europense.png') }}">
+						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
 	                </div>        
         		</div>
         	</div>
@@ -191,7 +191,7 @@
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace1.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -205,7 +205,7 @@
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace2.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
 				</div>	
 			</div>	
@@ -219,7 +219,7 @@
 					<div class="card-body text-left">
 						<h4 class="card-title">Satelite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/marketplace3.png') }}" />
+						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
 				</div>	
 			</div>				

@@ -44,6 +44,7 @@
 	            	<div class="row">
 	            		<div class="col-lg-6">
 			                <h4 class="h4_intro text-left">Which region does the data cover? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_datacover_tooptip') }}">help</i></h4>
+
 				        	<div class="custom-dropdown-container">
 		                        <div class="custom-dropdown" tabindex="1">
 		                            <div class="select">
@@ -61,8 +62,13 @@
 						                    </div>
 						                @endforeach    
 					                    
-					                    <h4 class="h4_intro text-left">Or add country</h4>
-					                    <div class="adv-combo-wrapper custom-select2 mt-10">
+					                    <div class="check_container">
+					                        <label class="pure-material-checkbox">
+					                            <input type="checkbox" class="form-control no-block check_community" id="to_be_definded">
+					                            <span>{{ trans('pages.other') }}</span>
+					                        </label>
+					                    </div>			                    
+					                    <div class="adv-combo-wrapper custom-select2 mt-10" style="display: none;">
 						                    <select class="" name="region[]" data-placeholder="{{ trans('pages.search_by_country') }}">
 												<option></option>
 						                    	@foreach ($countries as $country)
@@ -81,7 +87,7 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">In which format will the data be provided? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_data_provided_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">In which format will the data be provided?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_data_provided_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper format">		                    
 			                    <label class="container para">File
 								  <input type="radio" name="format" value="File">
@@ -102,7 +108,11 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">How will you handle pricing for this data product? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">How will you handle pricing for this data product?</h4>
+							<h4 class="h4_intro text-left">When you sell data, Databroker charges a transaction fee of 10% of the sale price.<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
+							<h4 class="h4_intro text-left">
+								This means that, at the end of the 30-day warranty period we credit your wallet with the earnings, minus the 10% transaction fee.
+							</h4>
 				        	<div class="radio-wrapper period">
 				        		<div class="mb-10">
 				        			<label class="container para">FREE
@@ -200,16 +210,16 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">Is there any additional information that might be useful for a potential buyer? (optional) <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_potential_buyer_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">Is there any additional information that might be useful for a potential buyer? (optional)<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_potential_buyer_tooptip') }}">help</i></h4>
 				        	<div class="text-wrapper">
-								<textarea name="productMoreInfo" class="round-textbox user-message min-h200" placeholder="{{ trans('pages.your_message') }}" maxlength="999"></textarea>
-								<div class="char-counter"><span>0</span> / <span>999</span> characters</div>
+								<textarea name="productMoreInfo" class="round-textbox user-message min-h200" placeholder="{{ trans('pages.your_message') }}" maxlength="1000"></textarea>
+								<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
 							</div>
 						</div>
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">Please provide a URL where the buyer can consult the data licence. <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_license_url_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">Provide a URL where the buyer can read the data license<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_license_url_tooptip') }}">help</i></h4>
 				        	<label class="pure-material-textfield-outlined">
 		                        <input type="text" id="licenseUrl" name="licenceUrl" class="form-control2 input_data" placeholder=" "  value="">
 		                        <span>{{ trans('pages.enter_url') }}</span>	                        

@@ -141,7 +141,7 @@ class ProfileController extends Controller
             'regionIdx.required'=>'The region is required.',
             'companyURL.required'=>'The company url is required.',
             'companyURL.regex'=>'The url format is invalid.',
-            'companyVAT.regex'=>'The company VAT number is required.'
+            'companyVAT.required'=>'The company VAT number is required.'
         ];
 
         $validator = Validator::make($request->all(), $fields, $messages);
