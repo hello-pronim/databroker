@@ -13,7 +13,7 @@
             <div class="blog-header row">                
                 <div class="col-md-12">
                     <h1 class="h1-small">{{$usecase['title']}}</h1>
-                    <p class="fs-18"><b>Published in</b>:&nbsp;{{ $usecase['category'] }}</p>
+                    <p class="fs-18"><b>Published in</b>:&nbsp; <span class="h3" id="matchmaking-detail-category">{{ $usecase['category'] }}</span></p>
                 </div>                
             </div>          
             <div class="blog-content">

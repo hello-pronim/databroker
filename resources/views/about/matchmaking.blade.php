@@ -39,7 +39,7 @@
                     </ul>
                 </div>
                 <div class="flex-vcenter">
-                    <button class="customize-btn">Yes, I want to be matched up</button><!-- goto 74 --><span>&nbsp;&nbsp;(Coming soon)</span>
+                    <a href="{{ route('contact') }}"><button class="customize-btn">Yes, I want to be matched up</button></a>
                     <div class="mg15 pd15">It's free</div>
                 </div>
             </div>

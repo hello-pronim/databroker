@@ -41,7 +41,7 @@
             </div>
         </div>  
     </div>  
-    <div id="sub-footer" class="sub-footer mgh60 container-fluid">
+    <!-- <div id="sub-footer" class="sub-footer mgh60 container-fluid">
         <div class="section_splitor_gray"></div>
         <div class="bg-pattern1-both blog-section">
             <div class="container">
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="section_splitor_gray h713"></div>
-    </div>    
+    </div>     -->
     <div class="container">
         <div class="app-section align-items-center">
             <h3 class="text-bold">Integrators & resellers</h3>
@@ -81,7 +81,7 @@
             </div>
         </div>
     </div>
-     <div id="sub-footer2" class="sub-footer mgt60 container-fluid">
+     <!-- <div id="sub-footer2" class="sub-footer mgt60 container-fluid">
         <div class="section_splitor_gray"></div>
         <div class="bg-pattern1-both blog-section">
             <div class="container">
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-     </div>
+     </div> -->
 </div>
 
 @endsection

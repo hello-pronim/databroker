@@ -1660,3 +1660,7 @@ a.dropdown-toggle:after{
 .app-section.app-reveal-section.align-items-center.usecases.detail{
 	max-width: 900px;
 }
+
+#matchmaking-detail-category{
+	color: #06038D;
+}
