@@ -88,6 +88,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/emailtest', 'HomeController@test')->name('test.email'); 	
 
 	Route::get('/download/data-toolkit', 'AboutController@download')->name('download.data-toolkit');
+	Route::get('/about/usecase/{id}', 'AboutController@usecase_detail')->where('id', '[0-9]+')->name('about.usecase_detail');
 
 	$communities = Community::get();
 	$datacontroller = new DataController();

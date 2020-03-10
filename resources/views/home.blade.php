@@ -298,7 +298,7 @@
 			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
-						<a href="#pablo">
+						<a href="{{ route('about.usecase_detail',  ['id' => 10] ) }}">
 							<img class="img" src="{{ asset('images/blogs/usecase2.png') }}" />
 						</a>
 					</div>
@@ -312,7 +312,7 @@
 			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
-						<a href="#pablo">
+						<a href="{{ route('about.usecase_detail',  ['id' => 11] ) }}">
 							<img class="img" src="{{ asset('images/blogs/usecase3.png') }}" />
 						</a>
 					</div>
@@ -326,7 +326,7 @@
 			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
-						<a href="#pablo">
+						<a href="{{ route('about.usecase_detail',  ['id' => 12] ) }}">
 							<img class="img" src="{{ asset('images/blogs/usecase1.png') }}" />
 						</a>
 					</div>

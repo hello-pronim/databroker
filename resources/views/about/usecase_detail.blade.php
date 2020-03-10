@@ -9,48 +9,43 @@
 <div class="container-fluid app-wapper">
     <div class="bg-pattern1-left"></div>
     <div class="container">
-        <div class="app-section app-reveal-section align-items-center usecases">
+        <div class="app-section app-reveal-section align-items-center usecases detail">
             <div class="blog-header row">                
-                <div class="col-md-8">
-                    <h1 class="h1-small">Get inspired by real-life use cases for data</h1>
-                    <p class="fs-18">Looking for inspiration for how data can help supercharge your business? Browse our use cases to discover practical and innovative ways that data can solve real-life challenges, lead to better decision-making and drive more strategic business moves.</p>
+                <div class="col-md-12">
+                    <h1 class="h1-small">{{$usecase['title']}}</h1>
+                    <p class="fs-18"><b>Published in</b>:&nbsp;{{ $usecase['category'] }}</p>
                 </div>                
             </div>          
             <div class="blog-content">
                 <div class="row">
                     <div class="col-lg-4 flex-vcenter mgh30">
-                        <h4 class="h4_intro">Explore use cases in</h4>                  
-                        <div class="mgl30 adv-combo-wrapper custom-select2 geocommunity-wrapper">
-                            <select name="geocommunity" class="no-search">
-                                <option value="all">All Communities</option>
-                                @foreach ( $communities as $community )
-                                <option value="{{$community->communityIdx}}">{{ $community->communityName }} Community</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <!-- <h4 class="h4_intro">Explore use cases in</h4> -->
                     </div>
                 </div>
                 <div id="usecase-list" class="mgh30">
                     <div class="row">
-                        @foreach ( $usecases as $usecase )
-                        <div class="col-md-4">
-                            <a href="{{ route('about.usecase_detail',  ['id' => $usecase['id']] ) }}">
+                        <div class="col-md-12 col-sm-12">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder">        
                                         <img class="img" src="{{ asset('images/usecases/'.$usecase['image']) }}" />
                                         <div class="small-image-overlay"></div>
                                     </div>
-                                    <div class="card-body text-left">
-                                        <div class="para-small">
-                                            <span class="color-green">{{ $usecase['category'] }}</span>
-                                        </div>
-                                        <h4 class="offer-title card-title">{{$usecase['title']}}</h4>
-                                    </div>
                                 </div>  
-                            </a>
                         </div>  
-                        @endforeach         
                     </div>
+                    <div class="row">                
+                        <div class="col-md-12">
+                            <h1 class="h1-small">The challenge</h1>
+                            <p class="fs-18">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.</p>
+                        </div>                
+                    </div> 
+                    <div class="row">                
+                        <div class="col-md-12">
+                            <h1 class="h1-small">The solution</h1>
+                            <p class="fs-18">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.</p>
+                            <p class="fs-18">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.</p>
+                        </div>                
+                    </div>  
                 </div>
             </div>
         </div>  
@@ -59,15 +54,18 @@
         <div class="section_splitor_gray"></div>
         <div class="bg-pattern1-both flex-center flex-vertical">
             <div class="divider-green mgb30"></div>
-            <div class="h2">Find out about new use cases</div>
-            <div class="para mgb40">Sign up for our NewsBytes!</div>
-            <a href="{{route('auth.register_nl')}}"><button type="button" class="customize-btn button mgt15">SIGN UP</button></a>
+            <div class="h2">What is your business challenge?</div>
+            <div class="para mgb40">Tell us, and we will match you up with the perfect data partner.</div>
+            <a href="{{route('auth.register_nl')}}"><button type="button" class="customize-btn button mgt15">Discover our matchmaking service</button></a>
+            <br/>
+            <div class="para mgb40">It 's free.</div>
         </div>
         <div class="section_splitor_gray h713"></div>
     </div>    
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
             <div id="usecase-list2" class="mgh30">
+            <h1 class="fs-18"><b>More use cases to discover</b></h1>
                 <div class="row">
                     @foreach ( $usecases2 as $usecase )
                     <div class="col-md-4">
@@ -90,7 +88,7 @@
                 </div>
             </div>
             <div class="flex-center">
-                <button type="button" class="button blue-outline w225">LOAD MORE</button>
+                <a href="{{ route('about.usecase') }}"><button type="button" class="button blue-outline w225">LOAD MORE</button></a>
             </div>
         </div>
     </div>
