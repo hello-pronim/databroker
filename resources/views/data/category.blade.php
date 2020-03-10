@@ -112,7 +112,7 @@
 									<div class="app-monetize-section-item0 mb-40"></div>
 									<p class="fs-18">Can’t find the data you need?</p>
 									<p class="fs-21 text-bold mb-40">Let our tailor-made DataMatch service find the perfect data partner for you!</p>
-									<a href="{{route('about.matchmaking')}}"><button type="button" class="button customize-btn mgh25 w225">MATCH ME UP</button></a>
+									<a href="{{route('contact')}}"><button type="button" class="button customize-btn mgh25 w225">MATCH ME UP</button></a>
 									<p>It’s free!</p>
 								</div>
 							</div>	

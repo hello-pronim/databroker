@@ -159,7 +159,7 @@
                 <p class="center">
                     {{ trans('home.looking_supercharge_description')}}
                     <span class="height-space" style="display: block;"></span>
-                    <a href="{{ route('about.matchmaking') }}">
+                    <a href="{{ route('contact') }}">
                         <button type="button" class="button customize-btn mgh25 w225">{{ trans('home.match_me') }}</button>
                     </a>                     
                 </p>
