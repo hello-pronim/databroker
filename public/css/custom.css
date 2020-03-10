@@ -1657,3 +1657,6 @@ a.dropdown-toggle:after{
 #send-message-row h2.h4_intro.text-left{
 	margin-top: 0px !important;
 }
+.app-section.app-reveal-section.align-items-center.usecases.detail{
+	max-width: 900px;
+}

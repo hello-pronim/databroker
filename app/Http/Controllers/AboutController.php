@@ -215,49 +215,49 @@ class AboutController extends Controller
                 'image' => 'traffic_80.png',
             ),
             array(
-                'id' => 1,
+                'id' => 2,
                 'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
                 'category' => 'Transport',
                 'image' => 'shop_80.png',
             ),
             array(
-                'id' => 1,
+                'id' => 3,
                 'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
                 'category' => 'Transport',
                 'image' => 'Agriculture.png',
             ),
             array(
-                'id' => 1,
+                'id' => 4,
                 'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
                 'category' => 'Transport',
                 'image' => 'People.png',
             ),
             array(
-                'id' => 1,
+                'id' => 5,
                 'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
                 'category' => 'Transport',
                 'image' => 'Energy.png',
             ),
             array(
-                'id' => 1,
+                'id' => 6,
                 'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
                 'category' => 'Transport',
                 'image' => 'Environment.png',
             ),
             array(
-                'id' => 1,
+                'id' => 7,
                 'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
                 'category' => 'Transport',
                 'image' => 'traffic_80.png',
             ),
             array(
-                'id' => 1,
+                'id' => 8,
                 'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
                 'category' => 'Transport',
                 'image' => 'Agriculture.png',
             ),
             array(
-                'id' => 1,
+                'id' => 9,
                 'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
                 'category' => 'Transport',
                 'image' => 'photo_1532974297617_c0f05fe48b.png',
@@ -265,19 +265,19 @@ class AboutController extends Controller
         );
         $usecases2 = array( 
             array(
-                'id' => 1,
+                'id' => 10,
                 'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
                 'category' => 'Transport',
                 'image' => 'traffic_80.png',
             ),
             array(
-                'id' => 1,
+                'id' => 11,
                 'title' => 'Achieve your full potential with retail location planning', 
                 'category' => 'People',
                 'image' => 'shop_80.png',
             ),
             array(
-                'id' => 1,
+                'id' => 12,
                 'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
                 'category' => 'Agriculture',
                 'image' => 'Agriculture.png',
@@ -287,6 +287,98 @@ class AboutController extends Controller
 
         $data = array( 'usecases', 'usecases2', 'communities' );
         return view('about.usecase', compact($data));
+    }
+
+    public function usecase_detail($id){
+
+        $usecases = array( 
+            array(
+                'id' => 1,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Transport',
+                'image' => 'traffic_80.png',
+            ),
+            array(
+                'id' => 2,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Transport',
+                'image' => 'shop_80.png',
+            ),
+            array(
+                'id' => 3,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Transport',
+                'image' => 'Agriculture.png',
+            ),
+            array(
+                'id' => 4,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Transport',
+                'image' => 'People.png',
+            ),
+            array(
+                'id' => 5,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Transport',
+                'image' => 'Energy.png',
+            ),
+            array(
+                'id' => 6,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Transport',
+                'image' => 'Environment.png',
+            ),
+            array(
+                'id' => 7,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Transport',
+                'image' => 'traffic_80.png',
+            ),
+            array(
+                'id' => 8,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Transport',
+                'image' => 'Agriculture.png',
+            ),
+            array(
+                'id' => 9,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Transport',
+                'image' => 'photo_1532974297617_c0f05fe48b.png',
+            ),
+        );
+
+        $usecases2 = array( 
+            array(
+                'id' => 10,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Transport',
+                'image' => 'traffic_80.png',
+            ),
+            array(
+                'id' => 11,
+                'title' => 'Achieve your full potential with retail location planning', 
+                'category' => 'People',
+                'image' => 'shop_80.png',
+            ),
+            array(
+                'id' => 12,
+                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+                'category' => 'Agriculture',
+                'image' => 'Agriculture.png',
+            ),
+        );
+
+        if($id < 10) {
+             $usecase = $usecases[($id-1)];
+        }
+        else {
+            $usecase = $usecases2[($id-10)];
+        }
+
+        $data = array('usecase', 'usecases2');
+
+        return view('about.usecase_detail', compact($data));
     }
 
     public function contact(){
