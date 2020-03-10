@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
-use Mail;
 use App\Http\Controllers\Controller;
-use App\Libraries\MailChimp;
+use Mail;
+use Newsletter;
 
 use App\User;
 use App\Models\Community;
@@ -190,13 +190,9 @@ class RegisterController extends Controller
 
         $subscriptionObj = Subscription::create($subscription);
 
-        $mailchimp = new MailChimp();
-        $list_id = '4076927107';
-        $result = $mailchimp->post("lists/$list_id/members", [
-            'email_address' => $subscription['email'],
-            'merge_fields' => ['FNAME'=> $subscription['firstname'], 'LNAME'=> $subscription['lastname']],
-            'status'        => 'subscribed',
-        ]);
+        if ( ! Newsletter::isSubscribed($request->email) ) {
+            Newsletter::subscribe($request->email);
+        }
 
         return view('auth.register_nl_success');
     }
