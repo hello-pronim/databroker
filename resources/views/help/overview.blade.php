@@ -29,7 +29,7 @@
                             <div class="divider-green"></div>
                             <p class="h3">Questions?</p>
                             <p class="para mgb25">Feel free to contact us.<br/> We are happy to help.</p>
-                            <button class="customize-btn">Contact us</button>
+                            <a href="{{ route('contact') }}"><button class="customize-btn">Contact us</button></a>
                         </div>
                     </div>
                     <div class="col-lg-4 mgh30">
