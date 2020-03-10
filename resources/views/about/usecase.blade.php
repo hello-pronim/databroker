@@ -18,7 +18,7 @@
             </div>          
             <div class="blog-content">
                 <div class="row">
-                    <div class="col-lg-5 flex-vcenter mgh30 col-sm-12">
+                    <div class="col-lg-6 flex-vcenter mgh30 col-sm-12" id="usecase-whole">
                         <h4 class="h4_intro">Explore use cases in</h4>                  
                         <div class="mgl30 adv-combo-wrapper custom-select2 geocommunity-wrapper">
                             <select name="geocommunity" class="no-search">

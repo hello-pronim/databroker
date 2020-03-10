@@ -1683,3 +1683,6 @@ a.dropdown-toggle:after{
 #matchmaking-detail-category{
 	color: #06038D;
 }
+#usecase-whole{
+	max-width: 550px;
+}
