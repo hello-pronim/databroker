@@ -230,7 +230,7 @@
                 $(".cookie-accept").animate({ opacity: 1, bottom: "0px" });      
 
             if($('form .is-invalid').length>0){
-              $('html, body').scrollTop($("form .is-invalid:first-child").offset().top-30);
+              $('html, body').scrollTop($("form .is-invalid:first-child").offset().top-150);
             }
         });           
     </script>

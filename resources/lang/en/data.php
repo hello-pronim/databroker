@@ -18,4 +18,9 @@ return [
     'your_message' => 'Your message',
     'received_success' => 'As soon as the company contacts you, you can continue your conversation outside the Databroker platform.',
     'continue' => 'CONTINUE',
+    'access_to_this_data' => 'Access to this data',
+    'format' => 'Format',
+    'your_bid' => 'Your bid',
+    'add_message_optional' => 'Add a message(optional)',
+    'send_a_bid'=>'Send a bid'
 ];

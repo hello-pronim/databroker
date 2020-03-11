@@ -812,8 +812,6 @@ class DataController extends Controller
             $data['company_name'] = $company_name;
             return view('data.send_message_success')->with($data);
         }
-     
-
     }
 
     public function buy_data(Request $request){
@@ -823,36 +821,35 @@ class DataController extends Controller
         }
     }
 
-    public function send_bid(Request $request){
+    public function bid(Request $request){
         $user = $this->getAuthUser();
         if(!$user) {
            return redirect('/login')->with('target', 'send a bid for this data');
         }else{
-            $offer = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
-            $user_info = User::where('userIdx', $offer->provider->userIdx)->first();
-            
-            $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->where('deleted', 0)->get();
-            
-            $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
-            
-            $product = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where('productIdx', '=', $request->pid)->get()->first();
+            $product = OfferProduct::with('region')->where('productIdx', $request->pid)->get()->first();
+            $offer = Offer::where('offerIdx', $request->id)->get()->first();
+            $providerIdx = $offer['providerIdx'];
+            $provider = Provider::with('region')->where('providerIdx', $providerIdx)->get()->first();
+            $data = array('product', 'provider');
+            return view('data.bid', compact($data));
+        }
+    }
+    public function send_bid(Request $request){
+        $fields = [
+            'bid' => ['required', 'integer']
+        ];
 
-            $user = $this->getAuthUser();
+        $messages = [
+            'bid.required' => 'Your bid is required.',
+            'bid.integer' => 'Your bid must be integer.'
+        ];
 
-            $data['offer'] = $offer;
-            $data['user_info'] = $user_info;
-            $data['offersample'] = $offersample;
-            $data['prev_route'] = $prev_route;
-            $data['product'] = $product;
-            $data['user'] = $user;
+        $validator = Validator::make($request->all(), $fields, $messages);
 
-            $this->sendEmail("sendbid", [
-                'from'=>'yuriyes43@gmail.com', 
-                'to'=>$user->email, 
-                'name'=>'Databroker', 
-                'subject'=>'You’ve received a bid on a data product ',
-                'data'=>$data
-            ]);        
+        if($validator->fails()){
+            return redirect(url()->previous())
+                        ->withErrors($validator)
+                        ->withInput();             
         }
     }
 }

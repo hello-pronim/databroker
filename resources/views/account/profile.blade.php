@@ -12,15 +12,17 @@
     <div class="bg-pattern1-left"></div>
 	<div class="app-section app-reveal-section align-items-center">	    
 		<div class="container">
-			<div class="h1">Account info</div>
-			<div class="label companyname1">
-				<span>Account name: </span>
-                <span class="adminname">{{$company->companyName}}</span>
-			</div>
-			<div class="label ">
-    			<span>Administrator: </span>
-                <span class="adminname">{{$admin->firstname}} {{$admin->lastname}}</span>
-			</div>
+            <div class="blog-header">
+                <h1>Account info</h1>
+                <div class="label companyname1">
+                    <span>Account name: </span>
+                    <span class="adminname">{{$company->companyName}}</span>
+                </div>
+                <div class="label ">
+                    <span>Administrator: </span>
+                    <span class="adminname">{{$admin->firstname}} {{$admin->lastname}}</span>
+                </div>
+            </div>
 
             <div class="app-section profileinfo">
                 <div id="profile-display-section">       
