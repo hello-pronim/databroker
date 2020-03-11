@@ -161,7 +161,7 @@
       </div>
 
       <div class="container-fluid app-wapper footer-section">
-        <div class="container">
+        <div class="container" id="footer-section-container">
           <div class="app-section app-footer-section align-items-center">
             <div class="app-footer-link">
                     <!--a href="">Terms and Conditions</a-->
