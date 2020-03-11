@@ -18,7 +18,7 @@
 			    <div class="row">
 			    	<div class="col-lg-6">
 			            <p class="desc mt-10">
-			            	{{ trans('description.'.str_replace( ' ', '_', $category ).'_intro') }}
+			            	{{ trans('description.'.str_replace( ' ', '_', $category ).'_overview') }}
 			            </p>	            
 			            <a href="{{ route('data.community_'.str_replace( ' ', '_', strtolower($category) )) }}"><button type="button" class="button secondary-btn w225 mgh25">{{ trans('pages.read_more') }}</button></a>
 	        		</div>	
