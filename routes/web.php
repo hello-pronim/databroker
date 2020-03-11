@@ -104,10 +104,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 			return $data['datacontroller']->community($data['community']->communityName);
 		})->name('data.community_'.$community_route);	
 	}
+	Route::get('/register_nl', 'AboutController@register_nl')->name('register_nl'); 
+	Route::post('/register_nl', 'AboutController@create_nl')->name('create_nl'); 
 });
-
-Route::get('/register_nl', 'Auth\RegisterController@register_nl')->name('auth.register_nl'); 
-Route::post('/register_nl', 'Auth\RegisterController@create_nl')->name('auth.create_nl'); 
 
 Auth::routes(['verify' => true]);
 Auth::routes();
