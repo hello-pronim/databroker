@@ -137,11 +137,11 @@
 						                				<button type="button" class="customize-btn">Buy Now</button>
 						                			</a>
 						                			@elseif($product->productBidType == 'bidding_only')
-						                			<a href="/data/send_bid/{{ $id }}/{{$product->productIdx}}">
+						                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
 						                			@elseif($product->productBidType == 'bidding_possible')
-						                			<a href="/data/send_bid/{{ $id }}/{{$product->productIdx}}">
+						                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
 						                			<a href="/data/buy_data/{{ $id }}/{{$product->productIdx}}">

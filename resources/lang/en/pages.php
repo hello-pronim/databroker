@@ -38,6 +38,7 @@ return [
     'your_message' => 'Enter your message here',
     'account_information' => 'Account information',
     'company_name' => 'Company name',
+    'company_profile' => 'Company profile',
     'update_company_profile' => 'Update company profile',
     'company_profile_desc' => 'This information appears alongside data offers you publish on the marketplace.',
     'admin_name' => 'Admin Name',

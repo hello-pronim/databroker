@@ -30,6 +30,9 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 .text-white{
 	color:white !important;
 }
+.text-red{
+	color:#FF6B6B !important;
+}
 .text-thick-grey{
 	color:#8C9196 !important;
 }
@@ -40,10 +43,10 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 	color:#BAC0C5 !important;
 }
 .text-bold{
-	font-weight: bold;
+	font-weight: bold!important;
 }
 .text-italic{
-	font-style: italic;
+	font-style: italic!important;
 }
 .text-normal{
 	font-weight: normal !important;
@@ -173,6 +176,9 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 }
 .pl-25{
 	padding-left: 25px;
+}
+.pl-30{
+	padding-left: 30px;
 }
 .pr-15{
 	padding-right: 15px;
@@ -1685,4 +1691,16 @@ a.dropdown-toggle:after{
 }
 #usecase-whole{
 	max-width: 550px;
+}
+ul.custom-list{
+	list-style-type: none;
+	padding-inline-start: 18px;
+}
+ul.custom-list li:before{
+	content: "\2022";
+    color: #78E6D0;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
 }

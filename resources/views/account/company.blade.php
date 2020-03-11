@@ -10,7 +10,11 @@
     <div class="bg-pattern1-left"></div>
 	<div class="app-section app-reveal-section align-items-center">	    
 		<div class="container">
+            @if($user->userStatus==1)
 			<div class="page-title text-primary">{{ trans('pages.update_company_profile') }}</div>
+            @else
+            <div class="page-title text-primary">{{ trans('pages.company_profile') }}</div>
+            @endif
 			<div class="label companyname">
 				<span>{{ trans('pages.company_profile_desc') }}</span>
 			</div>			
