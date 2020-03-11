@@ -61,7 +61,7 @@
             <div class="divider-green mgb30"></div>
             <div class="h2">Find out about new use cases</div>
             <div class="para mgb40">Sign up for our NewsBytes!</div>
-            <a href="{{route('auth.register_nl')}}"><button type="button" class="customize-btn button mgt15">SIGN UP</button></a>
+            <a href="{{route('register_nl')}}"><button type="button" class="customize-btn button mgt15">SIGN UP</button></a>
         </div>
         <div class="section_splitor_gray h713"></div>
     </div>    

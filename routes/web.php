@@ -77,6 +77,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/cookie_policy', 'AboutController@cookie_policy')->name('about.cookie_policy');    
 	Route::get('/contact', 'AboutController@contact')->name('contact'); 
 	Route::post('/contact', 'AboutController@send')->name('contact.send');       
+	Route::get('/contact_pass', 'AboutController@contact_pass')->name('contact_pass');
+	Route::post('/contact_pass', 'AboutController@contact_pass_send')->name('contact_pass.send');
 	Route::get('/about/matchmaking', 'AboutController@matchmaking')->name('about.matchmaking'); 
 	Route::get('/about/media-center', 'AboutController@media_center')->name('about.media_center'); 
 	Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
@@ -104,10 +106,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 			return $data['datacontroller']->community($data['community']->communityName);
 		})->name('data.community_'.$community_route);	
 	}
+	Route::get('/register_nl', 'AboutController@register_nl')->name('register_nl'); 
+	Route::post('/register_nl', 'AboutController@create_nl')->name('create_nl'); 
 });
-
-Route::get('/register_nl', 'Auth\RegisterController@register_nl')->name('auth.register_nl'); 
-Route::post('/register_nl', 'Auth\RegisterController@create_nl')->name('auth.create_nl'); 
 
 Auth::routes(['verify' => true]);
 Auth::routes();

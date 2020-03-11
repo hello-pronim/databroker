@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use App\User;
 use App\Models\Provider;
 use App\Models\Region;
 use App\Models\Community;
@@ -17,7 +18,9 @@ use App\Models\OfferSample;
 use App\Models\OfferCountry;
 use App\Models\UseCase;
 use App\Models\Contact;
+use App\Models\Subscription;
 use Response;
+use Newsletter;
 
 class AboutController extends Controller
 {
@@ -62,6 +65,11 @@ class AboutController extends Controller
         );        
         $data = array( 'teammates' );
         return view('about.about', compact($data));
+    }
+
+    public function getAuthUser ()
+    {
+        return Auth::user();
     }
 
     public function partners(Request $request)
@@ -401,6 +409,50 @@ class AboutController extends Controller
         return view('about.contact', compact($data));
     }
 
+    public function contact_pass(){
+        $communities = Community::get();  
+        $businesses = Business::get();
+        $countries = Region::where('regionType', 'country')->get(); 
+        $data = array( 'communities', 'businesses', 'countries' );
+        return view('about.contact_pass', compact($data));
+    }
+
+    public function contact_pass_send(Request $request){
+        $validator = Validator::make($request->all(),[
+            'firstname' => 'required|min:2',
+            'lastname' => 'required|min:2',
+            'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'message' => 'required|min:5|max:1000',
+            'companyName' => 'required|min:2',
+            'regionIdx' => 'required',
+            'community'=> 'required|array|min:1'
+        ],[
+            'community.required'=>'Please choose at least one.',
+            'regionIdx.required'=>'The country field is required.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+
+        $businessName = $request->businessName2==='Other industry'?$request->businessName:$request->businessName2;
+        $role = $request->role2==='Other'?$request->role:$request->role2;
+
+        $contact_data['firstname'] = $request->firstname;
+        $contact_data['lastname'] = $request->lastname;
+        $contact_data['email'] = $request->email;        
+        $contact_data['companyName'] = $request->companyName;
+        $contact_data['regionIdx'] = $request->regionIdx;
+        $contact_data['businessName'] = $businessName;
+        $contact_data['role'] = $role;
+        $contact_data['content'] = $request->message;
+        $contact_data['communities'] = json_encode($request->community);
+        $contact_obj = Contact::create($contact_data);
+        return view('about.contact_success');
+    }
+
     public function send(Request $request){
         $validator = Validator::make($request->all(),[
             'firstname' => 'required|min:2',
@@ -599,5 +651,63 @@ class AboutController extends Controller
                 'Content-Type: application/pdf',
                 );
         return Response::download($file, 'Databroker-Press-Kit.zip', $headers);
+    }
+
+    protected function register_nl()
+    {
+        $communities = Community::get();
+        $businesses = Business::get();
+        $countries = Region::where('regionType', 'country')->get(); 
+        $user = $this->getAuthUser();
+        $userData = null;
+        if($user){
+            $userData = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')->where('userIdx', $user->userIdx)->get()->first();
+        }
+        
+        $data = array( 'communities', 'businesses', 'countries', 'userData' );                
+        return view('auth.register_nl', compact($data));
+    }  
+
+    protected function create_nl(Request $request){
+        $validator = Validator::make($request->all(),[
+            'firstname' => 'required|min:2',
+            'lastname' => 'required|min:2',
+            'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'companyName' => 'required|min:2',
+            'regionIdx' => 'required',
+            'community'=> 'required|array|min:1'
+        ],[
+            'community.required'=>'Please choose at least one.',
+            'regionIdx.required'=>'The country field is required.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+
+        $businessName = ($request->businessName2==='Other industry' || !$request->businessName2)?$request->businessName:$request->businessName2;
+        $role = ($request->role2==='Other' || !$request->role2)?$request->role:$request->role2;
+
+        $subscription['firstname'] = $request->firstname;
+        $subscription['lastname'] = $request->lastname;
+        $subscription['email'] = $request->email;        
+        $subscription['companyName'] = $request->companyName;
+        $subscription['regionIdx'] = $request->regionIdx;
+        $subscription['businessName'] = $businessName;
+        $subscription['role'] = $role;
+        $subscription['communities'] = json_encode($request->community);
+
+        $subscriptionObj = Subscription::where('email', '=', $request->email)->get()->first();
+        if($subscriptionObj) $subscriptionObj->delete();
+
+        $subscriptionObj = Subscription::create($subscription);
+
+        if ( ! Newsletter::isSubscribed($request->email) ) {
+            Newsletter::subscribe($request->email);
+        }
+
+        return view('auth.register_nl_success');
     }
 }
