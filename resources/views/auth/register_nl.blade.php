@@ -12,9 +12,9 @@
                 <h1 class="text-primary text-center text-bold">Don't want to miss out on any Databroker updates?</h1>
                 <p class="text-center text-bold fs-20 lh-30"> Now’s a good time to sign up for our newsletter! </p>
                 <br>
-                <form method="POST" action="{{ route('auth.create_nl') }}">
+                <form method="POST" action="{{ route('create_nl') }}">
                     @csrf
-
+                    @if(!$userData)
                     <label class="pure-material-textfield-outlined">
                         <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname') is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
                         <span>{{ trans('contact.first_name') }}</span>
@@ -144,6 +144,15 @@
                             </span>
                         @enderror
                     </label>
+                    @else
+                    <input type="hidden" name="firstname" value="{{$userData->firstname}}">
+                    <input type="hidden" name="lastname" value="{{$userData->lastname}}">
+                    <input type="hidden" name="email" value="{{$userData->email}}">
+                    <input type="hidden" name="companyName" value="{{$userData->companyName}}">
+                    <input type="hidden" name="regionIdx" value="{{$userData->regionIdx}}">
+                    <input type="hidden" name="businessName" value="{{$userData->businessName}}">
+                    <input type="hidden" name="role" value="{{$userData->role}}">
+                    @endif
 
                     <p class="text-bold fs-20">
                         We would just like to know what communities you're most interested in, so we can tailor our newsletter ...
