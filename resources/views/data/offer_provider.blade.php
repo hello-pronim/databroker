@@ -98,9 +98,9 @@
                                 </div>
                             </div>    
                             @endif
-                            <p class="para text-warning">We need all your company details to create a Data Offer</p>
+                            <p class="para text-secondary">We need all your company details to create a Data Offer</p>
                             @if($user->userStatus!=1)
-                            <p class="para">If you need to add or change these details, please contact your administrator</p>
+                            <p class="para text-secondary">If you need to add or change these details, please contact your administrator</p>
                             @endif
                             <div class="buttons text-right">
                                 @if($user->userStatus==1)

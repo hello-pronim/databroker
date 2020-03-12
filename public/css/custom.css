@@ -409,37 +409,7 @@ a.back-icon:active {
     left: 132px;
     top: 198px;	
 }
-@media (min-width: 1200px) {
-	#matchmaking-background:before {
-		content: "";
-		background-image: url("../images/patterns/BG-left-desktop.svg");
-		background-position: right;
-		background-repeat: no-repeat;
-		background-size: contain;
-		width: 700px;
-		height: 400px;
-		display: block;
-		position: absolute;
-		left: 49px;
-		top: 198px;	
-	}
-  }
 
-@media (min-width: 1600px) {
-	#matchmaking-background:before {
-		content: "";
-		background-image: url("../images/patterns/BG-left-desktop.svg");
-		background-position: right;
-		background-repeat: no-repeat;
-		background-size: contain;
-		width: 700px;
-		height: 400px;
-		display: block;
-		position: absolute;
-		left: 132px;
-		top: 198px;	
-	}
-}
 .bg-pattern1-right:before {
 	background-image: url("../images/patterns/BG-right-desktop.svg");
 	right: 0px;
@@ -1703,4 +1673,7 @@ ul.custom-list li:before{
     display: inline-block;
     width: 1em;
     margin-left: -1em;
+}
+a[data-target='#mediaLibraryModal']:hover{
+	color:#06038D !important;
 }
