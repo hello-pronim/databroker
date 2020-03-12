@@ -226,9 +226,9 @@
 						</div>
 						<div class="fileupload fileupload-file">                            
 							@if (isset($sample_files))
-	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf,.zip,.rar' multiple filelist  title="SELECT FILE" remotefile="{{ json_encode($sample_files) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="file">
+	                        <input type="file" name="offersample_files" accept='*/*' multiple filelist  title="SELECT FILE" remotefile="{{ json_encode($sample_files) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="file">
 	                        @else
-	                        <input type="file" name="offersample_files" accept='.xlsx,.xls,.doc,audio/*,.docx,.ppt,.pptx,.txt,.pdf,.zip,.rar' multiple filelist title="SELECT FILE">
+	                        <input type="file" name="offersample_files" accept='*/*' multiple filelist title="SELECT FILE">
 	                        @endif
 	                    </div>
 						<div class="file-drag-drop-zone">
