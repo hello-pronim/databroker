@@ -183,12 +183,6 @@
                         <div class="col-md-6">                                
                             <button type="submit" class="customize-btn">Sign Up</button>
                         </div>
-
-                        <div class="col-md-6 text-right">                            
-                            <a class="btn btn-link text-grey" id="no_thank_link" href="{{ route('login') }}">
-                                <i class="material-icons">clear</i>{{ __(' Not right now, thanks') }}
-                            </a>                        
-                        </div>
                     </div>
 
                 </form>
