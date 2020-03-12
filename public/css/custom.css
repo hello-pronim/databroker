@@ -1704,3 +1704,6 @@ ul.custom-list li:before{
     width: 1em;
     margin-left: -1em;
 }
+.h1-small.help-overview{
+	margin-bottom: 30px;
+}

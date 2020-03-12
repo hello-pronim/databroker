@@ -6,7 +6,7 @@
     <div class="container">
         <div class="app-section align-items-center">
             <div class="blog-header mgt60">
-                <h1 class="h1-small">Help & support centre</h1>
+                <h1 class="h1-small help-overview">Help & support centre</h1>
             </div>  
             <div>
                 <p class="para">
@@ -27,10 +27,12 @@
                         </a>
                     </div>
                     <div class="col-lg-4 mgh30">
-                        <div class="flex-center flex-vertical help-item-container">
-                            <div class="icon-75 icon-cart-selling"></div>
-                            <p class="h3 text-center">QUESTIONS ABOUT SELLING DATA?</p>
-                        </div>
+                        <a href = "{{ route('help.selling_data') }}">
+                            <div class="flex-center flex-vertical help-item-container">
+                                <div class="icon-75 icon-cart-selling"></div>
+                                <p class="h3 text-center">QUESTIONS ABOUT SELLING DATA?</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-lg-4 mgh30">
                         <div class="flex-center flex-vertical help-item-container">
