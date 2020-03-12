@@ -84,14 +84,14 @@
                             </label>
                             @if($company->companyLogo)
                             <label class="pure-material-textfield">Company logo</label>              
-                            <div class="companylogo w-50">
+                            <div class="companylogo">
                                 <input type="hidden" name="companyLogo" value="{{$company->companyLogo}}">
                                 <inptu type="hidden" name="providerCompanyLogo" value="{{$company->companyLogo}}">
                                 <img class="w-100" src="{{ asset('/uploads/company/'.$company->companyLogo) }}">
                             </div>
                             @elseif($user->userStatus==1)
                             <label class="pure-material-textfield mt-20">Please upload your company's logo <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.company_logo_tooltip') }}">help</i></label>
-                            <div class="fileupload data-offer w-50">
+                            <div class="fileupload data-offer">
                                 <input type="file" id="companyLogo" class="companyLogo" name="companyLogo" accept='image/*'>
                                 <div class="invalid-feedback companyLogo">
                                     <strong>@error('companyLogo') {{$message}} @enderror</strong>
