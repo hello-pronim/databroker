@@ -275,7 +275,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="post" post>
+        <form action="post" post autocomplete="off">
             @csrf
             <input type="hidden" name="invite_userIdx" value="{{$user->userIdx}}">
             <p class="para">
