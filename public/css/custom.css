@@ -160,34 +160,37 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 	padding: 15px !important;
 }
 .pt-20{
-	padding-top: 20px;
+	padding-top: 20px!important;
 }
 .pt-40{
-	padding-top: 40px;
+	padding-top: 40px!important;
 }
 .pb-10{
-	padding-bottom: 10px;
+	padding-bottom: 10px!important;
 }
 .pl-15{
-	padding-left: 15px;
+	padding-left: 15px!important;
 }
 .pl-20{
-	padding-left: 20px;
+	padding-left: 20px!important;
 }
 .pl-25{
-	padding-left: 25px;
+	padding-left: 25px!important;
 }
 .pl-30{
-	padding-left: 30px;
+	padding-left: 30px!important;
 }
 .pr-15{
-	padding-right: 15px;
+	padding-right: 15px!important;
 }
 .pr-25{
-	padding-right: 25px;
+	padding-right: 25px!important;
 }
 .pr-40{
-	padding-right: 40px;
+	padding-right: 40px!important;
+}
+.px-5{
+	padding: 0px 5px!important;
 }
 .w-100{
 	width: 100%;
@@ -1254,7 +1257,7 @@ a.dropdown-toggle:after{
 	font-size: 18px;
 }
 .cat-body .cat-label{
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: bold;
 	color: #020A09;
 	display: table-cell;
@@ -1292,9 +1295,6 @@ a.dropdown-toggle:after{
 .community-filter .community{
 	display: flex;
 	align-items: center;
-}
-.community-filter .community >div{
-	min-width: 294px;
 }
 .community-filter .theme{
 	display: flex;
@@ -1676,4 +1676,7 @@ ul.custom-list li:before{
 }
 a[data-target='#mediaLibraryModal']:hover{
 	color:#06038D !important;
+}
+#select2-community-results{
+	font-size: 15px;
 }
