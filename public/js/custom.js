@@ -168,13 +168,17 @@ $(document).ready(function(){
     });
     
     var validate = function (cur_step, elem) {                
-        cur_step.find('.error_notice').removeClass('active');         
-
-        if( $(elem).val() === "" && $(elem).attr('remotefile') === undefined){            
-            var elem_name = $(elem).attr("name").replace('[]','');
-            
-            cur_step.find('.error_notice.'+elem_name).show();                        
-        }           
+        cur_step.find('.error_notice').removeClass('active'); 
+        // cur_step.find('.error_notice').hide();
+        var elem_name = $(elem).attr("name");
+        if (elem_name) {
+            elem_name = elem_name.replace('[]','');
+            if( $(elem).val() === "" && $(elem).attr('remotefile') === undefined){
+                cur_step.find('.error_notice.'+elem_name).show();
+            } else {
+                cur_step.find('.error_notice.'+elem_name).hide();
+            }
+        }
     };
     $(".data-offer .step").each(function(key, elem){
     	var cur_step = $(this);
