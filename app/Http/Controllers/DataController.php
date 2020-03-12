@@ -192,7 +192,25 @@ class DataController extends Controller
         // die(json_encode($offer));
         $theme_json = json_encode($theme_map);
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList' );
+        $gallery = Gallery::where('category', 'community')->get();
+        $gallery_map = [];
+        foreach ($gallery as $g_row) {
+            $id = $g_row['id'];
+            $category = $g_row['category'];
+            $content = $g_row['content'];
+            $subcontent = $g_row['subcontent'];
+            $sequence = $g_row['sequence'];
+            $path = $g_row['path'];
+            $thumb = $g_row['thumb'];
+
+            if (!isset($gallery_map[$content]))
+                $gallery_map[$content] = [];
+            if (!isset($gallery_map[$content][$subcontent]))
+                $gallery_map[$content][$subcontent] = [];
+            $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'url' => $path, 'thumb' => $thumb];
+        }
+
+        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList', 'gallery_map' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }
