@@ -62,13 +62,8 @@
 						                    </div>
 						                @endforeach    
 					                    
-					                    <div class="check_container">
-					                        <label class="pure-material-checkbox">
-					                            <input type="checkbox" class="form-control no-block check_community" id="to_be_definded">
-					                            <span>{{ trans('pages.other') }}</span>
-					                        </label>
-					                    </div>			                    
-					                    <div class="adv-combo-wrapper custom-select2 mt-10" style="display: none;">
+					                    <h4 class="h4_intro text-left">Or add country</h4>
+                                        <div class="adv-combo-wrapper custom-select2 mt-10">
 						                    <select class="" name="region[]" data-placeholder="{{ trans('pages.search_by_country') }}">
 												<option></option>
 						                    	@foreach ($countries as $country)
