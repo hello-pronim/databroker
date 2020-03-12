@@ -28,7 +28,7 @@
 	        <div class="cat-body">
 	        	<div class="row community-filter">
 	        		@csrf    		
-	        		<div class="col-xl-4 col col-lg-8 mb-20 community">
+	        		<div class="col-xl-4 col col-lg-8 px-5 mb-20 community">
 	        			<label class="cat-label">{{ trans('pages.explore') }}</label>	        	
 	                    <div class="adv-combo-wrapper custom-select2 cat-select">
 		                    <select id="community" data-placeholder="{{ trans('pages.select_by_community') }}" class="no-search">
@@ -39,7 +39,7 @@
 		                    </select>	                        
 		                </div>
 	        		</div>
-	        		<div class="col-xl-4 col-lg-6 mb-20 theme">
+	        		<div class="col-xl-4 col-lg-6 px-5 mb-20 theme">
 	        			<label class="cat-label">{{ trans('pages.for_data_about') }}</label>	        		
 	                    <div class="adv-combo-wrapper custom-select2 cat-select">
 		                    <select id="theme" data-placeholder="{{ trans('pages.all_themes') }}" class="no-search">
@@ -50,7 +50,7 @@
 		                    </select>	                        
 		                </div>
 	        		</div>
-	        		<div class="col-xl-4 col-lg-6 mb-20 region">
+	        		<div class="col-xl-4 col-lg-6 px-5 mb-20 region">
 	        			<label class="cat-label">{{ trans('pages.in') }}</label>
 	        			<div class="custom-dropdown-container cat-select">
 	                        <div id="region" class="custom-dropdown" tabindex="1">

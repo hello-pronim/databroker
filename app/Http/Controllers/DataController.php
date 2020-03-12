@@ -72,7 +72,7 @@ class DataController extends Controller
         else{
             $provider = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
             if(!$provider)
-                return redirect(route('data_offer_provider'));
+                return redirect(route('data_offer_start'));
             $regions = Region::where('regionType', 'area')->get();
             $countries = Region::where('regionType', 'country')->get();
             $communities = Community::all();

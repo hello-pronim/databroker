@@ -522,9 +522,10 @@ $(document).ready(function(){
                 dataType: 'json',
                 success: function(res){
                     console.log(res);
-                    $("#inviteModal .invalid-feedback").css('display', 'block');
                     if(res.success == true){
-                        window.location.reload();    
+                        $("#inviteModal .invalid-feedback").css('display', 'block');
+                        $(this).html("Invite");
+                        //window.location.reload();    
                     }
                 }
             });
