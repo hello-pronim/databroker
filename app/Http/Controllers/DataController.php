@@ -753,9 +753,9 @@ class DataController extends Controller
             }
         }
         if($request->file('companyLogo_1')!= null)
-            return response()->json(array( "success" => true, 'redirect' => route('data_offers') ));
+            return response()->json(array( "success" => true, 'redirect' => route('data_offer_second') ));
         else 
-            return redirect(route('data_offers'));
+            return redirect(route('data_offer_second'));
     }
 
     public function offer_product_publish_confirm($id, $pid, Request $request){
