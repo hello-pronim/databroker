@@ -71,7 +71,7 @@
 												<tbody>
 													<tr>
 														<td>
-															<a href="/">
+															<a href="{{route('home')}}">
 										                        <img src="{{ asset('images/logos/site_logo.png') }}" style="width: 300px; margin-bottom: 30px;"/>
 									                    	</a>
 									                    </td>
@@ -153,9 +153,6 @@
 									                        <a class="social-button facebook" href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
 									                          <img src="{{ asset('/images/social/linkedin.png') }}">
 									                        </a>   
-									                        <a class="social-button facebook" href="https://medium.com/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
-									                          <img src="{{ asset('/images/social/medium.png') }}">
-									                        </a>   
 									                        <a class="social-button facebook" href="https://github.com/databrokerglobal" rel="nofollow noopener noreferrer" target="_blank">
 									                          <img src="{{ asset('/images/social/github.png') }}">
 									                        </a>   
@@ -168,7 +165,7 @@
 														<td class="pb-30">
 															<span class="text-grey d-block text-center fs-14 lh-21">Copyright &copy; 2020 Databroker. All Rights Reserved.</span>
 															<div class="text-grey d-block text-center fs-14 lh-21">
-																<span class="text-link">hello@databroker.online</span>
+																<span class="text-link">databroker.global</span>
 															</div>
 														</td>
 													</tr>
