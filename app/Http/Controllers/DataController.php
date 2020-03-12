@@ -52,7 +52,7 @@ class DataController extends Controller
         
         $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
         
-        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->get();
+        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where("productStatus", 1)->get();
 
         $user = $this->getAuthUser();
 
