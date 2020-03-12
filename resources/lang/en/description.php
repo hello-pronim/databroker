@@ -42,10 +42,7 @@ return [
     'what_product_tooltip' => 'Give a descriptive title e.g. Satellite imagery of road networks – GSD 1-5m.',
     'product_datacover_tooptip' => 'You can select one or more regions, or add individual countries.',
     'product_data_provided_tooptip' => 'You can provide data as a one-off file or stream that can be accessed during a defined period, or as an API that can be called during a defined period.',
-    'product_pricing_tooptip' => 'When you sell data, Databroker charges a transaction fee of 10% of the sale price.
-
-This means that, at the end of the 30-day warranty period we credit your wallet with the earnings, minus the 10% transaction fee.
-',
+    'product_pricing_tooptip' => 'When you sell data, Databroker charges a transaction fee of 10% of the sale price. This means that, at the end of the 30-day warranty period we credit your wallet with the earnings, minus the 10% transaction fee.',
     'product_potential_buyer_tooptip' => 'Potential buyers see this information alongside the title of your data product. If there is anything they need to know about this specific data product, you can mention it here.',
     'product_license_url_tooptip' => 'The data you are selling is an asset that needs to be protected. Which is why the rights to use that data are governed by a licence, configured by you. To purchase your data, the buyer needs to accept the terms of the data licence, and is then legally bound to comply with your conditions of use.',
 ];

@@ -108,11 +108,7 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">How will you handle pricing for this data product?</h4>
-							<h4 class="h4_intro text-left">When you sell data, Databroker charges a transaction fee of 10% of the sale price.<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
-							<h4 class="h4_intro text-left">
-								This means that, at the end of the 30-day warranty period we credit your wallet with the earnings, minus the 10% transaction fee.
-							</h4>
+			                <h4 class="h4_intro text-left">How will you handle pricing for this data product?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper period">
 				        		<div class="mb-10">
 				        			<label class="container para">FREE
