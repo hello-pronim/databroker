@@ -98,10 +98,12 @@
                                 </div>
                             </div>    
                             @endif
-                            <p class="para text-secondary">We need all your company details to create a Data Offer</p>
-                            @if($user->userStatus!=1)
-                            <p class="para text-secondary">If you need to add or change these details, please contact your administrator</p>
-                            @endif
+                            <div class="mt-20">
+                                <p class="para text-secondary mb-0">We need all your company details to create a Data Offer</p>
+                                @if($user->userStatus!=1)   
+                                <p class="para text-secondary mb-0">If you need to add or change these details, please contact your administrator</p>
+                                @endif
+                            </div>
                             <div class="buttons text-right">
                                 @if($user->userStatus==1)
                                 <button type="submit" class="customize-btn btn-next pull-right">{{ trans('pages.next') }}</button>

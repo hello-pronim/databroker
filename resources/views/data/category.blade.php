@@ -12,7 +12,7 @@
 	        	<div class="row">
 	        		<div class="col-lg-12">
 	        			<h4 class="text-green">{{ trans('pages.explore_data_offer') }}</h4>
-			            <h1 class="mt-0">{{$category}} Community <span class="theme_text"></span><span class="region_text"></span></h1>
+			            <h1 class="mt-0">{{$category}} Community <span class="theme_text">@if(isset($curTheme)) {{"/ ".$curTheme->themeName}} @endif</span><span class="region_text"></span></h1>
 			        </div>    
 			    </div>
 			    <div class="row">
@@ -28,7 +28,7 @@
 	        <div class="cat-body">
 	        	<div class="row community-filter">
 	        		@csrf    		
-	        		<div class="col-xl-4 col col-lg-8 mb-20 community">
+	        		<div class="col-xl-4 col col-lg-8 px-5 mb-20 community">
 	        			<label class="cat-label">{{ trans('pages.explore') }}</label>	        	
 	                    <div class="adv-combo-wrapper custom-select2 cat-select">
 		                    <select id="community" data-placeholder="{{ trans('pages.select_by_community') }}" class="no-search">
@@ -38,8 +38,8 @@
 	                            @endforeach
 		                    </select>	                        
 		                </div>
-	        		</div>	        		
-	        		<div class="col-xl-4 col-lg-6 mb-20 theme">
+	        		</div>
+	        		<div class="col-xl-4 col-lg-6 px-5 mb-20 theme">
 	        			<label class="cat-label">{{ trans('pages.for_data_about') }}</label>	        		
 	                    <div class="adv-combo-wrapper custom-select2 cat-select">
 		                    <select id="theme" data-placeholder="{{ trans('pages.all_themes') }}" class="no-search">
@@ -50,7 +50,7 @@
 		                    </select>	                        
 		                </div>
 	        		</div>
-	        		<div class="col-xl-4 col-lg-6 mb-20 region">
+	        		<div class="col-xl-4 col-lg-6 px-5 mb-20 region">
 	        			<label class="cat-label">{{ trans('pages.in') }}</label>
 	        			<div class="custom-dropdown-container cat-select">
 	                        <div id="region" class="custom-dropdown" tabindex="1">
@@ -110,7 +110,7 @@
 							<div class="card card-profile card-plain mb-0">
 								<div class="card-body pd-15">
 									<div class="app-monetize-section-item0 mb-40"></div>
-									<p class="fs-18">Can’t find the data you need?</p>
+									<p class="fs-18">Can't find the data you need?</p>
 									<p class="fs-21 text-bold mb-40">Let our tailor-made DataMatch service find the perfect data partner for you!</p>
 									<a href="{{route('about.matchmaking')}}"><button type="button" class="button customize-btn mgh25 w225">MATCH ME UP</button></a>
 									<p>It’s free!</p>

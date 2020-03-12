@@ -52,7 +52,7 @@ class DataController extends Controller
         
         $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
         
-        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->get();
+        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where("productStatus", 1)->get();
 
         $user = $this->getAuthUser();
 
@@ -72,7 +72,7 @@ class DataController extends Controller
         else{
             $provider = Provider::with('Region')->where('userIdx', $user->userIdx)->first();
             if(!$provider)
-                return redirect(route('data_offer_provider'));
+                return redirect(route('data_offer_start'));
             $regions = Region::where('regionType', 'area')->get();
             $countries = Region::where('regionType', 'country')->get();
             $communities = Community::all();
@@ -192,7 +192,25 @@ class DataController extends Controller
         // die(json_encode($offer));
         $theme_json = json_encode($theme_map);
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList' );
+        $gallery = Gallery::where('category', 'community')->get();
+        $gallery_map = [];
+        foreach ($gallery as $g_row) {
+            $id = $g_row['id'];
+            $category = $g_row['category'];
+            $content = $g_row['content'];
+            $subcontent = $g_row['subcontent'];
+            $sequence = $g_row['sequence'];
+            $path = $g_row['path'];
+            $thumb = $g_row['thumb'];
+
+            if (!isset($gallery_map[$content]))
+                $gallery_map[$content] = [];
+            if (!isset($gallery_map[$content][$subcontent]))
+                $gallery_map[$content][$subcontent] = [];
+            $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'url' => $path, 'thumb' => $thumb];
+        }
+
+        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList', 'gallery_map' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }
@@ -211,6 +229,49 @@ class DataController extends Controller
 
         $data = array( 'offer', 'products', 'id', 'link_to_market' );
         return view('data.offer_detail', compact($data));
+    }
+
+    public function offer_filter(Request $request){
+
+        $communities = Community::get();
+        $regions = Region::where('regionType', 'area')->get();
+        $countries = Region::where('regionType', 'country')->get();
+        $themes = Theme::get();
+        $per_page = 11;
+        
+        foreach ($communities as $key => $community) {
+            if(str_replace( ' ', '_', strtolower($community->communityName)) == $request->community)
+                $category = $community->communityName;
+        }
+        $curTheme = Theme::where('themeIdx', $request->theme)->get()->first();
+        session(['curCommunity'=>$category]);
+
+        $dataoffer = Offer::with(['region', 'provider'])
+            ->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
+            ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
+            ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+            ->where('communities.communityName', ucfirst($category))
+            ->where('themes.themeIdx', $request->theme)
+            ->where('offers.status', 1)
+            ->orderby('offers.offerIdx', 'DESC')            
+            ->limit($per_page)
+            ->distinct('offers')
+            ->get();
+
+        $totalcount = Offer::with(['region', 'provider'])
+                    ->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
+                    ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
+                    ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                    ->where('communities.communityName', ucfirst($category))
+                    ->where('themes.themeIdx', $request->theme)
+                    ->where('offers.status', 1)
+                    ->orderby('offers.offerIdx', 'DESC')
+                    ->distinct('offers')
+                    ->get()
+                    ->count();
+
+        $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
+        return view('data.category', compact($data));
     }
 
     public function add_offer(Request $request){
@@ -710,9 +771,9 @@ class DataController extends Controller
             }
         }
         if($request->file('companyLogo_1')!= null)
-            return response()->json(array( "success" => true, 'redirect' => route('data_offers') ));
+            return response()->json(array( "success" => true, 'redirect' => route('data_offer_second') ));
         else 
-            return redirect(route('data_offers'));
+            return redirect(route('data_offer_second'));
     }
 
     public function offer_product_publish_confirm($id, $pid, Request $request){

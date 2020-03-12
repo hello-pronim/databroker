@@ -49,7 +49,7 @@
 			.text-bold{font-weight: bold;}
 			.text-link{color: #78E6D0; cursor: pointer;}
 			.text-link a{color: #78E6D0; cursor: pointer;}
-			.btn{width: 100%;height: 80px;border-radius: 40px;margin: 10px 0px;text-transform: uppercase;font-size: 24px;line-height: 30px;font-weight: bold;cursor: pointer;outline: none;}
+			.btn{width: 100%;height: 80px;border-radius: 40px;margin: 10px 0px;text-transform: uppercase;font-size: 24px;line-height: 30px;font-weight: bold;cursor: pointer;outline: none;line-height: 80px;text-align: center; text-decoration: none}
 			.btn.btn-primary{background: #FF6B6B 0% 0% no-repeat padding-box;border: none;color: white;}
 			.btn.btn-secondary{background-color: white;border: 2px solid #06038D;color: #06038D;}
 		</style>

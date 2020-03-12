@@ -64,7 +64,7 @@
                        <i class="material-icons">close</i> Cancel
                     </div>
                     <br />
-                    <form method="POST" action="{{ route('account.profile.update') }}">
+                    <form method="POST" action="{{ route('account.profile.update') }}" autocomplete="off">
                         @csrf
 
                         <label class="pure-material-textfield-outlined">
@@ -85,7 +85,7 @@
                             </span>
                         </label>
                         <label class="pure-material-textfield-outlined">
-                            <input type="text" id="email" name="email" class="form-control input_data" placeholder=" " value="{{ $user->email }}" autocomplete="email" autofocus>
+                            <input type="text" id="email" name="email" class="form-control input_data" placeholder=" " value="{{ $user->email }}" autofocus>
                             <span>{{ trans('auth.email_address') }}</span>
                             <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
                             <span class="invalid-feedback email" role="alert">
@@ -275,7 +275,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="post" post>
+        <form action="post" post autocomplete="off">
             @csrf
             <input type="hidden" name="invite_userIdx" value="{{$user->userIdx}}">
             <p class="para">
