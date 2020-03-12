@@ -333,9 +333,6 @@
                         <a href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/linkedin.png') }}">
                         </a>   
-                        <a href="https://medium.com/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
-                          <img src="{{ asset('/images/social/medium.png') }}">
-                        </a>   
                         <a href="https://github.com/databrokerglobal" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/github.png') }}">
                         </a>   
