@@ -58,6 +58,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
 
 	Route::get('/data/{id}', 'DataController@details')->where(array('id' => '[0-9]+'))->name('data_details');
+	Route::get('/{community}/{theme}', 'DataController@offer_filter')->where('theme', '[0-9]+')->name('data.offer_filter');
 
 	Route::get('/data/send_message/{id}/{pid}/{uid}', 'DataController@send_message')->name('data.send_message');	
 	Route::get('/data/publish', 'DataController@offer_publish')->name('data_offer_publish');

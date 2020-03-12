@@ -16,13 +16,25 @@ $(document).ready(function(){
         }
     });
 
-    $.each($("#community option"), function(key, elem){        
-        var option_text = window.location.pathname.slice(1);
+    $.each($("#community option"), function(key, elem){     
+        var option_text = window.location.pathname.split("/")[1];
         if($(elem).attr("community-name")){
             if( $(elem).attr("community-name").toLowerCase()  == option_text.replace("_", " ") ){
                 $(elem).prop('selected', true);
             }            
         }        
+    });
+
+    $.each($("#theme option"), function(key, elem){     
+        var option_text = window.location.pathname.split("/")[2];
+        console.log(option_text);
+        if(option_text){
+            if($(elem).attr("value")){
+                if( $(elem).attr("value") == option_text){
+                    $(elem).prop('selected', true);
+                }            
+            }    
+        }    
     });
 
     var community = $("#community").val();
@@ -31,8 +43,7 @@ $(document).ready(function(){
             $(elem).remove();
         }            
     });
-    $('#theme').val('all');
-
+    
     $('[data-toggle="tooltip"]').tooltip();
 
     $(".blog-content .tab-content .tab-pane:first-child").addClass("active");

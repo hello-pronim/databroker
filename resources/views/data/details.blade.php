@@ -18,7 +18,7 @@
 	            <p class="category"> Published in : <a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($offer['community']->communityName) )) }}" >{{ $offer['community']->communityName }}</a>
 	            	<label>		            	
 		            	@foreach($offer['theme'] as $theme)
-		            		<span>{{ $theme->themeName }}</span>
+		            		<a href="{{route('data.offer_filter', ['community'=>str_replace( ' ', '_', strtolower($offer['community']->communityName)), 'theme'=>$theme->themeIdx])}}"><span>{{ $theme->themeName }}</span></a>
 		            	@endforeach
 	            	</label>
 	            </p>
