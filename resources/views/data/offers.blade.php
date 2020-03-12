@@ -417,8 +417,7 @@
 			$scope.logoSelected = function () {
 				var selected = $scope.media.selected;
 				if (selected) {
-					var url = selected.url;
-					$("input[type='file']").imageuploadify();
+					var url = selected.url;					
 				}
 			}
 
