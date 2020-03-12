@@ -306,7 +306,8 @@
 	      		<div class="col-xl-12">
 	      			<div class="gallery column3 max-h350">
 			      		<div class="mdb-lightbox col-xl-4 flex-center thumb-container" ng-repeat="image in media.images" ng-click="imgClick(image)">
-			      			<img src='<%= image.thumb %>' class="thumb" />
+			      			<img src='<%= image.thumb %>' class="thumb" ng-if="image.id!==media.selected.id" />
+			      			<img src='<%= image.thumb %>' class="thumb active" ng-if="image.id===media.selected.id" />
 			      		</div>
 			      	</div>
 	      		</div>
@@ -405,6 +406,7 @@
 				} else {
 					// if ()
 					$scope.media.selected = img;
+
 				}
 			}
 
@@ -416,6 +418,7 @@
 				var selected = $scope.media.selected;
 				if (selected) {
 					var url = selected.url;
+					$("input[type='file']").imageuploadify();
 				}
 			}
 

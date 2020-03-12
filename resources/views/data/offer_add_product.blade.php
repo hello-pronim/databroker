@@ -124,7 +124,6 @@
 									</div>	
 									<div class="error_notice free_period"> Please select a period.</div>
 				        		</div>		                    		                    
-
 								<div>
 									<label class="container para">I will set a price. No bidding is possible.
 									  <input type="radio" name="period" value="no_bidding">

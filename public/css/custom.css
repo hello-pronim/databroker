@@ -1674,9 +1674,14 @@ ul.custom-list li:before{
     width: 1em;
     margin-left: -1em;
 }
+
 a[data-target='#mediaLibraryModal']:hover{
 	color:#06038D !important;
 }
 #select2-community-results{
 	font-size: 15px;
+
+.h1-small.help-overview{
+	margin-bottom: 30px;
+
 }
