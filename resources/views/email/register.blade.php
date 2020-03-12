@@ -106,7 +106,7 @@
 													</tr>
 													<tr>
 														<td class="flex-row">
-															<a href="{{ route('about.matchmaking') }}" class="btn btn-primary">
+															<a href="{{ route('home') }}" class="btn btn-primary">
 																DISCOVER DATABROKER NOW
 															</a>
 														</td>
@@ -135,7 +135,7 @@
 																<li><a href="#">Find out about selling data</a></li>
 																<li><a href="#">Find out about buying data</a></li>
 																<li><a href="#">Find out about our guarantees</a></li>
-																<li><a href="#">If you don’t find the answers you need, you can always Contact us</a></li>
+																<li><a href="{{route('contact')}}">If you don’t find the answers you need, you can always Contact us</a></li>
 															</ul>
 														</td>
 													</tr>
