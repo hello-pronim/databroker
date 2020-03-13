@@ -1939,7 +1939,8 @@ body .select2-search--dropdown {
   display: block;
   position: relative;
   padding-left: 35px;
-  margin-bottom: 12px;
+  margin-top: 6px;
+  margin-bottom: 6px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;

@@ -1520,7 +1520,7 @@ a.dropdown-toggle:after{
 /*data offer product publish*/
 .period .custom-select2{
 	display: inline-block;
-	min-width: 200px;
+	min-width: 250px;
 }
 .period .period_select{
 	display: none;

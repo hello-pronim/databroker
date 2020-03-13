@@ -31,7 +31,7 @@
 	            <div class="content">
 	            	<div class="row">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">What is the data product you are selling? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_product_tooltip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">What is the specific data product are you selling? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_product_tooltip') }}">help</i></h4>
 
 							<div class="text-wrapper">
 								<textarea name="productTitle" class="round-textbox user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{$product['productTitle']}}</textarea>							
@@ -84,7 +84,7 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">In which format will the data be provided? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_data_provided_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">In which format will the data be provided?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_data_provided_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper format">
 				        		@foreach ($prodTypeList as $prodType)		                    
 			                    <label class="container para">{{$prodType}}
@@ -108,7 +108,7 @@
 									<div class="period_select">
 										@if ($bidtype['biddable'])
 										<label class="pure-material-textfield-outlined">
-					                        <span class="currency">€ </span><input type="number" step="0.01" name="{{$bidtype['type']}}_price" class="form-control2 input_data" placeholder="0.0" value="{{$product['productPrice']}}"> 
+					                        <span class="currency">€ </span><input type="number" step="0.01" name="{{$bidtype['type']}}_price" class="form-control2 input_data" placeholder="0.00" value="{{$product['productPrice']}}"> 
 					                    </label>
 					                    <span>(tax incl.)</span>
 					                    @endif
@@ -122,8 +122,8 @@
 						                    </select>						                    
 						                </div>						                
 									</div>	
-									<div class="error_notice {{$bidtype['type']}}_price"> This field is required. </div>
-									<div class="error_notice {{$bidtype['type']}}_period"> Please select a period.</div>
+									<span class="error_notice {{$bidtype['type']}}_price"> This field is required. </span>
+									<span class="error_notice {{$bidtype['type']}}_period"> Please select a period.</span>
 				        		</div>
 				        		@endforeach								
 			                </div>
@@ -142,7 +142,7 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">Please provide a URL where the buyer can consult the data licence. <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_license_url_tooptip') }}">help</i></h4>
+			                <h4 class="h4_intro text-left">Provide a URL where the buyer can read the data license. <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_license_url_tooptip') }}">help</i></h4>
 				        	<label class="pure-material-textfield-outlined">
 		                        <input type="text" id="licenseUrl" name="licenceUrl" class="form-control2 input_data" placeholder=" "  value="{{$product['productLicenseUrl']}}">
 		                        <span>{{ trans('pages.enter_url') }}</span>	                        

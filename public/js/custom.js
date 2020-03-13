@@ -223,15 +223,21 @@ $(document).ready(function(){
        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
        return regexp.test(s);
     }
+    const serialize_form = form => JSON.stringify(
+      Array.from(new FormData(form).entries())
+           .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
+    );
     $("#add_product").submit(function(e){
         e.preventDefault();
         var _this = this;
+        var formValues = JSON.parse(serialize_form(_this));
+        console.log(formValues);
         
         $(_this).find('.error_notice').hide();               
 
         $(_this).find("input, textarea, select").each(function(key, elem){     
             $(_this).find('.error_notice').removeClass('active');
-            if( $(elem).val() == "" ){
+            if( $(elem).val() == ""){
                 var elem_name = $(elem).attr("name").replace('[]','');
                 var period_radio = $(this).parent().parent().parent().find('input[type="radio"]');
 
@@ -244,8 +250,15 @@ $(document).ready(function(){
                 }                
             } else if(!isUrl($("#licenseUrl").val())){
                 $(_this).find('.error_notice.licenceUrl').show();           
-            }
+            } 
         });
+        if(formValues.format === undefined){
+            $(_this).find('.error_notice.format').show();
+        } 
+        if(formValues.period === undefined){
+            console.log('AAAAAAAAAAAAA');
+            $(_this).find('.error_notice.period').show();
+        }
 
         var submit_flag = true;
         $(_this).find('.error_notice').each(function(key, elem){            
