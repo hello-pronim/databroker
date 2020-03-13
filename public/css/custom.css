@@ -1680,8 +1680,17 @@ a[data-target='#mediaLibraryModal']:hover{
 }
 #select2-community-results{
 	font-size: 15px;
-
+}
 .h1-small.help-overview{
 	margin-bottom: 30px;
+}
 
+#provider_company_name{
+	min-width: 300px;
+}
+#seller_company_name{
+	min-width: 300px;
+}
+#other{
+	min-width: 300px;
 }
