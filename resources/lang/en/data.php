@@ -22,5 +22,6 @@ return [
     'format' => 'Format',
     'your_bid' => 'Your bid',
     'add_message_optional' => 'Add a message(optional)',
-    'send_a_bid'=>'Send a bid'
+    'send_bid'=>'Send bid',
+    'bid_send_success'=>'Your bid is successfully sent to'
 ];

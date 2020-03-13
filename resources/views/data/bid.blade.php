@@ -34,28 +34,30 @@
 	        		<div class="col-md-6 auth-section">
 	        			<form method="POST" action="{{route('data.send_bid')}}">
                         	@csrf
-
+                        	<input type="hidden" name="offerIdx" value="{{$product->offerIdx}}">
+                        	<input type="hidden" name="productIdx" value="{{$product->productIdx}}">
+                        	<input type="hidden" name="companyName" value="{{$provider->companyName}}">
 		        			<label class="pure-material-textfield-outlined">
-		                        <input type="text" id="bid" name="bid" class="form-control input_data @error('bid') is-invalid @enderror" placeholder=" "  value="{{ old('bid') }}" autocomplete="bid" autofocus>
+		                        <input type="text" id="bidPrice" name="bidPrice" class="form-control input_data @error('bidPrice') is-invalid @enderror" placeholder=" "  value="{{ old('bidPrice') }}" autocomplete="bidPrice" autofocus>
 		                        <span>{{ trans('data.your_bid') }}</span>
 		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Your bid']) }}</div>
-		                        @error('bid')
+		                        @error('bidPrice')
 		                            <span class="invalid-feedback" role="alert">
 		                                <strong>{{ $message }}</strong>
 		                            </span>
 		                        @enderror
 		                    </label>
 		                    <label class="pure-material-textfield-outlined">
-								<textarea name="message" class="form-control input_data user-message @error('message') is-invalid @enderror" placeholder="{{ trans('data.add_message_optional') }}" maxlength="100" autofocus>{{ old('message')}}</textarea>
+								<textarea name="bidMessage" class="form-control input_data user-message @error('bidMessage') is-invalid @enderror" placeholder="{{ trans('data.add_message_optional') }}" maxlength="100" autofocus>{{ old('bidMessage')}}</textarea>
 								<div class="error_notice">{{ trans('validation.required', ['attribute' => 'Message']) }}</div>
-		                        @error('message')
+		                        @error('bidMessage')
 		                            <span class="invalid-feedback" role="alert">
 		                                <strong>{{ $message }}</strong>
 		                            </span>
 		                        @enderror
 							</label>
 							<div class="form-group mb-0">                                
-		                        <button type="submit" class="customize-btn">{{ trans('data.send_a_bid') }}</button>
+		                        <button type="submit" class="customize-btn">{{ trans('data.send_bid') }}</button>
 		                    </div>
 						</form>
 	        		</div>

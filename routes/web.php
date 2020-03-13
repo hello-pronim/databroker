@@ -46,6 +46,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/data/offers/{id}/confirm-update', 'DataController@offer_update_confirm')->where('id', '[0-9]+')->name('data_offer_update_confirm');
 		Route::get('/data/bid/{id}/{pid}', 'DataController@bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.bid');
 		Route::post('/data/bid/', 'DataController@send_bid')->name('data.send_bid');
+		Route::get('/data/bid/{id}/{pid}/success', 'DataController@send_bid_success')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.send_bid_success');
 		Route::get('/data/buy_data/{id}/{pid}', 'DataController@buy_data')->name('data.buy_data');
 		
 		Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');
@@ -57,7 +58,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/', 'HomeController@index')->name('home');
 	Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
 
-	Route::get('/data/{id}', 'DataController@details')->where(array('id' => '[0-9]+'))->name('data_details');
+	Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name('data_details');
 	Route::get('/{community}/{theme}', 'DataController@offer_filter')->where('theme', '[0-9]+')->name('data.offer_filter');
 
 	Route::get('/data/send_message/{id}/{pid}/{uid}', 'DataController@send_message')->name('data.send_message');	

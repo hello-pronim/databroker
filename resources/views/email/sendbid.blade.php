@@ -86,18 +86,18 @@
 												<tbody>
 													<tr>
 														<td class="fs-40 lh-44 text-bold py-25">
-															Dear {{$data['user']->firstname}},
+															Dear {{$data['seller']->firstname}},
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															{{$data['user']->firstname}} {{$data['user']->lastname}} from {{$data['user']->companyName}} has sent a bid of €{{$data['product']->productPrice}} for the following data product:
+															{{$data['buyer']->firstname}} {{$data['buyer']->lastname}} from {{$data['buyer']->companyName}} has sent a bid of €{{$data['bid']->bidPrice}} for the following data product:
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
 															{{$data['product']->productTitle}} - 
-															@foreach($data['offer']->region as $region)
+															@foreach($data['product']->region as $region)
 						            							<span>{{ $region->regionName }}</span>
 						            						@endforeach
 														</td>
@@ -114,34 +114,32 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															Access to this data : {{$data['product']->productAccessDays}}
+															Access to this data : 1 {{$data['product']->productAccessDays}}
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															From : {{$data['product']->created_at}} to dd/mm/yyyy
+															@if($data['product']->productAccessDays=="week")
+																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+7 day', strtotime($data['product']->created_at)))}}
+															@elseif($data['product']->productAccessDays=='month')
+																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 month', strtotime($data['product']->created_at)))}}
+															@elseif($data['product']->productAccessDays=='year')
+																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 year', strtotime($data['product']->created_at)))}}
+															@endif
 														</td>
 													</tr>
-												</tbody>
-											</table>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<table width="100%" class="mb-20" cellpadding="0" cellspacing="0" border="0">
-												<tbody>
 													<tr>
-														<td class="fs-18 lh-24 py-25">
+														<td class="fs-18 lh-24 py-10">
 															Message: 
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-10">
-															{{$data['product']->productMoreInfo}} 
+															{{$data['bid']->bidMessage}} 
 														</td>
 													</tr>
 													<tr>
-														<td class="fs-18 lh-24 py-10 flex-row">
+														<td class="fs-18 lh-24 py-25 flex-row">
 															<a href="#" class="btn btn-primary">
 																RESPOND TO BID
 															</a>
@@ -157,7 +155,7 @@
 												<tbody>
 													<tr>
 														<td class="fs-18 lh-24 py-10">
-															If there are others in your organisation who may also be interested in buying and/or selling data, invite them to join your company account.
+															You can find the details of this, and all bids received, in the <a href="{{route('profile.bids')}}">My bids</a> section of your account.
 														</td>
 													</tr>
 												</tbody>

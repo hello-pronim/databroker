@@ -22,6 +22,7 @@ use App\Models\OfferCountry;
 use App\Models\ProductCountry;
 use App\Models\RegionProduct;
 use App\Models\UseCase;
+use App\Models\Bid;
 use App\User;
 use App\Models\Business;
 
@@ -904,13 +905,15 @@ class DataController extends Controller
         }
     }
     public function send_bid(Request $request){
+        $user = $this->getAuthUser();
+
         $fields = [
-            'bid' => ['required', 'integer']
+            'bidPrice' => ['required', 'integer']
         ];
 
         $messages = [
-            'bid.required' => 'Your bid is required.',
-            'bid.integer' => 'Your bid must be integer.'
+            'bidPrice.required' => 'Your bid price is required.',
+            'bidPrice.integer' => 'Bid price must be integer.'
         ];
 
         $validator = Validator::make($request->all(), $fields, $messages);
@@ -920,5 +923,50 @@ class DataController extends Controller
                         ->withErrors($validator)
                         ->withInput();             
         }
+
+        $bidData['userIdx'] = $user->userIdx;
+        $bidData['productIdx'] = $request->productIdx;
+        $bidData['bidPrice'] = $request->bidPrice;
+        $bidData['bidMessage'] = $request->bidMessage;
+
+        $bidObj = Bid::where('userIdx', $user->userIdx)->where('productIdx', $request->productIdx)->get()->first();
+        if(!$bidObj){
+            $bidObj = Bid::create($bidData);
+
+            $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
+                        ->join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')
+                        ->where('offers.offerIdx', $request->offerIdx)
+                        ->get()
+                        ->first();
+            $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->where('userIdx', $user->userIdx)->get()->first();
+
+            $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
+
+            $data['seller'] = $seller;
+            $data['buyer'] = $buyer;
+            $data['product'] = $product;
+            $data['bid'] = $bidObj;
+
+            $this->sendEmail("sendbid", [
+                'from'=>'pe@jts.ec', 
+                'to'=>$seller['email'], 
+                'subject'=>'You’ve received a bid on a data product', 
+                'name'=>'Databroker',
+                'data'=>$data
+            ]);    
+
+            return redirect(route('data.send_bid_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
+        }
+    }
+    public function send_bid_success(Request $request){
+        $product = OfferProduct::with('region')->where('productIdx', $request->pid)->get()->first();
+        $offer = Offer::where('offerIdx', $request->id)->get()->first();
+        $providerIdx = $offer['providerIdx'];
+        $provider = Provider::with('region')->where('providerIdx', $providerIdx)->get()->first();
+        $companyName = $provider->companyName;
+        $offerIdx = $request->id;
+        $data = array('companyName', 'offerIdx');
+        return view("data.send_bid_success", compact($data));
     }
 }

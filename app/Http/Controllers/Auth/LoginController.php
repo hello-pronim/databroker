@@ -74,8 +74,8 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        return $this->authenticated($request, $this->guard()->user())
-                ? redirect(back()): redirect()->intended($this->redirectPath());
+        return $this->authenticated($request, auth()->user())
+                ?redirect(back()): redirect()->intended($this->redirectPath());
     }
 
     public function logout(Request $request){

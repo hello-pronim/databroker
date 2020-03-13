@@ -17,9 +17,7 @@ class ReturnAfterAuthentication
      */
     public function handle($request, Closure $next)
     {        
-
         $request->session()->put('url.intended', $request->url());       
-        
         return $next($request);
     }
 }
