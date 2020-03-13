@@ -43,13 +43,4 @@ class HomeController extends Controller
                 $mail->subject($subject);
         });
     }
-
-    public function test(){
-        $this->sendEmail("template", [
-            'from'=>'peterjackson0120@gmail.com', 
-            'to'=>"yuriyes43@gmail.com", 
-            'name'=>'Test', 
-            'subject'=>'Test'
-        ]);                                                                                                   
-    }
 }

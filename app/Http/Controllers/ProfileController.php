@@ -212,7 +212,7 @@ class ProfileController extends Controller
                     $this->sendEmail("invite", [
                         'from'=>$user->email, 
                         'to'=>$linked['linked_email'], 
-                        'name'=>'Databroker', 
+                        'name'=>'Welcome to Databroker', 
                         'subject'=>'You’ve been invited to join a Databroker account',
                         'data'=>$linkedUserData
                     ]);
