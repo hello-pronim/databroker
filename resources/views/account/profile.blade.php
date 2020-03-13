@@ -259,7 +259,7 @@
 				</table>
                 @endif
                 @if($user->userStatus == 1)
-				<button type="button" class="button secondary-btn mt-20" data-toggle="modal" data-target="#inviteModal">{{ trans('pages.INVITE_USERS') }}</button>
+				<button type="button" id="inviteBtn" class="button secondary-btn mt-20" data-toggle="modal" data-target="#inviteModal">{{ trans('pages.INVITE_USERS') }}</button>
                 @endif
 			</div>
 		</div>
@@ -340,5 +340,15 @@
 @endsection
 
 @section('additional_javascript')    
-    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>        
+    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var path = window.location.search;
+            console.log(path);
+            if(path.split("?")[1]){
+                var im = path.split("?")[1].split('=')[1];
+                if(im==1) $("#inviteBtn").trigger('click');
+            }
+        })
+    </script>
 @endsection

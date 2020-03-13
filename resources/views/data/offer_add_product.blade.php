@@ -76,8 +76,8 @@
 										</div>
 		                            </ul>
 		                        </div>
-		                        <div class="error_notice offercountry"> This field is required</div>
 		                    </div>    
+		                    <div class="error_notice offercountry"> This field is required</div>
 						</div>
 					</div>
 	            	<div class="row mgt30">
@@ -99,10 +99,11 @@
 								  <span class="checkmark"></span>
 								</label>
 			                </div>
+			                <div class="error_notice format"> Please select the data format.</div>
 						</div>
 					</div>
 	            	<div class="row mgt30">
-	            		<div class="col-lg-6">
+	            		<div class="col-lg-12">
 			                <h4 class="h4_intro text-left">How will you handle pricing for this data product?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper period">
 				        		<div class="mb-10">
@@ -113,7 +114,7 @@
 									<div class="period_select">
 										<span class="para mlr-20">for access to this data for </span>
 							        	<div class="adv-combo-wrapper custom-select2">
-						                    <select name="free_period" data-placeholder="Please select" class="no-search">
+						                    <select name="free_period" data-placeholder="Please select a period" class="no-search">
 						                    	<option></option>
 						                    	<option value="day">1 day</option>
 						                    	<option value="week">1 week</option>
@@ -124,19 +125,19 @@
 									</div>	
 									<div class="error_notice free_period"> Please select a period.</div>
 				        		</div>		                    		                    
-								<div>
+								<div class="mb-10">
 									<label class="container para">I will set a price. No bidding is possible.
 									  <input type="radio" name="period" value="no_bidding">
 									  <span class="checkmark"></span>
 									</label>
 									<div class="period_select">
-										<label class="pure-material-textfield-outlined">
-					                        <span class="currency">€ </span><input type="number" step="0.01" name="no_bidding_price" class="form-control2 input_data" placeholder="0.0" value=""> 
+										<label class="pure-material-textfield-outlined mb-0 p-0">
+					                        <span class="currency">€ </span><input type="number" step="0.01" name="no_bidding_price" class="form-control2 input_data" placeholder="0.00" value=""> 
 					                    </label>
 					                    <span>(tax incl.)</span>
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">
-						                    <select name="no_bidding_period" data-placeholder="Please select" class="no-search">
+						                    <select name="no_bidding_period" data-placeholder="Please select a period" class="no-search">
 						                    	<option></option>
 						                    	<option value="day">1 day</option>
 						                    	<option value="week">1 week</option>
@@ -146,24 +147,23 @@
 						                </div>						                
 									</div>
 									<div>
-										<div class="error_notice no_bidding_price"> This field is required. </div>
-							            <div class="error_notice no_bidding_period"> Please select a period.</div>
+										<span class="error_notice no_bidding_price"> This field is required. </span>
+							            <span class="error_notice no_bidding_period"> Please select a period.</span>
 							        </div>
 				                </div>
-
-				                <div>
+				                <div class="mb-10">
 				                	<label class="container para">I will set a price, but buyers can also send bids.
 									  <input type="radio" name="period" value="bidding_possible">
 									  <span class="checkmark"></span>
 									</label>
 				                	<div class="period_select">
-										<label class="pure-material-textfield-outlined">
-					                        <span class="currency">€ </span><input type="number" step="0.01" name="bidding_possible_price" class="form-control2 input_data" placeholder="0.0" value=""> 
+										<label class="pure-material-textfield-outlined mb-0 p-0">
+					                        <span class="currency">€ </span><input type="number" step="0.01" name="bidding_possible_price" class="form-control2 input_data" placeholder="0.00" value=""> 
 					                    </label>
 					                    <span>(tax incl.)</span>
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">
-						                    <select name="bidding_possible_period" data-placeholder="Please select" class="no-search">
+						                    <select name="bidding_possible_period" data-placeholder="Please select a period" class="no-search">
 						                    	<option></option>
 						                    	<option value="day">1 day</option>
 						                    	<option value="week">1 week</option>
@@ -172,10 +172,10 @@
 						                    </select>				                    				                        
 						                </div>
 									</div>
-									<div class="error_notice bidding_possible_price"> This field is required. </div>
-						            <div class="error_notice bidding_possible_period"> Please select a period.</div>
+									<span class="error_notice bidding_possible_price"> This field is required. </span>
+						            <span class="error_notice bidding_possible_period"> Please select a period.</span>
 				                </div>							
-				                <div>
+				                <div class="mb-10">
 				                	<label class="container para">I will not set a price. Interested parties can send bids.
 									  <input type="radio" name="period" value="bidding_only">
 									  <span class="checkmark"></span>
@@ -183,7 +183,7 @@
 									<div class="period_select">									
 										<span class="para mlr-20">for access to this data for</span>
 							        	<div class="adv-combo-wrapper custom-select2">
-						                    <select name="bidding_only_period" data-placeholder="Please select" class="no-search">
+						                    <select name="bidding_only_period" data-placeholder="Please select a period" class="no-search">
 						                    	<option></option>
 						                    	<option class="day">1 day</option>
 						                    	<option class="week">1 week</option>
@@ -194,7 +194,7 @@
 									</div>
 									<div class="error_notice bidding_only_period"> Please select a period.</div>
 				                </div>
-								
+		                   		<div class="error_notice period">Please set how you will handle the pricing for the data.</div>
 			                </div>
 						</div>
 					</div>
@@ -209,8 +209,8 @@
 					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
-			                <h4 class="h4_intro text-left">Provide a URL where the buyer can read the data license<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_license_url_tooptip') }}">help</i></h4>
-				        	<label class="pure-material-textfield-outlined">
+			                <h4 class="h4_intro text-left">Provide a URL where the buyer can read the data license. <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_license_url_tooptip') }}">help</i></h4>
+				        	<label class="pure-material-textfield-outlined mb-0 p-0">
 		                        <input type="text" id="licenseUrl" name="licenceUrl" class="form-control2 input_data" placeholder=" "  value="">
 		                        <span>{{ trans('pages.enter_url') }}</span>	                        
 		                    </label>

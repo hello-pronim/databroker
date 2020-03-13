@@ -134,7 +134,7 @@
 															<ul>
 																<li><a href="{{route('help.selling_data')}}">Find out about selling data</a></li>
 																<li><a href="{{route('help.buying_data')}}">Find out about buying data</a></li>
-																<li><a href="#">Find out about our guarantees</a></li>
+																<li><a href="{{route('help.guarantee')}}">Find out about our guarantees</a></li>
 																<li>If you don’t find the answers you need, you can always <a href="{{route('contact')}}">Contact us</a></li>
 															</ul>
 														</td>
@@ -143,6 +143,7 @@
 											</table>
 										</td>
 									</tr>
+									@if($userData['userStatus']==1)
 									<tr>
 										<td>
 											<table class="mb-20" cellpadding="0" cellspacing="0" border="0">
@@ -159,7 +160,7 @@
 													</tr>
 													<tr>
 														<td class="flex-row">
-															<a href="#" class="btn btn-primary">
+															<a href="{{route('account.profile')}}?im=1" class="btn btn-primary">
 																INVITE CONTACTS
 															</a>
 														</td>
@@ -168,6 +169,7 @@
 											</table>
 										</td>
 									</tr>
+									@endif
 								</tbody>
 							</table>
 						</td>
