@@ -170,4 +170,9 @@ class HelpController extends Controller
         $data = array( 'topics', 'texts', 'faqs' );
         return view('help.selling-data', compact($data));
     }
+
+    public function guarantee()
+    {
+        return view('help.guarantee');
+    }
 }

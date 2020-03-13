@@ -87,7 +87,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	    	
 	Route::get('/help', 'HelpController@index')->name('help.overview');    	
 	Route::get('/help/buying-data', 'HelpController@buying_data')->name('help.buying_data'); 
-	Route::get('/help/selling-data', 'HelpController@selling_data')->name('help.selling_data');   
+	Route::get('/help/selling-data', 'HelpController@selling_data')->name('help.selling_data');  
+	Route::get('/help/guarantee', 'HelpController@guarantee')->name('help.guarantee'); 
 
 	Route::get('/emailtest', 'HomeController@test')->name('test.email'); 	
 
