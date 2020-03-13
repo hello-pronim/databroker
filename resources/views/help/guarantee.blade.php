@@ -10,13 +10,6 @@
     <div class="bg-pattern1-left"></div>
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
-            <!-- <div class="blog-header row">                
-                <div class="col-md-12">
-                    <h1 class="h1-small">Buy and sell with confidence</h1>
-                    <p class="fs-18">Databroker is a unique marketplace that brings together buyers and sellers of data from all industries and sectors, and from all over the world. Through our platform, we want to make sure that our community of users has the best possible experience. </p>
-                    <p class="fs-18">An important part of this is ensuring peace of mind, so you can buy and sell with confidence.</p>
-                </div>                
-            </div>           -->
             <div class="blog-header mgt60">
                 <div class="row">
                     <div class="col-lg-9">
