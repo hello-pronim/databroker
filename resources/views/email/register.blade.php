@@ -143,6 +143,7 @@
 											</table>
 										</td>
 									</tr>
+									@if($userData['userStatus']==1)
 									<tr>
 										<td>
 											<table class="mb-20" cellpadding="0" cellspacing="0" border="0">
@@ -168,6 +169,7 @@
 											</table>
 										</td>
 									</tr>
+									@endif
 								</tbody>
 							</table>
 						</td>
