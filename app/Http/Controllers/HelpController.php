@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Provider;
 use App\Models\Region;
@@ -174,5 +175,57 @@ class HelpController extends Controller
     public function guarantee()
     {
         return view('help.guarantee');
+    }
+
+    public function file_complaint()
+    {
+        return view('help.file_complaint');
+    }
+
+    public function send_file_complaint()
+    {
+        return view('help.send_file_complaint');
+    }
+
+    public function post_send_file_complaint(Request $request)
+    {
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'contact the data provider');
+        }else
+        {
+            $validator = Validator::make($request->all(),[
+                'provider_company_name' => 'required_without_all:seller_company_name,other',
+                'seller_company_name' => 'required_without_all:provider_company_name,other',
+                'other' => 'required_without_all:provider_company_name,seller_company_name',
+                'message' => 'required|min:5|max:1000',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect(url()->previous())
+                        ->withErrors($validator)
+                        ->withInput();
+            }
+
+            $provider_company_name = $request->input('provider_company_name');
+            $seller_company_name = $request->input('seller_company_name');
+            $other = $request->input('other');
+            $message = $request->input('message');
+
+            // $this->sendEmail("send_message_contact", [
+            //     'from'=>$email_from, 
+            //     'to'=>$email_to, 
+            //     'name'=>'Databroker', 
+            //     'subject'=>'You’ve received a message on a data product from User',
+            //     'data'=>$message
+            // ]);
+
+            return view('help.send_complaint_success');
+        }
+    }
+
+    public function getAuthUser ()
+    {
+        return Auth::user();
     }
 }

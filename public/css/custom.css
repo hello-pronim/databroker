@@ -1707,3 +1707,12 @@ ul.custom-list li:before{
 .h1-small.help-overview{
 	margin-bottom: 30px;
 }
+#provider_company_name{
+	min-width: 300px;
+}
+#seller_company_name{
+	min-width: 300px;
+}
+#other{
+	min-width: 300px;
+}

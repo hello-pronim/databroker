@@ -802,4 +802,13 @@
 		margin-top: 20px;
 	}
 }
+@media (min-width: 992px) {
+	#file-complaint-success-msg .success-msg{
+		padding-top: 150px;
+		height: 350px !important;
+	}
+	#file-complaint-success-msg .form-group.row.mb-0{
+		padding-bottom: 100px;
+	}
+}
 
