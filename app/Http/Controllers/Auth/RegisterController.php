@@ -111,7 +111,7 @@ class RegisterController extends Controller
         $role = $data['role2']==='Other'?$data['role']:$data['role2'];
 
         $this->sendEmail("register", [
-            'from'=>'pe@jts.ec', 
+            'from'=>'ce@jts.ec', 
             'to'=>$data['email'], 
             'subject'=>'Databroker', 
             'name'=>'Databroker',
@@ -124,12 +124,12 @@ class RegisterController extends Controller
         if($isLinkedUser) $isLinkedUser->delete();
         $companyIdx = $data['companyIdx'];
         if($data['companyIdx']==0){
-            $companyObj = Company::where('CompanyName', '=', $data['companyName'])->first();
-            if(!$companyObj)
+            // $companyObj = Company::where('CompanyName', '=', $data['companyName'])->first();
+            // if(!$companyObj)
                 $companyObj = Company::create([                
                     'companyName'=>$data['companyName']
                 ]);
-            else $userStatus=2;
+            //else $userStatus=2;
             $companyIdx = $companyObj['companyIdx'];
         }
         return User::create([
