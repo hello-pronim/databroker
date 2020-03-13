@@ -113,7 +113,7 @@ class RegisterController extends Controller
         $this->sendEmail("register", [
             'from'=>'pe@jts.ec', 
             'to'=>$data['email'], 
-            'subject'=>'Databroker', 
+            'subject'=>'Welcome to Databroker', 
             'name'=>'Databroker',
             'userData'=>$data
         ]);    

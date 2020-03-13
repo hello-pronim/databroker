@@ -126,14 +126,14 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-10">
-															Visit our <a href="#">Help & support centre</a> for lots of useful information about getting started with Databroker.
+															Visit our <a href="{{route('help.overview')}}">Help & support centre</a> for lots of useful information about getting started with Databroker.
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-10">
 															<ul>
-																<li><a href="#">Find out about selling data</a></li>
-																<li><a href="#">Find out about buying data</a></li>
+																<li><a href="{{route('help.selling_data')}}">Find out about selling data</a></li>
+																<li><a href="{{route('help.buying_data')}}">Find out about buying data</a></li>
 																<li><a href="#">Find out about our guarantees</a></li>
 																<li>If you don’t find the answers you need, you can always <a href="{{route('contact')}}">Contact us</a></li>
 															</ul>

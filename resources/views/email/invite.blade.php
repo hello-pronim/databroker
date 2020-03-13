@@ -123,8 +123,8 @@
 														<td class="fs-18 lh-24 py-10">
 															<ul>
 																<li><a href="#">Visit our marketplace</a></li>
-																<li><a href="#">Find out about selling data</a></li>
-																<li><a href="#">Find out about buying data</a></li>
+																<li><a href="{{route('help.selling_data')}}">Find out about selling data</a></li>
+																<li><a href="{{route('help.buying_data')}}">Find out about buying data</a></li>
 																<li><a href="#">Find out about our guarantees</a></li>
 																<li>If you don’t find the answers you need, you can always <a href="{{route('contact')}}">Contact us</a></li>
 															</ul>
