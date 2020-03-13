@@ -160,7 +160,7 @@
 													</tr>
 													<tr>
 														<td class="flex-row">
-															<a href="#" class="btn btn-primary">
+															<a href="{{route('account.profile')}}?im=1" class="btn btn-primary">
 																INVITE CONTACTS
 															</a>
 														</td>

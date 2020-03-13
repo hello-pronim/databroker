@@ -529,7 +529,7 @@ $(document).ready(function(){
                     console.log(res);
                     if(res.success == true){
                         $("#inviteModal .invalid-feedback").css('display', 'block');
-                        $(this).html("Invite");
+                        $("#inviteModal .invite").html("Invite");
                         //window.location.reload();    
                     }
                 }
