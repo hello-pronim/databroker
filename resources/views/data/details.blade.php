@@ -26,7 +26,7 @@
 	        <div class="blog-content">
 	        	<div class="row">
 	        		<div class="col-lg-8">
-	        			<img class="blog-img" src="{{ asset('uploads/offer/'.$offer['offerImage']) }}" />
+	        			<img class="blog-img" src="{{ asset($offer['offerImage']) }}" />
 	        		      	
 			            <div class="nav-tabs-wrapper mt-30">
 			                <ul class="nav nav-tabs">

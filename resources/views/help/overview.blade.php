@@ -43,10 +43,12 @@
                         </div>
                     </div>
                     <div class="col-lg-4 mgh30">
-                        <div class="flex-center flex-vertical help-item-container small">
-                            <div class="divider-green"></div>
-                            <p class="h3 text-center">OUR GUARANTEES</p>
-                        </div>
+                        <a href="{{ route('help.guarantee') }}">
+                            <div class="flex-center flex-vertical help-item-container small">
+                                <div class="divider-green"></div>
+                                <p class="h3 text-center">OUR GUARANTEES</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-lg-4 mgh30">
                         <div class="flex-center flex-vertical help-item-container small">

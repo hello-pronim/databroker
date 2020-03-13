@@ -293,8 +293,16 @@ class DataController extends Controller
             $offer_obj = Offer::create($offer_data);
             $offerIdx = $offer_obj['offerIdx'];
 
-            $fileName = "offer_".$offerIdx.'.'.$request->file('offerImage_1')->extension();
-            $request->file('offerImage_1')->move($offerImage_path, $fileName);
+            $offerimagefile = $request->file('offerImage_1');
+            if ($offerimagefile != null) {
+                $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
+                $ret = $offerimagefile->move($offerImage_path, $fileName);
+                $fileName = 'uploads/offer/' . $fileName;
+                $offer_data['offerImage'] = $fileName;
+            } else {  
+                $fileName = $request->input('gallery_offerImage_1');
+                $offer_data['offerImage'] = $fileName;
+            }
             
             Offer::where('offerIdx', $offerIdx)->update(array( "offerImage" => $fileName ));        
 

@@ -133,14 +133,14 @@
 	                    <br>
 	                    <br>
 	                    <div class=" description-header flex-vcenter mb-10">
-							<div class="h4_intro">Please add an image that can be used to represent your data offer <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>
+							<div class="h4_intro text-left">Please add an image that can be used to represent your data offer <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_image_tooltip') }}">help</i><br>
 							</div>
 						</div>	                    
 						<div class="fileupload">
 							@if (isset($offer_path))
-						    <input type="file" name="offerImage" accept='image/*' description="Or <a data-toggle='modal' data-target='#mediaLibraryModal' data-id='123123' data-type='offer'>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image">
+						    <input type="file" id="offerImage" name="offerImage" accept='image/*' description="Or <a data-toggle='modal' data-target='#mediaLibraryModal' data-id='123123' data-type='offer'>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image">
 						    @else
-						    <input type="file" name="offerImage" accept='image/*' description="Or <a data-toggle='modal' data-target='#mediaLibraryModal' data-id='123123' data-type='offer'>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" >
+						    <input type="file" id="offerImage" name="offerImage" accept='image/*' description="Or <a data-toggle='modal' data-target='#mediaLibraryModal' data-id='123123' data-type='offer'>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" >
 						    @endif
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
@@ -309,7 +309,7 @@
 			      			<img src='<%= image.thumb %>' class="thumb" ng-if="image.id!==media.selected.id" />
 			      			<img src='<%= image.thumb %>' class="thumb active" ng-if="image.id===media.selected.id" />
 			      		</div>
-			      	</div>
+							</div>
 	      		</div>
 	      	</div>
 	      </div>      
@@ -319,7 +319,7 @@
               <div class="buttons flex-vcenter" ng-hide="media.current==='community'">
                 <!-- <button type="button" class="button primary-btn publish btn-publish data_publish">OK</button> -->
                 <a href="javascript:;" class="back-icon" ng-click="backToCommunity()"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
-                <button type="button" class="customize-btn btn-next" data-dismiss="modal" ng-hide="media.selected===-1" ng-click="logoSelected()">OK</button>
+                <button type="button" class="customize-btn btn-next" data-dismiss="modal" ng-hide="media.selected===undefined" ng-click="logoSelected()">OK</button>
             </div>
           </div>
 	    </div>
@@ -417,7 +417,8 @@
 			$scope.logoSelected = function () {
 				var selected = $scope.media.selected;
 				if (selected) {
-					var url = selected.url;					
+					var url = selected.url;
+					$('#offerImage')[0].previewOnlineImage(selected);
 				}
 			}
 
@@ -428,7 +429,10 @@
 				} catch (e) {
 					//
 				}
-			}
+			};
+		});
+
+		$(document).ready(function() {
 		});
 	</script>
 @endsection
