@@ -90,7 +90,7 @@
 					<div class="card card-profile card-plain mb-0">					
 						<div class="card-header">
 							<a href="/data/{{ $offer['offerIdx'] }}">
-								<img class="img" src="{{ asset('uploads/offer/'.$offer['offerImage']) }}" />
+								<img class="img" src="{{ asset($offer['offerImage']) }}" />
 							</a>
 						</div>
 						<div class="card-body text-left">
