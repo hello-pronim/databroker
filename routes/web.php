@@ -92,6 +92,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/help/file_complaint', 'HelpController@file_complaint')->name('help.file_complaint');
 	Route::get('/help/file_complaint/send_file_complaint', 'HelpController@send_file_complaint')->name('help.send_file_complaint');
 	Route::post('/help/file_complaint/send_file_complaint', 'HelpController@post_send_file_complaint')->name('help.post_send_file_complaint');
+	Route::get('/help/feedback', 'HelpController@feedback')->name('help.feedback');
 
 	Route::get('/emailtest', 'HomeController@test')->name('test.email'); 	
 

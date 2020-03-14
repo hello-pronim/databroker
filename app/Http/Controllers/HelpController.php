@@ -228,4 +228,9 @@ class HelpController extends Controller
     {
         return Auth::user();
     }
+
+    public function feedback()
+    {
+        return view('help.feedback');
+    }
 }
