@@ -56,7 +56,7 @@
             <div class="divider-green mgb30"></div>
             <div class="h2">What business challenge can we help you solve?</div>
             <div class="para mgb40">Tell us, and we will match you up with the perfect data partner.</div>
-            <a href="{{route('register_nl')}}"><button type="button" class="customize-btn button mgt15">TRY OUR DATAMATCH SERVICE</button></a>
+            <a href="{{route('contact')}}"><button type="button" class="customize-btn button mgt15">TRY OUR DATAMATCH SERVICE</button></a>
             <br/>
             <div class="para mgb40">It 's free.</div>
         </div>
