@@ -13,7 +13,7 @@
             <div class="blog-header row">                
                 <div class="col-md-12">
                     <h1 class="h1-small">{{$usecase['title']}}</h1>
-                    <p class="fs-18"><b>Published in</b>:&nbsp; <span class="h3" id="matchmaking-detail-category">{{ $usecase['category'] }}</span></p>
+                    <p class="fs-18"><b>Published in</b>:&nbsp; <a href="{{ route('data_community.'.strtolower($usecase['category'])) }}"><span class="h3" id="matchmaking-detail-category">{{ $usecase['category'] }}</span></a></p>
                 </div>                
             </div>          
             <div class="blog-content">
@@ -54,9 +54,9 @@
         <div class="section_splitor_gray"></div>
         <div class="bg-pattern1-both flex-center flex-vertical">
             <div class="divider-green mgb30"></div>
-            <div class="h2">What is your business challenge?</div>
+            <div class="h2">What business challenge can we help you solve?</div>
             <div class="para mgb40">Tell us, and we will match you up with the perfect data partner.</div>
-            <a href="{{route('register_nl')}}"><button type="button" class="customize-btn button mgt15">Discover our matchmaking service</button></a>
+            <a href="{{route('contact')}}"><button type="button" class="customize-btn button mgt15">TRY OUR DATAMATCH SERVICE</button></a>
             <br/>
             <div class="para mgb40">It 's free.</div>
         </div>
