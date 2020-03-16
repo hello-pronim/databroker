@@ -330,14 +330,14 @@
                           <!-- <i class="fa fa-reddit fa-3x"></i> -->
                           <img src="{{ asset('/images/social/reddit.png') }}">
                         </a>
-                        <a href="https://www.linkedin.com/company/databroker-dao/" rel="nofollow noopener noreferrer" target="_blank">
+                        <a href="https://www.linkedin.com/company/databroker-global/" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/linkedin.png') }}">
-                        </a>   
-                        <a href="https://github.com/databrokerglobal" rel="nofollow noopener noreferrer" target="_blank">
-                          <img src="{{ asset('/images/social/github.png') }}">
-                        </a>   
+                        </a>                           
                         <a href="https://t.me/databrokerdao" rel="nofollow noopener noreferrer" target="_blank">
                           <img src="{{ asset('/images/social/telegram.png') }}">
+                        </a>  
+                        <a href="https://www.youtube.com/channel/UCUmxSlaliIuF0Z3yNw8y_uA/featured" rel="nofollow noopener noreferrer" target="_blank">
+                          <img src="{{ asset('/images/social/youtube.png') }}">
                         </a>                          
                     </div>
 	                </div>	                
