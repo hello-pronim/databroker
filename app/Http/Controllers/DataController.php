@@ -808,7 +808,22 @@ class DataController extends Controller
         $product = OfferProduct::find($pid);
         $offerTitle = $offer['offerTitle'];
         $productTitle = $product['productTitle'];
-        $data = array('id', 'pid', 'offerTitle', 'productTitle');
+
+        $offer = Offer::where('offerIdx', '=', $id)->first();
+        $providerIdx = $offer['providerIdx'];
+        $communityIdx = $offer['communityIdx'];
+        $userIdx = Provider::where('providerIdx', '=', $providerIdx)->first()['userIdx'];
+        $companyIdx = User::where('userIdx', '=', $userIdx)->first()['companyIdx'];
+        $datetime = time();
+        $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 12);
+
+        $companyIdx = base_convert($companyIdx, 10, 26);
+        $communityIdx = base_convert($communityIdx, 10, 26);
+        $companyIdx = str_pad($companyIdx, 5, '0', STR_PAD_LEFT);
+        $communityIdx = str_pad($communityIdx, 5, '0', STR_PAD_LEFT);
+        $uniqueId = $companyIdx . $communityIdx . $datetime . $rnd;
+
+        $data = array('id', 'pid', 'offerTitle', 'productTitle', 'uniqueId');
         return view('data.offer_product_update_confirm', compact($data));
     }
 

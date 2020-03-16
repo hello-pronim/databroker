@@ -23,5 +23,5 @@ return [
     'your_bid' => 'Your bid',
     'add_message_optional' => 'Add a message(optional)',
     'send_bid'=>'Send bid',
-    'bid_send_success'=>'Your bid is successfully sent to'
+    'bid_send_success'=>'Your bid has been sent successfully to'
 ];

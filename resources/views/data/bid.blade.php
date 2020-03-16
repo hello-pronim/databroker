@@ -38,7 +38,7 @@
                         	<input type="hidden" name="productIdx" value="{{$product->productIdx}}">
                         	<input type="hidden" name="companyName" value="{{$provider->companyName}}">
 		        			<label class="pure-material-textfield-outlined">
-		                        <input type="text" id="bidPrice" name="bidPrice" class="form-control input_data @error('bidPrice') is-invalid @enderror" placeholder=" "  value="{{ old('bidPrice') }}" autocomplete="bidPrice" autofocus>
+		                        <input type="text" id="bidPrice" name="bidPrice" class="form-control input_data price_input @error('bidPrice') is-invalid @enderror" placeholder=" "  value="{{ old('bidPrice') }}" autocomplete="bidPrice" autofocus>
 		                        <span>{{ trans('data.your_bid') }}</span>
 		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Your bid']) }}</div>
 		                        @error('bidPrice')
@@ -65,12 +65,11 @@
 	        			<div class="pl-30">
 		        			<p class="para text-bold">How it works</p>
 		        			<ul class="custom-list">
-		        				<li>Only the company will receive y our bid. It will not be published on the platform.</li>
-		        				<li>Your name and company will be visible for them.</li>
-		        				<li>You will receive an email when they respond to the bid.</li>
-		        				<li>You can follow up on your bids in account.</li>
-		        				<li>A bid is not binding. The data provider can... You can...</li>
+		        				<li>Your bid is sent directly to the data provider, who also sees your name and your company It is not published on the marketplace.</li>
+		        				<li>The data provider can accept or reject your bid. When they do, you’ll receive an email with their response.</li>
+		        				<li>Bids are not binding, so even if the data provider accepts your bid, you can still decide whether or not to buy the data at the agreed price.</li>
 		        			</ul>
+		        			<p class="para">You can follow up on your bids in the <a href="{{route('profile.bids')}}">Bids sent</a> section of your account.</p>
 		        		</div>
 	        		</div>
 	        	</div>
