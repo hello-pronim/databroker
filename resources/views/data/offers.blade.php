@@ -33,9 +33,9 @@
 							<div class="h4_intro">{{ trans('pages.data_offer_step_1_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.what_offer_tooltip') }}">help</i></div>
 						</div>
 						<div class="text-wrapper">							
-							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{ $offer['offerTitle'] ?? ''}}</textarea>
+							<textarea name="offerTitle" class="user-message min-h100" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">{{ $offer['offerTitle'] ?? ''}}</textarea>
 							<div class="error_notice offerTitle"> Please give a concise description the data you are offering.</div>
-							<div class="char-counter"><span>0</span> / <span>100</span> characters</div>
+							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
 						</div>
 						
 						<br>
@@ -168,8 +168,8 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.data_offer_step_2_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_description_tooltip') }}">help</i></div>
 						</div>
 						<div class="text-wrapper">
-							<textarea name="offerDescription" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{$offer['offerDescription'] ?? ''}}</textarea>
-							<div class="char-counter"><span>0</span> / <span>100</span> characters</div>
+							<textarea name="offerDescription" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">{{$offer['offerDescription'] ?? ''}}</textarea>
+							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a><!-- goto 44 -->
@@ -196,8 +196,8 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro text-left">{{ trans('pages.data_offer_step_3_description') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_usecase_tooltip') }}">help</i></div>							
 						</div>
 						<div class="text-wrapper">
-							<textarea name="useCaseContent" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="100">{{$usecase['useCaseContent'] ?? ''}}</textarea>
-							<div class="char-counter"><span>0</span> / <span>100</span> characters</div>	
+							<textarea name="useCaseContent" class="user-message" placeholder="{{ trans('pages.your_message') }}" maxlength="1000">{{$usecase['useCaseContent'] ?? ''}}</textarea>
+							<div class="char-counter"><span>0</span> / <span>1000</span> characters</div>	
 						</div>
 						<div class="buttons flex-vcenter">
 							<a href="javascript:;" class="back-icon"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
