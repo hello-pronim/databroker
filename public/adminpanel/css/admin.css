@@ -1,0 +1,15 @@
+#admin_container{
+    width: 100%;
+}
+#admin_logo{
+    width: 185%;
+}
+#m_aside_left_minimize_toggle{
+    left: 17px;
+}
+.m-stack__item.m-brand.m-brand--skin-dark{
+    padding-left: 10px !important;
+} 
+.m-menu__link-text{
+    font-size: 25px !important;
+}

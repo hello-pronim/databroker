@@ -8,7 +8,6 @@
 @section('content')
 <!--- xd #57 -->
 <div class="container-fluid app-wapper about matchmaking">
-    <div class="bg-pattern1-left" id="matchmaking-background"></div>
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
             <div class="blog-header">

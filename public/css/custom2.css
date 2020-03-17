@@ -1844,9 +1844,10 @@ body .select2-search--dropdown {
 	width: 348px;
 	height: 348px;
 
-	background: transparent url('../images/dummy/Vincent_DB.png') 0% 0% no-repeat padding-box;
+	background: transparent url('../images/dummy/man.jpg?v2') 0% 0% no-repeat padding-box;
 	background-size: 71%;
 	background-position: center;
+	transform: scale(2.8);
 }
 
 .matchmaking ul {
