@@ -99,6 +99,16 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/download/data-toolkit', 'AboutController@download')->name('download.data-toolkit');
 	Route::get('/about/usecase/{id}', 'AboutController@usecase_detail')->where('id', '[0-9]+')->name('about.usecase_detail');
 
+	//admin route
+	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+	Route::get('/admin/usecases', 'AdminController@usecases')->name('admin.usecases');
+	Route::get('/admin/usecases/add_new', 'AdminController@usecases_add_new')->name('admin.usecases.add_new');
+	Route::post('/admin/usecases/update', 'AdminController@usecases_update')->name('admin.usecases.update');
+	Route::post('/admin/usecases/upload_attach/{articleIdx}', 'AdminController@usecases_upload_attach')->name('admin.usecases_upload_attach');
+	Route::get('/admin/usecases/edit/{id}', 'AdminController@usecases_edit')->where('id', '[0-9]+')->name('admin.usecases_edit');
+
+
+
 	$communities = Community::get();
 	$datacontroller = new DataController();
 	foreach ($communities as $key => $community) {
