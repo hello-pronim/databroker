@@ -76,7 +76,7 @@
                               $bids = \App\Models\Bid::where('userIdx', Auth::user()->userIdx)->get();
                             @endphp
                             @if(count($bids))
-                            <a class="dropdown-item" href="{{ route('profile.bids') }}"> {{ trans('home.bids') }} </a>
+                            <a class="dropdown-item" href="{{ route('profile.buyer_bids') }}"> {{ trans('home.bids') }} </a>
                             @endif
                             <a class="dropdown-item" href="{{ route('account.purchases') }}"> {{ trans('home.purchases') }} </a>
                             <div class="dropdown-divider"></div>

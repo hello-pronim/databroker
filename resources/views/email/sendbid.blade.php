@@ -155,7 +155,7 @@
 												<tbody>
 													<tr>
 														<td class="fs-18 lh-24 py-10">
-															You can find the details of this, and all bids received, in the <a href="{{route('profile.bids')}}">My bids</a> section of your account.
+															You can find the details of this, and all bids received, in the <a href="{{route('profile.seller_bids')}}">My bids</a> section of your account.
 														</td>
 													</tr>
 												</tbody>

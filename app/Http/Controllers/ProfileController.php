@@ -190,7 +190,7 @@ class ProfileController extends Controller
         return view('account.wallet');
     }
 
-    public function bids(){
+    public function buyer_bids(){
         $user = Auth::user();
 
         $bidProducts = Bid::join('offerProducts', 'offerProducts.productIdx', '=', 'bids.productIdx')
