@@ -444,6 +444,12 @@
 	.site_footer_logo_container >img{
 		width: 272px;
 	}
+	.matchmaking .avatar{
+		width: 100%;
+		transform: scale(1);
+		background-size: cover;
+		background-position: center;
+	}
 }
 
 @media (max-width: 767px) {
@@ -842,3 +848,10 @@
 	}
 }
 
+@media (min-width :992px) and (max-width: 1199px)
+{
+	.col-lg-6.flex-vcenter.mg30.matchmaking
+	{
+		margin-left: 130px;
+	}
+}
