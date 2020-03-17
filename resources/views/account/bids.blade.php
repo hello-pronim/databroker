@@ -37,66 +37,77 @@
 		            			@foreach($bid['users'] as $bidUser)
 		            		<div class="bid_desc">
 		            			<div class="row">
-		            				<div class="col-md-2">
-		            				</div>
-		            				<div class="col-md-10">
-		            					<p class="text-grey">{{date('d/m/y - H:i', strtotime($bidUser['created_at']))}}</p>
-		            				</div>
-		            			</div>
-		            			<div class="row">
-		            				<div class="col-md-2">
-		            					<label>Bid:</label>		
-		            				</div>
-		            				<div class="col-md-10">
-		            					<span class="text-warning">€{{$bidUser['bidPrice']}}</span>
-		            					<span>(tax incl.)</span>
-		            				</div>
-		            			</div>
-		            			<div class="row">
-		            				@if($bidUser['bidStatus']==1)
-		            				<div class="col-md-2">
-		            					<label>Accepted By:</label>		
-		            				</div>
-		            				<div class="col-md-10">		            					
-		            					<p class="text-bold">{{$bid['sellerCompanyName']}}</p>
-				            			<p class="text-bold">{{$bid['sellerName']}}</p>	
-		            				</div>
-		            				@elseif($bidUser['bidStatus']==-1)
-		            				<div class="col-md-2">
-		            					<label>Rejected By:</label>		
-		            				</div>
-		            				<div class="col-md-10">		            					
-		            					<p class="text-bold">{{$bid['sellerCompanyName']}}</p>
-				            			<p class="text-bold">{{$bid['sellerName']}}</p>	
-		            				</div>
-		            				@else
-		            				<div class="col-md-2">
-		            					<label>From:</label>		
-		            				</div>
-		            				<div class="col-md-10">		            					
-		            					<p class="text-bold">{{$bidUser['companyName']}}</p>
-				            			<p class="text-bold">{{$bidUser['firstname']." ".$bidUser['lastname']}}</p>	
-		            				</div>
-		            				@endif
-		            			</div>
-		            			<div class="row">
-		            				<div class="col-md-2">
-		            					<label>Message:</label>		
-		            				</div>
-		            				<div class="col-md-10">
-		            					<p>{{$bidUser['bidMessage']}}</p>			            					
-		            				</div>
-		            			</div>
-		            			@if($bidUser['bidStatus']==1)       			
-		            			<div class="row">
-		            				<div class="col-md-2">
-		            				</div>
-		            				<div class="col-md-10">
-		            					<p class="text-grey">You can <a href="#" class="text-green">buy the data via this link</a> at the agreed price. <br>
-		            					You will also receive an email including the link.</p>			            					
-		            				</div>
-		            			</div>
-		            			@endif		
+		            				<div class="col-md-9">
+				            			<div class="row">
+				            				<div class="col-md-2">
+				            				</div>
+				            				<div class="col-md-10">
+				            					<p class="text-grey">{{date('d/m/y - H:i', strtotime($bidUser['created_at']))}}</p>
+				            				</div>
+				            			</div>
+				            			<div class="row">
+				            				<div class="col-md-2">
+				            					<label>Bid:</label>		
+				            				</div>
+				            				<div class="col-md-10">
+				            					<span class="text-warning">€{{$bidUser['bidPrice']}}</span>
+				            					<span>(tax incl.)</span>
+				            				</div>
+				            			</div>
+				            			<div class="row">
+				            				@if($bidUser['bidStatus']==1)
+				            				<div class="col-md-2">
+				            					<label>Accepted By:</label>		
+				            				</div>
+				            				<div class="col-md-10">		            					
+				            					<p class="text-bold">{{$bid['sellerCompanyName']}}</p>
+						            			<p class="text-bold">{{$bid['sellerName']}}</p>	
+				            				</div>
+				            				@elseif($bidUser['bidStatus']==-1)
+				            				<div class="col-md-2">
+				            					<label>Rejected By:</label>		
+				            				</div>
+				            				<div class="col-md-10">		            					
+				            					<p class="text-bold">{{$bid['sellerCompanyName']}}</p>
+						            			<p class="text-bold">{{$bid['sellerName']}}</p>	
+				            				</div>
+				            				@else
+				            				<div class="col-md-2">
+				            					<label>From:</label>		
+				            				</div>
+				            				<div class="col-md-10">		            					
+				            					<p class="text-bold">{{$bidUser['companyName']}}</p>
+						            			<p class="text-bold">{{$bidUser['firstname']." ".$bidUser['lastname']}}</p>	
+				            				</div>
+				            				@endif
+				            			</div>
+				            			<div class="row">
+				            				<div class="col-md-2">
+				            					<label>Message:</label>		
+				            				</div>
+				            				<div class="col-md-10">
+				            					<p>{{$bidUser['bidMessage']}}</p>			            					
+				            				</div>
+				            			</div>
+				            			@if($bidUser['bidStatus']==1)       			
+				            			<div class="row">
+				            				<div class="col-md-2">
+				            				</div>
+				            				<div class="col-md-10">
+				            					<p class="text-grey">You can <a href="#" class="text-green">buy the data via this link</a> at the agreed price. <br>
+				            					You will also receive an email including the link.</p>			            					
+				            				</div>
+				            			</div>
+				            			@endif		
+				            		</div>
+				            		<div class="col-md-3">
+				            			@if($bidUser['bidStatus']==-1)
+				            			<a href="#">
+				            				<button type="button" class="button customize-btn">Make a new bid</button>
+				            			</a>
+				            			@endif
+				            		</div>
+			            		</div>
 		            		</div>		  
 		            			@endforeach
 		            		@endif
