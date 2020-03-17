@@ -848,7 +848,13 @@
 	}
 }
 
-@media (min-width :992px) and (max-width: 1199px)
+@media (max-width: 991px) {
+	.navbar-collapse.collapse.show{
+		transform: translate3d(0,0,0);
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px)
 {
 	.col-lg-6.flex-vcenter.mg30.matchmaking
 	{
