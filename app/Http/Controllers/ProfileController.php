@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Business;
 use App\Models\Provider;
 use App\Models\Company;
+use App\Models\Bid;
 use App\Models\Region;
 use App\Models\LinkedUser;
 
@@ -191,8 +192,39 @@ class ProfileController extends Controller
 
     public function bids(){
         $user = Auth::user();
+
+        $bidProducts = Bid::join('offerProducts', 'offerProducts.productIdx', '=', 'bids.productIdx')
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'offers.providerIdx', '=', 'providers.providerIdx')
+                        ->join('regions', 'regions.regionIdx', '=', 'providers.regionIdx')
+                        ->where('bids.userIdx', $user->userIdx)
+                        ->get();
         
-        return view('account.bids');
+        $bidUsers = array();
+        foreach ($bidProducts as $key => $bid) {
+            $provider = Provider::join("offers", 'providers.providerIdx', '=', 'offers.providerIdx')
+                                ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+                                ->join("users", 'users.userIdx', '=', 'providers.userIdx')
+                                ->where('offerProducts.productIdx', $bid['productIdx'])
+                                ->get()
+                                ->first();
+            $sellerCompanyName = $provider['companyName'];
+            $sellerName = $provider['firstname']." ".$provider['lastname'];
+
+            $users = Bid::join('users', 'users.userIdx', '=', 'bids.userIdx')
+                        ->where('bids.productIdx', $bid['productIdx'])
+                        ->orderby('bids.created_at', 'desc')
+                        ->get();
+
+            array_push($bidUsers, array(
+                'productIdx'=>$bid['productIdx'], 
+                'sellerCompanyName'=>$sellerCompanyName, 
+                'sellerName'=>$sellerName, 
+                'users'=>$users)
+            );
+        }
+        $data = array('bidProducts', 'bidUsers');
+        return view('account.bids', compact($data));
     }
 
     public function invite_user(Request $request){
