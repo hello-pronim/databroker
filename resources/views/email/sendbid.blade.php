@@ -140,7 +140,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-25 flex-row">
-															<a href="#" class="btn btn-primary">
+															<a href="{{route('profile.seller_bids')}}" class="btn btn-primary">
 																RESPOND TO BID
 															</a>
 														</td>

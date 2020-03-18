@@ -45,7 +45,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/data/offers/{id}/confirmation', 'DataController@offer_publish_confirm')->where('id', '[0-9]+')->name('data_offer_publish_confirm');
 		Route::get('/data/offers/{id}/confirm-update', 'DataController@offer_update_confirm')->where('id', '[0-9]+')->name('data_offer_update_confirm');
 		Route::get('/data/bid/{id}/{pid}', 'DataController@bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.bid');
-		Route::post('/data/bid/', 'DataController@send_bid')->name('data.send_bid');
+		Route::post('/data/bid/{id}/{pid}', 'DataController@send_bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.send_bid');
+		Route::get('/data/bid/{id}/{pid}/update', 'DataController@edit_bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.edit_bid');
+		Route::post('/data/bid/{id}/{pid}/update', 'DataController@update_bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.update_bid');
 		Route::get('/data/bid/{id}/{pid}/success', 'DataController@send_bid_success')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.send_bid_success');
 		Route::get('/data/buy_data/{id}/{pid}', 'DataController@buy_data')->name('data.buy_data');
 		
