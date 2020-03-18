@@ -73,7 +73,7 @@
 				            				</div>
 				            				@else
 				            				<div class="col-md-2">
-				            					<label>error</i>From:</label>		
+				            					<label>From:</label>		
 				            				</div>
 				            				<div class="col-md-10">		            					
 				            					<p class="text-bold">{{$bidUser['companyName']}}</p>
@@ -98,12 +98,12 @@
 				            					You will also receive an email including the link.</p>			            					
 				            				</div>
 				            			</div>
-				            			@endif		
+				            			@endif
 				            		</div>
 				            		<div class="col-md-3">
-				            			@if($bidUser['bidStatus']==-1 && $bidUser['userIdx']==$user->userIdx)
-				            			<a href="{{route('data.edit_bid', ['id'=>$bidUser['offerIdx'], 'pid'=>$bidUser['productIdx']])}}">
-				            				<button type="button" class="button customize-btn">Update bid</button>
+				            			@if($bidUser['bidStatus']==0)
+				            			<a href="{{route('data.bid_respond', ['bid'=>$bidUser['bidIdx']])}}">
+				            				<button type="button" class="button customize-btn">Respond to bid</button>
 				            			</a>
 				            			@endif
 				            		</div>
