@@ -923,12 +923,12 @@ class DataController extends Controller
         $user = $this->getAuthUser();
 
         $fields = [
-            'bidPrice' => ['required', 'integer']
+            'bidPrice' => ['required', 'numeric']
         ];
 
         $messages = [
             'bidPrice.required' => 'Your bid price is required.',
-            'bidPrice.integer' => 'Bid price must be integer.'
+            'bidPrice.numeric' => 'Bid price must be numeric.'
         ];
 
         $validator = Validator::make($request->all(), $fields, $messages);
@@ -943,10 +943,82 @@ class DataController extends Controller
         $bidData['productIdx'] = $request->productIdx;
         $bidData['bidPrice'] = $request->bidPrice;
         $bidData['bidMessage'] = $request->bidMessage;
+        $bidData['bidStatus'] = 0;
 
         $bidObj = Bid::where('userIdx', $user->userIdx)->where('productIdx', $request->productIdx)->get()->first();
         if(!$bidObj){
             $bidObj = Bid::create($bidData);
+
+            $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
+                        ->join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')
+                        ->where('offers.offerIdx', $request->offerIdx)
+                        ->get()
+                        ->first();
+            $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->where('userIdx', $user->userIdx)->get()->first();
+
+            $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
+
+            $data['seller'] = $seller;
+            $data['buyer'] = $buyer;
+            $data['product'] = $product;
+            $data['bid'] = $bidObj;
+
+            $this->sendEmail("sendbid", [
+                'from'=>'pe@jts.ec', 
+                'to'=>$seller['email'], 
+                'subject'=>'You’ve received a bid on a data product', 
+                'name'=>'Databroker',
+                'data'=>$data
+            ]);    
+
+            return redirect(route('data.send_bid_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
+        }
+    }
+    public function edit_bid(Request $request){
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'send a bid for this data');
+        }else{
+            $product = OfferProduct::with('region')->where('productIdx', $request->pid)->get()->first();
+            $offer = Offer::where('offerIdx', $request->id)->get()->first();
+            $providerIdx = $offer['providerIdx'];
+            $provider = Provider::with('region')->where('providerIdx', $providerIdx)->get()->first();
+            $bid = Bid::where('productIdx', $request->pid)->where('userIdx', $user->userIdx)->get()->first();
+            $data = array('product', 'provider', 'bid');
+            return view('data.edit_bid', compact($data));
+        }
+    }
+    public function update_bid(Request $request){
+        $user = $this->getAuthUser();
+
+        $fields = [
+            'bidPrice' => ['required', 'numeric']
+        ];
+
+        $messages = [
+            'bidPrice.required' => 'Your bid price is required.',
+            'bidPrice.numeric' => 'Bid price must be numeric.'
+        ];
+
+        $validator = Validator::make($request->all(), $fields, $messages);
+
+        if($validator->fails()){
+            return redirect(url()->previous())
+                        ->withErrors($validator)
+                        ->withInput();             
+        }
+
+        $bidData['bidIdx'] = $request->bidIdx;
+        $bidData['userIdx'] = $user->userIdx;
+        $bidData['productIdx'] = $request->productIdx;
+        $bidData['bidPrice'] = $request->bidPrice;
+        $bidData['bidMessage'] = $request->bidMessage;
+
+        $bidObj = Bid::where('bidIdx', $request->bidIdx)->get()->first();
+        if($bidObj){
+            Bid::where('bidIdx', $request->bidIdx)->update($bidData);
+            $bidObj = Bid::where('bidIdx', $request->bidIdx)->get()->first();
 
             $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
                         ->join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')

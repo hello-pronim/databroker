@@ -32,13 +32,14 @@
 	        	</div>
 	        	<div class="row mt-30">
 	        		<div class="col-md-6 auth-section">
-	        			<form method="POST" action="{{route('data.send_bid', ['id'=>$product->offerIdx, 'pid'=>$product->productIdx])}}">
+	        			<form method="POST" action="{{route('data.update_bid', ['id'=>$product->offerIdx, 'pid'=>$product->productIdx])}}">
                         	@csrf
+                        	<input type="hidden" name="bidIdx" value="{{$bid->bidIdx}}">
                         	<input type="hidden" name="offerIdx" value="{{$product->offerIdx}}">
                         	<input type="hidden" name="productIdx" value="{{$product->productIdx}}">
                         	<input type="hidden" name="companyName" value="{{$provider->companyName}}">
 		        			<label class="pure-material-textfield-outlined">
-		                        <input type="text" id="bidPrice" name="bidPrice" class="form-control input_data price_input @error('bidPrice') is-invalid @enderror" placeholder=" "  value="{{ old('bidPrice') }}" autocomplete="bidPrice" autofocus>
+		                        <input type="text" id="bidPrice" name="bidPrice" class="form-control input_data price_input @error('bidPrice') is-invalid @enderror" placeholder=" "  value="{{ old('bidPrice', $bid->bidPrice) }}" autocomplete="bidPrice" autofocus>
 		                        <span>{{ trans('data.your_bid') }}</span>
 		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Your bid']) }}</div>
 		                        @error('bidPrice')
@@ -48,7 +49,7 @@
 		                        @enderror
 		                    </label>
 		                    <label class="pure-material-textfield-outlined">
-								<textarea name="bidMessage" class="form-control input_data user-message @error('bidMessage') is-invalid @enderror" placeholder="{{ trans('data.add_message_optional') }}" maxlength="100" autofocus>{{ old('bidMessage')}}</textarea>
+								<textarea name="bidMessage" class="form-control input_data user-message @error('bidMessage') is-invalid @enderror" placeholder="{{ trans('data.add_message_optional') }}" maxlength="100" autofocus>{{ old('bidMessage', $bid->bidMessage)}}</textarea>
 								<div class="error_notice">{{ trans('validation.required', ['attribute' => 'Message']) }}</div>
 		                        @error('bidMessage')
 		                            <span class="invalid-feedback" role="alert">

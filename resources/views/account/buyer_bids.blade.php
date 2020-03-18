@@ -101,9 +101,9 @@
 				            			@endif		
 				            		</div>
 				            		<div class="col-md-3">
-				            			@if($bidUser['bidStatus']==-1)
-				            			<a href="#">
-				            				<button type="button" class="button customize-btn">Make a new bid</button>
+				            			@if($bidUser['bidStatus']==-1 && $bidUser['userIdx']==$user->userIdx)
+				            			<a href="{{route('data.edit_bid', ['id'=>$bidUser['offerIdx'], 'pid'=>$bidUser['productIdx']])}}">
+				            				<button type="button" class="button customize-btn">Update bid</button>
 				            			</a>
 				            			@endif
 				            		</div>

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Business;
 use App\Models\Provider;
 use App\Models\Company;
+use App\Models\OfferProduct;
 use App\Models\Bid;
 use App\Models\Region;
 use App\Models\LinkedUser;
@@ -212,6 +213,8 @@ class ProfileController extends Controller
             $sellerName = $provider['firstname']." ".$provider['lastname'];
 
             $users = Bid::join('users', 'users.userIdx', '=', 'bids.userIdx')
+                        ->join('offerProducts', 'offerProducts.productIdx', '=', 'bids.productIdx')
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                         ->where('bids.productIdx', $bid['productIdx'])
                         ->orderby('bids.created_at', 'desc')
                         ->get();
@@ -223,8 +226,23 @@ class ProfileController extends Controller
                 'users'=>$users)
             );
         }
-        $data = array('bidProducts', 'bidUsers');
-        return view('account.bids', compact($data));
+        $data = array('bidProducts', 'bidUsers', 'user');
+        return view('account.buyer_bids', compact($data));
+    }
+
+    public function seller_bids(Request $request){
+        $user = Auth::user();
+        
+        $products = OfferProduct::join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                ->where('users.userIdx', $user->userIdx)
+                                ->get();
+        var_dump(count($products));
+        exit;
+
+        $data = array();
+        return view('account.seller_bids', compact($data));
     }
 
     public function invite_user(Request $request){
