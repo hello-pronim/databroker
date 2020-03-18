@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
 <div id="background-image-mobile"></div>
 <div class="container-fluid app-wapper header-section">	
