@@ -1416,6 +1416,14 @@ a.dropdown-toggle:after{
 #bids .bids_list .bid_desc .row{
 	margin-bottom: 20px;
 }
+#bids .label-badge{
+	position: relative;
+}
+#bids .label-badge i{
+	position: absolute;
+	left: -30px;
+	font-size: 15px;
+}
 /*Data offer publish */
 .testimonials{
 	display: grid;

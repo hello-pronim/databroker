@@ -1056,4 +1056,14 @@ class DataController extends Controller
         $data = array('companyName', 'offerIdx');
         return view("data.send_bid_success", compact($data));
     }
+    public function bid_respond(Request $request){
+        $bidObj = Bid::where('bidIdx', $request->bid)
+                    ->join('users', 'users.userIdx', '=', 'bids.userIdx')
+                    ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                    ->join('offerProducts', 'offerProducts.productIdx', '=', 'bids.productIdx')
+                    ->get()
+                    ->first();
+        $data = array('bidObj');
+        return view('data.bid_respond', compact($data));
+    }
 }
