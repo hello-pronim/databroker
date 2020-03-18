@@ -2,6 +2,7 @@
 
 
 @section('content')
+<div id="background-image-mobile"></div>
 <div class="container-fluid app-wapper header-section">	
     <div class="top-bg-image"></div>
     <div class="container">
@@ -46,7 +47,7 @@
 	</div>
 </div>	
 
-<div class="container-fluid app-wapper">
+<div class="container-fluid app-wapper" id="home-mobile-3">
     <div class="container">        
         <h1 class="mb-20 fs-30 text-bold text-left">{{ trans('home.trending') }}</h1>
         <div class="app-partner-items row">
@@ -149,8 +150,8 @@
   		</div>
     </div>        
 </div>
-<div class="container-fluid app-wapper">
-	<div class="section_splitor"></div>    
+<div class="container-fluid app-wapper" id="home-mobile-4">
+	<div class="section_splitor_mobile"></div>    
     <div style="background: url({{ asset('images/patterns/background_01.png') }});background-position: right;background-repeat: no-repeat;background-size: contain;">
         <div style="background: url({{ asset('images/patterns/background_02.png') }});background-position: left;background-repeat: no-repeat;background-size: contain;">
             <div class="app-section app-peek-section align-items-center">
@@ -167,10 +168,10 @@
             </div>
         </div>
     </div>
-    <div class="section_splitor"></div>    
+    <div class="section_splitor_mobile"></div>    
 </div>
 
-<div class="container-fluid app-wapper">	
+<div class="container-fluid app-wapper" id="home-mobile-5">	
 	<div class="container">
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.team_picks') }} </h1>
 		<div class="row">
@@ -272,8 +273,8 @@
     </div>    
 </div>    
 
-<div class="container-fluid app-wapper">
-	<div class="section_splitor"></div>    
+<div class="container-fluid app-wapper" id="home-mobile-6">
+	<div class="section_splitor_mobile"></div>    
     <div style="background: url({{ asset('images/patterns/background_01.png') }});background-position: right;background-repeat: no-repeat;background-size: contain;">
         <div style="background: url({{ asset('images/patterns/background_02.png') }});background-position: left;background-repeat: no-repeat;background-size: contain;">
             <div class="app-section app-peek-section align-items-center">
@@ -289,9 +290,9 @@
             </div>
         </div>
     </div>
-    <div class="section_splitor"></div>    
+    <div class="section_splitor_mobile"></div>    
 </div>
-<div class="container-fluid app-wapper">	
+<div class="container-fluid app-wapper" id="home-mobile-7">	
 	<div class="container">
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('home.top_usecase')}} </h1>
 		<div class="row">
