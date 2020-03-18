@@ -39,61 +39,61 @@
 		            			<div class="row">
 		            				<div class="col-md-9">
 				            			<div class="row">
-				            				<div class="col-md-2">
+				            				<div class="col-md-3">
 				            				</div>
-				            				<div class="col-md-10">
+				            				<div class="col-md-9">
 				            					<p class="text-grey">{{date('d/m/y - H:i', strtotime($bidUser['created_at']))}}</p>
 				            				</div>
 				            			</div>
 				            			<div class="row">
-				            				<div class="col-md-2">
+				            				<div class="col-md-3">
 				            					<label>Bid:</label>		
 				            				</div>
-				            				<div class="col-md-10">
+				            				<div class="col-md-9">
 				            					<span class="text-warning">€ {{$bidUser['bidPrice']}}</span>
 				            					<span>(tax incl.)</span>
 				            				</div>
 				            			</div>
 				            			<div class="row">
 				            				@if($bidUser['bidStatus']==1)
-				            				<div class="col-md-2">
+				            				<div class="col-md-3">
 				            					<label class="label-badge"><i class="icon material-icons text-primary">check_circle</i>Accepted By:</label>		
 				            				</div>
-				            				<div class="col-md-10">		            					
+				            				<div class="col-md-9">		            					
 				            					<p class="text-bold">{{$bid['sellerCompanyName']}}</p>
 						            			<p class="text-bold">{{$bid['sellerName']}}</p>	
 				            				</div>
 				            				@elseif($bidUser['bidStatus']==-1)
-				            				<div class="col-md-2">
+				            				<div class="col-md-3">
 				            					<label class="label-badge"><i class="icon material-icons text-red">error</i>Rejected By:</label>		
 				            				</div>
-				            				<div class="col-md-10">		            					
+				            				<div class="col-md-9">		            					
 				            					<p class="text-bold">{{$bid['sellerCompanyName']}}</p>
 						            			<p class="text-bold">{{$bid['sellerName']}}</p>	
 				            				</div>
 				            				@else
-				            				<div class="col-md-2">
+				            				<div class="col-md-3">
 				            					<label>From:</label>		
 				            				</div>
-				            				<div class="col-md-10">		            					
+				            				<div class="col-md-9">		            					
 				            					<p class="text-bold">{{$bidUser['companyName']}}</p>
 						            			<p class="text-bold">{{$bidUser['firstname']." ".$bidUser['lastname']}}</p>	
 				            				</div>
 				            				@endif
 				            			</div>
 				            			<div class="row">
-				            				<div class="col-md-2">
+				            				<div class="col-md-3">
 				            					<label>Message:</label>		
 				            				</div>
-				            				<div class="col-md-10">
+				            				<div class="col-md-9">
 				            					<p>{{$bidUser['bidMessage']}}</p>			            					
 				            				</div>
 				            			</div>
 				            			@if($bidUser['bidStatus']==1)       			
 				            			<div class="row">
-				            				<div class="col-md-2">
+				            				<div class="col-md-3">
 				            				</div>
-				            				<div class="col-md-10">
+				            				<div class="col-md-9">
 				            					<p class="text-grey">You can <a href="#" class="text-green">buy the data via this link</a> at the agreed price. <br>
 				            					You will also receive an email including the link.</p>			            					
 				            				</div>

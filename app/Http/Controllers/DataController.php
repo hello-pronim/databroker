@@ -1066,4 +1066,75 @@ class DataController extends Controller
         $data = array('bidObj');
         return view('data.bid_respond', compact($data));
     }
+    public function send_bid_response(Request $request){
+        $user = $this->getAuthUser();
+
+        $fields = [
+            'response' => ['required', 'numeric']
+        ];
+
+        $messages = [
+            'response.required' => 'Please respond to bid.',
+        ];
+
+        $validator = Validator::make($request->all(), $fields, $messages);
+
+        if($validator->fails()){
+            return redirect(url()->previous())
+                        ->withErrors($validator)
+                        ->withInput();             
+        }
+        $data['bidResponse'] = $request->bidResponse;
+        $data['bidStatus'] = $request->response;
+        Bid::where('bidIdx', $request->bidIdx)->update($data);
+
+        $seller = Bid::join('offerProducts', 'offerProducts.productIdx', '=', 'bids.productIdx')
+                    ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                    ->join("providers", 'providers.providerIdx', '=', 'offers.providerIdx')
+                    ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                    ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                    ->join('regions', 'regions.regionIdx', '=', 'providers.regionIdx')
+                    ->where('bids.bidIdx', $request->bidIdx)
+                    ->get()
+                    ->first();
+
+        $buyer = Bid::join('users', 'users.userIdx', '=', 'bids.userIdx')
+                    ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                    ->where('bids.bidIdx', $request->bidIdx)
+                    ->get()
+                    ->first();
+
+        $product = OfferProduct::with('region')
+                        ->join('bids', 'bids.productIdx', '=', 'offerProducts.productIdx')
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->where('bids.productIdx', $request->productIdx)
+                        ->get()
+                        ->first();
+
+        $mailData['seller'] = $seller;
+        $mailData['buyer'] = $buyer;
+        $mailData['product'] = $product;
+
+        if($request->response==1){
+            $this->sendEmail("acceptbid", [
+                'from'=>'pe@jts.ec', 
+                'to'=>$buyer['email'], 
+                'subject'=>'Your bid on a data product was accepted.', 
+                'name'=>'Databroker',
+                'data'=>$mailData
+            ]);
+        }
+        else if($request->response==-1){
+            $this->sendEmail("rejectbid", [
+                'from'=>'pe@jts.ec', 
+                'to'=>$buyer['email'], 
+                'subject'=>'Your bid on a data product was rejected.', 
+                'name'=>'Databroker',
+                'data'=>$mailData
+            ]);
+        }
+
+        return redirect(route('profile.seller_bids'));
+    }
 }
