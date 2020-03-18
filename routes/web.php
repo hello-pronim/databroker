@@ -52,7 +52,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');
 		Route::post('/data/update-status', 'DataController@data_update_status')->name('data.update_status');			
 
-		Route::get('/bids', 'ProfileController@bids')->name('profile.bids');
+		Route::get('/buyer/bids', 'ProfileController@buyer_bids')->name('profile.buyer_bids');
+		Route::get('/seller/bids', 'ProfileController@seller_bids')->name('profile.seller_bids');
 	});
 
 	Route::get('/', 'HomeController@index')->name('home');

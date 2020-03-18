@@ -254,6 +254,12 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 .flex-end{
 	align-self: flex-end;
 }
+.d-block{
+	display: block!important;
+}
+.d-flex{
+	display: flex!important;
+}
 /*Font*/
 h1,h2,h3,h4,h5,h6{
 	font-family: DM Sans !important;
@@ -1387,9 +1393,11 @@ a.dropdown-toggle:after{
 }
 #bids .bid h4{
 	line-height: 24px;
+	word-break: break-all;
 }
 #bids p{
 	margin-bottom: 0px;
+	word-break: break-all;
 }
 #bids .bid >div label{
 	color: #8C9196;
