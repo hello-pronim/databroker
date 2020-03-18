@@ -978,3 +978,12 @@
 	}
 
 }
+@media (min-width: 768px) and (max-width:992px)
+{
+	#main_menu{
+		margin-top: 15px;
+	}
+	.navbar-collapse.collapse.show{
+		margin-top: 15px;
+	}
+}
