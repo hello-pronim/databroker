@@ -213,6 +213,7 @@ class ProfileController extends Controller
             $sellerName = $provider['firstname']." ".$provider['lastname'];
 
             $users = Bid::join('users', 'users.userIdx', '=', 'bids.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->join('offerProducts', 'offerProducts.productIdx', '=', 'bids.productIdx')
                         ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                         ->where('bids.productIdx', $bid['productIdx'])
@@ -233,15 +234,39 @@ class ProfileController extends Controller
     public function seller_bids(Request $request){
         $user = Auth::user();
         
-        $products = OfferProduct::join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+        $bidProducts = OfferProduct::join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                                 ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                                 ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                 ->where('users.userIdx', $user->userIdx)
                                 ->get();
-        var_dump(count($products));
-        exit;
 
-        $data = array();
+        $bidUsers = array();
+        foreach ($bidProducts as $key => $bid) {
+            $provider = Provider::join("offers", 'providers.providerIdx', '=', 'offers.providerIdx')
+                                ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+                                ->join("users", 'users.userIdx', '=', 'providers.userIdx')
+                                ->where('offerProducts.productIdx', $bid['productIdx'])
+                                ->get()
+                                ->first();
+            $sellerCompanyName = $provider['companyName'];
+            $sellerName = $provider['firstname']." ".$provider['lastname'];
+
+            $users = Bid::join('users', 'users.userIdx', '=', 'bids.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->join('offerProducts', 'offerProducts.productIdx', '=', 'bids.productIdx')
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->where('bids.productIdx', $bid['productIdx'])
+                        ->orderby('bids.created_at', 'desc')
+                        ->get();
+
+            array_push($bidUsers, array(
+                'productIdx'=>$bid['productIdx'], 
+                'sellerCompanyName'=>$sellerCompanyName, 
+                'sellerName'=>$sellerName, 
+                'users'=>$users)
+            );
+        }
+        $data = array('bidProducts', 'bidUsers', 'user');
         return view('account.seller_bids', compact($data));
     }
 

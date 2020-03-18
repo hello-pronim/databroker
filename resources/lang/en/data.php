@@ -23,5 +23,10 @@ return [
     'your_bid' => 'Your bid',
     'add_message_optional' => 'Add a message(optional)',
     'send_bid'=>'Send bid',
-    'bid_send_success'=>'Your bid has been sent successfully to'
+    'bid_send_success'=>'Your bid has been sent successfully to',
+    'bid_related_to_data_product'=>'Bid related to data product',
+    'price'=>'Price',
+    'bid_amount'=>'Bid amount',
+    'accept_bid'=>'Accept bid',
+    'reject_bid'=>'Reject bid'
 ];
