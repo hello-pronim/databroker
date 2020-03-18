@@ -832,6 +832,9 @@
 	.navbar-collapse.collapse.show{
 		transform: translate3d(0,0,0);
 	}
+	.section_splitor{
+		background-attachment: initial;
+	}
 }
 @media (min-width: 768px) {
 	.cookie-accept .container .row .mgr80{
