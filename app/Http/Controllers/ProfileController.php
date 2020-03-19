@@ -219,7 +219,7 @@ class ProfileController extends Controller
                         ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                         ->where('bids.productIdx', $bid['productIdx'])
                         ->orderby('bids.created_at', 'desc')
-                        ->get();
+                        ->get(["users.*", 'companies.*', 'offerProducts.*', 'offers.*', 'bids.*', 'bids.created_at as createdAt']);
 
             array_push($bidUsers, array(
                 'offerIdx'=>$bid['offerIdx'],
@@ -260,7 +260,7 @@ class ProfileController extends Controller
                         ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                         ->where('bids.productIdx', $bid['productIdx'])
                         ->orderby('bids.created_at', 'desc')
-                        ->get();
+                        ->get(["users.*", 'companies.*', 'offerProducts.*', 'offers.*', 'bids.*', 'bids.created_at as createdAt']);
 
             array_push($bidUsers, array(
                 'offerIdx'=>$bid['offerIdx'],

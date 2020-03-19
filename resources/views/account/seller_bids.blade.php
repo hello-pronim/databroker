@@ -45,7 +45,7 @@
 		            				<div class="col-md-3">
 		            				</div>
 		            				<div class="col-md-9">
-		            					<p class="text-grey">{{date('d/m/y - H:i', strtotime($bidUser['created_at']))}}</p>
+		            					<p class="text-grey">{{date('d/m/Y - H:i', strtotime($bidUser['createdAt']))}}</p>
 		            				</div>
 		            			</div>
 		            			<div class="row">

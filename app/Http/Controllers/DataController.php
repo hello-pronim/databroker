@@ -1061,7 +1061,7 @@ class DataController extends Controller
                     ->join('users', 'users.userIdx', '=', 'bids.userIdx')
                     ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                     ->join('offerProducts', 'offerProducts.productIdx', '=', 'bids.productIdx')
-                    ->get()
+                    ->get(["bids.*", "bids.created_at as createdAt", "users.*", "companies.*", "offerProducts.*"])
                     ->first();
         $data = array('bidObj');
         return view('data.bid_respond', compact($data));
@@ -1109,7 +1109,7 @@ class DataController extends Controller
                         ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                         ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                         ->where('bids.productIdx', $request->productIdx)
-                        ->get()
+                        ->get(['offerProducts.*', 'offerProducts.created_at as createdAt', 'bids.*', 'offers.*', 'providers.*'])
                         ->first();
 
         $mailData['seller'] = $seller;

@@ -7,7 +7,7 @@
     	<div class="app-section app-reveal-section align-items-center">    		
 	        <div class="blog-header">
 	            <h1>You have received a bid from {{$bidObj['companyName']}}</h1>
-	            <p class="para text-bold">{{date("d/m/Y-H:i", strtotime($bidObj['created_at']))}}</p>
+	            <p class="para text-bold">{{date("d/m/Y - H:i", strtotime($bidObj['createdAt']))}}</p>
 	            <p class="para text-green">{{$bidObj['firstname']." ".$bidObj['lastname']}}</p>
 	        </div>
 	        <div class="blog-content">
