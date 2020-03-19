@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('title')
+{{trans('home.meta_title')}}
+@stop
+@section('description')
+{{trans('home.meta_desc')}}
+@stop
+
 @section('content')
 <div id="background-image-mobile"></div>
 <div class="container-fluid app-wapper header-section">	
