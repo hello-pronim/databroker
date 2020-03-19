@@ -965,7 +965,7 @@ class DataController extends Controller
             $data['bid'] = $bidObj;
 
             $this->sendEmail("sendbid", [
-                'from'=>'pe@jts.ec', 
+                'from'=>'cg@jts.ec', 
                 'to'=>$seller['email'], 
                 'subject'=>'You’ve received a bid on a data product', 
                 'name'=>'Databroker',
@@ -1036,7 +1036,7 @@ class DataController extends Controller
             $data['bid'] = $bidObj;
 
             $this->sendEmail("sendbid", [
-                'from'=>'pe@jts.ec', 
+                'from'=>'cg@jts.ec', 
                 'to'=>$seller['email'], 
                 'subject'=>'You’ve received a bid on a data product', 
                 'name'=>'Databroker',
