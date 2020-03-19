@@ -233,13 +233,13 @@
               <div class="row">
                   <div class="col-md-10 col-sm-12">
                       <div class="mgr80">                
-                        <p class="para color-gray2">{{ trans('home.cookie_desc') }} <a href="{{route('about.cookie_policy')}}" id="accept-cookie-policy">Cookie policy</a></p>
+                        <p class="para color-gray2">{{ trans('home.cookie_desc') }} <a href="{{route('about.cookie_policy')}}" id="accept-cookie-policy" target="_blank">Cookie policy</a></p>
                       </div>
                   </div>
                   <div class="col-md-2 col-sm-12">
                       <div class="flex-vertical">
                         <button type="button" class="btn accept-btn pure-material-button-outlined" id="cookie-accept-btn">{{ trans('home.accept_cookie') }}</button>
-                        <a href="{{route('about.cookie_policy')}}"><span>{{ trans('home.cookie_more')}}</span></a>
+                        <a href="{{route('about.cookie_policy')}}" target="_blank"><span>{{ trans('home.cookie_more')}}</span></a>
                       </div>
                   </div>
               </div>
