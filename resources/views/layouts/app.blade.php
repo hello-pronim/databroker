@@ -72,12 +72,27 @@
                             <!-- <a class="dropdown-item" href="{{ route('account.wallet') }}"> {{ trans('home.wallet') }} </a> -->
                             <div class="dropdown-divider"></div>
                             <h5> {{ trans('home.me_buyer') }} </h5>
-                            <a class="dropdown-item" href="{{ route('profile.bids') }}"> {{ trans('home.bids') }} </a>
+                            @php
+                              $bids = \App\Models\Bid::where('userIdx', Auth::user()->userIdx)->get();
+                            @endphp
+                            @if(count($bids))
+                            <a class="dropdown-item" href="{{ route('profile.buyer_bids') }}"> {{ trans('home.bids') }} </a>
+                            @endif
                             <a class="dropdown-item" href="{{ route('account.purchases') }}"> {{ trans('home.purchases') }} </a>
                             <div class="dropdown-divider"></div>
                             <h5> {{ trans('home.me_seller') }} </h5>
                             <a class="dropdown-item" href="{{ route('account.company') }}"> {{ trans('home.company_profile') }} </a>
                             <a class="dropdown-item" href="{{ route('data_offers_overview' )}}"> {{ trans('home.data_offers') }} </a>
+                            @php
+                              $products = \App\Models\OfferProduct::join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                                                  ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                                                  ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                                                  ->where('users.userIdx', Auth::user()->userIdx)
+                                                                  ->get();
+                            @endphp
+                            @if(count($products))
+                            <a class="dropdown-item" href="{{ route('profile.seller_bids') }}"> {{ trans('home.bids') }} </a>
+                            @endif
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"> {{ trans('home.signout') }} </a>

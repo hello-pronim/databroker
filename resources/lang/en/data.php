@@ -23,5 +23,12 @@ return [
     'your_bid' => 'Your bid',
     'add_message_optional' => 'Add a message(optional)',
     'send_bid'=>'Send bid',
-    'bid_send_success'=>'Your bid has been sent successfully to'
+    'bid_send_success'=>'Your bid has been sent successfully to',
+    'bid_related_to_data_product'=>'Bid related to data product',
+    'price'=>'Price',
+    'bid_amount'=>'Bid amount',
+    'accept_bid'=>'Accept bid',
+    'reject_bid'=>'Reject bid',
+    'bids_sent_intro'=>"Here you can find an overview of all the bids you have sent, per data product. Bids are shown in chronological order, with the most recent activity at the top.",
+    'bids_received_intro'=>"Here you can find an overview of all the bids you have received, per data product. Bids are shown in chronological order, with the most recent activity at the top."
 ];

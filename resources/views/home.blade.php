@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+{{trans('home.meta_title')}}
+@stop
+@section('description')
+{{trans('home.meta_desc')}}
+@stop
 
 @section('content')
 <div id="background-image-mobile"></div>
@@ -101,8 +107,6 @@
         		</div>
         	</div>
         </div>
-
-
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.new_on_marketplace') }} </h1>
 		<div class="row">
 			<div class="col-md-6 col-lg-4 col-xl-4">
@@ -150,6 +154,7 @@
   		</div>
     </div>        
 </div>
+
 <div class="container-fluid app-wapper" id="home-mobile-4">
 	<div class="section_splitor_mobile"></div>    
     <div style="background: url({{ asset('images/patterns/background_01.png') }});background-position: right;background-repeat: no-repeat;background-size: contain;">

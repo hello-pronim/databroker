@@ -46,10 +46,12 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/data/offers/{id}/confirm-update', 'DataController@offer_update_confirm')->where('id', '[0-9]+')->name('data_offer_update_confirm');
 		Route::get('/data/bid/{id}/{pid}', 'DataController@bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.bid');
 		Route::post('/data/bid/{id}/{pid}', 'DataController@send_bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.send_bid');
-		Route::get('/data/bid/{id}/{pid}/update', 'DataController@edit_bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.edit_bid');
-		Route::post('/data/bid/{id}/{pid}/update', 'DataController@update_bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.update_bid');
-		Route::get('/data/bid/{id}/{pid}/success', 'DataController@send_bid_success')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.send_bid_success');
-		Route::get('/data/buy_data/{id}/{pid}', 'DataController@buy_data')->name('data.buy_data');
+		Route::get('/data/bid/update/{id}/{pid}', 'DataController@edit_bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.edit_bid');
+		Route::post('/data/bid/update/{id}/{pid}', 'DataController@update_bid')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.update_bid');
+		Route::get('/data/bid/success/{id}/{pid}', 'DataController@send_bid_success')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.send_bid_success');
+		Route::get('/data/bid/respond/{bid}', 'DataController@bid_respond')->where('bid', '[0-9]+')->where('pid', '[0-9]+')->name('data.bid_respond');
+		Route::post('/data/bid/respond/{bid}', 'DataController@send_bid_response')->where('bid', '[0-9]+')->where('pid', '[0-9]+')->name('data.bid_send_response');
+		Route::get('/data/buy_data/{id}/{pid}', 'DataController@buy_data')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.buy_data');
 		
 		Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');
 		Route::post('/data/update-status', 'DataController@data_update_status')->name('data.update_status');			

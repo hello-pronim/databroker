@@ -6,8 +6,8 @@
     <div class="container">
     	<div class="app-section app-reveal-section align-items-center data-detail">    		
 	        <div class="blog-header">
-	            <h1>Bids sent</h1>
-	            <p class="para">{{trans('data.bids_sent_intro')}}</p>
+	            <h1>Bids received</h1>
+	            <p class="para">{{trans("data.bids_received_intro")}}</p>           
 	            
 	            <div id="bids" class="row">
 		            <div class="col-lg-4 nav nav-tabs d-block" data-tabs="tabs">
@@ -52,22 +52,22 @@
 		            				<div class="col-md-3">
 		            					<label>Bid:</label>		
 		            				</div>
-					            	@if($bidUser['bidStatus']==-1 && $bidUser['userIdx']==$user->userIdx)
+				            		@if($bidUser['bidStatus']==0)
 		            				<div class="col-md-6">
 		            					<span class="text-warning">€ {{$bidUser['bidPrice']}}</span>
 		            					<span>(tax incl.)</span>
 		            				</div>
-		            				<div class="col-md-3">
-				            			<a href="{{route('data.edit_bid', ['id'=>$bidUser['offerIdx'], 'pid'=>$bidUser['productIdx']])}}">
-				            				<button type="button" class="button customize-btn m-0">Update bid</button>
+				            		<div class="col-md-3">
+				            			<a href="{{route('data.bid_respond', ['bid'=>$bidUser['bidIdx']])}}">
+				            				<button type="button" class="button customize-btn m-0">Respond to bid</button>
 				            			</a>
-		            				</div>
-		            				@else
+				            		</div>
+				            		@else
 		            				<div class="col-md-9">
 		            					<span class="text-warning">€ {{$bidUser['bidPrice']}}</span>
 		            					<span>(tax incl.)</span>
 		            				</div>
-					            	@endif
+				            		@endif
 		            			</div>
 		            			<div class="row">
 		            				@if($bidUser['bidStatus']==1)
@@ -114,25 +114,15 @@
 		            				</div>
 		            			</div>
 		            			@endif
-		            			@if($bidUser['bidStatus']==1)
-		            			<div class="row">
-		            				<div class="col-md-3"></div>
-		            				<div class="col-md-9">
-				            			<a href="{{route('data.buy_data', ['id'=>$bidUser['offerIdx'], 'pid'=>$bidUser['productIdx']])}}">
-				            				<button type="button" class="button customize-btn m-0">Buy data at agreed price</button>
-				            			</a>
-		            				</div>
-		            			</div>
-		            			@endif
 		            			@if($bidUser['bidStatus']==1)       			
 		            			<div class="row">
 		            				<div class="col-md-3">
 		            				</div>
 		            				<div class="col-md-9">
-		            					<p class="text-grey">You will also receive an email with a link to the purchase page.</p>			            					
+		            					<p class="text-grey">We have sent the buyer an email link to buy the data at the agreed price.</p>			            					
 		            				</div>
 		            			</div>
-		            			@endif	
+		            			@endif
 		            		</div>		  
 		            			@endforeach
 		            		@endif
