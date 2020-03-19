@@ -1014,6 +1014,7 @@ class DataController extends Controller
         $bidData['productIdx'] = $request->productIdx;
         $bidData['bidPrice'] = $request->bidPrice;
         $bidData['bidMessage'] = $request->bidMessage;
+        $bidData['bidStatus'] = 0;
 
         $bidObj = Bid::where('bidIdx', $request->bidIdx)->get()->first();
         if($bidObj){
