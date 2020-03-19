@@ -28,5 +28,7 @@ return [
     'price'=>'Price',
     'bid_amount'=>'Bid amount',
     'accept_bid'=>'Accept bid',
-    'reject_bid'=>'Reject bid'
+    'reject_bid'=>'Reject bid',
+    'bids_sent_intro'=>"Here you can find an overview of all the bids you have sent, per data product. Bids are shown in chronological order, with the most recent activity at the top.",
+    'bids_received_intro'=>"Here you can find an overview of all the bids you have received, per data product. Bids are shown in chronological order, with the most recent activity at the top."
 ];
