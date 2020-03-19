@@ -13,7 +13,7 @@
         <meta property="og:url" content="https://beta.databroker.global/">
         <meta property="og:description" content="@yield('description')">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="">
+        <meta property="og:image" content="https://beta.databroker.global/images/Databroker_social-share.jpg">
 
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline'; img-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> -->
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
