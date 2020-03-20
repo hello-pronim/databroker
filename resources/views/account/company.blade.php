@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Company profile | Databroker ')
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
