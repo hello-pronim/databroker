@@ -662,10 +662,12 @@ class AboutController extends Controller
         $userData = null;
         if($user){
             $userData = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')->where('userIdx', $user->userIdx)->get()->first();
+            $data = array( 'communities', 'businesses', 'countries', 'userData' ); 
+            return view('auth.nl_push', compact($data));
+        }else{
+            $data = array( 'communities', 'businesses', 'countries'); 
+            return view('auth.register_nl', compact($data));
         }
-        
-        $data = array( 'communities', 'businesses', 'countries', 'userData' );                
-        return view('auth.register_nl', compact($data));
     }  
 
     protected function create_nl(Request $request){
@@ -698,6 +700,8 @@ class AboutController extends Controller
         $subscription['businessName'] = $businessName;
         $subscription['role'] = $role;
         $subscription['communities'] = json_encode($request->community);
+        if($request->message)
+            $subscription['message'] = $request->message;
 
         $subscriptionObj = Subscription::where('email', '=', $request->email)->get()->first();
         if($subscriptionObj) $subscriptionObj->delete();

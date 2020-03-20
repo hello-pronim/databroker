@@ -287,3 +287,6 @@ ALTER TABLE `databroker_new`.`articles` ADD COLUMN `author` VARCHAR(255) NULL AF
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `link` VARCHAR(255) NULL AFTER `author`;
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `published` DATE NULL AFTER `link`;
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `communityIdx` INT(11) NULL AFTER `articleIdx`;
+
+#2020-03-20
+ALTER TABLE `databroker_new`.`subscriptions` ADD COLUMN `message` VARCHAR(255) NULL AFTER `role`; 

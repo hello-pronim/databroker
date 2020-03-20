@@ -35,7 +35,7 @@ return [
     'dummy_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.',
     'not_sure_what_to_enter' => 'Not sure what to include?',
     'view_an_example_pdf' => 'See an example (pdf)',
-    'your_message' => 'Enter your message here',
+    'your_message' => 'Your message',
     'account_information' => 'Account information',
     'company_name' => 'Company name',
     'company_profile' => 'Company profile',

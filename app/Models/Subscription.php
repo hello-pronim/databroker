@@ -11,6 +11,6 @@ class Subscription extends Model
     protected $primaryKey = 'subscriptionIdx';
 
     protected $fillable = [
-        'firstname', 'lastname', 'email', 'companyName', 'regionIdx', 'role', 'businessName', 'communities'
+        'firstname', 'lastname', 'email', 'companyName', 'regionIdx', 'role', 'businessName', 'communities', 'message'
     ];
 }
