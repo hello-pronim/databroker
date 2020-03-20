@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Help & support centre | Databroker ')
+@section('description', 'New to Databroker? Our Help & support centre covers all the most common questions. Don’t find what you’re looking for? Just contact us!')
+
 @section('content')
 <div class="container-fluid app-wapper help">
     <div class="bg-pattern1-left"></div>

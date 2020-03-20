@@ -1,5 +1,8 @@
 @extends('auth.auth_app')
 
+@section('title', 'Sign in | Databroker')
+@section('description', 'Sign in to your account to enjoy all the features of the Databroker marketplace. Don’t have an account yet? Then register now to buy or sell data. It’s free.')
+
 @section('content')
 <div class="container-fluid app-wapper">
     <div class="container">

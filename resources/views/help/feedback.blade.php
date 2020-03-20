@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Share your feedback with us | Databroker ')
+@section('description', 'Your opinion is important to us, and we’d love to hear your feedback on what we’re doing well and what we could do better.')
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">

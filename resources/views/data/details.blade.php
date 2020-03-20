@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+{{ $offer['offerTitle']."|Databroker" }}
+@stop
+@section('description', 'Looking for data to help you make insight-driven business decisions? Explore our marketplace and get easy access to a world of data.')
+
+
 @section('content')
 <div class="container-fluid app-wapper">
 	<div class="bg-pattern1-left"></div>

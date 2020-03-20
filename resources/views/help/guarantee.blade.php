@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Buy and sell with confidence | Databroker ')
+@section('description', 'We want data buyers and sellers to have the best possible experience on Databroker. Find out how we ensure peace of mind for everyone.')
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Get inspired by real-life use cases for data | Databroker ')
+@section('description', 'Curious how data can be turned into a true competitive advantage? Read our use cases to understand how sourcing the right kind of data can bring real value. ')
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">

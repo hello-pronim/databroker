@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'About Databroker | Databroker ')
+@section('description', 'Databroker is the blockchain-based, peer-to-peer marketplace for data. Discover how we connect data buyers and sellers to create real business value from data.')
+
 @section('content')
 <div class="container-fluid app-wapper about">
     <div class="bg-pattern1-left"></div>

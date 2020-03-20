@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Buy, sell or share geographics data | Data offers | Databroker ')
+@section('description', 'Find data about geographic locations, physical and human characteristics of places, human-environment interaction, movement of people good and ideas.')
+
 @section('additional_css')	
 	<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection

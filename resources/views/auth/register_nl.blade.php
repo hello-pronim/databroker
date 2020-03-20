@@ -1,5 +1,8 @@
 @extends('auth.auth_app')
 
+@section('title', 'Sign up for our NewsBytes | Databroker ')
+@section('description', 'Get the latest Databroker updates, announcements, use cases, and more, delivered straight to your inbox. Sign up for our NewsBytes!')
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection

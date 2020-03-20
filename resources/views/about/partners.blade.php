@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Databroker partner network | Databroker ')
+@section('description', 'Together with our network of trusted partners, we share the vision of turning data into real business value, for both buyers and sellers. Discover our partners.')
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">

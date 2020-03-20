@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Media centre | Databroker ')
+@section('description', 'Are you a journalist who would like to discuss the world of data in general, or Databroker in particular? Contact us directly or download our media kit.')
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">

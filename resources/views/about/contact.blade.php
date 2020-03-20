@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Contact us | Databroker')
+@section('description', "Want to know more about getting started with Databroker? Or about becoming a partner? Or maybe you want to share your feedback? We'd love to hear from you.")
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection

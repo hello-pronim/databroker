@@ -1,5 +1,8 @@
 @extends('auth.auth_app')
 
+@section('title', 'Register on Databroker | Databroker ')
+@section('description', 'Join the biggest community of data buyers and sellers worldwide. Register now to list data you want to sell or share, or to find the data you need.')
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection

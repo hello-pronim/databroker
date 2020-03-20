@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('additional_css')
-@endsection
+@section('title', 'Publish a data offer | Databroker ')
+@section('description', 'Ready to monetise your data? You’re in the right place! Publishing a data offer on our marketplace is the perfect way to connect with potential buyers.')
 
 @section('content')
 <div class="container-fluid app-wapper data-offer overview">

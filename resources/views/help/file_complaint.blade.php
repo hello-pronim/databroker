@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Problem with a purchase? | Databroker ')
+@section('description', 'Our 30-day warranty means you can buy data with confidence. If there is any problem with a purchase, you can file a complaint within the first 30 days.')
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
