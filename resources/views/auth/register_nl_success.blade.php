@@ -7,7 +7,7 @@
             <div class="col-md-8">
             	<div class="success-msg">
 					<h1 class="text-primary text-center text-bold">You successfully signed up for our NewsBytes.</h1>
-                	<h4>The latest Databroker updates delivered straight in your inbox!</h4>
+                	<h4 class="text-bold">The latest Databroker updates delivered straight in your inbox!</h4>
 				</div>
 			</div>
 		</div>

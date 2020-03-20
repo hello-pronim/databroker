@@ -903,6 +903,8 @@ class DataController extends Controller
         $user = $this->getAuthUser();
         if(!$user) {
            return redirect('/login')->with('target', 'buy this data');
+        }else{
+            return view('data.buy_data');
         }
     }
 
