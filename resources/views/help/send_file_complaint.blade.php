@@ -1,5 +1,7 @@
 @extends('layouts.data')
 
+@section('title', 'File a complaint | Databroker ')
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection
