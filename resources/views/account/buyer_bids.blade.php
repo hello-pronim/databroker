@@ -133,7 +133,7 @@
 		            				</div>
 		            			</div>
 		            			@endif	
-		            		</div>		  
+		            		</div>
 		            			@endforeach
 		            		@endif
 		            	</div>
