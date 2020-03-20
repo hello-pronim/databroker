@@ -220,7 +220,7 @@ $(document).ready(function(){
         window.scrollTo(0, 0); 
     });
     function isUrl(s) {
-       var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+       var regexp = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9\-]+(\.[a-z\-]{2,}){1,3}(#?\/?[a-zA-Z0-9\-#]+)*\/?(\?[a-zA-Z0-9-_\-]+=[a-zA-Z0-9-%\-]+&?)?$/
        return regexp.test(s);
     }
     const serialize_form = form => JSON.stringify(
