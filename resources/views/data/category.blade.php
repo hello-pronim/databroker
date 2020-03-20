@@ -1,7 +1,31 @@
 @extends('layouts.app')
 
-@section('title', 'Buy, sell or share geographics data | Data offers | Databroker ')
-@section('description', 'Find data about geographic locations, physical and human characteristics of places, human-environment interaction, movement of people good and ideas.')
+@if($category == 'Geographics')
+	@section('title', trans('home.geographics_meta_title'))
+	@section('description', trans('home.geographics_meta_desc'))
+@elseif($category == 'Environment')
+	@section('title', trans('home.environment_meta_title'))
+	@section('description', trans('home.environment_meta_desc'))
+@elseif($category == 'Transport')
+	@section('title', trans('home.transport_meta_title'))
+	@section('description', trans('home.transport_meta_desc'))
+@elseif($category == 'People')
+	@section('title', trans('home.people_meta_title'))
+	@section('description', trans('home.people_meta_desc'))
+@elseif($category == 'Agriculture')
+	@section('title', trans('home.agriculture_meta_title'))
+	@section('description', trans('home.agriculture_meta_desc'))
+@elseif($category == 'Energy')
+	@section('title', trans('home.energy_meta_title'))
+	@section('description', trans('home.energy_meta_desc'))
+@elseif($category == 'Economy')
+	@section('title', trans('home.economy_meta_title'))
+	@section('description', trans('home.economy_meta_desc'))
+@elseif($category == 'Supply Chain')
+	@section('title', trans('home.supply_chain_meta_title'))
+	@section('description', trans('home.supply_chain_meta_desc'))
+@endif
+
 
 @section('additional_css')	
 	<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">

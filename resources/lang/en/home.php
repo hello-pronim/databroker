@@ -78,4 +78,21 @@ return [
     'sell_or_share_desc' => 'Connect with a global audience of potential buyers',
     'top_usecase' => 'Top use cases',    
 
+    'geographics_meta_title' => 'Buy, sell or share geographics data | Data offers | Databroker',
+    'geographics_meta_desc' => 'Find data about geographic locations, physical and human characteristics of places, human-environment interaction, movement of people good and ideas.',
+    'environment_meta_title' => 'Buy, sell or share data about the environment | Databroker',
+    'environment_meta_desc' => 'Find data on natural resources, emissions, biodiversity, waste and recycling, hazardous substances, resource productivity, taxes and climate change.',
+    'transport_meta_title' => 'Buy, sell or share transport data | Data offers | Databroker',
+    'transport_meta_desc' => 'Find data about transport of goods and people, traffic, safety and the transport industry in general, including employment, infrastructure and equipment.',
+    'people_meta_title' => 'Buy, sell or share people data | Data offers | Databroker',
+    'people_meta_desc' => 'Find data about population, health, education and training, labour market, income, social inclusion and living conditions, culture, crime and equality.',
+    'agriculture_meta_title' => 'Buy, sell or share data about agriculture | Data offers | Databroker',
+    'agriculture_meta_desc' => 'Find data about economic accounts for agriculture, forestry and fisheries, prices and indices, input and output, organic farming and agri-environmental data.',
+    'energy_meta_title' => 'Buy, sell or share data about energy | Databroker',
+    'energy_meta_desc' => 'Find data about energy balances, stocks and supply, transformation and consumption, energy prices, and energy infrastructure and capacities.',
+    'economy_meta_title' => 'Buy, sell or share economic data | Data offers | Databroker',
+    'economy_meta_desc' => 'Find data about national accounts, government finance and EDP, exchange and interest rates, economic globalisation, digital economy and society, and commerce.',
+    'supply_chain_meta_title' => 'Buy, sell or share supply chain data | Data offers | Databroker',
+    'supply_chain_meta_desc' => 'Find data related to supply chains in the automotive, chemical, electronics, food and beverage, pharmaceutical and retail sectors.',
+
 ];
