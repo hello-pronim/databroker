@@ -9,12 +9,22 @@
     <div class="container">
         <div class="row justify-content-center auth-section">
             <div class="col-md-8" id="register_nl_section">
-                <h1 class="text-primary text-center text-bold">Don't want to miss out on any Databroker updates?</h1>
-                <p class="text-center text-bold fs-20 lh-30"> Now’s a good time to sign up for our newsletter! </p>
+                <h1 class="text-primary text-center text-bold">Sign up for NewsBytes!</h1>
+                <h2 class="text-primary text-center text-bold">The latest updates delivered straight to your inbox!</h2>
+                <p class="para">Our NewsBytes email brings you a whole host of inspiring content – updates about the Databroker marketplace, company announcements, use cases from our data communities, news from the world of data, and more!</p>
                 <br>
                 <form method="POST" action="{{ route('create_nl') }}">
                     @csrf
-                    @if(!$userData)
+                    <label class="pure-material-textfield-outlined">
+                        <textarea name="message" class="form-control input_data user-message @error('message') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="100" autofocus>{{ old('message')}}</textarea>
+                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Message']) }}</div>
+                        @error('message')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </label>
+                    
                     <label class="pure-material-textfield-outlined">
                         <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname') is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
                         <span>{{ trans('contact.first_name') }}</span>
@@ -112,7 +122,7 @@
                     <div class="dropdown-container">
                         <div class="dropdown2 role_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
-                                <select id="role2" name="role2" placeholder="What role do you have?">
+                                <select id="role2" name="role2" placeholder="What kind of role do you have?">
                                     <option></option>
                                     @if(old('role2')=='Business')
                                     <option value="Business" selected>Business</option>
@@ -144,19 +154,8 @@
                             </span>
                         @enderror
                     </label>
-                    @else
-                    <input type="hidden" name="firstname" value="{{$userData->firstname}}">
-                    <input type="hidden" name="lastname" value="{{$userData->lastname}}">
-                    <input type="hidden" name="email" value="{{$userData->email}}">
-                    <input type="hidden" name="companyName" value="{{$userData->companyName}}">
-                    <input type="hidden" name="regionIdx" value="{{$userData->regionIdx}}">
-                    <input type="hidden" name="businessName" value="{{$userData->businessName}}">
-                    <input type="hidden" name="role" value="{{$userData->role}}">
-                    @endif
 
-                    <p class="text-bold fs-20">
-                        We would just like to know what communities you're most interested in, so we can tailor our newsletter ...
-                    </p>
+                    <p class="text-bold fs-20">We’d love to know a little more about your interests.<br/>Which data communities are most relevant for you?</p>
                     <div class="row mt-30">
                         @foreach ($communities as $community)
                         <div class="col-md-4">
@@ -176,8 +175,11 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                    </div>    
-                    <br>                       
+                    </div>  
+                    <br>   
+                    <p class="para">
+                        We’re committed to your privacy. Your details are collected and stored so we can provide you with information about our marketplace and other relevant content. You can unsubscribe or update your details at any time via a link in the emails you’ll receive. By clicking the button below, you consent to us storing and processing the details entered above, and to receiving our updates.
+                    </p>                      
                     
                     <div class="form-group row mb-0">                        
                         <div class="col-md-6">                                
