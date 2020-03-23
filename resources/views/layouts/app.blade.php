@@ -64,7 +64,7 @@
                           <a class="dropdown-item" href="{{ route('about.matchmaking') }}"> {{ trans('home.datamatch') }} </a>
                           <a class="dropdown-item" href="{{ route('about.usecase') }}"> {{ trans('home.usecase') }} </a>
                           <a class="dropdown-item" href="{{ route('help.overview') }}"> {{ trans('home.helpsupport') }} </a>
-                          <a class="dropdown-item" href="javascript:;"> {{ trans('home.news') }} </a>
+                          <a class="dropdown-item" href="{{ route('about.news') }}"> {{ trans('home.news') }} </a>
                           <a class="dropdown-item" href="{{ route('about.media_center') }}"> {{ trans('home.media_center') }} </a>
                           <a class="dropdown-item" href="{{ route('contact')}}"> {{ trans('home.contact_us') }} </a>
                         </div>
