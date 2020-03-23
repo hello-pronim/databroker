@@ -650,6 +650,10 @@
 	.app-partner-items div.app-partner-item{
 		min-height: 136px;
 	}
+	.navbar-nav.left {
+		margin-left: -15px;
+	}
+
 
 }
 
@@ -814,8 +818,14 @@
 	#top-nav-item{
 		margin: auto;
 	}
+	#top-nav-item a{
+		font-size: 15.5px;
+	}
 	#top-nav-item-dropdown{
 		margin: auto;
+	}
+	#top-nav-item-dropdown a{
+		font-size: 14.5px;
 	}
 	#top-nav-right{
 		margin-bottom: 10px;
