@@ -143,6 +143,11 @@
 		display: block;
 		top: 96px;
 		box-shadow: -5px 1px 6px #0000000A;
+		overflow-y: scroll;
+	}
+	#topnav{
+		height: 500px;
+		background-color: white;
 	}
 	#navbarNavDropdown .navbar-title{
 		display: block;
@@ -650,11 +655,6 @@
 	.app-partner-items div.app-partner-item{
 		min-height: 136px;
 	}
-	.navbar-nav.left {
-		margin-left: -15px;
-	}
-
-
 }
 
 @media ( max-width: 576px ){
@@ -865,6 +865,12 @@
 	.navbar-collapse.collapse.show{
 		transform: translate3d(0,0,0);
 	}
+	.navbar-collapse {
+		transition: all .3s cubic-bezier(.685,.0473,.346,1);
+	}
+	#top-nav-item-dropdown{
+		display: none;
+	}
 }
 
 @media (min-width: 992px) and (max-width: 1199px)
@@ -998,5 +1004,11 @@
 	}
 	.navbar-collapse.collapse.show{
 		margin-top: 15px;
+	}
+}
+@media (min-width: 991px)
+{
+	#topnav-more{
+		display: none;
 	}
 }

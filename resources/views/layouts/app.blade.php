@@ -180,6 +180,58 @@
 			          <span class="navbar-toggler-icon"></span>
 			        </button>
   			      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="navbar-title"><span class="fs-20 text-bold">{{ trans('home.more') }}</span></div>
+                <input type="hidden" id="activeCommunity" value="{{ session('curCommunity')?session('curCommunity'):'' }}">
+                <ul class="navbar-nav" id="topnav-more">
+                  <li class="dropdown nav-item">
+                    <a href="{{ route('about.about') }}" class="nav-link">
+                      <span>{{ trans('home.about_databroker') }} </span>
+                      <i class="material-icons">chevron_right</i> 
+                    </a>
+                  </li>
+                  <li class="dropdown nav-item">
+                    <a href="{{ route('about.partners') }}" class="nav-link">
+                      <span>{{ trans('home.partners') }} </span>
+                      <i class="material-icons">chevron_right</i>
+                    </a>
+                  </li>
+                  <li class="dropdown nav-item">
+                    <a href="{{ route('about.matchmaking') }}" class="nav-link">
+                      <span>{{ trans('home.datamatch') }} </span>
+                      <i class="material-icons">chevron_right</i>
+                    </a>
+                  </li>			          
+                  <li class="dropdown nav-item">
+                    <a href="{{ route('about.usecase') }}" class="nav-link">
+                      <span>{{ trans('home.usecase') }} </span>
+                      <i class="material-icons">chevron_right</i>
+                    </a>
+                  </li>
+                  <li class="dropdown nav-item">
+                    <a href="{{ route('help.overview') }}" class="nav-link">
+                      <span>{{ trans('home.helpsupport') }} </span>
+                      <i class="material-icons">chevron_right</i>
+                    </a>
+                  </li>
+                  <li class="dropdown nav-item">
+                    <a href="{{ route('about.news') }}" class="nav-link">
+                      <span>{{ trans('home.news') }} </span>
+                      <i class="material-icons">chevron_right</i>
+                    </a>
+                  </li>
+                  <li class="dropdown nav-item">
+                    <a href="{{ route('about.media_center') }}" class="nav-link">
+                      <span>{{ trans('home.media_center') }} </span>
+                      <i class="material-icons">chevron_right</i>
+                    </a>
+                  </li>
+                  <li class="dropdown nav-item">
+                    <a href="{{ route('contact')}}" class="nav-link">
+                      <span>{{ trans('home.contact_us') }} </span>
+                      <i class="material-icons">chevron_right</i>
+                    </a>
+                  </li>
+                </ul>
                 <div class="navbar-title"><span class="fs-20 text-bold">{{ trans('home.communities') }}</span></div>
                 <input type="hidden" id="activeCommunity" value="{{ session('curCommunity')?session('curCommunity'):'' }}">
   			        <ul class="navbar-nav" id="topnav">
