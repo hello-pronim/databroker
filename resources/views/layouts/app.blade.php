@@ -214,7 +214,7 @@
                   </li>
                   <li class="dropdown nav-item">
                     <a href="{{ route('about.news') }}" class="nav-link">
-                      <span>{{ trans('home.news') }} </span>
+                      <span>Updates </span>
                       <i class="material-icons">chevron_right</i>
                     </a>
                   </li>
