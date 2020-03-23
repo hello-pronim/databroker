@@ -845,6 +845,12 @@
 	.section_splitor{
 		background-attachment: initial;
 	}
+	#auth-top-nav{
+		margin: auto;
+	}
+	#account_dropdown{
+		font-size: 15px;
+	}
 }
 @media (min-width: 768px) {
 	.cookie-accept .container .row .mgr80{
