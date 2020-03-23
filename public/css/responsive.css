@@ -847,6 +847,7 @@
 	}
 	#auth-top-nav{
 		margin: auto;
+		padding-left: 0px;
 	}
 	#account_dropdown{
 		font-size: 15px;
