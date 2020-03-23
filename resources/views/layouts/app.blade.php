@@ -181,7 +181,6 @@
 			        </button>
   			      <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-title"><span class="fs-20 text-bold">{{ trans('home.more') }}</span></div>
-                <input type="hidden" id="activeCommunity" value="{{ session('curCommunity')?session('curCommunity'):'' }}">
                 <ul class="navbar-nav" id="topnav-more">
                   <li class="dropdown nav-item">
                     <a href="{{ route('about.about') }}" class="nav-link">
