@@ -445,7 +445,7 @@
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>
-<!--     <script src="{{ asset('js/material.min.js') }}"></script> -->
+    <script src="{{ asset('js/material.min.js') }}"></script>
     
     @yield('additional_javascript')
        
