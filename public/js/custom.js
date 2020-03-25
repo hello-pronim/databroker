@@ -350,7 +350,7 @@ $(document).ready(function(){
                             '<div class="card card-profile card-plain mb-0">' +
                                 '<div class="card-header">' +
                                     '<a href="/data/'+elem.offerIdx+'">' +
-                                        '<img class="img" src="/uploads/offer/'+elem.offerImage+'" />'+
+                                        '<img class="img" src="/'+elem.offerImage+'" />'+
                                     '</a>'+
                                 '</div>'+
                                 '<div class="card-body text-left">'+

@@ -163,8 +163,11 @@ class DataController extends Controller
         $usecase = UseCase::where('offerIdx', $offerId)->first();
 
         //$offer_path = URL::to('/uploads/offer');
-        $offer_path = URL::to('/');
+        
         $offer_images = [$offer['offerImage']];
+        if($offer['offerImage']){
+            $offer_path = URL::to('/');    
+        }
 
         $offersample_path = URL::to('/uploads/offersample');
      
@@ -174,6 +177,7 @@ class DataController extends Controller
             ->orderby('sampleIdx')
             ->pluck('sampleFileName')
             ->toArray();
+            
         $sample_images = OfferSample::where('offerIdx', $offerIdx)
             ->where('sampleType', 'like', 'image-%')
             ->where('deleted', 0)
