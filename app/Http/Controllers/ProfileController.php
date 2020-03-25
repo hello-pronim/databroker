@@ -134,10 +134,10 @@ class ProfileController extends Controller
     public function update_company(Request $request){
         $fields = [
             'companyName' => ['required', 'string', 'max:255'],
-            'regionIdx' => ['required', 'integer'],            
-            'companyURL' => ['required', 'string', 'max:255', "regex: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/"],
-            'companyVAT'=>['required', 'string', 'max:255']            
-        ];    
+            'regionIdx' => ['required', 'integer'],
+            'companyURL' => ['required', 'string', 'max:255', "regex: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9\-]+(\.[a-z\-]{2,}){1,3}(#?\/?[a-zA-Z0-9\-#]+)*\/?(\?[a-zA-Z0-9-_\-]+=[a-zA-Z0-9-%\-]+&?)?$/"],
+            'companyVAT'=>['required', 'string', 'max:255']
+        ];
         $messages = [
             'companyName.required'=>'The company name is required.',
             'regionIdx.required'=>'The region is required.',
