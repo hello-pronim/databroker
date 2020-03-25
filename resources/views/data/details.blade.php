@@ -62,7 +62,7 @@
 				        	@if( $offer['offerDescription'] )
 				            <div class="link-box" id="description">
 				            	<h2>{{ trans('pages.description') }}</h2>
-				                <p>{{ $offer['offerDescription'] }}</p>
+				                <p>{!! nl2br($offer['offerDescription']) !!}</p>
 				                <div class="region">
 				                	<label>{{ trans('pages.region') }}: </label> 
 				                	<span>
@@ -77,7 +77,7 @@
 				            <div class="link-box" id="use_cases">
 				                <h2>{{ trans('pages.use_case') }}</h2>
 				                @if( $offer['usecase'] )
-				                <p>{{ $offer['usecase']->useCaseContent }}</p>
+				                <p>{!! nl2br($offer['usecase']->useCaseContent) !!}</p>
 				                @endif
 				            </div>
 				            @endif
