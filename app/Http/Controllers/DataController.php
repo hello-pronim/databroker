@@ -1004,6 +1004,37 @@ class DataController extends Controller
                             "source" => $request->input('stripeToken'), // obtained with Stripe.js
                             "description" => "Databroker Data Fee" 
                     ) );
+
+                    $buyer = BillingInfo::where('userIdx', $user->userIdx)->get()->first();
+                    $seller = OfferProduct::with('region')
+                                    ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                    ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                    ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                    ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                    ->where('productIdx', $request->productIdx)
+                                    ->get()
+                                    ->first();
+                    $product = OfferProduct::where('productIdx', $request->productIdx)->get()->first();
+
+                    $data['seller'] = $seller;
+                    $data['buyer'] = $buyer;
+                    $data['product'] = $product;
+
+                    $this->sendEmail("buydata", [
+                        'from'=>'cg@jts.ec', 
+                        'to'=>$buyer['email'], 
+                        'subject'=>'You’ve successfully purchased a data product', 
+                        'name'=>'Databroker',
+                        'data'=>$data
+                    ]);  
+                    $this->sendEmail("selldata", [
+                        'from'=>'cg@jts.ec', 
+                        'to'=>$seller['email'], 
+                        'subject'=>'You’ve sold a data product', 
+                        'name'=>'Databroker',
+                        'data'=>$data
+                    ]);
+
                     return redirect(route('data.pay_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
                 } catch ( \Exception $e ) {
                     //Session::flash ( 'fail-message', "Error! Please Try again." );
