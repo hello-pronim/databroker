@@ -99,13 +99,14 @@
                                 
                             <!-- </a> -->
                             <ul class="subsider_ul">
+                                <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases') }}" class="m-menu__link">Geographics</a></li>
                                 <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases') }}" class="m-menu__link">Transport</a></li>
-                                <li class="m-menu__sidebar"  aria-haspopup="true">People</li>
-                                <li class="m-menu__sidebar"  aria-haspopup="true">Environment</li>
-                                <li class="m-menu__sidebar"  aria-haspopup="true">Agriculture</li>
-                                <li class="m-menu__sidebar"  aria-haspopup="true">Energy</li>
-                                <li class="m-menu__sidebar"  aria-haspopup="true">Economy</li>
-                                <li class="m-menu__sidebar"  aria-haspopup="true">Supply Chain</li>
+                                <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases') }}" class="m-menu__link">People</a></li>
+                                <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases') }}" class="m-menu__link">Environment</a></li>
+                                <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases') }}" class="m-menu__link">Agriculture</a></li>
+                                <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases') }}" class="m-menu__link">Energy</a></li>
+                                <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases') }}" class="m-menu__link">Economy</a></li>
+                                <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases') }}" class="m-menu__link">Supply Chain</a></li>
                             </ul>
                         </li>
                         <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
