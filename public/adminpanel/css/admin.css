@@ -40,3 +40,10 @@
 .subsider_ul{
     margin-left: 40px;
 }
+.m-menu__link{
+    color: white;
+}
+.m-menu__link:hover{
+    color: aquamarine;
+    text-decoration: none;
+}
