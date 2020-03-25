@@ -74,7 +74,7 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 	font-size: 21px !important;
 }
 .fs-24{
-	font-size: 21px !important;
+	font-size: 24px !important;
 }
 .fs-30{
 	font-size: 30px !important;
@@ -148,6 +148,9 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 }
 .ml-30{
 	margin-left: 30px;
+}
+.mr-10{
+	margin-right: 10px;
 }
 .mr-15{
 	margin-right: 15px;
@@ -511,6 +514,9 @@ i.rotated:before{
 .number-counter span{
 	vertical-align: middle;
 	display: table-cell;
+}
+.error_notice.active{
+	display: block!important;
 }
 .error_notice:before{
 	margin-right: 5px;
@@ -1605,6 +1611,7 @@ a.dropdown-toggle:after{
 .invalid-feedback{
 	display: block;
 	font-size: 12.8px;
+	line-height: 1.5;
 	font-family:"DM Sans";
 	font-weight: bold;
 	color: #f44336!important;

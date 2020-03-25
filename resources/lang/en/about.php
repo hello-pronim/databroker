@@ -48,5 +48,6 @@ return [
     'subcontractors'=>'Subcontractors',
     'monitoring_of_the_conformity_of_databroker'=>'Monitoring of the conformity of Databroker',
     'transfer_outside_the_eea_and_third_parties'=>'Transfer outside the eea and third parties',
-    'end_of_service_delivery'=>'End of service delivery'
+    'end_of_service_delivery'=>'End of service delivery',
+    'updates'=>'Updates'
 ];

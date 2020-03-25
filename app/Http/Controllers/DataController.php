@@ -23,6 +23,7 @@ use App\Models\ProductCountry;
 use App\Models\RegionProduct;
 use App\Models\UseCase;
 use App\Models\Bid;
+use App\Models\BillingInfo;
 use App\User;
 use App\Models\Business;
 
@@ -910,7 +911,83 @@ class DataController extends Controller
         if(!$user) {
            return redirect('/login')->with('target', 'buy this data');
         }else{
-            return view('data.buy_data');
+            $product = OfferProduct::with('region')
+                                    ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                    ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                    ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                    ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                    ->where('productIdx', $request->pid)
+                                    ->get()
+                                    ->first();
+            $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->join('billingInfo', 'billingInfo.userIdx', '=', 'users.userIdx')
+                        ->where('users.userIdx', $user->userIdx)
+                        ->get()
+                        ->first();
+            $countries = Region::where('regionType', 'country')->get(); 
+            $publishable_key = env('STRIPE_PUBLIC_KEY');
+            $data = array('product', 'buyer', 'countries', 'publishable_key');
+            return view('data.buy_data', compact($data));
+        }
+    }
+
+    public function pay_data(Request $request){
+        $validator = Validator::make($request->all(),[
+            'firstname' => 'required|min:2',
+            'lastname' => 'required|min:2',
+            'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'companyName' => 'required|min:2',
+            'companyVAT' => 'required|min:2',
+            'address'=>'required|min:2',
+            'city'=>'required|min:2',
+            'postal_code'=>'required|min:2',
+            'regionIdx' => 'required',
+            'card_number'=> 'required|numeric|min:12',
+            'exp_month'=>'required',
+            'exp_year'=>'required',
+            'cvc'=>'required|numeric|min:4'
+        ],[
+            'companyName.required'=>'The company name is required',
+            'companyVAT.required'=>'The company VAT number is required',
+            'address.required'=>'The address is required',
+            'city'=>'The city is required',
+            'postal_code.required'=>'The postal code is required.',
+            'regionIdx.required'=>'The country field is required.',
+            'card_number.required'=>'The card number is required.',
+            'card_number.numeric'=>'The card number must be numeric.',
+            'card_number.min'=>'The card number is invalid.',
+            'exp_month'=>'The expiry month is required.',
+            'exp_year'=>'The expiry year is required.',
+            'cvc.required'=>'The CVC is required.',
+            'cvc.numeric'=>'The CVC must be numeric.',
+            'cvc.min'=>'The CVC is invalid.'
+        ]);
+        echo $request->productPrice * 100;
+        exit;
+        if ($validator->fails()) {
+            return response()->json(array( "success" => false, 'result' => $validator->errors() ));
+        }else{
+            if(!$request->stripeToken)
+                return response()->json(array( "success" => true ));
+            else{
+                \Stripe\Stripe::setApiKey ( env('STRIPE_SECRET_KEY') );
+                try {
+                    \Stripe\Charge::create ( array (
+                            "amount" => $request->productPrice * 100,
+                            "currency" => "usd",
+                            "source" => $request->input('stripeToken'), // obtained with Stripe.js
+                            "description" => "Test payment." 
+                    ) );
+                    echo "success";
+                    //Session::flash ( 'success-message', 'Payment done successfully !' );
+                    //return Redirect::back ();
+                } catch ( \Exception $e ) {
+                    var_dump($e->getMessage());
+                    exit;
+                    //Session::flash ( 'fail-message', "Error! Please Try again." );
+                   // return Redirect::back ();
+                }
+            }
         }
     }
 

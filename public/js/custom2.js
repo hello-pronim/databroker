@@ -1,34 +1,41 @@
 $(document).ready(function() {
     if ($('.adv-combo-wrapper select').length > 0 && $.fn.select2) {
-        $('.adv-combo-wrapper select').select2({
-        	placeholder: 'Please Select',
-        	width: '100%',
-        });
+        // $('.adv-combo-wrapper select').select2({
+        // 	placeholder: 'Please Select',
+        // 	width: '100%',
+        // });
         
-        $country_list = $('.country_list .adv-combo-wrapper select');
+        // $country_list = $('.country_list .adv-combo-wrapper select');
         
-        $country_list.select2({
-        	placeholder: $country_list.attr('placeholder') || 'Please Select',
-        	width: '100%',
-        });
+        // $country_list.select2({
+        // 	placeholder: $country_list.attr('placeholder') || 'Please Select',
+        // 	width: '100%',
+        // });
 
-        $business_list = $('.business_list .adv-combo-wrapper select');
-        $business_list.select2({
-            placeholder: $business_list.attr('placeholder') || 'Please select',
-            width: '100%'
-        });
+        // $business_list = $('.business_list .adv-combo-wrapper select');
+        // $business_list.select2({
+        //     placeholder: $business_list.attr('placeholder') || 'Please select',
+        //     width: '100%'
+        // });
 
-        $role_list = $('.role_list .adv-combo-wrapper select');
-        $role_list.select2({
-            placeholder: $role_list.attr('placeholder') || 'Please select',
-            width: '100%'
-        });
+        // $role_list = $('.role_list .adv-combo-wrapper select');
+        // $role_list.select2({
+        //     placeholder: $role_list.attr('placeholder') || 'Please select',
+        //     width: '100%'
+        // });
 
-        $region_list = $('.region_list .adv-combo-wrapper select');
-        $region_list.select2({
-            placeholder: $region_list.attr('placeholder') || 'Please select',
-            width: '100%'
-        });
+        // $region_list = $('.region_list .adv-combo-wrapper select');
+        // $region_list.select2({
+        //     placeholder: $region_list.attr('placeholder') || 'Please select',
+        //     width: '100%'
+        // });
+        var selectObjs = $('.adv-combo-wrapper select');
+        selectObjs.each(function(index, elem){
+            $(elem).select2({
+                placeholder: $(elem).attr('placeholder') || 'Please select',
+                width: '100%',
+            });
+        })
 
         $('select.no-search').select2({
         	 minimumResultsForSearch: -1
