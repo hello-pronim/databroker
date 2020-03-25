@@ -47,7 +47,7 @@ class AdminController extends Controller
 
     public function usecases()
     {   
-        $boards = Article::with('community')->orderBy('published', 'DESC')->get();
+        $boards = Article::with('community')->orderBy('created_at', 'DESC')->get();
         $data = array('boards');
         return view('admin.usecases', compact($data));
     }
@@ -90,6 +90,7 @@ class AdminController extends Controller
             $getfiles = $request->file('uploadedFile');
             $fileName = $articleIdx.'.jpg';  
             $getfiles->move(public_path('uploads/usecases'), $fileName);
+            Article::find($articleIdx)->update(['image' => $fileName]);
             return "true";
     }
 }

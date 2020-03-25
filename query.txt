@@ -290,3 +290,7 @@ ALTER TABLE `databroker_new`.`articles` ADD COLUMN `communityIdx` INT(11) NULL A
 
 #2020-03-20
 ALTER TABLE `databroker_new`.`subscriptions` ADD COLUMN `message` VARCHAR(255) NULL AFTER `role`; 
+
+#2020-03-24
+ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_title` VARCHAR(255) NULL AFTER `image`;
+ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_desc` LONGTEXT NULL AFTER `meta_title`;

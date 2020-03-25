@@ -16,7 +16,13 @@ $(function(){
 	        articleContent: {
 	            required: true,
 	            minlength: 20 
-	        }
+			},
+			meta_title: {
+				required: true,
+			},
+			meta_desc: {
+				required: true,
+			}
 	    },
 	    //display error alert on form submit  
 	    invalidHandler: function(event, validator) {     
