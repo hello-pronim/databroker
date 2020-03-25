@@ -162,10 +162,12 @@ class DataController extends Controller
 
         $usecase = UseCase::where('offerIdx', $offerId)->first();
 
-        $offer_path = URL::to('/uploads/offer');
+        //$offer_path = URL::to('/uploads/offer');
+        $offer_path = URL::to('/');
         $offer_images = [$offer['offerImage']];
 
         $offersample_path = URL::to('/uploads/offersample');
+     
         $sample_files = OfferSample::where('offerIdx', $offerIdx)
             ->where('sampleType', 'like', 'file-%')
             ->where('deleted', 0)
@@ -399,7 +401,7 @@ class DataController extends Controller
             if ($offerimagefile != null) {
                 $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
                 $ret = $offerimagefile->move($offerImage_path, $fileName);
-                $offer_data['offerImage'] = $fileName;
+                $offer_data['offerImage'] =  'uploads/offer/'. $fileName;
             }
 
             Offer::find($id)->update($offer_data);
