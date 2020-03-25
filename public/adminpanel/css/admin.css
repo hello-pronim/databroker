@@ -29,3 +29,14 @@
 .note-editable{
     padding-top: 30px !important;
 }
+.m-menu__sidebar{
+    color: white;
+    list-style: none;
+    font-size: 18px;
+}
+.m-menu__sidebar:hover{
+    color: aquamarine;
+}
+.subsider_ul{
+    margin-left: 40px;
+}
