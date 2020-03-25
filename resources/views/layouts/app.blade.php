@@ -64,7 +64,7 @@
                           <a class="dropdown-item" href="{{ route('about.matchmaking') }}"> {{ trans('home.datamatch') }} </a>
                           <a class="dropdown-item" href="{{ route('about.usecase') }}"> {{ trans('home.usecase') }} </a>
                           <a class="dropdown-item" href="{{ route('help.overview') }}"> {{ trans('home.helpsupport') }} </a>
-                          <a class="dropdown-item" href="{{ route('about.news') }}"> {{ trans('home.news') }} </a>
+                          <a class="dropdown-item" href="{{ route('about.news') }}"> {{ trans('home.updates') }} </a>
                           <a class="dropdown-item" href="{{ route('about.media_center') }}"> {{ trans('home.media_center') }} </a>
                           <a class="dropdown-item" href="{{ route('contact')}}"> {{ trans('home.contact_us') }} </a>
                         </div>
@@ -214,7 +214,7 @@
                   </li>
                   <li class="dropdown nav-item">
                     <a href="{{ route('about.news') }}" class="nav-link">
-                      <span>Updates </span>
+                      <span>{{ trans('home.updates') }} </span>
                       <i class="material-icons">chevron_right</i>
                     </a>
                   </li>
@@ -496,7 +496,7 @@
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/plugins/jquery.cookie.js') }}"></script>
-    <script src="{{ asset('js/material.min.js') }}"></script>
+    <!-- <script src="{{ asset('js/material.min.js') }}"></script> -->
     
     @yield('additional_javascript')
        

@@ -57,6 +57,16 @@
 						</div>
 					</div>
 					<div class="form-group m-form__group row">
+						<div class="col-md-4 m-form__group-sub">
+							<label class="form-control-label">Meta Title</label>
+							<input type="text" class="form-control m-input" name="meta_title" placeholder="Enter article title" value="">
+						</div>
+						<div class="col-md-8 m-form__group-sub">
+							<label class="form-control-label">Meta Description</label>
+							<input type="text" class="form-control m-input" name="meta_desc" placeholder="Enter article title" value="">
+						</div>
+					</div>
+					<div class="form-group m-form__group row">
 						<div class="col-md-12 m-form__group-sub">
 							<label for="exampleTextarea">Article Content</label>
 							<textarea class="form-control m-input summernote" rows="5" name="articleContent" placeholder="Enter article content"></textarea>

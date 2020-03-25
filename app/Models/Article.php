@@ -22,6 +22,8 @@ class Article extends Model
         'articleTitle',
         'articleContent',
         'image',
+        'meta_title',
+        'meta_desc',
         'author',
         'link',
         'published',

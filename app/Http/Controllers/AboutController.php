@@ -19,6 +19,7 @@ use App\Models\OfferCountry;
 use App\Models\UseCase;
 use App\Models\Contact;
 use App\Models\Subscription;
+use App\Models\Article;
 use Response;
 use Newsletter;
 
@@ -227,82 +228,85 @@ class AboutController extends Controller
      */
     public function usecase(Request $request)
     {        
-        $usecases = array( 
-            array(
-                'id' => 1,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 2,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 3,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 4,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'People.png',
-            ),
-            array(
-                'id' => 5,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Energy.png',
-            ),
-            array(
-                'id' => 6,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Environment.png',
-            ),
-            array(
-                'id' => 7,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 8,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 9,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'photo_1532974297617_c0f05fe48b.png',
-            ),
-        );
-        $usecases2 = array( 
-            array(
-                'id' => 10,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 11,
-                'title' => 'Achieve your full potential with retail location planning', 
-                'category' => 'People',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 12,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Agriculture',
-                'image' => 'Agriculture.png',
-            ),
-        );
+        $usecases = Article::with('community')->orderby('created_at', 'desc')->limit(9)->get();
+        // dd($usecases);
+        // $usecases = array( 
+        //     array(
+        //         'id' => 1,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'traffic_80.png',
+        //     ),
+        //     array(
+        //         'id' => 2,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'shop_80.png',
+        //     ),
+        //     array(
+        //         'id' => 3,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'Agriculture.png',
+        //     ),
+        //     array(
+        //         'id' => 4,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'People.png',
+        //     ),
+        //     array(
+        //         'id' => 5,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'Energy.png',
+        //     ),
+        //     array(
+        //         'id' => 6,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'Environment.png',
+        //     ),
+        //     array(
+        //         'id' => 7,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'traffic_80.png',
+        //     ),
+        //     array(
+        //         'id' => 8,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'Agriculture.png',
+        //     ),
+        //     array(
+        //         'id' => 9,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'photo_1532974297617_c0f05fe48b.png',
+        //     ),
+        // );
+        $usecases2 = Article::with('community')->orderby('created_at', 'desc')->limit(3)->get();
+        // $usecases2 = array( 
+        //     array(
+        //         'id' => 10,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'traffic_80.png',
+        //     ),
+        //     array(
+        //         'id' => 11,
+        //         'title' => 'Achieve your full potential with retail location planning', 
+        //         'category' => 'People',
+        //         'image' => 'shop_80.png',
+        //     ),
+        //     array(
+        //         'id' => 12,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Agriculture',
+        //         'image' => 'Agriculture.png',
+        //     ),
+        // );
         $communities = Community::all();
 
         $data = array( 'usecases', 'usecases2', 'communities' );
@@ -395,90 +399,94 @@ class AboutController extends Controller
 
     public function usecase_detail($id){
 
-        $usecases = array( 
-            array(
-                'id' => 1,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 2,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 3,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 4,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'People.png',
-            ),
-            array(
-                'id' => 5,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Energy.png',
-            ),
-            array(
-                'id' => 6,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Environment.png',
-            ),
-            array(
-                'id' => 7,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 8,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 9,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'photo_1532974297617_c0f05fe48b.png',
-            ),
-        );
+        $usecase = Article::where('articleIdx', $id)->with('community')->get();
+        // dd($usecase);
+        // $usecases = array( 
+        //     array(
+        //         'id' => 1,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'traffic_80.png',
+        //     ),
+        //     array(
+        //         'id' => 2,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'shop_80.png',
+        //     ),
+        //     array(
+        //         'id' => 3,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'Agriculture.png',
+        //     ),
+        //     array(
+        //         'id' => 4,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'People.png',
+        //     ),
+        //     array(
+        //         'id' => 5,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'Energy.png',
+        //     ),
+        //     array(
+        //         'id' => 6,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'Environment.png',
+        //     ),
+        //     array(
+        //         'id' => 7,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'traffic_80.png',
+        //     ),
+        //     array(
+        //         'id' => 8,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'Agriculture.png',
+        //     ),
+        //     array(
+        //         'id' => 9,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'photo_1532974297617_c0f05fe48b.png',
+        //     ),
+        // );
 
-        $usecases2 = array( 
-            array(
-                'id' => 10,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 11,
-                'title' => 'Achieve your full potential with retail location planning', 
-                'category' => 'People',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 12,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Agriculture',
-                'image' => 'Agriculture.png',
-            ),
-        );
+        // $usecases2 = array( 
+        //     array(
+        //         'id' => 10,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Transport',
+        //         'image' => 'traffic_80.png',
+        //     ),
+        //     array(
+        //         'id' => 11,
+        //         'title' => 'Achieve your full potential with retail location planning', 
+        //         'category' => 'People',
+        //         'image' => 'shop_80.png',
+        //     ),
+        //     array(
+        //         'id' => 12,
+        //         'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
+        //         'category' => 'Agriculture',
+        //         'image' => 'Agriculture.png',
+        //     ),
+        // );
 
-        if($id < 10) {
-             $usecase = $usecases[($id-1)];
-        }
-        else {
-            $usecase = $usecases2[($id-10)];
-        }
+        $usecases2 = Article::with('community')->orderby('created_at', 'desc')->limit(3)->get();
+
+        // if($id < 10) {
+        //      $usecase = $usecases[($id-1)];
+        // }
+        // else {
+        //     $usecase = $usecases2[($id-10)];
+        // }
 
         $data = array('usecase', 'usecases2');
 
