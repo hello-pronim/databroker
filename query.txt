@@ -318,3 +318,7 @@ CREATE TABLE IF NOT EXISTS `databroker_new`.`billingInfo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+#2020-03-25
+ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_title` VARCHAR(255) NULL AFTER `role`;
+ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_desc` LONGTEXT NULL AFTER `meta_title`;
