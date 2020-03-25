@@ -93,4 +93,10 @@ class AdminController extends Controller
             Article::find($articleIdx)->update(['image' => $fileName]);
             return "true";
     }
+
+    public function updates()
+    {   
+        return view('admin.updates');
+    }
+
 }

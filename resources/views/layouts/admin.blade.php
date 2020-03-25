@@ -97,7 +97,7 @@
                             </a>
                         </li>
                         <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
-                            <a href="{{ route('admin.usecases') }}" class="m-menu__link" id="usecase-sidebar">
+                            <a href="{{ route('admin.updates') }}" class="m-menu__link" id="usecase-sidebar">
                                 <i class="m-menu__link-icon"></i>
                                         Updates
                                 <i class="m-menu__ver-arrow la la-angle-right"></i>
