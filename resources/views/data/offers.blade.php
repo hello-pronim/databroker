@@ -225,7 +225,7 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.files') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>						
 						</div>
 						<div class="fileupload fileupload-file">                            
-							@if (count($sample_files)>0)
+							@if (isset($sample_files) && count($sample_files)>0)
 	                        <input type="file" name="offersample_files" accept='*/*' multiple filelist  title="SELECT FILE" remotefile="{{ json_encode($sample_files) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="file">
 	                        @else
 	                        <input type="file" name="offersample_files" accept='*/*' multiple filelist title="SELECT FILE">
@@ -259,7 +259,7 @@
 							<div id="Our_Most_Valuable_Fe_ra" class="h4_intro">{{ trans('pages.images') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.offer_sample_file_tooltip') }}">help</i></div>
 						</div>
 						<div class="fileupload">                 
-							@if (count($sample_images)>0)
+							@if (isset($sample_images) && count($sample_images)>0)
 	                         <input type="file" name="offersample_images" accept='image/*' multiple remotefile="{{ json_encode($sample_images) ?? '' }}" remoteroot="{{ $offersample_path ?? ''}}" remotefiletype="image" title="SELECT IMAGE" fileType="images">
 	                        @else
 	                        <input type="file" name="offersample_images" accept='image/*' title="SELECT IMAGE" fileType="images" multiple>
