@@ -573,10 +573,12 @@ $(document).ready(function(){
     $('#buy-data').submit(function(e){
         e.preventDefault();
         var form = $(this);
+        var id=$('#offerIdx').val();
+        var pid=$('#productIdx').val();
         $('.is-invalid').removeClass('is-invalid');
         $('.invalid-feedback strong').html("");
         $.ajax({
-            url: '/data/buy/71/32',
+            url: '/data/buy/'+id+'/'+pid,
             method: 'post',
             data: $(this).serialize(),
             success: function(response){

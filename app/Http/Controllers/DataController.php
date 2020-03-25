@@ -920,10 +920,22 @@ class DataController extends Controller
                                     ->get()
                                     ->first();
             $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                        ->join('billingInfo', 'billingInfo.userIdx', '=', 'users.userIdx')
                         ->where('users.userIdx', $user->userIdx)
                         ->get()
                         ->first();
+            $billingInfo = BillingInfo::where('userIdx', $user->userIdx)->get()->first();
+            if($billingInfo){
+                $buyer['firstname'] = $billingInfo['firstname'];
+                $buyer['lastname'] = $billingInfo['lastname'];
+                $buyer['email'] = $billingInfo['email'];
+                $buyer['companyName'] = $billingInfo['companyName'];
+                $buyer['companyVAT'] = $billingInfo['companyVAT'];
+                $buyer['address'] = $billingInfo['address'];
+                $buyer['city'] = $billingInfo['city'];
+                $buyer['postal_code'] = $billingInfo['postal_code'];
+                if($billingInfo['state']) $buyer['state'] = $billingInfo['state'];
+                $buyer['regionIdx'] = $billingInfo['regionIdx'];
+            }
             $countries = Region::where('regionType', 'country')->get(); 
             $publishable_key = env('STRIPE_PUBLIC_KEY');
             $data = array('product', 'buyer', 'countries', 'publishable_key');
@@ -962,11 +974,25 @@ class DataController extends Controller
             'cvc.numeric'=>'The CVC must be numeric.',
             'cvc.min'=>'The CVC is invalid.'
         ]);
-        echo $request->productPrice * 100;
-        exit;
         if ($validator->fails()) {
             return response()->json(array( "success" => false, 'result' => $validator->errors() ));
         }else{
+            $user = $this->getAuthUser();
+            $billingData['userIdx'] = $user->userIdx;
+            $billingData['firstname'] = $request->firstname;
+            $billingData['lastname'] = $request->lastname;
+            $billingData['email'] = $request->email;
+            $billingData['companyName'] = $request->companyName;
+            $billingData['companyVAT'] = $request->companyVAT;
+            $billingData['address'] = $request->address;
+            $billingData['city'] = $request->city;
+            $billingData['postal_code'] = $request->postal_code;
+            if($request->state) $billingData['state'] = $request->state;
+            $billingData['regionIdx'] = $request->regionIdx;
+
+            $billingObj = BillingInfo::where('userIdx', $user->userIdx)->get()->first();
+            if(!$billingObj) $billingObj = BillingInfo::create($billingData);
+            else BillingInfo::where('userIdx', $user->userIdx)->update($billingData);
             if(!$request->stripeToken)
                 return response()->json(array( "success" => true ));
             else{
@@ -974,21 +1000,30 @@ class DataController extends Controller
                 try {
                     \Stripe\Charge::create ( array (
                             "amount" => $request->productPrice * 100,
-                            "currency" => "usd",
+                            "currency" => "eur",
                             "source" => $request->input('stripeToken'), // obtained with Stripe.js
-                            "description" => "Test payment." 
+                            "description" => "Databroker Data Fee" 
                     ) );
-                    echo "success";
-                    //Session::flash ( 'success-message', 'Payment done successfully !' );
-                    //return Redirect::back ();
+                    return redirect(route('data.pay_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
                 } catch ( \Exception $e ) {
-                    var_dump($e->getMessage());
-                    exit;
                     //Session::flash ( 'fail-message', "Error! Please Try again." );
                    // return Redirect::back ();
                 }
             }
         }
+    }
+
+    public function pay_success(Request $request){
+        $product = OfferProduct::with('region')
+                                ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                ->where('productIdx', $request->pid)
+                                ->get(["offerProducts.*", "offerProducts.created_at as createdAt", "companies.companyName"])
+                                ->first();
+        $data = array('product');
+        return view('data.pay_success', compact($data));
     }
 
     public function bid(Request $request){

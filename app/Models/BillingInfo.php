@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class BillingInfo extends Model
 {
     //
+    protected $table = 'billingInfo';
     protected $primaryKey = 'billingInfoIdx';
 
     protected $fillable = [

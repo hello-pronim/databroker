@@ -56,4 +56,10 @@ return [
     'pay'=>'Pay',
     'paypal'=>'Paypal',
     'credit_card'=>'Credit card',
+    'your_payment_success'=>'Your payment was successful!',
+    'ready_to_use'=>'You are now ready to use the data.',
+    'from'=>'From',
+    'download_file'=>'Download file',
+    'api_key'=>'API key',
+    'configure_now'=>'Configure now'
 ];
