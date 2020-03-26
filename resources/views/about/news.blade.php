@@ -15,8 +15,8 @@
         <div class="app-section app-reveal-section align-items-center usecases">
             <div class="blog-header row">                
                 <div class="col-md-8">
-                    <h1 class="h1-small">Get inspired by real-life news for data</h1>
-                    <p class="fs-18">Looking for inspiration for how data can help supercharge your business? Browse our news to discover practical and innovative ways that data can solve real-life challenges, lead to better decision-making and drive more strategic business moves.</p>
+                    <h1 class="h1-small">Get inspired by real-life updates for data</h1>
+                    <p class="fs-18">Looking for inspiration for how data can help supercharge your business? Browse our updates to discover practical and innovative ways that data can solve real-life challenges, lead to better decision-making and drive more strategic business moves.</p>
                 </div>                
             </div>          
             <div class="blog-content">
@@ -62,7 +62,7 @@
         <div class="section_splitor_gray"></div>
         <div class="bg-pattern1-both flex-center flex-vertical">
             <div class="divider-green mgb30"></div>
-            <div class="h2">Find out about new news</div>
+            <div class="h2">Find out about new updates</div>
             <div class="para mgb40">Sign up for our NewsBytes!</div>
             <a href="{{route('register_nl')}}"><button type="button" class="customize-btn button mgt15">SIGN UP</button></a>
         </div>
