@@ -325,3 +325,5 @@ DEFAULT CHARACTER SET = utf8;
 #2020-03-25
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_title` VARCHAR(255) NULL AFTER `image`;
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_desc` LONGTEXT NULL AFTER `meta_title`;
+#2020-03-26
+ALTER TABLE `databroker_new`.`subscriptions` DROP COLUMN `message`;
