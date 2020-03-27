@@ -291,6 +291,9 @@ ALTER TABLE `databroker_new`.`articles` ADD COLUMN `communityIdx` INT(11) NULL A
 #2020-03-20
 ALTER TABLE `databroker_new`.`subscriptions` ADD COLUMN `message` VARCHAR(255) NULL AFTER `role`; 
 
+#2020-03-24
+ALTER TABLE `databroker_new`.`billinginfo` CHANGE `users_userIdx` `userIdx` INT(11) NOT NULL;
+
 #2020-03-25
 ALTER TABLE `providers` CHANGE `companyLogo` `companyLogo` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL; 
 
@@ -322,3 +325,5 @@ DEFAULT CHARACTER SET = utf8;
 #2020-03-25
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_title` VARCHAR(255) NULL AFTER `image`;
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_desc` LONGTEXT NULL AFTER `meta_title`;
+#2020-03-26
+ALTER TABLE `databroker_new`.`subscriptions` DROP COLUMN `message`;

@@ -43,4 +43,14 @@ class HomeController extends Controller
                 $mail->subject($subject);
         });
     }
+    public function test(){
+        $this->sendEmail("test", [
+            'from'=>'cg@jts.ec', 
+            'to'=>'pe@jts.ec', 
+            'subject'=>'This is email test', 
+            'name'=>'Databroker'
+        ]); 
+        echo "success";
+        exit;
+    }
 }

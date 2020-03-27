@@ -175,6 +175,8 @@ $(document).ready(function(){
             elem_name = elem_name.replace('[]','');
             if( $(elem).val() === "" && $(elem).attr('remotefile') === undefined){
                 cur_step.find('.error_notice.'+elem_name).show();
+            } else if(!$(elem).is(":checked") && $(elem).attr('type')=='checkbox'){
+                cur_step.find('.error_notice.'+elem_name).show();
             } else {
                 cur_step.find('.error_notice.'+elem_name).hide();
             }
@@ -568,6 +570,68 @@ $(document).ready(function(){
             });
         }    
     });
+    $('#buy-data').submit(function(e){
+        e.preventDefault();
+        var form = $(this);
+        var id=$('#offerIdx').val();
+        var pid=$('#productIdx').val();
+        $('.is-invalid').removeClass('is-invalid');
+        $('.invalid-feedback strong').html("");
+        $.ajax({
+            url: '/data/buy/'+id+'/'+pid,
+            method: 'post',
+            data: $(this).serialize(),
+            success: function(response){
+                console.log(response);
+                if(response.success == true){
+                    if(response.redirect !== undefined){
+                        window.location.href = response.redirect;
+                    }else{
+                        if(!form.data('cc-on-file')){
+                            console.log($('#card_number').val());
+                            console.log($('#cvc').val());
+                            console.log($('#exp_month').val());
+                            console.log($('#exp_year').val());
+                            Stripe.setPublishableKey(form.data('stripe-publishable-key'));
+                            Stripe.createToken({
+                                number: $('#card_number').val(),
+                                cvc: $('#cvc').val(),
+                                exp_month: $('#exp_month').val(),
+                                exp_year: $('#exp_year').val()
+                            }, stripeResponseHandler);
+
+                        }
+                    }
+                }else{
+                    if(response.result !==undefined){
+                        result = response.result;
+                        $.each(result, function(field,messages){
+                            $("#"+field).addClass('is-invalid');
+                            $('.invalid-feedback.'+field+" strong").html(messages[0]);
+                        });
+                    }
+                    if(response.redirect !== undefined){
+                        window.location.href = response.redirect;
+                    }
+                }      
+            }
+        })
+    });
+    function stripeResponseHandler(status, response){
+        if (response.error) {
+            $('.error')
+                .removeClass('hide')
+                .find('.alert')
+                .text(response.error.message);
+        } else {
+            // token contains id, last4, and card type
+            var token = response['id'];
+            // insert the token into the form so it gets submitted to the server
+            $('#buy-data').find('input[type=text]').empty();
+            $('#buy-data').append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+            $('#buy-data').get(0).submit();
+        }
+    }
 
 });
 

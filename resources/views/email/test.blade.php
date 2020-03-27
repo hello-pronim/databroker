@@ -9,6 +9,7 @@
 		<style>
 			body{padding: 30px 25px;background: #f8f8f8 0% 0% no-repeat padding-box;font-family: "DM Sans";}
 			table,td,tr {vertical-align: top;border-collapse: collapse;}
+			table tr td{width: 100%;}
 			a:hover{color: #06038D;}
 			.flex-row{display: flex; flex-direction: row}
 			.align-items-center{align-items: center}
@@ -16,6 +17,7 @@
 			.fs-14{font-size: 14px;}
 			.fs-16{font-size: 16px;}
 			.fs-18{font-size: 18px;}
+			.fs-24{font-size: 24px;}
 			.fs-30{font-size: 30px;}
 			.fs-40{font-size: 40px;}
 			.lh-21{line-height: 21px;}
@@ -86,78 +88,7 @@
 												<tbody>
 													<tr>
 														<td class="fs-40 lh-44 text-bold py-25">
-															Dear {{$data['buyer']->firstname}},
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															{{$data['seller']->firstname}} {{$data['seller']->lastname}} from {{$data['seller']->companyName}} has rejected your bid of € {{$data['buyer']->bidPrice}} for the following data product
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															{{$data['product']->productTitle}} - 
-															@foreach($data['product']->region as $region)
-						            							<span>{{ $region->regionName }}</span>
-						            						@endforeach
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															{{ trans('pages.format') }} : {{$data['product']->productType}}
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															Price : €{{$data['product']->productPrice}}
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															Access to this data : 1 {{$data['product']->productAccessDays}}
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															@if($data['product']->productAccessDays=="day")
-																From : {{date('d/m/Y', strtotime($data['product']->createdAt))}} to {{date('d/m/Y', strtotime('+1 day', strtotime($data['product']->createdAt)))}}
-															@elseif($data['product']->productAccessDays=="week")
-																From : {{date('d/m/Y', strtotime($data['product']->createdAt))}} to {{date('d/m/Y', strtotime('+7 day', strtotime($data['product']->createdAt)))}}
-															@elseif($data['product']->productAccessDays=='month')
-																From : {{date('d/m/Y', strtotime($data['product']->createdAt))}} to {{date('d/m/Y', strtotime('+1 month', strtotime($data['product']->createdAt)))}}
-															@elseif($data['product']->productAccessDays=='year')
-																From : {{date('d/m/Y', strtotime($data['product']->createdAt))}} to {{date('d/m/Y', strtotime('+1 year', strtotime($data['product']->createdAt)))}}
-															@endif
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-24 py-10">
-															Message: 
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-24 py-10">
-															{{$data['seller']->bidResponse}} 
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-24 py-25 flex-row">
-															<a href="{{route('data.edit_bid', ['id'=>$data['product']->offerIdx, 'pid'=>$data['product']->productIdx])}}" class="btn btn-primary">
-																SEND NEW BID
-															</a>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<table class="mb-20" cellpadding="0" cellspacing="0" border="0">
-												<tbody>
-													<tr>
-														<td class="fs-18 lh-24 py-10">
-															You can find the details of this, and all bids you have sent, in the <a href="{{route('profile.buyer_bids')}}">Bids sent</a> section of your account.
+															Hello, this is test
 														</td>
 													</tr>
 												</tbody>
