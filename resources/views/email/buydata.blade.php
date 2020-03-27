@@ -9,6 +9,7 @@
 		<style>
 			body{padding: 30px 25px;background: #f8f8f8 0% 0% no-repeat padding-box;font-family: "DM Sans";}
 			table,td,tr {vertical-align: top;border-collapse: collapse;}
+			table tr td{width: 100%;}
 			a:hover{color: #06038D;}
 			.flex-row{display: flex; flex-direction: row}
 			.align-items-center{align-items: center}
@@ -16,6 +17,7 @@
 			.fs-14{font-size: 14px;}
 			.fs-16{font-size: 16px;}
 			.fs-18{font-size: 18px;}
+			.fs-24{font-size: 24px;}
 			.fs-30{font-size: 30px;}
 			.fs-40{font-size: 40px;}
 			.lh-21{line-height: 21px;}
@@ -90,8 +92,8 @@
 														</td>
 													</tr>
 													<tr>
-														<td class="fs-18 lh-27 py-10">
-															{{$data['seller']->firstname}} {{$data['seller']->lastname}} from {{$data['seller']->companyName}} has rejected your bid of € {{$data['buyer']->bidPrice}} for the following data product
+														<td class="fs-18 lh-27 py-25">
+															You have successfully purchased the following data product from {{$data['seller']->companyName}}:
 														</td>
 													</tr>
 													<tr>
@@ -104,12 +106,12 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															{{ trans('pages.format') }} : {{$data['product']->productType}}
+															Format : {{$data['product']->productType}}
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															Price : €{{$data['product']->productPrice}}
+															Price : € {{$data['product']->productPrice}}
 														</td>
 													</tr>
 													<tr>
@@ -120,31 +122,31 @@
 													<tr>
 														<td class="fs-18 lh-27 py-10">
 															@if($data['product']->productAccessDays=="day")
-																From : {{date('d/m/Y', strtotime($data['product']->createdAt))}} to {{date('d/m/Y', strtotime('+1 day', strtotime($data['product']->createdAt)))}}
+																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 day', strtotime($data['product']->created_at)))}}
 															@elseif($data['product']->productAccessDays=="week")
-																From : {{date('d/m/Y', strtotime($data['product']->createdAt))}} to {{date('d/m/Y', strtotime('+7 day', strtotime($data['product']->createdAt)))}}
+																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+7 day', strtotime($data['product']->created_at)))}}
 															@elseif($data['product']->productAccessDays=='month')
-																From : {{date('d/m/Y', strtotime($data['product']->createdAt))}} to {{date('d/m/Y', strtotime('+1 month', strtotime($data['product']->createdAt)))}}
+																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 month', strtotime($data['product']->created_at)))}}
 															@elseif($data['product']->productAccessDays=='year')
-																From : {{date('d/m/Y', strtotime($data['product']->createdAt))}} to {{date('d/m/Y', strtotime('+1 year', strtotime($data['product']->createdAt)))}}
+																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 year', strtotime($data['product']->created_at)))}}
 															@endif
 														</td>
 													</tr>
 													<tr>
-														<td class="fs-18 lh-24 py-10">
-															Message: 
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-24 py-10">
-															{{$data['seller']->bidResponse}} 
-														</td>
-													</tr>
-													<tr>
 														<td class="fs-18 lh-24 py-25 flex-row">
-															<a href="{{route('data.edit_bid', ['id'=>$data['product']->offerIdx, 'pid'=>$data['product']->productIdx])}}" class="btn btn-primary">
-																SEND NEW BID
+															<a href="#" class="btn btn-primary">
+																Access data product
 															</a>
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-24 py-10" style="font-style: italic;">
+															This link expires at dd/mm/yyyy, so make sure you access the data before this date.
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-24 py-10">
+															You can find the details of your purchase in the <a href="{{route('account.purchases')}}">My purchases</a> section of your account.
 														</td>
 													</tr>
 												</tbody>
@@ -153,11 +155,21 @@
 									</tr>
 									<tr>
 										<td>
-											<table class="mb-20" cellpadding="0" cellspacing="0" border="0">
+											<table class="mt-30" cellpadding="0" cellspacing="0" border="0">
 												<tbody>
 													<tr>
+														<td class="fs-24 lh-36 py-10 text-bold">
+															What happens now?
+														</td>
+													</tr>
+													<tr>
 														<td class="fs-18 lh-24 py-10">
-															You can find the details of this, and all bids you have sent, in the <a href="{{route('profile.buyer_bids')}}">Bids sent</a> section of your account.
+															<ul class="m-0">
+																<li class="py-10">You have 30-day warranty period, which gives you time to ensure that the data is what you expected to receive.</li>
+																<li class="py-10">During this time, Databroker holds the seller’s earnings from the sale, and only releases them once the warranty period ends.</li>
+																<li class="py-10">If there’s a problem with the data, we recommend that you contact the data provider as soon as possible to try to find a solution. But if that doesn’t help, you can file a complaint within 30 days of your purchase.<br/>
+																Read more about <a href="{{route('help.file_complaint')}}">filing a complaint</a>.</li>
+															</ul>
 														</td>
 													</tr>
 												</tbody>

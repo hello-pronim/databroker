@@ -18,15 +18,6 @@
                 <br>
                 <form method="POST" action="{{ route('create_nl') }}">
                     @csrf
-                    <label class="pure-material-textfield-outlined">
-                        <textarea name="message" class="form-control input_data user-message @error('message') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="100" autofocus>{{ old('message')}}</textarea>
-                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Message']) }}</div>
-                        @error('message')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </label>
                     
                     <label class="pure-material-textfield-outlined">
                         <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname') is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>

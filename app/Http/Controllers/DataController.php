@@ -23,6 +23,7 @@ use App\Models\ProductCountry;
 use App\Models\RegionProduct;
 use App\Models\UseCase;
 use App\Models\Bid;
+use App\Models\BillingInfo;
 use App\User;
 use App\Models\Business;
 
@@ -910,8 +911,150 @@ class DataController extends Controller
         if(!$user) {
            return redirect('/login')->with('target', 'buy this data');
         }else{
-            return view('data.buy_data');
+            $product = OfferProduct::with('region')
+                                    ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                    ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                    ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                    ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                    ->where('productIdx', $request->pid)
+                                    ->get()
+                                    ->first();
+            $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->where('users.userIdx', $user->userIdx)
+                        ->get()
+                        ->first();
+            $billingInfo = BillingInfo::where('userIdx', $user->userIdx)->get()->first();
+            if($billingInfo){
+                $buyer['firstname'] = $billingInfo['firstname'];
+                $buyer['lastname'] = $billingInfo['lastname'];
+                $buyer['email'] = $billingInfo['email'];
+                $buyer['companyName'] = $billingInfo['companyName'];
+                $buyer['companyVAT'] = $billingInfo['companyVAT'];
+                $buyer['address'] = $billingInfo['address'];
+                $buyer['city'] = $billingInfo['city'];
+                $buyer['postal_code'] = $billingInfo['postal_code'];
+                if($billingInfo['state']) $buyer['state'] = $billingInfo['state'];
+                $buyer['regionIdx'] = $billingInfo['regionIdx'];
+            }
+            $countries = Region::where('regionType', 'country')->get(); 
+            $publishable_key = env('STRIPE_PUBLIC_KEY');
+            $data = array('product', 'buyer', 'countries', 'publishable_key');
+            return view('data.buy_data', compact($data));
         }
+    }
+
+    public function pay_data(Request $request){
+        $validator = Validator::make($request->all(),[
+            'firstname' => 'required|min:2',
+            'lastname' => 'required|min:2',
+            'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'companyName' => 'required|min:2',
+            'companyVAT' => 'required|min:2',
+            'address'=>'required|min:2',
+            'city'=>'required|min:2',
+            'postal_code'=>'required|min:2',
+            'regionIdx' => 'required',
+            'card_number'=> 'required|numeric|min:12',
+            'exp_month'=>'required',
+            'exp_year'=>'required',
+            'cvc'=>'required|numeric|min:4'
+        ],[
+            'companyName.required'=>'The company name is required',
+            'companyVAT.required'=>'The company VAT number is required',
+            'address.required'=>'The address is required',
+            'city'=>'The city is required',
+            'postal_code.required'=>'The postal code is required.',
+            'regionIdx.required'=>'The country field is required.',
+            'card_number.required'=>'The card number is required.',
+            'card_number.numeric'=>'The card number must be numeric.',
+            'card_number.min'=>'The card number is invalid.',
+            'exp_month'=>'The expiry month is required.',
+            'exp_year'=>'The expiry year is required.',
+            'cvc.required'=>'The CVC is required.',
+            'cvc.numeric'=>'The CVC must be numeric.',
+            'cvc.min'=>'The CVC is invalid.'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(array( "success" => false, 'result' => $validator->errors() ));
+        }else{
+            $user = $this->getAuthUser();
+            $billingData['userIdx'] = $user->userIdx;
+            $billingData['firstname'] = $request->firstname;
+            $billingData['lastname'] = $request->lastname;
+            $billingData['email'] = $request->email;
+            $billingData['companyName'] = $request->companyName;
+            $billingData['companyVAT'] = $request->companyVAT;
+            $billingData['address'] = $request->address;
+            $billingData['city'] = $request->city;
+            $billingData['postal_code'] = $request->postal_code;
+            if($request->state) $billingData['state'] = $request->state;
+            $billingData['regionIdx'] = $request->regionIdx;
+
+            $billingObj = BillingInfo::where('userIdx', $user->userIdx)->get()->first();
+            if(!$billingObj) $billingObj = BillingInfo::create($billingData);
+            else BillingInfo::where('userIdx', $user->userIdx)->update($billingData);
+            if(!$request->stripeToken)
+                return response()->json(array( "success" => true ));
+            else{
+                \Stripe\Stripe::setApiKey ( env('STRIPE_SECRET_KEY') );
+                try {
+                    \Stripe\Charge::create ( array (
+                            "amount" => $request->productPrice * 100,
+                            "currency" => "eur",
+                            "source" => $request->input('stripeToken'), // obtained with Stripe.js
+                            "description" => "Databroker Data Fee" 
+                    ) );
+
+                    $buyer = BillingInfo::where('userIdx', $user->userIdx)->get()->first();
+                    $seller = OfferProduct::with('region')
+                                    ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                    ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                    ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                    ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                    ->where('productIdx', $request->productIdx)
+                                    ->get()
+                                    ->first();
+                    $product = OfferProduct::where('productIdx', $request->productIdx)->get()->first();
+
+                    $data['seller'] = $seller;
+                    $data['buyer'] = $buyer;
+                    $data['product'] = $product;
+
+                    $this->sendEmail("buydata", [
+                        'from'=>'cg@jts.ec', 
+                        'to'=>$buyer['email'], 
+                        'subject'=>'You’ve successfully purchased a data product', 
+                        'name'=>'Databroker',
+                        'data'=>$data
+                    ]);  
+                    $this->sendEmail("selldata", [
+                        'from'=>'cg@jts.ec', 
+                        'to'=>$seller['email'], 
+                        'subject'=>'You’ve sold a data product', 
+                        'name'=>'Databroker',
+                        'data'=>$data
+                    ]);
+
+                    return redirect(route('data.pay_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
+                } catch ( \Exception $e ) {
+                    //Session::flash ( 'fail-message', "Error! Please Try again." );
+                   // return Redirect::back ();
+                }
+            }
+        }
+    }
+
+    public function pay_success(Request $request){
+        $product = OfferProduct::with('region')
+                                ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                ->where('productIdx', $request->pid)
+                                ->get(["offerProducts.*", "offerProducts.created_at as createdAt", "companies.companyName"])
+                                ->first();
+        $data = array('product');
+        return view('data.pay_success', compact($data));
     }
 
     public function bid(Request $request){

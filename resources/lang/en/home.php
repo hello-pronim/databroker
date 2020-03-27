@@ -21,7 +21,7 @@ return [
     'datamatch' => 'DataMatch',
     'usecase' => 'Use cases',
     'helpsupport' => 'Help & support',
-    'news' => 'News',    
+    'updates' => 'Updates',    
     'contact_us' => 'Contact us',
     /*action*/
     'mark_spencer' => 'Mark Spencer',

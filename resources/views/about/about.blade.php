@@ -160,9 +160,9 @@
     <div class="container">
         <div class="flex-vertical flex-vcenter">
             <div class="divider-green"></div>
-            <div class="h2 mgt30">Dont' miss any updates!</div>
+            <div class="h2 mgt30">Don't miss any updates!</div>
             <div class="">Sign up to our newsletter</div>
-            <a href="/register_nl"><button class="button customize-btn mgt60">NEWSLETTER SIGN UP</button></a>
+            <a href="{{route('register_nl')}}"><button class="button customize-btn mgt60">NEWSLETTER SIGN UP</button></a>
         </div>
     </div>
 </div>   
