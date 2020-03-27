@@ -35,19 +35,19 @@
                 </div>
                 <div id="usecase-list" class="mgh30">
                     <div class="row">
-                        @foreach ( $news as $new )
+                        @foreach ( $usecases as $usecase )
                         <div class="col-md-4">
-                            <a href="{{ route('about.news_detail',  ['id' => $new['id']] ) }}">
+                            <a href="{{ route('about.news_detail',  ['id' => $usecase->articleIdx] ) }}">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder">        
-                                        <img class="img" src="{{ asset('images/usecases/'.$new['image']) }}" />
+                                        <img class="img" src="{{ asset('uploads/usecases/'.$usecase->image) }}" />
                                         <div class="small-image-overlay"></div>
                                     </div>
                                     <div class="card-body text-left">
                                         <div class="para-small">
-                                            <span class="color-green">{{ $new['category'] }}</span>
+                                            <span class="color-green">{{ $usecase->community->communityName }}</span>
                                         </div>
-                                        <h4 class="offer-title card-title">{{$new['title']}}</h4>
+                                        <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
                                     </div>
                                 </div>  
                             </a>
@@ -72,19 +72,19 @@
         <div class="app-section app-reveal-section align-items-center usecases">
             <div id="usecase-list2" class="mgh30">
                 <div class="row">
-                    @foreach ( $news2 as $new )
+                    @foreach ( $usecases2 as $usecase )
                     <div class="col-md-4">
-                        <a href="{{ route('about.news_detail',  ['id' => $new['id']] ) }}">
+                        <a href="{{ route('about.news_detail',  ['id' => $usecase->articleIdx] ) }}">
                             <div class="card card-profile card-plain">                  
                                 <div class="card-header holder">        
-                                    <img class="img" src="{{ asset('images/usecases/'.$new['image']) }}" />
+                                    <img class="img" src="{{ asset('uploads/usecases/'.$usecase->image) }}" />
                                     <div class="small-image-overlay"></div>
                                 </div>
                                 <div class="card-body text-left">
                                     <div class="para-small">
-                                        <span class="color-green">{{ $new['category'] }}</span>
+                                        <span class="color-green">{{ $usecase->community->communityName }}</span>
                                     </div>
-                                    <h4 class="offer-title card-title">{{$new['title']}}</h4>
+                                    <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
                                 </div>
                             </div>  
                         </a>

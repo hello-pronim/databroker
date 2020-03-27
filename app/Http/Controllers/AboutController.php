@@ -315,85 +315,10 @@ class AboutController extends Controller
 
     public function news(Request $request)
     {        
-        $news = array( 
-            array(
-                'id' => 1,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 2,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 3,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 4,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'People.png',
-            ),
-            array(
-                'id' => 5,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Energy.png',
-            ),
-            array(
-                'id' => 6,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Environment.png',
-            ),
-            array(
-                'id' => 7,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 8,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 9,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'photo_1532974297617_c0f05fe48b.png',
-            ),
-        );
-        $news2 = array( 
-            array(
-                'id' => 10,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 11,
-                'title' => 'Achieve your full potential with retail location planning', 
-                'category' => 'People',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 12,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Agriculture',
-                'image' => 'Agriculture.png',
-            ),
-        );
+        $usecases = Article::with('community')->orderby('created_at', 'desc')->limit(9)->get();
+        $usecases2 = Article::with('community')->orderby('created_at', 'desc')->limit(3)->get();
         $communities = Community::all();
-
-        $data = array( 'news', 'news2', 'communities' );
+        $data = array( 'usecases', 'usecases2', 'communities' );
         return view('about.news', compact($data));
     }
 
@@ -494,94 +419,9 @@ class AboutController extends Controller
     }
 
     public function news_detail($id){
-
-        $news = array( 
-            array(
-                'id' => 1,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 2,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 3,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 4,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'People.png',
-            ),
-            array(
-                'id' => 5,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Energy.png',
-            ),
-            array(
-                'id' => 6,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Environment.png',
-            ),
-            array(
-                'id' => 7,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 8,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 9,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'photo_1532974297617_c0f05fe48b.png',
-            ),
-        );
-
-        $news2 = array( 
-            array(
-                'id' => 10,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 11,
-                'title' => 'Achieve your full potential with retail location planning', 
-                'category' => 'People',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 12,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Agriculture',
-                'image' => 'Agriculture.png',
-            ),
-        );
-
-        if($id < 10) {
-             $new = $news[($id-1)];
-        }
-        else {
-            $new = $news2[($id-10)];
-        }
-
-        $data = array('new', 'news2');
-
+        $usecase = Article::where('articleIdx', $id)->with('community')->get();
+        $usecases2 = Article::with('community')->orderby('created_at', 'desc')->limit(3)->get();
+        $data = array('usecase', 'usecases2');
         return view('about.news_detail', compact($data));
     }
 

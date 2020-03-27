@@ -213,7 +213,7 @@
                     </a>
                   </li>
                   <li class="dropdown nav-item">
-                    <a href="javascript:;" class="nav-link">
+                    <a href="{{ route('about.news') }}" class="nav-link">
                       <span>{{ trans('home.updates') }} </span>
                       <i class="material-icons">chevron_right</i>
                     </a>
@@ -334,7 +334,7 @@
   							<li><a href="{{ route('about.partners') }}">{{ trans('home.partners') }}</a></li> 
   							<li><a href="{{ route('about.matchmaking') }}">{{ trans('home.datamatch') }}</a></li>  
   							<li><a href="{{ route('about.usecase') }}">{{ trans('home.usecase') }}</a></li> 
-  							<li><a href="javascript:;">{{ trans('home.updates') }}</a></li> 
+  							<li><a href="{{ route('about.news') }}">{{ trans('home.updates') }}</a></li> 
   							<li><a href="{{ route('about.media_center') }}">{{ trans('home.media_center') }}</a></li> 
                 <li><a href="{{ route('contact') }}">{{ trans('home.contact_us') }}</a></li> 
   						</ul>
