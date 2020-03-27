@@ -45,7 +45,8 @@
                                     </div>
                                     <div class="card-body text-left">
                                         <div class="para-small">
-                                            <span class="color-green">{{ $usecase->community->communityName }}</span>
+                                            <!-- <span class="color-green">{{ $usecase->community->communityName }}</span> -->
+                                            <span class="color-green"><b>By Valentina Ponomariova&nbsp;|&nbsp;{{ ($usecase->published)->toDateString() }}</b></span>
                                         </div>
                                         <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
                                     </div>
