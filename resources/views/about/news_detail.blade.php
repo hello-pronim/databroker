@@ -83,8 +83,8 @@
                     <div class="col-md-4">
                         <a href="{{ route('about.news_detail',  ['id' => $usecase->articleIdx] ) }}">
                             <div class="card card-profile card-plain">                  
-                                <div class="card-header holder">        
-                                    <img class="img" src="{{ asset('uploads/usecases/'.$usecase->image) }}" />
+                                <div class="card-header holder" id="resposive-card-header">        
+                                    <img class="img" src="{{ asset('uploads/usecases/'.$usecase->image) }}" id="responsive-card-img"/>
                                     <div class="small-image-overlay"></div>
                                 </div>
                                 <div class="card-body text-left">
