@@ -78,7 +78,7 @@ class AdminController extends Controller
                 return "success";
             } else {
                 $data = $request->all();
-                $data['published'] = date("Y-m-d");
+                // $data['published'] = date("Y-m-d");
                 unset($data['id']);
                 Article::create($data);
                 return "success";

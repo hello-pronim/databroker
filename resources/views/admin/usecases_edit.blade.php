@@ -44,6 +44,10 @@
 							<label class="form-control-label">Article Title *</label>
 							<input type="text" class="form-control m-input" name="articleTitle" placeholder="Enter article title" value="{{ $board->articleTitle??'' }}">
 						</div>
+						<div class="col-md-9 m-form__group-sub">
+							<label class="form-control-label">Published Date *</label>
+							<input type="text" class="form-control m-input" name="published" placeholder="Enter article title" value="{{ $board->published??'' }}">
+						</div>
 						<div class="col-md-3 m-form__group-sub">
 							<label class="form-control-label">Board Category *</label>
 							<select class="form-control m-input" name="communityIdx">

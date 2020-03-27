@@ -20,7 +20,7 @@
             <div class="blog-header row">                
                 <div class="col-md-12">
                     <h1 class="h1-small">{{$usecase[0]->articleTitle}}</h1>
-                    <p class="fs-18"><b>Published in</b>:&nbsp; <a href="{{ route('data_community.'.strtolower($usecase[0]->community->communityName)) }}"><span class="h3" id="matchmaking-detail-category">{{ $usecase[0]->community->communityName }}</span></a></p>
+                    <p class="fs-18"><b>Published in</b>:&nbsp; <a href="{{ route('data_community.'.strtolower($usecase[0]->community->communityName)) }}"><span class="h3" id="matchmaking-detail-category">{{ $usecase[0]->community->communityName }}</span></a>&nbsp;|&nbsp;<span class="h3" id="matchmaking-detail-category">{{ ($usecase[0]->published)->toDateString() }}</span></p>
                 </div>                
             </div>          
             <div class="blog-content">
@@ -81,7 +81,7 @@
                 <div class="row">
                     @foreach ( $usecases2 as $usecase )
                     <div class="col-md-4">
-                        <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
+                        <a href="{{ route('about.news_detail',  ['id' => $usecase->articleIdx] ) }}">
                             <div class="card card-profile card-plain">                  
                                 <div class="card-header holder">        
                                     <img class="img" src="{{ asset('uploads/usecases/'.$usecase->image) }}" />
