@@ -1747,7 +1747,7 @@ a[data-target='#mediaLibraryModal']:hover{
 #updates-article-content span{
 	font-size: 13pt !important;
 	font-weight: 550 !important;
-	color:rgb(69, 70, 74) !important;
+	color:rgb(28,29,28) !important;
 	font-family: sans-serif !important;
 }
 #updates-article-content b{
@@ -1757,7 +1757,7 @@ a[data-target='#mediaLibraryModal']:hover{
 #updates-article-content p{
 	font-size: 13pt !important;
 	font-weight: 550 !important;
-	color:rgb(69, 70, 74) !important;
+	color:rgb(28,29,28) !important;
 	font-family: sans-serif !important;
 }
 #updates-article-content a{
@@ -1765,5 +1765,8 @@ a[data-target='#mediaLibraryModal']:hover{
 }
 #updates-article-content a span{
 	color:#007bff !important;
+}
+#news_detail_img{
+	opacity: 1 !important;
 }
 

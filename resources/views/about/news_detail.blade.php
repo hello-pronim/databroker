@@ -34,7 +34,7 @@
                         <div class="col-md-12 col-sm-12">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder">        
-                                        <img class="img" src="{{ asset('uploads/usecases/'.$usecase[0]->image) }}" />
+                                        <img class="img" src="{{ asset('uploads/usecases/'.$usecase[0]->image) }}"  id="news_detail_img"/>
                                     </div>
                                 </div>  
                         </div>  
@@ -84,7 +84,7 @@
                         <a href="{{ route('about.news_detail',  ['id' => $usecase->articleIdx] ) }}">
                             <div class="card card-profile card-plain">                  
                                 <div class="card-header holder" id="resposive-card-header">        
-                                    <img class="img" src="{{ asset('uploads/usecases/'.$usecase->image) }}" id="responsive-card-img"/>
+                                    <img class="img" src="{{ asset('images/usecases_small/'.$usecase->image) }}" id="responsive-card-img"/>
                                     <div class="small-image-overlay"></div>
                                 </div>
                                 <div class="card-body text-left">
