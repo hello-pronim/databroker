@@ -66,14 +66,12 @@
         <div class="section_splitor_gray"></div>
         <div class="bg-pattern1-both flex-center flex-vertical">
             <div class="divider-green mgb30"></div>
-            <div class="h2">What business challenge can we help you solve?</div>
-            <div class="para mgb40">Tell us, and we will match you up with the perfect data partner.</div>
-            <a href="{{route('contact')}}"><button type="button" class="customize-btn button mgt15">TRY OUR DATAMATCH SERVICE</button></a>
-            <br/>
-            <div class="para mgb40">It 's free.</div>
+            <div class="h2">Find out about new updates</div>
+            <div class="para mgb40">Sign up for our NewsBytes!</div>
+            <a href="{{route('register_nl')}}"><button type="button" class="customize-btn button mgt15">SIGN UP</button></a>
         </div>
         <div class="section_splitor_gray h713"></div>
-    </div>    
+    </div>   
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
             <div id="usecase-list2" class="mgh30">
