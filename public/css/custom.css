@@ -1747,7 +1747,7 @@ a[data-target='#mediaLibraryModal']:hover{
 #updates-article-content span{
 	font-size: 13pt !important;
 	font-weight: 550 !important;
-	color:rgb(45,46,53) !important;
+	color:rgb(69, 70, 74) !important;
 	font-family: sans-serif !important;
 }
 #updates-article-content b{
@@ -1757,10 +1757,13 @@ a[data-target='#mediaLibraryModal']:hover{
 #updates-article-content p{
 	font-size: 13pt !important;
 	font-weight: 550 !important;
-	color:rgb(45,46,53) !important;
+	color:rgb(69, 70, 74) !important;
 	font-family: sans-serif !important;
 }
 #updates-article-content a{
+	color:#007bff !important;
+}
+#updates-article-content a span{
 	color:#007bff !important;
 }
 
