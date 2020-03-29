@@ -22,15 +22,7 @@
             <div class="blog-content">
                 <div class="row">
                     <div class="col-lg-6 flex-vcenter mgh30 col-sm-12" id="usecase-whole">
-                        <h4 class="h4_intro">Explore updates in</h4>                  
-                        <div class="mgl30 adv-combo-wrapper custom-select2 geocommunity-wrapper">
-                            <select name="geocommunity" class="no-search">
-                                <option value="all">All Communities</option>
-                                @foreach ( $communities as $community )
-                                <option value="{{$community->communityIdx}}">{{ $community->communityName }} Community</option>
-                                @endforeach
-                            </select>
-                        </div>
+                      
                     </div>
                 </div>
                 <div id="usecase-list" class="mgh30">
@@ -46,7 +38,7 @@
                                     <div class="card-body text-left">
                                         <div class="para-small">
                                             <!-- <span class="color-green">{{ $usecase->community->communityName }}</span> -->
-                                            <span class="color-green"><b>By Valentina Ponomariova&nbsp;|&nbsp;{{ ($usecase->published)->toDateString() }}</b></span>
+                                            <span class="color-green"><b>By Valentina Ponomariova&nbsp;|&nbsp;{{ date_format($usecase->published,"F d, Y") }}</b></span>
                                         </div>
                                         <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
                                     </div>
@@ -83,7 +75,7 @@
                                 </div>
                                 <div class="card-body text-left">
                                     <div class="para-small">
-                                        <span class="color-green">{{ $usecase->community->communityName }}</span>
+                                        <span class="color-green"><b>By Valentina Ponomariova&nbsp;|&nbsp;{{ date_format($usecase->published,"F d, Y") }}</b></span>
                                     </div>
                                     <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
                                 </div>

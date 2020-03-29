@@ -20,7 +20,7 @@
             <div class="blog-header row">                
                 <div class="col-md-12">
                     <h1 class="h1-small">{{$usecase[0]->articleTitle}}</h1>
-                    <p class="fs-18"><b>Published in</b>:&nbsp; <a href="{{ route('data_community.'.strtolower($usecase[0]->community->communityName)) }}"><span class="h3" id="matchmaking-detail-category">{{ $usecase[0]->community->communityName }}</span></a>&nbsp;|&nbsp;<span class="h3" id="matchmaking-detail-category">{{ ($usecase[0]->published)->toDateString() }}</span></p>
+                    <p class="fs-18"><span class="h3" id="matchmaking-detail-category"><b>By Valentina Ponomariova&nbsp;|&nbsp;{{ date_format($usecase[0]->published,"F d, Y") }}</b></span></p>
                 </div>                
             </div>          
             <div class="blog-content">
@@ -90,7 +90,7 @@
                                 <div class="card-body text-left">
                                     <div class="para-small">
                                         <!-- <span class="color-green">{{ $usecase->community->communityName }}</span> -->
-                                        <span class="color-green"><b>By Valentina Ponomariova&nbsp;|&nbsp;{{ ($usecase->published)->toDateString() }}</b></span>
+                                        <span class="color-green"><b>By Valentina Ponomariova&nbsp;|&nbsp;{{ date_format($usecase->published,"F d, Y") }}</b></span>
                                     </div>
                                     <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
                                 </div>
