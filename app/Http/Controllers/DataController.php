@@ -919,6 +919,7 @@ class DataController extends Controller
                                     ->where('productIdx', $request->pid)
                                     ->get()
                                     ->first();
+            //$bid = Bid::where('userIdx', $user->userIdx)->where('pid', $request->pid)->get()->first();
             $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->where('users.userIdx', $user->userIdx)
                         ->get()
@@ -1160,43 +1161,38 @@ class DataController extends Controller
                         ->withInput();             
         }
 
-        $bidData['bidIdx'] = $request->bidIdx;
         $bidData['userIdx'] = $user->userIdx;
         $bidData['productIdx'] = $request->productIdx;
         $bidData['bidPrice'] = $request->bidPrice;
         $bidData['bidMessage'] = $request->bidMessage;
         $bidData['bidStatus'] = 0;
 
-        $bidObj = Bid::where('bidIdx', $request->bidIdx)->get()->first();
-        if($bidObj){
-            Bid::where('bidIdx', $request->bidIdx)->update($bidData);
-            $bidObj = Bid::where('bidIdx', $request->bidIdx)->get()->first();
+        $bidObj = Bid::create($bidData);
 
-            $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
-                        ->join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')
-                        ->where('offers.offerIdx', $request->offerIdx)
-                        ->get()
-                        ->first();
-            $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                        ->where('userIdx', $user->userIdx)->get()->first();
+        $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
+                    ->join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')
+                    ->where('offers.offerIdx', $request->offerIdx)
+                    ->get()
+                    ->first();
+        $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                    ->where('userIdx', $user->userIdx)->get()->first();
 
-            $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
+        $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
 
-            $data['seller'] = $seller;
-            $data['buyer'] = $buyer;
-            $data['product'] = $product;
-            $data['bid'] = $bidObj;
+        $data['seller'] = $seller;
+        $data['buyer'] = $buyer;
+        $data['product'] = $product;
+        $data['bid'] = $bidObj;
 
-            $this->sendEmail("sendbid", [
-                'from'=>'cg@jts.ec', 
-                'to'=>$seller['email'], 
-                'subject'=>'You’ve received a bid on a data product', 
-                'name'=>'Databroker',
-                'data'=>$data
-            ]);    
+        $this->sendEmail("sendbid", [
+            'from'=>'cg@jts.ec', 
+            'to'=>$seller['email'], 
+            'subject'=>'You’ve received a bid on a data product', 
+            'name'=>'Databroker',
+            'data'=>$data
+        ]);    
 
-            return redirect(route('data.send_bid_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
-        }
+        return redirect(route('data.send_bid_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
     }
     public function send_bid_success(Request $request){
         $product = OfferProduct::with('region')->where('productIdx', $request->pid)->get()->first();

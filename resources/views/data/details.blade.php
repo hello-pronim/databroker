@@ -122,8 +122,8 @@
 				            						@endforeach
 				            					</label>
 					                			<p><label class="text-grey">{{ trans('pages.format') }} : </label> <span>{{ $product->productType }}</span></p>
-					                			<a href="javascript:;" id="more_info" class="dropdown-toggle" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">More Info</a>
 					                			@if($product->productMoreInfo)
+					                			<a href="javascript:;" id="more_info" class="dropdown-toggle" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">More Info</a>
 					                			<div class="dropdown-menu more_info" aria-labelledby="more_info">
 					                				<p class="pd-15">{{ $product->productMoreInfo }}</p>
 					                			</div>
@@ -140,7 +140,7 @@
 					                			<div class="flex-row align-items-center justify-content-end">
 						                			@if($product->productBidType == 'no_bidding')
 						                			<a href="/data/buy_data/{{ $id }}/{{$product->productIdx}}">
-						                				<button type="button" class="customize-btn">Buy Now</button>
+						                				<button type="button" class="customize-btn">BUY NOW</button>
 						                			</a>
 						                			@elseif($product->productBidType == 'bidding_only')
 						                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
@@ -150,8 +150,8 @@
 						                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
-						                			<a href="/data/buy_data/{{ $id }}/{{$product->productIdx}}">
-						                				<button type="button" class="customize-btn">Buy Now</button>
+						                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+						                				<button type="button" class="customize-btn">BUY NOW</button>
 						                			</a>
 						                			<br>
 						                			@elseif($product->productBidType == 'free')
