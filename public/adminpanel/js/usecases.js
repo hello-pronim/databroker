@@ -1,4 +1,5 @@
 var board_data_table;
+var hidden_communityIdx = $('#hidden_communityIdx').val();
 
 (function($) {
 
@@ -35,7 +36,7 @@ var board_data_table;
                     orderable: false,
                     render: function(data, type, full, meta) {
                         return `
-                            <a href="/admin/usecases/edit/`+data+`" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
+                            <a href="/admin/usecases/edit/`+data+`/`+ hidden_communityIdx +`" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
                             <i class="la la-edit"></i>
                             </a>
                             <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" onclick="attach_record('`+data+`');"><i class="la la-image" title="Upload Image"></i>
@@ -69,14 +70,6 @@ toastr.options = {
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 };
-
-// function ReloadDataTable()
-// {
-//     $.post("<?=ROOTPATH?><?=ADMIN_PUBLIC_DIR?>/boards/list_article", {  }, function(data){
-//         board_data_table.api().clear();
-//         board_data_table.api().rows.add( JSON.parse(data) ).draw();
-//     });
-// }
 
 var attach_record_idx;
 

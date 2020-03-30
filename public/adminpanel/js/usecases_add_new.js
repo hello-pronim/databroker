@@ -1,4 +1,5 @@
 $(function(){
+	var communityIdx = $('#communityIdx_id').val();
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -44,7 +45,7 @@ $(function(){
                                 {   
                                     if(result == "success")
                                     {
-                                        window.location.href = "/admin/usecases";
+                                        window.location.href = "/admin/usecases/"+communityIdx;
                                     }
                                     
                                 },

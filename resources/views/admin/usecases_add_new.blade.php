@@ -9,7 +9,7 @@
 				<h3 class="m-subheader__title m-subheader__title--separator">Usecase Article Information</h3>
 				<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
 					<li class="m-nav__item m-nav__item--home">
-						<a href="{{ route('admin.usecases') }}" class="m-nav__link m-nav__link--icon">
+						<a href="{{ route('admin.usecases', [ 'id' => $communityIdx ]) }}" class="m-nav__link m-nav__link--icon">
 							<i class="m-nav__link-icon la la-home"></i>
 						</a>
 					</li>
@@ -82,12 +82,13 @@
 						<div class="row">
 							<div class="col-lg-9 ml-lg-auto">
 								<button type="submit" class="btn btn-success">Save</button>
-								<a href="{{ route('admin.usecases') }}" class="btn btn-secondary">Cancel</a>
+								<a href="{{ route('admin.usecases', [ 'id' => $communityIdx ]) }}" class="btn btn-secondary">Cancel</a>
 							</div>
 						</div>
 					</div>
 				</div>
-            </form>
+			</form>
+			<input id="communityIdx_id" name="communityIdx_id" type="hidden" value="{{ $communityIdx }}"/>
 			<!--end::Form-->
 		</div>
 		<!--end::Portlet-->
