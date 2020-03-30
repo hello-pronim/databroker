@@ -108,6 +108,8 @@ $(document).ready(function(){
 
     $(".custom-dropdown >div.select").click(function(){	    	
     	$(this).parent().find(">ul").toggle();
+        if($(this).parent().hasClass('dropdown-open')) $(this).parent().removeClass('dropdown-open');
+        else $(this).parent().addClass('dropdown-open');
     });
 
     $(".custom-dropdown .custom-dropdown-menu button").click(function(){
