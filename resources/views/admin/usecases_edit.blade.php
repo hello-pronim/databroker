@@ -46,7 +46,7 @@
 						</div>
 						<div class="col-md-2 m-form__group-sub">
 							<label class="form-control-label">Published Date *</label>
-							<input type="text" class="form-control m-input" name="published" placeholder="Enter Date like 2000-01-30" value="{{ ($board->published)->toDateString()??'' }}">
+							<input type="text" class="form-control m-input" name="published" placeholder="Date like 2000-01-30" value="{{ ($board->published)->toDateString()??'' }}">
 						</div>
 						<div class="col-md-3 m-form__group-sub">
 							<label class="form-control-label">Board Category *</label>
@@ -69,11 +69,11 @@
 					<div class="form-group m-form__group row">
 						<div class="col-md-4 m-form__group-sub">
 							<label class="form-control-label">Meta Title</label>
-							<input type="text" class="form-control m-input" name="meta_title" placeholder="Enter article title" value="{{ $board->meta_title }}">
+							<input type="text" class="form-control m-input" name="meta_title" placeholder="Enter meta title" value="{{ $board->meta_title }}">
 						</div>
 						<div class="col-md-8 m-form__group-sub">
 							<label class="form-control-label">Meta Description</label>
-							<input type="text" class="form-control m-input" name="meta_desc" placeholder="Enter article title" value="{{ $board->meta_desc }}">
+							<input type="text" class="form-control m-input" name="meta_desc" placeholder="Enter meta description" value="{{ $board->meta_desc }}">
 						</div>
 					</div>
 					<div class="form-group m-form__group row">
