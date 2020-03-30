@@ -56,7 +56,7 @@
                                 </td>
                                 <td>{{ $board->articleTitle }}</td>
                                 <td>{{ $board->community->communityName }}</td>
-                                <td>{{ $board->published }}</td>
+                                <td>{{ ($board->published)->toDateString() }}</td>
                                 <td>{{ $board->articleIdx }}</td>
                             </tr>
                         @endforeach

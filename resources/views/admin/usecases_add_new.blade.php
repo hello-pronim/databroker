@@ -46,16 +46,22 @@
 						</div>
 						<div class="col-md-2 m-form__group-sub">
 							<label class="form-control-label">Published Date *</label>
-							<input type="text" class="form-control m-input" name="published" placeholder="Enter article title" value="">
+							<input type="text" class="form-control m-input" name="published" placeholder="Enter Date like 2000-01-30" value="">
 						</div>
 						<div class="col-md-3 m-form__group-sub">
 							<label class="form-control-label">Board Category *</label>
 							<select class="form-control m-input" name="communityIdx">
 								<option value="">Select</option>
 								@foreach($categories as $category)
-                                        <option value="{{ $category->communityIdx }}" >
-                                            {{ $category->communityName }}
-                                        </option>
+										@if( $communityIdx == $category->communityIdx)
+											<option value="{{ $category->communityIdx }}"  selected>
+												{{ $category->communityName }}
+											</option>
+										@else
+											<option value="{{ $category->communityIdx }}" >
+												{{ $category->communityName }}
+											</option>
+										@endif
 								@endforeach
 							</select>
 						</div>

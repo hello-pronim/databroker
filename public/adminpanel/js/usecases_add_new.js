@@ -23,6 +23,9 @@ $(function(){
 			},
 			meta_desc: {
 				required: true,
+			},
+			published: {
+				required: true,
 			}
 	    },
 	    //display error alert on form submit  
@@ -52,7 +55,7 @@ $(function(){
                         error: function (msg) 
                                 {
                                     console.log('error', msg);
-                                    window.alert("Network Error!");
+                                    window.alert("Network Error!", "Please Match the Date format as like 2000-01-31");
                                 }
                     }
                 );
