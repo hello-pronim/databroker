@@ -22,7 +22,7 @@
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item">
-                                <a href="{{ route('admin.usecases.add_new', [ 'id' => $boards[0]->communityIdx ]) }}" class="btn btn-focus m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                                <a href="{{ route('admin.usecases.add_new', [ 'id' => $communityIdx ]) }}" class="btn btn-focus m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
                                     <span>
                                         <i class="la la-cart-plus"></i>
                                         <span>New Article</span>
@@ -65,7 +65,7 @@
             </div>
         </div>
         <input type="file" id="upload_attach" accept=".gif,.jpg,.jpeg,.png" style="display: none;">
-        <input type="hidden" id="hidden_communityIdx" name="hidden_communityIdx" value="{{ $boards[0]->communityIdx }}">
+        <input type="hidden" id="hidden_communityIdx" name="hidden_communityIdx" value="{{ $communityIdx }}">
     </div>
 </div>
 
