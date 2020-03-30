@@ -1769,4 +1769,13 @@ a[data-target='#mediaLibraryModal']:hover{
 #news_detail_img{
 	opacity: 1 !important;
 }
+#update_published{
+	font-size: 20px !important;
+}
+#update_title{
+	font-size: 50px !important;
+}
+#updates_blog_content{
+	padding-top: 0px !important;
+}
 
