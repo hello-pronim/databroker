@@ -45,9 +45,10 @@ class AdminController extends Controller
         return Auth::user();
     }
 
-    public function usecases()
+    public function usecases($id)
     {   
-        $boards = Article::with('community')->orderBy('created_at', 'DESC')->get();
+
+        $boards = Article::with('community')->where('communityIdx', $id)->orderBy('created_at', 'DESC')->get();
         $data = array('boards');
         return view('admin.usecases', compact($data));
     }

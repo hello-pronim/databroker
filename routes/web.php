@@ -111,7 +111,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 
 	//admin route usecase
 	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
-	Route::get('/admin/usecases', 'AdminController@usecases')->name('admin.usecases');
+	Route::get('/admin/usecases/{id}', 'AdminController@usecases')->where('id', '[0-9]+')->name('admin.usecases');
 	Route::get('/admin/usecases/add_new', 'AdminController@usecases_add_new')->name('admin.usecases.add_new');
 	Route::post('/admin/usecases/update', 'AdminController@usecases_update')->name('admin.usecases.update');
 	Route::post('/admin/usecases/upload_attach/{articleIdx}', 'AdminController@usecases_upload_attach')->name('admin.usecases_upload_attach');
