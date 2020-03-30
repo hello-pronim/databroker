@@ -92,7 +92,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/about/media-center', 'AboutController@media_center')->name('about.media_center'); 
 	Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
 	Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase'); 
-	Route::get('/about/news', 'AboutController@news')->name('about.news');
+	Route::get('/about/updates', 'AboutController@news')->name('about.news');
 	
 	Route::get('/help', 'HelpController@index')->name('help.overview');    	
 	Route::get('/help/buying-data', 'HelpController@buying_data')->name('help.buying_data'); 
@@ -107,7 +107,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 
 	Route::get('/download/data-toolkit', 'AboutController@download')->name('download.data-toolkit');
 	Route::get('/about/usecase/{id}', 'AboutController@usecase_detail')->where('id', '[0-9]+')->name('about.usecase_detail');
-	Route::get('/about/news/{id}', 'AboutController@news_detail')->where('id', '[0-9]+')->name('about.news_detail');
+	Route::get('/about/updates/{id}', 'AboutController@news_detail')->where('id', '[0-9]+')->name('about.news_detail');
 
 	//admin route usecase
 	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');

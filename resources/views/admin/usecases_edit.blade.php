@@ -46,7 +46,7 @@
 						</div>
 						<div class="col-md-2 m-form__group-sub">
 							<label class="form-control-label">Published Date *</label>
-							<input type="text" class="form-control m-input" name="published" placeholder="Enter article title" value="{{ ($board->published)->toDateString()??'' }}">
+							<input type="text" class="form-control m-input" name="published" placeholder="Enter Date like 2000-01-30" value="{{ ($board->published)->toDateString()??'' }}">
 						</div>
 						<div class="col-md-3 m-form__group-sub">
 							<label class="form-control-label">Board Category *</label>
