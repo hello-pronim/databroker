@@ -139,18 +139,18 @@
 					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 {{ $product->productAccessDays }}</span></p>
 					                			<div class="flex-row align-items-center justify-content-end">
 						                			@if($product->productBidType == 'no_bidding')
-						                			<a temp-href="/data/buy_data/{{ $id }}/{{$product->productIdx}}">
+						                			<a href="/data/buy_data/{{ $id }}/{{$product->productIdx}}">
 						                				<button type="button" class="customize-btn">Buy Now</button>
 						                			</a>
 						                			@elseif($product->productBidType == 'bidding_only')
-						                			<a temp-href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+						                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
 						                			@elseif($product->productBidType == 'bidding_possible')
-						                			<a temp-href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+						                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
-						                			<a temp-href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+						                			<a href="/data/buy_data/{{ $id }}/{{$product->productIdx}}">
 						                				<button type="button" class="customize-btn">Buy Now</button>
 						                			</a>
 						                			<br>
