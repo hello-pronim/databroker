@@ -113,10 +113,12 @@ $(document).ready(function(){
     });
 
     $(".custom-dropdown .custom-dropdown-menu button").click(function(){
-        
+        if($(this).closest(".custom-dropdown").hasClass('dropdown-open'))
+            $(this).closest(".custom-dropdown").removeClass('dropdown-open');
     	var select_box = $(this).parent().parent();
     	select_box.toggle();
     	var show_box = $(this).closest('.custom-dropdown').find('>.select');
+        $(show_box).addClass("chosen");
     	var region = select_box.find("input[name='region[]']").val();
     	
     	var regionIdx = [];
@@ -141,7 +143,7 @@ $(document).ready(function(){
             region.push(select_box.find(".custom-select2 select").find("option:checked").text());
         }        
     	        
-    	show_box.find("span").html(region.join(','));
+    	show_box.find("span").html(region.join(', '));
     	$("input[name='offercountry']").val(regionIdx.join(','));
     });
 

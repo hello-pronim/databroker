@@ -142,7 +142,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-25 flex-row">
-															<a href="{{route('data.buy_data', ['id'=>$data['product']->offerIdx, 'pid'=>$data['product']->productIdx])}}" class="btn btn-primary">
+															<a href="{{route('data.buy_data', ['id'=>$data['product']->offerIdx, 'pid'=>$data['product']->productIdx]).'?bidIdx='.$data['buyer']->bidIdx}}" class="btn btn-primary">
 																BUY DATA AT AGREED PRICE
 															</a>
 														</td>

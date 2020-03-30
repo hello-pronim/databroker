@@ -130,6 +130,13 @@ return [
     | for simpler reading. Otherwise, the default channel will be used.
     |
     */
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ],
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
