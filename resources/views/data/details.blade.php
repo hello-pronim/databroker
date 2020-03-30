@@ -150,7 +150,7 @@
 						                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
 						                				<button type="button" class="customize-btn">SEND BID</button>
 						                			</a>
-						                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+						                			<a href="/data/buy_data/{{ $id }}/{{$product->productIdx}}">
 						                				<button type="button" class="customize-btn">Buy Now</button>
 						                			</a>
 						                			<br>
