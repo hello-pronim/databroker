@@ -87,7 +87,7 @@ $(document).ready(function(){
     					if(typeof value == 'object'){
     						$.each(value, function(a, b){    							
     							$("span.invalid-feedback."+key).find("strong").append(b+"<br>");
-    						});    						
+    						});
     					}else{
     						$("span.invalid-feedback."+key).find("strong").text(value);
     					}    				
