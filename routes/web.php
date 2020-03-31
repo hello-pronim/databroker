@@ -87,7 +87,6 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/contact', 'AboutController@contact')->name('contact'); 
 	Route::post('/contact', 'AboutController@send')->name('contact.send');       
 	Route::get('/contact_pass', 'AboutController@contact_pass')->name('contact_pass');
-	Route::post('/contact_pass', 'AboutController@contact_pass_send')->name('contact_pass.send');
 	Route::get('/about/matchmaking', 'AboutController@matchmaking')->name('about.matchmaking'); 
 	Route::get('/about/media-center', 'AboutController@media_center')->name('about.media_center'); 
 	Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    

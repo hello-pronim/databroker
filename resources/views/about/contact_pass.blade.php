@@ -14,7 +14,7 @@
                     Contact us about our PaaS solution.
 				</p>
                 <br>
-                <form method="POST" action="{{ route('contact_pass.send') }}" id="contactForm">
+                <form method="POST" action="{{ route('contact.send') }}" id="contactForm">
                     @csrf
                     <label class="pure-material-textfield-outlined">
 						<textarea name="message" class="form-control input_data user-message @error('message') is-invalid @enderror" placeholder="{{ trans('pages.your_message') }}" maxlength="100" autofocus>{{ old('message')}}</textarea>
