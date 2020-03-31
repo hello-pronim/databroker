@@ -88,12 +88,14 @@ class RegisterController extends Controller
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
-            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
+            'password' => ['required', 'string', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
+            'password_confirmation'=>['same:password'],
             'term_conditions' => ['required']
         ], [
             'password.min'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
             'password.required'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
             'password.regex'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
+            'password_confirmation.same'=>"Passwords do not match.",
             'term_conditions.required'=>'Please confirm that you accept Databroker’s terms and conditions and privacy policy.'
         ]);
     }

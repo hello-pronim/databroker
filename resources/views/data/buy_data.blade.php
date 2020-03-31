@@ -109,6 +109,9 @@
 								<input type="hidden" id="offerIdx" name="offerIdx" value="{{$product->offerIdx}}">
 								<input type="hidden" id="productIdx" name="productIdx" value="{{$product->productIdx}}">
 								<input type="hidden" id="productPrice" name="productPrice" value="{{$product->productPrice}}">
+								@if($bidIdx)
+								<input type="hidden" id="bidIdx" name="bidIdx" value="{{$bidIdx}}">
+								@endif
 								<label class="pure-material-textfield-outlined">
 			                        <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname', $buyer->firstname) }}" autocomplete="firstname" autofocus>
 			                        <span>{{ trans('data.first_name') }}</span>

@@ -20,6 +20,7 @@ use App\Models\OfferSample;
 use App\Models\OfferProduct;
 use App\Models\OfferCountry;
 use App\Models\ProductCountry;
+use App\Models\PaidProduct;
 use App\Models\RegionProduct;
 use App\Models\UseCase;
 use App\Models\Bid;
@@ -925,6 +926,7 @@ class DataController extends Controller
                         ->get()
                         ->first();
             $billingInfo = BillingInfo::where('userIdx', $user->userIdx)->get()->first();
+            $bidIdx = $request->bidIdx? $request->bidIdx : 0;
             if($billingInfo){
                 $buyer['firstname'] = $billingInfo['firstname'];
                 $buyer['lastname'] = $billingInfo['lastname'];
@@ -939,7 +941,7 @@ class DataController extends Controller
             }
             $countries = Region::where('regionType', 'country')->get(); 
             $publishable_key = env('STRIPE_PUBLIC_KEY');
-            $data = array('product', 'buyer', 'countries', 'publishable_key');
+            $data = array('product', 'buyer', 'countries', 'publishable_key', 'bidIdx');
             return view('data.buy_data', compact($data));
         }
     }
@@ -1006,6 +1008,7 @@ class DataController extends Controller
                             "description" => "Databroker Data Fee" 
                     ) );
 
+
                     $buyer = BillingInfo::where('userIdx', $user->userIdx)->get()->first();
                     $seller = OfferProduct::with('region')
                                     ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
@@ -1020,6 +1023,22 @@ class DataController extends Controller
                     $data['seller'] = $seller;
                     $data['buyer'] = $buyer;
                     $data['product'] = $product;
+
+                    $paidProductData['productIdx'] = $request->productIdx;
+                    $paidProductData['userIdx'] = $user->userIdx;
+                    if($request->bidIdx) $paidProductData['bidIdx'] = $request->bidIdx;
+                    $paidProductData['from'] = date('Y-m-d H:i:s');
+                    if($product['productAccessDays']=='day')
+                        $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($paidProductData['from'])));
+                    else if($product['productAccessDays']=='week')
+                        $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+7 day', strtotime($paidProductData['from'])));
+                    else if($product['productAccessDays']=='month')
+                        $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($paidProductData['from'])));
+                    else if($product['productAccessDays']=='year')
+                        $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
+                    $paidProductObj = PaidProduct::create($paidProductData);
+                    var_dump($paidProductObj);
+                    exit;
 
                     $this->sendEmail("buydata", [
                         'from'=>'cg@jts.ec', 
