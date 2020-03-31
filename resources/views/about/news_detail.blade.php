@@ -19,16 +19,11 @@
         <div class="app-section app-reveal-section align-items-center usecases detail">
             <div class="blog-header row">                
                 <div class="col-md-12">
-                    <h1 class="h1-small">{{$usecase[0]->articleTitle}}</h1>
-                    <p class="fs-18"><span class="h3" id="matchmaking-detail-category"><b>By Valentina Ponomariova&nbsp;|&nbsp;{{ date_format($usecase[0]->published,"F d, Y") }}</b></span></p>
+                    <h1 class="h1-small" id="update_title">{{$usecase[0]->articleTitle}}</h1>
+                    <p class="fs-18"><h3 class="color-green" id="update_published"><b>- By Valentina Ponomariova&nbsp;|&nbsp;{{ date_format($usecase[0]->published,"F d, Y") }}</b></h3></p>
                 </div>                
             </div>          
-            <div class="blog-content">
-                <div class="row">
-                    <div class="col-lg-4 flex-vcenter mgh30">
-                        <!-- <h4 class="h4_intro">Explore use cases in</h4> -->
-                    </div>
-                </div>
+            <div class="blog-content" id="updates_blog_content">
                 <div id="usecase-list" class="mgh30">
                     <div class="row">
                         <div class="col-md-12 col-sm-12">

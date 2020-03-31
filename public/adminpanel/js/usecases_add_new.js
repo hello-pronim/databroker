@@ -1,4 +1,5 @@
 $(function(){
+	var communityIdx = $('#communityIdx_id').val();
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -22,6 +23,9 @@ $(function(){
 			},
 			meta_desc: {
 				required: true,
+			},
+			published: {
+				required: true,
 			}
 	    },
 	    //display error alert on form submit  
@@ -44,14 +48,14 @@ $(function(){
                                 {   
                                     if(result == "success")
                                     {
-                                        window.location.href = "/admin/usecases";
+                                        window.location.href = "/admin/usecases/"+communityIdx;
                                     }
                                     
                                 },
                         error: function (msg) 
                                 {
                                     console.log('error', msg);
-                                    window.alert("Network Error!");
+                                    window.alert("Network Error!", "Please Match the Date format as like 2000-01-31");
                                 }
                     }
                 );

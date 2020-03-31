@@ -45,26 +45,30 @@ class AdminController extends Controller
         return Auth::user();
     }
 
-    public function usecases()
+    public function usecases($id)
     {   
-        $boards = Article::with('community')->orderBy('created_at', 'DESC')->get();
-        $data = array('boards');
+        $communityIdx = $id;
+        $communityName = Community::where('communityIdx', $id)->pluck('communityName')->first();
+        $boards = Article::with('community')->where('communityIdx', $id)->orderBy('created_at', 'DESC')->get();
+        $data = array('boards', 'communityIdx', 'communityName');
         return view('admin.usecases', compact($data));
     }
 
-    public function usecases_add_new()
+    public function usecases_add_new($id)
     {
-        $categories = Community::get();  
-        $data = array( 'categories' );
+        $categories = Community::get();
+        $communityIdx = $id;  
+        $data = array( 'categories', 'communityIdx' );
         return view('admin.usecases_add_new', compact($data));
     }
 
-    public function usecases_edit($id)
+    public function usecases_edit($id, $communityIdx)
     {
         $id = $id;
+        $communityIdx = $communityIdx;
         $categories = Community::get();  
         $board = Article::where('articleIdx', $id)->first(); 
-        $data = array( 'categories', 'id', 'board' );
+        $data = array( 'categories', 'id', 'board', 'communityIdx' );
         return view('admin.usecases_edit', compact($data));
     }
 

@@ -47,3 +47,6 @@
     color: aquamarine;
     text-decoration: none;
 }
+#published_date::-webkit-inner-spin-button{
+    display: none;
+}

@@ -92,7 +92,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/about/media-center', 'AboutController@media_center')->name('about.media_center'); 
 	Route::get('/about/partners', 'AboutController@partners')->name('about.partners');    
 	Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase'); 
-	Route::get('/about/news', 'AboutController@news')->name('about.news');
+	Route::get('/about/updates', 'AboutController@news')->name('about.news');
 	
 	Route::get('/help', 'HelpController@index')->name('help.overview');    	
 	Route::get('/help/buying-data', 'HelpController@buying_data')->name('help.buying_data'); 
@@ -107,15 +107,15 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 
 	Route::get('/download/data-toolkit', 'AboutController@download')->name('download.data-toolkit');
 	Route::get('/about/usecase/{id}', 'AboutController@usecase_detail')->where('id', '[0-9]+')->name('about.usecase_detail');
-	Route::get('/about/news/{id}', 'AboutController@news_detail')->where('id', '[0-9]+')->name('about.news_detail');
+	Route::get('/about/updates/{id}', 'AboutController@news_detail')->where('id', '[0-9]+')->name('about.news_detail');
 
 	//admin route usecase
 	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
-	Route::get('/admin/usecases', 'AdminController@usecases')->name('admin.usecases');
-	Route::get('/admin/usecases/add_new', 'AdminController@usecases_add_new')->name('admin.usecases.add_new');
+	Route::get('/admin/usecases/{id}', 'AdminController@usecases')->where('id', '[0-9]+')->name('admin.usecases');
+	Route::get('/admin/usecases/add_new/{id}', 'AdminController@usecases_add_new')->where('id', '[0-9]+')->name('admin.usecases.add_new');
 	Route::post('/admin/usecases/update', 'AdminController@usecases_update')->name('admin.usecases.update');
 	Route::post('/admin/usecases/upload_attach/{articleIdx}', 'AdminController@usecases_upload_attach')->name('admin.usecases_upload_attach');
-	Route::get('/admin/usecases/edit/{id}', 'AdminController@usecases_edit')->where('id', '[0-9]+')->name('admin.usecases_edit');
+	Route::get('/admin/usecases/edit/{id}/{communityIdx}', 'AdminController@usecases_edit')->where('id', '[0-9]+')->name('admin.usecases_edit');
 	//admin route usecase
 	Route::get('/admin/updates', 'AdminController@updates')->name('admin.updates');
 
