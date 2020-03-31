@@ -21,6 +21,7 @@ use App\Models\Contact;
 use App\Models\Subscription;
 use App\Models\Article;
 use Response;
+use Image;
 
 class AdminController extends Controller
 {
@@ -93,6 +94,12 @@ class AdminController extends Controller
     {
             $getfiles = $request->file('uploadedFile');
             $fileName = $articleIdx.'.jpg';  
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+            $tinyimg->resize(300,400, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/usecases/tiny').'/'.$fileName);
+            //image compress end
             $getfiles->move(public_path('uploads/usecases'), $fileName);
             Article::find($articleIdx)->update(['image' => $fileName]);
             return "true";
