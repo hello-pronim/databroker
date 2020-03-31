@@ -20,10 +20,7 @@
                                 <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Password']) }}</div>
                                 <span class="feedback @error('password') invalid-feedback @enderror" role="alert">
                                     <strong>
-                                        @if($errors->has('password')) {{$errors->first('password')}}
-                                        @else
                                         Your password must contain at least <span class="has8letters">8 characters</span>, including <span class="hasupperletter">1 uppercase letter</span> and <span class="hasdigit">1 digit</span>.
-                                        @endif
                                     </strong>
                                 </span>
                             </label>

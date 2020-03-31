@@ -178,8 +178,10 @@
                             <input type="password" id="password" name="password" class="form-control input_data" placeholder=" "  value="" autocomplete="password" autofocus>
                             <span>{{ trans('auth.new_password') }}</span>
                             <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Password']) }}</div>
-                            <span class="invalid-feedback password" role="alert">
-                                <strong></strong>
+                            <span class="feedback password" role="alert">
+                                <strong>
+                                    Your password must contain at least <span class="has8letters">8 characters</span>, including <span class="hasupperletter">1 uppercase letter</span> and <span class="hasdigit">1 digit</span>.
+                                </strong>
                             </span>
                         </label>
 
@@ -187,7 +189,7 @@
                             <input type="password" id="password_confirmation" name="password_confirmation" class="form-control input_data" placeholder=" "  value="" autocomplete="password_confirmation" autofocus>
                             <span>{{ trans('auth.confirm_password') }}</span>
                             <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Confirm password']) }}</div>
-                            <span class="invalid-feedback password_confirmation" role="alert">
+                            <span class="feedback password_confirmation" role="alert">
                                 <strong></strong>
                             </span>
                         </label>
@@ -349,6 +351,42 @@
                 var im = path.split("?")[1].split('=')[1];
                 if(im==1) $("#inviteBtn").trigger('click');
             }
+            $("input[name='password']").on("keyup", function(e){
+                var has8letters = false;
+                var hasupperletter = false;
+                var hasdigit = false;
+                var text = $(this).val();
+                if(text.length >= 8) has8letters = true;
+                else has8letters = false;
+                if(text.length!=0){
+                    for(var i=0; i<text.length; i++){
+                        if(text[i]>='A' && text[i]<='Z')
+                            hasupperletter = true;
+                        if(text[i]>='0' && text[i]<='9')
+                            hasdigit = true;
+                    }
+                }
+                if(has8letters) $(this).siblings('.feedback').find('.has8letters').addClass('passed');
+                else $(this).siblings('.feedback').find('.has8letters').removeClass('passed');
+                if(hasupperletter) $(this).siblings('.feedback').find('.hasupperletter').addClass('passed');
+                else $(this).siblings('.feedback').find('.hasupperletter').removeClass('passed');
+                if(hasdigit) $(this).siblings('.feedback').find('.hasdigit').addClass('passed');
+                else $(this).siblings('.feedback').find('.hasdigit').removeClass('passed');
+                if(has8letters && hasupperletter && hasdigit) $(this).siblings('.feedback').addClass('text-green');
+                else $(this).siblings('.feedback').removeClass('text-green');
+            });
+            $("input[name='password_confirmation']").on("keyup", function(e){
+                var password = $("input[name='password']").val();
+                var confirm = $(this).val();
+                console.log(password.indexOf(confirm));
+                if(confirm == password) {
+                    $(this).siblings('.feedback').html("<strong class='text-green'>Passwords match.</strong>");
+                }else if(password.indexOf(confirm)){
+                    $(this).siblings('.feedback').html("<strong class='text-red'>Passwords do not match.</strong>");
+                }else{
+                    $(this).siblings('.feedback').html("<strong class='text-red'></strong>");
+                }
+            });
         })
     </script>
 @endsection

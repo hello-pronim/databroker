@@ -83,13 +83,27 @@ $(document).ready(function(){
     			if(response.success == false ){
     				$.each(response.result, function(key, value){    		
                     console.log(key);
-                    console.log(value);			
+                    console.log(value);
     					if(typeof value == 'object'){
-    						$.each(value, function(a, b){    							
-    							$("span.invalid-feedback."+key).find("strong").append(b+"<br>");
+    						$.each(value, function(a, b){ 	
+                                if(key=="password"){
+                                    //$("span.feedback."+key).find("strong").html(b);
+                                    $('span.feedback.'+key).addClass('invalid-feedback');
+                                } else if(key=="password_confirmation"){
+                                    $("span.feedback."+key).find("strong").html(b);
+                                    $('span.feedback.'+key).addClass('invalid-feedback');
+                                }
+    							else $("span.invalid-feedback."+key).find("strong").html(b);
     						});
     					}else{
-    						$("span.invalid-feedback."+key).find("strong").text(value);
+                            if(key=='password'){
+                                //$("span.feedback."+key).find("strong").text(value);
+                                $('span.feedback.'+key).addClass('invalid-feedback');
+                            }else if(key=='password_confirmation'){
+                                $("span.feedback."+key).find("strong").text(value);
+                                $('span.feedback.'+key).addClass('invalid-feedback');
+                            }
+    						else $("span.invalid-feedback."+key).find("strong").text(value);
     					}    				
                         $('#'+key).addClass('is-invalid');	
     					$("span.invalid-feedback."+key).show();

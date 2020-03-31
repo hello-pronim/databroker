@@ -91,13 +91,19 @@ class ProfileController extends Controller
 
         if ((!empty($oldPassword)) || (!empty($password)) || (!empty($passwordConfirm))) {
             $updatePassword = true;
-            $fields['password'] = ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'];
+            $fields['password'] = ['required', 'string', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'];
+            $fields['password_confirmation'] = ['same:password'];
         }
         else {
             $updatePassword = false;
         }
 
-        $validator = Validator::make($request->all(), $fields);
+        $validator = Validator::make($request->all(), $fields, [
+            'password.min'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
+            'password.required'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
+            'password.regex'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
+            'password_confirmation.same'=>"Passwords do not match.",
+        ]);
 
         if($validator->fails()){
             return response()->json(array( "success" => false, 'result' => $validator->errors() ));                    

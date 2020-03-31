@@ -31,7 +31,7 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 	color:white !important;
 }
 .text-red{
-	color:#FF6B6B !important;
+	color:#F44336!important;
 }
 .text-thick-grey{
 	color:#8C9196 !important;
@@ -1624,7 +1624,7 @@ a.dropdown-toggle:after{
 	color: #f44336!important;
 }
 .feedback .passed{
-	color: #78E6D0;
+	color: #78E6D0!important;
 }
 
 .xh_loading{
