@@ -33,7 +33,8 @@
                             <p class="para">
                                 For those who have trouble finding the data they need, we offer a tailor-made DataMatch service. Based on your specific needs, our DataMatch Advisor searches for potential data partners from our wide global network, and contacts you when they find what you need. At no extra cost.
                             </p>
-                            <a href="{{ route('contact_pass') }}"><span class="color-green">Discover our DataMatch service</span></a>
+                            <!-- <a href="{{ route('contact_pass') }}"><span class="color-green">Discover our DataMatch service</span></a> -->
+                            <a href="{{ route('about.matchmaking') }}"><span class="color-green">Discover our DataMatch service</span></a>
                         </div>
                         <div>
                             <h3 class="text-bold">Platform-as-a-Service solution (Paas)</h3>
@@ -147,7 +148,7 @@
                             <div class="name mgt25">{{$member['name']}}</div>
                             <div class="teamtitle para-small">{{$member['title']}}</div>
                             <div class="spacer"></div>
-                            <a class="icon-wrapper flex-center mg15"><div class="databroker-icon linkedin"></div></a>
+                            <a class="icon-wrapper flex-center mg15" href="{{ $member['linkedin'] }}"><div class="databroker-icon linkedin"></div></a>
                     </div>
                     @endforeach
                 </div>
@@ -162,7 +163,7 @@
             <div class="divider-green"></div>
             <div class="h2 mgt30">Don't miss any updates!</div>
             <div class="">Sign up to our newsletter</div>
-            <a href="{{route('register_nl')}}"><button class="button customize-btn mgt60">NEWSLETTER SIGN UP</button></a>
+            <a href="{{route('register_nl')}}"><button class="button customize-btn mgt60">SIGN UP</button></a>
         </div>
     </div>
 </div>   

@@ -44,24 +44,28 @@ class AboutController extends Controller
                 'avatar'    => '../images/dummy/Matthew_DB.png', 
                 'name'      => 'Matthew van Niekerk',
                 'title'  => 'Co-founder and CEO', 
+                'linkedin' => 'https://www.linkedin.com/in/ceosettlemint/'
             ),
             array(
                 'id'        => 2, 
                 'avatar'    => '../images/dummy/Roderik_DB.png', 
                 'name'      => 'Roderik van der Veer',
                 'title'  => 'Co-founder and CTO', 
+                'linkedin' => 'https://www.linkedin.com/in/roderik/'
             ),
             array(
                 'id'        => 3, 
                 'avatar'    => '../images/dummy/Vincent_DB.png', 
                 'name'      => 'Vincent Bultot',
                 'title'  => 'DataMatch Advisor', 
+                'linkedin' => 'https://www.linkedin.com/in/vbultot/'
             ),
             array(
                 'id'        => 4, 
                 'avatar'    => '../images/dummy/Valentina_DB.png', 
                 'name'      => 'Valentina Ponomariova',
                 'title'  => 'Marketing and Communications Manager', 
+                'linkedin' => 'https://www.linkedin.com/in/valentina-ponomariova-96a5705a/'
             ),
         );        
         $data = array( 'teammates' );
