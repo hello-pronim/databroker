@@ -148,7 +148,7 @@
                             <div class="name mgt25">{{$member['name']}}</div>
                             <div class="teamtitle para-small">{{$member['title']}}</div>
                             <div class="spacer"></div>
-                            <a class="icon-wrapper flex-center mg15" href="{{ $member['linkedin'] }}"><div class="databroker-icon linkedin"></div></a>
+                            <a class="icon-wrapper flex-center mg15" href="{{ $member['linkedin'] }}" target="_blank"><div class="databroker-icon linkedin"></div></a>
                     </div>
                     @endforeach
                 </div>
