@@ -43,7 +43,8 @@ class ResetPasswordController extends Controller
     {
         return [
             'token' => 'required',
-            'password' => 'required|confirmed|min:8|string|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'password' => 'required|min:8|string|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'password_confirmation'=>'same:password'
         ];
     }
 
@@ -53,6 +54,7 @@ class ResetPasswordController extends Controller
             'password.required'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
             'password.min'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
             'password.regex'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
+            'password_confirmation.same'=>'Passwords do not match.'
         ];
     }
 

@@ -31,7 +31,7 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 	color:white !important;
 }
 .text-red{
-	color:#FF6B6B !important;
+	color:#F44336!important;
 }
 .text-thick-grey{
 	color:#8C9196 !important;
@@ -1068,6 +1068,9 @@ a.dropdown-toggle:after{
 }
 .custom-dropdown .select span{
 	text-transform: capitalize;
+	color: #87888e;
+    font-size: 16px;
+    line-height: 28px;
 }
 .custom-dropdown .custom-dropdown-menu .check_container{
 	width: 32%;
@@ -1106,7 +1109,7 @@ a.dropdown-toggle:after{
     width: 100%;
     display: inline-block;
     background-color: #fff;
-    box-shadow: 0 0 2px rgb(123, 126, 129);
+    border: 2px solid #e9e9e9;
     transition: all .5s ease;
     position: relative;
     font-size: 14px;
@@ -1119,6 +1122,9 @@ a.dropdown-toggle:after{
     line-height: 28px;
     /* margin: 10px 0px 17px; */
     position: relative;
+}
+.custom-dropdown-container .custom-dropdown.dropdown-open {
+	border: 2px solid rgb(var(--pure-material-primary-rgb, 33, 150, 243));
 }
 .custom-dropdown-container .custom-dropdown:focus {
     outline-color: transparent;
@@ -1140,6 +1146,9 @@ a.dropdown-toggle:after{
     padding: 10px;
     height:50px;
 }
+.custom-dropdown-container .custom-dropdown .select.chosen span{
+	color: rgba(0, 0, 0, 0.87);
+}
 .custom-dropdown-container .custom-dropdown .select > i {
     font-size: 13px;
     color: #888;
@@ -1147,9 +1156,6 @@ a.dropdown-toggle:after{
     transition: all .3s ease-in-out;
     float: right;
     line-height: 20px
-}
-.custom-dropdown-container .custom-dropdown:hover {
-    box-shadow: 0 0 4px rgb(204, 204, 204)
 }
 .custom-dropdown-container .custom-dropdown .input input{
 	width: 100%;
@@ -1607,6 +1613,7 @@ a.dropdown-toggle:after{
 	font-family:"DM Sans";
 	font-weight: bold;
 	color: #020A09;
+    margin-top: .25rem;
 }
 .invalid-feedback{
 	display: block;
@@ -1615,6 +1622,9 @@ a.dropdown-toggle:after{
 	font-family:"DM Sans";
 	font-weight: bold;
 	color: #f44336!important;
+}
+.feedback .passed{
+	color: #78E6D0!important;
 }
 
 .xh_loading{
