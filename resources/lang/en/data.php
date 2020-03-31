@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'send_message'=>'SEND MASSAGE',
+    'send_message'=>'SEND MESSAGE',
     'send_a message_to' => 'Send a message to',
     'your_message' => 'Your message',
     'received_success' => 'As soon as the company contacts you, you can continue your conversation outside the Databroker platform.',
