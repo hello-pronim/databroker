@@ -50,3 +50,13 @@
 #published_date::-webkit-inner-spin-button{
     display: none;
 }
+.sidebar_header{
+    font-size: 30px;
+    color: white;
+    padding-left: 40px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.sidebar_header:hover{
+    color: darkturquoise;
+}

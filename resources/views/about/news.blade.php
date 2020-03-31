@@ -22,25 +22,23 @@
             <div class="blog-content">
                 <div class="row">
                     <div class="col-lg-6 flex-vcenter mgh30 col-sm-12" id="usecase-whole">
-                      
                     </div>
                 </div>
                 <div id="usecase-list" class="mgh30">
                     <div class="row">
-                        @foreach ( $usecases as $usecase )
+                        @foreach ( $updates as $update )
                         <div class="col-md-4">
-                            <a href="{{ route('about.news_detail',  ['id' => $usecase->articleIdx] ) }}">
+                            <a href="{{ route('about.news_detail',  ['id' => $update->articleIdx] ) }}">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder" id="resposive-card-header">        
-                                        <img class="img" src="{{ asset('uploads/usecases/tiny/'.$usecase->image) }}" id="responsive-card-img"/>
+                                        <img class="img" src="{{ asset('uploads/usecases/tiny/'.$update->image) }}" id="responsive-card-img"/>
                                         <div class="small-image-overlay"></div>
                                     </div>
                                     <div class="card-body text-left">
                                         <div class="para-small">
-                                            <!-- <span class="color-green">{{ $usecase->community->communityName }}</span> -->
-                                            <span class="color-green"><b>By Valentina Ponomariova&nbsp;|&nbsp;{{ date_format($usecase->published,"F d, Y") }}</b></span>
+                                            <span class="color-green"><b>- By&nbsp;{{ $update->author }}&nbsp;|&nbsp;{{ date_format($update->published,"F d, Y") }}</b></span>
                                         </div>
-                                        <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
+                                        <h4 class="offer-title card-title">{{ $update->articleTitle }}</h4>
                                     </div>
                                 </div>  
                             </a>
@@ -65,19 +63,19 @@
         <div class="app-section app-reveal-section align-items-center usecases">
             <div id="usecase-list2" class="mgh30">
                 <div class="row">
-                    @foreach ( $usecases2 as $usecase )
+                    @foreach ( $updates2 as $update )
                     <div class="col-md-4">
-                        <a href="{{ route('about.news_detail',  ['id' => $usecase->articleIdx] ) }}">
+                        <a href="{{ route('about.news_detail',  ['id' => $update->articleIdx] ) }}">
                             <div class="card card-profile card-plain">                  
                                 <div class="card-header holder" id="resposive-card-header">        
-                                    <img class="img" src="{{ asset('uploads/usecases/tiny/'.$usecase->image) }}" id="responsive-card-img"/>
+                                    <img class="img" src="{{ asset('uploads/usecases/tiny/'.$update->image) }}" id="responsive-card-img"/>
                                     <div class="small-image-overlay"></div>
                                 </div>
                                 <div class="card-body text-left">
                                     <div class="para-small">
-                                        <span class="color-green"><b>By Valentina Ponomariova&nbsp;|&nbsp;{{ date_format($usecase->published,"F d, Y") }}</b></span>
+                                        <span class="color-green"><b>- By&nbsp;{{ $update->author }}&nbsp;|&nbsp;{{ date_format($update->published,"F d, Y") }}</b></span>
                                     </div>
-                                    <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
+                                    <h4 class="offer-title card-title">{{ $update->articleTitle }}</h4>
                                 </div>
                             </div>  
                         </a>

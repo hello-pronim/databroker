@@ -107,7 +107,39 @@ class AdminController extends Controller
 
     public function updates()
     {   
-        return view('admin.updates');
+        $boards = Article::where('communityIdx', null)->orderBy('created_at', 'DESC')->get();
+        $data = array('boards');
+        return view('admin.updates', compact($data));
+    }
+
+    public function updates_add_new()
+    {
+        return view('admin.updates_add_new');
+    }
+
+    public function updates_update(Request $request)
+    {
+        if($request->input('id')) {
+            $articleIdx = $request->input('id');
+            $data = $request->all();
+            unset($data['id']);
+            Article::find($articleIdx)->update($data);
+            return "success";
+        } else {
+            $data = $request->all();
+            // $data['published'] = date("Y-m-d");
+            unset($data['id']);
+            Article::create($data);
+            return "success";
+        }
+    }
+
+    public function updates_edit($id)
+    {
+        $id = $id;
+        $board = Article::where('articleIdx', $id)->first(); 
+        $data = array('id', 'board');
+        return view('admin.updates_edit', compact($data));
     }
 
 }

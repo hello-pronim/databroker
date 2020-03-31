@@ -321,10 +321,16 @@ class AboutController extends Controller
 
     public function news(Request $request)
     {        
-        $usecases = Article::with('community')->orderby('published', 'desc')->limit(9)->get();
-        $usecases2 = Article::with('community')->orderby('published', 'desc')->limit(3)->get();
-        $communities = Community::all();
-        $data = array( 'usecases', 'usecases2', 'communities' );
+        // usecases
+        // $usecases = Article::with('community')->orderby('published', 'desc')->limit(9)->get();
+        // $usecases2 = Article::with('community')->orderby('published', 'desc')->limit(3)->get();
+        // $communities = Community::all();
+        // $data = array( 'usecases', 'usecases2', 'communities' );
+        // return view('about.news', compact($data));
+
+        $updates = Article::where('communityIdx', null)->orderby('published', 'desc')->limit(9)->get();
+        $updates2 = Article::where('communityIdx', null)->orderby('published', 'desc')->limit(3)->get();
+        $data = array( 'updates', 'updates2');
         return view('about.news', compact($data));
     }
 
@@ -425,9 +431,15 @@ class AboutController extends Controller
     }
 
     public function news_detail($id){
-        $usecase = Article::where('articleIdx', $id)->with('community')->get();
-        $usecases2 = Article::with('community')->orderby('published', 'desc')->limit(3)->get();
-        $data = array('usecase', 'usecases2');
+        // usecases detail
+        // $usecase = Article::where('articleIdx', $id)->with('community')->get();
+        // $usecases2 = Article::with('community')->orderby('published', 'desc')->limit(3)->get();
+        // $data = array('usecase', 'usecases2');
+        // return view('about.news_detail', compact($data));
+
+        $update = Article::where('articleIdx', $id)->get();
+        $updates2 = Article::where('communityIdx', null)->orderby('published', 'desc')->limit(3)->get();
+        $data = array('update', 'updates2');
         return view('about.news_detail', compact($data));
     }
 
