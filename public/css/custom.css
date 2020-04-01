@@ -1789,4 +1789,6 @@ a[data-target='#mediaLibraryModal']:hover{
 #updates_blog_content{
 	padding-top: 0px !important;
 }
-
+#updates-article-content img {
+	max-width: 850px;
+}

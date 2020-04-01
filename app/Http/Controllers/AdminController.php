@@ -107,7 +107,7 @@ class AdminController extends Controller
 
     public function updates()
     {   
-        $boards = Article::where('communityIdx', null)->orderBy('created_at', 'DESC')->get();
+        $boards = Article::where('communityIdx', null)->orderBy('published', 'DESC')->get();
         $data = array('boards');
         return view('admin.updates', compact($data));
     }

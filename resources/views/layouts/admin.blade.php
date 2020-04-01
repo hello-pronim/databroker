@@ -40,6 +40,7 @@
         <link href="{{ asset('adminpanel/assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('adminpanel/css/admin.css') }}" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" href="{{ asset('adminpanel/assets/demo/default/media/img/logo/logo.png') }}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
         @yield('additional_css')      
     </head>
@@ -91,6 +92,8 @@
                     <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">
                         <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
                             <div class="sidebar_header">
+                                <i class="fa fa-home" style="font-size: 30px;"></i>
+                                <!-- <img src="https://image.flaticon.com/icons/svg/1063/1063385.svg" width="24" height="24" alt="Cms free icon" title="Cms free icon"> -->
                                 CMS
                             </div>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
@@ -119,9 +122,11 @@
                                 </a>
                             </li>
                             <div class="sidebar_header">
+                                <i class="fa fa-user" style="font-size:30px;"></i>
                                 Users
                             </div>
                             <div class="sidebar_header">
+                                <i class="fa fa-sign-out" style="font-size:30px" aria-hidden="true"></i>
                                 Logout
                             </div>
                         </ul>
