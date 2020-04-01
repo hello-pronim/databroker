@@ -767,10 +767,10 @@ class AboutController extends Controller
         $subscription['businessName'] = $businessName;
         $subscription['role'] = $role;
         $subscription['communities'] = json_encode($request->community);
-        // $subscriptionObj = Subscription::where('email', '=', $request->email)->get()->first();
-        // if($subscriptionObj) $subscriptionObj->delete();
+        $subscriptionObj = Subscription::where('email', '=', $request->email)->get()->first();
+        if($subscriptionObj) $subscriptionObj->delete();
 
-        // $subscriptionObj = Subscription::create($subscription);
+        $subscriptionObj = Subscription::create($subscription);
 
         // if ( ! Newsletter::isSubscribed($request->email) ) {
         //     Newsletter::subscribe($request->email);
