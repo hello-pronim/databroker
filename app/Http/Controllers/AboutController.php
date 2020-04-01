@@ -446,10 +446,19 @@ class AboutController extends Controller
     
 
     public function contact(){
+        $user = $this->getAuthUser();
         $communities = Community::get();  
         $businesses = Business::get();
         $countries = Region::where('regionType', 'country')->get(); 
-        $data = array( 'communities', 'businesses', 'countries' );
+        if($user){
+            $userData = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                            ->join('regions', 'regions.regionIdx', '=', 'companies.regionIdx')
+                            ->where('userIdx', $user->userIdx)
+                            ->get()
+                            ->first();
+        }else 
+            $userData = null;
+        $data = array( 'communities', 'businesses', 'countries', 'userData' );
         return view('about.contact', compact($data));
     }
 
@@ -493,7 +502,57 @@ class AboutController extends Controller
         $contact_data['role'] = $role;
         $contact_data['content'] = $request->message;
         $contact_data['communities'] = json_encode($request->community);
-        $contact_obj = Contact::create($contact_data);
+
+        //$contact_obj = Contact::create($contact_data);
+
+        $data = $contact_data;
+        $communities = array();
+        foreach ($request->community as $key => $value) {
+            $comm = Community::where('communityIdx', $value)->get()->first();
+            array_push($communities, $comm['communityName']);
+        }
+        $data['communities'] = $communities;
+        $region = Region::where('regionIdx', $request->regionIdx)->get()->first();
+        $data['region'] = $region['regionName'];
+        $allCommunities = Community::get();
+        $hasInterests = array();
+        foreach ($allCommunities as $key => $comm) {
+            if(in_array($comm['communityName'], $communities))
+                $hasInterests[$comm['communityName']] = "true";
+            else $hasInterests[$comm['communityName']] = "false";
+        }
+        $query['message'] = $data['content'];
+        $query['firstname'] = $data['firstname'];
+        $query['lastname'] = $data['lastname'];
+        $query['emailAddress'] = $data['email'];
+        $query['companyName'] = $data['companyName'];
+        $query['regionIdx'] = $data['regionIdx'];
+        $query['businessName'] = $data['businessName'];
+        $query['role'] = $data['role'];
+        $query = array_merge($query, $hasInterests);
+
+        $client = new \GuzzleHttp\Client();
+        $url = "https://prod-33.westeurope.logic.azure.com:443/workflows/678891364593415ca0bd87aa5fdc1dae/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=L5XvuSyw821hQf4GUDLTY1OrPotQik6gvQ3nIJEAljk";
+        $response = $client->request("POST", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=> json_encode($query)
+        ]);
+
+        $this->sendEmail("contact", [
+            'from'=>"cg@jts.ec", 
+            'to'=>env('DB_TEAM_EMAIL'), 
+            'name'=>'Databroker', 
+            'subject'=>'Message to the Databroker Team',
+            'data'=>$data
+        ]);
+        $this->sendEmail("contact", [
+            'from'=>"cg@jts.ec", 
+            'to'=>"valentina@settlemint.com", 
+            'name'=>'Databroker', 
+            'subject'=>'Message to the Databroker Team',
+            'data'=>$data
+        ]);
+
         return view('about.contact_success');
     }
 
@@ -684,11 +743,9 @@ class AboutController extends Controller
             'lastname' => 'required|min:2',
             'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'companyName' => 'required|min:2',
-            'regionIdx' => 'required',
             'community'=> 'required|array|min:1'
         ],[
-            'community.required'=>'Please choose at least one.',
-            'regionIdx.required'=>'The country field is required.'
+            'community.required'=>'Please choose at least one.'
         ]);
 
         if ($validator->fails()) {

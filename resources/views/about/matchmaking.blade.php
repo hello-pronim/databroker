@@ -11,8 +11,8 @@
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
             <div class="blog-header">
-                <h1 class="h1-small">Looking for specific data to improve your business?</h1>
-                <div class="para">We can match you up with the perfect data partner.</div>
+                <h1 class="h1-small">Looking for specific data to supercharge your business?</h1>
+                <div class="para text-bold fs-20">Let our tailor-made DataMatch service find the perfect data partner for you!</div>
             </div>          
             <div class="">
                 <div class="row mgh60">
@@ -21,24 +21,27 @@
                     </div>
                     <div class="col-lg-6 flex-vcenter mg30 matchmaking">
                         <div>
-                            <p class="h4_intro text-left">Hi, I’m Vincent, your DataMatch Advisor!</p>
-                            <p class="para">Are you looking for specific data that’s hard to find? We work with you to understand exactly what you need, and then use our wide network to find the perfect data match for you.</p>
-                            <p class="para">Our DataMatch service is already up and running, so just tell us what you need and we’ll do our best to make it happen!</p>
+                            <p class="h4_intro text-left">Hi, I'm Vincent, your DataMatch Advisor!</p>
+                            <p class="para">You know what data you need, but don’t have the time to search for it? Or maybe you’ve tried, without success? Here at Databroker, we know that time is your most precious resource, so we’ll be happy to take on the task for you. At no cost.</p>
                         </div>
                     </div>
                 </div>
                 <div class="mgt60">
                     <p class="h4_intro text-left">How it works</p>
                     <ul class="databroker-list">
-                        <li>You tell us your business challenge or data needs</li>
-                        <li>We may contact you for more details</li>
-                        <li>We search for potential data partners within our wide network</li>
-                        <li>No robots, no technology, but real people from the databroker dao team</li>
-                        <li>We'll let you know when we found a match</li>
+                        <li>You explain your business challenge to us, so we understand your exact needs.</li>
+                        <li>We search our wide network for the perfect data partner.</li>
+                        <li>We tell you when we’ve found a match. </li>
                     </ul>
                 </div>
-                <div class="flex-vcenter">
-                    <a href="{{ route('contact') }}"><button class="customize-btn">Yes, I want to be matched up</button></a>
+                <div class="mt-30">
+                    <p class="para">Simple as that!</p>
+                </div>
+                <div class="mt-30">
+                    <p class="para">Here at Databroker, we love technology … but sometimes a human touch is priceless!</p>
+                </div>
+                <div class="flex-vcenter mt-30">
+                    <a href="{{ route('contact') }}"><button class="customize-btn">Match me up</button></a>
                     <div class="mg15 pd15">It's free</div>
                 </div>
             </div>

@@ -14,7 +14,7 @@
             <div class="col-md-8">
                 <h1 class="text-primary text-center text-bold">{{trans('contact.get_in_touch')}}</h1>
                 <p class="text-center fs-16"> 
-                	Want to know more about our DataMatch service? About becoming a partner? Or maybe you didn’t find the answer to your questions in our <a href="#">Help & support centre</a> or <a href="#">Media centre?</a><br/><br/>
+                	Want to know more about our DataMatch service? About becoming a partner? Or maybe you didn’t find the answer to your questions in our <a href="{{route('help.overview')}}">Help & support centre</a> or <a href="{{route('about.media_center')}}">Media centre?</a><br/><br/>
 	                Tell us how we can help, and we’ll get back to you!<br/><br/>
 					You can also use this form to give us your feedback on Databroker – we’d love to hear it! 
 				</p>
@@ -32,7 +32,11 @@
 					</label>
 
                     <label class="pure-material-textfield-outlined">
+                        @if($userData)
+                        <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ $userData['firstname'] }}" autocomplete="firstname" autofocus readonly>
+                        @else
                         <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
+                        @endif
                         <span>{{ trans('contact.first_name') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'First Name']) }}</div>
                         @error('firstname')
@@ -43,7 +47,11 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
+                        @if($userData)
+                        <input type="text" id="lastname" name="lastname" class="form-control input_data @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ $userData['lastname'] }}" autocomplete="lastname" autofocus readonly>
+                        @else
                         <input type="text" id="lastname" name="lastname" class="form-control input_data @error('lastname')  is-invalid @enderror" placeholder=" "  value="{{ old('lastname') }}" autocomplete="lastname" autofocus>
+                        @endif
                         <span>{{ trans('contact.last_name') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
                         @error('lastname')
@@ -54,7 +62,11 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
+                        @if($userData)
+                        <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ $userData['email'] }}" autocomplete="email" autofocus readonly>
+                        @else
                         <input type="text" id="email" name="email" class="form-control input_data @error('email')  is-invalid @enderror" placeholder=" "  value="{{ old('email') }}" autocomplete="email" autofocus>
+                        @endif
                         <span>{{ trans('contact.email_address') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Email Address']) }}</div>
                         @error('email')
@@ -65,7 +77,11 @@
                     </label>
 
                     <label class="pure-material-textfield-outlined">
+                        @if($userData)
+                        <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ $userData['companyName'] }}" autocomplete="company" autofocus readonly>
+                        @else
                         <input type="text" id="company" name="companyName" class="form-control input_data @error('companyName')  is-invalid @enderror" placeholder=" "  value="{{ old('companyName') }}" autocomplete="company" autofocus>
+                        @endif
                         <span>{{ trans('contact.company') }}</span>
                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Company']) }}</div>
                         @error('companyName')
@@ -78,10 +94,17 @@
                     <div class="dropdown-container">
                         <div class="dropdown2 region_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
-                                <select id="regionIdx" class="@error('regionIdx') is-invalid @enderror"name="regionIdx" placeholder="Country">
+                                @if($userData)
+                                <input type="hidden" name="regionIdx" value="{{$userData['regionIdx']}}">
+                                <select id="regionIdx" class="@error('regionIdx') is-invalid @enderror" name="regionIdx" placeholder="Country" disabled>
+                                @else
+                                <select id="regionIdx" class="@error('regionIdx') is-invalid @enderror" name="regionIdx" placeholder="Country">
+                                @endif
                                     <option></option>
                                     @foreach ($countries as $country)
                                         @if( $country->regionIdx == old('regionIdx') )
+                                        <option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
+                                        @elseif($userData && $country->regionIdx == $userData['regionIdx'])
                                         <option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
                                         @else
                                         <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
@@ -100,10 +123,17 @@
                     <div class="dropdown-container">
                         <div class="dropdown2 business_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
+                                @if($userData)
+                                <input type="hidden" name="businessName2" value="{{$userData['businessName']}}">
+                                <select id="businessName2" name="businessName2" placeholder="Which industry are you in?" disabled>
+                                @else
                                 <select id="businessName2" name="businessName2" placeholder="Which industry are you in?">
+                                @endif
                                     <option></option>
                                 @foreach ($businesses as $business)
                                     @if(old('businessName2')==$business->businessName)
+                                    <option value="{{$business->businessName}}" selected>{{ $business->businessName }}</option>
+                                    @elseif($userData && $userData['businessName']==$business->businessName)
                                     <option value="{{$business->businessName}}" selected>{{ $business->businessName }}</option>
                                     @else
                                     <option value="{{$business->businessName}}">{{ $business->businessName }}</option>
@@ -128,14 +158,19 @@
                     <div class="dropdown-container">
                         <div class="dropdown2 role_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
+                                @if($userData)
+                                <input type="hidden" name="role2" value="{{$userData['role']}}">
+                                <select id="role2" name="role2" placeholder="What role do you have?" disabled>
+                                @else
                                 <select id="role2" name="role2" placeholder="What role do you have?">
+                                @endif
                                     <option></option>
-                                    @if(old('role2')=='Business')
+                                    @if(old('role2')=='Business' || $userData['role']=='Business')
                                     <option value="Business" selected>Business</option>
                                     @else
                                     <option value="Business">Business</option>
                                     @endif
-                                    @if(old('role2')=='Technical')
+                                    @if(old('role2')=='Technical' || $userData['role']=='Technical')
                                     <option value="Technical" selected>Technical</option>
                                     @else
                                     <option value="Technical">Technical</option>
@@ -163,8 +198,8 @@
 
                     <p class="fs-18 text-bold mt-30">
                     	We’d love to know a little more about your interests.<br/>
-      								Which data communities are most relevant for you?
-      							</p>
+						Which data communities are most relevant for you?
+					</p>
 
                     <div class="row mt-30 mb-30">
                         @foreach ($communities as $community)
