@@ -518,45 +518,40 @@ class AboutController extends Controller
         $hasInterests = array();
         foreach ($allCommunities as $key => $comm) {
             if(in_array($comm['communityName'], $communities))
-                $hasInterests[$comm['communityName']] = true;
-            else $hasInterests[$comm['communityName']] = false;
+                $hasInterests[$comm['communityName']] = "true";
+            else $hasInterests[$comm['communityName']] = "false";
         }
+        $query['message'] = $data['content'];
         $query['firstname'] = $data['firstname'];
         $query['lastname'] = $data['lastname'];
         $query['emailAddress'] = $data['email'];
         $query['companyName'] = $data['companyName'];
-        $query['countryIdx'] = $data['region'];
+        $query['regionIdx'] = $data['regionIdx'];
         $query['businessName'] = $data['businessName'];
-        $query['jobTitle'] = $data['role'];
-        $query['content'] = $data['content'];
+        $query['role'] = $data['role'];
         $query = array_merge($query, $hasInterests);
-        var_dump($query);
-        exit;
 
         $client = new \GuzzleHttp\Client();
         $url = "https://prod-33.westeurope.logic.azure.com:443/workflows/678891364593415ca0bd87aa5fdc1dae/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=L5XvuSyw821hQf4GUDLTY1OrPotQik6gvQ3nIJEAljk";
-        $res = $client->post($url, [
-            'header'=> ['Content-Type' => 'application/json'],
-            'body' => json_encode($query)
+        $response = $client->request("POST", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=> json_encode($query)
         ]);
-        var_dump($res->getBody());
-        exit;
 
-        // $this->sendEmail("contact", [
-        //     'from'=>"cg@jts.ec", 
-        //     //'to'=>env('DB_TEAM_EMAIL'), 
-        //     'to'=>"peterjackson0120@gmail.com",
-        //     'name'=>'Databroker', 
-        //     'subject'=>'Message to the Databroker Team',
-        //     'data'=>$data
-        // ]);
-        // $this->sendEmail("contact", [
-        //     'from'=>"cg@jts.ec", 
-        //     'to'=>"valentina@settlemint.com", 
-        //     'name'=>'Databroker', 
-        //     'subject'=>'Message to the Databroker Team',
-        //     'data'=>$data
-        // ]);
+        $this->sendEmail("contact", [
+            'from'=>"cg@jts.ec", 
+            'to'=>env('DB_TEAM_EMAIL'), 
+            'name'=>'Databroker', 
+            'subject'=>'Message to the Databroker Team',
+            'data'=>$data
+        ]);
+        $this->sendEmail("contact", [
+            'from'=>"cg@jts.ec", 
+            'to'=>"valentina@settlemint.com", 
+            'name'=>'Databroker', 
+            'subject'=>'Message to the Databroker Team',
+            'data'=>$data
+        ]);
 
         return view('about.contact_success');
     }
