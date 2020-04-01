@@ -1770,6 +1770,18 @@ a[data-target='#mediaLibraryModal']:hover{
 	color:rgb(28,29,28) !important;
 	font-family: sans-serif !important;
 }
+#updates-article-content h4{
+	font-size: 18pt !important;
+	font-weight: 500 !important;
+	color:rgb(28,29,28) !important;
+	font-family: sans-serif !important;
+}
+#updates-article-content h3{
+	font-size: 19pt !important;
+	font-weight: 550 !important;
+	color:rgb(28,29,28) !important;
+	font-family: sans-serif !important;
+}
 #updates-article-content a{
 	color:#007bff !important;
 }
