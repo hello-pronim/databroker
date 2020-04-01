@@ -809,8 +809,6 @@ class AboutController extends Controller
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=> json_encode($query)
         ]);
-        var_dump($response->getBody());
-        exit;
 
         return view('auth.register_nl_success');
     }
