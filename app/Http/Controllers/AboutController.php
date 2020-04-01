@@ -503,7 +503,7 @@ class AboutController extends Controller
         $contact_data['content'] = $request->message;
         $contact_data['communities'] = json_encode($request->community);
 
-        //$contact_obj = Contact::create($contact_data);
+        $contact_obj = Contact::create($contact_data);
 
         $data = $contact_data;
         $communities = array();
@@ -524,11 +524,13 @@ class AboutController extends Controller
         $query['message'] = $data['content'];
         $query['firstname'] = $data['firstname'];
         $query['lastname'] = $data['lastname'];
-        $query['emailAddress'] = $data['email'];
+        $query['email'] = $data['email'];
         $query['companyName'] = $data['companyName'];
         $query['regionIdx'] = $data['regionIdx'];
-        $query['businessName'] = $data['businessName'];
-        $query['role'] = $data['role'];
+        $query['businessName2'] = $request->businessName2 ? $request->businessName2 : "";
+        $query['businessName'] = $request->businessName ? $request->businessName : "";
+        $query['role2'] = $request->role2 ? $request->role2 : "";
+        $query['role'] = $request->role ? $request->role : "";
         $query = array_merge($query, $hasInterests);
 
         $client = new \GuzzleHttp\Client();
@@ -765,14 +767,50 @@ class AboutController extends Controller
         $subscription['businessName'] = $businessName;
         $subscription['role'] = $role;
         $subscription['communities'] = json_encode($request->community);
-        $subscriptionObj = Subscription::where('email', '=', $request->email)->get()->first();
-        if($subscriptionObj) $subscriptionObj->delete();
+        // $subscriptionObj = Subscription::where('email', '=', $request->email)->get()->first();
+        // if($subscriptionObj) $subscriptionObj->delete();
 
-        $subscriptionObj = Subscription::create($subscription);
+        // $subscriptionObj = Subscription::create($subscription);
 
-        if ( ! Newsletter::isSubscribed($request->email) ) {
-            Newsletter::subscribe($request->email);
+        // if ( ! Newsletter::isSubscribed($request->email) ) {
+        //     Newsletter::subscribe($request->email);
+        // }
+
+        $data = $subscription;
+        $communities = array();
+        foreach ($request->community as $key => $value) {
+            $comm = Community::where('communityIdx', $value)->get()->first();
+            array_push($communities, $comm['communityName']);
         }
+        $data['communities'] = $communities;
+        $region = Region::where('regionIdx', $request->regionIdx)->get()->first();
+        $data['region'] = $region['regionName'];
+        $allCommunities = Community::get();
+        $hasInterests = array();
+        foreach ($allCommunities as $key => $comm) {
+            if(in_array($comm['communityName'], $communities))
+                $hasInterests[$comm['communityName']] = "true";
+            else $hasInterests[$comm['communityName']] = "false";
+        }
+        $query['firstname'] = $data['firstname'];
+        $query['lastname'] = $data['lastname'];
+        $query['emailAddress'] = $data['email'];
+        $query['companyName'] = $data['companyName'];
+        $query['regionIdx'] = $request->regionIdx ? $request->regionIdx : "";
+        $query['businessName2'] = $request->businessName2 ? $request->businessName2 : "";
+        $query['businessName'] = $request->businessName ? $request->businessName : "";
+        $query['role2'] = $request->role2 ? $request->role2 : "";
+        $query['role'] = $request->role ? $request->role: "";
+        $query = array_merge($query, $hasInterests);
+
+        $client = new \GuzzleHttp\Client();
+        $url = "https://prod-48.westeurope.logic.azure.com:443/workflows/95373d6629684ab4a3adcc6572a61659/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=nmg5h6l_9s5gJnY9JIHRcCeZPcFnOF0l-dyi5mdWVbA";
+        $response = $client->request("POST", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=> json_encode($query)
+        ]);
+        var_dump($response->getBody());
+        exit;
 
         return view('auth.register_nl_success');
     }
