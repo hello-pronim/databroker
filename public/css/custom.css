@@ -1849,10 +1849,13 @@ a[data-target='#mediaLibraryModal']:hover{
     word-break: break-word;
 }
 #updates-article-content-sec h2 {
-	font-size: 33px !important;
+	font-size: 2rem !important;
 }
 #updates-article-content-sec h3 {
-	font-size: 26px !important;
+	font-size: 1.75rem !important;
     line-height: 36px;
     font-weight: 500 !important;
+}
+#updates-article-content-sec h4 {
+	font-size: 1.5rem !important;
 }
