@@ -44,7 +44,7 @@
 							</a>
 							<span class="seperator">|</span>
 						@if ( $offer['status'] == 1 )							
-							<a class="icon-button btn-delete data_unpublish" data-toggle="modal" data-target="#unpublishModal" data-id="{{ $offer['offerIdx'] }}" data-type="offer">
+							<a class="icon-button btn-delete data_unpublish" data-toggle="modal" data-target="#unpublishOfferModal" data-id="{{ $offer['offerIdx'] }}" data-type="offer">
 								<i class="icon material-icons">
 									cancel
 								</i>								
@@ -143,7 +143,7 @@
 												{{ trans('pages.publish') }}
 											</a>	
 											@else	
-											<a class="icon-button btn-delete data_unpublish" data-toggle="modal" data-target="#unpublishModal" data-id="{{ $product['productIdx'] }}" data-type="product">
+											<a class="icon-button btn-delete data_unpublish" data-toggle="modal" data-target="#unpublishProductModal" data-id="{{ $product['productIdx'] }}" data-type="product">
 												<i class="icon material-icons">
 													cancel
 												</i>	
@@ -172,7 +172,28 @@
 	</div>      
 </div>
 
-<div class="modal fade" id="unpublishModal" tabindex="-1" role="dialog" aria-labelledby="unpublishModalLabel" aria-hidden="true">
+<div class="modal fade" id="unpublishOfferModal" tabindex="-1" role="dialog" aria-labelledby="unpublishOfferModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="para">Unpublishing a data offer means the related data products will no longer be available for purchase.</p>
+        <p class="para">Are you sure you want to unpublish?</p>
+      </div>      
+      <input type="hidden" name="data_type" value="">
+      <input type="hidden" name="data_id" value="">
+      <div class="modal-footer">        
+        <button type="button" class="button primary-btn unpublish">Yes, Unpublish</button>
+        <button type="button" class="button secondary-btn" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="unpublishProductModal" tabindex="-1" role="dialog" aria-labelledby="unpublishProductModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">        
