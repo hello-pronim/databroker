@@ -365,7 +365,7 @@ class AboutController extends Controller
                                 </a>
                             </div>';
             }
-            if(count($updates) > 12)
+            if(count($updates) == 12)
             {
                 $output .= '<div class="col-md-12">
                             <div class="flex-center" id="remove-row">
