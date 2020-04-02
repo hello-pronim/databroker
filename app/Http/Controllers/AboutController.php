@@ -334,6 +334,49 @@ class AboutController extends Controller
         return view('about.news', compact($data));
     }
 
+    public function updates_loadmore(Request $request)
+    {
+        $output = '';
+        $published = $request->published;
+        $updates = Article::where('communityIdx', null)->where('published', '<', $published)->orderby('published', 'desc')->limit(12)->get();
+        if(!$updates->isEmpty())
+        {
+            foreach($updates as $update)
+            {
+                $published = $update->published;
+                $author = $update->author;
+                $title = $update->articleTitle;
+                $id = $update->articleIdx;
+                $image = $update->image;
+                $output .= '<div class="col-md-4">'.
+                                '<a href="/about/updates/'. $id .'">
+                                    <div class="card card-profile card-plain">
+                                        <div class="card-header holder" id="responsive-card-header">'.
+                                            '<img class="img" src="/uploads/usecases/tiny/'. $image .'" id="responsive-card-img">
+                                                <div class="small-image-overlay"></div>
+                                        </div>
+                                        <div class="card-body text-left">
+                                            <div class="para-small">
+                                                <span class="color-green"><b>- By&nbsp;'.$author.'&nbsp;|&nbsp;'.date_format($published,"F d, Y").'</b></span>
+                                            </div>
+                                            <h4 class="offer-title card-title">'.$title.'</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>';
+            }
+            if(count($updates) > 12)
+            {
+                $output .= '<div class="col-md-12">
+                            <div class="flex-center" id="remove-row">
+                                <button type="button" class="button blue-outline w225" id="btn-more" data-id="'. $published .'">LOAD MORE</button>
+                            </div>
+                        </div>';
+            }
+            echo $output;
+        }
+    }
+
     public function usecase_detail($id){
 
         // $usecase = Article::where('articleIdx', $id)->with('community')->get();
