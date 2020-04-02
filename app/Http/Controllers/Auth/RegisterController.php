@@ -39,7 +39,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/register_nl';
 
     /**
      * Create a new controller instance.
@@ -62,18 +62,6 @@ class RegisterController extends Controller
         $params['businesses'] = Business::get();
 
         return view('auth.register')->with($params);
-    }
-
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-                        ? redirect(back()) : redirect()->intended($this->redirectPath());
     }
 
     /**
@@ -150,6 +138,6 @@ class RegisterController extends Controller
 
     protected function redirectTo()
     {
-        return url()->previous();
+        return '/register_nl';
     }
 }

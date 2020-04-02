@@ -774,8 +774,14 @@ class AboutController extends Controller
         $userData = null;
         if($user){
             $userData = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')->where('userIdx', $user->userIdx)->get()->first();
-            $data = array( 'communities', 'businesses', 'countries', 'userData' ); 
-            return view('auth.nl_push', compact($data));
+            $seenFlag = 0;
+            $subscription = Subscription::where('email', $userData['email'])->get()->first();
+            if(!$subscription){
+                $data = array( 'communities', 'businesses', 'countries', 'userData' ); 
+                return view('auth.nl_push', compact($data));
+            }else{
+                return redirect()->back();
+            }
         }else{
             $data = array( 'communities', 'businesses', 'countries'); 
             return view('auth.register_nl', compact($data));
@@ -810,6 +816,7 @@ class AboutController extends Controller
         $subscription['businessName'] = $businessName;
         $subscription['role'] = $role;
         $subscription['communities'] = json_encode($request->community);
+
         $subscriptionObj = Subscription::where('email', '=', $request->email)->get()->first();
         if($subscriptionObj) $subscriptionObj->delete();
 
@@ -837,7 +844,7 @@ class AboutController extends Controller
         }
         $query['firstname'] = $data['firstname'];
         $query['lastname'] = $data['lastname'];
-        $query['emailAddress'] = $data['email'];
+        $query['email'] = $data['email'];
         $query['companyName'] = $data['companyName'];
         $query['regionIdx'] = $request->regionIdx ? $request->regionIdx : "";
         $query['businessName2'] = $request->businessName2 ? $request->businessName2 : "";
