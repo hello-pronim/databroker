@@ -1804,3 +1804,12 @@ a[data-target='#mediaLibraryModal']:hover{
 #updates-article-content img {
 	max-width: 850px;
 }
+#updates-article-content iframe {
+	max-width: 850px;
+}
+#updates-article-content li{
+	font-size: 13pt !important;
+	font-weight: 500 !important;
+	color:rgb(28,29,28) !important;
+	font-family: sans-serif !important;
+}
