@@ -349,7 +349,7 @@ class AboutController extends Controller
                 $id = $update->articleIdx;
                 $image = $update->image;
                 $output .= '<div class="col-md-4">'.
-                                '<a href="/about/updates/'. $id .'">
+                                '<a href="/about/updates/'. $id .'" target="_blank">
                                     <div class="card card-profile card-plain">
                                         <div class="card-header holder" id="responsive-card-header">'.
                                             '<img class="img" src="/uploads/usecases/tiny/'. $image .'" id="responsive-card-img">
