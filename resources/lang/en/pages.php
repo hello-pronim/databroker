@@ -5,7 +5,7 @@ return [
     /*
         Page Language Lines
     */
-
+    'not_right_now' => 'Not right now, thanks',
     'region' => 'Region',
     'format' => 'Format',
     'access_to_data' => 'Access to this data',
