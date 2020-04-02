@@ -1686,7 +1686,7 @@ a.dropdown-toggle:after{
 	background-color: #c4c7ca !important;
 }
 .app-section.app-reveal-section.align-items-center.usecases.detail{
-	max-width: 900px;
+	max-width: 1060px;
 }
 
 #matchmaking-detail-category{
@@ -1822,4 +1822,29 @@ a[data-target='#mediaLibraryModal']:hover{
 #updates-article-content .section{
 	padding-top: 0px !important;
 	padding-bottom: 0px !important;
+}
+/* updates article sec css */
+#updates-article-content-sec a{
+	color:#007bff !important;
+}
+#updates-article-content-sec a span{
+	color:#007bff !important;
+}
+#updates-article-content-sec .section{
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+}
+#updates-article-content-sec img {
+	max-width: 100%;
+}
+#updates-article-content-sec iframe {
+	max-width: 100%;
+}
+#updates-article-content-sec p {
+	font-size: 17px;
+}
+#updates-article-content-sec strong{
+	font-family: "DM Sans" !important;
+    font-weight: 650;
+    word-break: break-word;
 }
