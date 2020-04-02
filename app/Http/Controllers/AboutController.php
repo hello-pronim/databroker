@@ -353,7 +353,6 @@ class AboutController extends Controller
                                     <div class="card card-profile card-plain">
                                         <div class="card-header holder" id="responsive-card-header">'.
                                             '<img class="img" src="/uploads/usecases/tiny/'. $image .'" id="responsive-card-img">
-                                                <div class="small-image-overlay"></div>
                                         </div>
                                         <div class="card-body text-left">
                                             <div class="para-small">
