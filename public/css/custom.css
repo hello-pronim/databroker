@@ -1848,3 +1848,11 @@ a[data-target='#mediaLibraryModal']:hover{
     font-weight: 650;
     word-break: break-word;
 }
+#updates-article-content-sec h2 {
+	font-size: 33px !important;
+}
+#updates-article-content-sec h3 {
+	font-size: 26px !important;
+    line-height: 36px;
+    font-weight: 500 !important;
+}
