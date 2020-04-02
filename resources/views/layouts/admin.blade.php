@@ -98,12 +98,12 @@
                             </div>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
                                     <span class="m-menu__link" id="usecase-sidebar">
-                                        <i class="m-menu__link-icon"></i>
+                                        <i class="fa fa-briefcase" aria-hidden="true"></i>
                                                 Use cases
                                         <i class="m-menu__ver-arrow la la-angle-right"></i>
                                     </span>
                                     
-                                <ul class="subsider_ul">
+                                <ul class="subsider_ul" style="display:none;">
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 1 ]) }}" class="m-menu__link">Geographics</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 2 ]) }}" class="m-menu__link">Environment</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 7 ]) }}" class="m-menu__link">Transport</a></li>
@@ -116,7 +116,7 @@
                             </li>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
                                 <a href="{{ route('admin.updates') }}" class="m-menu__link" id="usecase-sidebar">
-                                    <i class="m-menu__link-icon"></i>
+                                    <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                                             Updates
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                                 </a>
@@ -143,6 +143,21 @@
         <!-- end:: Page -->
         <script src="{{ asset('adminpanel/assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
         <script src="{{ asset('adminpanel/assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
+        <script>
+            var prop = true;
+            $('#usecase-sidebar').click(function(){
+                if(prop == true)
+                {
+                    $('.subsider_ul').css('display', 'inherit');
+                }
+                else
+                {
+                    $('.subsider_ul').css("display", "none");
+                }
+                prop = prop?false:true;
+            });
+            
+        </script>
         @yield('additional_javascript')
     </body>
 </html>

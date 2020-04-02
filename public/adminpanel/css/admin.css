@@ -17,6 +17,7 @@
 #usecase-sidebar{
     font-size: 24px;
     color: white;
+    padding-left: 55px;
 }
 #usecase-sidebar:hover{
     background-color: white;
