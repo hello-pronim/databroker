@@ -122,6 +122,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::post('/admin/updates/update', 'AdminController@updates_update')->name('admin.updates_update');
 	Route::get('/admin/updates/edit/{id}', 'AdminController@updates_edit')->where('id', '[0-9]+')->name('admin.updates_edit');
 
+	Route::get('/admin', function () { return redirect()->route('admin.updates'); });
 
 
 	$communities = Community::get();

@@ -482,7 +482,8 @@ class AboutController extends Controller
         $update = Article::where('articleIdx', $id)->get();
         $updates2 = Article::where('communityIdx', null)->orderby('published', 'desc')->limit(3)->get();
         $data = array('update', 'updates2');
-        return view('about.news_detail', compact($data));
+        // return view('about.news_detail', compact($data));
+        return view('about.updates_detail', compact($data));
     }
 
     
