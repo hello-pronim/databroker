@@ -1841,11 +1841,12 @@ a[data-target='#mediaLibraryModal']:hover{
 	max-width: 100%;
 }
 #updates-article-content-sec p {
-	font-size: 17px;
+	font-size: 18px;
+	font-weight: 500 !important;
 }
 #updates-article-content-sec strong{
 	font-family: "DM Sans" !important;
-    font-weight: 650;
+    font-weight: 650 !important;
     word-break: break-word;
 }
 #updates-article-content-sec h2 {

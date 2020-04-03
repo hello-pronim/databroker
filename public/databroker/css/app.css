@@ -1589,3 +1589,14 @@ body {
 .pac-placeholder {
     color: gray
 }
+
+@media (min-width: 991px) 
+{
+    nav.fixed_bg
+    {
+        position: static;
+    }
+}
+.app-section.app-reveal-section.align-items-center.usecases.detail{
+    margin-bottom: 80px;
+}

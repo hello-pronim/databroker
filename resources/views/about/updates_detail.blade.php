@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('databroker/css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('databroker/css/v4-shims.css') }}">
+        <link rel="stylesheet" href="{{ asset('databroker/css/contact.css') }}">
 @endsection
 
 @section('content')
