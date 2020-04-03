@@ -169,7 +169,7 @@
 				                		<div class="cta_box col-12">
 						        			<h3 class="text-bold">Questions about this data? </h3>
 											<p class="fs-18">Or want to request specific data from this provider?</p>
-						        			<a href="/data/send_message/{{ $offer['offerIdx'] }}/{{ $offer['provider']->providerIdx }}/{{ $offer['provider']->userIdx }}">
+						        			<a href="{{route('data.send_message', ['id'=> $offer['offerIdx']])}}">
 						        				<button type="button" class="secondary-btn mgh25">CONTACT THE DATA PROVIDER</button>
 						        			</a>
 						        		</div>
@@ -193,7 +193,9 @@
 	        			<p class="short-desc">
 	        				{!! trans('pages.contact_data_provider') !!}
 	        			</p>
-	        			<a href="/data/send_message/{{ $offer['offerIdx'] }}/{{ $offer['provider']->providerIdx }}/{{ $offer['provider']->userIdx }}"><button  type="button" class="secondary-btn mgh25">CONTACT THE DATA PROVIDER</button></a>
+	        			<a href="{{route('data.send_message', ['id'=> $offer['offerIdx']])}}">
+	        				<button  type="button" class="secondary-btn mgh25">CONTACT THE DATA PROVIDER</button>
+	        			</a>
 	        		</div>
 	        	</div>
 	        </div>

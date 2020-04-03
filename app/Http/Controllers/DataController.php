@@ -858,53 +858,67 @@ class DataController extends Controller
         return Auth::user();
     }
 
-    public function send_message($id, $pid, $uid) {
+    public function send_message(Request $request) {
         $user = $this->getAuthUser();
         if(!$user) {
            return redirect('/login')->with('target', 'contact the data provider');
         }
         
-        $data['offer'] = Offer::with(['provider','region'])->find($id);
-        $data['provider_info'] = User::find($uid); // proivder id
-        return view('data.send_message')->with($data);
+        $offer = Offer::with('region')
+                    ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                    ->where('offers.offerIdx', $request->id)
+                    ->get()
+                    ->first();
+        $data = array('offer');
+        return view('data.send_message', compact($data));
     }
 
-    public function post_send_message(Request $request)
-    {
-        $user = $this->getAuthUser();
-        if(!$user) {
-           return redirect('/login')->with('target', 'contact the data provider');
-        }else
-        {
-            $validator = Validator::make($request->all(),[
-                'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
-                'message' => 'required|min:5|max:1000',
-            ]);
+    public function post_send_message(Request $request){    
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'message' => 'required|min:5|max:1000',
+        ]);
 
-            if ($validator->fails()) {
-                return redirect(url()->previous())
-                        ->withErrors($validator)
-                        ->withInput();
-            }
-
-            $email_from = $request->input('email');
-            $email_to = $request->input('email_to');
-            $message = $request->input('message');
-            $id = $request->input('id');
-            $company_name = $request->input('company_name');
-
-            $this->sendEmail("send_message_contact", [
-                'from'=>$email_from, 
-                'to'=>$email_to, 
-                'name'=>'Databroker', 
-                'subject'=>'You’ve received a message on a data product from User',
-                'data'=>$message
-            ]);
-
-            $data['id'] = $id;
-            $data['company_name'] = $company_name;
-            return view('data.send_message_success')->with($data);
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                    ->withErrors($validator)
+                    ->withInput();
         }
+
+        $email = $request->email;
+        $message = $request->message;
+        $user = $this->getAuthUser();
+        $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->where('users.userIdx', $user->userIdx)
+                        ->get()
+                        ->first();
+        $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
+                        ->where('providers.providerIdx', $request->providerIdx)
+                        ->get()
+                        ->first();
+        $offer = Offer::with('region')
+                    ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                    ->where('offers.offerIdx', $request->offerIdx)
+                    ->get()
+                    ->first();
+
+        $data['buyer'] = $buyer;
+        $data['seller'] = $seller;
+        $data['offer'] = $offer;
+        $data['message'] = $message;
+        $data['email'] = $email;
+
+        $this->sendEmail("sendmessage", [
+            'from'=>$email, 
+            'to'=>$seller['email'], 
+            'name'=>'Databroker', 
+            'subject'=>'You’ve received a message',
+            'data'=>$data
+        ]);
+
+        $data = array('offer', 'seller');
+
+        return view('data.send_message_success', compact($data));
     }
 
     public function buy_data(Request $request){

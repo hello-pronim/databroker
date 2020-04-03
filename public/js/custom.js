@@ -481,10 +481,31 @@ $(document).ready(function(){
     });
 
     $(".data_unpublish").click(function(){
-        $("#unpublishModal").find("input[name='data_type']").val($(this).attr('data-type'));
-        $("#unpublishModal").find("input[name='data_id']").val($(this).attr('data-id'));
+        var modal;
+        if($(this).attr('data-type')=='offer') modal = $("#unpublishOfferModal");
+        else if($(this).attr('data-type')=='product') modal = $("#unpublishProductModal");
+        $(modal).find("input[name='data_type']").val($(this).attr('data-type'));
+        $(modal).find("input[name='data_id']").val($(this).attr('data-id'));
     });
-    $("#unpublishModal button.unpublish").click(function(e){
+    $("#unpublishOfferModal button.unpublish").click(function(e){
+        e.preventDefault();
+        var data_type = $(this).closest('.modal').find("input[name='data_type']").val();
+        var data_id = $(this).closest('.modal').find("input[name='data_id']").val();
+        if(data_type && data_id){
+            $.ajax({
+                type: "post",
+                url : '/data/update-status',
+                data : {update: 'unpublish', dataType: data_type, dataId: data_id},
+                dataType: 'json',
+                success: function(res){
+                    if(res.success == true){
+                        window.location.reload();    
+                    }
+                }
+            });
+        }        
+    });
+    $("#unpublishProductModal button.unpublish").click(function(e){
         e.preventDefault();
         var data_type = $(this).closest('.modal').find("input[name='data_type']").val();
         var data_id = $(this).closest('.modal').find("input[name='data_id']").val();

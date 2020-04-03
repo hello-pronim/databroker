@@ -10,6 +10,9 @@
 			body{padding: 30px 25px;background: #f8f8f8 0% 0% no-repeat padding-box;font-family: "DM Sans";}
 			table,td,tr {vertical-align: top;border-collapse: collapse;}
 			a:hover{color: #06038D;}
+			.flex-row{display: flex; flex-direction: row}
+			.align-items-center{align-items: center}
+			.justify-content-center{justify-content: center}
 			.fs-14{font-size: 14px;}
 			.fs-16{font-size: 16px;}
 			.fs-18{font-size: 18px;}
@@ -79,16 +82,71 @@
 									</tr>
 									<tr>
 										<td>
-											<table width="100%" class="mb-20" cellpadding="0" cellspacing="0" border="0">
+											<table class="mb-20" cellpadding="0" cellspacing="0" border="0">
 												<tbody>
 													<tr>
-														<td class="fs-18 lh-24 py-25">
+														<td class="fs-40 lh-44 text-bold py-25">
+															Dear {{$data['seller']->firstname}},
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-27 py-10">
+															{{$data['buyer']->firstname}} {{$data['buyer']->lastname}} from {{$data['buyer']->companyName}} has sent you a message about the following data offer:
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-24 py-10">
+															{{$data['offer']->offerTitle}} for @foreach($data['offer']->region as $region)
+															            							<span>{{ $region->regionName }}</span>
+															            						@endforeach
+														</td>
+													</tr>
+													<tr>
+														<td class="text-bold fs-18 lh-24 py-10">
 															Message: 
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-10">
-															{{ $data }} 
+															{{$data['message']}} 
+														</td>
+													</tr>
+													<tr>
+														<td class="text-bold fs-18 lh-24 py-10">
+															Contact details: 
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-24 py-10">
+															Email: {{$data['email']}} 
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-24 py-25 flex-row">
+															To continue the conversation with {{$data['buyer']->firstname}} {{$data['buyer']->lastname}}, contact them via the details they have provided above.
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<table class="mb-20" cellpadding="0" cellspacing="0" border="0">
+												<tbody>
+													<tr>
+														<td class="fs-18 lh-24 text-bold py-24">
+															Remember that it’s easy to add and edit data products
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-24 py-10">
+															If you come to an agreement about exchanging data, it’s easy to add a new data product to the data offer, or to edit an existing one. 
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-24 py-10">
+															In your Databroker account, simply go to the relevant data offer in <a href="{{route('data_offers_overview')}}">My data offers and products</a> and add or edit a data product.
 														</td>
 													</tr>
 												</tbody>
