@@ -671,7 +671,8 @@ a.dropdown-toggle:after{
 }
 .card .card-header img{
 	width: 100%;
-	opacity: 0.8;
+	/* opacity: 0.8; */
+	opacity: 1;
 }
 .card .card-title {
 	font-family: DM Sans;
