@@ -1799,6 +1799,7 @@ a[data-target='#mediaLibraryModal']:hover{
 }
 #update_published{
 	font-size: 20px !important;
+	margin-top: 0px;
 }
 #update_title{
 	font-size: 50px !important;
