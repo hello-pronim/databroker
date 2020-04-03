@@ -103,7 +103,7 @@
                                         <i class="m-menu__ver-arrow la la-angle-right"></i>
                                     </span>
                                     
-                                <ul class="subsider_ul" style="display:none;">
+                                <ul class="subsider_ul">
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 1 ]) }}" class="m-menu__link">Geographics</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 2 ]) }}" class="m-menu__link">Environment</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 7 ]) }}" class="m-menu__link">Transport</a></li>
@@ -144,7 +144,7 @@
         <script src="{{ asset('adminpanel/assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
         <script src="{{ asset('adminpanel/assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
         <script>
-            var prop = true;
+            var prop = false;
             $('#usecase-sidebar').click(function(){
                 if(prop == true)
                 {
