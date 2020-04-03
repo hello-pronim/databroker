@@ -38,7 +38,8 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        return redirect()->route('admin.updates');
+        // return view('admin.dashboard');
     }
 
     public function getAuthUser ()
@@ -50,7 +51,7 @@ class AdminController extends Controller
     {   
         $communityIdx = $id;
         $communityName = Community::where('communityIdx', $id)->pluck('communityName')->first();
-        $boards = Article::with('community')->where('communityIdx', $id)->orderBy('created_at', 'DESC')->get();
+        $boards = Article::with('community')->where('communityIdx', $id)->orderBy('published', 'DESC')->get();
         $data = array('boards', 'communityIdx', 'communityName');
         return view('admin.usecases', compact($data));
     }
