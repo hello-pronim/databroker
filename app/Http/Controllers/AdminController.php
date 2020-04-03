@@ -97,7 +97,7 @@ class AdminController extends Controller
             $fileName = $articleIdx.'.jpg';  
             //image compress start
             $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->resize(300,400, function ($constraint) {
+            $tinyimg->resize(700,800, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/usecases/tiny').'/'.$fileName);
             //image compress end
