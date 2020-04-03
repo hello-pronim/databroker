@@ -1843,8 +1843,10 @@ a[data-target='#mediaLibraryModal']:hover{
 	max-width: 100%;
 }
 #updates-article-content-sec p {
-	font-size: 18px;
+	font-size: 18px !important;
 	font-weight: 500 !important;
+	margin-top: 0;
+    margin-bottom: 1rem;
 }
 #updates-article-content-sec strong{
 	font-family: "DM Sans" !important;
