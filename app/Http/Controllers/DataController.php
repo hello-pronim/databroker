@@ -888,6 +888,10 @@ class DataController extends Controller
         $email = $request->email;
         $message = $request->message;
         $user = $this->getAuthUser();
+        $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->where('users.userIdx', $user->userIdx)
+                        ->get()
+                        ->first();
         $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
                         ->where('providers.providerIdx', $request->providerIdx)
                         ->get()
@@ -898,7 +902,7 @@ class DataController extends Controller
                     ->get()
                     ->first();
 
-        $data['buyer'] = $user;
+        $data['buyer'] = $buyer;
         $data['seller'] = $seller;
         $data['offer'] = $offer;
         $data['message'] = $message;

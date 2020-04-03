@@ -146,7 +146,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-10">
-															In your Databroker account, simply go to the relevant data offer in My data offers and products and add or edit a data product.
+															In your Databroker account, simply go to the relevant data offer in <a href="{{route('data_offers_overview')}}">My data offers and products</a> and add or edit a data product.
 														</td>
 													</tr>
 												</tbody>
