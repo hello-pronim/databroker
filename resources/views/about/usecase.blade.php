@@ -37,17 +37,16 @@
                     <div class="row">
                         @foreach ( $usecases as $usecase )
                         <div class="col-md-4">
-                            <a href="{{ route('about.usecase_detail',  ['id' => $usecase['id']] ) }}">
+                            <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
                                 <div class="card card-profile card-plain">                  
-                                    <div class="card-header holder">        
-                                        <img class="img" src="{{ asset('images/usecases/'.$usecase['image']) }}" />
-                                        <div class="small-image-overlay"></div>
+                                    <div class="card-header holder" id="resposive-card-header">        
+                                        <img class="img" src="{{ asset('uploads/usecases/medium/'.$usecase->image) }}" id="responsive-card-img" />
                                     </div>
                                     <div class="card-body text-left">
                                         <div class="para-small">
-                                            <span class="color-green">{{ $usecase['category'] }}</span>
+                                            <span class="color-green"><b>{{ $usecase->community->communityName }}</b></span>
                                         </div>
-                                        <h4 class="offer-title card-title">{{ $usecase['title'] }}</h4>
+                                        <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
                                     </div>
                                 </div>  
                             </a>
@@ -74,17 +73,16 @@
                 <div class="row">
                     @foreach ( $usecases2 as $usecase )
                     <div class="col-md-4">
-                        <a href="{{ route('about.usecase_detail',  ['id' => $usecase['id']] ) }}">
+                        <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
                             <div class="card card-profile card-plain">                  
-                                <div class="card-header holder">        
-                                    <img class="img" src="{{ asset('images/usecases/'.$usecase['image']) }}" />
-                                    <div class="small-image-overlay"></div>
+                                <div class="card-header holder" id="resposive-card-header">        
+                                    <img class="img" src="{{ asset('uploads/usecases/medium/'.$usecase->image) }}" id="responsive-card-img"/>
                                 </div>
                                 <div class="card-body text-left">
                                     <div class="para-small">
-                                        <span class="color-green">{{ $usecase['category'] }}</span>
+                                        <span class="color-green"><b>{{ $usecase->community->communityName }}</b></span>
                                     </div>
-                                    <h4 class="offer-title card-title">{{ $usecase['title'] }}</h4>
+                                    <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
                                 </div>
                             </div>  
                         </a>

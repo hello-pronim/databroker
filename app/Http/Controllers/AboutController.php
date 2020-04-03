@@ -232,102 +232,15 @@ class AboutController extends Controller
      */
     public function usecase(Request $request)
     {        
-        // $usecases = Article::with('community')->orderby('created_at', 'desc')->limit(9)->get();
-
-        $usecases = array( 
-            array(
-                'id' => 1,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 2,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 3,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 4,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'People.png',
-            ),
-            array(
-                'id' => 5,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Energy.png',
-            ),
-            array(
-                'id' => 6,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Environment.png',
-            ),
-            array(
-                'id' => 7,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 8,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 9,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'photo_1532974297617_c0f05fe48b.png',
-            ),
-        );
-
-        // $usecases2 = Article::with('community')->orderby('created_at', 'desc')->limit(3)->get();
-
-        $usecases2 = array( 
-            array(
-                'id' => 10,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 11,
-                'title' => 'Achieve your full potential with retail location planning', 
-                'category' => 'People',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 12,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Agriculture',
-                'image' => 'Agriculture.png',
-            ),
-        );
+        $usecases = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(9)->get();
+        $usecases2 = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(3)->get();
         $communities = Community::all();
-
         $data = array( 'usecases', 'usecases2', 'communities' );
         return view('about.usecase', compact($data));
     }
 
     public function news(Request $request)
     {        
-        // usecases
-        // $usecases = Article::with('community')->orderby('published', 'desc')->limit(9)->get();
-        // $usecases2 = Article::with('community')->orderby('published', 'desc')->limit(3)->get();
-        // $communities = Community::all();
-        // $data = array( 'usecases', 'usecases2', 'communities' );
-        // return view('about.news', compact($data));
-
         $updates = Article::where('communityIdx', null)->orderby('published', 'desc')->limit(9)->get();
         $updates2 = Article::where('communityIdx', null)->orderby('published', 'desc')->limit(3)->get();
         $data = array( 'updates', 'updates2');
@@ -352,7 +265,7 @@ class AboutController extends Controller
                                 '<a href="/about/updates/'. $id .'" target="_blank">
                                     <div class="card card-profile card-plain">
                                         <div class="card-header holder" id="responsive-card-header">'.
-                                            '<img class="img" src="/uploads/usecases/tiny/'. $image .'" id="responsive-card-img">
+                                            '<img class="img" src="/uploads/usecases/medium/'. $image .'" id="responsive-card-img">
                                         </div>
                                         <div class="card-body text-left">
                                             <div class="para-small">
@@ -378,97 +291,9 @@ class AboutController extends Controller
 
     public function usecase_detail($id){
 
-        // $usecase = Article::where('articleIdx', $id)->with('community')->get();
-
-        $usecases = array( 
-            array(
-                'id' => 1,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 2,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 3,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 4,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'People.png',
-            ),
-            array(
-                'id' => 5,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Energy.png',
-            ),
-            array(
-                'id' => 6,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Environment.png',
-            ),
-            array(
-                'id' => 7,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 8,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'Agriculture.png',
-            ),
-            array(
-                'id' => 9,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'photo_1532974297617_c0f05fe48b.png',
-            ),
-        );
-
-        $usecases2 = array( 
-            array(
-                'id' => 10,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Transport',
-                'image' => 'traffic_80.png',
-            ),
-            array(
-                'id' => 11,
-                'title' => 'Achieve your full potential with retail location planning', 
-                'category' => 'People',
-                'image' => 'shop_80.png',
-            ),
-            array(
-                'id' => 12,
-                'title' => 'Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.', 
-                'category' => 'Agriculture',
-                'image' => 'Agriculture.png',
-            ),
-        );
-
-        // $usecases2 = Article::with('community')->orderby('created_at', 'desc')->limit(3)->get();
-
-        if($id < 10) {
-             $usecase = $usecases[($id-1)];
-        }
-        else {
-            $usecase = $usecases2[($id-10)];
-        }
-
+        $usecase = Article::where('articleIdx', $id)->with('community')->get();
+        $usecases2 = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(3)->get();
         $data = array('usecase', 'usecases2');
-
         return view('about.usecase_detail', compact($data));
     }
 
