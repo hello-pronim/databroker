@@ -71,7 +71,7 @@
                     <div class="dropdown-container">
                         <div class="dropdown2 business_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
-                                <select id="businessName2" name="businessName2" placeholder="Which industry are you in?">
+                                <select id="businessName2" name="businessName2" class="@error('businessName2') is-invalid @enderror" placeholder="Which industry are you in?">
                                     <option></option>
                                 @foreach ($businesses as $business)
                                     @if(old('businessName2')==$business->businessName)
@@ -81,6 +81,11 @@
                                     @endif
                                 @endforeach
                                  </select>
+                                @error('businessName2')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>                              
                         </div>
                     </div>    
@@ -88,7 +93,7 @@
                     <label class="other-industry pure-material-textfield-outlined" style="display: none">
                         <input type="text" id="businessName" name="businessName" class="form-control input_data @error('businessName')  is-invalid @enderror" placeholder=" " value="{{ old('businessName') }}" autocomplete="businessName" autofocus>
                         <span>{{ trans('auth.enter_your_industry') }}</span>
-                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Last Name']) }}</div>
+                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Industry']) }}</div>
                         @error('businessName')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -99,7 +104,7 @@
                     <div class="dropdown-container">
                         <div class="dropdown2 role_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
-                                <select id="role2" name="role2" placeholder="What role do you have?">
+                                <select id="role2" name="role2" class="@error('role2') is-invalid @enderror" placeholder="What role do you have?">
                                     <option></option>
                                     @if(old('role2')=='Business')
                                     <option value="Business" selected>Business</option>
@@ -117,6 +122,11 @@
                                     <option value="Other">Other</option>
                                     @endif
                                  </select>
+                                @error('role2')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>                              
                         </div>
                     </div>    

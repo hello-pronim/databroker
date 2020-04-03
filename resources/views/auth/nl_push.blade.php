@@ -15,6 +15,7 @@
                 <br>
                 <form method="POST" action="{{ route('create_nl') }}">
                     @csrf
+                    <input type="hidden" name="userIdx" value="{{$userData->userIdx}}">
                     <input type="hidden" name="firstname" value="{{$userData->firstname}}">
                     <input type="hidden" name="lastname" value="{{$userData->lastname}}">
                     <input type="hidden" name="email" value="{{$userData->email}}">

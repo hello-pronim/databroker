@@ -789,13 +789,28 @@ class AboutController extends Controller
     }  
 
     protected function create_nl(Request $request){
-        $validator = Validator::make($request->all(),[
-            'firstname' => 'required|min:2',
-            'lastname' => 'required|min:2',
-            'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
-            'companyName' => 'required|min:2',
-            'community'=> 'required|array|min:1'
-        ],[
+        if($request->userIdx)
+            $rules = [
+                "community"=> 'required|array|min:1'
+            ];
+        else
+            $rules = [
+                'firstname' => 'required|min:2',
+                'lastname' => 'required|min:2',
+                'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+                'companyName' => 'required|min:2',
+                'businessName2' => 'required',
+                'role2' => 'required',
+                'community'=> 'required|array|min:1'
+            ];
+        if($request->businessName2 == "Other industry") $rules['businessName'] = "required|string";
+        if($request->role2 == "Other") $rules['role'] = "required|string";
+        $validator = Validator::make($request->all(), $rules, [
+            'companyName.required'=>'Your company name is required.',
+            'businessName2.required'=>'Your industry is required.',
+            'businessName.required'=>'Your industry is required.',
+            'role2.required'=>'Your role is required.',
+            'role.required'=>'Your role is required.',
             'community.required'=>'Please choose at least one.'
         ]);
 
