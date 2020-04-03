@@ -72,14 +72,27 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $rules = [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
+            'companyName' => ['required'],
+            'businessName2' => ['required'],
+            'role2' => ['required'],
             'password' => ['required', 'string', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
             'password_confirmation'=>['same:password'],
             'term_conditions' => ['required']
-        ], [
+        ];
+        if($data['businessName2']=="Other industry")
+            $rules['businessName'] = ['required', 'string'];
+        else if($data['role2']=="Other")
+            $rules['role'] = ['required', 'string'];
+        return Validator::make($data, $rules, [
+            'companyName.required'=>'Your company name is required.',
+            'businessName2.required'=>'Your industry is required.',
+            'businessName.required'=>'Your industry is required.',
+            'role2.required'=>'Your role is required.',
+            'role.required'=>'Your role is required.',
             'password.min'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
             'password.required'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',
             'password.regex'=>'Your password must contain at least 8 characters, including 1 uppercase letter and 1 digit.',

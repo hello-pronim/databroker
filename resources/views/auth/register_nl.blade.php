@@ -88,7 +88,7 @@
                     <div class="dropdown-container">
                         <div class="dropdown2 business_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
-                                <select id="businessName2" name="businessName2" placeholder="Which industry are you in?">
+                                <select id="businessName2" class="@error('businessName2') is-invalid @enderror" name="businessName2" placeholder="Which industry are you in?">
                                     <option></option>
                                 @foreach ($businesses as $business)
                                     @if(old('businessName2')==$business->businessName)
@@ -98,6 +98,11 @@
                                     @endif
                                 @endforeach
                                  </select>
+                                 @error('businessName2')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>                              
                         </div>
                     </div>    
@@ -116,7 +121,7 @@
                     <div class="dropdown-container">
                         <div class="dropdown2 role_list" tabindex="1">                                
                             <div class="adv-combo-wrapper">
-                                <select id="role2" name="role2" placeholder="What kind of role do you have?">
+                                <select id="role2" name="role2" class="@error('role2') is-invalid @enderror" placeholder="What kind of role do you have?">
                                     <option></option>
                                     @if(old('role2')=='Business')
                                     <option value="Business" selected>Business</option>
@@ -134,6 +139,11 @@
                                     <option value="Other">Other</option>
                                     @endif
                                 </select>
+                                @error('role2')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>                              
                         </div>
                     </div>    
