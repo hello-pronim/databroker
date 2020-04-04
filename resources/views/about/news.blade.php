@@ -93,6 +93,6 @@
 @section('additional_javascript')
     <script src="{{ asset('js/plugins/imageuploadify.min.js') }}"></script>        
     <script src="{{ asset('js/plugins/select2.min.js') }}"></script>   
-    <script src="{{ asset('js/loadmore.js') }}"></script>     
+    <script src="{{ asset('js/updates_loadmore.js') }}"></script>     
 @endsection
 

@@ -289,6 +289,48 @@ class AboutController extends Controller
         }
     }
 
+    public function usecases_loadmore(Request $request)
+    {
+        $output = '';
+        $published = $request->published;
+        $usecases = Article::where('communityIdx', '<>', null)->where('published', '<', $published)->orderby('published', 'desc')->limit(12)->get();
+        if(!$usecases->isEmpty())
+        {
+            foreach($usecases as $usecase)
+            {
+                $published = $usecase->published;
+                $communityName = $usecase->community->communityName;
+                $title = $usecase->articleTitle;
+                $id = $usecase->articleIdx;
+                $image = $usecase->image;
+                $output .= '<div class="col-md-4">'.
+                                '<a href="/about/usecase/'. $id .'" target="_blank">
+                                    <div class="card card-profile card-plain">
+                                        <div class="card-header holder" id="responsive-card-header">'.
+                                            '<img class="img" src="/uploads/usecases/medium/'. $image .'" id="responsive-card-img">
+                                        </div>
+                                        <div class="card-body text-left">
+                                            <div class="para-small">
+                                                <span class="color-green"><b>'.$communityName.'</b></span>
+                                            </div>
+                                            <h4 class="offer-title card-title">'.$title.'</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>';
+            }
+            if(count($usecases) == 12)
+            {
+                $output .= '<div class="col-md-12">
+                            <div class="flex-center" id="remove-row">
+                                <button type="button" class="button blue-outline w225" id="btn-more" data-id="'. $published .'">LOAD MORE</button>
+                            </div>
+                        </div>';
+            }
+            echo $output;
+        }
+    }
+
     public function usecase_detail($id){
 
         $usecase = Article::where('articleIdx', $id)->with('community')->get();

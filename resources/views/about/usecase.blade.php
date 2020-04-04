@@ -70,7 +70,7 @@
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
             <div id="usecase-list2" class="mgh30">
-                <div class="row">
+                <div class="row" id="load-data">
                     @foreach ( $usecases2 as $usecase )
                     <div class="col-md-4">
                         <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
@@ -90,8 +90,8 @@
                     @endforeach         
                 </div>
             </div>
-            <div class="flex-center">
-                <button type="button" class="button blue-outline w225">LOAD MORE</button>
+            <div class="flex-center" id="remove-row">
+                <button type="button" class="button blue-outline w225" id="btn-more" data-id="{{ $usecases2[2]->published }}">LOAD MORE</button>
             </div>
         </div>
     </div>
@@ -101,6 +101,7 @@
 
 @section('additional_javascript')
     <script src="{{ asset('js/plugins/imageuploadify.min.js') }}"></script>        
-    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>        
+    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>   
+    <script src="{{ asset('js/usecases_loadmore.js') }}"></script>          
 @endsection
 

@@ -93,6 +93,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/about/usecase', 'AboutController@usecase')->name('about.usecase'); 
 	Route::get('/about/updates', 'AboutController@news')->name('about.news');
 	Route::post('/about/updates/updates_loadmore', 'AboutController@updates_loadmore')->name('about.updates_loadmore');
+	Route::post('/about/usecases/usecases_loadmore', 'AboutController@usecases_loadmore')->name('about.usecases_loadmore');
 	
 	Route::get('/help', 'HelpController@index')->name('help.overview');    	
 	Route::get('/help/buying-data', 'HelpController@buying_data')->name('help.buying_data'); 
