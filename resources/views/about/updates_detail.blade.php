@@ -31,7 +31,7 @@
                 <div class="row">
                         <div class="col-md-12 col-sm-12">
                                 <div class="card card-profile card-plain">                  
-                                    <div class="card-header holder">        
+                                    <div class="card-header holder" id="detail-cms-image">        
                                         <img class="img" src="{{ asset('uploads/usecases/'.$update[0]->image) }}"  id="news_detail_img"/>
                                     </div>
                                 </div>  

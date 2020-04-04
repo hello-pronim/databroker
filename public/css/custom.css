@@ -1876,3 +1876,6 @@ a[data-target='#mediaLibraryModal']:hover{
 #updates-article-content-sec li{
 	letter-spacing: .16px;
 }
+#detail-cms-image{
+	box-shadow: none;
+}
