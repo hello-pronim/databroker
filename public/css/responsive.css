@@ -861,6 +861,9 @@
 	.bg-pattern-side:before{
 		display: none;
 	}
+	.mobile-scrolling{
+		height: 100px;
+	}
 }
 @media (min-width: 768px) {
 	.cookie-accept .container .row .mgr80{

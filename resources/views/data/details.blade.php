@@ -59,7 +59,8 @@
 			                </ul>
 			            </div>				        
 				        <div class="link-content">
-				        	@if( $offer['offerDescription'] )
+							@if( $offer['offerDescription'] )
+							<div class="mobile-scrolling" id="description"></div>
 				            <div class="link-box" id="description">
 				            	<h2>{{ trans('pages.description') }}</h2>
 				                <p>{!! nl2br($offer['offerDescription']) !!}</p>
@@ -73,7 +74,8 @@
 				                </div>
 				            </div>
 				            @endif
-			                @if( $offer['usecase'] )
+							@if( $offer['usecase'] )
+							<div class="mobile-scrolling" id="use_cases"></div>
 				            <div class="link-box" id="use_cases">
 				                <h2>{{ trans('pages.use_case') }}</h2>
 				                @if( $offer['usecase'] )
@@ -81,7 +83,8 @@
 				                @endif
 				            </div>
 				            @endif
-			                @if( sizeof($offersample)>0 )
+							@if( sizeof($offersample)>0 )
+							<div class="mobile-scrolling" id="samples"></div>
 				            <div class="link-box" id="samples">
 				                <h2>{{ trans('pages.samples') }}</h2>				               
 				                @foreach($offersample as $sample)
@@ -100,7 +103,8 @@
 				                @endforeach				               
 				            </div>
 				            @endif
-				            @if( sizeof($products ) > 0 )
+							@if( sizeof($products ) > 0 )
+							<div class="mobile-scrolling" id="this_data"></div>
 				            <div class="link-box" id="this_data">
 				                <h2>Buy data</h2>
 				                <p>If the data provider has already defined data products that can be purchased directly, you’ll find these below. When you buy a data product, you’ll receive an email link to access or download the data. 
