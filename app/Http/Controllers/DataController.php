@@ -697,13 +697,17 @@ class DataController extends Controller
         $per_page = 11;
 
         $dataoffer = Offer::with(['region', 'provider', 'usecase'])
-            ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
-            ->where('communities.communityName', ucfirst($category))
-            ->where('offers.status', 1)
-            ->orderby('offers.offerIdx', 'DESC')
-            ->limit($per_page)
-            ->get();
-        $totalcount = Offer::join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')->where('communities.communityName', ucfirst($category))->where('offers.status', 1)->get()->count();
+                ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                ->where('communities.communityName', ucfirst($category))
+                ->where('offers.status', 1)
+                ->orderby('offers.offerIdx', 'DESC')
+                ->limit($per_page)
+                ->get();
+        $totalcount = Offer::join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                ->where('communities.communityName', ucfirst($category))
+                ->where('offers.status', 1)
+                ->get()
+                ->count();
 
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page' );                
         return view('data.category', compact($data));
@@ -1135,9 +1139,7 @@ class DataController extends Controller
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($paidProductData['from'])));
                     else if($product['productAccessDays']=='year')
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
-                    $paidProductObj = PaidProduct::create($paidProductData);
-                    var_dump($paidProductObj);
-                    exit;
+                    //$paidProductObj = PaidProduct::create($paidProductData);
 
                     $this->sendEmail("buydata", [
                         'from'=>'cg@jts.ec', 

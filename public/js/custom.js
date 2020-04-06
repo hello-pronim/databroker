@@ -45,6 +45,7 @@ $(document).ready(function(){
                 if( $(elem).attr("value") == option_text){
                     $("#region input[name='region']").val(option_text);
                     $("#region .select span").html($(elem).html()); 
+                    $("#region .select").addClass("chosen"); 
                 }            
             }    
         }    
@@ -59,6 +60,7 @@ $(document).ready(function(){
                     $(elem).addClass('active');
                     $("#region input[name='region']").val($(elem).attr('region-id'));
                     $("#region .select span").html($(elem).html()); 
+                    $("#region .select").addClass("chosen"); 
                 }            
             }    
         }    
@@ -196,6 +198,7 @@ $(document).ready(function(){
         var regionName = $(this).find("option:selected").text();
 
         var show_box = $(this).closest('.custom-dropdown').find('>.select');
+        $(show_box).addClass("chosen");
         show_box.find("span").html(regionName);
 
         $("input[name='region']").val(region);
@@ -207,6 +210,7 @@ $(document).ready(function(){
 
        $("input[name='region']").val( $(this).attr("region-id") );
        var show_box = $(this).closest('.custom-dropdown').find('>.select');
+        $(show_box).addClass("chosen");
        var regionName = $(this).text();
        show_box.find("span").html(regionName);
        
@@ -388,7 +392,8 @@ $(document).ready(function(){
             url : '/offer/filter',
             data : data,
             dataType: 'json',
-            success: function(res){                
+            success: function(res){ 
+                console.log(res);               
                 var list= "";
                 $.each(res.offers, function(key, elem){                                       
                    
