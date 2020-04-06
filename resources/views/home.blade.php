@@ -34,10 +34,7 @@
 						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
 						<h3 class="card-title fs-40">Weather data</h3>
 						<p class="card-description text-white">
-							Short description (eg. Get current weather and daily
-							forecasts. iteractive maps show precipitation, clouds,
-							pressure, wind around your location. Now available for 
-							all countries in Europe.)							
+							Get current weather and daily forecasts, interactive maps that show precipitation, clouds, pressure and wind around your location. Now available for all countries in Europe.
 						</p>
 						<a href="#pablo" class="btn btn-round readmore">
 							READ MORE
@@ -117,7 +114,7 @@
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
+						<h4 class="card-title">Satellite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
 						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
@@ -131,7 +128,7 @@
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
+						<h4 class="card-title">Satellite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
 						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
@@ -145,7 +142,7 @@
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
+						<h4 class="card-title">Satellite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
 						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
@@ -188,7 +185,7 @@
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
+						<h4 class="card-title">Satellite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
 						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
@@ -202,7 +199,7 @@
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
+						<h4 class="card-title">Satellite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
 						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
@@ -216,7 +213,7 @@
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
+						<h4 class="card-title">Satellite imagery of building and roads</h4>
 						<h6 class="card-category">Europe</h6>
 						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
