@@ -37,17 +37,16 @@
                     <div class="row">
                         @foreach ( $usecases as $usecase )
                         <div class="col-md-4">
-                            <a href="{{ route('about.usecase_detail',  ['id' => $usecase['id']] ) }}">
+                            <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
                                 <div class="card card-profile card-plain">                  
-                                    <div class="card-header holder">        
-                                        <img class="img" src="{{ asset('images/usecases/'.$usecase['image']) }}" />
-                                        <div class="small-image-overlay"></div>
+                                    <div class="card-header holder" id="resposive-card-header">        
+                                        <img class="img" src="{{ asset('uploads/usecases/medium/'.$usecase->image) }}" id="responsive-card-img" />
                                     </div>
                                     <div class="card-body text-left">
                                         <div class="para-small">
-                                            <span class="color-green">{{ $usecase['category'] }}</span>
+                                            <span class="color-green"><b>{{ $usecase->community->communityName }}</b></span>
                                         </div>
-                                        <h4 class="offer-title card-title">{{ $usecase['title'] }}</h4>
+                                        <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
                                     </div>
                                 </div>  
                             </a>
@@ -71,20 +70,19 @@
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
             <div id="usecase-list2" class="mgh30">
-                <div class="row">
+                <div class="row" id="load-data">
                     @foreach ( $usecases2 as $usecase )
                     <div class="col-md-4">
-                        <a href="{{ route('about.usecase_detail',  ['id' => $usecase['id']] ) }}">
+                        <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
                             <div class="card card-profile card-plain">                  
-                                <div class="card-header holder">        
-                                    <img class="img" src="{{ asset('images/usecases/'.$usecase['image']) }}" />
-                                    <div class="small-image-overlay"></div>
+                                <div class="card-header holder" id="resposive-card-header">        
+                                    <img class="img" src="{{ asset('uploads/usecases/medium/'.$usecase->image) }}" id="responsive-card-img"/>
                                 </div>
                                 <div class="card-body text-left">
                                     <div class="para-small">
-                                        <span class="color-green">{{ $usecase['category'] }}</span>
+                                        <span class="color-green"><b>{{ $usecase->community->communityName }}</b></span>
                                     </div>
-                                    <h4 class="offer-title card-title">{{ $usecase['title'] }}</h4>
+                                    <h4 class="offer-title card-title">{{ $usecase->articleTitle }}</h4>
                                 </div>
                             </div>  
                         </a>
@@ -92,8 +90,8 @@
                     @endforeach         
                 </div>
             </div>
-            <div class="flex-center">
-                <button type="button" class="button blue-outline w225">LOAD MORE</button>
+            <div class="flex-center" id="remove-row">
+                <button type="button" class="button blue-outline w225" id="btn-more" data-id="{{ $usecases2[2]->published }}">LOAD MORE</button>
             </div>
         </div>
     </div>
@@ -103,6 +101,7 @@
 
 @section('additional_javascript')
     <script src="{{ asset('js/plugins/imageuploadify.min.js') }}"></script>        
-    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>        
+    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>   
+    <script src="{{ asset('js/usecases_loadmore.js') }}"></script>          
 @endsection
 

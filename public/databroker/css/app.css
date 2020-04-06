@@ -766,7 +766,8 @@ img.app-partner-item {
 	font-family: "DM Sans" !important;
 	font-size: 18px !important;
 	font-weight:500;
-	word-break:break-word;
+    word-break:break-word;
+    letter-spacing: .1px;
 }
 
 @media screen and (max-width: 1600px) and (min-width: 1441px) {
@@ -1599,4 +1600,12 @@ body {
 }
 .app-section.app-reveal-section.align-items-center.usecases.detail{
     margin-bottom: 80px;
+}
+.app-section.app-reveal-section.align-items-center.usecases.detail .row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.app-section.app-reveal-section.align-items-center.usecases.detail .col-md-12{
+    padding-left: 0px;
+    padding-right: 0px;
 }

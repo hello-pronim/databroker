@@ -301,48 +301,21 @@
 	<div class="container">
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('home.top_usecase')}} </h1>
 		<div class="row">
+			@foreach($top_usecases as $top_usecase)
 			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
-						<a href="{{ route('about.usecase_detail',  ['id' => 10] ) }}">
-							<img class="img" src="{{ asset('images/blogs/usecase2.png') }}" />
+						<a href="{{ route('about.usecase_detail',  ['id' => $top_usecase->articleIdx] ) }}">
+							<img class="img" src="{{ asset('uploads/usecases/'.$top_usecase->image) }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title text-bold text-green">Transport</h4>
-						<p class="card-description text-bold">Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.
-						</p>						
+						<h4 class="card-title text-bold text-green">{{ $top_usecase->community->communityName }}</h4>
+						<p class="card-description text-bold">{{ $top_usecase->articleTitle }}</p>						
 					</div>			
 				</div>	
-			</div>	
-			<div class="col-md-6 col-lg-4 col-xl-4">
-				<div class="card card-profile card-plain">
-					<div class="card-header">
-						<a href="{{ route('about.usecase_detail',  ['id' => 11] ) }}">
-							<img class="img" src="{{ asset('images/blogs/usecase3.png') }}" />
-						</a>
-					</div>
-					<div class="card-body text-left">
-						<h4 class="card-title text-bold text-green">People</h4>
-						<p class="card-description text-bold">Achieve your full potential with retail location planning
-						</p>						
-					</div>			
-				</div>	
-			</div>	
-			<div class="col-md-6 col-lg-4 col-xl-4">
-				<div class="card card-profile card-plain">
-					<div class="card-header">
-						<a href="{{ route('about.usecase_detail',  ['id' => 12] ) }}">
-							<img class="img" src="{{ asset('images/blogs/usecase1.png') }}" />
-						</a>
-					</div>
-					<div class="card-body text-left">						
-						<h4 class="card-title text-bold text-green">Agriculture</h4>
-						<p class="card-description text-bold">Increased safety thanks to the connected cars. Discover now how data exchanges can help saving lives and preventing accidents.
-						</p>
-					</div>			
-				</div>	
-			</div>	
+			</div>
+			@endforeach	
   		</div>  		
   	</div>  	
 </div>

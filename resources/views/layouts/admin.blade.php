@@ -92,32 +92,81 @@
                     <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">
                         <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
                             <div class="sidebar_header">
-                                <i class="fa fa-home" style="font-size: 30px;"></i>
+                                <i class="fa fa-newspaper-o" style="font-size: 30px;"></i>
                                 <!-- <img src="https://image.flaticon.com/icons/svg/1063/1063385.svg" width="24" height="24" alt="Cms free icon" title="Cms free icon"> -->
                                 CMS
                             </div>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
-                                    <span class="m-menu__link" id="usecase-sidebar">
+                                <a class="m-menu__link" id="usecase-sidebar">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                            Home
+                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
+                                <a class="m-menu__link" id="usecase-sidebar">
+                                    <i class="fa fa-archive" aria-hidden="true"></i>
+                                            About
+                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
+                                <a class="m-menu__link" id="usecase-sidebar">
+                                    <i class="fa fa-group" aria-hidden="true"></i>
+                                            Partners
+                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
+                                <a class="m-menu__link" id="usecase-sidebar">
+                                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                                            DataMatch
+                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
+                                    <span class="m-menu__link usecases" id="usecase-sidebar">
                                         <i class="fa fa-briefcase" aria-hidden="true"></i>
                                                 Use cases
                                         <i class="m-menu__ver-arrow la la-angle-right"></i>
                                     </span>
                                     
-                                <ul class="subsider_ul" style="display:none;">
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 1 ]) }}" class="m-menu__link">Geographics</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 2 ]) }}" class="m-menu__link">Environment</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 7 ]) }}" class="m-menu__link">Transport</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 3 ]) }}" class="m-menu__link">People</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 5 ]) }}" class="m-menu__link">Agriculture</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 6 ]) }}" class="m-menu__link">Energy</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 8 ]) }}" class="m-menu__link">Economy</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 9 ]) }}" class="m-menu__link">Supply Chain</a></li>
+                                <ul class="subsider_ul" style="display: none;">
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 1 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Geographics</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 2 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Environment</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 7 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Transport</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 3 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;People</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 5 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Agriculture</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 6 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Energy</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 8 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Economy</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 9 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Supply Chain</a></li>
                                 </ul>
+                            </li>
+                            <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
+                                <a class="m-menu__link" id="usecase-sidebar">
+                                    <i class="fa fa-deaf" aria-hidden="true"></i>
+                                            Help 
+                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </a>
                             </li>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
                                 <a href="{{ route('admin.updates') }}" class="m-menu__link" id="usecase-sidebar">
                                     <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                                             Updates
+                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
+                                <a class="m-menu__link" id="usecase-sidebar">
+                                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                            Media
+                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
+                                <a class="m-menu__link" id="usecase-sidebar">
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                            Contact us
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                                 </a>
                             </li>
@@ -145,7 +194,7 @@
         <script src="{{ asset('adminpanel/assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
         <script>
             var prop = true;
-            $('#usecase-sidebar').click(function(){
+            $('.m-menu__link.usecases').click(function(){
                 if(prop == true)
                 {
                     $('.subsider_ul').css('display', 'inherit');
