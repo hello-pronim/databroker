@@ -188,7 +188,11 @@
 	        			<h2 class="explain">Data provided by {{ $offer['provider']->companyName }}</h2>
 	        			<h5 class="subcategory">{{$user_info['businessName']}} Service</h5>
 	        			<label class="country">{{ $offer['provider']['region']->regionName }}</label>
+	        			@if(preg_match("@^https?://@", $offer['provider']->companyURL))
 	        			<label class="author"><a target="_blank" href="{{ $offer['provider']->companyURL }}">{{ $offer['provider']->companyURL }}</a></label>
+	        			@else
+	        			<label class="author"><a target="_blank" href="https://{{ $offer['provider']->companyURL }}">{{ $offer['provider']->companyURL }}</a></label>
+	        			@endif
 	        			<div class="author_avatar">	        				
 	        				@if($offer['provider']->companyLogo)
 	        				<img src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}">
