@@ -23,19 +23,21 @@
                         @foreach ( $press_list as $press )
                         <div class="col-lg-6">
                             <div class="press-item-container gray-border flex-column justify-content-between">
-                                <div>
+                                <div class="row">
                                     <p class="h3 text-left">{{ $press['title'] }}</p>
                                     <p class="para-small">{{ $press['text'] }}</p>
                                 </div>
-                                @if($press['link']!="")
-                                <a href="{{ route($press['link']) }}">
-                                    <button class="customize-btn button mgh15">{{ $press['action'] }}</button>
-                                </a>
-                                @else
-                                <span>
-                                    <button class="customize-btn button mgh15">{{ $press['action'] }}</button>
-                                </span>
-                                @endif
+                                <div class="row">
+                                    @if($press['link']!="")
+                                    <a href="{{ route($press['link']) }}">
+                                        <button class="customize-btn button mgh15">{{ $press['action'] }}</button>
+                                    </a>
+                                    @else
+                                    <span>
+                                        <button class="customize-btn button mgh15">{{ $press['action'] }}</button>
+                                    </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                         @endforeach

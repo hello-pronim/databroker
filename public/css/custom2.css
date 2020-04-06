@@ -1496,7 +1496,7 @@ body .select2-search--dropdown {
     background: url("../images/patterns/gray-pattern.svg") fixed;
     /* background-repeat:repeat-x; */
     width: 100%;
-    background-size: 7%;
+    /* background-size: 7%; */
     height: 77.33px;
 }
 

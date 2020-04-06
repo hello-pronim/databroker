@@ -852,6 +852,15 @@
 	#account_dropdown{
 		font-size: 15px;
 	}
+	.bg-pattern1-both:before{
+		display: none;
+	}
+	.bg-pattern1-both:after{
+		display: none;
+	}
+	.bg-pattern-side:before{
+		display: none;
+	}
 }
 @media (min-width: 768px) {
 	.cookie-accept .container .row .mgr80{
@@ -877,6 +886,9 @@
 	}
 	#top-nav-item-dropdown{
 		display: none;
+	}
+	.media-center .press-item-container{
+		height: initial;
 	}
 }
 

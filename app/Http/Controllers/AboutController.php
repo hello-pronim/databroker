@@ -366,8 +366,9 @@ class AboutController extends Controller
                             ->where('userIdx', $user->userIdx)
                             ->get()
                             ->first();
-        }else 
+        }else{
             $userData = null;
+        }
         $data = array( 'communities', 'businesses', 'countries', 'userData' );
         return view('about.contact', compact($data));
     }
