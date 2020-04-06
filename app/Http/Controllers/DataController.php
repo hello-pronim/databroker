@@ -49,7 +49,8 @@ class DataController extends Controller
     public function details(Request $request)
     {   
         $offer = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
-        $user_info = User::where('userIdx', $offer->provider->userIdx)->first();
+
+        $user_info = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')->where('users.userIdx', $offer->provider->userIdx)->first();
         
         $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->where('deleted', 0)->get();
         
@@ -240,7 +241,7 @@ class DataController extends Controller
         return view('data.offer_detail', compact($data));
     }
 
-    public function offer_filter(Request $request){
+    public function offer_theme_filter(Request $request){
 
         $communities = Community::get();
         $regions = Region::where('regionType', 'area')->get();
@@ -273,6 +274,90 @@ class DataController extends Controller
                     ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
                     ->where('communities.communityName', ucfirst($category))
                     ->where('themes.themeIdx', $request->theme)
+                    ->where('offers.status', 1)
+                    ->orderby('offers.offerIdx', 'DESC')
+                    ->distinct('offers')
+                    ->get()
+                    ->count();
+
+        $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
+        return view('data.category', compact($data));
+    }
+
+    public function offer_company_filter(Request $request){
+
+        $communities = Community::get();
+        $regions = Region::where('regionType', 'area')->get();
+        $countries = Region::where('regionType', 'country')->get();
+        $themes = Theme::get();
+        $per_page = 11;
+        
+        foreach ($communities as $key => $community) {
+            if(str_replace( ' ', '_', strtolower($community->communityName)) == $request->community)
+                $category = $community->communityName;
+        }
+        $curTheme = Theme::where('themeIdx', $request->theme)->get()->first();
+        session(['curCommunity'=>$category]);
+
+        $dataoffer = Offer::with(['region'])
+                    ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                    ->leftjoin('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                    ->leftjoin('users', 'users.userIdx', '=', 'providers.userIdx')
+                    ->where('communities.communityName', ucfirst($category))
+                    ->where('users.companyIdx', $request->companyIdx)
+                    ->where('offers.status', 1)
+                    ->orderby('offers.offerIdx', 'DESC')            
+                    ->limit($per_page)
+                    ->distinct('offers')
+                    ->get();
+
+        $totalcount = Offer::with(['region'])                   
+                    ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                    ->leftjoin('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                    ->leftjoin('users', 'users.userIdx', '=', 'providers.userIdx')
+                    ->where('communities.communityName', ucfirst($category))
+                    ->where('users.companyIdx', $request->companyIdx)
+                    ->where('offers.status', 1)
+                    ->orderby('offers.offerIdx', 'DESC')
+                    ->distinct('offers')
+                    ->get()
+                    ->count();
+
+        $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
+        return view('data.category', compact($data));
+    }
+
+    public function offer_region_filter(Request $request){
+
+        $communities = Community::get();
+        $regions = Region::where('regionType', 'area')->get();
+        $countries = Region::where('regionType', 'country')->get();
+        $themes = Theme::get();
+        $per_page = 11;
+        
+        foreach ($communities as $key => $community) {
+            if(str_replace( ' ', '_', strtolower($community->communityName)) == $request->community)
+                $category = $community->communityName;
+        }
+        $curTheme = Theme::where('themeIdx', $request->theme)->get()->first();
+        session(['curCommunity'=>$category]);
+
+        $dataoffer = Offer::leftjoin('offerCountries', 'offerCountries.offerIdx', '=', 'offers.offerIdx')
+                    ->leftjoin('regions', 'regions.regionIdx', '=', 'offerCountries.regionIdx')
+                    ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                    ->where('communities.communityName', ucfirst($category))
+                    ->where('regions.regionIdx', $request->regionIdx)
+                    ->where('offers.status', 1)
+                    ->orderby('offers.offerIdx', 'DESC')
+                    ->limit($per_page)
+                    ->distinct('offers')
+                    ->get();
+
+        $totalcount = Offer::leftjoin('offerCountries', 'offerCountries.offerIdx', '=', 'offers.offerIdx')
+                    ->leftjoin('regions', 'regions.regionIdx', '=', 'offerCountries.regionIdx')
+                    ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                    ->where('communities.communityName', ucfirst($category))
+                    ->where('regions.regionIdx', $request->regionIdx)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')
                     ->distinct('offers')

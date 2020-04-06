@@ -24,7 +24,7 @@
 	            <p class="category"> Published in : <a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($offer['community']->communityName) )) }}" >{{ $offer['community']->communityName }}</a>
 	            	<label>		            	
 		            	@foreach($offer['theme'] as $theme)
-		            		<a href="{{route('data.offer_filter', ['community'=>str_replace( ' ', '_', strtolower($offer['community']->communityName)), 'theme'=>$theme->themeIdx])}}"><span>{{ $theme->themeName }}</span></a>
+		            		<a href="{{route('data.offer_theme_filter', ['community'=>str_replace( ' ', '_', strtolower($offer['community']->communityName)), 'theme'=>$theme->themeIdx])}}"><span>{{ $theme->themeName }}</span></a>
 		            	@endforeach
 	            	</label>
 	            </p>
@@ -67,7 +67,7 @@
 				                	<label>{{ trans('pages.region') }}: </label> 
 				                	<span>
 				                		@foreach($offer['region'] as $region)
-						            		<span>{{ $region->regionName }}</span>
+						            		<a href="{{route('data.offer_region_filter', ['community'=>str_replace( ' ', '_', strtolower($offer['community']->communityName)), 'regionIdx'=>$region->regionIdx])}}">{{ $region->regionName }}</a>
 						            	@endforeach
 				                	</span>
 				                </div>
@@ -195,6 +195,9 @@
 	        			</p>
 	        			<a href="{{route('data.send_message', ['id'=> $offer['offerIdx']])}}">
 	        				<button  type="button" class="secondary-btn mgh25">CONTACT THE DATA PROVIDER</button>
+	        			</a><br/>
+	        			<a href="{{route('data.offer_company_filter', ['community'=>str_replace( ' ', '_', strtolower($offer['community']->communityName)), 'companyIdx'=>$user_info->companyIdx])}}">
+	        				View more data from {{ $offer['provider']->companyName }}
 	        			</a>
 	        		</div>
 	        	</div>

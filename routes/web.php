@@ -66,7 +66,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
 
 	Route::get('/data/{id}', 'DataController@details')->where('id', '[0-9]+')->name('data_details');
-	Route::get('/{community}/{theme}', 'DataController@offer_filter')->where('theme', '[0-9]+')->name('data.offer_filter');
+	Route::get('/{community}/theme/{theme}', 'DataController@offer_theme_filter')->where('theme', '[0-9]+')->name('data.offer_theme_filter');
+	Route::get('/{community}/company/{companyIdx}', 'DataController@offer_company_filter')->where('companyIdx', '[0-9]+')->name('data.offer_company_filter');
+	Route::get('/{community}/region/{regionIdx}', 'DataController@offer_region_filter')->where('regionIdx', '[0-9]+')->name('data.offer_region_filter');
 
 	Route::get('/data/send_message/{id}', 'DataController@send_message')->name('data.send_message');	
 	Route::post('/data/send_message', 'DataController@post_send_message')->name('data.post_send_message');
