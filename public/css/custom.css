@@ -1879,3 +1879,10 @@ a[data-target='#mediaLibraryModal']:hover{
 #detail-cms-image{
 	box-shadow: none;
 }
+#container-responsive-about{
+	margin-bottom: 70px;
+}
+#about-page-mobile{
+	margin-top: 70px;
+	padding-top: 70px;
+}

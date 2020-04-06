@@ -791,7 +791,8 @@
 		margin-left: 150px;
 	}
 	#container-responsive-about{
-		margin-bottom: 200px;
+		/* margin-bottom: 200px; */
+		min-height: 1900px;
 	}
 	.cookie-accept .container .row .flex-vertical{
 		min-width: 200px;
