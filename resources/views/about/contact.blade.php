@@ -104,7 +104,7 @@
                                     @foreach ($countries as $country)
                                         @if( $country->regionIdx == old('regionIdx') )
                                         <option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
-                                        @elseif($userData && $country->regionIdx == $userData['regionIdx'])
+                                        @elseif($userData!=null && $country->regionIdx == $userData['regionIdx'])
                                         <option value="{{$country->regionIdx}}" selected>{{ $country->regionName }}</option>
                                         @else
                                         <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
@@ -165,12 +165,12 @@
                                 <select id="role2" name="role2" placeholder="What role do you have?">
                                 @endif
                                     <option></option>
-                                    @if(old('role2')=='Business' || $userData['role']=='Business')
+                                    @if(old('role2')=='Business' || ($userData!=null && $userData['role']=='Business'))
                                     <option value="Business" selected>Business</option>
                                     @else
                                     <option value="Business">Business</option>
                                     @endif
-                                    @if(old('role2')=='Technical' || $userData['role']=='Technical')
+                                    @if(old('role2')=='Technical' || ($userData!=null && $userData['role']=='Technical'))
                                     <option value="Technical" selected>Technical</option>
                                     @else
                                     <option value="Technical">Technical</option>
