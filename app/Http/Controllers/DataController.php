@@ -350,7 +350,7 @@ class DataController extends Controller
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')
                     ->limit($per_page)
-                    ->distinct('offers')
+                    ->distinct('offers.offerIdx')
                     ->get();
 
         $totalcount = Offer::leftjoin('offerCountries', 'offerCountries.offerIdx', '=', 'offers.offerIdx')
@@ -360,7 +360,7 @@ class DataController extends Controller
                     ->where('regions.regionIdx', $request->regionIdx)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')
-                    ->distinct('offers')
+                    ->distinct('offers.offerIdx')
                     ->get()
                     ->count();
 

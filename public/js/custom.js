@@ -26,12 +26,39 @@ $(document).ready(function(){
     });
 
     $.each($("#theme option"), function(key, elem){     
-        var option_text = window.location.pathname.split("/")[2];
+        var option_text = window.location.pathname.split("/")[3];
         console.log(option_text);
         if(option_text){
             if($(elem).attr("value")){
                 if( $(elem).attr("value") == option_text){
                     $(elem).prop('selected', true);
+                }            
+            }    
+        }    
+    });
+
+    $.each($("#region option"), function(key, elem){     
+        var option_text = window.location.pathname.split("/")[3];
+        console.log(option_text);
+        if(option_text){
+            if($(elem).attr("value")){
+                if( $(elem).attr("value") == option_text){
+                    $("#region input[name='region']").val(option_text);
+                    $("#region .select span").html($(elem).html()); 
+                }            
+            }    
+        }    
+    });
+
+    $.each($("#region .region-select span.region"), function(key, elem){     
+        var option_text = window.location.pathname.split("/")[3];
+        console.log(option_text);
+        if(option_text){
+            if($(elem).attr("region-id")){
+                if( $(elem).attr("region-id") == option_text){
+                    $(elem).addClass('active');
+                    $("#region input[name='region']").val($(elem).attr('region-id'));
+                    $("#region .select span").html($(elem).html()); 
                 }            
             }    
         }    
@@ -531,7 +558,7 @@ $(document).ready(function(){
         e.preventDefault();
         var emails_number = $(".email_lists label").length;
         var input_field = '<label class="pure-material-textfield-outlined">'+
-                                '<input type="email" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">'+
+                                '<input type="email" id="email'+(emails_number+1)+'" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">'+
                                 '<span>Email '+(emails_number+1)+'</span>'+
                                 '<div class="error_notice">Email format is incorrect.</div>'+
                            '</label>';
