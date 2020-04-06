@@ -189,7 +189,7 @@
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
+						<h4 class="card-title">Satellite imagery of buildings and roads</h4>
 						<h6 class="card-category">Europe</h6>
 						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
@@ -203,7 +203,7 @@
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
+						<h4 class="card-title">Satellite imagery of buildings and roads</h4>
 						<h6 class="card-category">Europe</h6>
 						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			
@@ -217,7 +217,7 @@
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satelite imagery of building and roads</h4>
+						<h4 class="card-title">Satellite imagery of buildings and roads</h4>
 						<h6 class="card-category">Europe</h6>
 						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
 					</div>			

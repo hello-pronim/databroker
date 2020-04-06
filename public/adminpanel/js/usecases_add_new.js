@@ -61,5 +61,5 @@ $(function(){
                 );
 	    }
 	});  
-	$(".summernote").summernote({height: 600});
+	$(".summernote").summernote({height: 600,linkTargetBlank: true});
 });

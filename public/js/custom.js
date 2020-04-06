@@ -751,13 +751,13 @@ $(document).on('click', '.navbar-toggler', function() {
       $('#bodyClick').remove();
       setTimeout(function() {
         $toggle.removeClass('toggled');
-      }, 550);
+      }, 150);
   
       $('html').removeClass('nav-open-absolute');
     } else {
       setTimeout(function() {
         $toggle.addClass('toggled');
-      }, 580);
+      }, 180);
   
   
       div = '<div id="bodyClick" style="display:none"></div>';
@@ -771,7 +771,7 @@ $(document).on('click', '.navbar-toggler', function() {
         $('#bodyClick').remove();
         setTimeout(function() {
           $toggle.removeClass('toggled');
-        }, 550);
+        }, 150);
       });
   
       if ($('nav').hasClass('navbar-absolute')) {
