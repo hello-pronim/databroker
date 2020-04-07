@@ -328,6 +328,9 @@ ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_desc` LONGTEXT NULL AFT
 #2020-03-26
 ALTER TABLE `databroker_new`.`subscriptions` DROP COLUMN `message`;
 
+#2020-04-07
+CREATE TABLE `databroker_new`.`purchases` (`purchaseIdx` INT(11) NOT NULL AUTO_INCREMENT, `productIdx` INT(11), `userIdx` INT(11), `bidIdx` INT(11), `from` DATE, `to` DATE, PRIMARY KEY (`purchaseIdx`));
+ALTER TABLE `databroker_new`.`purchases` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `to`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`;
 #2020-04-08
 CREATE TABLE IF NOT EXISTS `databroker_new`.`home_featured_data` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
