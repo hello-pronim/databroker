@@ -653,24 +653,22 @@ $(document).ready(function(){
             method: 'post',
             data: $(this).serialize(),
             success: function(response){
-                console.log(response);
                 if(response.success == true){
                     if(response.redirect !== undefined){
                         window.location.href = response.redirect;
                     }else{
                         if(!form.data('cc-on-file')){
-                            console.log($('#card_number').val());
-                            console.log($('#cvc').val());
-                            console.log($('#exp_month').val());
-                            console.log($('#exp_year').val());
                             Stripe.setPublishableKey(form.data('stripe-publishable-key'));
-                            Stripe.createToken({
-                                number: $('#card_number').val(),
-                                cvc: $('#cvc').val(),
-                                exp_month: $('#exp_month').val(),
-                                exp_year: $('#exp_year').val()
-                            }, stripeResponseHandler);
-
+                            try{
+                                Stripe.createToken({
+                                    number: $('#card_number').val(),
+                                    cvc: $('#cvc').val(),
+                                    exp_month: $('#exp_month').val(),
+                                    exp_year: $('#exp_year').val()
+                                }, stripeResponseHandler);
+                            }catch(e){
+                                console.log(e);
+                            }
                         }
                     }
                 }else{
@@ -696,6 +694,7 @@ $(document).ready(function(){
                 .text(response.error.message);
         } else {
             // token contains id, last4, and card type
+            $('.error').addClass('hide');
             var token = response['id'];
             // insert the token into the form so it gets submitted to the server
             $('#buy-data').find('input[type=text]').empty();

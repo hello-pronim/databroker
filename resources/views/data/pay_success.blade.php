@@ -20,21 +20,21 @@
                                     <p class="fs-16">
                                         Access the API now.<br/>
                                         We also sent you a confirmation via email including a link to the API access information.<br/>
-                                        The link expires on dd/mm/yyyy so make sure to access the information before this date.<br/>
+                                        The link expires on {{$expiry_to}} so make sure to access the information before this date.<br/>
                                         You can also access it via <a href="{{route('account.purchases')}}">purchases in your account</a>.
                                     </p>
                                 @elseif($product->productType=="Stream")
                                     <p class="fs-16">
                                         Access the data stream now.<br/>
                                         We also sent you a confirmation via email including a link to the data stream.<br/>
-                                        The link expires on dd/mm/yyyy so make sure to access the data stream before this date.<br/>
+                                        The link expires on {{$expiry_to}} so make sure to access the data stream before this date.<br/>
                                         You can also access it via <a href="{{route('account.purchases')}}">purchases in your account</a>.
                                     </p>
                                 @elseif($product->productType=="File")
                                     <p class="fs-16">
                                         Download the file now.<br/>
                                         We also sent you a confirmation via email including a link to download the data.<br/>
-                                        The link expires at dd/mm/yyyy so make sure you download the data before this date.<br/>
+                                        The link expires at {{$expiry_to}} so make sure you download the data before this date.<br/>
                                         You can also access it via <a href="{{route('account.purchases')}}">purchases in your account</a>.
                                     </p>
                                 @endif
@@ -64,17 +64,11 @@
                                         </tr>
                                         <tr>
                                             <td><div class="info-label">{{ trans('data.access_to_this_data') }}: </div></td>
-                                            <td><div class="col info-text">1 {{$product->productAccessDays}} ( 
-                                                @if($product->productAccessDays=="day")
-                                                    From : {{date('d/m/Y', strtotime($product->createdAt))}} until {{date('d/m/Y', strtotime('+1 day', strtotime($product->createdAt)))}}
-                                                @elseif($product->productAccessDays=="week")
-                                                    From : {{date('d/m/Y', strtotime($product->createdAt))}} until {{date('d/m/Y', strtotime('+7 day', strtotime($product->createdAt)))}}
-                                                @elseif($product->productAccessDays=='month')
-                                                    From : {{date('d/m/Y', strtotime($product->createdAt))}} until {{date('d/m/Y', strtotime('+1 month', strtotime($product->createdAt)))}}
-                                                @elseif($product->productAccessDays=='year')
-                                                    From : {{date('d/m/Y', strtotime($product->createdAt))}} until {{date('d/m/Y', strtotime('+1 year', strtotime($product->createdAt)))}}
-                                                @endif
-                                             )</div></td>
+                                            <td>
+                                                <div class="col info-text">
+                                                1 {{$product->productAccessDays}} ( From : {{$expiry_from}} until {{$expiry_to}} )
+                                                </div>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
