@@ -87,7 +87,7 @@
 	                            </div>
 	                            <ul class="custom-dropdown-menu region-select mt-10" style="display: none;">
 				                    <div class="adv-combo-wrapper custom-select2">
-					                    <select id="region" data-placeholder="{{ trans('pages.search_by_country') }}">
+					                    <select data-placeholder="{{ trans('pages.search_by_country') }}">
 					                    	<option></option>
 					                    	@foreach ($countries as $country)
 				                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
