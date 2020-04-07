@@ -75,7 +75,7 @@ class Offer extends Model
         }   
 
         $dataoffer->where('offers.status', 1);
-        $total_count = $dataoffer->get()->count();
+        $total_count = $dataoffer->distinct('offers')->get()->count();
 
         if( !isset($param->loadmore) || $param->loadmore == "false" ){
             if( $param->community == 'all' ){
@@ -84,7 +84,7 @@ class Offer extends Model
                 $result = $dataoffer->offset(0)->orderby('offers.offerIdx', 'DESC')->limit(11)->distinct('offers')->get();                
             }            
         }else{
-            $result = $dataoffer->offset($param->loadmore-1)->orderby('offers.offerIdx', 'DESC')->limit(12)->get();
+            $result = $dataoffer->offset($param->loadmore)->orderby('offers.offerIdx', 'DESC')->limit(12)->distinct('offers')->get();
         }    
 
         $res = array( 'total_count' => $total_count, 'offers' => $result );

@@ -121,15 +121,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															@if($data['product']->productAccessDays=="day")
-																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 day', strtotime($data['product']->created_at)))}}
-															@elseif($data['product']->productAccessDays=="week")
-																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+7 day', strtotime($data['product']->created_at)))}}
-															@elseif($data['product']->productAccessDays=='month')
-																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 month', strtotime($data['product']->created_at)))}}
-															@elseif($data['product']->productAccessDays=='year')
-																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 year', strtotime($data['product']->created_at)))}}
-															@endif
+															From : {{$data['expiry_from']}} to {{$data['expiry_to']}}
 														</td>
 													</tr>
 													<tr>
@@ -141,7 +133,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-10" style="font-style: italic;">
-															This link expires at dd/mm/yyyy, so make sure you access the data before this date.
+															This link expires at {{$data['expiry_to']}}, so make sure you access the data before this date.
 														</td>
 													</tr>
 													<tr>

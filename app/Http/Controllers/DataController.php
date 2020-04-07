@@ -20,7 +20,7 @@ use App\Models\OfferSample;
 use App\Models\OfferProduct;
 use App\Models\OfferCountry;
 use App\Models\ProductCountry;
-use App\Models\PaidProduct;
+use App\Models\Purchase;
 use App\Models\RegionProduct;
 use App\Models\UseCase;
 use App\Models\Bid;
@@ -48,6 +48,8 @@ class DataController extends Controller
      */
     public function details(Request $request)
     {   
+        $user = $this->getAuthUser();
+
         $offer = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
 
         $user_info = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')->where('users.userIdx', $offer->provider->userIdx)->first();
@@ -58,7 +60,14 @@ class DataController extends Controller
         
         $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where("productStatus", 1)->get();
 
-        $user = $this->getAuthUser();
+        $purchases = Purchase::join('offerProducts', 'offerProducts.productIdx', '=', 'purchases.productIdx')
+                            ->where('purchases.userIdx', $user->userIdx)
+                            ->where('offerProducts.offerIdx', $request->id)
+                            ->orderby('purchases.purchaseIdx', 'DESC')
+                            ->groupBy('purchases.productIdx')
+                            ->get();
+        // var_dump($purchases);
+        // exit;
 
         if(  strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
@@ -350,7 +359,7 @@ class DataController extends Controller
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')
                     ->limit($per_page)
-                    ->distinct('offers')
+                    ->distinct('offers.offerIdx')
                     ->get();
 
         $totalcount = Offer::leftjoin('offerCountries', 'offerCountries.offerIdx', '=', 'offers.offerIdx')
@@ -360,7 +369,7 @@ class DataController extends Controller
                     ->where('regions.regionIdx', $request->regionIdx)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')
-                    ->distinct('offers')
+                    ->distinct('offers.offerIdx')
                     ->get()
                     ->count();
 
@@ -697,13 +706,17 @@ class DataController extends Controller
         $per_page = 11;
 
         $dataoffer = Offer::with(['region', 'provider', 'usecase'])
-            ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
-            ->where('communities.communityName', ucfirst($category))
-            ->where('offers.status', 1)
-            ->orderby('offers.offerIdx', 'DESC')
-            ->limit($per_page)
-            ->get();
-        $totalcount = Offer::join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')->where('communities.communityName', ucfirst($category))->where('offers.status', 1)->get()->count();
+                ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                ->where('communities.communityName', ucfirst($category))
+                ->where('offers.status', 1)
+                ->orderby('offers.offerIdx', 'DESC')
+                ->limit($per_page)
+                ->get();
+        $totalcount = Offer::join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                ->where('communities.communityName', ucfirst($category))
+                ->where('offers.status', 1)
+                ->get()
+                ->count();
 
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page' );                
         return view('data.category', compact($data));
@@ -1125,7 +1138,7 @@ class DataController extends Controller
 
                     $paidProductData['productIdx'] = $request->productIdx;
                     $paidProductData['userIdx'] = $user->userIdx;
-                    if($request->bidIdx) $paidProductData['bidIdx'] = $request->bidIdx;
+                    $paidProductData['bidIdx'] = $request->bidIdx;
                     $paidProductData['from'] = date('Y-m-d H:i:s');
                     if($product['productAccessDays']=='day')
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($paidProductData['from'])));
@@ -1135,9 +1148,10 @@ class DataController extends Controller
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($paidProductData['from'])));
                     else if($product['productAccessDays']=='year')
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
-                    $paidProductObj = PaidProduct::create($paidProductData);
-                    var_dump($paidProductObj);
-                    exit;
+                    $paidProductObj = Purchase::create($paidProductData);
+
+                    $data['expiry_from'] = date('d/m/Y', strtotime($paidProductData['from']));
+                    $data['expiry_to'] = date('d/m/Y', strtotime($paidProductData['to']));
 
                     $this->sendEmail("buydata", [
                         'from'=>'cg@jts.ec', 
@@ -1156,6 +1170,8 @@ class DataController extends Controller
 
                     return redirect(route('data.pay_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
                 } catch ( \Exception $e ) {
+                    var_dump($e->getMessage);
+                    exit;
                     //Session::flash ( 'fail-message', "Error! Please Try again." );
                    // return Redirect::back ();
                 }
@@ -1164,16 +1180,29 @@ class DataController extends Controller
     }
 
     public function pay_success(Request $request){
-        $product = OfferProduct::with('region')
-                                ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
-                                ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
-                                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
-                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                                ->where('productIdx', $request->pid)
-                                ->get(["offerProducts.*", "offerProducts.created_at as createdAt", "companies.companyName"])
-                                ->first();
-        $data = array('product');
-        return view('data.pay_success', compact($data));
+        $user = $this->getAuthUser();
+        if(!$user){
+            return redirect('/login');
+        }else{
+            $product = OfferProduct::with('region')
+                                    ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                    ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                    ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                    ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                    ->where('productIdx', $request->pid)
+                                    ->get()
+                                    ->first();
+            $paidProductObj = Purchase::where('userIdx', $user->userIdx)
+                                        ->where('productIdx', $request->pid)
+                                        ->orderby('created_at', 'DESC')
+                                        ->limit(1)
+                                        ->get()
+                                        ->first();
+            $expiry_from = date('d/m/Y', strtotime($paidProductObj['from']));
+            $expiry_to = date('d/m/Y', strtotime($paidProductObj['to']));
+            $data = array('product', 'expiry_from', 'expiry_to');
+            return view('data.pay_success', compact($data));
+        }
     }
 
     public function bid(Request $request){

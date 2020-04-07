@@ -87,7 +87,7 @@
 	                            </div>
 	                            <ul class="custom-dropdown-menu region-select mt-10" style="display: none;">
 				                    <div class="adv-combo-wrapper custom-select2">
-					                    <select data-placeholder="{{ trans('pages.search_by_country') }}">
+					                    <select id="region" data-placeholder="{{ trans('pages.search_by_country') }}">
 					                    	<option></option>
 					                    	@foreach ($countries as $country)
 				                                <option value="{{$country->regionIdx}}">{{ $country->regionName }}</option>
@@ -151,7 +151,7 @@
   		</div> 	  		
   		<input type="hidden" name="totalcount" value="{{ $totalcount }}">  		
   		<input type="hidden" name="per_page" value="{{ $per_page }}">
-  		<div class="text-center @if ( $totalcount < $per_page ) hide @endif"><button id="offer_loadmore" type="button" class="button secondary-btn mgh25 w225">Load More</button></div>
+  		<div class="text-center @if ( $totalcount <= $per_page ) hide @endif"><button id="offer_loadmore" type="button" class="button secondary-btn mgh25 w225">Load More</button></div>
     </div>      
 </div>
 

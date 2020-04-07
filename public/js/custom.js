@@ -26,12 +26,41 @@ $(document).ready(function(){
     });
 
     $.each($("#theme option"), function(key, elem){     
-        var option_text = window.location.pathname.split("/")[2];
+        var option_text = window.location.pathname.split("/")[3];
         console.log(option_text);
         if(option_text){
             if($(elem).attr("value")){
                 if( $(elem).attr("value") == option_text){
                     $(elem).prop('selected', true);
+                }            
+            }    
+        }    
+    });
+
+    $.each($("#region option"), function(key, elem){     
+        var option_text = window.location.pathname.split("/")[3];
+        console.log(option_text);
+        if(option_text){
+            if($(elem).attr("value")){
+                if( $(elem).attr("value") == option_text){
+                    $("#region input[name='region']").val(option_text);
+                    $("#region .select span").html($(elem).html()); 
+                    $("#region .select").addClass("chosen"); 
+                }            
+            }    
+        }    
+    });
+
+    $.each($("#region .region-select span.region"), function(key, elem){     
+        var option_text = window.location.pathname.split("/")[3];
+        console.log(option_text);
+        if(option_text){
+            if($(elem).attr("region-id")){
+                if( $(elem).attr("region-id") == option_text){
+                    $(elem).addClass('active');
+                    $("#region input[name='region']").val($(elem).attr('region-id'));
+                    $("#region .select span").html($(elem).html()); 
+                    $("#region .select").addClass("chosen"); 
                 }            
             }    
         }    
@@ -169,6 +198,7 @@ $(document).ready(function(){
         var regionName = $(this).find("option:selected").text();
 
         var show_box = $(this).closest('.custom-dropdown').find('>.select');
+        $(show_box).addClass("chosen");
         show_box.find("span").html(regionName);
 
         $("input[name='region']").val(region);
@@ -180,6 +210,7 @@ $(document).ready(function(){
 
        $("input[name='region']").val( $(this).attr("region-id") );
        var show_box = $(this).closest('.custom-dropdown').find('>.select');
+        $(show_box).addClass("chosen");
        var regionName = $(this).text();
        show_box.find("span").html(regionName);
        
@@ -361,7 +392,8 @@ $(document).ready(function(){
             url : '/offer/filter',
             data : data,
             dataType: 'json',
-            success: function(res){                
+            success: function(res){ 
+                console.log(res);               
                 var list= "";
                 $.each(res.offers, function(key, elem){                                       
                    
@@ -531,7 +563,7 @@ $(document).ready(function(){
         e.preventDefault();
         var emails_number = $(".email_lists label").length;
         var input_field = '<label class="pure-material-textfield-outlined">'+
-                                '<input type="email" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">'+
+                                '<input type="email" id="email'+(emails_number+1)+'" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">'+
                                 '<span>Email '+(emails_number+1)+'</span>'+
                                 '<div class="error_notice">Email format is incorrect.</div>'+
                            '</label>';
@@ -621,24 +653,22 @@ $(document).ready(function(){
             method: 'post',
             data: $(this).serialize(),
             success: function(response){
-                console.log(response);
                 if(response.success == true){
                     if(response.redirect !== undefined){
                         window.location.href = response.redirect;
                     }else{
                         if(!form.data('cc-on-file')){
-                            console.log($('#card_number').val());
-                            console.log($('#cvc').val());
-                            console.log($('#exp_month').val());
-                            console.log($('#exp_year').val());
                             Stripe.setPublishableKey(form.data('stripe-publishable-key'));
-                            Stripe.createToken({
-                                number: $('#card_number').val(),
-                                cvc: $('#cvc').val(),
-                                exp_month: $('#exp_month').val(),
-                                exp_year: $('#exp_year').val()
-                            }, stripeResponseHandler);
-
+                            try{
+                                Stripe.createToken({
+                                    number: $('#card_number').val(),
+                                    cvc: $('#cvc').val(),
+                                    exp_month: $('#exp_month').val(),
+                                    exp_year: $('#exp_year').val()
+                                }, stripeResponseHandler);
+                            }catch(e){
+                                console.log(e);
+                            }
                         }
                     }
                 }else{
@@ -664,6 +694,7 @@ $(document).ready(function(){
                 .text(response.error.message);
         } else {
             // token contains id, last4, and card type
+            $('.error').addClass('hide');
             var token = response['id'];
             // insert the token into the form so it gets submitted to the server
             $('#buy-data').find('input[type=text]').empty();
