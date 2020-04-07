@@ -61,3 +61,6 @@
 .sidebar_header:hover{
     color: darkturquoise;
 }
+.section-label{
+    font-size: 18px;
+}

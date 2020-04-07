@@ -97,11 +97,19 @@
                                 CMS
                             </div>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
-                                <a class="m-menu__link" id="usecase-sidebar">
+                                <span class="m-menu__link home" id="usecase-sidebar">
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                             Home
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
-                                </a>
+                                </span>
+                                <ul class="subsider_ul home" style="display: none;">
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.home_featured_data') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Featured Data</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 2 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Trending</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 7 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Marketplace</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 3 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Team Pics</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 5 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Providers</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 6 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Top Usecases</a></li>
+                                </ul>
                             </li>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
                                 <a class="m-menu__link" id="usecase-sidebar">
@@ -131,7 +139,7 @@
                                         <i class="m-menu__ver-arrow la la-angle-right"></i>
                                     </span>
                                     
-                                <ul class="subsider_ul" style="display: none;">
+                                <ul class="subsider_ul usecases" style="display: none;">
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 1 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Geographics</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 2 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Environment</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 7 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Transport</a></li>
@@ -193,18 +201,30 @@
         <script src="{{ asset('adminpanel/assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
         <script src="{{ asset('adminpanel/assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
         <script>
-            var prop = true;
+            var prop_usecases = true;
             $('.m-menu__link.usecases').click(function(){
-                if(prop == true)
+                if(prop_usecases == true)
                 {
-                    $('.subsider_ul').css('display', 'inherit');
+                    $('.subsider_ul.usecases').css('display', 'inherit');
                 }
                 else
                 {
-                    $('.subsider_ul').css("display", "none");
+                    $('.subsider_ul.usecases').css("display", "none");
                 }
-                prop = prop?false:true;
+                prop_usecases = prop_usecases?false:true;
             });
+            var prop_home = true;
+            $('.m-menu__link.home').click(function(){
+                if(prop_home == true)
+                {
+                    $('.subsider_ul.home').css('display','inherit');
+                }
+                else
+                {
+                    $('.subsider_ul.home').css('display','none');
+                }
+                prop_home = prop_home?false:true;
+            })
             
         </script>
         @yield('additional_javascript')

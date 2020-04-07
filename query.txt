@@ -327,3 +327,16 @@ ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_title` VARCHAR(255) NUL
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `meta_desc` LONGTEXT NULL AFTER `meta_title`;
 #2020-03-26
 ALTER TABLE `databroker_new`.`subscriptions` DROP COLUMN `message`;
+
+#2020-04-08
+CREATE TABLE IF NOT EXISTS `databroker_new`.`home_featured_data` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `featured_data_title` VARCHAR(255) NULL,
+  `featured_data_provider` VARCHAR(255) NULL,
+  `featured_data_content` LONGTEXT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;

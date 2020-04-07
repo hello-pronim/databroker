@@ -20,6 +20,7 @@ use App\Models\UseCase;
 use App\Models\Contact;
 use App\Models\Subscription;
 use App\Models\Article;
+use App\Models\HomeFeaturedData;
 use Response;
 use Image;
 
@@ -45,6 +46,35 @@ class AdminController extends Controller
     public function getAuthUser ()
     {
         return Auth::user();
+    }
+
+    public function home()
+    {
+        return view('admin.home');
+    }
+
+    public function home_featured_data()
+    {
+        $board = HomeFeaturedData::first();
+        $data = array('board');
+        return view('admin.home_featured_data', compact($data));
+    }
+
+    public function home_featured_data_update(Request $request)
+    {
+        if($request->input('id')) {
+            $id = $request->input('id');
+            $data = $request->all();
+            unset($data['id']);
+            HomeFeaturedData::find($id)->update($data);
+            return "success";
+        } else {
+            $data = $request->all();
+            // $data['published'] = date("Y-m-d");
+            unset($data['id']);
+            HomeFeaturedData::create($data);
+            return "success";
+        }
     }
 
     public function usecases($id)
