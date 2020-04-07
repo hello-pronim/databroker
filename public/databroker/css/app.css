@@ -1316,7 +1316,7 @@ a:hover {
     text-decoration: none;
 }
 
-.cookie-accept {
+/* .cookie-accept {
     position: fixed;
     opacity: 0;
     bottom: -400px;
@@ -1327,52 +1327,52 @@ a:hover {
     z-index: 10000;
     padding: 30px;
     border-radius: 20px;
-}
+} */
 
-.cookie-accept-container {
+/* .cookie-accept-container {
     position: relative;
-}
+} */
 
-.cookie-accept-container .close_button-container {
+/* .cookie-accept-container .close_button-container {
     position: absolute;
     top: -15px;
     right: -15px;
     cursor: pointer;
     width: 10px;
     height: 10px;
-}
+} */
 
-.cookie-accept-container .close_button {
+/* .cookie-accept-container .close_button {
     transform: rotate(45deg);
     width: 1px;
     height: 10px;
     background: grey;
     margin: 0px auto;
-}
+} */
 
-.cookie-accept-container .close_button:before {
+/* .cookie-accept-container .close_button:before {
     content: '';
     transform: rotate(90deg);
     width: 1px;
     height: 10px;
     display: block;
     background: grey;
-}
+} */
 
-.cookie-accept-container .close_button-container:hover .close_button {
+/* .cookie-accept-container .close_button-container:hover .close_button {
     background: white;
-}
+} */
 
-.cookie-accept-container .close_button-container:hover .close_button:before {
+/* .cookie-accept-container .close_button-container:hover .close_button:before {
     background: white;
-}
+} */
 
-.cookie-accept h3 {
+/* .cookie-accept h3 {
     font-size: 14px;
     color: grey;
-}
+} */
 
-.cookie-accept h3 span {
+/* .cookie-accept h3 span {
     border: solid 1px grey;
     display: inline-block;
     width: 20px;
@@ -1381,9 +1381,9 @@ a:hover {
     text-align: center;
     line-height: 18px;
     margin-right: 6px;
-}
+} */
 
-.cookie-accept .accept-btn {
+/* .cookie-accept .accept-btn {
     height: 40px;
     border-radius: 25px;
     width: 150px;
@@ -1394,11 +1394,11 @@ a:hover {
     font-weight: bold;
     border: none;
     cursor: pointer;
-}
+} */
 
-.cookie-accept .accept-btn:hover {
+/* .cookie-accept .accept-btn:hover {
     color: #06038D;
-}
+} */
 
 body {
     /*

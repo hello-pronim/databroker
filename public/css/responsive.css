@@ -865,6 +865,9 @@
 	.mobile-scrolling{
 		height: 100px;
 	}
+	#update_title{
+		font-size: 34px !important;
+	}
 }
 @media (min-width: 768px) {
 	.cookie-accept .container .row .mgr80{

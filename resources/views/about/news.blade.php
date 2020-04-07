@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+<div id="background-image-mobile"></div>
 <div class="container-fluid app-wapper">
     <div class="bg-pattern1-left"></div>
     <div class="container">
@@ -48,16 +49,20 @@
             </div>
         </div>  
     </div>  
+</div>
+<div class="container-fluid app-wapper" id="update-detail-mobile-spliter">
     <div id="sub-footer" class="sub-footer mgh30">
-        <div class="section_splitor_gray"></div>
+        <!-- <div class="section_splitor_gray"></div> -->
         <div class="bg-pattern1-both flex-center flex-vertical">
             <div class="divider-green mgb30"></div>
             <div class="h2">Find out about new updates</div>
             <div class="para mgb40">Sign up for our NewsBytes!</div>
             <a href="{{route('register_nl')}}"><button type="button" class="customize-btn button mgt15">SIGN UP</button></a>
         </div>
-        <div class="section_splitor_gray h713"></div>
-    </div>    
+        <!-- <div class="section_splitor_gray h713"></div> -->
+    </div> 
+</div>  
+<div class="container-fluid app-wapper">   
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
             <div id="usecase-list2" class="mgh30">
