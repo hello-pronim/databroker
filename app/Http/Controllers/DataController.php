@@ -723,6 +723,12 @@ class DataController extends Controller
 
     }
 
+    public function get_all_themes(){
+        $themes = Theme::get();
+        $result = array('themes' => $themes);
+        return $result;
+    }
+
     public function community($community=""){         
 
         session(['curCommunity'=>$community]);

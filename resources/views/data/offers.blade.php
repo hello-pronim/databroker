@@ -139,9 +139,9 @@
 						</div>	                    
 						<div class="fileupload">
 							@if (isset($offer_path))
-						    <input type="file" id="offerImage" name="offerImage" accept='image/*' description="Or <a data-toggle='modal' data-target='#mediaLibraryModal' data-id='123123' data-type='offer'>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image">
+						    <input type="file" id="offerImage" name="offerImage" accept='image/*' description="Or <a data-toggle='modal' data-target='#mediaLibraryModal' data-id='123123' data-type='offer'>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" remotefile="{{ json_encode($offer_images) ?? '' }}" remoteroot="{{ $offer_path ?? ''}}" remotefiletype="image" fileType="images">
 						    @else
-						    <input type="file" id="offerImage" name="offerImage" accept='image/*' description="Or <a data-toggle='modal' data-target='#mediaLibraryModal' data-id='123123' data-type='offer'>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" >
+						    <input type="file" id="offerImage" name="offerImage" accept='image/*' description="Or <a data-toggle='modal' data-target='#mediaLibraryModal' data-id='123123' data-type='offer'>browse our image database</a> and pick one" title="UPLOAD FROM DEVICE" fileType="images">
 						    @endif
 						    <div class="error_notice offerImage"> This field is required</div>
 						</div>
