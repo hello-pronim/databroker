@@ -287,17 +287,17 @@
             <div class="email_lists cat-body">
                 <div class="error_notice">Please add email address.</div>
                 <label class="pure-material-textfield-outlined">
-                    <input type="email" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
+                    <input type="email" id="email1" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
                     <span>Email 1</span>                    
                     <div class="error_notice">Email format is incorrect.</div>
                 </label>
                 <label class="pure-material-textfield-outlined">
-                    <input type="email" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
+                    <input type="email" id="email2" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
                     <span>Email 2</span> 
                     <div class="error_notice">Email format is incorrect.</div>                        
                 </label>
                 <label class="pure-material-textfield-outlined">
-                    <input type="email" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
+                    <input type="email" id="email3" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">
                     <span>Email 3</span> 
                     <div class="error_notice">Email format is incorrect.</div>                        
                 </label>                

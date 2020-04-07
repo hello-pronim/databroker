@@ -26,12 +26,41 @@ $(document).ready(function(){
     });
 
     $.each($("#theme option"), function(key, elem){     
-        var option_text = window.location.pathname.split("/")[2];
-        console.log(option_text);
-        if(option_text){
+        var themeId = window.location.pathname.split("/")[3];
+        var filterBy = window.location.pathname.split('/')[2];
+        if(themeId && filterBy=="theme"){
             if($(elem).attr("value")){
-                if( $(elem).attr("value") == option_text){
+                if( $(elem).attr("value") == themeId){
                     $(elem).prop('selected', true);
+                }            
+            }    
+        }    
+    });
+
+    $.each($("#region option"), function(key, elem){     
+        var regionIdx = window.location.pathname.split("/")[3];
+        var filterBy = window.location.pathname.split('/')[2];
+        if(regionIdx && filterBy=="region"){
+            if($(elem).attr("value")){
+                if( $(elem).attr("value") == regionIdx){
+                    $("#region input[name='region']").val(regionIdx);
+                    $("#region .select span").html($(elem).html()); 
+                    $("#region .select").addClass("chosen"); 
+                }            
+            }    
+        }    
+    });
+
+    $.each($("#region .region-select span.region"), function(key, elem){     
+        var regionIdx = window.location.pathname.split("/")[3];
+        var filterBy = window.location.pathname.split('/')[2];
+        if(regionIdx && filterBy=="region"){
+            if($(elem).attr("region-id")){
+                if( $(elem).attr("region-id") == regionIdx){
+                    $(elem).addClass('active');
+                    $("#region input[name='region']").val($(elem).attr('region-id'));
+                    $("#region .select span").html($(elem).html()); 
+                    $("#region .select").addClass("chosen"); 
                 }            
             }    
         }    
@@ -169,6 +198,7 @@ $(document).ready(function(){
         var regionName = $(this).find("option:selected").text();
 
         var show_box = $(this).closest('.custom-dropdown').find('>.select');
+        $(show_box).addClass("chosen");
         show_box.find("span").html(regionName);
 
         $("input[name='region']").val(region);
@@ -180,6 +210,7 @@ $(document).ready(function(){
 
        $("input[name='region']").val( $(this).attr("region-id") );
        var show_box = $(this).closest('.custom-dropdown').find('>.select');
+        $(show_box).addClass("chosen");
        var regionName = $(this).text();
        show_box.find("span").html(regionName);
        
@@ -251,7 +282,6 @@ $(document).ready(function(){
         e.preventDefault();
         var _this = this;
         var formValues = JSON.parse(serialize_form(_this));
-        console.log(formValues);
         
         $(_this).find('.error_notice').hide();               
 
@@ -276,7 +306,6 @@ $(document).ready(function(){
             $(_this).find('.error_notice.format').show();
         } 
         if(formValues.period === undefined){
-            console.log('AAAAAAAAAAAAA');
             $(_this).find('.error_notice.period').show();
         }
 
@@ -311,18 +340,41 @@ $(document).ready(function(){
     $("#community").change(function(){                
         //window.location.href = '/'+ community.toLowerCase().replace(" ", "_");
         filter_dataoffer();
-        $("#theme").html(theme_select_obj);
 
         var community = $("#community").val();
-        $.each( $("#theme option"), function(key, elem){                        
-            if( community != 'all' && $(elem).attr('value') != 'all' && community  != $(elem).attr("community-id") ){
-                $(elem).remove();
-            }            
-        });  
-        $('#theme').val('all');      
-        var community_name = $("#community").find("option:selected").attr("community-name");
-        if( community_name ){
-            window.location.href = window.location.origin + "/" + community_name.toLowerCase().replace(' ','_');
+        if(community != 'all'){
+           $("#theme").html(theme_select_obj);
+
+            $.each( $("#theme option"), function(key, elem){                        
+                if( community != 'all' && $(elem).attr('value') != 'all' && community  != $(elem).attr("community-id") ){
+                    $(elem).remove();
+                }            
+            });  
+            $('#theme').val('all');      
+            var community_name = $("#community").find("option:selected").attr("community-name");
+            if( community_name ){
+                window.location.href = window.location.origin + "/" + community_name.toLowerCase().replace(' ','_');
+            }
+        }else{
+            let cur_theme = $("#theme").val();
+            console.log(cur_theme);
+            $.ajax({
+                method: 'get',
+                url: '/getAllThemes',
+                dataType: 'json',
+                success: function(res){
+                    let themes = res.themes;
+                    console.log(themes);
+                    let options = '<option value="all">All themes</option>';
+                    for(let i=0; i<themes.length; i++){
+                        if(themes[i].themeIdx == cur_theme)
+                            options+= '<option value="'+ themes[i].themeIdx+'" community-id="'+themes[i].communityIdx+'" selected>'+themes[i].themeName+'</option>';
+                        else
+                            options+= '<option value="'+ themes[i].themeIdx+'" community-id="'+themes[i].communityIdx+'">'+themes[i].themeName+'</option>';
+                    }
+                    $("#theme").html(options);
+                }
+            })
         }
     });
 
@@ -349,8 +401,7 @@ $(document).ready(function(){
         var theme_text = $("#theme option:selected").text();
         var region1 = $("#region select").val();
         var region2 = $("#region span.region.active").attr("region-id");
-        console.log("Theme:"+theme);
-       
+
         region = region1==""?region2:region1;
         var region_text = $('#region .select >span').html();
         if($("#region span.region.active").text() == "World") region = "";
@@ -361,7 +412,8 @@ $(document).ready(function(){
             url : '/offer/filter',
             data : data,
             dataType: 'json',
-            success: function(res){                
+            success: function(res){ 
+                console.log(res);               
                 var list= "";
                 $.each(res.offers, function(key, elem){                                       
                    
@@ -531,7 +583,7 @@ $(document).ready(function(){
         e.preventDefault();
         var emails_number = $(".email_lists label").length;
         var input_field = '<label class="pure-material-textfield-outlined">'+
-                                '<input type="email" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">'+
+                                '<input type="email" id="email'+(emails_number+1)+'" name="linked_email[]" class="form-control2 input_data" placeholder=" "  value="">'+
                                 '<span>Email '+(emails_number+1)+'</span>'+
                                 '<div class="error_notice">Email format is incorrect.</div>'+
                            '</label>';
@@ -621,24 +673,22 @@ $(document).ready(function(){
             method: 'post',
             data: $(this).serialize(),
             success: function(response){
-                console.log(response);
                 if(response.success == true){
                     if(response.redirect !== undefined){
                         window.location.href = response.redirect;
                     }else{
                         if(!form.data('cc-on-file')){
-                            console.log($('#card_number').val());
-                            console.log($('#cvc').val());
-                            console.log($('#exp_month').val());
-                            console.log($('#exp_year').val());
                             Stripe.setPublishableKey(form.data('stripe-publishable-key'));
-                            Stripe.createToken({
-                                number: $('#card_number').val(),
-                                cvc: $('#cvc').val(),
-                                exp_month: $('#exp_month').val(),
-                                exp_year: $('#exp_year').val()
-                            }, stripeResponseHandler);
-
+                            try{
+                                Stripe.createToken({
+                                    number: $('#card_number').val(),
+                                    cvc: $('#cvc').val(),
+                                    exp_month: $('#exp_month').val(),
+                                    exp_year: $('#exp_year').val()
+                                }, stripeResponseHandler);
+                            }catch(e){
+                                console.log(e);
+                            }
                         }
                     }
                 }else{
@@ -664,6 +714,7 @@ $(document).ready(function(){
                 .text(response.error.message);
         } else {
             // token contains id, last4, and card type
+            $('.error').addClass('hide');
             var token = response['id'];
             // insert the token into the form so it gets submitted to the server
             $('#buy-data').find('input[type=text]').empty();
