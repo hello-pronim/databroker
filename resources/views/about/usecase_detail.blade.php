@@ -16,6 +16,7 @@
 @endsection
 
 @section('content')
+<div id="background-image-mobile"></div>
 <div class="container-fluid app-wapper">
     <div class="bg-pattern1-left"></div>
     <div class="container">
@@ -45,8 +46,10 @@
             </div>
         </div>
     </div>
+</div>
+<div class="container-fluid app-wapper" id="update-detail-mobile-spliter">
     <div id="sub-footer" class="sub-footer mgh30">
-        <div class="section_splitor_gray"></div>
+        <!-- <div class="section_splitor_gray"></div> -->
         <div class="bg-pattern1-both flex-center flex-vertical">
             <div class="divider-green mgb30"></div>
             <div class="h2">What business challenge can we help you solve?</div>
@@ -55,8 +58,10 @@
             <br/>
             <div class="para mgb40">It 's free.</div>
         </div>
-        <div class="section_splitor_gray h713"></div>
-    </div>    
+        <!-- <div class="section_splitor_gray h713"></div> -->
+    </div>  
+</div>  
+<div class="container-fluid app-wapper">  
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
             <div id="usecase-list2" class="mgh30">
