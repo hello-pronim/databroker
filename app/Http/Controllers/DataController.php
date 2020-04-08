@@ -71,7 +71,7 @@ class DataController extends Controller
             $prev_route = '';
         }
     
-        $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user' => $user, 'user_info' => $user_info, 'products' => $products);
+        $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user_info' => $user_info, 'products' => $products);
         return view('data.details')->with($data);
     }
 
