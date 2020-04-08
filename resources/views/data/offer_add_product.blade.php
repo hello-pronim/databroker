@@ -210,7 +210,7 @@
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
 			                <h4 class="h4_intro text-left">Provide a URL where the buyer can read the data license. <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_license_url_tooptip') }}">help</i></h4>
-				        	<label class="pure-material-textfield-outlined mb-0 p-0">
+				        	<label class="pure-material-textfield-outlined">
 		                        <input type="text" id="licenseUrl" name="licenceUrl" class="form-control2 input_data" placeholder=" "  value="">
 		                        <span>{{ trans('pages.enter_url') }}</span>	                        
 		                    </label>
