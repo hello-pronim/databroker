@@ -41,7 +41,7 @@
 						</a>
 						<div class="card-author">
 							<p> Data provided by {{ $featured_data->featured_data_provider??'' }} </p>
-							<a href="{{ $featured_data->logo_url??'' }}"><img src="{{ asset('uploads/home/featured_data/logo/'.$featured_data->logo??'default.jpg') }}"></a>
+							<a href="{{ $featured_data->logo_url??'' }}"><img src="{{ asset('uploads/home/featured_data/logo/'.$featured_data->logo??'default.jpg') }}" style="width:50px; height:50px;"></a>
 						</div>						
 					</div>
 				</div>

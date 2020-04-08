@@ -102,11 +102,28 @@ class AdminController extends Controller
 
     public function home_featured_data_upload_logo(Request $request, $id = 0)
     {
+
             $getfiles = $request->file('uploadedFile');
-            $fileName = $id.'.jpg';  
-            $getfiles->move(public_path('uploads/home/featured_data/logo'), $fileName);
-            HomeFeaturedData::find($id)->update(['logo' => $fileName]);
-            return "true";
+            $fileExtention = $getfiles->getClientOriginalExtension();
+            if($fileExtention == 'svg')
+            {
+                $fileName = $id.'.svg';
+                $getfiles->move(public_path('uploads/home/featured_data/logo/'), $fileName);
+                HomeFeaturedData::find($id)->update(['logo' => $fileName]);
+                return "true";
+            }
+            else
+            {
+                $fileName = $id.'.jpg';
+                //image compress start
+                $tinyimg = Image::make($getfiles->getRealPath());
+                $tinyimg->resize(500,500, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/home/featured_data/logo').'/'.$fileName);
+                //image compress end
+                HomeFeaturedData::find($id)->update(['logo' => $fileName]);
+                return "true";
+            }
     }
 
     public function home_trending()

@@ -71,7 +71,7 @@
             </div>
         </div>
         <input type="file" id="upload_attach" accept=".gif,.jpg,.jpeg,.png" style="display: none;">
-        <input type="file" id="upload_logo" accept=".gif,.jpg,.jpeg,.png" style="display: none;">
+        <input type="file" id="upload_logo" accept=".gif,.jpg,.jpeg,.png,.svg" style="display: none;">
     </div>
 </div>
 
