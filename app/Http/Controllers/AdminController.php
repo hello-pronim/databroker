@@ -21,6 +21,7 @@ use App\Models\Contact;
 use App\Models\Subscription;
 use App\Models\Article;
 use App\Models\HomeFeaturedData;
+use App\Models\HomeTrending;
 use Response;
 use Image;
 
@@ -73,6 +74,71 @@ class AdminController extends Controller
             // $data['published'] = date("Y-m-d");
             unset($data['id']);
             HomeFeaturedData::create($data);
+            return "success";
+        }
+    }
+
+    public function home_trending()
+    {
+        $boards = HomeTrending::orderby('published', 'desc')->get();
+        $data = array('boards');
+        return view('admin.home_trending', compact($data));
+    }
+
+    public function home_trending_upload_attach(Request $request, $id = 0)
+    {
+            $getfiles = $request->file('uploadedFile');
+            $fileExtention = $getfiles->getClientOriginalExtension();
+            if($fileExtention == 'svg')
+            {
+                $fileName = $id.'.svg';
+                $getfiles->move(public_path('uploads/home/trending/'), $fileName);
+                HomeTrending::find($id)->update(['image' => $fileName]);
+                return "true";
+            }
+            else
+            {
+                $fileName = $id.'.jpg';
+                //image compress start
+                $tinyimg = Image::make($getfiles->getRealPath());
+                $tinyimg->resize(500,500, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/home/trending').'/'.$fileName);
+                //image compress end
+                HomeTrending::find($id)->update(['image' => $fileName]);
+                return "true";
+            }
+           
+    }
+
+    public function home_trending_edit($id = '')
+    {
+        if($id == '')
+        {
+            return view('admin.home_trending_edit');
+        }
+        else
+        {
+            $id = $id;
+            $board = HomeTrending::where('id', $id)->first(); 
+            $data = array('id', 'board');
+            return view('admin.home_trending_edit', compact($data));
+        }
+    }
+
+    public function home_trending_update(Request $request)
+    {
+        if($request->input('id')) {
+            $id = $request->input('id');
+            $data = $request->all();
+            unset($data['id']);
+            HomeTrending::find($id)->update($data);
+            return "success";
+        } else {
+            $data = $request->all();
+            // $data['published'] = date("Y-m-d");
+            unset($data['id']);
+            HomeTrending::create($data);
             return "success";
         }
     }

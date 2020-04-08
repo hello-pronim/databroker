@@ -104,7 +104,7 @@
                                 </span>
                                 <ul class="subsider_ul home" style="display: none;">
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.home_featured_data') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Featured Data</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 2 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Trending</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.home_trending') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Trending</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 7 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Marketplace</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 3 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Team Pics</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 5 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Providers</a></li>

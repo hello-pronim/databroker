@@ -7,15 +7,11 @@ $(function(){
 	$( "#board_form" ).validate({
 	    // define validation rules
 	    rules: {
-	        featured_data_title: {
+	        title: {
 	            required: true,
 	        },
-	        featured_data_content: {
-	            required: true,
-	            minlength: 20 
-			},
-            featured_data_provider: {
-                required: true,
+			published: {
+				required: true,
             }
 	    },
 	    //display error alert on form submit  
@@ -30,7 +26,7 @@ $(function(){
 	    submitHandler: function (form) {
 	    	$.ajax(
                     {
-                        url: "/admin/home_featured_data/update", 
+                        url: "/admin/home_trending/update", 
                         type: "POST",
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
                         data: $("#board_form").serialize(),
@@ -38,7 +34,7 @@ $(function(){
                                 {   
                                     if(result == "success")
                                     {
-                                        window.location.href = "/admin/home_featured_data";
+                                        window.location.href = "/admin/home_trending";
                                     }
                                     
                                 },
@@ -51,5 +47,4 @@ $(function(){
                 );
 	    }
 	});  
-	$(".summernote").summernote({height: 300,linkTargetBlank: true});
 });
