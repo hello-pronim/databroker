@@ -9,7 +9,6 @@
 		<style>
 			body{padding: 30px 25px;background: #f8f8f8 0% 0% no-repeat padding-box;font-family: "DM Sans";}
 			table,td,tr {vertical-align: top;border-collapse: collapse;}
-			table tr td{width: 100%;}
 			a:hover{color: #06038D;}
 			.flex-row{display: flex; flex-direction: row}
 			.align-items-center{align-items: center}
@@ -17,7 +16,6 @@
 			.fs-14{font-size: 14px;}
 			.fs-16{font-size: 16px;}
 			.fs-18{font-size: 18px;}
-			.fs-24{font-size: 24px;}
 			.fs-30{font-size: 30px;}
 			.fs-40{font-size: 40px;}
 			.lh-21{line-height: 21px;}
@@ -88,80 +86,22 @@
 												<tbody>
 													<tr>
 														<td class="fs-40 lh-44 text-bold py-25">
-															Dear {{$data['buyer']->firstname}},
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-25">
-															You have successfully purchased the following data product from {{$data['seller']->companyName}}:
+															Hello,
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															{{$data['product']->productTitle}} - 
-															@foreach($data['product']->region as $region)
-						            							<span>{{ $region->regionName }}</span>
-						            						@endforeach
+															{{$data['user']->firstname}} {{$data['user']->lastname}} from {{$data['user']->companyName}} has sent you a complaint against {{$data['companyName']}}:
 														</td>
 													</tr>
 													<tr>
-														<td class="fs-18 lh-27 py-10">
-															Format : {{$data['product']->productType}}
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															Price : € {{$data['product']->productPrice}}
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															Access to this data : 1 {{$data['product']->productAccessDays}}
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-27 py-10">
-															From : {{$data['expiry_from']}} to {{$data['expiry_to']}}
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-24 py-25 flex-row">
-															<a href="#" class="btn btn-primary">
-																Access data product
-															</a>
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-24 py-10" style="font-style: italic;">
-															This link expires at {{$data['expiry_to']}}, so make sure you access the data before this date.
+														<td class="text-bold fs-18 lh-24 py-10">
+															Message: 
 														</td>
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-10">
-															You can find the details of your purchase in the <a href="{{route('account.purchases')}}">My purchases</a> section of your account.
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<table class="mt-30" cellpadding="0" cellspacing="0" border="0">
-												<tbody>
-													<tr>
-														<td class="fs-24 lh-36 py-10 text-bold">
-															What happens now?
-														</td>
-													</tr>
-													<tr>
-														<td class="fs-18 lh-24 py-10">
-															<ul class="m-0">
-																<li class="py-10">You have 30-day warranty period, which gives you time to ensure that the data is what you expected to receive.</li>
-																<li class="py-10">During this time, Databroker holds the seller’s earnings from the sale, and only releases them once the warranty period ends.</li>
-																<li class="py-10">If there's a problem with the data, we recommend that you contact the data provider as soon as possible to try to find a solution. But if that doesn’t help, you can file a complaint within 30 days of your purchase.<br/>
-																Read more about <a href="{{route('help.file_complaint')}}">filing a complaint</a>.</li>
-															</ul>
+															{{$data['message']}} 
 														</td>
 													</tr>
 												</tbody>

@@ -10,12 +10,12 @@
 <div class="container-fluid app-wapper bg-pattern-side">
     <div class="container">
         <div class="row send-massage" id="send-message-row">
-                    <div class="row justify-content-center mt-30 auth-section">
-                        <div class="col-md-12">
-                            <h2 class="text-primary text-left text-bold">File a complaint</h1>
-                            <br>
-                        </div>
-                    </div>
+            <div class="row justify-content-center mt-30 auth-section">
+                <div class="col-md-12">
+                    <h2 class="text-primary text-left text-bold">File a complaint</h1>
+                    <br>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-6 col-sm-12">

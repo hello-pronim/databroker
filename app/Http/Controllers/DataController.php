@@ -48,8 +48,6 @@ class DataController extends Controller
      */
     public function details(Request $request)
     {   
-        $user = $this->getAuthUser();
-
         $offer = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
 
         $user_info = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')->where('users.userIdx', $offer->provider->userIdx)->first();
@@ -60,12 +58,12 @@ class DataController extends Controller
         
         $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where("productStatus", 1)->get();
 
-        $purchases = Purchase::join('offerProducts', 'offerProducts.productIdx', '=', 'purchases.productIdx')
-                            ->where('purchases.userIdx', $user->userIdx)
-                            ->where('offerProducts.offerIdx', $request->id)
-                            ->orderby('purchases.purchaseIdx', 'DESC')
-                            ->groupBy('purchases.productIdx')
-                            ->get();
+        // $purchases = Purchase::join('offerProducts', 'offerProducts.productIdx', '=', 'purchases.productIdx')
+        //                     ->where('purchases.userIdx', $user->userIdx)
+        //                     ->where('offerProducts.offerIdx', $request->id)
+        //                     ->orderby('purchases.purchaseIdx', 'DESC')
+        //                     ->groupBy('purchases.productIdx')
+        //                     ->get();
         // var_dump($purchases);
         // exit;
 
@@ -73,7 +71,7 @@ class DataController extends Controller
             $prev_route = '';
         }
     
-        $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user' => $user, 'user_info' => $user_info, 'products' => $products);
+        $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user_info' => $user_info, 'products' => $products);
         return view('data.details')->with($data);
     }
 
@@ -1035,7 +1033,7 @@ class DataController extends Controller
                                     ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                                     ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                     ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                                    ->where('productIdx', $request->pid)
+                                    ->where('offerProducts.productIdx', $request->pid)
                                     ->get()
                                     ->first();
             //$bid = Bid::where('userIdx', $user->userIdx)->where('pid', $request->pid)->get()->first();

@@ -7,7 +7,7 @@
         	<div class="row blog-header">
                 <div class="col-md-12">
         			<h1>{{trans('data.your_payment_success')}}</h1>
-                	<p class="para text-bold">{{trans('data.ready_to_use')}}</h4>
+                	<p class="para text-bold">{{trans('data.ready_to_use')}}</p>
                 </div>
     		</div>
             <div class="app-monetize-section-item0 ml-0 mt-20"></div>

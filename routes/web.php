@@ -26,6 +26,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::post('/profile/company', 'ProfileController@update_company')->name('account.company.update');
 		Route::post('/profile/edit', 'ProfileController@update')->name('account.profile.update');	
 		Route::get('/profile/purchases', 'ProfileController@purchases')->name('account.purchases');	
+		Route::get('/profile/purchases/{pid}', 'ProfileController@purchases_detail')->where('pid', '[0-9]+')->name('account.purchases_detail');	
 		Route::get('/wallet', 'ProfileController@wallet')->name('account.wallet');	
 		Route::post('/user/delete', 'ProfileController@delete')->name('account.delete');	
 		Route::post('/invite', 'ProfileController@invite_user')->name('account.invite_user');
