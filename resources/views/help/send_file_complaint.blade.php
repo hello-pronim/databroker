@@ -24,7 +24,26 @@
                         <div class="col-md-12 col-sm-12">        
                                 <form method="POST" action="{{ route('help.post_send_file_complaint') }}" id="contactForm">
                                     @csrf
-                                    <h4 class="h4_intro text-left">I want to file a complaint against</h4>
+                                    @if(isset($product))
+                                    <input type="hidden" name="productIdx" value="{{$product->productIdx}}">
+                                    <input type="hidden" name="companyName" value="{{$company->companyName}}">
+                                    <h4 class="h4_intro text-left">
+                                        I want to file a complaint about
+                                    </h4>
+                                    <table width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td class="info-label">Data for:</td>
+                                                <td class="info-text">{{$product->productTitle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="info-label">Supplied by:</td>
+                                                <td class="info-text">{{$company->companyName}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    @else
+                                    <h4 class="h4_intro text-left">I want to file a complaint about</h4>
                                     <div class="radio-wrapper period">
                                         <div class="mb-10">
                                             <label class="container para">A data provider
@@ -81,6 +100,7 @@
                                             </div>	
                                         </div>							
                                     </div>
+                                    @endif
                                     <label class="pure-material-textfield-outlined">
                                         <textarea name="message" class="form-control input_data user-message @error('message') is-invalid @enderror" placeholder="Your complaint (please provide as much detail as possible)" maxlength="100" autofocus>{{ old('message')}}</textarea>
                                         <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Message']) }}</div>

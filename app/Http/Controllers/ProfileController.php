@@ -78,7 +78,7 @@ class ProfileController extends Controller
                         ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
                         ->where('purchases.userIdx', $user->userIdx)
-                        ->get();
+                        ->get(["offers.*", "offerProducts.*", "purchases.*", "bids.*", "offerProducts.productIdx as pid"]);
         $data = array('purchases');
         return view('account.purchases', compact($data));
     }
@@ -170,7 +170,7 @@ class ProfileController extends Controller
         $fields = [
             'companyName' => ['required', 'string', 'max:255'],
             'regionIdx' => ['required', 'integer'],
-            'companyURL' => ['required', 'string', 'max:255', "regex: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9\-]+(\.[a-z\-]{2,}){1,3}(#?\/?[a-zA-Z0-9\-#]+)*\/?(\?[a-zA-Z0-9-_\-]+=[a-zA-Z0-9-%\-]+&?)?$/"],
+            'companyURL' => ['required', 'string', 'max:255', "regex: /\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i"],
             'companyVAT'=>['required', 'string', 'max:255']
         ];
         $messages = [

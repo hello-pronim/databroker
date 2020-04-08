@@ -98,7 +98,7 @@
                                                     </li>
                                                     @endif
                                                     <div class="mt-20">Problems with the data?</div>
-                                                    <a class="text-green">File a complaint</a>
+                                                    <a href="{{route('help.send_file_complaint').'?pid='.$purchase->pid}}">File a complaint</a>
                                                 </div>
                                             </div>
                                         </div>
