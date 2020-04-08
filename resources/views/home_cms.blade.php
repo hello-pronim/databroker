@@ -32,18 +32,15 @@
 				<div class="card card-raised card-background" style="background-image: url({{ asset('images/banner.jpg') }})">
 					<div class="card-body">
 						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
-						<h3 class="card-title fs-40">Weather data</h3>
+						<h3 class="card-title fs-40">{{ $featured_data->featured_data_title??'' }}</h3>
 						<p class="card-description text-white">
-							Short description (eg. Get current weather and daily
-							forecasts. iteractive maps show precipitation, clouds,
-							pressure, wind around your location. Now available for 
-							all countries in Europe.)							
+							{!! $featured_data->featured_data_content??'' !!}						
 						</p>
 						<a href="#pablo" class="btn btn-round readmore">
 							READ MORE
 						</a>
 						<div class="card-author">
-							<p> Data provided by sigfox </p>
+							<p> Data provided by {{ $featured_data->featured_data_provider??'' }} </p>
 							<img src="{{ asset('images/blogs/logo_def.jpg') }}">	
 						</div>						
 					</div>
@@ -57,24 +54,17 @@
     <div class="container">        
         <h1 class="mb-20 fs-30 text-bold text-left">{{ trans('home.trending') }}</h1>
         <div class="app-partner-items row">
+            @foreach($trendings as $trending)
         	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon">
-						<img src="{{ asset('images/design/transport.svg') }}">
+						<img src="{{ asset('uploads/home/trending/'.$trending->image) }}">
 	                </div>        
-					<h4 class="info-title"> Car data </h4>
+					<h4 class="info-title"> {{ $trending->title }} </h4>
         		</div>
 
-        	</div>
-        	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-        		<div class="app-partner-item info">
-					<div class="icon">
-						<img src="{{ asset('images/design/transport.svg') }}">
-	                </div>
-					<h4 class="info-title"> Traffic density </h4>
-        		</div>
-
-        	</div>
+            </div>
+            @endforeach
         	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
         		<div class="app-partner-item info">
 					<div class="icon"><img src="{{ asset('images/design/people.svg') }}">

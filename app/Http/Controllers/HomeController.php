@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Community;
+use App\Models\HomeFeaturedData;
+use App\Models\HomeTrending;
 use Mail;
 use App\Models\Article;
 
@@ -28,9 +30,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $featured_data = HomeFeaturedData::first();
+        $trendings = HomeTrending::orderby('published', 'desc')->limit(6)->get();
         $top_usecases = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(3)->get();
-        $data = array('top_usecases');
-        return view('home', compact($data));
+        $data = array('featured_data', 'trendings', 'top_usecases');
+        // return view('home', compact($data));
+        return view('home_cms', compact($data));
     }
 
     public function sendEmail($tplName, $params){   
