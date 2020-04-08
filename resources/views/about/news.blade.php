@@ -66,6 +66,7 @@
     <div class="container">
         <div class="app-section app-reveal-section align-items-center usecases">
             <div id="usecase-list2" class="mgh30">
+                <h1 class="mt-80 mb-20 fs-30 text-bold text-left"> Latest Updates </h1>
                 <div class="row" id="load-data">
                     @foreach ( $updates2 as $update )
                     <div class="col-md-4">
