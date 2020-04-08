@@ -29,7 +29,7 @@
 	<div class="container">		
 	    <div class="row">
 	    	<div class="col-md-12">
-				<div class="card card-raised card-background" style="background-image: url({{ asset('images/banner.jpg') }})">
+				<div class="card card-raised card-background" style="background-image: url({{ asset('uploads/home/featured_data/'.$featured_data->image) }})">
 					<div class="card-body">
 						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
 						<h3 class="card-title fs-40">{{ $featured_data->featured_data_title??'' }}</h3>
@@ -41,7 +41,7 @@
 						</a>
 						<div class="card-author">
 							<p> Data provided by {{ $featured_data->featured_data_provider??'' }} </p>
-							<img src="{{ asset('images/blogs/logo_def.jpg') }}">	
+							<a href="{{ $featured_data->logo_url??'' }}"><img src="{{ asset('uploads/home/featured_data/logo/'.$featured_data->logo??'default.jpg') }}"></a>
 						</div>						
 					</div>
 				</div>
@@ -56,13 +56,14 @@
         <div class="app-partner-items row">
             @foreach($trendings as $trending)
         	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-        		<div class="app-partner-item info">
-					<div class="icon">
-						<img src="{{ asset('uploads/home/trending/'.$trending->image) }}">
-	                </div>        
-					<h4 class="info-title"> {{ $trending->title }} </h4>
-        		</div>
-
+                <a href="{{ $trending->logo_url??'' }}">
+                    <div class="app-partner-item info">
+                        <div class="icon">
+                            <img src="{{ asset('uploads/home/trending/'.$trending->image) }}">
+                        </div>        
+                        <h4 class="info-title"> {{ $trending->title }} </h4>
+                    </div>
+                </a>
             </div>
             @endforeach
         </div>

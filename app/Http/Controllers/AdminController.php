@@ -57,9 +57,16 @@ class AdminController extends Controller
 
     public function home_featured_data()
     {
-        $board = HomeFeaturedData::first();
-        $data = array('board');
+        $boards = HomeFeaturedData::get();
+        $data = array('boards');
         return view('admin.home_featured_data', compact($data));
+    }
+
+    public function home_featured_data_edit()
+    {
+            $board = HomeFeaturedData::first(); 
+            $data = array('board');
+            return view('admin.home_featured_data_edit', compact($data));
     }
 
     public function home_featured_data_update(Request $request)
@@ -72,11 +79,34 @@ class AdminController extends Controller
             return "success";
         } else {
             $data = $request->all();
-            // $data['published'] = date("Y-m-d");
             unset($data['id']);
             HomeFeaturedData::create($data);
             return "success";
         }
+    }
+
+    public function home_featured_data_upload_attach(Request $request, $id = 0)
+    {
+            $getfiles = $request->file('uploadedFile');
+            $fileName = $id.'.jpg';  
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+            $tinyimg->resize(300,400, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/featured_data/tiny').'/'.$fileName);
+            //image compress end
+            $getfiles->move(public_path('uploads/home/featured_data'), $fileName);
+            HomeFeaturedData::find($id)->update(['image' => $fileName]);
+            return "true";
+    }
+
+    public function home_featured_data_upload_logo(Request $request, $id = 0)
+    {
+            $getfiles = $request->file('uploadedFile');
+            $fileName = $id.'.jpg';  
+            $getfiles->move(public_path('uploads/home/featured_data/logo'), $fileName);
+            HomeFeaturedData::find($id)->update(['logo' => $fileName]);
+            return "true";
     }
 
     public function home_trending()

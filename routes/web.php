@@ -131,6 +131,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/admin', function () { return redirect()->route('admin.updates'); });
 	Route::get('/admin/home', 'AdminController@home')->name('admin.home');
 	Route::get('/admin/home_featured_data', 'AdminController@home_featured_data')->name('admin.home_featured_data');
+	Route::post('/admin/home_featured_data/upload_attach/{id}', 'AdminController@home_featured_data_upload_attach');
+	Route::post('/admin/home_featured_data/upload_logo/{id}', 'AdminController@home_featured_data_upload_logo');
+	Route::get('/admin/home_featured_data/edit', 'AdminController@home_featured_data_edit')->name('admin.home_featured_data_edit');
 	Route::post('/admin/home_featured_data/update', 'AdminController@home_featured_data_update')->name('admin.home_featured_data_update');
 	Route::get('/admin/home_trending', 'AdminController@home_trending')->name('admin.home_trending');
 	Route::post('/admin/home_trending/upload_attach/{id}', 'AdminController@home_trending_upload_attach')->name('admin.home_trending_upload_attach');
