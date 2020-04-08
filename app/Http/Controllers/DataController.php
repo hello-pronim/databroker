@@ -1035,7 +1035,7 @@ class DataController extends Controller
                                     ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                                     ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                     ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                                    ->where('productIdx', $request->pid)
+                                    ->where('offerProducts.productIdx', $request->pid)
                                     ->get()
                                     ->first();
             //$bid = Bid::where('userIdx', $user->userIdx)->where('pid', $request->pid)->get()->first();

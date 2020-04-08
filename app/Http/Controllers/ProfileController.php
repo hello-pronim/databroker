@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Business;
 use App\Models\Provider;
 use App\Models\Company;
+use App\Models\Offer;
 use App\Models\OfferProduct;
 use App\Models\Bid;
 use App\Models\Region;
@@ -71,7 +72,35 @@ class ProfileController extends Controller
    
     public function purchases(Request $request)
     {
-        return view('account.purchases');
+        $user = $this->getAuthUser();
+        $purchases = Offer::with(['region', 'provider'])
+                        ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+                        ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
+                        ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
+                        ->where('purchases.userIdx', $user->userIdx)
+                        ->get();
+        $data = array('purchases');
+        return view('account.purchases', compact($data));
+    }
+
+    public function purchases_detail(Request $request)
+    {
+        $user = $this->getAuthUser();
+        $detail = Offer::with(['region', 'provider'])
+                        ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+                        ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
+                        ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
+                        ->where('purchases.purchaseIdx', $request->pid)
+                        ->get()
+                        ->first();
+        $company = Offer::join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->where('offers.offerIdx', $detail['offerIdx'])
+                        ->get()
+                        ->first()
+                        ->companyName;
+        if(!$detail) return redirect(route('account.purchases'));
+        $data = array('detail', 'company');
+        return view('account.purchases_detail', compact($data));
     }
 
     public function update(Request $request)

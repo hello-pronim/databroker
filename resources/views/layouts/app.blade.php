@@ -89,7 +89,12 @@
                             @if(count($bids))
                             <a class="dropdown-item" href="{{ route('profile.buyer_bids') }}"> {{ trans('home.bids') }} </a>
                             @endif
+                            @php
+                              $purchases = \App\Models\Purchase::where('userIdx', Auth::user()->userIdx)->get();
+                            @endphp
+                            @if(count($purchases))
                             <a class="dropdown-item" href="{{ route('account.purchases') }}"> {{ trans('home.purchases') }} </a>
+                            @endif
                             <div class="dropdown-divider"></div>
                             <h5> {{ trans('home.me_seller') }} </h5>
                             <a class="dropdown-item" href="{{ route('account.company') }}"> {{ trans('home.company_profile') }} </a>
