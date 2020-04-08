@@ -107,7 +107,7 @@
                                 <div class="row">
                                     <div class="col-xl-12">
                                         @if(date('Y-m-d')>date('Y-m-d', strtotime($purchase->to)))
-                                        <div class="text-grey">The link to the data product expired at {{date('d/m/Y', strtotime($purchase->to))}}</div>
+                                        <div class="text-grey">The link to the data product expired on {{date('d/m/Y', strtotime($purchase->to))}}</div>
                                         @else
                                         <a href="{{route('account.purchases_detail', ['pid'=>$purchase->purchaseIdx])}}">
                                             <button class="btn readmore-inourblog-btn pure-material-button-outlined btn-transparent mt-0">
