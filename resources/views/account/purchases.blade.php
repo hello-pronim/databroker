@@ -14,11 +14,13 @@
                     Purchases are shown in chronological order, with the most recent activity at the top.
                 </p>
                 <div class="purchase-items">
+                    @if(count($purchases))
+                        @foreach($purchases as $key=>$purchase)
                     <div class="purchase-item">
                         <div class="row">
                             <div class="col-xl-1 col-lg-2 col-md-3 col-sm-3">
                                 <div class="date-label">
-                                    02/02/2007
+                                    {{date('d/m/Y', strtotime($purchase->from))}}
                                 </div>
                             </div>
                             <div class="col-xl-11 col-lg-10 col-md-9 col-sm-9">
@@ -26,10 +28,12 @@
                                     <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12">
                                         <div class="mb-20">
                                             <h4 class="text-bold">
-                                                Satellite imagery of buildings and roads
+                                                {{$purchase->productTitle}}
                                             </h4>
                                             <div class="item-location">
-                                                Belgium
+                                                @foreach($purchase->region as $region)
+                                                    {{$region->regionName}}
+                                                @endforeach
                                             </div>
                                             <br>
                                             <div class="field-table">
@@ -38,7 +42,7 @@
                                                         Format:
                                                     </div>
                                                     <div class="col-8 field-value">
-                                                        API flow
+                                                        {{$purchase->productType}}
                                                     </div>
                                                 </div>
                                                 <div class="row field-row">
@@ -46,7 +50,7 @@
                                                         Price:
                                                     </div>
                                                     <div class="col-8 field-value">
-                                                        <span>€500 (tax incl.)</span>
+                                                        <span>€ {{$purchase->bidPrice!=0 ? $purchase->bidPrice : $purchase->productPrice}} (tax incl.)</span>
                                                     </div>
                                                 </div>
                                                 <div class="row field-row">
@@ -54,9 +58,9 @@
                                                         Access to this data:
                                                     </div>
                                                     <div class="col-8 field-value">
-                                                        1 day
+                                                        1 {{$purchase->productAccessDays}}
                                                         <span class="text-normal">
-                                                            (From 02/02/2007 to 03/02/2007)
+                                                            (From {{date('d/m/Y', strtotime($purchase->from))}} to {{date('d/m/Y', strtotime($purchase->to))}})
                                                         </span>
                                                     </div>
                                                 </div>
@@ -68,10 +72,10 @@
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 seller">
                                                 <div class="mb-20">
                                                     <h4 class="company">
-                                                        Seller company name
+                                                        {{$purchase->companyName}}
                                                     </h4>
                                                     <div class="price">
-                                                        €500 <span class="color-black">(tax incl.)</span>
+                                                        € {{$purchase->bidPrice!=0 ? $purchase->bidPrice : $purchase->productPrice}} <span class="color-black">(tax incl.)</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,16 +85,18 @@
                                                         Warranty expires on
                                                     </h4>
                                                     <div class="date">
-                                                        03/02/2007
+                                                        {{date('d/m/Y', strtotime($purchase->to))}}
                                                     </div>
+                                                    @if($purchase->productMoreInfo)
                                                     <li class="more_dropdown">
                                                         <a href="javascript:;" class="more_info">More Info <i class="material-icons">arrow_drop_down</i>
                                                             <i class="material-icons open">arrow_drop_up</i>
                                                         </a>
                                                         <div>
-                                                            Databroker offers a 30-day warranty on all data purchased. In the event of problems with data you purchase, you can file a complaint before the end of the warranty period. 
+                                                            {{$purchase->productMoreInfo}}
                                                         </div>
                                                     </li>
+                                                    @endif
                                                     <div class="mt-20">Problems with the data?</div>
                                                     <a class="text-green">File a complaint</a>
                                                 </div>
@@ -100,199 +106,23 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-12">
-                                        <button class="btn readmore-inourblog-btn pure-material-button-outlined btn-transparent mt-0">View data product</button>
-                                        <div class="text-grey">Link expires on 03/02/2007</div>
+                                        @if(date('Y-m-d')>date('Y-m-d', strtotime($purchase->to)))
+                                        <div class="text-grey">The link to the data product expired on {{date('d/m/Y', strtotime($purchase->to))}}</div>
+                                        @else
+                                        <a href="{{route('account.purchases_detail', ['pid'=>$purchase->purchaseIdx])}}">
+                                            <button class="btn readmore-inourblog-btn pure-material-button-outlined btn-transparent mt-0">
+                                                View data product
+                                            </button>
+                                        </a>
+                                        <div class="text-grey">Link expires on {{date('d/m/Y', strtotime($purchase->to))}}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="purchase-item">
-                        <div class="row">
-                            <div class="col-xl-1 col-lg-2 col-md-3 col-sm-3">
-                                <div class="date-label">
-                                    02/02/2007
-                                </div>
-                            </div>
-                            <div class="col-xl-11 col-lg-10 col-md-9 col-sm-9">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12">
-                                        <div class="mb-20">
-                                            <h4 class="text-bold">
-                                                Satellite imagery of buildings and roads
-                                            </h4>
-                                            <div class="item-location">
-                                                Belgium
-                                            </div>
-                                            <br>
-                                            <div class="field-table">
-                                                <div class="row field-row">
-                                                    <div class="col-4 field-label">
-                                                        Format:
-                                                    </div>
-                                                    <div class="col-8 field-value">
-                                                        API flow
-                                                    </div>
-                                                </div>
-                                                <div class="row field-row">
-                                                    <div class="col-4 field-label">
-                                                        Price:
-                                                    </div>
-                                                    <div class="col-8 field-value">
-                                                        <span>€500 (tax incl.)</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row field-row">
-                                                    <div class="col-4 field-label">
-                                                        Access to this data:
-                                                    </div>
-                                                    <div class="col-8 field-value">
-                                                        1 day
-                                                        <span class="text-normal">
-                                                            (From 02/02/2007 to 03/02/2007)
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 seller">
-                                                <div class="mb-20">
-                                                    <h4 class="company">
-                                                        Seller company name
-                                                    </h4>
-                                                    <div class="price">
-                                                        €500 <span class="color-black">(tax incl.)</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
-                                                <div class="mb-20">
-                                                    <h4>
-                                                        Warranty expires on
-                                                    </h4>
-                                                    <div class="date">
-                                                        03/02/2007
-                                                    </div>
-                                                    <li class="more_dropdown">
-                                                        <a href="javascript:;" class="more_info">More Info <i class="material-icons">arrow_drop_down</i>
-                                                            <i class="material-icons open">arrow_drop_up</i>
-                                                        </a>
-                                                        <div>
-                                                            Databroker offers a 30-day warranty on all data purchased. In the event of problems with data you purchase, you can file a complaint before the end of the warranty period. 
-                                                        </div>
-                                                    </li>
-                                                    <div class="mt-20">Problems with the data?</div>
-                                                    <a class="text-green">File a complaint</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xl-12">
-                                        <button class="btn readmore-inourblog-btn pure-material-button-outlined btn-transparent mt-0">View data product</button>
-                                        <div class="text-grey">Link expires on 03/02/2007</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="purchase-item">
-                        <div class="row">
-                            <div class="col-xl-1 col-lg-2 col-md-3 col-sm-3">
-                                <div class="date-label">
-                                    02/02/2007
-                                </div>
-                            </div>
-                            <div class="col-xl-11 col-lg-10 col-md-9 col-sm-9">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12">
-                                        <div class="mb-20">
-                                            <h4 class="text-bold">
-                                                Satellite imagery of buildings and roads
-                                            </h4>
-                                            <div class="item-location">
-                                                Belgium
-                                            </div>
-                                            <br>
-                                            <div class="field-table">
-                                                <div class="row field-row">
-                                                    <div class="col-4 field-label">
-                                                        Format:
-                                                    </div>
-                                                    <div class="col-8 field-value">
-                                                        API flow
-                                                    </div>
-                                                </div>
-                                                <div class="row field-row">
-                                                    <div class="col-4 field-label">
-                                                        Price:
-                                                    </div>
-                                                    <div class="col-8 field-value">
-                                                        <span>€500 (tax incl.)</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row field-row">
-                                                    <div class="col-4 field-label">
-                                                        Access to this data:
-                                                    </div>
-                                                    <div class="col-8 field-value">
-                                                        1 day
-                                                        <span class="text-normal">
-                                                            (From 02/02/2007 to 03/02/2007)
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 seller">
-                                                <div class="mb-20">
-                                                    <h4 class="company">
-                                                        Seller company name
-                                                    </h4>
-                                                    <div class="price">
-                                                        €500 <span class="color-black">(tax incl.)</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
-                                                <div class="mb-20">
-                                                    <h4>
-                                                        Warranty expires on
-                                                    </h4>
-                                                    <div class="date">
-                                                        03/02/2007
-                                                    </div>
-                                                    <li class="more_dropdown">
-                                                        <a href="javascript:;" class="more_info">More Info <i class="material-icons">arrow_drop_down</i>
-                                                            <i class="material-icons open">arrow_drop_up</i>
-                                                        </a>
-                                                        <div>
-                                                            Databroker offers a 30-day warranty on all data purchased. In the event of problems with data you purchase, you can file a complaint before the end of the warranty period. 
-                                                        </div>
-                                                    </li>
-                                                    <div class="mt-20">Problems with the data?</div>
-                                                    <a class="text-green">File a complaint</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xl-12">
-                                        <button class="btn readmore-inourblog-btn pure-material-button-outlined btn-transparent mt-0">View data product</button>
-                                        <div class="text-grey">Link expires on 03/02/2007</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

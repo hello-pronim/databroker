@@ -15,6 +15,7 @@ use App\Models\OfferTheme;
 use App\Models\OfferSample;
 use App\Models\OfferCountry;
 use App\Models\UseCase;
+use App\User;
 
 class HelpController extends Controller
 {
@@ -184,44 +185,54 @@ class HelpController extends Controller
 
     public function send_file_complaint()
     {
-        return view('help.send_file_complaint');
+        $user = $this->getAuthUser();
+        if(!$user) 
+           return redirect('/login')->with('target', 'file a complaint');
+        else
+            return view('help.send_file_complaint');
     }
 
     public function post_send_file_complaint(Request $request)
     {
         $user = $this->getAuthUser();
-        if(!$user) {
-           return redirect('/login')->with('target', 'contact the data provider');
-        }else
-        {
-            $validator = Validator::make($request->all(),[
-                'provider_company_name' => 'required_without_all:seller_company_name,other',
-                'seller_company_name' => 'required_without_all:provider_company_name,other',
-                'other' => 'required_without_all:provider_company_name,seller_company_name',
-                'message' => 'required|min:5|max:1000',
-            ]);
 
-            if ($validator->fails()) {
-                return redirect(url()->previous())
-                        ->withErrors($validator)
-                        ->withInput();
-            }
+        $validator = Validator::make($request->all(),[
+            'provider_company_name' => 'required_without_all:seller_company_name,other',
+            'seller_company_name' => 'required_without_all:provider_company_name,other',
+            'other' => 'required_without_all:provider_company_name,seller_company_name',
+            'message' => 'required|min:5|max:1000',
+        ]);
 
-            $provider_company_name = $request->input('provider_company_name');
-            $seller_company_name = $request->input('seller_company_name');
-            $other = $request->input('other');
-            $message = $request->input('message');
-
-            // $this->sendEmail("send_message_contact", [
-            //     'from'=>$email_from, 
-            //     'to'=>$email_to, 
-            //     'name'=>'Databroker', 
-            //     'subject'=>'You’ve received a message on a data product from User',
-            //     'data'=>$message
-            // ]);
-
-            return view('help.send_complaint_success');
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                    ->withErrors($validator)
+                    ->withInput();
         }
+
+        $provider_company_name = $request->provider_company_name;
+        $seller_company_name = $request->seller_company_name;
+        $other = $request->other;
+        $message = $request->message;
+
+        $data['provider_company'] = $provider_company_name;
+        $data['seller_company'] = $seller_company_name;
+        $data['other_company'] = $other;
+        $data['message'] = $message;
+        $data['companyName'] = $provider_company_name ? $provider_company_name : ($seller_company_name ? $seller_company_name : $other);
+        $data['user'] = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                            ->where('userIdx', $user->userIdx)
+                            ->get()
+                            ->first();
+
+        $this->sendEmail("complaint", [
+            'from'=>"pe@jts.ec", 
+            'to'=>"peterjackson0120@gmail.com", 
+            'name'=>'Databroker', 
+            'subject'=>'Someone has sent a complaint on Databroker',
+            'data'=>$data
+        ]);
+
+        return view('help.send_complaint_success');
     }
 
     public function getAuthUser ()
