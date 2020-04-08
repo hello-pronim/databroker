@@ -1890,3 +1890,6 @@ a[data-target='#mediaLibraryModal']:hover{
 	margin-top: 70px;
 	margin-bottom: 70px;
 }
+#home_featured_data{
+	color: white !important;
+}

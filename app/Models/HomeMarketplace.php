@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HomeTrending extends Model
+class HomeMarketplace extends Model
 {
-    protected $table = 'home_trending';
+    protected $table = 'home_marketplace';
 
     protected $primaryKey = 'id';
 
@@ -19,6 +19,11 @@ class HomeTrending extends Model
     protected $fillable = [
         'id',
         'title',
+        'content',
+        'meta_title',
+        'meta_desc',
+        'logo',
+        'legion',
         'image',
         'published',
         'logo_url'

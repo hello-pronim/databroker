@@ -355,3 +355,28 @@ CREATE TABLE IF NOT EXISTS `databroker_new`.`home_trending` (
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `databroker_new`.`home_marketplace` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NULL,
+  `image` VARCHAR(255) NULL,
+  `logo` VARCHAR(255) NULL,
+  `published` DATE NULL,
+  `legion` VARCHAR(255) NULL,
+  `content` LONGTEXT NULL,
+  `meta_title` VARCHAR(255) NULL,
+  `meta_desc` LONGTEXT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+ALTER TABLE `databroker_new`.`home_featured_data` ADD COLUMN `logo` VARCHAR(255) NULL AFTER `featured_data_content`;
+ALTER TABLE `databroker_new`.`home_featured_data` ADD COLUMN `logo_url` VARCHAR(255) NULL AFTER `logo`;
+ALTER TABLE `databroker_new`.`home_featured_data` ADD COLUMN `image` VARCHAR(255) NULL AFTER `logo_url`;
+
+ALTER TABLE `databroker_new`.`home_trending` ADD COLUMN `logo_url` VARCHAR(255) NULL AFTER `image`;
+
+ALTER TABLE `databroker_new`.`home_marketplace` ADD COLUMN `logo_url` VARCHAR(255) NULL AFTER `logo`;

@@ -136,6 +136,12 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/admin/home_trending/edit/{id}', 'AdminController@home_trending_edit')->where('id', '[0-9]+')->name('admin.home_trending_edit');
 	Route::get('/admin/home_trending/add_new', 'AdminController@home_trending_edit')->name('admin.home_trending_add_new');
 	Route::post('/admin/home_trending/update', 'AdminController@home_trending_update')->name('admin.home_trending_update');
+	Route::get('/admin/home_marketplace', 'AdminController@home_marketplace')->name('admin.home_marketplace');
+	Route::get('/admin/home_marketplace/add_new', 'AdminController@home_marketplace_edit')->name('admin.home_marketplace_add_new');
+	Route::post('/admin/home_marketplace/update', 'AdminController@home_marketplace_update')->name('admin.home_marketplace_update');
+	Route::get('/admin/home_marketplace/edit/{id}', 'AdminController@home_marketplace_edit')->where('id', '[0-9]+')->name('admin.home_marketplace_edit');
+	Route::post('/admin/home_marketplace/upload_attach/{id}', 'AdminController@home_marketplace_upload_attach')->name('admin.home_marketplace_upload_attach');
+	Route::post('/admin/home_marketplace/upload_logo/{id}', 'AdminController@home_marketplace_upload_logo')->name('admin.home_marketplace_upload_logo');
 
 	$communities = Community::get();
 	$datacontroller = new DataController();

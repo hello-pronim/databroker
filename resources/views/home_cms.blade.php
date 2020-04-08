@@ -33,9 +33,9 @@
 					<div class="card-body">
 						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
 						<h3 class="card-title fs-40">{{ $featured_data->featured_data_title??'' }}</h3>
-						<p class="card-description text-white">
+						<div class="card-description text-white" id="home_featured_data">
 							{!! $featured_data->featured_data_content??'' !!}						
-						</p>
+                        </div>
 						<a href="#pablo" class="btn btn-round readmore">
 							READ MORE
 						</a>
@@ -65,82 +65,28 @@
 
             </div>
             @endforeach
-        	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-        		<div class="app-partner-item info">
-					<div class="icon"><img src="{{ asset('images/design/people.svg') }}">
-                    </div>
-					<h4 class="info-title"> Shopping behaviour </h4>
-        		</div>
-
-        	</div>
-        	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-        		<div class="app-partner-item info">
-					<div class="icon"><img src="{{ asset('images/design/geography.svg') }}">
-                    </div>
-					<h4 class="info-title"> Land parcels </h4>
-        		</div>
-
-        	</div>
-        	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-        		<div class="app-partner-item info">
-					<div class="icon"><img src="{{ asset('images/design/energy.svg') }}">
-                    </div>		
-					<h4 class="info-title"> Light pollution </h4>
-        		</div>
-
-        	</div>
-        	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-        		<div class="app-partner-item info">
-					<div class="icon"><img src="{{ asset('images/design/geography.svg') }}">
-                    </div>
-					<h4 class="info-title"> Flood maps </h4>
-        		</div>
-        	</div>
         </div>
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.new_on_marketplace') }} </h1>
 		<div class="row">
+            @foreach($marketplaces as $marketplace)
 			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
+							<img class="img" src="{{ asset('uploads/home/marketplace/medium/'.$marketplace->image) }}" id="responsive-card-img"/>
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satellite imagery of buildings and roads</h4>
-						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
+						<h4 class="card-title">{{ $marketplace->title }}</h4>
+                        <h6 class="card-category">{{ $marketplace->legion }}</h6>
+                        <a href="{{ $marketplace->logo_url??'' }}">
+                            <img class="img" src="{{ asset('uploads/home/marketplace/logo/'.$marketplace->logo) }}" />
+                        </a>
+						
 					</div>			
 				</div>	
-			</div>	
-			<div class="col-md-6 col-lg-4 col-xl-4">
-				<div class="card card-profile card-plain">
-					<div class="card-header">
-						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
-						</a>
-					</div>
-					<div class="card-body text-left">
-						<h4 class="card-title">Satellite imagery of buildings and roads</h4>
-						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
-					</div>			
-				</div>	
-			</div>	
-			<div class="col-md-6 col-lg-4 col-xl-4">
-				<div class="card card-profile card-plain">
-					<div class="card-header">
-						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
-						</a>
-					</div>
-					<div class="card-body text-left">
-						<h4 class="card-title">Satellite imagery of buildings and roads</h4>
-						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
-					</div>			
-				</div>	
-			</div>	
+            </div>
+            @endforeach	
   		</div>
     </div>        
 </div>

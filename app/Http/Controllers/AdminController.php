@@ -22,6 +22,7 @@ use App\Models\Subscription;
 use App\Models\Article;
 use App\Models\HomeFeaturedData;
 use App\Models\HomeTrending;
+use App\Models\HomeMarketplace;
 use Response;
 use Image;
 
@@ -141,6 +142,72 @@ class AdminController extends Controller
             HomeTrending::create($data);
             return "success";
         }
+    }
+
+    public function home_marketplace()
+    {
+        $boards = HomeMarketplace::orderby('published', 'desc')->get();
+        $data = array('boards');
+        return view('admin.home_marketplace', compact($data));
+    }
+
+    public function home_marketplace_edit($id = '')
+    {
+        if($id == '')
+        {
+            return view('admin.home_marketplace_edit');
+        }
+        else
+        {
+            $id = $id;
+            $board = HomeMarketplace::where('id', $id)->first(); 
+            $data = array('id', 'board');
+            return view('admin.home_marketplace_edit', compact($data));
+        }
+    }
+
+    public function home_marketplace_update(Request $request)
+    {
+        if($request->input('id')) {
+            $id = $request->input('id');
+            $data = $request->all();
+            unset($data['id']);
+            HomeMarketplace::find($id)->update($data);
+            return "success";
+        } else {
+            $data = $request->all();
+            // $data['published'] = date("Y-m-d");
+            unset($data['id']);
+            HomeMarketplace::create($data);
+            return "success";
+        }
+    }
+
+    public function home_marketplace_upload_attach(Request $request, $id = 0)
+    {
+            $getfiles = $request->file('uploadedFile');
+            $fileName = $id.'.jpg';  
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+            $tinyimg->resize(1000,1100, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/medium').'/'.$fileName);
+            $tinyimg->resize(300,400, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/tiny').'/'.$fileName);
+            //image compress end
+            $getfiles->move(public_path('uploads/home/marketplace'), $fileName);
+            HomeMarketplace::find($id)->update(['image' => $fileName]);
+            return "true";
+    }
+
+    public function home_marketplace_upload_logo(Request $request, $id = 0)
+    {
+            $getfiles = $request->file('uploadedFile');
+            $fileName = $id.'.jpg';  
+            $getfiles->move(public_path('uploads/home/marketplace/logo'), $fileName);
+            HomeMarketplace::find($id)->update(['logo' => $fileName]);
+            return "true";
     }
 
     public function usecases($id)
