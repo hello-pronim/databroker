@@ -29,7 +29,7 @@
 	<div class="container">		
 	    <div class="row">
 	    	<div class="col-md-12">
-				<div class="card card-raised card-background" style="background-image: url({{ asset('uploads/home/featured_data/'.$featured_data->image) }})">
+				<div class="card card-raised card-background" style="background-image: url({{ asset('uploads/home/featured_data/'.$featured_data->image??'default.jpg') }})">
 					<div class="card-body">
 						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
 						<h3 class="card-title fs-40">{{ $featured_data->featured_data_title??'' }}</h3>
