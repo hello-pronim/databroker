@@ -51,8 +51,8 @@
                     </div>
                     <div class="form-group m-form__group row">
 						<div class="col-md-6 m-form__group-sub">
-							<label class="form-control-label">Trending Logo Url *</label>
-							<input type="text" class="form-control m-input" name="logo_url" placeholder="Enter logo url" value="{{ $board->logo_url??'' }}">
+							<label class="form-control-label">Site URL of Logo is linked</label>
+							<input type="text" class="form-control m-input" name="logo_url" placeholder="https://databroker.online" value="{{ $board->logo_url??'' }}">
 						</div>
 					</div>
 				</div>
