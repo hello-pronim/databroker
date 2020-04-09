@@ -146,9 +146,9 @@
             @foreach($featured_providers as $featured_provider)
         	<div class="col-md-4 col-lg-2 col-xl-2">
                 <a href="{{ $featured_provider->logo_url??'' }}">
-                    <div class="app-partner-item" style="height:85px;">
+                    <div class="app-partner-item">
                         <div class="img">
-                            <img src="{{ asset('uploads/home/featured_provider/'.($featured_provider->image??'')) }}">
+                            <img src="{{ asset('uploads/home/featured_provider/'.($featured_provider->image??'')) }}" style="height:75px;">
                         </div>        
                     </div>
                 </a>
