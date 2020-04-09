@@ -23,6 +23,7 @@ class HomeFeaturedData extends Model
         'featured_data_provider',
         'logo',
         'image',
-        'logo_url'
+        'logo_url',
+        'active'
     ];
 }

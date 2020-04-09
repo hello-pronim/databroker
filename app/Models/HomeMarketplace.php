@@ -25,12 +25,8 @@ class HomeMarketplace extends Model
         'logo',
         'legion',
         'image',
-        'published',
-        'logo_url'
+        'order',
+        'logo_url',
+        'active'
     ];
-
-    protected $casts = [
-        'published' => 'date',
-    ];
-
 }

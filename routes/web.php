@@ -158,6 +158,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::post('/admin/home_featured_provider/upload_attach/{id}', 'AdminController@home_featured_provider_upload_attach')->name('admin.home_featured_provider_upload_attach');
 	Route::post('/admin/home_featured_provider/update', 'AdminController@home_featured_provider_update')->name('admin.home_featured_provider_update');
 
+	Route::get('/admin/preview/home/{url}/{model}', 'AdminController@preview_home')->name('admin.preview_home');
+	Route::get('/admin/preview_check/{url}/{model}/{check}', 'AdminController@preview_check')->name('admin.preview_check');
+
 	$communities = Community::get();
 	$datacontroller = new DataController();
 	foreach ($communities as $key => $community) {

@@ -20,12 +20,8 @@ class HomeTrending extends Model
         'id',
         'title',
         'image',
-        'published',
-        'logo_url'
+        'order',
+        'logo_url',
+        'active'
     ];
-
-    protected $casts = [
-        'published' => 'date',
-    ];
-
 }

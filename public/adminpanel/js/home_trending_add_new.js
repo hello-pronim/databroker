@@ -10,7 +10,7 @@ $(function(){
 	        title: {
 	            required: true,
 	        },
-			published: {
+			order: {
 				required: true,
             }
 	    },

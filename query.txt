@@ -415,3 +415,14 @@ CREATE TABLE IF NOT EXISTS `databroker_new`.`home_featured_provider` (
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+ALTER TABLE `databroker_new`.`home_featured_data` ADD COLUMN `active` INT(11) NULL AFTER `id`;
+ALTER TABLE `databroker_new`.`home_featured_provider` ADD COLUMN `active` INT(11) NULL AFTER `id`;
+ALTER TABLE `databroker_new`.`home_teampicks` ADD COLUMN `active` INT(11) NULL AFTER `id`;
+ALTER TABLE `databroker_new`.`home_marketplace` ADD COLUMN `active` INT(11) NULL AFTER `id`;
+ALTER TABLE `databroker_new`.`home_trending` ADD COLUMN `active` INT(11) NULL AFTER `id`;
+
+ALTER TABLE `databroker_new`.`home_trending` CHANGE `published` `order` INT(11) NULL;
+ALTER TABLE `databroker_new`.`home_marketplace` CHANGE `published` `order` INT(11) NULL;
+ALTER TABLE `databroker_new`.`home_teampicks` CHANGE `published` `order` INT(11) NULL;
+ALTER TABLE `databroker_new`.`home_featured_provider` CHANGE `published` `order` INT(11) NULL;

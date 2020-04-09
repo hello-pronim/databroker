@@ -7,10 +7,7 @@ $(function(){
 	$( "#board_form" ).validate({
 	    // define validation rules
 	    rules: {
-	        title: {
-	            required: true,
-	        },
-			published: {
+			order: {
 				required: true,
             }
 	    },

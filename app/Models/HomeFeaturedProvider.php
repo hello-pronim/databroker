@@ -20,12 +20,9 @@ class HomeFeaturedProvider extends Model
         'id',
         'title',
         'image',
-        'published',
-        'logo_url'
-    ];
-
-    protected $casts = [
-        'published' => 'date',
+        'order',
+        'logo_url',
+        'active'
     ];
 
 }

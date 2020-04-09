@@ -30,6 +30,16 @@
                                 </a>
                             </li>
                         </ul>
+                        <ul class="m-portlet__nav">
+                            <li class="m-portlet__nav-item">
+                                <a href="{{ route('admin.preview_home', [ 'url' => 'admin.home_trending', 'model' => 'HomeTrending' ]) }}" class="btn btn-focus m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                                    <span>
+                                        <i class="la la-cart-plus"></i>
+                                        <span>Preview</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -38,8 +48,10 @@
                     <thead>
                         <tr>
                             <th>Thumbnails</th>
+                            <th>Status</th>
+                            <th>Order</th>
                             <th>Title</th>
-                            <th>Published</th>
+                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -53,8 +65,10 @@
                                         {{ asset("uploads/home/trending/default.jpg") }}
                                     @endif
                                 </td>
+                                <td>{{ $board->active?'Published':'Preview' }}</td>
+                                <td>{{ $board->order }}</td>
                                 <td>{{ $board->title }}</td>
-                                <td>{{ ($board->published)->toDateString() }}</td>
+                                <td>{{ ($board->updated_at)->toDateString() }}</td>
                                 <td>{{ $board->id }}</td>
                             </tr>
                         @endforeach

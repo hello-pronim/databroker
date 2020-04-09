@@ -33,11 +33,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $featured_data = HomeFeaturedData::first();
-        $trendings = HomeTrending::orderby('published', 'desc')->limit(6)->get();
-        $marketplaces = HomeMarketplace::orderby('published', 'desc')->limit(3)->get();
-        $teampicks = HomeTeamPicks::orderby('published', 'desc')->limit(3)->get();
-        $featured_providers = HomeFeaturedProvider::orderby('published', 'desc')->limit(6)->get();
+        $featured_data = HomeFeaturedData::where('active', 1)->first();
+        $trendings = HomeTrending::where('active', 1)->orderby('order', 'asc')->limit(6)->get();
+        $marketplaces = HomeMarketplace::where('active', 1)->orderby('order', 'asc')->limit(3)->get();
+        $teampicks = HomeTeamPicks::where('active', 1)->orderby('order', 'asc')->limit(3)->get();
+        $featured_providers = HomeFeaturedProvider::where('active', 1)->orderby('order', 'asc')->limit(6)->get();
         $top_usecases = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(3)->get();
         $data = array('featured_data', 'trendings', 'marketplaces', 'teampicks', 'featured_providers', 'top_usecases');
         // return view('home', compact($data));

@@ -130,7 +130,7 @@ class AdminController extends Controller
 
     public function home_trending()
     {
-        $boards = HomeTrending::orderby('published', 'desc')->get();
+        $boards = HomeTrending::orderby('order', 'asc')->get();
         $data = array('boards');
         return view('admin.home_trending', compact($data));
     }
@@ -194,7 +194,7 @@ class AdminController extends Controller
 
     public function home_marketplace()
     {
-        $boards = HomeMarketplace::orderby('published', 'desc')->get();
+        $boards = HomeMarketplace::orderby('order', 'asc')->get();
         $data = array('boards');
         return view('admin.home_marketplace', compact($data));
     }
@@ -260,7 +260,7 @@ class AdminController extends Controller
 
     public function home_teampicks()
     {
-        $boards = HomeTeamPicks::orderby('published', 'desc')->get();
+        $boards = HomeTeamPicks::orderby('order', 'asc')->get();
         $data = array('boards');
         return view('admin.home_teampicks', compact($data));
     }
@@ -325,7 +325,7 @@ class AdminController extends Controller
 
     public function home_featured_provider()
     {
-        $boards = HomeFeaturedProvider::orderby('published', 'desc')->get();
+        $boards = HomeFeaturedProvider::orderby('order', 'asc')->get();
         $data = array('boards');
         return view('admin.home_featured_provider', compact($data));
     }
@@ -484,6 +484,73 @@ class AdminController extends Controller
         $board = Article::where('articleIdx', $id)->first(); 
         $data = array('id', 'board');
         return view('admin.updates_edit', compact($data));
+    }
+
+    public function preview_home($url, $model)
+    {
+        $url = $url;
+        $model = $model;
+        $featured_data = HomeFeaturedData::first();
+        $trendings = HomeTrending::orderby('order', 'asc')->limit(6)->get();
+        $marketplaces = HomeMarketplace::orderby('order', 'asc')->limit(3)->get();
+        $teampicks = HomeTeamPicks::orderby('order', 'asc')->limit(3)->get();
+        $featured_providers = HomeFeaturedProvider::orderby('order', 'asc')->limit(6)->get();
+        $top_usecases = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(3)->get();
+        $data = array('featured_data', 'trendings', 'marketplaces', 'teampicks', 'featured_providers', 'top_usecases', 'url', 'model');
+        return view('preview.home', compact($data));
+    }
+
+    public function preview_check($url, $model, $check)
+    {
+        if($check == '1')
+        {
+            if($model == 'HomeFeaturedData')
+            {
+                $collections = HomeFeaturedData::get();
+                foreach($collections as $collection)
+                {
+                    $collection->update(['active' => 1]);
+                }
+            }
+            if($model == 'HomeFeaturedProvider')
+            {
+                $collections = HomeFeaturedProvider::get();
+                foreach($collections as $collection)
+                {
+                    $collection->update(['active' => 1]);
+                }
+            }
+            if($model == 'HomeMarketplace')
+            {
+                $collections = HomeMarketplace::get();
+                foreach($collections as $collection)
+                {
+                    $collection->update(['active' => 1]);
+                }
+            }
+            if($model == 'HomeTeamPicks')
+            {
+                $collections = HomeTeamPicks::get();
+                foreach($collections as $collection)
+                {
+                    $collection->update(['active' => 1]);
+                }
+            }
+            if($model == 'HomeTrending')
+            {
+                $collections = HomeTrending::get();
+                foreach($collections as $collection)
+                {
+                    $collection->update(['active' => 1]);
+                }
+            }
+            return redirect()->route($url);
+        }
+        else
+        {
+            return redirect()->route($url);
+        }
+        
     }
 
 }

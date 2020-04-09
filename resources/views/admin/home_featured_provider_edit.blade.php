@@ -23,7 +23,8 @@
 		<div class="m-portlet">
 			<!--begin::Form-->
 			<form class="m-form m-form--fit m-form--label-align-right" id="board_form" novalidate="novalidate">
-				<input type="hidden" name="id" value="{{ $id??'' }}">
+                <input type="hidden" name="id" value="{{ $id??'' }}">
+                <input type="hidden" name="active" value="0">
 				<div class="m-portlet__body">
 					<div class="m-form__content">
 						<div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="m_form_1_msg">
@@ -41,20 +42,14 @@
 					</div>
 					<div class="form-group m-form__group row">
 						<div class="col-md-6 m-form__group-sub">
-							<label class="form-control-label">Featured Data Provider Title *</label>
-							<input type="text" class="form-control m-input" name="title" placeholder="Enter featured data provider title" value="{{ $board->title??'' }}">
-						</div>
-						<div class="col-md-3 m-form__group-sub">
-							<label class="form-control-label">Published Date *</label>
-							<input type="text" class="form-control m-input" name="published" placeholder="Date like 2000-01-30" value="{{ $board->published??'' }}">
-						</div>
-                    </div>
-                    <div class="form-group m-form__group row">
-						<div class="col-md-6 m-form__group-sub">
+							<label class="form-control-label">Order *</label>
+							<input type="text" class="form-control m-input" name="order" placeholder="Order in homepage" value="{{ $board->order??'' }}">
+                        </div>
+                        <div class="col-md-6 m-form__group-sub">
 							<label class="form-control-label">Site URL of Logo is linked</label>
 							<input type="text" class="form-control m-input" name="logo_url" placeholder="https://databroker.online" value="{{ $board->logo_url??'' }}">
 						</div>
-					</div>
+                    </div>
 				</div>
 				<div class="m-portlet__foot m-portlet__foot--fit">
 					<div class="m-form__actions m-form__actions">

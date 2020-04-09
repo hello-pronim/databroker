@@ -16,11 +16,6 @@ var board_data_table;
             language: {
                 'lengthMenu': 'Display _MENU_',
             },
-
-            order: [
-                [ 3, "desc" ]
-            ],
-
             columnDefs: [
                 {
                     targets: 0,

@@ -24,6 +24,7 @@
 			<!--begin::Form-->
 			<form class="m-form m-form--fit m-form--label-align-right" id="board_form" novalidate="novalidate">
 				<input type="hidden" name="id" value="{{ $board->id??'' }}">
+				<input type="hidden" name="active" value="0">
 				<div class="m-portlet__body">
 					<div class="m-form__content">
 						<div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="m_form_1_msg">

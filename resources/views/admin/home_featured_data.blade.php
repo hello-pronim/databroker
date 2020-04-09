@@ -30,6 +30,16 @@
                                 </a>
                             </li>
                         </ul>
+                        <ul class="m-portlet__nav">
+                            <li class="m-portlet__nav-item">
+                                <a href="{{ route('admin.preview_home', [ 'url' => 'admin.home_featured_data', 'model' => 'HomeFeaturedData' ]) }}" class="btn btn-focus m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                                    <span>
+                                        <i class="la la-cart-plus"></i>
+                                        <span>Preview</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -38,6 +48,7 @@
                     <thead>
                         <tr>
                             <th>Thumbnails</th>
+                            <th>Status</th>
                             <th>Title</th>
                             <th>Provider</th>
                             <th>Logo</th>
@@ -54,6 +65,7 @@
                                         {{ asset("uploads/home/featured_data/tiny/default.jpg") }}
                                     @endif
                                 </td>
+                                <td>{{ $board->active?'Published':'Preview' }}</td>
                                 <td>{{ $board->featured_data_title }}</td>
                                 <td>{{ $board->featured_data_provider }}</td>
                                 <td>
