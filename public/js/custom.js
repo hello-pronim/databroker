@@ -438,12 +438,16 @@ $(document).ready(function(){
                                     }else{
                                         list += '<span>'+elem.regionName+'</span>';
                                     }    
-                                    
-                                    list+='</h6>'+
-                                    '<a href="'+elem.provider.companyURL+'"><img class="img" src="uploads/company/'+elem.provider.companyLogo+'" /></a>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>';                    
+                                    if(elem.provider.companyURL.indexOf('https')>-1)
+                                        list+='</h6>'+ '<a href="'+elem.provider.companyURL+'"><img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" /></a>'+ 
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>';   
+                                    else
+                                        list+='</h6>'+ '<a href="https://'+elem.provider.companyURL+'"><img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" /></a>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>';                    
                 });
 
                 if( theme_text != 'All themes' ){
