@@ -146,6 +146,12 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/admin/home_marketplace/edit/{id}', 'AdminController@home_marketplace_edit')->where('id', '[0-9]+')->name('admin.home_marketplace_edit');
 	Route::post('/admin/home_marketplace/upload_attach/{id}', 'AdminController@home_marketplace_upload_attach')->name('admin.home_marketplace_upload_attach');
 	Route::post('/admin/home_marketplace/upload_logo/{id}', 'AdminController@home_marketplace_upload_logo')->name('admin.home_marketplace_upload_logo');
+	Route::get('/admin/home_teampicks', 'AdminController@home_teampicks')->name('admin.home_teampicks');
+	Route::get('/admin/home_teampicks/edit/{id}', 'AdminController@home_teampicks_edit')->where('id', '[0-9]+')->name('admin.home_teampicks_edit');
+	Route::post('/admin/home_teampicks/update', 'AdminController@home_teampicks_update')->name('admin.home_teampicks_update');
+	Route::get('/admin/home_teampicks/add_new', 'AdminController@home_teampicks_edit')->name('admin.home_teampicks_add_new');
+	Route::post('/admin/home_teampicks/upload_logo/{id}', 'AdminController@home_teampicks_upload_logo')->name('admin.home_teampicks_upload_logo');
+	Route::post('/admin/home_teampicks/upload_attach/{id}', 'AdminController@home_teampicks_upload_attach')->name('admin.home_teampicks_upload_attach');
 
 	$communities = Community::get();
 	$datacontroller = new DataController();

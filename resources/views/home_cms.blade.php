@@ -29,7 +29,8 @@
 	<div class="container">		
 	    <div class="row">
 	    	<div class="col-md-12">
-				<div class="card card-raised card-background" style="background-image: url({{ asset('uploads/home/featured_data/'.$featured_data->image??'default.jpg') }})">
+                @if(isset($featured_data) && $featured_data != null)
+				<div class="card card-raised card-background" style="background-image: url({{ asset('uploads/home/featured_data/'.$featured_data->image??'') }})">
 					<div class="card-body">
 						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
 						<h3 class="card-title fs-40">{{ $featured_data->featured_data_title??'' }}</h3>
@@ -41,10 +42,28 @@
 						</a>
 						<div class="card-author">
 							<p> Data provided by {{ $featured_data->featured_data_provider??'' }} </p>
-							<a href="{{ $featured_data->logo_url??'' }}"><img src="{{ asset('uploads/home/featured_data/logo/'.$featured_data->logo??'default.jpg') }}" style="height:50px;"></a>
+							<a href="{{ $featured_data->logo_url??'' }}"><img src="{{ asset('uploads/home/featured_data/logo/'.$featured_data->logo??'') }}" style="height:50px;"></a>
 						</div>						
 					</div>
-				</div>
+                </div>
+                @else
+                <div class="card card-raised card-background" style="background-image: url({{ asset('uploads/home/featured_data/default.jpg') }})">
+					<div class="card-body">
+						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
+						<h3 class="card-title fs-40">{{ $featured_data->featured_data_title??'' }}</h3>
+						<div class="card-description text-white" id="home_featured_data">
+							{!! $featured_data->featured_data_content??'' !!}						
+                        </div>
+						<a href="#pablo" class="btn btn-round readmore">
+							READ MORE
+						</a>
+						<div class="card-author">
+							<p> Data provided by {{ $featured_data->featured_data_provider??'' }} </p>
+							<a href="{{ $featured_data->logo_url??'' }}"><img src="{{ asset('uploads/home/featured_data/logo/default.jpg') }}" style="height:50px;"></a>
+						</div>						
+					</div>
+                </div>
+                @endif
 			</div>
 	    </div>
 	</div>
@@ -81,7 +100,7 @@
 						<h4 class="card-title">{{ $marketplace->title }}</h4>
                         <h6 class="card-category">{{ $marketplace->legion }}</h6>
                         <a href="{{ $marketplace->logo_url??'' }}">
-                            <img class="img" src="{{ asset('uploads/home/marketplace/logo/'.$marketplace->logo) }}" />
+                            <img class="img" src="{{ asset('uploads/home/marketplace/logo/'.$marketplace->logo??'') }}" />
                         </a>
 						
 					</div>			
@@ -117,48 +136,22 @@
 	<div class="container">
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.team_picks') }} </h1>
 		<div class="row">
+            @foreach($teampicks as $teampick)
 			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
+							<img class="img" src="{{ asset('uploads/home/teampicks/'.$teampick->image??'') }}" id="responsive-card-img"/>
 						</a>
 					</div>
 					<div class="card-body text-left">
-						<h4 class="card-title">Satellite imagery of buildings and roads</h4>
-						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
+						<h4 class="card-title">{{ $teampick->title??'' }}</h4>
+						<h6 class="card-category">{{ $teampick->legion??'' }}</h6>
+						<a href="{{ $teampick->logo_url??'' }}"><img class="img" src="{{ asset('uploads/home/teampicks/logo/'.$teampick->logo??'') }}" /></a>
 					</div>			
 				</div>	
-			</div>	
-			<div class="col-md-6 col-lg-4 col-xl-4">
-				<div class="card card-profile card-plain">
-					<div class="card-header">
-						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
-						</a>
-					</div>
-					<div class="card-body text-left">
-						<h4 class="card-title">Satellite imagery of buildings and roads</h4>
-						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
-					</div>			
-				</div>	
-			</div>	
-			<div class="col-md-6 col-lg-4 col-xl-4">
-				<div class="card card-profile card-plain">
-					<div class="card-header">
-						<a href="#pablo">
-							<img class="img" src="{{ asset('images/blogs/blog_def.jpg') }}" />
-						</a>
-					</div>
-					<div class="card-body text-left">
-						<h4 class="card-title">Satellite imagery of buildings and roads</h4>
-						<h6 class="card-category">Europe</h6>
-						<img class="img" src="{{ asset('images/blogs/logo_def.jpg') }}" />
-					</div>			
-				</div>	
-			</div>	
+            </div>	
+            @endforeach
   		</div>
 
 	    <div class="app-section app-monetize-section align-items-center">
