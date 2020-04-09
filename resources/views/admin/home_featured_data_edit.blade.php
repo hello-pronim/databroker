@@ -49,7 +49,7 @@
 							<input type="text" class="form-control m-input" name="featured_data_provider" placeholder="Enter Featured Data Provider" value="{{ $board->featured_data_provider??'' }}">
                         </div>
                         <div class="col-md-3 m-form__group-sub">
-							<label class="form-control-label">Site URL of Logo is linked *</label>
+							<label class="form-control-label">Site URL of Logo is linked</label>
 							<input type="text" class="form-control m-input" name="logo_url" placeholder="https://databroker.online" value="{{ $board->logo_url??'' }}">
 						</div>
 					</div>
