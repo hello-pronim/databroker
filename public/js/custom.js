@@ -353,7 +353,10 @@ $(document).ready(function(){
             $('#theme').val('all');      
             var community_name = $("#community").find("option:selected").attr("community-name");
             if( community_name ){
-                window.location.href = window.location.origin + "/" + community_name.toLowerCase().replace(' ','_');
+                if($('input[name="region"]').val())
+                    window.location.href = window.location.origin + "/" + community_name.toLowerCase().replace(' ','_') + "/region/" + $('input[name="region"]').val();
+                else
+                    window.location.href = window.location.origin + "/" + community_name.toLowerCase().replace(' ','_');
             }
         }else{
             let cur_theme = $("#theme").val();
