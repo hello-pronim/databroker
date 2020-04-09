@@ -63,8 +63,8 @@
 							<input type="text" class="form-control m-input" name="meta_desc" placeholder="Enter meta description" value="{{ $board->meta_desc??'' }}">
                         </div>
                         <div class="col-md-3 m-form__group-sub">
-							<label class="form-control-label">Logo URL *</label>
-							<input type="text" class="form-control m-input" name="logo_url" placeholder="Enter Logo Website" value="{{ $board->logo_url??'' }}">
+							<label class="form-control-label">Site URL of Logo *</label>
+							<input type="text" class="form-control m-input" name="logo_url" placeholder="https://databroker.online" value="{{ $board->logo_url??'' }}">
 						</div>
 					</div>
 					<div class="form-group m-form__group row">
