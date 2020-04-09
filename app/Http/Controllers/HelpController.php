@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\Provider;
 use App\Models\Region;
+use App\Models\Purchase;
 use App\Models\Community;
 use App\Models\Offer;
 use App\Models\Theme;
 use App\Models\OfferTheme;
 use App\Models\OfferSample;
 use App\Models\OfferCountry;
+use App\Models\OfferProduct;
 use App\Models\UseCase;
+use App\Models\Complaint;
 use App\User;
 
 class HelpController extends Controller
@@ -183,25 +186,45 @@ class HelpController extends Controller
         return view('help.file_complaint');
     }
 
-    public function send_file_complaint()
+    public function send_file_complaint(Request $request)
     {
         $user = $this->getAuthUser();
         if(!$user) 
            return redirect('/login')->with('target', 'file a complaint');
-        else
-            return view('help.send_file_complaint');
+        else{
+            if($request->pid) {
+                $paidProduct = Purchase::where('userIdx', $user->userIdx)->where('productIdx', $request->pid)->get()->first();
+                if($paidProduct){
+                    $product = OfferProduct::where('productIdx', $request->pid)
+                                    ->get()
+                                    ->first();
+                    $company = Provider::join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')
+                                    ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+                                    ->where('offerProducts.productIdx', $request->pid)
+                                    ->get()
+                                    ->first();
+                    $data = array('product', 'company');
+                    return view('help.send_file_complaint', compact($data));
+                } else return redirect(route('help.send_file_complaint'));
+            }
+            else return view('help.send_file_complaint');
+        }
     }
 
     public function post_send_file_complaint(Request $request)
     {
         $user = $this->getAuthUser();
-
-        $validator = Validator::make($request->all(),[
-            'provider_company_name' => 'required_without_all:seller_company_name,other',
-            'seller_company_name' => 'required_without_all:provider_company_name,other',
-            'other' => 'required_without_all:provider_company_name,seller_company_name',
-            'message' => 'required|min:5|max:1000',
-        ]);
+        if($request->productIdx)
+            $validator = Validator::make($request->all(),[
+                'message' => 'required|min:5|max:1000',
+            ]);
+        else
+            $validator = Validator::make($request->all(),[
+                'provider_company_name' => 'required_without_all:seller_company_name,other',
+                'seller_company_name' => 'required_without_all:provider_company_name,other',
+                'other' => 'required_without_all:provider_company_name,seller_company_name',
+                'message' => 'required|min:5|max:1000',
+            ]);
 
         if ($validator->fails()) {
             return redirect(url()->previous())
@@ -214,19 +237,25 @@ class HelpController extends Controller
         $other = $request->other;
         $message = $request->message;
 
-        $data['provider_company'] = $provider_company_name;
-        $data['seller_company'] = $seller_company_name;
-        $data['other_company'] = $other;
         $data['message'] = $message;
-        $data['companyName'] = $provider_company_name ? $provider_company_name : ($seller_company_name ? $seller_company_name : $other);
+        if($request->productIdx){
+            $data['productTitle'] = OfferProduct::where('productIdx', $request->productIdx)->get()->first()->productTitle;
+            $data['companyName'] = $request->companyName;
+        }
+        else
+            $data['companyName'] = $provider_company_name ? $provider_company_name : ($seller_company_name ? $seller_company_name : $other);
         $data['user'] = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                             ->where('userIdx', $user->userIdx)
                             ->get()
                             ->first();
+        $complaint['userIdx'] = $user->userIdx;
+        $complaint['complaintTarget'] = $data['companyName'];
+        $complaint['complaintContent'] = $message;
+        Complaint::create($complaint);
 
         $this->sendEmail("complaint", [
-            'from'=>"pe@jts.ec", 
-            'to'=>"peterjackson0120@gmail.com", 
+            'from'=>"cg@jts.ec", 
+            'to'=>env('DB_TEAM_EMAIL'), 
             'name'=>'Databroker', 
             'subject'=>'Someone has sent a complaint on Databroker',
             'data'=>$data

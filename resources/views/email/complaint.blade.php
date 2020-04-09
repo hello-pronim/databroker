@@ -89,11 +89,29 @@
 															Hello,
 														</td>
 													</tr>
+													@if($data['productTitle'])
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															{{$data['user']->firstname}} {{$data['user']->lastname}} from {{$data['user']->companyName}} has sent you a complaint against {{$data['companyName']}}:
+															{{$data['user']->firstname}} {{$data['user']->lastname}} from {{$data['user']->companyName}} has sent you a complaint about
 														</td>
 													</tr>
+													<tr>
+														<td class="fs-18 lh-27 py-10">
+															Data for: {{$data['productTitle']}}
+														</td>
+													</tr>
+													<tr>
+														<td class="fs-18 lh-27 py-10">
+															Supplied by: {{$data['companyName']}}
+														</td>
+													</tr>
+													@else
+													<tr>
+														<td class="fs-18 lh-27 py-10">
+															{{$data['user']->firstname}} {{$data['user']->lastname}} from {{$data['user']->companyName}} has sent you a complaint about {{$data['companyName']}}.
+														</td>
+													</tr>
+													@endif
 													<tr>
 														<td class="text-bold fs-18 lh-24 py-10">
 															Message: 

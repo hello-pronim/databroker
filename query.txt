@@ -382,6 +382,9 @@ ALTER TABLE `databroker_new`.`home_trending` ADD COLUMN `logo_url` VARCHAR(255) 
 ALTER TABLE `databroker_new`.`home_marketplace` ADD COLUMN `logo_url` VARCHAR(255) NULL AFTER `logo`;
 
 #2020-04-09
+ALTER TABLE `databroker_new`.`complaints` CHANGE `compliantIdx` `complaintIdx` INT(11) NOT NULL AUTO_INCREMENT, CHANGE `compliantTarget` `complaintTarget` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL, CHANGE `compliantKind` `complaintKind` TINYINT(4) NULL, CHANGE `compliantContent` `complaintContent` TEXT CHARSET utf8 COLLATE utf8_general_ci NULL; 
+RENAME TABLE `databroker_new`.`compliants` TO `databroker_new`.`complaints`;
+
 CREATE TABLE IF NOT EXISTS `databroker_new`.`home_teampicks` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NULL,

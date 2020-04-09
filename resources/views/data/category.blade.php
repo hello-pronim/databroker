@@ -126,8 +126,14 @@
 								@foreach($offer['region'] as $region)
 				            		<span>{{ $region->regionName }}</span>
 				            	@endforeach
-				            </h6>			            
-							<a href="{{ $offer['provider']->companyURL }}"><img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" /></a>
+				            </h6>			     
+				            @if(preg_match("@^https?://@", $offer['provider']->companyURL))       
+							<a href="{{ $offer['provider']->companyURL }}">
+							@else     
+							<a href="https://{{ $offer['provider']->companyURL }}">
+							@endif
+								<img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" />
+							</a>
 						</div>
 					</div>	
 				</div>						

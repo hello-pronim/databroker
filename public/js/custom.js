@@ -271,7 +271,7 @@ $(document).ready(function(){
         window.scrollTo(0, 0); 
     });
     function isUrl(s) {
-       var regexp = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9\-]+(\.[a-z\-]{2,}){1,3}(#?\/?[a-zA-Z0-9\-#]+)*\/?(\?[a-zA-Z0-9-_\-]+=[a-zA-Z0-9-%\-]+&?)?$/
+       var regexp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
        return regexp.test(s);
     }
     const serialize_form = form => JSON.stringify(
@@ -353,7 +353,10 @@ $(document).ready(function(){
             $('#theme').val('all');      
             var community_name = $("#community").find("option:selected").attr("community-name");
             if( community_name ){
-                window.location.href = window.location.origin + "/" + community_name.toLowerCase().replace(' ','_');
+                if($('input[name="region"]').val())
+                    window.location.href = window.location.origin + "/" + community_name.toLowerCase().replace(' ','_') + "/region/" + $('input[name="region"]').val();
+                else
+                    window.location.href = window.location.origin + "/" + community_name.toLowerCase().replace(' ','_');
             }
         }else{
             let cur_theme = $("#theme").val();
