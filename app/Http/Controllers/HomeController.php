@@ -8,6 +8,7 @@ use App\Models\HomeFeaturedData;
 use App\Models\HomeTrending;
 use App\Models\HomeMarketplace;
 use App\Models\HomeTeamPicks;
+use App\Models\HomeFeaturedProvider;
 use Mail;
 use App\Models\Article;
 
@@ -36,8 +37,9 @@ class HomeController extends Controller
         $trendings = HomeTrending::orderby('published', 'desc')->limit(6)->get();
         $marketplaces = HomeMarketplace::orderby('published', 'desc')->limit(3)->get();
         $teampicks = HomeTeamPicks::orderby('published', 'desc')->limit(3)->get();
+        $featured_providers = HomeFeaturedProvider::orderby('published', 'desc')->limit(6)->get();
         $top_usecases = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(3)->get();
-        $data = array('featured_data', 'trendings', 'marketplaces', 'teampicks', 'top_usecases');
+        $data = array('featured_data', 'trendings', 'marketplaces', 'teampicks', 'featured_providers', 'top_usecases');
         // return view('home', compact($data));
         return view('home_cms', compact($data));
     }

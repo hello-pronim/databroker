@@ -24,6 +24,7 @@ use App\Models\HomeFeaturedData;
 use App\Models\HomeTrending;
 use App\Models\HomeMarketplace;
 use App\Models\HomeTeamPicks;
+use App\Models\HomeFeaturedProvider;
 use Response;
 use Image;
 
@@ -157,7 +158,6 @@ class AdminController extends Controller
                 HomeTrending::find($id)->update(['image' => $fileName]);
                 return "true";
             }
-           
     }
 
     public function home_trending_edit($id = '')
@@ -321,6 +321,70 @@ class AdminController extends Controller
             $getfiles->move(public_path('uploads/home/teampicks'), $fileName);
             HomeTeamPicks::find($id)->update(['image' => $fileName]);
             return "true";
+    }
+
+    public function home_featured_provider()
+    {
+        $boards = HomeFeaturedProvider::orderby('published', 'desc')->get();
+        $data = array('boards');
+        return view('admin.home_featured_provider', compact($data));
+    }
+
+    public function home_featured_provider_edit($id = '')
+    {
+        if($id == '')
+        {
+            return view('admin.home_featured_provider_edit');
+        }
+        else
+        {
+            $id = $id;
+            $board = HomeFeaturedProvider::where('id', $id)->first(); 
+            $data = array('id', 'board');
+            return view('admin.home_featured_provider_edit', compact($data));
+        }
+    }
+
+    public function home_featured_provider_upload_attach(Request $request, $id = 0)
+    {
+            $getfiles = $request->file('uploadedFile');
+            $fileExtention = $getfiles->getClientOriginalExtension();
+            if($fileExtention == 'svg')
+            {
+                $fileName = $id.'.svg';
+                $getfiles->move(public_path('uploads/home/featured_provider/'), $fileName);
+                HomeFeaturedProvider::find($id)->update(['image' => $fileName]);
+                return "true";
+            }
+            else
+            {
+                $fileName = $id.'.jpg';
+                //image compress start
+                $tinyimg = Image::make($getfiles->getRealPath());
+                $tinyimg->resize(500,500, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/home/featured_provider').'/'.$fileName);
+                //image compress end
+                HomeFeaturedProvider::find($id)->update(['image' => $fileName]);
+                return "true";
+            }
+    }
+
+    public function home_featured_provider_update(Request $request)
+    {
+        if($request->input('id')) {
+            $id = $request->input('id');
+            $data = $request->all();
+            unset($data['id']);
+            HomeFeaturedProvider::find($id)->update($data);
+            return "success";
+        } else {
+            $data = $request->all();
+            // $data['published'] = date("Y-m-d");
+            unset($data['id']);
+            HomeFeaturedProvider::create($data);
+            return "success";
+        }
     }
 
     public function usecases($id)

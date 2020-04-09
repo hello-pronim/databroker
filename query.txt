@@ -402,3 +402,16 @@ CREATE TABLE IF NOT EXISTS `databroker_new`.`home_teampicks` (
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `databroker_new`.`home_featured_provider` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NULL,
+  `image` VARCHAR(255) NULL,
+  `logo_url` VARCHAR(255) NULL,
+  `published` DATE NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
