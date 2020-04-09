@@ -29,8 +29,7 @@
 	<div class="container">		
 	    <div class="row">
 	    	<div class="col-md-12">
-                @if(isset($featured_data) && $featured_data != null)
-				<div class="card card-raised card-background" style="background-image: url({{ asset('uploads/home/featured_data/'.$featured_data->image??'') }})">
+				<div class="card card-raised card-background" style="background-image: url({{ asset('uploads/home/featured_data/'.($featured_data->image??'')) }})">
 					<div class="card-body">
 						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
 						<h3 class="card-title fs-40">{{ $featured_data->featured_data_title??'' }}</h3>
@@ -42,28 +41,10 @@
 						</a>
 						<div class="card-author">
 							<p> Data provided by {{ $featured_data->featured_data_provider??'' }} </p>
-							<a href="{{ $featured_data->logo_url??'' }}"><img src="{{ asset('uploads/home/featured_data/logo/'.$featured_data->logo??'') }}" style="height:50px;"></a>
+							<a href="{{ $featured_data->logo_url??'' }}"><img src="{{ asset('uploads/home/featured_data/logo/'.($featured_data->logo??'')) }}" style="height:50px;"></a>
 						</div>						
 					</div>
                 </div>
-                @else
-                <div class="card card-raised card-background" style="background-image: url({{ asset('uploads/home/featured_data/default.jpg') }})">
-					<div class="card-body">
-						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
-						<h3 class="card-title fs-40">{{ $featured_data->featured_data_title??'' }}</h3>
-						<div class="card-description text-white" id="home_featured_data">
-							{!! $featured_data->featured_data_content??'' !!}						
-                        </div>
-						<a href="#pablo" class="btn btn-round readmore">
-							READ MORE
-						</a>
-						<div class="card-author">
-							<p> Data provided by {{ $featured_data->featured_data_provider??'' }} </p>
-							<a href="{{ $featured_data->logo_url??'' }}"><img src="{{ asset('uploads/home/featured_data/logo/default.jpg') }}" style="height:50px;"></a>
-						</div>						
-					</div>
-                </div>
-                @endif
 			</div>
 	    </div>
 	</div>
@@ -78,9 +59,9 @@
                 <a href="{{ $trending->logo_url??'' }}">
                     <div class="app-partner-item info">
                         <div class="icon">
-                            <img src="{{ asset('uploads/home/trending/'.$trending->image) }}">
+                            <img src="{{ asset('uploads/home/trending/'.($trending->image??'')) }}">
                         </div>        
-                        <h4 class="info-title"> {{ $trending->title }} </h4>
+                        <h4 class="info-title"> {{ $trending->title??'' }} </h4>
                     </div>
                 </a>
             </div>
@@ -93,14 +74,14 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('uploads/home/marketplace/medium/'.$marketplace->image) }}" id="responsive-card-img"/>
+							<img class="img" src="{{ asset('uploads/home/marketplace/medium/'.($marketplace->image??'')) }}" id="responsive-card-img"/>
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">{{ $marketplace->title }}</h4>
                         <h6 class="card-category">{{ $marketplace->legion }}</h6>
                         <a href="{{ $marketplace->logo_url??'' }}">
-                            <img class="img" src="{{ asset('uploads/home/marketplace/logo/'.$marketplace->logo??'') }}" />
+                            <img class="img" src="{{ asset('uploads/home/marketplace/logo/'.($marketplace->logo??'')) }}" />
                         </a>
 						
 					</div>			
@@ -141,13 +122,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('uploads/home/teampicks/'.$teampick->image??'') }}" id="responsive-card-img"/>
+							<img class="img" src="{{ asset('uploads/home/teampicks/'.($teampick->image??'')) }}" id="responsive-card-img"/>
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">{{ $teampick->title??'' }}</h4>
 						<h6 class="card-category">{{ $teampick->legion??'' }}</h6>
-						<a href="{{ $teampick->logo_url??'' }}"><img class="img" src="{{ asset('uploads/home/teampicks/logo/'.$teampick->logo??'') }}" /></a>
+						<a href="{{ $teampick->logo_url??'' }}"><img class="img" src="{{ asset('uploads/home/teampicks/logo/'.($teampick->logo??'')) }}" /></a>
 					</div>			
 				</div>	
             </div>	
