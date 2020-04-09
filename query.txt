@@ -384,3 +384,21 @@ ALTER TABLE `databroker_new`.`home_marketplace` ADD COLUMN `logo_url` VARCHAR(25
 #2020-04-09
 ALTER TABLE `databroker_new`.`complaints` CHANGE `compliantIdx` `complaintIdx` INT(11) NOT NULL AUTO_INCREMENT, CHANGE `compliantTarget` `complaintTarget` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL, CHANGE `compliantKind` `complaintKind` TINYINT(4) NULL, CHANGE `compliantContent` `complaintContent` TEXT CHARSET utf8 COLLATE utf8_general_ci NULL; 
 RENAME TABLE `databroker_new`.`compliants` TO `databroker_new`.`complaints`;
+
+CREATE TABLE IF NOT EXISTS `databroker_new`.`home_teampicks` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NULL,
+  `image` VARCHAR(255) NULL,
+  `logo` VARCHAR(255) NULL,
+  `logo_url` VARCHAR(255) NULL,
+  `published` DATE NULL,
+  `legion` VARCHAR(255) NULL,
+  `content` LONGTEXT NULL,
+  `meta_title` VARCHAR(255) NULL,
+  `meta_desc` LONGTEXT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;

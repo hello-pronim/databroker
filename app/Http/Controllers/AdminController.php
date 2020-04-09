@@ -23,6 +23,7 @@ use App\Models\Article;
 use App\Models\HomeFeaturedData;
 use App\Models\HomeTrending;
 use App\Models\HomeMarketplace;
+use App\Models\HomeTeamPicks;
 use Response;
 use Image;
 
@@ -254,6 +255,71 @@ class AdminController extends Controller
             $fileName = $id.'.jpg';  
             $getfiles->move(public_path('uploads/home/marketplace/logo'), $fileName);
             HomeMarketplace::find($id)->update(['logo' => $fileName]);
+            return "true";
+    }
+
+    public function home_teampicks()
+    {
+        $boards = HomeTeamPicks::orderby('published', 'desc')->get();
+        $data = array('boards');
+        return view('admin.home_teampicks', compact($data));
+    }
+
+    public function home_teampicks_edit($id = '')
+    {
+        if($id == '')
+        {
+            return view('admin.home_teampicks_edit');
+        }
+        else
+        {
+            $id = $id;
+            $board = HomeTeamPicks::where('id', $id)->first(); 
+            $data = array('id', 'board');
+            return view('admin.home_teampicks_edit', compact($data));
+        }
+    }
+
+    public function home_teampicks_update(Request $request)
+    {
+        if($request->input('id')) {
+            $id = $request->input('id');
+            $data = $request->all();
+            unset($data['id']);
+            HomeTeamPicks::find($id)->update($data);
+            return "success";
+        } else {
+            $data = $request->all();
+            unset($data['id']);
+            HomeTeamPicks::create($data);
+            return "success";
+        }
+    }
+
+    public function home_teampicks_upload_logo(Request $request, $id = 0)
+    {
+            $getfiles = $request->file('uploadedFile');
+            $fileName = $id.'.jpg';  
+            $getfiles->move(public_path('uploads/home/teampicks/logo'), $fileName);
+            HomeTeamPicks::find($id)->update(['logo' => $fileName]);
+            return "true";
+    }
+
+    public function home_teampicks_upload_attach(Request $request, $id = 0)
+    {
+            $getfiles = $request->file('uploadedFile');
+            $fileName = $id.'.jpg';  
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+            $tinyimg->resize(1000,1100, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/teampicks/medium').'/'.$fileName);
+            $tinyimg->resize(300,400, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/teampicks/tiny').'/'.$fileName);
+            //image compress end
+            $getfiles->move(public_path('uploads/home/teampicks'), $fileName);
+            HomeTeamPicks::find($id)->update(['image' => $fileName]);
             return "true";
     }
 
