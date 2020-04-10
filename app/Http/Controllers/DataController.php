@@ -58,14 +58,36 @@ class DataController extends Controller
         
         $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where("productStatus", 1)->get();
 
-        // $purchases = Purchase::join('offerProducts', 'offerProducts.productIdx', '=', 'purchases.productIdx')
-        //                     ->where('purchases.userIdx', $user->userIdx)
-        //                     ->where('offerProducts.offerIdx', $request->id)
-        //                     ->orderby('purchases.purchaseIdx', 'DESC')
-        //                     ->groupBy('purchases.productIdx')
-        //                     ->get();
-        // var_dump($purchases);
-        // exit;
+        $user = $this->getAuthUser();
+        if($user){
+            foreach ($products as $key => $product) {
+                $purchase = Purchase::where('productIdx', $product->productIdx)
+                                    ->where('userIdx', $user->userIdx)
+                                    ->orderby('purchaseIdx', 'DESC')
+                                    ->get()
+                                    ->first();
+                if($purchase){//purchased
+                    if($purchase['from']>=date('Y-m-d') && $purchase['to']<=date('Y-m-d')){ //now in use
+                        $product['canBid'] = 0;
+                        $product['canBuy'] = 0;
+                    }else{//already expired
+                        $product['canBid'] = 1;
+                        $product['canBuy'] = 1;
+                    }
+                }else{//not purchased yet
+                    $product['canBuy'] = 1;
+                    $bid = Bid::where('userIdx', $user->userIdx)
+                                ->where('productIdx', $product->productIdx)
+                                ->orderby('bidIdx', 'desc')
+                                ->get()
+                                ->first();
+                    if($bid){
+                        //if(date('Y-m-d', strtotime($bid->created_at))<=date('Y-m-d') && date('Y-m-d', strtotime('+2 day', strtotime($bid->created_at))))
+                    }
+                }
+            }
+
+        }
 
         if(  strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
@@ -1119,7 +1141,7 @@ class DataController extends Controller
                 try {
                     \Stripe\Charge::create ( array (
                             "amount" => $request->productPrice * 100,
-                            "currency" => "eur",
+                            "currency" => "euro",
                             "source" => $request->input('stripeToken'), // obtained with Stripe.js
                             "description" => "Databroker Data Fee" 
                     ) );
@@ -1174,10 +1196,11 @@ class DataController extends Controller
 
                     return redirect(route('data.pay_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
                 } catch ( \Exception $e ) {
-                    var_dump($e->getMessage);
-                    exit;
-                    //Session::flash ( 'fail-message', "Error! Please Try again." );
-                   // return Redirect::back ();
+                    $message = $e->getMessage();
+                    $id = $request->id;
+                    $pid = $request->pid;
+                    $data = array('message', 'id', 'pid');
+                    return view('data.pay_fail', compact($data));
                 }
             }
         }
