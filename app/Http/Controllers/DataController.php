@@ -1249,12 +1249,13 @@ class DataController extends Controller
         $user = $this->getAuthUser();
 
         $fields = [
-            'bidPrice' => ['required', 'numeric']
+            'bidPrice' => ['required', 'numeric', 'min:0.5']
         ];
 
         $messages = [
             'bidPrice.required' => 'Your bid price is required.',
-            'bidPrice.numeric' => 'Bid price must be numeric.'
+            'bidPrice.numeric' => 'Bid price must be numeric.',
+            'bidPrice.min' => 'Bid price must be more than €0.5.'
         ];
 
         $validator = Validator::make($request->all(), $fields, $messages);
@@ -1319,12 +1320,13 @@ class DataController extends Controller
         $user = $this->getAuthUser();
 
         $fields = [
-            'bidPrice' => ['required', 'numeric']
+            'bidPrice' => ['required', 'numeric', 'min:0.5']
         ];
 
         $messages = [
             'bidPrice.required' => 'Your bid price is required.',
-            'bidPrice.numeric' => 'Bid price must be numeric.'
+            'bidPrice.numeric' => 'Bid price must be numeric.',
+            'bidPrice.min' => 'Bid price must be more than €0.5.'
         ];
 
         $validator = Validator::make($request->all(), $fields, $messages);

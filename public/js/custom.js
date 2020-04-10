@@ -298,9 +298,13 @@ $(document).ready(function(){
                 }else{
                     $(_this).find('.error_notice.'+elem_name).show();
                 }                
-            } else if(!isUrl($("#licenseUrl").val())){
+            } if(!isUrl($("#licenseUrl").val())){
                 $(_this).find('.error_notice.licenceUrl').show();           
-            } 
+            } if(parseFloat($('input[name="no_bidding_price"]').val())<0.5){
+                $(_this).find('.error_notice.no_bidding_price_min').show();
+            } if(parseFloat($('input[name="bidding_possible_price"]').val())<0.5){
+                $(_this).find('.error_notice.bidding_possible_price_min').show();
+            }
         });
         if(formValues.format === undefined){
             $(_this).find('.error_notice.format').show();
