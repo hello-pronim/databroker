@@ -98,7 +98,7 @@ class AdminController extends Controller
             })->save(public_path('uploads/home/featured_data/tiny').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/home/featured_data'), $fileName);
-            HomeFeaturedData::find($id)->update(['image' => $fileName]);
+            HomeFeaturedData::find($id)->update(['image' => $fileName, 'active' => 0]);
             return "true";
     }
 
@@ -111,7 +111,7 @@ class AdminController extends Controller
             {
                 $fileName = $id.'.svg';
                 $getfiles->move(public_path('uploads/home/featured_data/logo/'), $fileName);
-                HomeFeaturedData::find($id)->update(['logo' => $fileName]);
+                HomeFeaturedData::find($id)->update(['logo' => $fileName, 'active' => 0]);
                 return "true";
             }
             else
@@ -123,7 +123,7 @@ class AdminController extends Controller
                     $constraint->aspectRatio();
                 })->save(public_path('uploads/home/featured_data/logo').'/'.$fileName);
                 //image compress end
-                HomeFeaturedData::find($id)->update(['logo' => $fileName]);
+                HomeFeaturedData::find($id)->update(['logo' => $fileName, 'active' => 0]);
                 return "true";
             }
     }
@@ -143,7 +143,7 @@ class AdminController extends Controller
             {
                 $fileName = $id.'.svg';
                 $getfiles->move(public_path('uploads/home/trending/'), $fileName);
-                HomeTrending::find($id)->update(['image' => $fileName]);
+                HomeTrending::find($id)->update(['image' => $fileName, 'active' => 0]);
                 return "true";
             }
             else
@@ -155,7 +155,7 @@ class AdminController extends Controller
                     $constraint->aspectRatio();
                 })->save(public_path('uploads/home/trending').'/'.$fileName);
                 //image compress end
-                HomeTrending::find($id)->update(['image' => $fileName]);
+                HomeTrending::find($id)->update(['image' => $fileName, 'active' => 0]);
                 return "true";
             }
     }
@@ -245,7 +245,7 @@ class AdminController extends Controller
             })->save(public_path('uploads/home/marketplace/tiny').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/home/marketplace'), $fileName);
-            HomeMarketplace::find($id)->update(['image' => $fileName]);
+            HomeMarketplace::find($id)->update(['image' => $fileName, 'active' => 0]);
             return "true";
     }
 
@@ -254,7 +254,7 @@ class AdminController extends Controller
             $getfiles = $request->file('uploadedFile');
             $fileName = $id.'.jpg';  
             $getfiles->move(public_path('uploads/home/marketplace/logo'), $fileName);
-            HomeMarketplace::find($id)->update(['logo' => $fileName]);
+            HomeMarketplace::find($id)->update(['logo' => $fileName, 'active' => 0]);
             return "true";
     }
 
@@ -301,7 +301,7 @@ class AdminController extends Controller
             $getfiles = $request->file('uploadedFile');
             $fileName = $id.'.jpg';  
             $getfiles->move(public_path('uploads/home/teampicks/logo'), $fileName);
-            HomeTeamPicks::find($id)->update(['logo' => $fileName]);
+            HomeTeamPicks::find($id)->update(['logo' => $fileName, 'active' => 0]);
             return "true";
     }
 
@@ -319,7 +319,7 @@ class AdminController extends Controller
             })->save(public_path('uploads/home/teampicks/tiny').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/home/teampicks'), $fileName);
-            HomeTeamPicks::find($id)->update(['image' => $fileName]);
+            HomeTeamPicks::find($id)->update(['image' => $fileName, 'active' => 0]);
             return "true";
     }
 
@@ -353,7 +353,7 @@ class AdminController extends Controller
             {
                 $fileName = $id.'.svg';
                 $getfiles->move(public_path('uploads/home/featured_provider/'), $fileName);
-                HomeFeaturedProvider::find($id)->update(['image' => $fileName]);
+                HomeFeaturedProvider::find($id)->update(['image' => $fileName, 'active' => 0]);
                 return "true";
             }
             else
@@ -365,7 +365,7 @@ class AdminController extends Controller
                     $constraint->aspectRatio();
                 })->save(public_path('uploads/home/featured_provider').'/'.$fileName);
                 //image compress end
-                HomeFeaturedProvider::find($id)->update(['image' => $fileName]);
+                HomeFeaturedProvider::find($id)->update(['image' => $fileName, 'active' => 0]);
                 return "true";
             }
     }
