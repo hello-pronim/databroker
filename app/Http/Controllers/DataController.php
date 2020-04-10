@@ -1140,9 +1140,8 @@ class DataController extends Controller
                 \Stripe\Stripe::setApiKey ( env('STRIPE_SECRET_KEY') );
                 try {
                     \Stripe\Charge::create ( array (
-                            //"amount" => $request->productPrice * 100,
-                            "amount" => 30,
-                            "currency" => "usd",
+                            "amount" => $request->productPrice * 100,
+                            "currency" => "euro",
                             "source" => $request->input('stripeToken'), // obtained with Stripe.js
                             "description" => "Databroker Data Fee" 
                     ) );
