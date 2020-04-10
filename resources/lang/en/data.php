@@ -57,6 +57,7 @@ return [
     'paypal'=>'Paypal',
     'credit_card'=>'Credit card',
     'your_payment_success'=>'Your payment was successful!',
+    'payment_fail'=>'There was a problem processing your card!',
     'ready_to_use'=>'You are now ready to use the data.',
     'from'=>'From',
     'download_file'=>'Download file',

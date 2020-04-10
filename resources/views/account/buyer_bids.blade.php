@@ -117,24 +117,18 @@
 		            			</div>
 		            			@endif
 		            			@if($bidUser['bidStatus']==1)
+		            				@if($bidUser['userIdx'] == $user->userIdx)
 		            			<div class="row">
 		            				<div class="col-md-3"></div>
 		            				<div class="col-md-9">
-				            			<a href="{{route('data.buy_data', ['id'=>$bidUser['offerIdx'], 'pid'=>$bidUser['productIdx']])}}">
+				            			<a href="{{route('data.buy_data', ['id'=>$bidUser['offerIdx'], 'pid'=>$bidUser['productIdx']]).'?bidIdx='.$bidUser['bidIdx']}}">
 				            				<button type="button" class="button customize-btn m-0">Buy data at agreed price</button>
 				            			</a>
+		            					<p class="text-grey mt-10">You will also receive an email with a link to the purchase page.</p>	
 		            				</div>
 		            			</div>
+				            		@endif
 		            			@endif
-		            			@if($bidUser['bidStatus']==1)       			
-		            			<div class="row">
-		            				<div class="col-md-3">
-		            				</div>
-		            				<div class="col-md-9">
-		            					<p class="text-grey">You will also receive an email with a link to the purchase page.</p>			            					
-		            				</div>
-		            			</div>
-		            			@endif	
 		            		</div>
 		            			@endforeach
 		            		@endif
