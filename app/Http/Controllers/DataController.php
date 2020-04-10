@@ -1141,7 +1141,7 @@ class DataController extends Controller
                 try {
                     \Stripe\Charge::create ( array (
                             "amount" => $request->productPrice * 100,
-                            "currency" => "euro",
+                            "currency" => "eur",
                             "source" => $request->input('stripeToken'), // obtained with Stripe.js
                             "description" => "Databroker Data Fee" 
                     ) );
