@@ -144,12 +144,13 @@
 						                    	<option value="month">1 month</option>
 						                    	<option value="year">1 year</option>
 						                    </select>				                    				                        
-						                </div>						                
+						                </div>			
+										<div>
+											<span class="error_notice no_bidding_price"> This field is required. </span>
+								            <span class="error_notice no_bidding_period"> Please select a period.</span>
+								            <span class="error_notice no_bidding_price_min"> Price should be more than € 0.5.</span>
+								        </div>			                
 									</div>
-									<div>
-										<span class="error_notice no_bidding_price"> This field is required. </span>
-							            <span class="error_notice no_bidding_period"> Please select a period.</span>
-							        </div>
 				                </div>
 				                <div class="mb-10">
 				                	<label class="container para">I will set a price, but buyers can also send bids.
@@ -171,9 +172,12 @@
 						                    	<option value="year">1 year</option>
 						                    </select>				                    				                        
 						                </div>
+						                <div>
+											<span class="error_notice bidding_possible_price"> This field is required. </span>
+								            <span class="error_notice bidding_possible_period"> Please select a period.</span>
+									        <span class="error_notice bidding_possible_price_min"> Price should be more than € 0.5.</span>
+								       	</div>
 									</div>
-									<span class="error_notice bidding_possible_price"> This field is required. </span>
-						            <span class="error_notice bidding_possible_period"> Please select a period.</span>
 				                </div>							
 				                <div class="mb-10">
 				                	<label class="container para">I will not set a price. Interested parties can send bids.
