@@ -1147,7 +1147,7 @@ class DataController extends Controller
                             'email' => $request->email
                     ) );
                     $charge = \Stripe\Charge::create ( array (
-                            "amount" => $request->productPrice * 100,
+                            "amount" => 30,
                             "currency" => "eur",
                             "description" => "Databroker Data Fee",
                             "customer" => $customer->id
@@ -1249,7 +1249,21 @@ class DataController extends Controller
 
                     return redirect(route('data.pay_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
                 } catch ( \Exception $e ) {
-                    $message = $e->getMessage();
+                    $errorBody = $e->getJsonBody();
+                    $err = $errorBody['error'];
+
+                    $history['userIdx'] = $user->userIdx;
+                    $history['productIdx'] = $request->productIdx;
+                    $history['paymentMethodIdx'] = 1; //1: Stripe
+                    $history['errorCode'] = $err['code'];
+                    $history['errorDocURL'] = $err['doc_url'];
+                    $history['errorMessage'] = $err['message'];
+                    if(isset($err['param'])) $history['errorParam'] = $err['param'];
+                    $history['errorType'] = $err['type'];
+
+                    PaidHistory::create($history);
+
+                    $message = $err['message'];
                     $id = $request->id;
                     $pid = $request->pid;
                     $data = array('message', 'id', 'pid');
