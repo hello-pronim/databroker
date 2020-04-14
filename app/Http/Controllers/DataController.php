@@ -1185,7 +1185,7 @@ class DataController extends Controller
                     $history['userIdx'] = $user->userIdx;
                     $history['productIdx'] = $request->productIdx;
                     $history['transactionId'] = $charge->id;
-                    $history['paidMethod'] = 1; //1: Stripe
+                    $history['paymentMethodIdx'] = 1; //1: Stripe
                     $history['paidAmount'] = (float)$charge->amount/100;
                     $history['paidCurrency'] = $charge->currency;
                     $history['cardIdx'] = $charge->source->id;
@@ -1193,7 +1193,8 @@ class DataController extends Controller
                     $history['cardCountry'] = $charge->payment_method_details->card->country;
                     $history['expMonth'] = $charge->payment_method_details->card->exp_month;
                     $history['expYear'] = $charge->payment_method_details->card->exp_year;
-                    $history['cvv'] = $charge->payment_method_details->card->last4;
+                    $history['cvcCheck'] = $charge->payment_method_details->card->checks->cvc_check;
+                    $history['last4'] = $charge->payment_method_details->card->last4;
                     $history['fingerprint'] = $charge->payment_method_details->card->fingerprint;
                     $history['funding'] = $charge->payment_method_details->card->funding;
                     $history['installments'] = $charge->payment_method_details->card->isntallments;
@@ -1224,8 +1225,7 @@ class DataController extends Controller
                     $history['refunded'] = $charge->refunded;
                     $history['review'] = $charge->review;
                     $history['shipping'] = $charge->shipping;
-                    var_dump($history);
-                    exit;
+                    $history['status'] = $charge->status;
 
                     PaidHistory::create($history);
 

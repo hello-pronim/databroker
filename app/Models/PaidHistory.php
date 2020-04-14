@@ -15,6 +15,6 @@ class PaidHistory extends Model
      * @var array
      */
     protected $fillable = [
-        'userIdx', 'productIdx', 'transactionId', 'paidMethod', 'paidAmount', 'paidCurrency', 'cardIdx', 'cardType', 'cardCountry', 'expMonth', 'expYear', 'cvv', 'fingerprint', 'funding', 'installments', 'network', 'wallet', 'amountRefunded', 'application', 'applicationFee', 'applicationFeeAmount', 'balanceTransaction', 'captured', 'customer', 'description', 'destination', 'dispute', 'disputed', 'failureCode', 'failureMessage', 'invoice', 'liveMode', 'order', 'paid', 'paymentIntent', 'paymentMethod', 'receiptEmail', 'receiptNumber', 'receiptURL', 'refunded', 'review', 'shipping'
+        'userIdx', 'productIdx', 'transactionId', 'paymentMethodIdx', 'paidAmount', 'paidCurrency', 'cardIdx', 'cardType', 'cardCountry', 'expMonth', 'expYear', 'cvcCheck', 'last4', 'fingerprint', 'funding', 'installments', 'network', 'wallet', 'amountRefunded', 'application', 'applicationFee', 'applicationFeeAmount', 'balanceTransaction', 'captured', 'customer', 'description', 'destination', 'dispute', 'disputed', 'failureCode', 'failureMessage', 'invoice', 'liveMode', 'order', 'paid', 'paymentIntent', 'paymentMethod', 'receiptEmail', 'receiptNumber', 'receiptURL', 'refunded', 'review', 'shipping', 'status'
     ];
 }
