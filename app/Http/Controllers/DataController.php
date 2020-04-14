@@ -1059,7 +1059,11 @@ class DataController extends Controller
                                     ->where('offerProducts.productIdx', $request->pid)
                                     ->get()
                                     ->first();
-            //$bid = Bid::where('userIdx', $user->userIdx)->where('pid', $request->pid)->get()->first();
+            $finalPrice = $product->productPrice;
+            if($request->bidIdx){
+                $bid = Bid::where('bidIdx', $request->bidIdx)->get()->first();
+                $finalPrice = $bid->bidPrice;
+            }
             $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->where('users.userIdx', $user->userIdx)
                         ->get()
@@ -1080,7 +1084,7 @@ class DataController extends Controller
             }
             $countries = Region::where('regionType', 'country')->get(); 
             $publishable_key = env('STRIPE_PUBLIC_KEY');
-            $data = array('product', 'buyer', 'countries', 'publishable_key', 'bidIdx');
+            $data = array('product', 'buyer', 'countries', 'publishable_key', 'bidIdx', 'finalPrice');
             return view('data.buy_data', compact($data));
         }
     }
@@ -1147,7 +1151,7 @@ class DataController extends Controller
                             'email' => $request->email
                     ) );
                     $charge = \Stripe\Charge::create ( array (
-                            "amount" => 30,
+                            "amount" => (int) $request->productPrice * 100,
                             "currency" => "eur",
                             "description" => "Databroker Data Fee",
                             "customer" => $customer->id
@@ -1166,6 +1170,7 @@ class DataController extends Controller
 
                     $data['seller'] = $seller;
                     $data['buyer'] = $buyer;
+                    $data['finalPrice'] = $request->productPrice;
                     $data['product'] = $product;
 
                     $paidProductData['productIdx'] = $request->productIdx;
@@ -1182,11 +1187,14 @@ class DataController extends Controller
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
                     $paidProductObj = Purchase::create($paidProductData);
 
+                    $data['expiry_from'] = date('d/m/Y', strtotime($paidProductData['from']));
+                    $data['expiry_to'] = date('d/m/Y', strtotime($paidProductData['to']));
+
                     $history['userIdx'] = $user->userIdx;
                     $history['productIdx'] = $request->productIdx;
                     $history['transactionId'] = $charge->id;
                     $history['paymentMethodIdx'] = 1; //1: Stripe
-                    $history['paidAmount'] = (float)$charge->amount/100;
+                    $history['paidAmount'] = $charge->amount / 100;
                     $history['paidCurrency'] = $charge->currency;
                     $history['cardIdx'] = $charge->source->id;
                     $history['cardType'] = $charge->source->brand;
@@ -1228,9 +1236,6 @@ class DataController extends Controller
                     $history['status'] = $charge->status;
 
                     PaidHistory::create($history);
-
-                    $data['expiry_from'] = date('d/m/Y', strtotime($paidProductData['from']));
-                    $data['expiry_to'] = date('d/m/Y', strtotime($paidProductData['to']));
 
                     $this->sendEmail("buydata", [
                         'from'=>'cg@jts.ec', 
