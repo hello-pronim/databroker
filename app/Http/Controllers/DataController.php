@@ -21,6 +21,7 @@ use App\Models\OfferProduct;
 use App\Models\OfferCountry;
 use App\Models\ProductCountry;
 use App\Models\Purchase;
+use App\Models\PaidHistory;
 use App\Models\RegionProduct;
 use App\Models\UseCase;
 use App\Models\Bid;
@@ -1139,13 +1140,18 @@ class DataController extends Controller
             else{
                 \Stripe\Stripe::setApiKey ( env('STRIPE_SECRET_KEY') );
                 try {
-                    \Stripe\Charge::create ( array (
+                    $region = Region::where('regionIdx', $request->regionIdx)->get()->first();
+                    $customer = \Stripe\Customer::create( array(
+                            'source' => $request->input('stripeToken'),
+                            'name' => $request->firstname . " " . $request->lastname,
+                            'email' => $request->email
+                    ) );
+                    $charge = \Stripe\Charge::create ( array (
                             "amount" => $request->productPrice * 100,
                             "currency" => "eur",
-                            "source" => $request->input('stripeToken'), // obtained with Stripe.js
-                            "description" => "Databroker Data Fee" 
+                            "description" => "Databroker Data Fee",
+                            "customer" => $customer->id
                     ) );
-
 
                     $buyer = BillingInfo::where('userIdx', $user->userIdx)->get()->first();
                     $seller = OfferProduct::with('region')
@@ -1175,6 +1181,53 @@ class DataController extends Controller
                     else if($product['productAccessDays']=='year')
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
                     $paidProductObj = Purchase::create($paidProductData);
+
+                    $history['userIdx'] = $user->userIdx;
+                    $history['productIdx'] = $request->productIdx;
+                    $history['transactionId'] = $charge->id;
+                    $history['paidMethod'] = 1; //1: Stripe
+                    $history['paidAmount'] = (float)$charge->amount/100;
+                    $history['paidCurrency'] = $charge->currency;
+                    $history['cardIdx'] = $charge->source->id;
+                    $history['cardType'] = $charge->source->brand;
+                    $history['cardCountry'] = $charge->payment_method_details->card->country;
+                    $history['expMonth'] = $charge->payment_method_details->card->exp_month;
+                    $history['expYear'] = $charge->payment_method_details->card->exp_year;
+                    $history['cvv'] = $charge->payment_method_details->card->last4;
+                    $history['fingerprint'] = $charge->payment_method_details->card->fingerprint;
+                    $history['funding'] = $charge->payment_method_details->card->funding;
+                    $history['installments'] = $charge->payment_method_details->card->isntallments;
+                    $history['network'] = $charge->payment_method_details->card->network;
+                    $history['wallet'] = $charge->payment_method_details->card->wallet;
+                    $history['amountRefunded'] = $charge->amount_refunded;
+                    $history['application'] = $charge->application;
+                    $history['applicationFee'] = $charge->application_fee;
+                    $history['applicationFeeAmount'] = $charge->application_fee_amount;
+                    $history['balanceTransaction'] = $charge->balance_transaction;
+                    $history['captured'] = $charge->captured;
+                    $history['customer'] = $charge->customer;
+                    $history['description'] = $charge->description;
+                    $history['destination'] = $charge->destination;
+                    $history['dispute'] = $charge->dispute;
+                    $history['disputed'] = $charge->disputed;
+                    $history['failureCode'] = $charge->failure_code;
+                    $history['failureMessage'] = $charge->failure_message;
+                    $history['invoice'] = $charge->invoice;
+                    $history['liveMode'] = $charge->livemode;
+                    $history['order'] = $charge->order;
+                    $history['paid'] = $charge->paid;
+                    $history['paymentIntent'] = $charge->payment_intent;
+                    $history['paymentMethod'] = $charge->payment_method;
+                    $history['receiptEmail'] = $charge->receipt_email;
+                    $history['receiptNumber'] = $charge->receipt_number;
+                    $history['receiptURL'] = $charge->receipt_url;
+                    $history['refunded'] = $charge->refunded;
+                    $history['review'] = $charge->review;
+                    $history['shipping'] = $charge->shipping;
+                    var_dump($history);
+                    exit;
+
+                    PaidHistory::create($history);
 
                     $data['expiry_from'] = date('d/m/Y', strtotime($paidProductData['from']));
                     $data['expiry_to'] = date('d/m/Y', strtotime($paidProductData['to']));
