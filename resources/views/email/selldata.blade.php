@@ -111,7 +111,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															Price : € {{$data['product']->productPrice}} / DTX {{$data['product']->productPrice}}
+															Price : € {{$data['finalPrice']}} / DTX {{$data['finalPrice']}}
 														</td>
 													</tr>
 													<tr>

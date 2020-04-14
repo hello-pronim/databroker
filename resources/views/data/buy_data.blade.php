@@ -36,7 +36,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<p class="para text-red">€ {{$product->productPrice}}</p>
+									<p class="para text-red">€ {{$finalPrice}}</p>
 									<p class="para">
 						        		<span class="text-grey">{{ trans('data.access_to_this_data') }}: </span>
 						        		<span>1 {{$product->productAccessDays}}</span>
@@ -108,7 +108,7 @@
 								<input type="hidden" id="userIdx" name="userIdx" value="{{$buyer->userIdx}}">
 								<input type="hidden" id="offerIdx" name="offerIdx" value="{{$product->offerIdx}}">
 								<input type="hidden" id="productIdx" name="productIdx" value="{{$product->productIdx}}">
-								<input type="hidden" id="productPrice" name="productPrice" value="{{$product->productPrice}}">
+								<input type="hidden" id="productPrice" name="productPrice" value="{{$finalPrice}}">
 								<input type="hidden" id="bidIdx" name="bidIdx" value="{{$bidIdx}}">
 								<label class="pure-material-textfield-outlined">
 			                        <input type="text" id="firstname" name="firstname" class="form-control input_data @error('firstname')  is-invalid @enderror" placeholder=" "  value="{{ old('firstname', $buyer->firstname) }}" autocomplete="firstname" autofocus>
