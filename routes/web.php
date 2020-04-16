@@ -61,6 +61,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 
 		Route::get('/buyer/bids', 'ProfileController@buyer_bids')->name('profile.buyer_bids');
 		Route::get('/seller/bids', 'ProfileController@seller_bids')->name('profile.seller_bids');
+
+		Route::get('/dxc/data_exchange_controller', 'DXCController@data_exchange_controller')->name('dxc.data_exchange_controller');
 	});
 
 	Route::get('/', 'HomeController@index')->name('home');

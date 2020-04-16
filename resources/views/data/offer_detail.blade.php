@@ -115,8 +115,8 @@
 										<div class="col-9 value">1 {{ $product['productAccessDays'] }}</div>
 									</div>
 								</div>
-								<div class="col-6 status-block product flex-vcenter">	
-									<div>								
+								<div class="col-6 status-block product flex-vcenter">
+									<div class="w-100">								
 										<span class="offer-publish-status product">
 											<span class="label">{{ trans('pages.Status') }}: </span>
 
@@ -151,7 +151,7 @@
 											</a>	
 											@endif												
 										</div>
-										<div class="sell_pending_hint_container">
+										<!-- <div class="sell_pending_hint_container">
 											<i class="icon material-icons">info</i>
 											<span class="sell_pending_hint">{{ trans('pages.sell_pending_hint') }}</span>
 										</div>
@@ -159,7 +159,61 @@
 											<span class="label">{{ trans('pages.id') }} :</span>
 											{{ trans('pages.hidden_numbers') }}
 										</div>
-										<div class="copy-id"><a class="link-market">{{trans('pages.Copy_ID')}}</a></div>
+										<div class="copy-id"><a class="link-market">{{trans('pages.Copy_ID')}}</a></div> -->
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="row">
+													<div class="col col-6">
+														<div class="buttons flex-vcenter">
+															<button type="submit" class="customize-btn">Map with data in DXC</button>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col col-4">
+														<p class="para text-center">Select the DXC</p class="para">
+														<ul class="selectable-list list-dxc list-style-none pl-0 text-center border-grey">
+															<li class="selectable-list-item active selected" item-id="1">85.120.23.12</li>
+															<li class="selectable-list-item" item-id="2">85.120.23.13</li>
+														</ul>
+													</div>
+													<div class="col col-8">
+														<p class="para text-center">Select the data</p class="para">
+														<table class="table border-grey">
+															<thead>
+																<tr>
+																	<th class="text-bold fs-16 text-black">Data</th>
+																	<th class="text-bold fs-16 text-black">Type</th>
+																	<th class="text-bold fs-16 text-black">Product name</th>
+																</tr>
+															</thead>
+															<tbody class="selectable-list list-data">
+																<tr class="selectable-list-item" parent-id="1">
+																	<td>Weather-file1.csv</td>
+																	<td>File</td>
+																	<td>Weather global</td>
+																</tr>
+																<tr class="selectable-list-item" parent-id="1">
+																	<td>Weather-germany1.csv</td>
+																	<td>File</td>
+																	<td>Weather germany</td>
+																</tr>
+																<tr class="selectable-list-item" parent-id="2">
+																	<td>Weather-file2.csv</td>
+																	<td>File</td>
+																	<td>Weather global</td>
+																</tr>
+																<tr class="selectable-list-item" parent-id="2">
+																	<td>Weather-germany2.csv</td>
+																	<td>File</td>
+																	<td>Weather germany</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -242,6 +296,31 @@
 
 @endsection
 
-@section('additional_javascript')
+@section('additional_javascript') 
+	<script type="text/javascript">
+		let active_id = $('.list-dxc .selectable-list-item.active').attr('item-id');
+		$.each($('.list-data .selectable-list-item'), function(key, value){
+			if($(value).attr('parent-id')==active_id){
+				$(value).addClass('active');
+			}
+		});
+		$('.list-dxc .selectable-list-item').click(function(e){
+			let active_id = $(this).attr('item-id');
+			$('.list-dxc .selectable-list-item.active').removeClass('active');
+			$('.list-dxc .selectable-list-item.selected').removeClass('selected');
+			$(this).addClass('active');
+			$(this).addClass('selected');
+			$('.list-data .selectable-list-item.active').removeClass('active');
+			$.each($('.list-data .selectable-list-item'), function(key, value){
+				if($(value).attr('parent-id')==active_id){
+					$(value).addClass('active')
+				}
+			});
+		});
+		$('.list-data .selectable-list-item').click(function(e){
+			$('.list-data .selectable-list-item.selected').removeClass('selected');
+			$(this).addClass('selected');
+		});
+	</script>
 @endsection
 

@@ -98,6 +98,7 @@
                             <div class="dropdown-divider"></div>
                             <h5> {{ trans('home.me_seller') }} </h5>
                             <a class="dropdown-item" href="{{ route('account.company') }}"> {{ trans('home.company_profile') }} </a>
+                            <a class="dropdown-item" href="{{ route('dxc.data_exchange_controller') }}"> {{ trans('home.data_exchange_controller') }} </a>
                             <a class="dropdown-item" href="{{ route('data_offers_overview' )}}"> {{ trans('home.data_offers') }} </a>
                             @php
                               $products = \App\Models\OfferProduct::join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')

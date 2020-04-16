@@ -94,5 +94,5 @@ return [
     'economy_meta_desc' => 'Find data about national accounts, government finance and EDP, exchange and interest rates, economic globalisation, digital economy and society, and commerce.',
     'supply_chain_meta_title' => 'Buy, sell or share supply chain data | Data offers | Databroker',
     'supply_chain_meta_desc' => 'Find data related to supply chains in the automotive, chemical, electronics, food and beverage, pharmaceutical and retail sectors.',
-
+    'data_exchange_controller' => 'Data Exchange Controller'
 ];
