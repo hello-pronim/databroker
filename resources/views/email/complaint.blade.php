@@ -89,7 +89,7 @@
 															Hello,
 														</td>
 													</tr>
-													@if($data['productTitle'])
+													@if(isset($data['productTitle']))
 													<tr>
 														<td class="fs-18 lh-27 py-10">
 															{{$data['user']->firstname}} {{$data['user']->lastname}} from {{$data['user']->companyName}} has sent you a complaint about

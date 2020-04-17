@@ -25,6 +25,7 @@ use App\Models\HomeTrending;
 use App\Models\HomeMarketplace;
 use App\Models\HomeTeamPicks;
 use App\Models\HomeFeaturedProvider;
+use App\Models\Admin;
 use Response;
 use Image;
 
@@ -39,6 +40,27 @@ class AdminController extends Controller
     {
         parent::__construct();
         //$this->middleware(['auth','verified']);
+    }
+
+    public function login(){
+        return view('admin.login');
+    }
+    public function check_login(Request $request){
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'password' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+        $adminUser = Admin::where('email', $request->email)->get()->first();
+        if($adminUser->password == md5($request->password)){
+
+            return redirect(route('admin.dashboard'));
+        }
     }
 
     public function dashboard()

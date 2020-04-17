@@ -130,6 +130,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::post('/admin/updates/update', 'AdminController@updates_update')->name('admin.updates_update');
 	Route::get('/admin/updates/edit/{id}', 'AdminController@updates_edit')->where('id', '[0-9]+')->name('admin.updates_edit');
 
+	Route::get('/admin/login', "AdminController@login")->name('admin.login');
+	Route::post('/admin/login', "AdminController@check_login")->name('admin.check_login');
 	Route::get('/admin', function () { return redirect()->route('admin.updates'); });
 	Route::get('/admin/home', 'AdminController@home')->name('admin.home');
 	Route::get('/admin/home_featured_data', 'AdminController@home_featured_data')->name('admin.home_featured_data');

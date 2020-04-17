@@ -238,6 +238,7 @@ class HelpController extends Controller
         $message = $request->message;
 
         $data['message'] = $message;
+
         if($request->productIdx){
             $data['productTitle'] = OfferProduct::where('productIdx', $request->productIdx)->get()->first()->productTitle;
             $data['companyName'] = $request->companyName;
