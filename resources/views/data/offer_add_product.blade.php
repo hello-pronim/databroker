@@ -202,6 +202,54 @@
 			                </div>
 						</div>
 					</div>
+					<div class="row mgt30">
+						<div class="col-lg-6">
+							<h4 class="h4_intro text-left">Identify your data source</h4>
+							<div class="row">
+								<div class="col col-4">
+									<p class="para text-center">Select the DXC</p class="para">
+									<ul class="selectable-list list-dxc list-style-none pl-0 text-center border-grey">
+										<li class="selectable-list-item active selected" item-id="1">85.120.23.12</li>
+										<li class="selectable-list-item" item-id="2">85.120.23.13</li>
+									</ul>
+								</div>
+								<div class="col col-8">
+									<p class="para text-center">Select the data</p class="para">
+									<table class="table border-grey">
+										<thead>
+											<tr>
+												<th class="text-bold fs-16 text-black">Data</th>
+												<th class="text-bold fs-16 text-black">Type</th>
+												<th class="text-bold fs-16 text-black">Product name</th>
+											</tr>
+										</thead>
+										<tbody class="selectable-list list-data">
+											<tr class="selectable-list-item" parent-id="1">
+												<td>Weather-file1.csv</td>
+												<td>File</td>
+												<td>Weather global</td>
+											</tr>
+											<tr class="selectable-list-item" parent-id="1">
+												<td>Weather-germany1.csv</td>
+												<td>File</td>
+												<td>Weather germany</td>
+											</tr>
+											<tr class="selectable-list-item" parent-id="2">
+												<td>Weather-file2.csv</td>
+												<td>File</td>
+												<td>Weather global</td>
+											</tr>
+											<tr class="selectable-list-item" parent-id="2">
+												<td>Weather-germany2.csv</td>
+												<td>File</td>
+												<td>Weather germany</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
 			                <h4 class="h4_intro text-left">Is there any additional information that might be useful for a potential buyer? (optional)<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_potential_buyer_tooptip') }}">help</i></h4>
@@ -235,5 +283,30 @@
 @endsection
 
 @section('additional_javascript')
-	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>        
+	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>
+	<script type="text/javascript">
+		let active_id = $('.list-dxc .selectable-list-item.active').attr('item-id');
+		$.each($('.list-data .selectable-list-item'), function(key, value){
+			if($(value).attr('parent-id')==active_id){
+				$(value).addClass('active');
+			}
+		});
+		$('.list-dxc .selectable-list-item').click(function(e){
+			let active_id = $(this).attr('item-id');
+			$('.list-dxc .selectable-list-item.active').removeClass('active');
+			$('.list-dxc .selectable-list-item.selected').removeClass('selected');
+			$(this).addClass('active');
+			$(this).addClass('selected');
+			$('.list-data .selectable-list-item.active').removeClass('active');
+			$.each($('.list-data .selectable-list-item'), function(key, value){
+				if($(value).attr('parent-id')==active_id){
+					$(value).addClass('active')
+				}
+			});
+		});
+		$('.list-data .selectable-list-item').click(function(e){
+			$('.list-data .selectable-list-item.selected').removeClass('selected');
+			$(this).addClass('selected');
+		});
+	</script>
 @endsection

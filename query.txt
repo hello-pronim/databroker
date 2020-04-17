@@ -381,8 +381,8 @@ ALTER TABLE `databroker_new`.`home_trending` ADD COLUMN `logo_url` VARCHAR(255) 
 ALTER TABLE `databroker_new`.`home_marketplace` ADD COLUMN `logo_url` VARCHAR(255) NULL AFTER `logo`;
 
 #2020-04-09
-ALTER TABLE `databroker_new`.`complaints` CHANGE `compliantIdx` `complaintIdx` INT(11) NOT NULL AUTO_INCREMENT, CHANGE `compliantTarget` `complaintTarget` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL, CHANGE `compliantKind` `complaintKind` TINYINT(4) NULL, CHANGE `compliantContent` `complaintContent` TEXT CHARSET utf8 COLLATE utf8_general_ci NULL; 
 RENAME TABLE `databroker_new`.`compliants` TO `databroker_new`.`complaints`;
+ALTER TABLE `databroker_new`.`complaints` CHANGE `compliantIdx` `complaintIdx` INT(11) NOT NULL AUTO_INCREMENT, CHANGE `compliantTarget` `complaintTarget` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL, CHANGE `compliantKind` `complaintKind` TINYINT(4) NULL, CHANGE `compliantContent` `complaintContent` TEXT CHARSET utf8 COLLATE utf8_general_ci NULL; 
 
 CREATE TABLE IF NOT EXISTS `databroker_new`.`home_teampicks` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -440,3 +440,8 @@ ALTER TABLE `databroker_new`.`paidHistories` CHANGE `cardIdx` `cardIdx` VARCHAR(
 ALTER TABLE `databroker_new`.`paidHistories` ADD COLUMN `cvcCheck` VARCHAR(64) NULL AFTER `expYear`, CHANGE `cvv` `last4` VARCHAR(64) CHARSET utf8 COLLATE utf8_general_ci NULL, ADD COLUMN `status` VARCHAR(64) NULL AFTER `shipping`;
 ALTER TABLE `databroker_new`.`paidHistories` CHANGE `paidAmount` `paidAmount` INT(11) NULL; 
 ALTER TABLE `databroker_new`.`paidHistories` CHANGE `description` `description` VARCHAR(256) CHARSET utf8 COLLATE utf8_general_ci NULL, CHANGE `receiptURL` `receiptURL` VARCHAR(256) CHARSET utf8 COLLATE utf8_general_ci NULL, CHANGE `review` `review` VARCHAR(256) CHARSET utf8 COLLATE utf8_general_ci NULL, ADD COLUMN `errorCode` VARCHAR(64) NULL AFTER `status`, ADD COLUMN `errorDocURL` VARCHAR(64) NULL AFTER `errorCode`, ADD COLUMN `errorMessage` VARCHAR(256) NULL AFTER `errorDocURL`, ADD COLUMN `errorParam` VARCHAR(64) NULL AFTER `errorMessage`, ADD COLUMN `errorType` VARCHAR(64) NULL AFTER `errorParam`;
+
+#2020-04-17
+CREATE TABLE `databroker_new`.`admin` ( `id` INT(11) NOT NULL AUTO_INCREMENT, `firstname` VARCHAR(64), `lastname` VARCHAR(64), `email` VARCHAR(64), `password` VARCHAR(64), PRIMARY KEY (`id`) ); 
+ALTER TABLE `databroker_new`.`admin` ADD COLUMN `username` VARCHAR(64) NOT NULL AFTER `id`, CHANGE `email` `email` VARCHAR(64) CHARSET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, ADD COLUMN `role` INT(11) NULL AFTER `password`; 
+ALTER TABLE `databroker_new`.`admin` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `role`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 

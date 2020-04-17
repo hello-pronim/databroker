@@ -21,6 +21,9 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 .btn-transparent:hover, .btn-transparent:focus, .btn-transparent:active{
 	background-color: transparent;	
 }
+.border-grey{
+	border: 1px solid lightgrey;
+}
 .text-primary{
 	color: #06038D !important;
 }
@@ -56,6 +59,18 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 }
 .text-top{
 	vertical-align: text-top;
+}
+.dot-success{
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: #78E6D0;
+}
+.dot-error{
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: #f44336;
 }
 .bd-white{
 	border:1px solid #fff !important;
@@ -1895,4 +1910,20 @@ a[data-target='#mediaLibraryModal']:hover{
 }
 #home_featured_data{
 	color: white !important;
+}
+.selectable-list .selectable-list-item{
+	cursor: pointer;
+	padding: 12px 8px;
+}
+.selectable-list .selectable-list-item.selected{
+	background-color: #DCDCDC;
+}
+.selectable-list .selectable-list-item:hover{
+	background-color: #DCDCDC;
+}
+.list-data .selectable-list-item{
+	display: none;
+}
+.list-data .selectable-list-item.active{
+	display: table-row;
 }

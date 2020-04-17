@@ -183,8 +183,10 @@
                                 Users
                             </div>
                             <div class="sidebar_header">
-                                <i class="fa fa-sign-out" style="font-size:30px" aria-hidden="true"></i>
-                                Logout
+                                <a href="{{route('admin.logout')}}">
+                                    <i class="fa fa-sign-out" style="font-size:30px" aria-hidden="true"></i>
+                                    Logout
+                                </a>
                             </div>
                         </ul>
                     </div>

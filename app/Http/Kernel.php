@@ -62,6 +62,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'ReturnAfterAuthentication' => \App\Http\Middleware\ReturnAfterAuthentication::class,
+        'admin_auth' => \App\Http\Middleware\AdminAuthenticate::class,
+        'guest_auth' => \App\Http\Middleware\GuestAuthenticate::class
     ];
 
     /**
@@ -78,6 +80,6 @@ class Kernel extends HttpKernel
         \Illuminate\Routing\Middleware\ThrottleRequests::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        \Illuminate\Auth\Middleware\Authorize::class,        
+        \Illuminate\Auth\Middleware\Authorize::class      
     ];
 }
