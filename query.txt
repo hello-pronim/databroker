@@ -445,3 +445,5 @@ ALTER TABLE `databroker_new`.`paidHistories` CHANGE `description` `description` 
 CREATE TABLE `databroker_new`.`admin` ( `id` INT(11) NOT NULL AUTO_INCREMENT, `firstname` VARCHAR(64), `lastname` VARCHAR(64), `email` VARCHAR(64), `password` VARCHAR(64), PRIMARY KEY (`id`) ); 
 ALTER TABLE `databroker_new`.`admin` ADD COLUMN `username` VARCHAR(64) NOT NULL AFTER `id`, CHANGE `email` `email` VARCHAR(64) CHARSET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, ADD COLUMN `role` INT(11) NULL AFTER `password`; 
 ALTER TABLE `databroker_new`.`admin` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `role`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
+
+INSERT INTO `databroker_new`.`admin` (`username`, `firstname`, `lastname`, `email`, `password`, `role`) VALUES ('greencj', 'Chris', 'Green', 'cg@jts.ec', '769fc2d36bb6b68456d26498f82b5d52', '0');
