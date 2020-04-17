@@ -434,7 +434,7 @@ ALTER TABLE `databroker_new`.`paidHistories` ADD COLUMN `transactionIdx` INT(11)
 ALTER TABLE `databroker_new`.`paidHistories` ADD COLUMN `amountRefunded` INT(11) NULL AFTER `wallet`; 
 ALTER TABLE `databroker_new`.`paidHistories` ADD COLUMN `cardIdx` VARBINARY(64) NULL AFTER `paidCurrency`; 
 ALTER TABLE `databroker_new`.`paidHistories` CHANGE `transactionIdx` `transactionId` VARCHAR(64) NULL; 
-ALTER TABLE `databroker_new`.`paidhistories` CHANGE `paidMethod` `paymentMethodIdx` INT(11) NULL;
+ALTER TABLE `databroker_new`.`paidHistories` CHANGE `paidMethod` `paymentMethodIdx` INT(11) NULL;
 CREATE TABLE `databroker_new`.`paymentMethods` ( `paymentMethodIdx` INT(11) NOT NULL AUTO_INCREMENT, `paymentName` VARCHAR(64), PRIMARY KEY (`paymentMethodIdx`) ) ENGINE=INNODB CHARSET=utf8 COLLATE=utf8_general_ci;
 ALTER TABLE `databroker_new`.`paidHistories` CHANGE `cardIdx` `cardIdx` VARCHAR(64) NULL, CHANGE `captured` `captured` BOOLEAN NULL, CHANGE `disputed` `disputed` BOOLEAN NULL, CHANGE `paid` `paid` BOOLEAN NULL, CHANGE `refunded` `refunded` BOOLEAN NULL; 
 ALTER TABLE `databroker_new`.`paidHistories` ADD COLUMN `cvcCheck` VARCHAR(64) NULL AFTER `expYear`, CHANGE `cvv` `last4` VARCHAR(64) CHARSET utf8 COLLATE utf8_general_ci NULL, ADD COLUMN `status` VARCHAR(64) NULL AFTER `shipping`;
