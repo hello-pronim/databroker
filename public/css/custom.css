@@ -1038,6 +1038,7 @@ a.dropdown-toggle:after{
 	color: #020A09;
 	margin: 0px;
 	font-weight: bold;
+	word-break: break-word;
 }
 .blog-content .link-content .link-box .buy_lists .buy_list label{
 	font-size: 18px;
@@ -1411,7 +1412,7 @@ a.dropdown-toggle:after{
     margin-bottom: 30px;
     color: #020A09;
 }
-#bids .bid.open{
+#bids .nav-link.active .bid{
 	border-left-color:#78E6D0;
 }
 #bids .bid a{
@@ -1926,4 +1927,9 @@ a[data-target='#mediaLibraryModal']:hover{
 }
 .list-data .selectable-list-item.active{
 	display: table-row;
+}
+#bids .nav-link{
+	border-color: unset!important;
+	color: unset!important;
+	border-bottom-width: 0px!important;
 }

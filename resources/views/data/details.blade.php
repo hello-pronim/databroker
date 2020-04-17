@@ -117,55 +117,61 @@
 				                <div class="buy_lists">
 				                	@foreach($products as $product)
 				                	<div class="buy_list">				                		
-				                		<div class="flex-row justify-content-between">
-				                			<div class="text-left">
-					                			<h3>{{$product->productTitle}}</h3>	
-					                			<label class="country offer-location">
-					                				@foreach($product['region'] as $region)
-				            							<span>{{ $region->regionName }}</span>
-				            						@endforeach
-				            					</label>
-					                			<p><label class="text-grey">{{ trans('pages.format') }} : </label> <span>{{ $product->productType }}</span></p>
-					                			@if($product->productMoreInfo)
-					                			<a href="javascript:;" id="more_info" class="dropdown-toggle" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">More Info</a>
-					                			<div class="dropdown-menu more_info" aria-labelledby="more_info">
-					                				<p class="pd-15">{{ $product->productMoreInfo }}</p>
-					                			</div>
-					                			@endif
-					                		</div>
-					                		<div class="text-right">
-					                			@if($product->productPrice>0 && $product->productBidType != 'free')
-					                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }} <span class="color-black">(tax incl.)</span></p>
-					                			@else
-					                			<p class="price">FREE</p>
-					                			@endif
+				                		<div class="row">
+				                			<div class="col col-8">
+					                			<div class="text-left">
+						                			<h3>{{$product->productTitle}}</h3>	
+						                			<label class="country offer-location">
+						                				@foreach($product['region'] as $region)
+					            							<span>{{ $region->regionName }}</span>
+					            						@endforeach
+					            					</label>
+						                			<p><label class="text-grey">{{ trans('pages.format') }} : </label> <span>{{ $product->productType }}</span></p>
+						                			@if($product->productMoreInfo)
+						                			<a href="javascript:;" id="more_info" class="dropdown-toggle" data-toggle="dropdown" aaria-haspopup="true" aria-expanded="false">More Info</a>
+						                			<div class="dropdown-menu more_info" aria-labelledby="more_info">
+						                				<p class="pd-15">{{ $product->productMoreInfo }}</p>
+						                			</div>
+						                			@endif
+						                		</div>
+						                	</div>
+						                	<div class="col col-4">
+						                		<div class="text-right">
+						                			@if(!$product->productPrice)
+						                			<p class="price">N/A</p>
+						                			@elseif($product->productPrice>0 && $product->productBidType != 'free')
+						                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }} <span class="color-black">(tax incl.)</span></p>
+						                			@else
+						                			<p class="price">FREE</p>
+						                			@endif
 
-					                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 {{ $product->productAccessDays }}</span></p>
-					                			<div class="flex-row align-items-center justify-content-end">
-						                			@if($product->productBidType == 'no_bidding')
-						                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
-						                				<button type="button" class="customize-btn">BUY NOW</button>
-						                			</a>
-						                			@elseif($product->productBidType == 'bidding_only')
-						                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
-						                				<button type="button" class="customize-btn">SEND BID</button>
-						                			</a>
-						                			@elseif($product->productBidType == 'bidding_possible')
-						                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
-						                				<button type="button" class="customize-btn">SEND BID</button>
-						                			</a>
-						                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
-						                				<button type="button" class="customize-btn">BUY NOW</button>
-						                			</a>
-						                			<br>
-						                			@elseif($product->productBidType == 'free')
-						                			<a href="javascript:;">
-						                				<button type="button" class="customize-btn">GET DATA</button>
-						                			</a>
-					                				@endif
-					                			</div>
-					                		</div>	
-				                		</div>				                		
+						                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 {{ $product->productAccessDays }}</span></p>
+						                		</div>	
+						                	</div>
+				                		</div>	 
+			                			<div class="flex-row align-items-center justify-content-end">
+				                			@if($product->productBidType == 'no_bidding')
+				                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+				                				<button type="button" class="customize-btn my-0">BUY NOW</button>
+				                			</a>
+				                			@elseif($product->productBidType == 'bidding_only')
+				                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+				                				<button type="button" class="customize-btn my-0">SEND BID</button>
+				                			</a>
+				                			@elseif($product->productBidType == 'bidding_possible')
+				                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+				                				<button type="button" class="customize-btn my-0">SEND BID</button>
+				                			</a>
+				                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+				                				<button type="button" class="customize-btn my-0">BUY NOW</button>
+				                			</a>
+				                			<br>
+				                			@elseif($product->productBidType == 'free')
+				                			<a href="javascript:;">
+				                				<button type="button" class="customize-btn my-0">GET DATA</button>
+				                			</a>
+			                				@endif
+			                			</div>			                		
 				                	</div>
 				                	@endforeach				                	
 

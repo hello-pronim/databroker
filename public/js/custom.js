@@ -280,6 +280,8 @@ $(document).ready(function(){
     );
     $("#add_product").submit(function(e){
         e.preventDefault();
+
+        var bidType = $('input[name="period"]:checked').val();
         var _this = this;
         var formValues = JSON.parse(serialize_form(_this));
         
@@ -299,10 +301,10 @@ $(document).ready(function(){
                     $(_this).find('.error_notice.'+elem_name).show();
                 }                
             } if(!isUrl($("#licenseUrl").val())){
-                $(_this).find('.error_notice.licenceUrl').show();           
-            } if(parseFloat($('input[name="no_bidding_price"]').val())<0.5){
+                $(_this).find('.error_notice.licenceUrl').show();
+            } if(bidType=="no_bidding" && parseFloat($('input[name="no_bidding_price"]').val())<0.5){
                 $(_this).find('.error_notice.no_bidding_price_min').show();
-            } if(parseFloat($('input[name="bidding_possible_price"]').val())<0.5){
+            } if(bidType=="bidding_possible" && parseFloat($('input[name="bidding_possible_price"]').val())<0.5){
                 $(_this).find('.error_notice.bidding_possible_price_min').show();
             }
         });
@@ -314,8 +316,8 @@ $(document).ready(function(){
         }
 
         var submit_flag = true;
-        $(_this).find('.error_notice').each(function(key, elem){            
-            if( $(elem).css('display') == "block"){
+        $(_this).find('.error_notice').each(function(key, elem){          
+            if( $(elem).css('display') != "none"){
                 submit_flag = false;
             }
         });
@@ -484,10 +486,10 @@ $(document).ready(function(){
 
     }
 
-    $("#bids .bid a.nav-link").click(function(){
-        $($("#bids .bid a.nav-link")).removeClass('active');
+    $("#bids a.nav-link").click(function(){
+        $($("#bids a.nav-link")).removeClass('active');
         $("#bids .bid").removeClass("open");
-        $(this).parent().addClass("open");
+        $(this).find(".bid").addClass("open");
     });
 
     $(".more_dropdown a").click(function(){

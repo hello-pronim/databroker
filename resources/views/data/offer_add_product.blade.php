@@ -189,10 +189,10 @@
 							        	<div class="adv-combo-wrapper custom-select2">
 						                    <select name="bidding_only_period" data-placeholder="Please select a period" class="no-search">
 						                    	<option></option>
-						                    	<option class="day">1 day</option>
-						                    	<option class="week">1 week</option>
-						                    	<option class="month">1 month</option>
-						                    	<option class="year">1 year</option>
+						                    	<option value="day">1 day</option>
+						                    	<option value="week">1 week</option>
+						                    	<option value="month">1 month</option>
+						                    	<option value="year">1 year</option>
 						                    </select>				                    				                        
 						                </div>
 									</div>

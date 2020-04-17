@@ -13,7 +13,7 @@
     <div class="bg-pattern1-left"></div>
     <div class="container">
         <div class="app-section align-items-center">
-        	<form id="edit_product" action="{{ route('data_offer_submit_product') }}" method="post">
+        	<form id="add_product" action="{{ route('data_offer_submit_product') }}" method="post">
         		@csrf        		
         		<input type="hidden" name="offerIdx" value="{{ $offer['offerIdx'] }}">
         		<input type="hidden" name="productIdx" value="{{ $product['productIdx'] }}">
@@ -120,10 +120,15 @@
 						                    	<option value="{{$period['key']}}" @if ($product['productAccessDays'] == $period['key']) selected @endif>{{$period['label']}}</option>
 						                    	@endforeach
 						                    </select>						                    
-						                </div>						                
+						                </div>						         
+						                <div>
+											<span class="error_notice {{$bidtype['type']}}_price"> This field is required. </span>
+											<span class="error_notice {{$bidtype['type']}}_period"> Please select a period.</span>
+											@if($bidtype['type']=="no_bidding" || $bidtype['type']=="bidding_possible")
+											<span class="error_notice {{$bidtype['type']}}_price_min"> Price should be more than € 0.5.</span>
+											@endif
+						                </div>       
 									</div>	
-									<span class="error_notice {{$bidtype['type']}}_price"> This field is required. </span>
-									<span class="error_notice {{$bidtype['type']}}_period"> Please select a period.</span>
 				        		</div>
 				        		@endforeach								
 			                </div>
