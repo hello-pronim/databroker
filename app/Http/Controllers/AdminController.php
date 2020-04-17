@@ -28,6 +28,8 @@ use App\Models\HomeFeaturedProvider;
 use App\Models\Admin;
 use Response;
 use Image;
+use Session;
+use Redirect;
 
 class AdminController extends Controller
 {
@@ -39,12 +41,17 @@ class AdminController extends Controller
     public function __construct()
     {
         parent::__construct();
-        //$this->middleware(['auth','verified']);
+        //$this->middleware(['admin_auth', 'verified']);
+    }
+
+    public function index(){
+        return redirect(route('admin.dashboard'));
     }
 
     public function login(){
         return view('admin.login');
     }
+
     public function check_login(Request $request){
         $validator = Validator::make($request->all(),[
             'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
@@ -57,10 +64,27 @@ class AdminController extends Controller
                     ->withInput();
         }
         $adminUser = Admin::where('email', $request->email)->get()->first();
-        if($adminUser->password == md5($request->password)){
-
-            return redirect(route('admin.dashboard'));
+        if(!$adminUser){
+            return Redirect::back()->withErrors(['email'=>'The email is not correct. Please try again.']);
         }
+        else if($adminUser->password == md5($request->password)){
+            $adminUserData['id'] = $adminUser->id;
+            $adminUserData['username'] = $adminUser->username;
+            $adminUserData['firstname'] = $adminUser->firstname;
+            $adminUserData['lastname'] = $adminUser->lastname;
+            $adminUserData['email'] = $adminUser->email;
+            $adminUserData['role'] = $adminUser->role;
+            Session::put('admin_user', $adminUserData);
+            return redirect(route('admin.dashboard'));
+        } else{
+            return Redirect::back()->withErrors(['password'=>'The password is not correct. Please try again.']);
+        }
+    }
+
+    public function logout(){
+        if(Session::has('admin_user'))
+            Session::forget('admin_user');
+        return redirect(route('admin.login'));
     }
 
     public function dashboard()

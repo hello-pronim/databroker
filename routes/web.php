@@ -117,53 +117,60 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/about/usecase/{id}', 'AboutController@usecase_detail')->where('id', '[0-9]+')->name('about.usecase_detail');
 	Route::get('/about/updates/{id}', 'AboutController@news_detail')->where('id', '[0-9]+')->name('about.news_detail');
 
-	//admin route usecase
-	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
-	Route::get('/admin/usecases/{id}', 'AdminController@usecases')->where('id', '[0-9]+')->name('admin.usecases');
-	Route::get('/admin/usecases/add_new/{id}', 'AdminController@usecases_add_new')->where('id', '[0-9]+')->name('admin.usecases.add_new');
-	Route::post('/admin/usecases/update', 'AdminController@usecases_update')->name('admin.usecases.update');
-	Route::post('/admin/usecases/upload_attach/{articleIdx}', 'AdminController@usecases_upload_attach')->name('admin.usecases_upload_attach');
-	Route::get('/admin/usecases/edit/{id}/{communityIdx}', 'AdminController@usecases_edit')->where('id', '[0-9]+')->name('admin.usecases_edit');
-	//admin route updates
-	Route::get('/admin/updates', 'AdminController@updates')->name('admin.updates');
-	Route::get('/admin/updates/add_new', 'AdminController@updates_add_new')->name('admin.updates_add_new');
-	Route::post('/admin/updates/update', 'AdminController@updates_update')->name('admin.updates_update');
-	Route::get('/admin/updates/edit/{id}', 'AdminController@updates_edit')->where('id', '[0-9]+')->name('admin.updates_edit');
 
-	Route::get('/admin/login', "AdminController@login")->name('admin.login');
-	Route::post('/admin/login', "AdminController@check_login")->name('admin.check_login');
-	Route::get('/admin', function () { return redirect()->route('admin.updates'); });
-	Route::get('/admin/home', 'AdminController@home')->name('admin.home');
-	Route::get('/admin/home_featured_data', 'AdminController@home_featured_data')->name('admin.home_featured_data');
-	Route::post('/admin/home_featured_data/upload_attach/{id}', 'AdminController@home_featured_data_upload_attach');
-	Route::post('/admin/home_featured_data/upload_logo/{id}', 'AdminController@home_featured_data_upload_logo');
-	Route::get('/admin/home_featured_data/edit', 'AdminController@home_featured_data_edit')->name('admin.home_featured_data_edit');
-	Route::post('/admin/home_featured_data/update', 'AdminController@home_featured_data_update')->name('admin.home_featured_data_update');
-	Route::get('/admin/home_trending', 'AdminController@home_trending')->name('admin.home_trending');
-	Route::post('/admin/home_trending/upload_attach/{id}', 'AdminController@home_trending_upload_attach')->name('admin.home_trending_upload_attach');
-	Route::get('/admin/home_trending/edit/{id}', 'AdminController@home_trending_edit')->where('id', '[0-9]+')->name('admin.home_trending_edit');
-	Route::get('/admin/home_trending/add_new', 'AdminController@home_trending_edit')->name('admin.home_trending_add_new');
-	Route::post('/admin/home_trending/update', 'AdminController@home_trending_update')->name('admin.home_trending_update');
-	Route::get('/admin/home_marketplace', 'AdminController@home_marketplace')->name('admin.home_marketplace');
-	Route::get('/admin/home_marketplace/add_new', 'AdminController@home_marketplace_edit')->name('admin.home_marketplace_add_new');
-	Route::post('/admin/home_marketplace/update', 'AdminController@home_marketplace_update')->name('admin.home_marketplace_update');
-	Route::get('/admin/home_marketplace/edit/{id}', 'AdminController@home_marketplace_edit')->where('id', '[0-9]+')->name('admin.home_marketplace_edit');
-	Route::post('/admin/home_marketplace/upload_attach/{id}', 'AdminController@home_marketplace_upload_attach')->name('admin.home_marketplace_upload_attach');
-	Route::post('/admin/home_marketplace/upload_logo/{id}', 'AdminController@home_marketplace_upload_logo')->name('admin.home_marketplace_upload_logo');
-	Route::get('/admin/home_teampicks', 'AdminController@home_teampicks')->name('admin.home_teampicks');
-	Route::get('/admin/home_teampicks/edit/{id}', 'AdminController@home_teampicks_edit')->where('id', '[0-9]+')->name('admin.home_teampicks_edit');
-	Route::post('/admin/home_teampicks/update', 'AdminController@home_teampicks_update')->name('admin.home_teampicks_update');
-	Route::get('/admin/home_teampicks/add_new', 'AdminController@home_teampicks_edit')->name('admin.home_teampicks_add_new');
-	Route::post('/admin/home_teampicks/upload_logo/{id}', 'AdminController@home_teampicks_upload_logo')->name('admin.home_teampicks_upload_logo');
-	Route::post('/admin/home_teampicks/upload_attach/{id}', 'AdminController@home_teampicks_upload_attach')->name('admin.home_teampicks_upload_attach');
-	Route::get('/admin/home_featured_provider', 'AdminController@home_featured_provider')->name('admin.home_featured_provider');
-	Route::get('/admin/home_featured_provider/add_new', 'AdminController@home_featured_provider_edit')->name('admin.home_featured_provider_add_new');
-	Route::get('/admin/home_featured_provider/edit/{id}', 'AdminController@home_featured_provider_edit')->where('id', '[0-9]+')->name('admin.home_featured_provider_edit');
-	Route::post('/admin/home_featured_provider/upload_attach/{id}', 'AdminController@home_featured_provider_upload_attach')->name('admin.home_featured_provider_upload_attach');
-	Route::post('/admin/home_featured_provider/update', 'AdminController@home_featured_provider_update')->name('admin.home_featured_provider_update');
+	Route::group(['middleware' => ['guest_auth']], function(){
+		Route::get('/admin/login', "AdminController@login")->name('admin.login');
+		Route::post('/admin/login', "AdminController@check_login")->name('admin.check_login');
+	});
 
-	Route::get('/admin/preview/home/{url}/{model}', 'AdminController@preview_home')->name('admin.preview_home');
-	Route::get('/admin/preview_check/{url}/{model}/{check}', 'AdminController@preview_check')->name('admin.preview_check');
+	Route::group(['middleware' => ['admin_auth']], function(){
+		Route::get('/admin/logout', "AdminController@logout")->name('admin.logout');
+		//admin route usecase
+		Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+		Route::get('/admin/usecases/{id}', 'AdminController@usecases')->where('id', '[0-9]+')->name('admin.usecases');
+		Route::get('/admin/usecases/add_new/{id}', 'AdminController@usecases_add_new')->where('id', '[0-9]+')->name('admin.usecases.add_new');
+		Route::post('/admin/usecases/update', 'AdminController@usecases_update')->name('admin.usecases.update');
+		Route::post('/admin/usecases/upload_attach/{articleIdx}', 'AdminController@usecases_upload_attach')->name('admin.usecases_upload_attach');
+		Route::get('/admin/usecases/edit/{id}/{communityIdx}', 'AdminController@usecases_edit')->where('id', '[0-9]+')->name('admin.usecases_edit');
+		//admin route updates
+		Route::get('/admin/updates', 'AdminController@updates')->name('admin.updates');
+		Route::get('/admin/updates/add_new', 'AdminController@updates_add_new')->name('admin.updates_add_new');
+		Route::post('/admin/updates/update', 'AdminController@updates_update')->name('admin.updates_update');
+		Route::get('/admin/updates/edit/{id}', 'AdminController@updates_edit')->where('id', '[0-9]+')->name('admin.updates_edit');
+
+		Route::get('/admin',  "AdminController@index")->name('admin.index');
+		Route::get('/admin/home', 'AdminController@home')->name('admin.home');
+		Route::get('/admin/home_featured_data', 'AdminController@home_featured_data')->name('admin.home_featured_data');
+		Route::post('/admin/home_featured_data/upload_attach/{id}', 'AdminController@home_featured_data_upload_attach');
+		Route::post('/admin/home_featured_data/upload_logo/{id}', 'AdminController@home_featured_data_upload_logo');
+		Route::get('/admin/home_featured_data/edit', 'AdminController@home_featured_data_edit')->name('admin.home_featured_data_edit');
+		Route::post('/admin/home_featured_data/update', 'AdminController@home_featured_data_update')->name('admin.home_featured_data_update');
+		Route::get('/admin/home_trending', 'AdminController@home_trending')->name('admin.home_trending');
+		Route::post('/admin/home_trending/upload_attach/{id}', 'AdminController@home_trending_upload_attach')->name('admin.home_trending_upload_attach');
+		Route::get('/admin/home_trending/edit/{id}', 'AdminController@home_trending_edit')->where('id', '[0-9]+')->name('admin.home_trending_edit');
+		Route::get('/admin/home_trending/add_new', 'AdminController@home_trending_edit')->name('admin.home_trending_add_new');
+		Route::post('/admin/home_trending/update', 'AdminController@home_trending_update')->name('admin.home_trending_update');
+		Route::get('/admin/home_marketplace', 'AdminController@home_marketplace')->name('admin.home_marketplace');
+		Route::get('/admin/home_marketplace/add_new', 'AdminController@home_marketplace_edit')->name('admin.home_marketplace_add_new');
+		Route::post('/admin/home_marketplace/update', 'AdminController@home_marketplace_update')->name('admin.home_marketplace_update');
+		Route::get('/admin/home_marketplace/edit/{id}', 'AdminController@home_marketplace_edit')->where('id', '[0-9]+')->name('admin.home_marketplace_edit');
+		Route::post('/admin/home_marketplace/upload_attach/{id}', 'AdminController@home_marketplace_upload_attach')->name('admin.home_marketplace_upload_attach');
+		Route::post('/admin/home_marketplace/upload_logo/{id}', 'AdminController@home_marketplace_upload_logo')->name('admin.home_marketplace_upload_logo');
+		Route::get('/admin/home_teampicks', 'AdminController@home_teampicks')->name('admin.home_teampicks');
+		Route::get('/admin/home_teampicks/edit/{id}', 'AdminController@home_teampicks_edit')->where('id', '[0-9]+')->name('admin.home_teampicks_edit');
+		Route::post('/admin/home_teampicks/update', 'AdminController@home_teampicks_update')->name('admin.home_teampicks_update');
+		Route::get('/admin/home_teampicks/add_new', 'AdminController@home_teampicks_edit')->name('admin.home_teampicks_add_new');
+		Route::post('/admin/home_teampicks/upload_logo/{id}', 'AdminController@home_teampicks_upload_logo')->name('admin.home_teampicks_upload_logo');
+		Route::post('/admin/home_teampicks/upload_attach/{id}', 'AdminController@home_teampicks_upload_attach')->name('admin.home_teampicks_upload_attach');
+		Route::get('/admin/home_featured_provider', 'AdminController@home_featured_provider')->name('admin.home_featured_provider');
+		Route::get('/admin/home_featured_provider/add_new', 'AdminController@home_featured_provider_edit')->name('admin.home_featured_provider_add_new');
+		Route::get('/admin/home_featured_provider/edit/{id}', 'AdminController@home_featured_provider_edit')->where('id', '[0-9]+')->name('admin.home_featured_provider_edit');
+		Route::post('/admin/home_featured_provider/upload_attach/{id}', 'AdminController@home_featured_provider_upload_attach')->name('admin.home_featured_provider_upload_attach');
+		Route::post('/admin/home_featured_provider/update', 'AdminController@home_featured_provider_update')->name('admin.home_featured_provider_update');
+
+		Route::get('/admin/preview/home/{url}/{model}', 'AdminController@preview_home')->name('admin.preview_home');
+		Route::get('/admin/preview_check/{url}/{model}/{check}', 'AdminController@preview_check')->name('admin.preview_check');
+	});
 
 	$communities = Community::get();
 	$datacontroller = new DataController();
