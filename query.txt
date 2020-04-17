@@ -447,3 +447,4 @@ ALTER TABLE `databroker_new`.`admin` ADD COLUMN `username` VARCHAR(64) NOT NULL 
 ALTER TABLE `databroker_new`.`admin` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `role`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
 
 INSERT INTO `databroker_new`.`admin` (`username`, `firstname`, `lastname`, `email`, `password`, `role`) VALUES ('greencj', 'Chris', 'Green', 'cg@jts.ec', '769fc2d36bb6b68456d26498f82b5d52', '0');
+INSERT INTO `databroker_new`.`admin` (`username`, `firstname`, `lastname`, `email`, `password`, `role`) VALUES ('superadmin', 'super', 'admin', 'hello@databroker.global', 'be3a2e2ef7355f928a7e59582a181bd8', '0'); 
