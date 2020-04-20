@@ -82,21 +82,23 @@
                             <a class="dropdown-item" href="{{ route('account.profile') }}"> {{ trans('home.profile_account_info') }} </a>
                             <!-- <a class="dropdown-item" href="{{ route('account.wallet') }}"> {{ trans('home.wallet') }} </a> -->
                             <div class="dropdown-divider"></div>
-                            <h5> {{ trans('home.me_buyer') }} </h5>
                             @php
                               $bids = \App\Models\Bid::where('userIdx', Auth::user()->userIdx)->get();
-                            @endphp
-                            @if(count($bids))
-                            <a class="dropdown-item" href="{{ route('profile.buyer_bids') }}"> {{ trans('home.bids') }} </a>
-                            @endif
-                            @php
                               $purchases = \App\Models\Purchase::where('userIdx', Auth::user()->userIdx)->get();
                             @endphp
-                            @if(count($purchases))
-                            <a class="dropdown-item" href="{{ route('account.purchases') }}"> {{ trans('home.purchases') }} </a>
+                            @if(count($bids) || count($purchases))
+                              <h5> {{ trans('home.me_buyer') }} </h5>
+                              @if(count($bids))
+                              <a class="dropdown-item" href="{{ route('profile.buyer_bids') }}"> {{ trans('home.bids') }} </a>
+                              @endif
+                              @if(count($purchases))
+                              <a class="dropdown-item" href="{{ route('account.purchases') }}"> {{ trans('home.purchases') }} </a>
+                              @endif
+                              <div class="dropdown-divider"></div>
                             @endif
-                            <div class="dropdown-divider"></div>
+                            @if(count($bids) || count($purchases))
                             <h5> {{ trans('home.me_seller') }} </h5>
+                            @endif
                             <a class="dropdown-item" href="{{ route('account.company') }}"> {{ trans('home.company_profile') }} </a>
                             <a class="dropdown-item" href="{{ route('dxc.data_exchange_controller') }}"> {{ trans('home.data_exchange_controller') }} </a>
                             <a class="dropdown-item" href="{{ route('data_offers_overview' )}}"> {{ trans('home.data_offers') }} </a>
