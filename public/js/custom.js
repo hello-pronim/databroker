@@ -431,7 +431,7 @@ $(document).ready(function(){
                             '<div class="card card-profile card-plain mb-0">' +
                                 '<div class="card-header">' +
                                     '<a href="/data/'+elem.offerIdx+'">' ;
-                        if(elem.offerImage){
+                        if(elem.offerImage && elem.offerImage != "null"){
                             list +='<img class="img" src="/'+elem.offerImage+'" />';
                         }else{
                             list +='<img class="img" src="/uploads/offer/default.png" />';
