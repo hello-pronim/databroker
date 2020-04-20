@@ -2100,15 +2100,29 @@ body .select2-search--dropdown {
     background-position: center center;
     background-repeat: no-repeat;
     transition: 0.3s;
+    padding: 5px;
 }
 .gallery .thumb.active {
 	transform: scale(1.2); 
 	z-index: 999;
 }
-
-.gallery .thumb:hover {
+.gallery .thumb-container{
+	cursor: pointer;
+}
+.gallery .thumb-container:hover {
 	transform: scale(1.2); 
 	z-index: 1000;
+}
+.gallery .thumb-title{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0px;
+	color: white;
+	font-weight: bold;
 }
 
 .column3 .thumb-container {

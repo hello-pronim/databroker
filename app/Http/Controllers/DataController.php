@@ -122,12 +122,13 @@ class DataController extends Controller
             }
             $theme_json = json_encode($theme_map);
 
-            $gallery = Gallery::where('category', 'community')->get();
+            $gallery = Gallery::join('communities', 'communities.communityIdx', '=', 'gallery.content')->where('category', 'community')->get();
             $gallery_map = [];
             foreach ($gallery as $g_row) {
                 $id = $g_row['id'];
                 $category = $g_row['category'];
                 $content = $g_row['content'];
+                $communityName = $g_row['communityName'];
                 $subcontent = $g_row['subcontent'];
                 $sequence = $g_row['sequence'];
                 $path = $g_row['path'];
@@ -137,7 +138,8 @@ class DataController extends Controller
                     $gallery_map[$content] = [];
                 if (!isset($gallery_map[$content][$subcontent]))
                     $gallery_map[$content][$subcontent] = [];
-                $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'url' => $path, 'thumb' => $thumb];
+                $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'community'=>$communityName, 'url' => $path, 'thumb' => $thumb];
+                //$gallery_map[$content][$sequence] = ['id' => $id, 'url' => $path, 'thumb' => $thumb];
             }
 
             // die(json_encode($gallery_map));
