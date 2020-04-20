@@ -62,7 +62,7 @@
 		                            <div class="form-check">
 		                                <label class="form-check-label">
 		                                    <input type="checkbox" class="form-check-input" name="license_seller">
-		                                    <p class="text-black fs-16 lh-24">{!! trans('data.accept_license_seller') !!}</p>
+		                                    <p class="text-black fs-16 lh-24">{!! trans('data.accept_license_seller', ['url'=>$product->productLicenseUrl]) !!}</p>
 		                                    <span class="form-check-sign">
 		                                        <span class="custom-check check"></span>
 		                                    </span>

@@ -92,6 +92,7 @@ return [
     'contact_data_provider' => 'Questions about this data? <br> Or want to request specific data from this provider?',
 
     'explore_data_offer' => 'Explore data offers in',
+    'explore_data_offer_from' => 'Explore data offers from',
     'all_themes' => 'All themes',
     'all_regions' => 'Show All',
     'Back_to_data_offer_overview' => 'Back to data offer overview',

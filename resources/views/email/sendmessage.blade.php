@@ -118,7 +118,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-10">
-															Email: {{$data['email']}} 
+															{{$data['email']}} 
 														</td>
 													</tr>
 													<tr>

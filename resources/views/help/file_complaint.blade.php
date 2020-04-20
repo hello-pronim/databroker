@@ -16,7 +16,7 @@
             <div class="blog-header mgt60">
                 <div class="row">
                     <div class="col-lg-9 col-sm-12">
-                        <h1 class="h1-small">Problem with a purchase?</h1>
+                        <h1>Problem with a purchase?</h1>
                         <p class="para">If there’s a mismatch between data you have purchased and how it was described, we recommend that you first contact the seller directly to discuss the problem, and try to come to an agreement about how to proceed.</p>
                         <p class="fs-18">In situations where you can’t resolve the issue amicably, you can file a complaint against the seller <b>within 30 days of your purchase</b>. </p>
                     </div>
@@ -39,26 +39,16 @@
                     </div>
                 </div>
                 <div id="usecase-list" class="mgh30">
-                    <div class="row">
-                        <div class="col-md-8 col-sm-12">
-                                <div class="card card-profile card-plain">                  
-                                    <div class="card-header holder">        
-                                        <img class="img" src="{{ asset('images/usecases/shop_80_cvc@2x.png') }}" />
-                                        <div class="small-image-overlay"></div>
-                                    </div>
-                                </div>  
-                        </div>  
-                    </div>
                     <div class="row">                
                         <div class="col-md-12">
-                            <h1 class="h1-small">Why the time limit?</h1>
+                            <h3 class="text-bold">Why the time limit?</h3>
                             <p class="fs-18">We believe that a 30-day warranty period gives you the time to check the data and make sure it’s what you expected to receive.</p>
                             <p class="fs-18"> If there is a mismatch, you should contact the seller as soon as possible to discuss the problem, keeping in mind the deadline to file a complaint.   </p>
                         </div>                
                     </div> 
                     <div class="row">                
                         <div class="col-md-12">
-                            <h1 class="h1-small">What happens when I file a complaint? </h1>
+                            <h3 class="text-bold">What happens when I file a complaint? </h3>
                             <p class="fs-18">When you file a complaint, the first action we take is to freeze the seller’s earnings related to that sale. </p>
                             <p class="fs-18">A Databroker mediator then investigates the complaint, working with you and the seller to try to come to an agreement. If an agreement can’t be reached, the mediator will make a final, binding decision.</p>
                             <p class="fs-18">If the complaint is deemed valid, we’ll reimburse the amount you paid.</p>

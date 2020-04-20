@@ -138,7 +138,7 @@
 						                	<div class="col col-4">
 						                		<div class="text-right">
 						                			@if(!$product->productPrice)
-						                			<p class="price">N/A</p>
+						                			<p class="price">Make your best bid</p>
 						                			@elseif($product->productPrice>0 && $product->productBidType != 'free')
 						                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }} <span class="color-black">(tax incl.)</span></p>
 						                			@else
@@ -210,7 +210,7 @@
 	        			<a href="{{route('data.send_message', ['id'=> $offer['offerIdx']])}}">
 	        				<button  type="button" class="secondary-btn mgh25">CONTACT THE DATA PROVIDER</button>
 	        			</a><br/>
-	        			<a href="{{route('data.offer_company_filter', ['community'=>str_replace( ' ', '_', strtolower($offer['community']->communityName)), 'companyIdx'=>$user_info->companyIdx])}}">
+	        			<a href="{{route('data.company_offers', ['companyIdx'=>$user_info->companyIdx])}}">
 	        				View more data from {{ $offer['provider']->companyName }}
 	        			</a>
 	        		</div>

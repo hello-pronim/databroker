@@ -13,7 +13,7 @@
                     <div class="col-md-4">                                
                     </div>
                     <div class="col-md-4">                                
-                        <a href="{{ route('data_details', [ 'id' => $offer['offerIdx'] ] ) }}"><button class="customize-btn">{{ trans('data.continue') }}</button></a>
+                        <a href="{{ route('data_details', [ 'id' => $offerIdx ] ) }}"><button class="customize-btn">{{ trans('data.continue') }}</button></a>
                     </div>
                     <div class="col-md-4">                                
                     </div>

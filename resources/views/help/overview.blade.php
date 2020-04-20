@@ -70,12 +70,6 @@
                         </a>
                         
                     </div>
-                    <div class="col-lg-4 mgh30">
-                        <div class="flex-center flex-vertical help-item-container small">
-                            <div class="divider-green"></div>
-                            <p class="h3 text-center">INTERESTED IN OUR <br/>CUSTOM AND WHITELABEL <br/>SOLUTIONS?</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>  

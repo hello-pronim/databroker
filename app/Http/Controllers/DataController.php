@@ -90,7 +90,7 @@ class DataController extends Controller
 
         }
 
-        if(  strpos($prev_route, 'data_community.') === false ){
+        if(  $prev_route && strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
         }
     
@@ -314,26 +314,21 @@ class DataController extends Controller
         return view('data.category', compact($data));
     }
 
-    public function offer_company_filter(Request $request){
+    public function company_offers(Request $request){
 
         $communities = Community::get();
         $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
         $themes = Theme::get();
         $per_page = 11;
-        
-        foreach ($communities as $key => $community) {
-            if(str_replace( ' ', '_', strtolower($community->communityName)) == $request->community)
-                $category = $community->communityName;
-        }
+
+        $company = Company::where('companyIdx', $request->companyIdx)->get()->first();
         $curTheme = Theme::where('themeIdx', $request->theme)->get()->first();
-        session(['curCommunity'=>$category]);
 
         $dataoffer = Offer::with(['region'])
                     ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
                     ->leftjoin('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                     ->leftjoin('users', 'users.userIdx', '=', 'providers.userIdx')
-                    ->where('communities.communityName', ucfirst($category))
                     ->where('users.companyIdx', $request->companyIdx)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')            
@@ -345,7 +340,6 @@ class DataController extends Controller
                     ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
                     ->leftjoin('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                     ->leftjoin('users', 'users.userIdx', '=', 'providers.userIdx')
-                    ->where('communities.communityName', ucfirst($category))
                     ->where('users.companyIdx', $request->companyIdx)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')
@@ -353,8 +347,8 @@ class DataController extends Controller
                     ->get()
                     ->count();
 
-        $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
-        return view('data.category', compact($data));
+        $data = array('company', 'dataoffer', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
+        return view('data.company_offers', compact($data));
     }
 
     public function offer_region_filter(Request $request){
@@ -1000,7 +994,7 @@ class DataController extends Controller
 
     public function post_send_message(Request $request){    
         $validator = Validator::make($request->all(),[
-            'email' => 'required|max:255|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'email' => 'required|max:255',
             'message' => 'required|min:5|max:1000',
         ]);
 
@@ -1034,7 +1028,7 @@ class DataController extends Controller
         $data['email'] = $email;
 
         $this->sendEmail("sendmessage", [
-            'from'=>$email, 
+            'from'=>'cg@jts.ec', 
             'to'=>$seller['email'], 
             'name'=>'Databroker', 
             'subject'=>'You’ve received a message',
@@ -1043,6 +1037,21 @@ class DataController extends Controller
 
         $data = array('offer', 'seller');
 
+        return redirect(route('data.send_message_success', ['id'=>$offer['offerIdx']]));
+    }
+
+    public function send_message_success(Request $request){
+        $user = $this->getAuthUser();
+        if(!$user)
+            return redirect('/login')->with('target', 'contact the data provider');
+        $offerIdx = $request->id;
+        $seller = Offer::join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->where('offers.offerIdx', $request->offerIdx)
+                        ->where('users.userIdx', $user->userIdx)
+                        ->get()
+                        ->first();
+        $data = array('offerIdx', 'seller');
         return view('data.send_message_success', compact($data));
     }
 

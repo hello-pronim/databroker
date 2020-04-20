@@ -105,7 +105,7 @@
 												<span class="currency">€ </span>{{ round($product['productPrice']) }}
 											</span>
 											<span>(tax incl.)</span>
-											@else
+											@elseif($product['productBidType']=="bidding_only")
 											N/A
 											@endif
 										</div>
