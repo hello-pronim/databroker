@@ -270,7 +270,7 @@ $(document).ready(function(){
     	prev.addClass('current back');
         window.scrollTo(0, 0); 
     });
-    function isUrl(s) {
+    function validateURL(s) {
        var regexp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
        return regexp.test(s);
     }
@@ -300,7 +300,7 @@ $(document).ready(function(){
                 }else{
                     $(_this).find('.error_notice.'+elem_name).show();
                 }                
-            } if(!isUrl($("#licenseUrl").val())){
+            } if(!validateURL($("#licenseUrl").val())){
                 $(_this).find('.error_notice.licenceUrl').show();
             } if(bidType=="no_bidding" && parseFloat($('input[name="no_bidding_price"]').val())<0.5){
                 $(_this).find('.error_notice.no_bidding_price_min').show();
