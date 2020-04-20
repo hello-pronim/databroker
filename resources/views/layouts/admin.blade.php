@@ -171,14 +171,14 @@
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                                 </span>
                                 <ul class="subsider_ul media" style="display: none;">
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 1 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Geographics</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 2 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Environment</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 7 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Transport</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 3 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;People</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 5 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Agriculture</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 6 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Energy</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 8 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Economy</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 9 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Supply Chain</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.media', [ 'id' => 1 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Geographics</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.media', [ 'id' => 2 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Environment</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.media', [ 'id' => 7 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Transport</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.media', [ 'id' => 3 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;People</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.media', [ 'id' => 5 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Agriculture</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.media', [ 'id' => 6 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Energy</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.media', [ 'id' => 8 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Economy</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.media', [ 'id' => 9 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Supply Chain</a></li>
                                 </ul>
                             </li>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">

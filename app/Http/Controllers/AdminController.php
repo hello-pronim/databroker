@@ -13,6 +13,7 @@ use App\Models\Community;
 use App\Models\Offer;
 use App\Models\Business;
 use App\Models\Theme;
+use App\Models\Gallery;
 use App\Models\OfferTheme;
 use App\Models\OfferSample;
 use App\Models\OfferCountry;
@@ -530,6 +531,27 @@ class AdminController extends Controller
         $board = Article::where('articleIdx', $id)->first(); 
         $data = array('id', 'board');
         return view('admin.updates_edit', compact($data));
+    }
+
+    public function media_library(Request $request){
+        $communityIdx = $request->id;
+        $communityName = Community::where('communityIdx', $request->id)->pluck('communityName')->first();
+        $images = Gallery::where('content', $request->id)->where('subcontent', '=', null)->get();
+        $data = array('images', 'communityIdx', 'communityName');
+        return view('admin.media_library', compact($data));
+    }
+
+    public function add_media(Request $request){
+        $communityIdx = $request->cid;
+        $communityName = Community::where('communityIdx', $request->cid)->pluck('communityName')->first();
+        $data = array('communityIdx', 'communityName');
+        return view('admin.media_add_new', compact($data));
+    }
+    public function edit_media(Request $request){
+        $communityIdx = $request->cid;
+        $communityName = Community::where('communityIdx', $request->cid)->pluck('communityName')->first();
+        $data = array('communityIdx', 'communityName');
+        return view('admin.media_edit', compact($data));
     }
 
     public function preview_home($url, $model)

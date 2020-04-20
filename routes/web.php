@@ -133,6 +133,11 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::post('/admin/usecases/update', 'AdminController@usecases_update')->name('admin.usecases.update');
 		Route::post('/admin/usecases/upload_attach/{articleIdx}', 'AdminController@usecases_upload_attach')->name('admin.usecases_upload_attach');
 		Route::get('/admin/usecases/edit/{id}/{communityIdx}', 'AdminController@usecases_edit')->where('id', '[0-9]+')->name('admin.usecases_edit');
+		//admin route media
+		Route::get('/admin/media/{id}', 'AdminController@media_library')->where('id', '[0-9]+')->name('admin.media');
+		Route::get('/admin/media/add_new/{cid}', 'AdminController@add_media')->where('cid', '[0-9]+')->name('admin.add_media');
+		Route::get('/admin/media/edit/{cid}/{mid}', 'AdminController@edit_media')->where('cid', '[0-9]+')->where('mid', '[0-9]+')->name('admin.edit_media');
+
 		//admin route updates
 		Route::get('/admin/updates', 'AdminController@updates')->name('admin.updates');
 		Route::get('/admin/updates/add_new', 'AdminController@updates_add_new')->name('admin.updates_add_new');
