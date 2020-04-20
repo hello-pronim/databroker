@@ -170,7 +170,7 @@ class ProfileController extends Controller
         $fields = [
             'companyName' => ['required', 'string', 'max:255'],
             'regionIdx' => ['required', 'integer'],
-            'companyURL' => ['required', 'string', 'max:255', "regex: /\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i"],
+            'companyURL' => ['required', 'string', 'max:255', "regex: #[-a-zA-Z0-9@:%_\+.~\#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~\#?&//=]*)?#si"],
             'companyVAT'=>['required', 'string', 'max:255']
         ];
         $messages = [
