@@ -1366,6 +1366,15 @@ class DataController extends Controller
                         ->where('userIdx', $user->userIdx)->get()->first();
 
             $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
+            $product['from'] = date('Y-m-d');
+            if($product->productAccessDays=="day")
+                $product['to'] = date('Y-m-d', strtotime('+1 day', strtotime($product['from'])));
+            else if($product->productAccessDays=="week")
+                $product['to'] = date('Y-m-d', strtotime('+7 day', strtotime($product['from'])));
+            else if($product->productAccessDays=='month')
+                $product['to'] = date('Y-m-d', strtotime('+1 month', strtotime($product['from'])));
+            else if($product->productAccessDays=='year')
+                $product['to'] = date('Y-m-d', strtotime('+1 year', strtotime($product['from'])));
 
             $data['seller'] = $seller;
             $data['buyer'] = $buyer;

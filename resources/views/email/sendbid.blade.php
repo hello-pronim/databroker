@@ -119,15 +119,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															@if($data['product']->productAccessDays=="day")
-																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 day', strtotime($data['product']->created_at)))}}
-															@elseif($data['product']->productAccessDays=="week")
-																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+7 day', strtotime($data['product']->created_at)))}}
-															@elseif($data['product']->productAccessDays=='month')
-																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 month', strtotime($data['product']->created_at)))}}
-															@elseif($data['product']->productAccessDays=='year')
-																From : {{date('d/m/Y', strtotime($data['product']->created_at))}} to {{date('d/m/Y', strtotime('+1 year', strtotime($data['product']->created_at)))}}
-															@endif
+															From : {{date('d/m/Y', strtotime($data['product']['from']))}} to {{date('d/m/Y', strtotime($data['product']['to']))}}
 														</td>
 													</tr>
 													<tr>

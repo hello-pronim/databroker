@@ -528,8 +528,12 @@ $(document).ready(function(){
         $(this).parent().find('.char-counter span').eq(1).text(parseInt( text_length ) - text.length);
     });
 
-    $("#community_box").change(function(){
-        $("#community_title i").attr("data-original-title", $(this).find("option:selected").attr("tooltip-text"));
+    // $("#community_box").change(function(){
+    //     $("#community_title i").attr("data-original-title", $(this).find("option:selected").attr("tooltip-text"));
+    // });
+    $("#community_title i").hover(function(){
+        $('#'+$(this).attr('aria-describedby')+' .tooltip-inner').html($('.tooltip-text').html());
+        $('#'+$(this).attr('aria-describedby')+' .tooltip-inner').css('min-width', '600px');
     });
 
     function product_period(){

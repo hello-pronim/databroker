@@ -71,7 +71,7 @@
 		        				<li>The data provider can accept or reject your bid. When they do, you’ll receive an email with their response.</li>
 		        				<li>Bids are not binding, so even if the data provider accepts your bid, you can still decide whether or not to buy the data at the agreed price.</li>
 		        			</ul>
-		        			<p class="para">You can follow up on your bids in the <a href="{{route('profile.buyer_bids')}}">Bids sent</a> section of your account.</p>
+		        			<p class="para">Remember that you can follow up on your bids in the <a href="{{route('profile.buyer_bids')}}">Bids</a> section of your account.</p>
 		        		</div>
 	        		</div>
 	        	</div>

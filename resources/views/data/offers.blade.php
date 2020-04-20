@@ -94,7 +94,10 @@
 
 	                    <br>
 	                    <div class=" description-header flex-vcenter">
-							<div id="community_title" class="h4_intro">{{ trans('pages.in_which_community') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="Please select maximum 1 community">help</i><br>
+							<div id="community_title" class="h4_intro">{{ trans('pages.in_which_community') }} <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{!! trans('description.which_community_tooltip') !!}">help</i><br>
+							<div class="tooltip-text" style="display: none">
+								{!! trans('description.which_community_tooltip') !!}
+							</div>
 							<p class="para text-left">Please select maximum 1 community</p>
 							</div>
 						</div>
