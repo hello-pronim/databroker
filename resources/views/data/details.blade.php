@@ -32,8 +32,11 @@
 	        <div class="blog-content">
 	        	<div class="row">
 	        		<div class="col-lg-8">
+	        			@if( file_exists(public_path() . '/'. $offer['offerImage'] ) && $offer['offerImage'] )
 	        			<img class="blog-img" src="{{ asset($offer['offerImage']) }}" />
-	        		      	
+	        		    @else
+	        		    <img class="img" src="{{ asset('uploads/offer/default.png') }}" />
+	        		    @endif  	
 			            <div class="nav-tabs-wrapper mt-30">
 			                <ul class="nav nav-tabs">
 			                	@if( $offer['offerDescription'] )
@@ -60,7 +63,7 @@
 			            </div>				        
 				        <div class="link-content">
 							@if( $offer['offerDescription'] )
-							<div class="mobile-scrolling" id="description"></div>
+							<p class="mobile-scrolling" id="description"></p>
 				            <div class="link-box" id="description">
 				            	<h2>{{ trans('pages.description') }}</h2>
 				                <p>{!! nl2br($offer['offerDescription']) !!}</p>
@@ -75,7 +78,7 @@
 				            </div>
 				            @endif
 							@if( $offer['usecase'] )
-							<div class="mobile-scrolling" id="use_cases"></div>
+							<p class="mobile-scrolling" id="use_cases"></p>
 				            <div class="link-box" id="use_cases">
 				                <h2>{{ trans('pages.use_case') }}</h2>
 				                @if( $offer['usecase'] )
@@ -84,7 +87,7 @@
 				            </div>
 				            @endif
 							@if( sizeof($offersample)>0 )
-							<div class="mobile-scrolling" id="samples"></div>
+							<p class="mobile-scrolling" id="samples"></p>
 				            <div class="link-box" id="samples">
 				                <h2>{{ trans('pages.samples') }}</h2>				               
 				                @foreach($offersample as $sample)
@@ -95,8 +98,12 @@
 				                	</div>	
 				                	@endif					                	
 				                	@if( explode("-", $sample['sampleType'])[0] == 'image')				                	
-				                		<div class="image">					                		
+				                		<div class="image">				
+				                			@if( file_exists(public_path() . '/uploads/offersample/'.$sample['sampleFileName']) && $sample['sampleFileName'] )	
 					                		<img src="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}">
+					                		@else
+					                		<img class="img" src="{{ asset('uploads/default.png') }}" />
+					                		@endif
 					                		<p>{{$sample['sampleDescription']}}</p>
 				                		</div>
 				                	@endif				                	
@@ -104,7 +111,7 @@
 				            </div>
 				            @endif
 							@if( sizeof($products ) > 0 )
-							<div class="mobile-scrolling" id="this_data"></div>
+							<p class="mobile-scrolling" id="this_data"></p>
 				            <div class="link-box" id="this_data">
 				                <h2>Buy data</h2>
 				                <p>If the data provider has already defined data products that can be purchased directly, you’ll find these below. When you buy a data product, you’ll receive an email link to access or download the data. 
@@ -200,8 +207,10 @@
 	        			<label class="author"><a target="_blank" href="https://{{ $offer['provider']->companyURL }}">{{ $offer['provider']->companyURL }}</a></label>
 	        			@endif
 	        			<div class="author_avatar">	        				
-	        				@if($offer['provider']->companyLogo)
+	        				@if( file_exists( public_path() . '/uploads/company/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
 	        				<img src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}">
+	        				@else
+	        				<img class="img" src="{{ asset('uploads/company/default.png') }}" />
 	        				@endif
 	        			</div>	        			
 	        			<p class="short-desc">

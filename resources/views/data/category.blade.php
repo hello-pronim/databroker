@@ -1,31 +1,7 @@
 @extends('layouts.app')
 
-@if($category == 'Geographics')
-	@section('title', trans('home.geographics_meta_title'))
-	@section('description', trans('home.geographics_meta_desc'))
-@elseif($category == 'Environment')
-	@section('title', trans('home.environment_meta_title'))
-	@section('description', trans('home.environment_meta_desc'))
-@elseif($category == 'Transport')
-	@section('title', trans('home.transport_meta_title'))
-	@section('description', trans('home.transport_meta_desc'))
-@elseif($category == 'People')
-	@section('title', trans('home.people_meta_title'))
-	@section('description', trans('home.people_meta_desc'))
-@elseif($category == 'Agriculture')
-	@section('title', trans('home.agriculture_meta_title'))
-	@section('description', trans('home.agriculture_meta_desc'))
-@elseif($category == 'Energy')
-	@section('title', trans('home.energy_meta_title'))
-	@section('description', trans('home.energy_meta_desc'))
-@elseif($category == 'Economy')
-	@section('title', trans('home.economy_meta_title'))
-	@section('description', trans('home.economy_meta_desc'))
-@elseif($category == 'Supply Chain')
-	@section('title', trans('home.supply_chain_meta_title'))
-	@section('description', trans('home.supply_chain_meta_desc'))
-@endif
-
+@section('title', trans('home.'.str_replace( ' ', '_', strtolower($category) ).'_meta_title'))
+@section('description', trans('home.'.str_replace( ' ', '_', strtolower($category) ).'_meta_desc'))
 
 @section('additional_css')	
 	<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
@@ -117,7 +93,11 @@
 					<div class="card card-profile card-plain mb-0">					
 						<div class="card-header">
 							<a href="/data/{{ $offer['offerIdx'] }}">
+								@if( file_exists( public_path() . '/'. $offer['offerImage']) && $offer['offerImage'] )
 								<img class="img" src="{{ asset($offer['offerImage']) }}" />
+								@else
+								<img class="img" src="{{ asset('uploads/offer/default.png') }}" />
+								@endif
 							</a>
 						</div>
 						<div class="card-body text-left">
@@ -132,7 +112,11 @@
 							@else     
 							<a href="https://{{ $offer['provider']->companyURL }}">
 							@endif
+								@if( file_exists( public_path() . '/uploads/company/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
 								<img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" />
+								@else
+								<img class="img" src="{{ asset('uploads/company/default.png') }}" />
+								@endif
 							</a>
 						</div>
 					</div>	

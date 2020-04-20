@@ -430,9 +430,13 @@ $(document).ready(function(){
                         '<div class="col-md-4 mb-20">' +
                             '<div class="card card-profile card-plain mb-0">' +
                                 '<div class="card-header">' +
-                                    '<a href="/data/'+elem.offerIdx+'">' +
-                                        '<img class="img" src="/'+elem.offerImage+'" />'+
-                                    '</a>'+
+                                    '<a href="/data/'+elem.offerIdx+'">' ;
+                        if(elem.offerImage){
+                            list +='<img class="img" src="/'+elem.offerImage+'" />';
+                        }else{
+                            list +='<img class="img" src="/uploads/offer/default.png" />';
+                        }
+                            list += '</a>'+
                                 '</div>'+
                                 '<div class="card-body text-left">'+
                                     '<h4 class="offer-title card-title">'+elem.offerTitle+'</h4>'+
@@ -444,16 +448,29 @@ $(document).ready(function(){
                                     }else{
                                         list += '<span>'+elem.regionName+'</span>';
                                     }    
-                                    if(elem.provider.companyURL.indexOf('https')>-1)
-                                        list+='</h6>'+ '<a href="'+elem.provider.companyURL+'"><img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" /></a>'+ 
+                                    if(elem.provider.companyURL.indexOf('https')>-1){
+                                        list+='</h6>'+ '<a href="'+elem.provider.companyURL+'">';
+                                        if(elem.provider.companyLogo){
+                                            list+='<img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" />';    
+                                        }else{
+                                            list+='<img class="img" src="/uploads/company/default.png" />';    
+                                        }
+                                        list+='</a>'+ 
                                         '</div>'+
                                     '</div>'+
                                 '</div>';   
-                                    else
-                                        list+='</h6>'+ '<a href="https://'+elem.provider.companyURL+'"><img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" /></a>'+
+                                    }else{
+                                        list+='</h6>'+ '<a href="https://'+elem.provider.companyURL+'">'
+                                        if(elem.provider.companyLogo){
+                                            list+='<img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" />';    
+                                        }else{
+                                            list+='<img class="img" src="/uploads/company/default.png" />';    
+                                        }
+                                        list+='</a>'+ 
                                         '</div>'+
                                     '</div>'+
-                                '</div>';                    
+                                '</div>'; 
+                                }                   
                 });
 
                 if( theme_text != 'All themes' ){

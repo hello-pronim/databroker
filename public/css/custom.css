@@ -985,11 +985,11 @@ a.dropdown-toggle:after{
 	position: absolute;
 	top: 0px;	
 }
-.blog-content .link-content .link-box:first-child{
+.blog-content .link-content div.link-box:first-of-type{
 	padding-top: 0px;
 }
-.blog-content .link-content .link-box:first-child:before{
-	content: none;
+.blog-content .link-content div.link-box:first-of-type:before{
+	display: none;
 }
 .blog-content .link-content .link-box h2{
 	font-size: 30px;

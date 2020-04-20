@@ -46,9 +46,11 @@
                         <div class="col info-text">{{ $company->companyVAT?$company->companyVAT:"" }}</div>
                     </div>
                     <div class="row">                            
-                        <div class="col companylogo">
-                            @if($company->companyLogo)
+                        <div class="col companylogo">                            
+                            @if( file_exists( public_path() . '/uploads/company/'.$company->companyLogo) && $company->companyLogo )
                             <img src="{{ asset('/uploads/company/'.$company->companyLogo) }}">
+                            @else
+                            <img class="img" src="{{ asset('/uploads/company/default.png') }}" />
                             @endif
                         </div>
                     </div>
