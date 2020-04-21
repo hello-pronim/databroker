@@ -36,10 +36,10 @@ var hidden_communityIdx = $('#hidden_communityIdx').val();
                     orderable: false,
                     render: function(data, type, full, meta) {
                         return `
-                            <a href="/admin/media/edit/`+ hidden_communityIdx + '/' + data + `" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
+                            <a href="/admin/media/edit/` + data + `" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
                             <i class="la la-edit"></i>
                             </a>
-                            <a href="#" class="btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" onclick="attach_record('`+data+`');"><i class="la la-trash" title="Delete image"></i>
+                            <a href="#" class="btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" onclick="attach_record('`+data+`');"><i class="la la-image" title="Upload image"></i>
                             </a>`;
                     },
                 },
@@ -98,7 +98,7 @@ $("#upload_attach").change(function(event){
         headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "/admin/usecases/upload_attach/" + attach_record_idx,
+        url: "/admin/media/upload_attach/" + attach_record_idx,
         type: 'POST',
         data: data,
         contentType: false,

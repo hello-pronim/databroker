@@ -252,6 +252,15 @@ class HelpController extends Controller
         $complaint['userIdx'] = $user->userIdx;
         $complaint['complaintTarget'] = $data['companyName'];
         $complaint['complaintContent'] = $message;
+        $this->sendEmail("complaint", [
+            'from'=>"cg@jts.ec", 
+            'to'=>"peterjackson0120@gmail.com", 
+            'name'=>'Databroker', 
+            'subject'=>'Someone has sent a complaint on Databroker',
+            'data'=>$data
+        ]);
+        var_dump(env('DB_TEAM_EMAIL'));
+        exit;
         Complaint::create($complaint);
 
         $this->sendEmail("complaint", [

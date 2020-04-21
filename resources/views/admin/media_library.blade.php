@@ -10,7 +10,7 @@
     <div class="m-subheader ">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h3 class="m-subheader__title m-subheader__title--separator"><b style="color: #9102f7;">{{ $communityName }}</b> Images List</h3>
+                <h3 class="m-subheader__title m-subheader__title--separator"><b style="color: #9102f7;">CMS Pictures Library</h3>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item">
-                                <a href="{{ route('admin.add_media', [ 'cid' => $communityIdx ]) }}" class="btn btn-focus m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                                <a href="{{ route('admin.add_media') }}" class="btn btn-focus m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
                                     <span>
                                         <i class="la la-cart-plus"></i>
                                         <span>New image</span>
@@ -39,6 +39,8 @@
                         <tr>
                             <th>#</th>
                             <th>Thumbnails</th>
+                            <th>Community</th>
+                            <th>Hero</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -51,6 +53,8 @@
                                         {{ asset($image->thumb) }}
                                     @endif
                                 </td>
+                                <td>{{ $image->communityName }}</td>
+                                <td>{{ $image->subcontent === 0 ? "Yes" : "No" }}</td>
                                 <td>{{ $image->id }}</td>
                             </tr>
                         @endforeach
@@ -59,7 +63,6 @@
             </div>
         </div>
         <input type="file" id="upload_attach" accept=".gif,.jpg,.jpeg,.png" style="display: none;">
-        <input type="hidden" id="hidden_communityIdx" name="hidden_communityIdx" value="{{ $communityIdx }}">
     </div>
 </div>
 

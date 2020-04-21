@@ -534,10 +534,10 @@ class AdminController extends Controller
     }
 
     public function media_library(Request $request){
-        $communityIdx = $request->id;
-        $communityName = Community::where('communityIdx', $request->id)->pluck('communityName')->first();
-        $images = Gallery::where('content', $request->id)->where('subcontent', '=', null)->get();
-        $data = array('images', 'communityIdx', 'communityName');
+        $images = Gallery::join('communities', 'communities.communityIdx', '=', 'gallery.content')
+                            ->orderby('gallery.content', 'asc')
+                            ->get();
+        $data = array('images');
         return view('admin.media_library', compact($data));
     }
 
@@ -552,6 +552,10 @@ class AdminController extends Controller
         $communityName = Community::where('communityIdx', $request->cid)->pluck('communityName')->first();
         $data = array('communityIdx', 'communityName');
         return view('admin.media_edit', compact($data));
+    }
+
+    public function media_upload_attach(Request $request){
+        return "true";
     }
 
     public function preview_home($url, $model)
