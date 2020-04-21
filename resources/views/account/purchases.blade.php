@@ -72,7 +72,7 @@
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 seller">
                                                 <div class="mb-20">
                                                     <h4 class="company">
-                                                        {{$purchase->companyName}}
+                                                        {{$purchase->provider->companyName}}
                                                     </h4>
                                                     <div class="price">
                                                         € {{$purchase->bidPrice!=0 ? $purchase->bidPrice : $purchase->productPrice}} <span class="color-black">(tax incl.)</span>
