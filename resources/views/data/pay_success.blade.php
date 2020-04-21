@@ -21,21 +21,21 @@
                                         Access the API now.<br/>
                                         We also sent you a confirmation via email including a link to the API access information.<br/>
                                         The link expires on {{$expiry_to}} so make sure to access the information before this date.<br/>
-                                        You can also access it via <a href="{{route('account.purchases')}}">purchases in your account</a>.
+                                        You can also access it via <a href="{{route('account.purchases')}}">Purchases</a> in your account.
                                     </p>
                                 @elseif($product->productType=="Stream")
                                     <p class="fs-16">
                                         Access the data stream now.<br/>
                                         We also sent you a confirmation via email including a link to the data stream.<br/>
                                         The link expires on {{$expiry_to}} so make sure to access the data stream before this date.<br/>
-                                        You can also access it via <a href="{{route('account.purchases')}}">purchases in your account</a>.
+                                        You can also access it via <a href="{{route('account.purchases')}}">Purchases</a> in your account.
                                     </p>
                                 @elseif($product->productType=="File")
                                     <p class="fs-16">
                                         Download the file now.<br/>
                                         We also sent you a confirmation via email including a link to download the data.<br/>
                                         The link expires at {{$expiry_to}} so make sure you download the data before this date.<br/>
-                                        You can also access it via <a href="{{route('account.purchases')}}">purchases in your account</a>.
+                                        You can also access it via <a href="{{route('account.purchases')}}">Purchases</a> in your account.
                                     </p>
                                 @endif
                             </div>

@@ -109,7 +109,9 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															Price : €{{$data['product']->productPrice}}
+															Price : @if($data['product']->productPrice) €{{$data['product']->productPrice}}
+																	@else {{ "N/A" }}
+																	@endif
 														</td>
 													</tr>
 													<tr>
