@@ -25,7 +25,14 @@
 		                </tr>
 	        			<tr>
 	        				<td><div class="info-label">{{ trans('data.price') }}: </div></td>
-		                    <td><div class="col info-text text-red">€ {{$bidObj['productPrice']}}</div></td>
+		                    <td>
+		                    	<div class="col info-text text-red">
+		                    	@if($bidObj['productPrice'])
+		                    		€ {{$bidObj['productPrice']}}
+		                    	@else {{ "N/A" }}
+		                    	@endif
+		                		</div>
+		                	</td>
 		                </tr>
 	        			<tr>
 	        				<td><div class="info-label">{{ trans('data.access_to_this_data') }}: </div></td>

@@ -46,7 +46,7 @@
 		            			@else
 		            	<div class="tab-pane" id="tab{{$bid['productIdx']}}">
 		            			@endif
-		            		@if($bid['users'])
+		            		@if(count($bid['users']))
 		            			@foreach($bid['users'] as $bidUser)
 		            		<div class="bid_desc">
 		            			<div class="row">
@@ -133,6 +133,7 @@
 		            			@endif
 		            		</div>		  
 		            			@endforeach
+		            		@else <p class="fs-30 text-bold text-grey text-center">{{ "There are no bids yet." }}</p>
 		            		@endif
 		            	</div>
 		            		@endforeach
