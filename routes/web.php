@@ -172,7 +172,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/admin/home_featured_provider', 'AdminController@home_featured_provider')->name('admin.home_featured_provider');
 		Route::get('/admin/home_featured_provider/add_new', 'AdminController@home_featured_provider_edit')->name('admin.home_featured_provider_add_new');
 		Route::get('/admin/home_featured_provider/edit/{id}', 'AdminController@home_featured_provider_edit')->where('id', '[0-9]+')->name('admin.home_featured_provider_edit');
-		Route::post('/admin/home_featured_provider/upload_attach/{id}', 'AdminController@home_featured_provider_upload_attach')->name('admin.home_featured_provider_upload_attach');
+		Route::get('/admin/home_featured_provider/delete/{id}', 'AdminController@home_featured_provider_delete')->where('id', '[0-9]+')->name('admin.home_featured_provider_delete');
 		Route::post('/admin/home_featured_provider/update', 'AdminController@home_featured_provider_update')->name('admin.home_featured_provider_update');
 
 		Route::get('/admin/preview/home/{url}/{model}', 'AdminController@preview_home')->name('admin.preview_home');

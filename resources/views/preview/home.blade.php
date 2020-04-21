@@ -148,7 +148,11 @@
                 <a href="{{ $featured_provider->logo_url??'' }}">
                     <div class="app-partner-item">
                         <div class="img">
-                            <img src="{{ asset('uploads/home/featured_provider/'.($featured_provider->image??'')) }}" style="height:75px;">
+                            @if(file_exists(public_path("uploads/company/".$featured_provider->companyLogo))) 
+                            <img src="{{ asset('uploads/company/'.$featured_provider->companyLogo) }}" style="height:75px;">
+                            @else 
+                            <img src="{{ asset('uploads/company/default.png') }}" style="height:75px;">
+                            @endif
                         </div>        
                     </div>
                 </a>

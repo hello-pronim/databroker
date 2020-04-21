@@ -18,11 +18,8 @@ class HomeFeaturedProvider extends Model
 
     protected $fillable = [
         'id',
-        'title',
-        'image',
-        'order',
-        'logo_url',
-        'active'
+        'providerIdx',
+        'order'
     ];
 
 }

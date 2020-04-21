@@ -372,7 +372,10 @@ class AdminController extends Controller
 
     public function home_featured_provider()
     {
-        $boards = HomeFeaturedProvider::orderby('order', 'asc')->get();
+        $boards = HomeFeaturedProvider::join('providers', 'providers.providerIdx', '=', 'home_featured_provider.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->orderby('order', 'asc')
+                        ->get();
         $data = array('boards');
         return view('admin.home_featured_provider', compact($data));
     }
@@ -381,40 +384,25 @@ class AdminController extends Controller
     {
         if($id == '')
         {
-            return view('admin.home_featured_provider_edit');
+            $providers = Provider::get();
+            $data = array('providers');
+            return view('admin.home_featured_provider_edit', compact($data));
         }
         else
         {
             $id = $id;
-            $board = HomeFeaturedProvider::where('id', $id)->first(); 
-            $data = array('id', 'board');
+            $providers = Provider::get();
+            $provider = HomeFeaturedProvider::where('id', $id)->first(); 
+            $data = array('id', 'providers', 'provider');
             return view('admin.home_featured_provider_edit', compact($data));
         }
     }
 
-    public function home_featured_provider_upload_attach(Request $request, $id = 0)
+    public function home_featured_provider_delete(Request $request)
     {
-            $getfiles = $request->file('uploadedFile');
-            $fileExtention = $getfiles->getClientOriginalExtension();
-            if($fileExtention == 'svg')
-            {
-                $fileName = $id.'.svg';
-                $getfiles->move(public_path('uploads/home/featured_provider/'), $fileName);
-                HomeFeaturedProvider::find($id)->update(['image' => $fileName, 'active' => 0]);
-                return "true";
-            }
-            else
-            {
-                $fileName = $id.'.jpg';
-                //image compress start
-                $tinyimg = Image::make($getfiles->getRealPath());
-                $tinyimg->resize(500,500, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/home/featured_provider').'/'.$fileName);
-                //image compress end
-                HomeFeaturedProvider::find($id)->update(['image' => $fileName, 'active' => 0]);
-                return "true";
-            }
+        $id = $request->id;
+        $board = HomeFeaturedProvider::where('id', $id)->delete(); 
+        return redirect(route('admin.home_featured_provider'));
     }
 
     public function home_featured_provider_update(Request $request)
@@ -566,7 +554,12 @@ class AdminController extends Controller
         $trendings = HomeTrending::orderby('order', 'asc')->limit(6)->get();
         $marketplaces = HomeMarketplace::orderby('order', 'asc')->limit(3)->get();
         $teampicks = HomeTeamPicks::orderby('order', 'asc')->limit(3)->get();
-        $featured_providers = HomeFeaturedProvider::orderby('order', 'asc')->limit(6)->get();
+        $featured_providers = HomeFeaturedProvider::join('providers', 'providers.providerIdx', '=', 'home_featured_provider.providerIdx')
+                                            ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                            ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                            ->orderby('order', 'asc')
+                                            ->limit(6)
+                                            ->get();
         $top_usecases = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(3)->get();
         $data = array('featured_data', 'trendings', 'marketplaces', 'teampicks', 'featured_providers', 'top_usecases', 'url', 'model');
         return view('preview.home', compact($data));
@@ -578,43 +571,23 @@ class AdminController extends Controller
         {
             if($model == 'HomeFeaturedData')
             {
-                $collections = HomeFeaturedData::get();
-                foreach($collections as $collection)
-                {
-                    $collection->update(['active' => 1]);
-                }
+                HomeFeaturedData::where('active', '=', 0)->update(['active'=>1]);
             }
             if($model == 'HomeFeaturedProvider')
             {
-                $collections = HomeFeaturedProvider::get();
-                foreach($collections as $collection)
-                {
-                    $collection->update(['active' => 1]);
-                }
+                HomeFeaturedProvider::where('active', '=', 0)->update(['active'=>1]);
             }
             if($model == 'HomeMarketplace')
             {
-                $collections = HomeMarketplace::get();
-                foreach($collections as $collection)
-                {
-                    $collection->update(['active' => 1]);
-                }
+                HomeMarketplace::where('active', '=', 0)->update(['active'=>1]);
             }
             if($model == 'HomeTeamPicks')
             {
-                $collections = HomeTeamPicks::get();
-                foreach($collections as $collection)
-                {
-                    $collection->update(['active' => 1]);
-                }
+                HomeTeamPicks::where('active', '=', 0)->update(['active'=>1]);
             }
             if($model == 'HomeTrending')
             {
-                $collections = HomeTrending::get();
-                foreach($collections as $collection)
-                {
-                    $collection->update(['active' => 1]);
-                }
+                HomeTrending::where('active', '=', 0)->update(['active'=>1]);
             }
             return redirect()->route($url);
         }

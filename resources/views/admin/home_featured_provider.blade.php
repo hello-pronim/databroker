@@ -48,9 +48,12 @@
                     <thead>
                         <tr>
                             <th>Thumbnails</th>
-                            <th>Status</th>
-                            <th>Order</th>
-                            <th>Date</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Company Name</th>
+                            <th>Company URL</th>
+                            <th>Company VAT</th>
+                            <th>Published</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -58,15 +61,24 @@
                         @foreach($boards as $board)                      
                             <tr>
                                 <td>
-                                    @if(file_exists(public_path("uploads/home/featured_provider/".$board->image))) 
-                                        {{ asset("uploads/home/featured_provider/".$board->image) }}
+                                    <a href="{{ route('data.company_offers', ['companyIdx'=>$board->companyIdx]) }}">
+                                    @if(file_exists(public_path("uploads/company/".$board->companyLogo))) 
+                                        <img src='{{ asset("uploads/company/".$board->companyLogo) }}' style="height: 40px;">
                                     @else 
-                                        {{ asset("uploads/home/featured_provider/default.jpg") }}
+                                        <img src='{{ asset("uploads/company/default.png") }}' style="height: 40px;">
+                                    @endif
+                                    </a>
+                                </td>
+                                <td>{{ $board->firstname }}</td>
+                                <td>{{ $board->lastname }}</td>
+                                <td><a href="{{ route('data.company_offers', ['companyIdx'=>$board->companyIdx]) }}">{{$board->companyName}}</a></td>
+                                <td>
+                                    @if(preg_match("@^https?://@", $board->companyURL)) <a href="{{ $board->companyURL }}">{{$board->companyURL}}</a>
+                                    @else <a href="https://{{ $board->companyURL }}">{{$board->companyURL}}</a>
                                     @endif
                                 </td>
-                                <td>{{ $board->active?'Published':'Preview' }}</td>
-                                <td>{{ $board->order }}</td>
-                                <td>{{ ($board->updated_at)->toDateString() }}</td>
+                                <td>{{ $board->companyVAT }}</td>
+                                <td>{{ $board->active? "Published" : "Unpublished" }}</td>
                                 <td>{{ $board->id }}</td>
                             </tr>
                         @endforeach

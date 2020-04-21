@@ -448,3 +448,8 @@ ALTER TABLE `databroker_new`.`admin` ADD COLUMN `created_at` TIMESTAMP NULL AFTE
 
 INSERT INTO `databroker_new`.`admin` (`username`, `firstname`, `lastname`, `email`, `password`, `role`) VALUES ('greencj', 'Chris', 'Green', 'cg@jts.ec', '769fc2d36bb6b68456d26498f82b5d52', '0');
 INSERT INTO `databroker_new`.`admin` (`username`, `firstname`, `lastname`, `email`, `password`, `role`) VALUES ('superadmin', 'super', 'admin', 'hello@databroker.global', 'be3a2e2ef7355f928a7e59582a181bd8', '0'); 
+
+#2020-04-21
+ALTER TABLE `databroker_new`.`home_featured_provider` DROP COLUMN `active`, DROP COLUMN `title`, DROP COLUMN `image`, DROP COLUMN `logo_url`, ADD COLUMN `providerIdx` INT(11) NULL AFTER `id`; 
+ALTER TABLE `databroker_new`.`home_featured_provider` ADD COLUMN `active` INT(11) NULL AFTER `order`;
+ALTER TABLE `databroker_new`.`home_featured_provider` CHANGE `providerIdx` `providerIdx` INT(11) NOT NULL, CHANGE `order` `order` INT(11) NOT NULL, CHANGE `active` `active` INT(11) NOT NULL; 

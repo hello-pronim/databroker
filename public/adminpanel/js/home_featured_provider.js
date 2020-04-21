@@ -18,13 +18,6 @@ var board_data_table;
             },
             columnDefs: [
                 {
-                    targets: 0,
-                    orderable: false,
-                    render: function(data, type, full, meta) {
-                        return `<img src="`+data+`" style="height: 40px;">`;
-                    },
-                },
-                {
                     targets: -1,
                     title: 'Actions',
                     orderable: false,
@@ -33,7 +26,7 @@ var board_data_table;
                             <a href="/admin/home_featured_provider/edit/`+data+`" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
                             <i class="la la-edit"></i>
                             </a>
-                            <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" onclick="attach_record('`+data+`');"><i class="la la-image" title="Upload Image"></i>
+                            <a href="/admin/home_featured_provider/delete/`+data+`" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"><i class="la la-trash" title="Delete"></i>
                             </a>`;
                     },
                 },

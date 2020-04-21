@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('additional_css')    
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+@endsection
+
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
@@ -43,11 +47,24 @@
 					<div class="form-group m-form__group row">
 						<div class="col-md-6 m-form__group-sub">
 							<label class="form-control-label">Order *</label>
-							<input type="text" class="form-control m-input" name="order" placeholder="Order in homepage" value="{{ $board->order??'' }}">
+							<input type="text" class="form-control m-input" name="order" placeholder="Order in homepage" value="{{ isset($provider)? $provider->order : '' }}">
                         </div>
                         <div class="col-md-6 m-form__group-sub">
-							<label class="form-control-label">Site URL of Logo is linked</label>
-							<input type="text" class="form-control m-input" name="logo_url" placeholder="https://databroker.online" value="{{ $board->logo_url??'' }}">
+							<label class="form-control-label">Select provider *</label>
+							<select class="form-control m-input" name="providerIdx">
+								<option value="">Select</option>
+								@foreach($providers as $p)
+									@if( isset($provider) && $provider->providerIdx == $p->providerIdx)
+										<option value="{{ $p->providerIdx }}" selected>
+											{{ $p->companyName }}
+										</option>
+									@else
+										<option value="{{ $p->providerIdx }}" >
+											{{ $p->companyName }}
+										</option>
+									@endif
+								@endforeach
+							</select>
 						</div>
                     </div>
 				</div>
@@ -70,6 +87,13 @@
 @endsection
 
 @section('additional_javascript')
-    <script src="{{ asset('adminpanel/js/home_featured_provider_add_new.js') }}"></script>        
+    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>
+    <script src="{{ asset('adminpanel/js/home_featured_provider_add_new.js') }}"></script>  
+    <script type="text/javascript">
+    	$('select[name="providerIdx"]').select2({
+            placeholder: "Select provider",
+            width: '100%',
+        });
+    </script>      
 @endsection
 

@@ -104,36 +104,36 @@
 		            				</div>
 		            				@endif
 		            			</div>
-		            			<div class="row">
-		            				<div class="col-md-3">
-		            					<label>Message from {{$bidUser['firstname']." ".$bidUser['lastname']}}:</label>		
-		            				</div>
-		            				<div class="col-md-9">
-		            					<p>{{$bidUser['bidMessage']}}</p>			            					
-		            				</div>
-		            			</div>
-		            			@if($bidUser['bidStatus']!=0 && $bidUser['bidResponse'])
-		            			<div class="row">
-		            				<div class="col-md-3">
-		            					<label>Message from {{$bid['sellerName']}}:</label>		
-		            				</div>
-		            				<div class="col-md-9">
-		            					<p>{{$bidUser['bidResponse']}}</p>			            					
-		            				</div>
-		            			</div>
-		            			@endif
-		            			@if($bidUser['bidStatus']==1)
-		            				@if($bidUser['userIdx'] == $user->userIdx)
-		            			<div class="row">
-		            				<div class="col-md-3"></div>
-		            				<div class="col-md-9">
-				            			<a href="{{route('data.buy_data', ['id'=>$bidUser['offerIdx'], 'pid'=>$bidUser['productIdx']]).'?bidIdx='.$bidUser['bidIdx']}}">
-				            				<button type="button" class="button customize-btn m-0">Buy data at agreed price</button>
-				            			</a>
-		            					<p class="text-grey mt-10">You will also receive an email with a link to the purchase page.</p>	
-		            				</div>
-		            			</div>
-				            		@endif
+		            			@if($bidUser['userIdx'] == $user->userIdx)
+			            			<div class="row">
+			            				<div class="col-md-3">
+			            					<label>Message from {{$bidUser['firstname']." ".$bidUser['lastname']}}:</label>		
+			            				</div>
+			            				<div class="col-md-9">
+			            					<p>{{$bidUser['bidMessage']}}</p>			            					
+			            				</div>
+			            			</div>
+			            			@if($bidUser['bidStatus']!=0 && $bidUser['bidResponse'])
+			            			<div class="row">
+			            				<div class="col-md-3">
+			            					<label>Message from {{$bid['sellerName']}}:</label>		
+			            				</div>
+			            				<div class="col-md-9">
+			            					<p>{{$bidUser['bidResponse']}}</p>			            					
+			            				</div>
+			            			</div>
+			            			@endif
+			            			@if($bidUser['bidStatus']==1)
+			            			<div class="row">
+			            				<div class="col-md-3"></div>
+			            				<div class="col-md-9">
+					            			<a href="{{route('data.buy_data', ['id'=>$bidUser['offerIdx'], 'pid'=>$bidUser['productIdx']]).'?bidIdx='.$bidUser['bidIdx']}}">
+					            				<button type="button" class="button customize-btn m-0">Buy data at agreed price</button>
+					            			</a>
+			            					<p class="text-grey mt-10">You will also receive an email with a link to the purchase page.</p>	
+			            				</div>
+			            			</div>
+			            			@endif
 		            			@endif
 		            		</div>
 		            			@endforeach

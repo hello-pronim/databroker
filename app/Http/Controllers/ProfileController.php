@@ -253,6 +253,7 @@ class ProfileController extends Controller
                         ->join('offerProducts', 'offerProducts.productIdx', '=', 'bids.productIdx')
                         ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                         ->where('bids.productIdx', $bid['productIdx'])
+                        ->where('bids.userIdx', $user->userIdx)
                         ->orderby('bids.created_at', 'desc')
                         ->get(["users.*", 'companies.*', 'offerProducts.*', 'offers.*', 'bids.*', 'bids.created_at as createdAt']);
 
