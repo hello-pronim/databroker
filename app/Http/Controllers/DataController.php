@@ -19,6 +19,7 @@ use App\Models\OfferTheme;
 use App\Models\OfferSample;
 use App\Models\OfferProduct;
 use App\Models\OfferCountry;
+use App\Models\HomeFeaturedProvider;
 use App\Models\ProductCountry;
 use App\Models\Purchase;
 use App\Models\PaidHistory;
@@ -757,10 +758,17 @@ class DataController extends Controller
             //->where('offers.status', 1)
             ->limit(3)
             ->get();
+        $featured_providers = HomeFeaturedProvider::join('providers', 'providers.providerIdx', '=', 'home_featured_provider.providerIdx')
+                                            ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                            ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                            ->where('active', 1)
+                                            ->orderby('order', 'asc')
+                                            ->limit(6)
+                                            ->get();
 
         $themes = Theme::get_theme_by_community($community);
         
-        $data = array( 'community', 'offers', 'themes' );                
+        $data = array( 'community', 'offers', 'themes', 'featured_providers' );                
         return view('data.community', compact($data));
     }    
 

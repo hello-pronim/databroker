@@ -135,48 +135,21 @@
 	        </div>
 	    </div>
 	    <div class="app-partner-items row">
-        	<div class="col-md-2">
-        		<div class="app-partner-item">
-					<div class="img">
-						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
-	                </div>        
-        		</div>
-        	</div>
-        	<div class="col-md-2">
-        		<div class="app-partner-item">
-					<div class="img">
-						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
-	                </div>        
-        		</div>
-        	</div>
-        	<div class="col-md-2">
-        		<div class="app-partner-item">
-					<div class="img">
-						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
-	                </div>        
-        		</div>
-        	</div>
-        	<div class="col-md-2">
-        		<div class="app-partner-item">
-					<div class="img">
-						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
-	                </div>        
-        		</div>
-        	</div>
-        	<div class="col-md-2">
-        		<div class="app-partner-item">
-					<div class="img">
-						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
-	                </div>        
-        		</div>
-        	</div>
-        	<div class="col-md-2">
-        		<div class="app-partner-item">
-					<div class="img">
-						<img src="{{ asset('images/blogs/logo_def.jpg') }}">
-	                </div>        
-        		</div>
-        	</div>
+        	@foreach($featured_providers as $featured_provider)
+        	<div class="col-md-4 col-lg-2 col-xl-2">
+                <a href="{{ $featured_provider->logo_url??'' }}">
+                    <div class="app-partner-item">
+                        <div class="img">
+                            @if(file_exists(public_path("uploads/company/".$featured_provider->companyLogo))) 
+                            <img src="{{ asset('uploads/company/'.$featured_provider->companyLogo) }}" style="height:75px;">
+                            @else 
+                            <img src="{{ asset('uploads/company/default.png') }}" style="height:75px;">
+                            @endif
+                        </div>        
+                    </div>
+                </a>
+            </div>
+            @endforeach
         </div> 
 
         <h1 class="mt-80 mb-20 fs-30 text-bold text-left"> New In The {{$community}} Community </h1>
