@@ -1543,7 +1543,7 @@ class DataController extends Controller
 
         if($request->response==1){
             $this->sendEmail("acceptbid", [
-                'from'=>'pe@jts.ec', 
+                'from'=>'cg@jts.ec', 
                 'to'=>$buyer['email'], 
                 'subject'=>'Your bid on a data product was accepted.', 
                 'name'=>'Databroker',
@@ -1552,7 +1552,7 @@ class DataController extends Controller
         }
         else if($request->response==-1){
             $this->sendEmail("rejectbid", [
-                'from'=>'pe@jts.ec', 
+                'from'=>'cg@jts.ec', 
                 'to'=>$buyer['email'], 
                 'subject'=>'Your bid on a data product was rejected.', 
                 'name'=>'Databroker',

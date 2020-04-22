@@ -315,8 +315,8 @@
 	      		<div class="col-xl-12">
 	      			<div class="gallery column3 max-h350">
 			      		<div class="mdb-lightbox col-xl-4 flex-center thumb-container" ng-repeat="image in media.images" ng-click="imgClick(image)">
-			      			<img src='<%= image.thumb %>' class="thumb <%= media.current==='community'?'thumb-community':''%>" ng-if="image.id!==media.selected.id" />
-			      			<img src='<%= image.thumb %>' class="thumb <%= media.current==='community'?'thumb-community':''%> active" ng-if="image.id===media.selected.id" />
+			      			<img src="{{asset('images/gallery/thumbs/')}}/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%>" ng-if="image.id!==media.selected.id" />
+			      			<img src="{{asset('images/gallery/thumbs/')}}/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%> active" ng-if="image.id===media.selected.id" />
 			      			<span class="thumb-title" ng-show="media.current==='community'"><%= image.community %></span>
 			      		</div>
 					</div>

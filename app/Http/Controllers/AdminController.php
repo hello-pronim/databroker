@@ -529,20 +529,82 @@ class AdminController extends Controller
         return view('admin.media_library', compact($data));
     }
 
-    public function add_media(Request $request){
-        $communityIdx = $request->cid;
-        $communityName = Community::where('communityIdx', $request->cid)->pluck('communityName')->first();
-        $data = array('communityIdx', 'communityName');
-        return view('admin.media_add_new', compact($data));
-    }
-    public function edit_media(Request $request){
-        $communityIdx = $request->cid;
-        $communityName = Community::where('communityIdx', $request->cid)->pluck('communityName')->first();
-        $data = array('communityIdx', 'communityName');
+    public function edit_media($id = 0){
+        if( $id == 0 ){
+            $communities = Community::get();
+            $data = array('communities');
+        }else{
+            $communities = Community::get();
+            $media = Gallery::where('id', $id)->get()->first();
+            $data = array('id', 'communities', 'media');
+        }
         return view('admin.media_edit', compact($data));
     }
 
-    public function media_upload_attach(Request $request){
+    public function media_update(Request $request){
+        if($request->input('id')) {
+            $id = $request->input('id');
+            $data = $request->all();
+            unset($data['id']);
+            if($data['subcontent']==1) $data['subcontent'] = 0;
+            else $data['subcontent'] = null;
+            $heroExist = Gallery::where('content', $data['content'])->where('subcontent', 0)->get()->first();
+            if($data['subcontent']!==0){
+                if($heroExist){
+                    $max_sequence = Gallery::where('content', $data['content'])->where('subcontent', null)->orderby('sequence', 'DESC')->get()->first();
+                    if($max_sequence) $data['sequence'] = $max_sequence->sequence + 1;
+                    else $data['sequence'] = 1;
+                }else{
+                    return "Hero data doesn't exist. You need to add it first!";
+                }
+            }
+            else{
+                if($heroExist && $id!=$heroExist->id) return "Hero data already exist. You can edit it directly!";
+                else $data['sequence'] = 1;
+            }
+            Gallery::find($id)->update($data);
+            return "success";
+        } else {
+            $data = $request->all();
+            // $data['published'] = date("Y-m-d");
+            unset($data['id']);
+            if($data['subcontent']==1) $data['subcontent'] = 0;
+            else unset($data['subcontent']);
+            $data['category'] = "community";
+            $heroExist = Gallery::where('content', $data['content'])->where('subcontent', 0)->get()->first();
+
+            if(!isset($data['subcontent'])){
+                if($heroExist){
+                    $max_sequence = Gallery::where('content', $data['content'])->where('subcontent', null)->orderby('sequence', 'DESC')->get()->first();
+                    if($max_sequence) $data['sequence'] = $max_sequence->sequence + 1;
+                    else $data['sequence'] = 1;
+                }else{
+                    return "Hero data doesn't exist. You need to add it first!";
+                }
+            }
+            else{
+                if($heroExist) return "Hero data already exist. You can edit it directly!";
+                else $data['sequence'] = 1;
+            } 
+            Gallery::create($data);
+            return "success";
+        }
+    }
+
+    public function media_upload_attach(Request $request, $mediaIdx = 0){
+        $getfiles = $request->file('uploadedFile');
+        $fileName = "media_".$mediaIdx.'.jpg';  
+        //image compress start
+        $tinyimg = Image::make($getfiles->getRealPath());
+        $tinyimg->resize(1000,1100, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('images/gallery/thumbs/medium').'/'.$fileName);
+        $tinyimg->resize(300,400, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('images/gallery/thumbs/tiny').'/'.$fileName);
+        //image compress end
+        $getfiles->move(public_path('images/gallery/thumbs'), $fileName);
+        Gallery::find($mediaIdx)->update(['thumb' => $fileName]);
         return "true";
     }
 
