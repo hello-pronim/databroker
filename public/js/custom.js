@@ -270,6 +270,7 @@ $(document).ready(function(){
     	prev.addClass('current back');
         window.scrollTo(0, 0); 
     });
+
     function validateURL(s) {
        var regexp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
        return regexp.test(s);

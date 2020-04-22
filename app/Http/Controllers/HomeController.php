@@ -50,7 +50,8 @@ class HomeController extends Controller
         return view('home_cms', compact($data));
     }
 
-    public function sendEmail($tplName, $params){   
+    public function sendEmail($tplName, $params){
+		return;
         $from = $params['from'];
         $to = $params['to'];
         $name = $params['name'];
@@ -63,14 +64,30 @@ class HomeController extends Controller
                 $mail->subject($subject);
         });
     }
+
     public function test(){
-        $this->sendEmail("test", [
-            'from'=>'cg@jts.ec', 
-            'to'=>'pe@jts.ec', 
+		
+        $this->sendEmail1("test", [
+            'from'=>'pe@jts.ec', 
+            'to'=>'cg@jts.ec', 
             'subject'=>'This is email test', 
             'name'=>'Databroker'
         ]); 
         echo "success";
         exit;
+    }
+
+	public function sendEmail1($tplName, $params){		
+        $from = $params['from'];
+        $to = $params['to'];
+        $name = $params['name'];
+        $subject = $params['subject'];
+
+        Mail::send('email.'.$tplName, $params,
+            function($mail) use ($from, $to, $name, $subject){
+                $mail->from($from, $name);
+                $mail->to($to, $to);
+                $mail->subject($subject);
+        });
     }
 }
