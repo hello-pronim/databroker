@@ -394,11 +394,13 @@
 			};
 
 			var prepareCommunityImages = function (community) {
+				console.log(community);
 				var mediaMap = $scope.media.mediaMap;
 				console.log(mediaMap);
 				var images = [];
 				angular.forEach(mediaMap[community][''], function(img, seq) {
 					// img.url = img.url.replace(/\\/g, '/');
+					console.log(image);
 					this.push(img);
 				}, images);
 				$scope.media.current = 'image';
