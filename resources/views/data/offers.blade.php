@@ -411,8 +411,9 @@
 			$scope.imgClick = function (img) {
 				var current = $scope.media.current;
 				if (current === 'community') {
+					console.log(img);
 					$scope.media.currentCommunity = img.community;
-					prepareCommunityImages(img.id);
+					prepareCommunityImages(img.community);
 				} else {
 					$scope.media.selected = img;
 				}
