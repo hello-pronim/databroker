@@ -198,7 +198,7 @@ class DataController extends Controller
         }
 
         $usecase = UseCase::where('offerIdx', $offerId)->first();
-.
+
         //$offer_path = URL::to('/uploads/offer');
         
         $offer_images = [$offer['offerImage']];
