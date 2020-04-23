@@ -317,7 +317,7 @@
 			      		<div class="mdb-lightbox col-xl-4 flex-center thumb-container" ng-repeat="image in media.images" ng-click="imgClick(image)">
 			      			<img src="/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%>" ng-if="image.id!==media.selected.id" />
 			      			<img src="/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%> active" ng-if="image.id===media.selected.id" />
-			      			<span class="thumb-title" ng-show="media.current==='community'"><%= image.community %></span>
+			      			<span class="thumb-title" ng-show="media.current==='community'"><%= image.communityName %></span>
 			      		</div>
 					</div>
 	      		</div>
@@ -400,7 +400,7 @@
 				var images = [];
 				angular.forEach(mediaMap[community][''], function(img, seq) {
 					// img.url = img.url.replace(/\\/g, '/');
-					console.log(image);
+					console.log(img);
 					this.push(img);
 				}, images);
 				$scope.media.current = 'image';
@@ -412,7 +412,7 @@
 				var current = $scope.media.current;
 				if (current === 'community') {
 					console.log(img);
-					$scope.media.currentCommunity = img.community;
+					$scope.media.currentCommunity = img.communityName;
 					prepareCommunityImages(img.community);
 				} else {
 					$scope.media.selected = img;
