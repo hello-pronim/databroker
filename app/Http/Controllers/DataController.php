@@ -522,6 +522,9 @@ class DataController extends Controller
                 $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
                 $ret = $offerimagefile->move($offerImage_path, $fileName);
                 $offer_data['offerImage'] =  'uploads/offer/'. $fileName;
+            } else {
+                $fileName = $request->input('gallery_offerImage_1');
+                $offer_data['offerImage'] = $fileName;
             }
 
             Offer::find($id)->update($offer_data);

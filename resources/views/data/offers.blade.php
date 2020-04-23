@@ -315,8 +315,8 @@
 	      		<div class="col-xl-12">
 	      			<div class="gallery column3 max-h350">
 			      		<div class="mdb-lightbox col-xl-4 flex-center thumb-container" ng-repeat="image in media.images" ng-click="imgClick(image)">
-			      			<img src="{{asset('images/gallery/thumbs/')}}/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%>" ng-if="image.id!==media.selected.id" />
-			      			<img src="{{asset('images/gallery/thumbs/')}}/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%> active" ng-if="image.id===media.selected.id" />
+			      			<img src="/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%>" ng-if="image.id!==media.selected.id" />
+			      			<img src="/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%> active" ng-if="image.id===media.selected.id" />
 			      			<span class="thumb-title" ng-show="media.current==='community'"><%= image.community %></span>
 			      		</div>
 					</div>
@@ -384,7 +384,6 @@
 				var images = [];
 				angular.forEach(mediaMap, function(subMap, category) {
 					var obj = subMap[0][1];
-					console.log(obj);
 					// obj.url = obj.url.replace(/\\/g, '/');
 				  	this.push(obj);
 				}, images);
@@ -422,8 +421,10 @@
 
 			$scope.logoSelected = function () {
 				var selected = $scope.media.selected;
+				console.log(selected);
 				if (selected) {
 					var url = selected.url;
+					selected.thumb = '/'+ selected.thumb;
 					$('#offerImage')[0].previewOnlineImage(selected);
 				}
 				prepareCommunities();
