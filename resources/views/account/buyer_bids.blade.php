@@ -66,7 +66,7 @@
 		            					<span>(tax incl.)</span>
 		            				</div>
 		            				<div class="col-md-3">
-				            			<a href="{{route('data.edit_bid', ['id'=>$bidUser['offerIdx'], 'pid'=>$bidUser['productIdx']])}}">
+				            			<a href="{{route('data.edit_bid', ['bid'=>$bidUser['bidIdx']])}}">
 				            				<button type="button" class="button customize-btn m-0">Update bid</button>
 				            			</a>
 		            				</div>
@@ -105,24 +105,20 @@
 		            				@endif
 		            			</div>
 		            			@if($bidUser['userIdx'] == $user->userIdx)
-			            			<div class="row">
-			            				<div class="col-md-3">
-			            					<label>Message from {{$bidUser['firstname']." ".$bidUser['lastname']}}:</label>		
-			            				</div>
-			            				<div class="col-md-9">
-			            					<p>{{$bidUser['bidMessage']}}</p>			            					
-			            				</div>
-			            			</div>
-			            			@if($bidUser['bidStatus']!=0 && $bidUser['bidResponse'])
-			            			<div class="row">
-			            				<div class="col-md-3">
-			            					<label>Message from {{$bid['sellerName']}}:</label>		
-			            				</div>
-			            				<div class="col-md-9">
-			            					<p>{{$bidUser['bidResponse']}}</p>			            					
-			            				</div>
-			            			</div>
-			            			@endif
+		            				@foreach($bidUser['messages'] as $message)
+				            			<div class="row">
+				            				<div class="col-md-3">
+		            							@if($message['senderIdx'] == $user->userIdx)
+				            					<label>Message from {{$bidUser['firstname']." ".$bidUser['lastname']}}:</label>	
+				            					@else
+				            					<label>Message from {{$bid['sellername']}}:</label>	
+				            					@endif
+				            				</div>
+				            				<div class="col-md-9">
+				            					<p>{{$message['message']}}</p>			            					
+				            				</div>
+				            			</div>
+			            			@endforeach
 			            			@if($bidUser['bidStatus']==1)
 			            			<div class="row">
 			            				<div class="col-md-3"></div>

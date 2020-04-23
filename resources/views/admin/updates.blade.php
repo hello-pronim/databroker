@@ -51,12 +51,12 @@
                                     @if(file_exists(public_path("uploads/usecases/tiny/".$board->articleIdx.".jpg"))) 
                                         {{ asset("uploads/usecases/tiny/".$board->articleIdx.".jpg") }}
                                     @else 
-                                        {{ asset("uploads/usecases/default.jpg") }}
+                                        {{ asset("uploads/usecases/default.png") }}
                                     @endif
                                 </td>
                                 <td>{{ $board->articleTitle }}</td>
                                 <td>{{ $board->author }}</td>
-                                <td>{{ ($board->published)->toDateString() }}</td>
+                                <td>{{ $board->published ? date('d/m/Y', strtotime($board->published)):"" }}</td>
                                 <td>{{ $board->articleIdx }}</td>
                             </tr>
                         @endforeach

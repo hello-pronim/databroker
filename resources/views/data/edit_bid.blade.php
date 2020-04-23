@@ -15,11 +15,14 @@
 	            </p>
 	        </div>
 	        <div class="blog-content">
-	        	<div class="para text-red">
-	        	@if($product->productPrice)
-	        		<span>€ {{$product->productPrice}}</span>
+	        	<div class="para">
+	        		<span class="text-grey">{{ trans('data.price') }}: </span>
+	        	@if($product->productPrice==null)
+	        		<span class="text-red">N/A</span>
+	        	@elseif($product->productPrice>0)
+	        		<span class="text-red">€ {{$product->productPrice}}</span>
 	        	@else
-	        		<span>FREE</span>
+	        		<span class="text-red">FREE</span>
 	        	@endif
 	        	</div>
 	        	<div class="para">
@@ -32,9 +35,8 @@
 	        	</div>
 	        	<div class="row mt-30">
 	        		<div class="col-md-6 auth-section">
-	        			<form method="POST" action="{{route('data.update_bid', ['id'=>$product->offerIdx, 'pid'=>$product->productIdx])}}">
+	        			<form method="POST" action="{{route('data.update_bid', ['bid'=>$bid->bidIdx])}}">
                         	@csrf
-                        	<input type="hidden" name="bidIdx" value="{{$bid->bidIdx}}">
                         	<input type="hidden" name="offerIdx" value="{{$product->offerIdx}}">
                         	<input type="hidden" name="productIdx" value="{{$product->productIdx}}">
                         	<input type="hidden" name="companyName" value="{{$provider->companyName}}">

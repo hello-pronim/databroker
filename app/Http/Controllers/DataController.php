@@ -27,6 +27,7 @@ use App\Models\RegionProduct;
 use App\Models\UseCase;
 use App\Models\Bid;
 use App\Models\BillingInfo;
+use App\Models\Message;
 use App\User;
 use App\Models\Business;
 
@@ -1364,55 +1365,64 @@ class DataController extends Controller
         $bidData['bidMessage'] = $request->bidMessage;
         $bidData['bidStatus'] = 0;
 
-        $bidObj = Bid::where('userIdx', $user->userIdx)->where('productIdx', $request->productIdx)->get()->first();
-        if(!$bidObj){
-            $bidObj = Bid::create($bidData);
+        $bidObj = Bid::create($bidData);
 
-            $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
-                        ->join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')
-                        ->where('offers.offerIdx', $request->offerIdx)
-                        ->get()
-                        ->first();
-            $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                        ->where('userIdx', $user->userIdx)->get()->first();
+        $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
+                    ->join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')
+                    ->where('offers.offerIdx', $request->offerIdx)
+                    ->get()
+                    ->first();
+        $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                    ->where('userIdx', $user->userIdx)->get()->first();
 
-            $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
-            $product['from'] = date('Y-m-d');
-            if($product->productAccessDays=="day")
-                $product['to'] = date('Y-m-d', strtotime('+1 day', strtotime($product['from'])));
-            else if($product->productAccessDays=="week")
-                $product['to'] = date('Y-m-d', strtotime('+7 day', strtotime($product['from'])));
-            else if($product->productAccessDays=='month')
-                $product['to'] = date('Y-m-d', strtotime('+1 month', strtotime($product['from'])));
-            else if($product->productAccessDays=='year')
-                $product['to'] = date('Y-m-d', strtotime('+1 year', strtotime($product['from'])));
+        $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
 
-            $data['seller'] = $seller;
-            $data['buyer'] = $buyer;
-            $data['product'] = $product;
-            $data['bid'] = $bidObj;
 
-            $this->sendEmail("sendbid", [
-                'from'=>'cg@jts.ec', 
-                'to'=>$seller['email'], 
-                'subject'=>'You’ve received a bid on a data product', 
-                'name'=>'Databroker',
-                'data'=>$data
-            ]);    
+        $msgData['bidIdx'] = $bidObj->bidIdx;
+        $msgData['senderIdx'] = $user->userIdx;
+        $msgData['receiverIdx'] = $seller->userIdx;
+        $msgData['message'] = $request->bidMessage;
+        
+        Message::create($msgData);
 
-            return redirect(route('data.send_bid_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
-        }
+        $product['from'] = date('Y-m-d');
+        if($product->productAccessDays=="day")
+            $product['to'] = date('Y-m-d', strtotime('+1 day', strtotime($product['from'])));
+        else if($product->productAccessDays=="week")
+            $product['to'] = date('Y-m-d', strtotime('+7 day', strtotime($product['from'])));
+        else if($product->productAccessDays=='month')
+            $product['to'] = date('Y-m-d', strtotime('+1 month', strtotime($product['from'])));
+        else if($product->productAccessDays=='year')
+            $product['to'] = date('Y-m-d', strtotime('+1 year', strtotime($product['from'])));
+
+        $data['seller'] = $seller;
+        $data['buyer'] = $buyer;
+        $data['product'] = $product;
+        $data['bid'] = $bidObj;
+
+        $this->sendEmail("sendbid", [
+            'from'=>'cg@jts.ec', 
+            'to'=>$seller['email'], 
+            'subject'=>'You’ve received a bid on a data product', 
+            'name'=>'Databroker',
+            'data'=>$data
+        ]);    
+
+        return redirect(route('data.send_bid_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
     }
     public function edit_bid(Request $request){
         $user = $this->getAuthUser();
         if(!$user) {
            return redirect('/login')->with('target', 'send a bid for this data');
         }else{
-            $product = OfferProduct::with('region')->where('productIdx', $request->pid)->get()->first();
-            $offer = Offer::where('offerIdx', $request->id)->get()->first();
+            $bid = Bid::where('bidIdx', $request->bid)->get()->first();
+            $product = OfferProduct::with('region')->where('productIdx', $bid->productIdx)->get()->first();
+            $offer = Offer::join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+                            ->where('offerProducts.productIdx', $bid->productIdx)
+                            ->get()
+                            ->first();
             $providerIdx = $offer['providerIdx'];
             $provider = Provider::with('region')->where('providerIdx', $providerIdx)->get()->first();
-            $bid = Bid::where('productIdx', $request->pid)->where('userIdx', $user->userIdx)->get()->first();
             $data = array('product', 'provider', 'bid');
             return view('data.edit_bid', compact($data));
         }
@@ -1444,7 +1454,8 @@ class DataController extends Controller
         $bidData['bidMessage'] = $request->bidMessage;
         $bidData['bidStatus'] = 0;
 
-        $bidObj = Bid::create($bidData);
+        Bid::where('bidIdx', $request->bid)->update($bidData);
+        $bidObj = Bid::where('bidIdx', $request->bid)->get()->first();
 
         $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
                     ->join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')
@@ -1455,6 +1466,12 @@ class DataController extends Controller
                     ->where('userIdx', $user->userIdx)->get()->first();
 
         $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
+
+        $msgData['bidIdx'] = $request->bid;
+        $msgData['senderIdx'] = $user->userIdx;
+        $msgData['receiverIdx'] = $seller->userIdx;
+        $msgData['message'] = $request->bidMessage;
+        Message::create($msgData);
 
         $data['seller'] = $seller;
         $data['buyer'] = $buyer;
@@ -1536,6 +1553,12 @@ class DataController extends Controller
                         ->where('bids.productIdx', $request->productIdx)
                         ->get(['offerProducts.*', 'offerProducts.created_at as createdAt', 'bids.*', 'offers.*', 'providers.*'])
                         ->first();
+
+        $msgData['bidIdx'] = $request->bidIdx;
+        $msgData['senderIdx'] = $user->userIdx;
+        $msgData['receiverIdx'] = $buyer->userIdx;
+        $msgData['message'] = $request->bidResponse;
+        Message::create($msgData);
 
         $mailData['seller'] = $seller;
         $mailData['buyer'] = $buyer;

@@ -453,3 +453,7 @@ INSERT INTO `databroker_new`.`admin` (`username`, `firstname`, `lastname`, `emai
 ALTER TABLE `databroker_new`.`home_featured_provider` DROP COLUMN `active`, DROP COLUMN `title`, DROP COLUMN `image`, DROP COLUMN `logo_url`, ADD COLUMN `providerIdx` INT(11) NULL AFTER `id`; 
 ALTER TABLE `databroker_new`.`home_featured_provider` ADD COLUMN `active` INT(11) NULL AFTER `order`;
 ALTER TABLE `databroker_new`.`home_featured_provider` CHANGE `providerIdx` `providerIdx` INT(11) NOT NULL, CHANGE `order` `order` INT(11) NOT NULL, CHANGE `active` `active` INT(11) NOT NULL; 
+
+#2020-04-23
+ALTER TABLE `databroker_new`.`messages` ADD COLUMN `bidIdx` INT(11) NOT NULL AFTER `messageIdx`, CHANGE `userIdx` `senderIdx` INT(11) NOT NULL, CHANGE `providerIdx` `receiverIdx` INT(11) NOT NULL, CHANGE `messageContent` `message` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL; 
+ALTER TABLE `databroker_new`.`messages` DROP FOREIGN KEY `fk_Messages_Users1`;

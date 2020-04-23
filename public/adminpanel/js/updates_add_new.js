@@ -1,4 +1,7 @@
 $(function(){
+	$('input[name="published"]').datepicker({ 
+		format: "dd/mm/yyyy"
+	});
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -28,7 +31,7 @@ $(function(){
             }
 	    },
 	    //display error alert on form submit  
-	    invalidHandler: function(event, validator) {     
+	    invalidHandler: function(event, validator) {
 	        var alert = $('#m_form_1_msg');
 	        alert.removeClass('m--hide').show();
 	        mUtil.scrollTop();

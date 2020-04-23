@@ -1,4 +1,5 @@
 $(function(){
+	$('input[name="published"]').datepicker({format: "dd/mm/yyyy"});
 	var communityIdx = $('#communityIdx_id').val();
     $.ajaxSetup({
         headers: {

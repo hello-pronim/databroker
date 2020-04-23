@@ -18,6 +18,7 @@ use App\Models\Company;
 use App\Models\Offer;
 use App\Models\OfferProduct;
 use App\Models\Bid;
+use App\Models\Message;
 use App\Models\Region;
 use App\Models\LinkedUser;
 
@@ -235,6 +236,8 @@ class ProfileController extends Controller
                         ->join('providers', 'offers.providerIdx', '=', 'providers.providerIdx')
                         ->join('regions', 'regions.regionIdx', '=', 'providers.regionIdx')
                         ->where('bids.userIdx', $user->userIdx)
+                        ->orderby('bids.created_at', 'desc')
+                        ->groupby('offerProducts.productIdx')
                         ->get();
         
         $bidUsers = array();
@@ -256,7 +259,10 @@ class ProfileController extends Controller
                         ->where('bids.userIdx', $user->userIdx)
                         ->orderby('bids.created_at', 'desc')
                         ->get(["users.*", 'companies.*', 'offerProducts.*', 'offers.*', 'bids.*', 'bids.created_at as createdAt']);
-
+            foreach ($users as $key => $user) {
+                $messages = Message::where('bidIdx', $user->bidIdx)->orderby('created_at', 'asc')->get();
+                $user['messages'] = $messages;
+            }
             array_push($bidUsers, array(
                 'offerIdx'=>$bid['offerIdx'],
                 'productIdx'=>$bid['productIdx'], 

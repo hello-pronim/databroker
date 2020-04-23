@@ -87,3 +87,6 @@
     position: absolute;
     bottom: 0px;
 }
+#board_form .form-control-feedback{
+    color: #F44336;
+}

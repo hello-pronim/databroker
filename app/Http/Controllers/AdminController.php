@@ -451,19 +451,23 @@ class AdminController extends Controller
 
     public function usecases_update(Request $request)
     {
-            if($request->input('id')) {
-                $articleIdx = $request->input('id');
-                $data = $request->all();
-                unset($data['id']);
-                Article::find($articleIdx)->update($data);
-                return "success";
-            } else {
-                $data = $request->all();
-                // $data['published'] = date("Y-m-d");
-                unset($data['id']);
-                Article::create($data);
-                return "success";
-            }
+        $date = explode("/", $request->published);
+        $published = $date[2].'-'.$date[1].'-'.$date[0];
+        if($request->input('id')) {
+            $articleIdx = $request->input('id');
+            $data = $request->all();
+            $data['published'] = date('Y-m-d', strtotime($published));
+            unset($data['id']);
+            Article::find($articleIdx)->update($data);
+            return "success";
+        } else {
+            $data = $request->all();
+            // $data['published'] = date("Y-m-d");
+            $data['published'] = date('Y-m-d', strtotime($published));
+            unset($data['id']);
+            Article::create($data);
+            return "success";
+        }
     }
 
     public function usecases_upload_attach(Request $request, $articleIdx = 0)
@@ -498,15 +502,17 @@ class AdminController extends Controller
 
     public function updates_update(Request $request)
     {
+        $date = explode("/", $request->published);
+        $published = $date[2].'-'.$date[1].'-'.$date[0];
         if($request->input('id')) {
             $articleIdx = $request->input('id');
             $data = $request->all();
-            unset($data['id']);
+            $data['published'] = date('Y-m-d', strtotime($published));
             Article::find($articleIdx)->update($data);
             return "success";
         } else {
             $data = $request->all();
-            // $data['published'] = date("Y-m-d");
+            $data['published'] = date('Y-m-d', strtotime($published));
             unset($data['id']);
             Article::create($data);
             return "success";
