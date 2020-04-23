@@ -27,9 +27,9 @@
 	        				<td><div class="info-label">{{ trans('data.price') }}: </div></td>
 		                    <td>
 		                    	<div class="col info-text text-red">
-		                    	@if($bidObj['productPrice'])
-		                    		€ {{$bidObj['productPrice']}}
-		                    	@else {{ "N/A" }}
+		                    	@if($bidObj['productBidType']=="no_bidding"){{ "N/A" }}
+		                    	@elseif($bidObj['productBidType']=="free") {{ "Free" }}
+		                    	@else € {{$bidObj['productPrice']}}(tax incl.)
 		                    	@endif
 		                		</div>
 		                	</td>

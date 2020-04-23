@@ -109,8 +109,9 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															Price : @if($data['product']->productPrice) €{{$data['product']->productPrice}}
-																	@else {{ "N/A" }}
+															Price : @if($data['product']->productBidType=="bidding_only") {{ "N/A" }}
+																	@elseif($data['product']->productBidType=="free") {{ "FREE" }}
+																	@else €{{$data['product']->productPrice}} (tax incl.)
 																	@endif
 														</td>
 													</tr>

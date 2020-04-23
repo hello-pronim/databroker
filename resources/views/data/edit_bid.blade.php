@@ -17,12 +17,12 @@
 	        <div class="blog-content">
 	        	<div class="para">
 	        		<span class="text-grey">{{ trans('data.price') }}: </span>
-	        	@if($product->productPrice==null)
+	        	@if($product->productBidType=="bidding_only")
 	        		<span class="text-red">N/A</span>
-	        	@elseif($product->productPrice>0)
-	        		<span class="text-red">€ {{$product->productPrice}}</span>
-	        	@else
+	        	@elseif($product->productBidType=="free")
 	        		<span class="text-red">FREE</span>
+	        	@else
+	        		<span class="text-red">€ {{$product->productPrice}}</span>
 	        	@endif
 	        	</div>
 	        	<div class="para">
