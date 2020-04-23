@@ -395,6 +395,7 @@
 
 			var prepareCommunityImages = function (community) {
 				var mediaMap = $scope.media.mediaMap;
+				console.log(mediaMap);
 				var images = [];
 				angular.forEach(mediaMap[community][''], function(img, seq) {
 					// img.url = img.url.replace(/\\/g, '/');
