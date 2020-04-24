@@ -121,7 +121,16 @@
 						                    	<option value="month">1 month</option>
 						                    	<option value="year">1 year</option>
 						                    </select>						                    
-						                </div>						                
+						                </div>	
+						                <div class="row">
+						                	<div class="col-lg-6">
+							                	<label class="pure-material-textfield-outlined">
+							                        <input type="text" id="dataUrl" name="dataUrl" class="form-control input_data" placeholder=" "  value="">
+							                        <span>{{ trans('pages.enter_url') }}</span>	                        
+							                    </label>
+							                   	<div class="error_notice dataUrl"> You must provide a URL where the buyer can get the data for free.</div>
+							                </div>
+						                </div>				                
 									</div>	
 									<div class="error_notice free_period"> Please select a period.</div>
 				        		</div>		                    		                    
