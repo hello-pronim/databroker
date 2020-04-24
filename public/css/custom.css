@@ -1573,7 +1573,7 @@ a.dropdown-toggle:after{
 .period .period_select{
 	display: none;
 }
-.period input{
+.period input.form-control2{
 	max-width: 150px;
 	padding-left: 30px;
 }

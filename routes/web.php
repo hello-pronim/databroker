@@ -132,7 +132,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/admin/usecases/add_new/{id}', 'AdminController@usecases_add_new')->where('id', '[0-9]+')->name('admin.usecases.add_new');
 		Route::post('/admin/usecases/update', 'AdminController@usecases_update')->name('admin.usecases.update');
 		Route::post('/admin/usecases/upload_attach/{articleIdx}', 'AdminController@usecases_upload_attach')->name('admin.usecases_upload_attach');
-		Route::get('/admin/usecases/edit/{id}/{communityIdx}', 'AdminController@usecases_edit')->where('id', '[0-9]+')->name('admin.usecases_edit');
+		Route::get('/admin/usecases/edit/{id}', 'AdminController@usecases_edit')->where('id', '[0-9]+')->name('admin.usecases_edit');
+		Route::post('/admin/usecases/delete/{id}', 'AdminController@usecases_delete')->where('id', '[0-9]+')->name('admin.usecases_delete');
 		//admin route media
 		Route::get('/admin/media_library', 'AdminController@media_library')->name('admin.media_library');
 		Route::get('/admin/media/add_new', 'AdminController@edit_media')->name('admin.add_media');
@@ -145,6 +146,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/admin/updates/add_new', 'AdminController@updates_add_new')->name('admin.updates_add_new');
 		Route::post('/admin/updates/update', 'AdminController@updates_update')->name('admin.updates_update');
 		Route::get('/admin/updates/edit/{id}', 'AdminController@updates_edit')->where('id', '[0-9]+')->name('admin.updates_edit');
+		Route::post('/admin/updates/delete/{id}', 'AdminController@updates_delete')->where('id', '[0-9]+')->name('admin.updates_delete');
 
 		Route::get('/admin',  "AdminController@index")->name('admin.index');
 		Route::get('/admin/home', 'AdminController@home')->name('admin.home');

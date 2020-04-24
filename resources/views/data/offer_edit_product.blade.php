@@ -120,7 +120,17 @@
 						                    	<option value="{{$period['key']}}" @if ($product['productAccessDays'] == $period['key']) selected @endif>{{$period['label']}}</option>
 						                    	@endforeach
 						                    </select>						                    
-						                </div>						         
+						                </div>
+						                @if($bidtype['type']=='free')
+						                <div class="row">
+						                	<div class="col-lg-12">
+							                	<label class="pure-material-textfield-outlined">
+							                        <input type="text" id="dataUrl" name="dataUrl" class="form-control input_data w-100" placeholder=" "  value="">
+							                        <span>{{ trans('pages.data_url') }}</span>	                        
+							                    </label>
+							                </div>
+						                </div>		
+						                @endif						         
 						                <div>
 											<span class="error_notice {{$bidtype['type']}}_price"> This field is required. </span>
 											<span class="error_notice {{$bidtype['type']}}_period"> Please select a period.</span>

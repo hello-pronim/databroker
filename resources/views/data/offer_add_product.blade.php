@@ -125,14 +125,14 @@
 						                <div class="row">
 						                	<div class="col-lg-6">
 							                	<label class="pure-material-textfield-outlined">
-							                        <input type="text" id="dataUrl" name="dataUrl" class="form-control input_data" placeholder=" "  value="">
-							                        <span>{{ trans('pages.enter_url') }}</span>	                        
+							                        <input type="text" id="dataUrl" name="dataUrl" class="form-control input_data w-100" placeholder=" "  value="">
+							                        <span>{{ trans('pages.data_url') }}</span>	                        
 							                    </label>
-							                   	<div class="error_notice dataUrl"> You must provide a URL where the buyer can get the data for free.</div>
 							                </div>
 						                </div>				                
 									</div>	
 									<div class="error_notice free_period"> Please select a period.</div>
+							        <div class="error_notice dataUrl"> You must provide a URL where the buyer can get the data for free.</div>
 				        		</div>		                    		                    
 								<div class="mb-10">
 									<label class="container para">I will set a price. No bidding is possible.

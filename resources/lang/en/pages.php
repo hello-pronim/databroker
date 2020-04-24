@@ -11,6 +11,7 @@ return [
     'access_to_data' => 'Access to this data',
     'please_select' => 'Please Select',
     'enter_url' => 'Enter URL',
+    'data_url' => 'Data URL',
     'enter_name' => 'Enter Name',
     'confirm' => 'Confirm',
     'send_message' => 'Send a Message',

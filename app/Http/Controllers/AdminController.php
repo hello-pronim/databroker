@@ -439,14 +439,19 @@ class AdminController extends Controller
         return view('admin.usecases_add_new', compact($data));
     }
 
-    public function usecases_edit($id, $communityIdx)
+    public function usecases_edit(Request $request)
     {
-        $id = $id;
-        $communityIdx = $communityIdx;
+        $id = $request->id;
         $categories = Community::get();  
         $board = Article::where('articleIdx', $id)->first(); 
+        $communityIdx = $board->communityIdx;
         $data = array( 'categories', 'id', 'board', 'communityIdx' );
         return view('admin.usecases_edit', compact($data));
+    }
+
+    public function usecases_delete(Request $request){
+        Article::where('articleIdx', $request->id)->delete();
+        return "success";
     }
 
     public function usecases_update(Request $request)
@@ -517,6 +522,10 @@ class AdminController extends Controller
             Article::create($data);
             return "success";
         }
+    }
+    public function updates_delete(Request $request){
+        Article::where('articleIdx', $request->id)->delete();
+        return "success";
     }
 
     public function updates_edit($id)

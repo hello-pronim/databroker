@@ -174,7 +174,13 @@
 				                			</a>
 				                			<br>
 				                			@elseif($product->productBidType == 'free')
-				                			<a href="javascript:;">
+				                				@if(!$product->productUrl)
+				                			<a href="javascript;;">
+				                				@elseif(preg_match("@^https?://@", $product->productUrl))
+				                			<a href="{{$product->productUrl}}" download target="_blank">
+				                				@else
+				                			<a href="https://{{$product->productUrl}}" download target="_blank">
+				                				@endif 
 				                				<button type="button" class="customize-btn my-0">GET DATA</button>
 				                			</a>
 			                				@endif

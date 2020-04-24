@@ -283,6 +283,7 @@ $(document).ready(function(){
         e.preventDefault();
 
         var bidType = $('input[name="period"]:checked').val();
+        console.log(bidType);
         var _this = this;
         var formValues = JSON.parse(serialize_form(_this));
         
@@ -299,7 +300,8 @@ $(document).ready(function(){
                         $(_this).find('.error_notice.'+elem_name).show();                    
                     }                    
                 }else{
-                    $(_this).find('.error_notice.'+elem_name).show();
+                    if(elem_name!="dataUrl")
+                        $(_this).find('.error_notice.'+elem_name).show();
                 }                
             } if(!validateURL($("#licenseUrl").val())){
                 $(_this).find('.error_notice.licenceUrl').show();
@@ -307,6 +309,9 @@ $(document).ready(function(){
                 $(_this).find('.error_notice.no_bidding_price_min').show();
             } if(bidType=="bidding_possible" && parseFloat($('input[name="bidding_possible_price"]').val())<0.5){
                 $(_this).find('.error_notice.bidding_possible_price_min').show();
+            } if(bidType=="free" && !validateURL($("#dataUrl").val())){
+                console.log()
+                $(_this).find('.error_notice.dataUrl').show();
             }
         });
         if(formValues.format === undefined){

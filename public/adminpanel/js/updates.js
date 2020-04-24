@@ -39,6 +39,8 @@ var board_data_table;
                             <i class="la la-edit"></i>
                             </a>
                             <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" onclick="attach_record('`+data+`');"><i class="la la-image" title="Upload Image"></i>
+                            </a>
+                            <a href="#" class="btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" onclick="wantDelete('`+data+`');"><i class="la la-trash" title="Delete"></i>
                             </a>`;
                     },
                 },
@@ -76,13 +78,42 @@ function attach_record(record_idx) {
     attach_record_idx = record_idx;
     $("#upload_attach").click();
 }
+function wantDelete(record_idx){
+  swal({
+    title: "Are you sure?",
+    text: "You will not be able to recover this!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Yes, delete it",
+    cancelButtonText: "No",
+    closeOnConfirm: false,
+    closeOnCancel: false
+  },
+  function(isConfirm) {
+    if (isConfirm) {
+      $.ajax({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/admin/updates/delete/'+record_idx,
+        method: 'post',
+        success: function(res){
+          if(res=="success"){
+            window.location.href="/admin/updates";
+          }
+        }
+      });
+    }else 
+      swal("Cancelled", "Action has cancelled", "error");
+  });
+}
 
 transferComplete = function(e) {
     window.location.reload(true);
 }
 
 $("#upload_attach").change(function(event){
-
     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
