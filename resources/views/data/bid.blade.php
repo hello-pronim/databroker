@@ -18,10 +18,12 @@
 	        </div>
 	        <div class="blog-content">
 	        	<div class="para text-red">
-	        	@if($product->productPrice)
-	        		<span>€ {{$product->productPrice}}</span>
-	        	@else
+	        	@if($product->productBidType=="bidding_only")
+	        		<span>N/A</span>
+	        	@elseif($product->productBidType=="free")
 	        		<span>FREE</span>
+	        	@else
+	        		<span>€ {{$product->productPrice}}</span>
 	        	@endif
 	        	</div>
 	        	<div class="para">

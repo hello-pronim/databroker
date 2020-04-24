@@ -282,7 +282,7 @@
 	            					</p>
 			        			</div>
 			        			<div class="mt-20">
-			        				<p class="para text-red">€ {{$product->productPrice}}</p>
+			        				<p class="para text-red">€ {{$finalPrice}}</p>
 									<p class="para">
 						        		<span class="text-grey">{{ trans('data.access_to_this_data') }}: </span>
 						        		<span>1 {{$product->productAccessDays}}</span>

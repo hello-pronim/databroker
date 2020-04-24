@@ -144,12 +144,12 @@
 						                	</div>
 						                	<div class="col col-4">
 						                		<div class="text-right">
-						                			@if(!$product->productPrice)
+						                			@if($product->productBidType=="bidding_only")
 						                			<p class="price">Make your best bid</p>
-						                			@elseif($product->productPrice>0 && $product->productBidType != 'free')
-						                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }} <span class="color-black">(tax incl.)</span></p>
-						                			@else
+						                			@elseif($product->productBidType=="free")
 						                			<p class="price">FREE</p>
+						                			@else
+						                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }} <span class="color-black">(tax incl.)</span></p>
 						                			@endif
 
 						                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 {{ $product->productAccessDays }}</span></p>

@@ -610,7 +610,7 @@ class AdminController extends Controller
         })->save(public_path('images/gallery/thumbs/tiny').'/'.$fileName);
         //image compress end
         $getfiles->move(public_path('images/gallery/thumbs'), $fileName);
-        Gallery::find($mediaIdx)->update(['thumb' => $fileName]);
+        Gallery::find($mediaIdx)->update(['thumb' => 'images/gallery/thumbs/'.$fileName]);
         return "true";
     }
 

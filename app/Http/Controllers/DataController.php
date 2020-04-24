@@ -140,7 +140,7 @@ class DataController extends Controller
                     $gallery_map[$content] = [];
                 if (!isset($gallery_map[$content][$subcontent]))
                     $gallery_map[$content][$subcontent] = [];
-                $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'community'=>$communityName, 'url' => $path, 'thumb' => $thumb];
+                $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'community'=>$content, 'communityName'=>$communityName, 'url' => $path, 'thumb' => $thumb];
                 //$gallery_map[$content][$sequence] = ['id' => $id, 'url' => $path, 'thumb' => $thumb];
             }
 
@@ -252,10 +252,13 @@ class DataController extends Controller
                 $gallery_map[$content] = [];
             if (!isset($gallery_map[$content][$subcontent]))
                 $gallery_map[$content][$subcontent] = [];
-            $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'community'=>$communityName, 'url' => $path, 'thumb' => $thumb];
-        }
+            $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'community'=>$content, 'communityName'=>$communityName, 'url' => $path, 'thumb' => $thumb];
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList', 'gallery_map' );
+        }
+        if(isset($offer_path))
+            $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList', 'gallery_map' );
+        else
+            $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_images', 'theme_json', 'themeCheckList', 'gallery_map' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }
@@ -522,6 +525,9 @@ class DataController extends Controller
                 $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
                 $ret = $offerimagefile->move($offerImage_path, $fileName);
                 $offer_data['offerImage'] =  'uploads/offer/'. $fileName;
+            } else {
+                $fileName = $request->input('gallery_offerImage_1');
+                $offer_data['offerImage'] = $fileName;
             }
 
             Offer::find($id)->update($offer_data);

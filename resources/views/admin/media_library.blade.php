@@ -49,8 +49,8 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>
-                                    @if($image->thumb && file_exists(public_path('images/gallery/thumbs/'.$image->thumb))) 
-                                        {{ asset('images/gallery/thumbs/'.$image->thumb) }}
+                                    @if($image->thumb && file_exists(public_path($image->thumb))) 
+                                        {{ asset($image->thumb) }}
                                     @else 
                                         {{ asset('images/gallery/thumbs/default.png') }}
                                     @endif

@@ -108,10 +108,12 @@
 		            				@foreach($bidUser['messages'] as $message)
 				            			<div class="row">
 				            				<div class="col-md-3">
-		            							@if($message['senderIdx'] == $user->userIdx)
-				            					<label>Message from {{$bidUser['firstname']." ".$bidUser['lastname']}}:</label>	
-				            					@else
-				            					<label>Message from {{$bid['sellername']}}:</label>	
+				            					@if($message)
+			            							@if($message['senderIdx'] == $user->userIdx)
+					            					<label>Message from {{$bidUser['firstname']." ".$bidUser['lastname']}}:</label>	
+					            					@else
+					            					<label>Message from {{$bid['sellerName']}}:</label>	
+					            					@endif
 				            					@endif
 				            				</div>
 				            				<div class="col-md-9">
