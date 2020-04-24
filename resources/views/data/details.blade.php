@@ -177,9 +177,9 @@
 				                				@if(!$product->productUrl)
 				                			<a href="javascript;;">
 				                				@elseif(preg_match("@^https?://@", $product->productUrl))
-				                			<a href="{{$product->productUrl}}" download target="_blank">
+				                			<a href="{{$product->productUrl}}" download>
 				                				@else
-				                			<a href="https://{{$product->productUrl}}" download target="_blank">
+				                			<a href="https://{{$product->productUrl}}" download>
 				                				@endif 
 				                				<button type="button" class="customize-btn my-0">GET DATA</button>
 				                			</a>

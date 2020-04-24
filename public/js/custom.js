@@ -283,7 +283,6 @@ $(document).ready(function(){
         e.preventDefault();
 
         var bidType = $('input[name="period"]:checked').val();
-        console.log(bidType);
         var _this = this;
         var formValues = JSON.parse(serialize_form(_this));
         
@@ -310,7 +309,6 @@ $(document).ready(function(){
             } if(bidType=="bidding_possible" && parseFloat($('input[name="bidding_possible_price"]').val())<0.5){
                 $(_this).find('.error_notice.bidding_possible_price_min').show();
             } if(bidType=="free" && !validateURL($("#dataUrl").val())){
-                console.log()
                 $(_this).find('.error_notice.dataUrl').show();
             }
         });
