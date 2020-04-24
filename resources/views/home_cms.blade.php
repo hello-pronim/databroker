@@ -74,7 +74,7 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('uploads/home/marketplace/tiny/'.($marketplace->image??'')) }}" id="responsive-card-img"/>
+							<img class="img" src="{{ asset('uploads/home/marketplace/medium/'.($marketplace->image??'')) }}" id="responsive-card-img"/>
 						</a>
 					</div>
 					<div class="card-body text-left">

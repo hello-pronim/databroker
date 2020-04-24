@@ -61,8 +61,8 @@
                         @foreach($boards as $board)                      
                             <tr>
                                 <td>
-                                    @if(file_exists(public_path("uploads/home/marketplace/".$board->image))) 
-                                        {{ asset("uploads/home/marketplace/".$board->image) }}
+                                    @if(file_exists(public_path("uploads/home/marketplace/tiny/".$board->image))) 
+                                        {{ asset("uploads/home/marketplace/tiny/".$board->image) }}
                                     @else 
                                         {{ asset("uploads/home/marketplace/default.jpg") }}
                                     @endif
