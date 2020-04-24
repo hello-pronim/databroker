@@ -138,6 +138,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/admin/media_library', 'AdminController@media_library')->name('admin.media_library');
 		Route::get('/admin/media/add_new', 'AdminController@edit_media')->name('admin.add_media');
 		Route::get('/admin/media/edit/{mid}', 'AdminController@edit_media')->where('mid', '[0-9]+')->name('admin.edit_media');
+		Route::post('/admin/media/delete/{mid}', 'AdminController@delete_media')->where('mid', '[0-9]+')->name('admin.delete_media');
 		Route::post('/admin/media/update', 'AdminController@media_update')->name('admin.media_update');
 		Route::post('/admin/media/upload_attach/{id}', 'AdminController@media_upload_attach')->name('admin.media_upload_attach');
 

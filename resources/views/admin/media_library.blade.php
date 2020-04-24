@@ -2,6 +2,7 @@
 
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
 @endsection
 
 @section('content')
@@ -72,6 +73,7 @@
 
 @section('additional_javascript')
     <script src="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.js') }}"></script>
+    <script src="{{ asset('js/plugins/sweetalert.min.js') }}"></script>
     <script src="{{ asset('adminpanel/js/media_library.js') }}"></script>            
 @endsection
 

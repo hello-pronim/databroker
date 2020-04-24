@@ -459,4 +459,4 @@ ALTER TABLE `databroker_new`.`messages` ADD COLUMN `bidIdx` INT(11) NOT NULL AFT
 ALTER TABLE `databroker_new`.`messages` DROP FOREIGN KEY `fk_Messages_Users1`;
 
 #2020-04-24
-ALTER TABLE `databroker_new`.`offerproducts` ADD COLUMN `productUrl` VARCHAR(255) NULL AFTER `productLicenseUrl`; 
+ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `productUrl` VARCHAR(255) NULL AFTER `productLicenseUrl`; 

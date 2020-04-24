@@ -556,6 +556,11 @@ class AdminController extends Controller
         return view('admin.media_edit', compact($data));
     }
 
+    public function delete_media(Request $request){
+        Gallery::where('id', $request->mid)->delete();
+        return "success";
+    }
+
     public function media_update(Request $request){
         if($request->input('id')) {
             $id = $request->input('id');
