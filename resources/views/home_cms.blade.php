@@ -193,7 +193,7 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="{{ route('about.usecase_detail',  ['id' => ($top_usecase->articleIdx??'')] ) }}">
-							<img class="img" src="{{ asset('uploads/usecases/'.($top_usecase->image??'')) }}" />
+							<img class="img" src="{{ asset('uploads/usecases/medium/'.($top_usecase->image??'')) }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">
