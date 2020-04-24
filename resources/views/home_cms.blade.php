@@ -10,7 +10,7 @@
 @section('content')
 <div id="background-image-mobile"></div>
 <div class="container-fluid app-wapper header-section">	
-    <div class="top-bg-image"></div>
+    <!-- <div class="top-bg-image"></div> -->
     <div class="container">
     	<div class="app-section app-reveal-section align-items-center">
 	        <div class="app-reveal-section-notify" style="margin-bottom: 0;">
