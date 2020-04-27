@@ -104,24 +104,22 @@
 		            				</div>
 		            				@endif
 		            			</div>
-		            			<div class="row">
-		            				<div class="col-md-3">
-		            					<label>Message from {{$bidUser['firstname']." ".$bidUser['lastname']}}:</label>		
-		            				</div>
-		            				<div class="col-md-9">
-		            					<p>{{$bidUser['bidMessage']}}</p>			            					
-		            				</div>
-		            			</div>
-		            			@if($bidUser['bidStatus']!=0 && $bidUser['bidResponse'])
-		            			<div class="row">
-		            				<div class="col-md-3">
-		            					<label>Message from {{$bid['sellerName']}}:</label>		
-		            				</div>
-		            				<div class="col-md-9">
-		            					<p>{{$bidUser['bidResponse']}}</p>			            					
-		            				</div>
-		            			</div>
-		            			@endif
+		            			@foreach($bidUser['messages'] as $message)
+			            			<div class="row">
+			            				<div class="col-md-3">
+			            					@if($message)
+		            							@if($message['senderIdx'] == $user->userIdx)
+				            					<label>Message from {{$bidUser['firstname']." ".$bidUser['lastname']}}:<br/><span class="fs-10">{{date('d/m/Y - H:i:s', strtotime($message['created_at']))}}</span></label>	
+				            					@else
+				            					<label>Message from {{$bid['sellerName']}}:<br/><span class="fs-10">{{date('d/m/Y - H:i:s', strtotime($message['created_at']))}}</span></label>	
+				            					@endif
+			            					@endif
+			            				</div>
+			            				<div class="col-md-9">
+			            					<p>{{$message['message']}}</p>			            					
+			            				</div>
+			            			</div>
+		            			@endforeach
 		            			@if($bidUser['bidStatus']==1)       			
 		            			<div class="row">
 		            				<div class="col-md-3">

@@ -110,9 +110,9 @@
 				            				<div class="col-md-3">
 				            					@if($message)
 			            							@if($message['senderIdx'] == $user->userIdx)
-					            					<label>Message from {{$bidUser['firstname']." ".$bidUser['lastname']}}:</label>	
+					            					<label>Message from {{$bidUser['firstname']." ".$bidUser['lastname']}}:<br/><span class="fs-10">{{date('d/m/Y - H:i:s', strtotime($message['created_at']))}}</span></label>	
 					            					@else
-					            					<label>Message from {{$bid['sellerName']}}:</label>	
+					            					<label>Message from {{$bid['sellerName']}}:<br/><span class="fs-10">{{date('d/m/Y - H:i:s', strtotime($message['created_at']))}}</span></label>	
 					            					@endif
 				            					@endif
 				            				</div>

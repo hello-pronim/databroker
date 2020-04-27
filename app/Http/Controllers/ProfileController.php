@@ -22,6 +22,8 @@ use App\Models\Message;
 use App\Models\Region;
 use App\Models\LinkedUser;
 
+use DB;
+
 class ProfileController extends Controller
 {
     /**
@@ -280,9 +282,12 @@ class ProfileController extends Controller
         
         $bidProducts = OfferProduct::with('region')
                                 ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                ->join(DB::raw("(SELECT *, bids.created_at as createdAt FROM bids ORDER BY bids.createdAt DESC) as bids"), function($join){
+                                        $join->on("bids.productIdx", "=", "offerProducts.productIdx");})
                                 ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                                 ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                 ->where('users.userIdx', $user->userIdx)
+                                ->groupby('offerProducts.productIdx')
                                 ->get();
 
         $bidUsers = array();
@@ -303,7 +308,10 @@ class ProfileController extends Controller
                         ->where('bids.productIdx', $bid['productIdx'])
                         ->orderby('bids.created_at', 'desc')
                         ->get(["users.*", 'companies.*', 'offerProducts.*', 'offers.*', 'bids.*', 'bids.created_at as createdAt']);
-
+            foreach ($users as $key => $user) {
+                $messages = Message::where('bidIdx', $user->bidIdx)->orderby('created_at', 'asc')->get();
+                $user['messages'] = $messages;
+            }
             array_push($bidUsers, array(
                 'offerIdx'=>$bid['offerIdx'],
                 'productIdx'=>$bid['productIdx'], 
