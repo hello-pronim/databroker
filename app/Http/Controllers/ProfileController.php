@@ -233,12 +233,12 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $bidProducts = OfferProduct::with('region')
-                        ->join('bids', 'bids.productIdx', '=', 'offerProducts.productIdx')
+                        ->join(DB::raw("(SELECT *, bids.created_at as createdAt FROM bids ORDER BY createdAt DESC) as bids"), function($join){
+                                $join->on("bids.productIdx", "=", "offerProducts.productIdx");})
                         ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                         ->join('providers', 'offers.providerIdx', '=', 'providers.providerIdx')
                         ->join('regions', 'regions.regionIdx', '=', 'providers.regionIdx')
                         ->where('bids.userIdx', $user->userIdx)
-                        ->orderby('bids.created_at', 'desc')
                         ->groupby('offerProducts.productIdx')
                         ->get();
         
