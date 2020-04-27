@@ -37,6 +37,7 @@ return [
     'not_sure_what_to_enter' => 'Not sure what to include?',
     'view_an_example_pdf' => 'See an example (pdf)',
     'your_message' => 'Your message',
+    'wallet' => 'Wallet',
     'account_information' => 'Account information',
     'company_name' => 'Company name',
     'company_profile' => 'Company profile',

@@ -22,6 +22,7 @@ use App\Models\Message;
 use App\Models\Region;
 use App\Models\LinkedUser;
 
+use Redirect;
 use DB;
 
 class ProfileController extends Controller
@@ -226,7 +227,22 @@ class ProfileController extends Controller
     }
 
     public function wallet(Request $request){
-        return view('account.wallet');
+        $user = $this->getAuthUser();
+        $userObj = User::where('userIdx', $user->userIdx)->get()->first();
+
+        if($userObj->wallet){
+            $client = new \GuzzleHttp\Client();
+            $address = $userObj->wallet;
+            $url = "https://dxs-swagger.herokuapp.com/ethereum/balanceof/".$userObj->wallet;
+            $response = $client->request("GET", $url, [
+                'headers'=> ['Content-Type' => 'application/json'],
+                'body'=> '{}'
+            ]);
+            $balance = json_decode($response->getBody()->getContents());
+            $data = array('address', 'balance');
+            return view('account.wallet', compact($data));
+        }
+        else return Redirect::back();
     }
 
     public function buyer_bids(){

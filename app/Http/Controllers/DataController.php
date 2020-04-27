@@ -416,7 +416,36 @@ class DataController extends Controller
             $offer_data['providerIdx'] = $providerIdx;
             $offer_data['status'] = '1';
 
+            $offerCount = Offer::where('providerIdx', $providerIdx)->get()->count();
             $offer_obj = Offer::create($offer_data);
+            if($offerCount==0){//pipeDrive api integration(data provider case)
+                $userObj = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
+                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                ->join('regions', 'regions.regionIdx', '=', 'companies.regionIdx')
+                                ->where('users.userIdx', $user->userIdx)
+                                ->get()
+                                ->first()
+                                ->toArray();
+                $query['user_type'] = "data_provider";
+                $query['firstname'] = $userObj['firstname'];
+                $query['lastname'] = $userObj['lastname'];
+                $query['email'] = $userObj['email'];
+                $query['companyName'] = $userObj['companyName'];
+                $query['businessName'] = $userObj['businessName'];
+                $query['role'] = $userObj['role'];
+                $query['jobTitle'] = $userObj['jobTitle'];
+                $query['region'] = $userObj['regionName'];
+                $query['companyURL'] = $userObj['companyURL'];
+                $query['companyVAT'] = $userObj['companyVAT'];
+                $client = new \GuzzleHttp\Client();
+                $url = "https://prod-107.westeurope.logic.azure.com:443/workflows/bdf7e02c893d426c8f8e101408d30471/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=RvoLkDUgsGbKOUk8oorOUrhXpjcSIdf1_29oSPDA-Tw";
+                $response = $client->request("POST", $url, [
+                    'headers'=> ['Content-Type' => 'application/json'],
+                    'body'=> json_encode($query)
+                ]);
+                var_dump($query);
+                exit;
+            }
             $offerIdx = $offer_obj['offerIdx'];
 
             $offerimagefile = $request->file('offerImage_1');

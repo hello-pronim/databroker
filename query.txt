@@ -460,3 +460,6 @@ ALTER TABLE `databroker_new`.`messages` DROP FOREIGN KEY `fk_Messages_Users1`;
 
 #2020-04-24
 ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `productUrl` VARCHAR(255) NULL AFTER `productLicenseUrl`; 
+
+#2020-04-27
+ALTER TABLE `databroker_new`.`users` CHANGE `wallet` `wallet` VARCHAR(64) NULL; 
