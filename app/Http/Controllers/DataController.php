@@ -682,8 +682,7 @@ class DataController extends Controller
         $product_data['productAccessDays'] = $request->$period;        
         if( $request->period == "no_bidding" || $request->period == "bidding_possible" ){
             $product_data['productPrice'] = $request->$price;
-        }else if($request->period == "free")
-            $product_data['productUrl'] = $request->dataUrl;
+        }
         $product_data['productMoreInfo'] = $request->productMoreInfo;
         $product_data['productTitle'] = $request->productTitle;
         $product_data['productLicenseUrl'] = $request->licenceUrl;
