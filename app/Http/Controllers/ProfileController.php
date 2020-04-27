@@ -282,7 +282,7 @@ class ProfileController extends Controller
         
         $bidProducts = OfferProduct::with('region')
                                 ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
-                                ->join(DB::raw("(SELECT *, bids.created_at as createdAt FROM bids ORDER BY bids.createdAt DESC) as bids"), function($join){
+                                ->join(DB::raw("(SELECT *, bids.created_at as createdAt FROM bids ORDER BY createdAt DESC) as bids"), function($join){
                                         $join->on("bids.productIdx", "=", "offerProducts.productIdx");})
                                 ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                                 ->join('users', 'users.userIdx', '=', 'providers.userIdx')
