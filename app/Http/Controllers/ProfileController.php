@@ -82,6 +82,7 @@ class ProfileController extends Controller
                         ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
                         ->where('purchases.userIdx', $user->userIdx)
+                        ->orderby('purchases.created_at', 'desc')
                         ->get(["offers.*", "offerProducts.*", "purchases.*", "bids.*", "offerProducts.productIdx as pid"]);
         $data = array('purchases');
         return view('account.purchases', compact($data));
