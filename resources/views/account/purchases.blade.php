@@ -50,7 +50,11 @@
                                                         Price:
                                                     </div>
                                                     <div class="col-8 field-value">
+                                                        @if($purchase->productBidType=="free")
+                                                        <span>Free</span>
+                                                        @else
                                                         <span>€ {{$purchase->bidPrice!=0 ? $purchase->bidPrice : $purchase->productPrice}} (tax incl.)</span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="row field-row">
@@ -74,9 +78,13 @@
                                                     <h4 class="company">
                                                         {{$purchase->provider->companyName}}
                                                     </h4>
+                                                    @if($purchase->productBidType=="free")
+                                                    <div class="price">Free</div>
+                                                    @else
                                                     <div class="price">
                                                         € {{$purchase->bidPrice!=0 ? $purchase->bidPrice : $purchase->productPrice}} <span class="color-black">(tax incl.)</span>
                                                     </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">

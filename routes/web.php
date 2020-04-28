@@ -55,6 +55,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/data/buy/{id}/{pid}', 'DataController@buy_data')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.buy_data');
 		Route::post('/data/buy/{id}/{pid}', 'DataController@pay_data')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.pay_data');
 		Route::get('/data/buy/success/{id}/{pid}', 'DataController@pay_success')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.pay_success');
+
+		Route::get('/data/get/{id}/{pid}', 'DataController@get_data')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.get_data');
 		
 		Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');
 		Route::post('/data/update-status', 'DataController@data_update_status')->name('data.update_status');			

@@ -31,6 +31,8 @@ use App\Models\Message;
 use App\User;
 use App\Models\Business;
 
+use Redirect;
+
 class DataController extends Controller
 {
     /**
@@ -1366,6 +1368,41 @@ class DataController extends Controller
             $expiry_to = date('d/m/Y', strtotime($paidProductObj['to']));
             $data = array('product', 'expiry_from', 'expiry_to');
             return view('data.pay_success', compact($data));
+        }
+    }
+
+    public function get_data(Request $request){
+        $user = $this->getAuthUser();
+        if(!$user)
+           return redirect('/login')->with('target', 'get free data');
+        $product = OfferProduct::with('region')
+                                ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                ->where('offerProducts.productIdx', $request->pid)
+                                ->where('offerProducts.offerIdx', $request->id)
+                                ->get()
+                                ->first();
+        if(!$product || $product->productBidType!="free"){ 
+            return Redirect::back();
+        }else{
+            $paidProductData['productIdx'] = $request->pid;
+            $paidProductData['userIdx'] = $user->userIdx;
+            $paidProductData['bidIdx'] = 0;
+            $paidProductData['from'] = date('Y-m-d H:i:s');
+            if($product['productAccessDays']=='day')
+                $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($paidProductData['from'])));
+            else if($product['productAccessDays']=='week')
+                $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+7 day', strtotime($paidProductData['from'])));
+            else if($product['productAccessDays']=='month')
+                $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($paidProductData['from'])));
+            else if($product['productAccessDays']=='year')
+                $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
+            $paidProductObj = Purchase::create($paidProductData);
+
+            $data = array('product');
+            return view('data.get_data', compact($data));
         }
     }
 

@@ -1003,6 +1003,7 @@ a.dropdown-toggle:after{
 }
 .blog-content .link-content .link-box p{
 	font-size: 18px;
+	word-break: break-word;
 }
 .blog-content .link-content .link-box .region{
 	padding: 15px 0px;
