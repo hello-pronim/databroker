@@ -80,12 +80,7 @@
                           <div class="dropdown-menu" aria-labelledby="account_dropdown">                                        
                             <h4> {{ Auth::user()->firstname. ' '. Auth::user()->lastname }} </h4>                    
                             <a class="dropdown-item" href="{{ route('account.profile') }}"> {{ trans('home.account_profile_info') }} </a>
-                            @php
-                              $userObj = \App\User::where('userIdx', Auth::user()->userIdx)->get()->first();
-                            @endphp
-                            @if($userObj->wallet)
                             <a class="dropdown-item" href="{{ route('account.wallet') }}"> {{ trans('home.wallet') }} </a>
-                            @endif
                             <div class="dropdown-divider"></div>
                             @php
                               $bids = \App\Models\Bid::where('userIdx', Auth::user()->userIdx)->get();

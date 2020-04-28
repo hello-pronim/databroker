@@ -230,19 +230,29 @@ class ProfileController extends Controller
         $user = $this->getAuthUser();
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
 
-        if($userObj->wallet){
-            $client = new \GuzzleHttp\Client();
-            $address = $userObj->wallet;
-            $url = "https://dxs-swagger.herokuapp.com/ethereum/balanceof/".$userObj->wallet;
-            $response = $client->request("GET", $url, [
+        if(!$userObj->wallet){
+            $client2 = new \GuzzleHttp\Client();
+            $url = "https://dxs-swagger.herokuapp.com/ethereum/wallet";
+            $response = $client2->request("POST", $url, [
                 'headers'=> ['Content-Type' => 'application/json'],
-                'body'=> '{}'
+                'body'=>'{}'
             ]);
-            $balance = json_decode($response->getBody()->getContents());
-            $data = array('address', 'balance');
-            return view('account.wallet', compact($data));
+            $responseBody = json_decode($response->getBody()->getContents());
+            $walletAddress = $responseBody->address;
+            $walletPrivateKey = $responseBody->privatekey;
+
+            User::where('userIdx', $user->userIdx)->update(['wallet'=>$walletAddress, 'walletPrivateKey'=>$walletPrivateKey]);
         }
-        else return Redirect::back();
+        $client = new \GuzzleHttp\Client();
+        $address = $userObj->wallet;
+        $url = "https://dxs-swagger.herokuapp.com/ethereum/balanceof/".$userObj->wallet;
+        $response = $client->request("GET", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=> '{}'
+        ]);
+        $balance = json_decode($response->getBody()->getContents());
+        $data = array('address', 'balance');
+        return view('account.wallet', compact($data));
     }
 
     public function buyer_bids(){
