@@ -1,5 +1,7 @@
 @extends('layouts.data')
 
+@section('title', 'Update your bid | Databroker ')
+
 @section('content')
 <div class="container-fluid app-wapper app-bids-wapper">
 	<div class="bg-pattern1-left"></div>

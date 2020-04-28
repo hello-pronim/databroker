@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Data offers from '. $company->companyName .' | Databroker')
+
 @section('additional_css')	
 	<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection

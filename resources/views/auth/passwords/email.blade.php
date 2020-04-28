@@ -1,5 +1,7 @@
 @extends('auth.auth_app')
 
+@section('title', 'Forgot password | Databroker ')
+
 @section('content')
 <div class="container-fluid app-wapper">    
     <div class="container">

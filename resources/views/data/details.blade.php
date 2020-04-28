@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $offer['offerTitle']."|Databroker" }}
+{{ $offer['offerTitle']." | Databroker" }}
 @stop
 @section('description', 'Looking for data to help you make insight-driven business decisions? Explore our marketplace and get easy access to a world of data.')
 

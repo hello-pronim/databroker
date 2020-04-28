@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Logged out | Databroker')
+
 @section('content')       
 <div class="container-fluid app-wapper">
     <div class="container">
