@@ -159,6 +159,7 @@ class RegisterController extends Controller
         ]);
         $responseBody = json_decode($response->getBody()->getContents());
         $walletAddress = $responseBody->address;
+        $walletPrivateKey = $responseBody->privatekey;
 
         $this->sendEmail("register", [
             'from'=>'ce@jts.ec', 
@@ -177,6 +178,7 @@ class RegisterController extends Controller
             'role' => $role,
             'userStatus' => $userStatus,
             'wallet'=>$walletAddress,
+            'walletPrivateKey'=>$walletPrivateKey,
             'password' => Hash::make($data['password']),
         ]);
     }
