@@ -243,6 +243,9 @@ class ProfileController extends Controller
 
             User::where('userIdx', $user->userIdx)->update(['wallet'=>$walletAddress, 'walletPrivateKey'=>$walletPrivateKey]);
         }
+
+        $userObj = User::where('userIdx', $user->userIdx)->get()->first();
+        
         $client = new \GuzzleHttp\Client();
         $address = $userObj->wallet;
         $url = "https://dxs-swagger.herokuapp.com/ethereum/balanceof/".$userObj->wallet;
