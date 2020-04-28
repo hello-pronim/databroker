@@ -1384,29 +1384,31 @@ class DataController extends Controller
                                 ->where('offerProducts.offerIdx', $request->id)
                                 ->get()
                                 ->first();
+        $lastPurchase = Purchase::where('productIdx', $request->pid)->where('userIdx', $user->userIdx)->orderby('created_at', 'desc')->get()->first();
+
+        $purchaseData['productIdx'] = $request->pid;
+        $purchaseData['userIdx'] = $user->userIdx;
+        $purchaseData['bidIdx'] = 0;
+        $purchaseData['from'] = date('Y-m-d H:i:s');
+        if($product['productAccessDays']=='day')
+            $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($purchaseData['from'])));
+        else if($product['productAccessDays']=='week')
+            $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+7 day', strtotime($purchaseData['from'])));
+        else if($product['productAccessDays']=='month')
+            $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($purchaseData['from'])));
+        else if($product['productAccessDays']=='year')
+            $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($purchaseData['from'])));
+
+        $expiry_from = date('d/m/Y', strtotime($purchaseData['from']));
+        $expiry_to = date('d/m/Y', strtotime($purchaseData['to']));
+
         if(!$product || $product->productBidType!="free"){ 
             return Redirect::back();
-        }else{
-            $purchaseData['productIdx'] = $request->pid;
-            $purchaseData['userIdx'] = $user->userIdx;
-            $purchaseData['bidIdx'] = 0;
-            $purchaseData['from'] = date('Y-m-d H:i:s');
-            if($product['productAccessDays']=='day')
-                $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($purchaseData['from'])));
-            else if($product['productAccessDays']=='week')
-                $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+7 day', strtotime($purchaseData['from'])));
-            else if($product['productAccessDays']=='month')
-                $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($purchaseData['from'])));
-            else if($product['productAccessDays']=='year')
-                $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($purchaseData['from'])));
+        }else if(!$lastPurchase || $lastPurchase->to < date('Y-m-d')){
             $paidProductObj = Purchase::create($purchaseData);
-
-            $expiry_from = date('d/m/Y', strtotime($purchaseData['from']));
-            $expiry_to = date('d/m/Y', strtotime($purchaseData['to']));
-
-            $data = array('product', 'expiry_from', 'expiry_to');
-            return view('data.get_data', compact($data));
         }
+        $data = array('product', 'expiry_from', 'expiry_to');
+        return view('data.get_data', compact($data));
     }
 
     public function bid(Request $request){
