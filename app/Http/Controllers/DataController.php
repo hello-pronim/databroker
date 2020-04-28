@@ -973,6 +973,9 @@ class DataController extends Controller
         $companyIdx = str_pad($companyIdx, 5, '0', STR_PAD_LEFT);
         $communityIdx = str_pad($communityIdx, 5, '0', STR_PAD_LEFT);
         $uniqueId = $companyIdx . $communityIdx . $datetime . $rnd;
+
+        OfferProduct::where('productIdx', $pid)->update(['uniqueProductIdx'=>$uniqueId]);
+
         $data = array('id', 'uniqueId');
         return view('data.offer_product_publish_confirm', compact($data));
     }        
@@ -983,19 +986,24 @@ class DataController extends Controller
         $offerTitle = $offer['offerTitle'];
         $productTitle = $product['productTitle'];
 
-        $offer = Offer::where('offerIdx', '=', $id)->first();
-        $providerIdx = $offer['providerIdx'];
-        $communityIdx = $offer['communityIdx'];
-        $userIdx = Provider::where('providerIdx', '=', $providerIdx)->first()['userIdx'];
-        $companyIdx = User::where('userIdx', '=', $userIdx)->first()['companyIdx'];
-        $datetime = time();
-        $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 12);
+        $uniqueId = $product->uniqueProductIdx;
+        if(!$uniqueId){
+            $offer = Offer::where('offerIdx', '=', $id)->first();
+            $providerIdx = $offer['providerIdx'];
+            $communityIdx = $offer['communityIdx'];
+            $userIdx = Provider::where('providerIdx', '=', $providerIdx)->first()['userIdx'];
+            $companyIdx = User::where('userIdx', '=', $userIdx)->first()['companyIdx'];
+            $datetime = time();
+            $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 12);
 
-        $companyIdx = base_convert($companyIdx, 10, 26);
-        $communityIdx = base_convert($communityIdx, 10, 26);
-        $companyIdx = str_pad($companyIdx, 5, '0', STR_PAD_LEFT);
-        $communityIdx = str_pad($communityIdx, 5, '0', STR_PAD_LEFT);
-        $uniqueId = $companyIdx . $communityIdx . $datetime . $rnd;
+            $companyIdx = base_convert($companyIdx, 10, 26);
+            $communityIdx = base_convert($communityIdx, 10, 26);
+            $companyIdx = str_pad($companyIdx, 5, '0', STR_PAD_LEFT);
+            $communityIdx = str_pad($communityIdx, 5, '0', STR_PAD_LEFT);
+            $uniqueId = $companyIdx . $communityIdx . $datetime . $rnd;
+
+            OfferProduct::where('productIdx', $pid)->update(['uniqueProductIdx'=>$uniqueId]);
+        }
 
         $data = array('id', 'pid', 'offerTitle', 'productTitle', 'uniqueId');
         return view('data.offer_product_update_confirm', compact($data));

@@ -463,3 +463,5 @@ ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `productUrl` VARCHAR(255
 
 #2020-04-27
 ALTER TABLE `databroker_new`.`users` CHANGE `wallet` `wallet` VARCHAR(64) NULL; 
+#2020-04-28
+ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `uniqueProductIdx` VARCHAR(256) NULL AFTER `productStatus`; 
