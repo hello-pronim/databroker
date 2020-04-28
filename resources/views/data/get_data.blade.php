@@ -1,6 +1,6 @@
 @extends('layouts.data')
 
-@section('title', 'Payment was successful | Databroker ')
+@section('title', 'Get free data | Databroker ')
 
 @section('content')
 <div class="container-fluid app-wapper bg-pattern-side app-wapper-success">
