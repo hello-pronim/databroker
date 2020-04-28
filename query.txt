@@ -466,3 +466,6 @@ ALTER TABLE `databroker_new`.`users` CHANGE `wallet` `wallet` VARCHAR(64) NULL;
 #2020-04-28
 ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `uniqueProductIdx` VARCHAR(256) NULL AFTER `productStatus`; 
 ALTER TABLE `databroker_new`.`users` CHANGE `wallet` `wallet` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL, ADD COLUMN `walletPrivateKey` VARCHAR(255) NULL AFTER `wallet`;
+UPDATE offerProducts SET productAccessDays= "day" WHERE productAccessDays="1 day";
+UPDATE offerProducts SET productAccessDays= "month" WHERE productAccessDays="1 month";
+UPDATE offerProducts SET productAccessDays= "year" WHERE productAccessDays="1 year";
