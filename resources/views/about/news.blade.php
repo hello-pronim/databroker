@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Databroker updates | Databroker')
-@section('description', 'Read about the latest Databroker developments, updates, events and products. Sign up for our NewsBytes to get the latest updates straight in your inbox!')
+@section('title', 'Databroker news | Databroker')
+@section('description', 'Read about the latest Databroker developments, news, events and products. Sign up for our NewsBytes to get the latest updates straight in your inbox!')
 
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">

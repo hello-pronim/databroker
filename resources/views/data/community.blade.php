@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', trans('home.'.str_replace( ' ', '_', strtolower($community) ).'_desc_meta_title'))
+@section('description', trans('home.'.str_replace( ' ', '_', strtolower($community) ).'_desc_meta_desc'))
+
 @section('content')
 <div class="container-fluid app-wapper">	
     <div class="container">

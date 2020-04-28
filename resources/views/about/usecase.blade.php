@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Real-life use cases for data | Databroker')
-@section('description', 'Looking for inspiration for how data can supercharge your business? Browse our use cases for practical ways that data can solve real-life challenges.')
+@section('title', trans('about.usecases_overview_meta_title'))
+@section('description', trans('about.usecases_overview_meta_desc'))
 
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">

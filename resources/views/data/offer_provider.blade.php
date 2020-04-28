@@ -1,6 +1,6 @@
 @extends('layouts.data')
 
-@section('title', 'Publishing provider info | Databroker')
+@section('title', 'Publishing a data offer | Enter company info | Databroker')
 
 @section('additional_css')
 	<link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="blog-header">
-                            <h1>Before we start</h1>
+                            <h1>Before we get started</h1>
                             @if($user->userStatus==1)
                             <p class="area">Please tell us a little more about your company.<br>
                             This information will be published in the marketplace along with your data offer.</p>
@@ -27,7 +27,7 @@
                             @endif
                         </div>
                         <div class="blog-content">
-                            <label class="pure-material-textfield">The country you are located in</label>
+                            <label class="pure-material-textfield">Which country are you located in?</label>
                             <div class="adv-combo-wrapper custom-select2">
                                 @if($user->userStatus==1)
                                 <select id="regionIdx" name="regionIdx" class="@error('regionIdx') is-invalid @enderror" placeholder="{{ trans('pages.search_by_country') }}">

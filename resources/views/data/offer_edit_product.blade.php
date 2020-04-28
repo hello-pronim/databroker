@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add a new data product | Databroker')
+@section('title', 'Edit data product | Databroker')
 @section('description', '')
 
 @section('additional_css')	

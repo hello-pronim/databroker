@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', trans('about.matchmaking_meta_title'))
+@section('description', trans('about.matchmaking_meta_desc'))
+
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">

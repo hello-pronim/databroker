@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
-@section('additional_css')
-@endsection
+@section('title', 'Your data product has been published | Databroker')
 
 @section('content')
 <div class="container-fluid app-wapper data-offer confirm mgh25">
