@@ -1387,21 +1387,24 @@ class DataController extends Controller
         if(!$product || $product->productBidType!="free"){ 
             return Redirect::back();
         }else{
-            $paidProductData['productIdx'] = $request->pid;
-            $paidProductData['userIdx'] = $user->userIdx;
-            $paidProductData['bidIdx'] = 0;
-            $paidProductData['from'] = date('Y-m-d H:i:s');
+            $purchaseData['productIdx'] = $request->pid;
+            $purchaseData['userIdx'] = $user->userIdx;
+            $purchaseData['bidIdx'] = 0;
+            $purchaseData['from'] = date('Y-m-d H:i:s');
             if($product['productAccessDays']=='day')
-                $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($paidProductData['from'])));
+                $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($purchaseData['from'])));
             else if($product['productAccessDays']=='week')
-                $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+7 day', strtotime($paidProductData['from'])));
+                $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+7 day', strtotime($purchaseData['from'])));
             else if($product['productAccessDays']=='month')
-                $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($paidProductData['from'])));
+                $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($purchaseData['from'])));
             else if($product['productAccessDays']=='year')
-                $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
-            $paidProductObj = Purchase::create($paidProductData);
+                $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($purchaseData['from'])));
+            $paidProductObj = Purchase::create($purchaseData);
 
-            $data = array('product');
+            $expiry_from = date('d/m/Y', strtotime($purchaseData['from']));
+            $expiry_to = date('d/m/Y', strtotime($purchaseData['to']));
+
+            $data = array('product', 'expiry_from', 'expiry_to');
             return view('data.get_data', compact($data));
         }
     }
