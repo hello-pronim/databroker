@@ -122,7 +122,7 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('uploads/home/teampicks/tiny/'.($teampick->image??'')) }}" id="responsive-card-img"/>
+							<img class="img" src="{{ asset('uploads/home/teampicks/medium/'.($teampick->image??'')) }}" id="responsive-card-img"/>
 						</a>
 					</div>
 					<div class="card-body text-left">
@@ -193,7 +193,7 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="{{ route('about.usecase_detail',  ['id' => ($top_usecase->articleIdx??'')] ) }}">
-							<img class="img" src="{{ asset('uploads/usecases/tiny/'.($top_usecase->image??'')) }}" />
+							<img class="img" src="{{ asset('uploads/usecases/medium/'.($top_usecase->image??'')) }}" />
 						</a>
 					</div>
 					<div class="card-body text-left">

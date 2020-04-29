@@ -378,12 +378,12 @@
   					<div class="col-md-4 col-lg-3">
   						<h5>{{ trans('home.helpsupport') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
-  							<li><a href="javascript:;">{{ trans('home.buying_data') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.selling_data') }}</a></li> 
-                <li><a href="{{ route('about.privacy_policy') }}">{{ trans('home.privacy_security') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.our_gurantee') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.file_complaint') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 
+  							<li><a href="{{ route('help.buying_data') }}">{{ trans('home.buying_data') }}</a></li> 
+                            <li><a href="{{ route('help.selling_data') }}">{{ trans('home.selling_data') }}</a></li> 
+                            <li><a href="{{ route('about.privacy_policy') }}">{{ trans('home.privacy_security') }}</a></li> 
+                            <li><a href="{{ route('help.guarantee') }}">{{ trans('home.our_gurantee') }}</a></li> 
+                            <li><a href="{{ route('help.file_complaint') }}">{{ trans('home.file_complaint') }}</a></li> 
+                            <li><a href="{{ route('help.feedback') }}">{{ trans('home.give_feedback') }}</a></li>                   
   						</ul>
   					</div>
   					<div class="col-md-12 col-lg-3 footer-newsletter">
