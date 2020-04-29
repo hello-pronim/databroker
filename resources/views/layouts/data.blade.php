@@ -9,11 +9,11 @@
         <meta name="description" content="@yield('description')">
 
         <meta property="og:title" content="@yield('title')">
-        <meta property="og:site_name" content="DataBroker">
-        <meta property="og:url" content="https://beta.databroker.global/">
+        <meta property="og:site_name" content="{{ config('app.name') }} ">
+        <meta property="og:url" content="{{ config('app.url') }} ">
         <meta property="og:description" content="@yield('description')">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="https://beta.databroker.global/images/Databroker_social-share.jpg">
+        <meta property="og:image" content="{{ config('app.url') }}/images/Databroker_social-share.jpg">
 
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline'; img-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;">
          -->

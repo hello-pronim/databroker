@@ -9,11 +9,11 @@
         <meta name="description" content="@yield('description')">
 
         <meta property="og:title" content="@yield('title')">
-        <meta property="og:site_name" content="DataBroker">
-        <meta property="og:url" content="">
+        <meta property="og:site_name" content="{{ config('app.name') }} ">
+        <meta property="og:url" content="{{ config('app.url') }} ">
         <meta property="og:description" content="@yield('description')">
-        <meta property="og:type" content="">
-        <meta property="og:image" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="{{ config('app.url') }}/images/Databroker_social-share.jpg">
 
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
