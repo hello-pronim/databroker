@@ -110,9 +110,13 @@
                                                                   ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                                                   ->where('users.userIdx', Auth::user()->userIdx)
                                                                   ->get();
+                              $sales = \App\Models\Sale::where('userIdx', Auth::user()->userIdx)->get();
                             @endphp
                             @if(count($products))
                             <a class="dropdown-item" href="{{ route('profile.seller_bids') }}"> {{ trans('home.bids_received') }} </a>
+                            @endif
+                            @if(count($sales))
+                            <a class="dropdown-item" href="{{ route('account.sales') }}"> {{ trans('home.my_sales') }} </a>
                             @endif
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

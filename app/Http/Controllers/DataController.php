@@ -22,6 +22,7 @@ use App\Models\OfferCountry;
 use App\Models\HomeFeaturedProvider;
 use App\Models\ProductCountry;
 use App\Models\Purchase;
+use App\Models\Sale;
 use App\Models\PaidHistory;
 use App\Models\RegionProduct;
 use App\Models\UseCase;
@@ -1253,6 +1254,10 @@ class DataController extends Controller
                     else if($product['productAccessDays']=='year')
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
                     $paidProductObj = Purchase::create($paidProductData);
+
+                    $soldProductData = $paidProductData;
+                    $soldProductData['userIdx'] = $seller->userIdx;
+                    $soldProductObj = Sale::create($soldProductData);
 
                     $data['expiry_from'] = date('d/m/Y', strtotime($paidProductData['from']));
                     $data['expiry_to'] = date('d/m/Y', strtotime($paidProductData['to']));

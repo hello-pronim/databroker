@@ -28,6 +28,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/profile/purchases', 'ProfileController@purchases')->name('account.purchases');	
 		Route::get('/profile/purchases/{pid}', 'ProfileController@purchases_detail')->where('pid', '[0-9]+')->name('account.purchases_detail');	
 		Route::get('/wallet', 'ProfileController@wallet')->name('account.wallet');	
+		Route::get('/profile/sales', 'ProfileController@sales')->name('account.sales');	
+		Route::get('/profile/sales/{sid}', 'ProfileController@sales_detail')->where('sid', '[0-9]+')->name('account.sales_detail');	
 		Route::post('/user/delete', 'ProfileController@delete')->name('account.delete');	
 		Route::post('/invite', 'ProfileController@invite_user')->name('account.invite_user');
 

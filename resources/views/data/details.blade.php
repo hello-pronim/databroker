@@ -35,7 +35,7 @@
 	        			@if( file_exists(public_path() . '/'. $offer['offerImage'] ) && $offer['offerImage'] )
 	        			<img class="blog-img" src="{{ asset($offer['offerImage']) }}" />
 	        		    @else
-	        		    <img class="img" src="{{ asset('uploads/offer/default.png') }}" />
+	        		    <img class="blog-img" src="{{ asset('uploads/offer/default.png') }}" />
 	        		    @endif  	
 			            <div class="nav-tabs-wrapper mt-30">
 			                <ul class="nav nav-tabs">
@@ -156,7 +156,7 @@
 						                		</div>	
 						                	</div>
 				                		</div>	 
-			                			<div class="flex-row align-items-center justify-content-end">
+			                			<div class="product_actions">
 				                			@if($product->productBidType == 'no_bidding')
 				                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
 				                				<button type="button" class="customize-btn my-0">BUY NOW</button>

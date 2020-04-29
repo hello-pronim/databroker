@@ -737,6 +737,43 @@
 	.app-wapper.app-wapper-register::after{
 		display: none!important;
 	}
+	.blog-content .link-content .link-box .buy_lists .buy_list .product_actions{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-end;
+	}
+	.blog-content .link-content .link-box .buy_lists .buy_list .product_actions >a{
+		width: 100%;
+	}
+	.blog-content .link-content .link-box .buy_lists .buy_list .product_actions button{
+		width: 100%;
+		margin-bottom: 10px!important;
+		margin-left: 0px;
+	}
+	.cta_box{
+		padding: 30px 30px;
+	}
+	#samples .image{
+		width: 100%;
+	}
+	#forgot_pass_link{
+		width: 100%;
+		padding: 0px;
+	}
+	#register_link{
+		width: 100%;
+		display: block;
+	}
+	#register_link >button{
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	#register_link +label{
+		width: 100%;
+		text-align: center;
+		margin-left: 0px!important;
+	}
 }
 
 @media (min-width: 1200px) and (max-width: 1600px) {

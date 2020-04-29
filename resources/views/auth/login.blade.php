@@ -36,10 +36,10 @@
                     </label>
 
                     <div class="form-group row mb-0">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <button type="submit" class="customize-btn">CONTINUE</button>
                         </div>
-                        <div class="col-6 text-right">
+                        <div class="col-md-6 text-right flex-column align-items-end justify-content-center">
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link text-grey" id="forgot_pass_link" href="{{ route('password.request') }}">
                                     {{ __('Forgot your password?') }}
@@ -51,11 +51,14 @@
                     <hr>
                     <p class="h4-intro">Don’t have an account yet?</p>
                     <p class="paragraph-small text-bold">Then let’s get you set up!</p>
-                    <a id="register_link" href="{{ route('register') }}">
-                        <button type="button" class="secondary-btn w225 pure-material-button-outlined">{{ __('REGISTER NOW') }}</button>
-                    </a>
-                    <label class="ml-30">It’s free!</label>
-
+                    <div class="row mb-0 flex-row align-items-center">
+                        <div class="col-md-6">
+                            <a id="register_link" href="{{ route('register') }}">
+                                <button type="button" class="secondary-btn w225 pure-material-button-outlined">{{ __('REGISTER NOW') }}</button>
+                            </a>
+                            <label class="ml-30">It’s free!</label>
+                        </div>
+                    </div>
                 </form>
 
             </div>

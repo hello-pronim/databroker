@@ -108,6 +108,20 @@ class ProfileController extends Controller
         return view('account.purchases_detail', compact($data));
     }
 
+    public function sales(Request $request){
+        $user = $this->getAuthUser();
+        $sales = Offer::with(['region', 'provider'])
+                        ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+                        ->join('sales', 'sales.productIdx', '=', 'offerProducts.productIdx')
+                        ->leftjoin('bids', 'bids.bidIdx', '=', 'sales.bidIdx')
+                        ->where('sales.userIdx', $user->userIdx)
+                        ->orderby('sales.created_at', 'desc')
+                        ->get(["offers.*", "offerProducts.*", "sales.*", "bids.*", "offerProducts.productIdx as pid"]);
+        $user = User::where('userIdx', $user->userIdx)->get()->first();
+        $data = array('sales', 'user');
+        return view('account.sales', compact($data));
+    }
+
     public function update(Request $request)
     {
         $user = Auth::user();

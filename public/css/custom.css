@@ -269,6 +269,9 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 .align-items-center{
 	align-items: center;
 }
+.align-items-end{
+	align-items: flex-end;
+}
 .justify-content-start{
 	justify-content: flex-start;
 }
@@ -1066,6 +1069,12 @@ a.dropdown-toggle:after{
 	padding-left: 20px;
 	padding-right: 20px;
 	margin: 15px 0px 15px 20px;
+}
+.blog-content .link-content .link-box .buy_lists .buy_list .product_actions{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
 }
 .form-check .form-check-sign .check.is-invalid{
 	border-color:#eb4444;
