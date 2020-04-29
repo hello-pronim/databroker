@@ -9,9 +9,13 @@
         <div class="app-section app-reveal-section align-items-center data-detail">
             <div class="blog-header">
                 <h1>My sales</h1>
-                <p class="para">Here you can find an overview of all the data products you have purchased, including any products that were shared with you at no cost. 
-                    <br>
-                    Purchases are shown in chronological order, with the most recent activity at the top.
+                <p class="para">Here you can find an overview of all the data products you have sold or shared.</p>
+                <p class="para">
+                    <span class="text-grey">Total value of your sales:</span> <span class="text-red text-bold">€ XXX / DTX XXX</span><br/>
+                    This amount includes all sales that have been fully completed, i.e. where you have redeemed the DTX amount at the end of the 30-day warranty period. 
+                </p>
+                <p class="para">
+                    <a href="{{route('account.wallet')}}">Go to my wallet</a>
                 </p>
                 <div class="purchase-items">
                     @if(count($sales))
@@ -76,7 +80,7 @@
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 seller">
                                                 <div class="mb-20">
                                                     <h4 class="company">
-                                                        {{$sale->provider->companyName}}
+                                                        {{$sale->buyerCompanyName}}
                                                     </h4>
                                                     @if($sale->productBidType=="free")
                                                     <div class="price">Free</div>

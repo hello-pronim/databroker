@@ -125,7 +125,7 @@
 				                	@foreach($products as $product)
 				                	<div class="buy_list">				                		
 				                		<div class="row">
-				                			<div class="col col-8">
+				                			<div class="col col-md-8">
 					                			<div class="text-left">
 						                			<h3>{{$product->productTitle}}</h3>	
 						                			<label class="country offer-location">
@@ -142,7 +142,7 @@
 						                			@endif
 						                		</div>
 						                	</div>
-						                	<div class="col col-4">
+						                	<div class="col col-md-4">
 						                		<div class="text-right">
 						                			@if($product->productBidType=="bidding_only")
 						                			<p class="price">Make your best bid</p>

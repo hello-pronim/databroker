@@ -472,3 +472,6 @@ UPDATE offerProducts SET productAccessDays= "year" WHERE productAccessDays="1 ye
 
 CREATE TABLE `databroker_new`.`sales` ( `saleIdx` INT(11) NOT NULL AUTO_INCREMENT, `productIdx` INT(11), `userIdx` INT(11), `bidIdx` INT(11), `from` DATE, `to` DATE, PRIMARY KEY (`saleIdx`) ) ENGINE=INNODB CHARSET=utf8 COLLATE=utf8_general_ci; 
 ALTER TABLE `databroker_new`.`sales` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `to`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`;
+
+#2020-04-29
+ALTER TABLE `databroker_new`.`sales` CHANGE `userIdx` `sellerIdx` INT(11) NULL, ADD COLUMN `buyerIdx` INT(11) NULL AFTER `sellerIdx`; 

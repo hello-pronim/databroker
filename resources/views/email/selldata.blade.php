@@ -111,7 +111,11 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															Price : € {{$data['finalPrice']}} / DTX {{$data['finalPrice']}}
+															@if($data['finalPrice']>0)
+																Price : € {{$data['finalPrice']}} / DTX {{$data['finalPrice']}}
+															@else
+																Price : FREE
+															@endif
 														</td>
 													</tr>
 													<tr>

@@ -1256,7 +1256,9 @@ class DataController extends Controller
                     $paidProductObj = Purchase::create($paidProductData);
 
                     $soldProductData = $paidProductData;
-                    $soldProductData['userIdx'] = $seller->userIdx;
+                    unset($soldProductData['userIdx']);
+                    $soldProductData['sellerIdx'] = $seller->userIdx;
+                    $soldProductData['buyerIdx'] = $user->userIdx;
                     $soldProductObj = Sale::create($soldProductData);
 
                     $data['expiry_from'] = date('d/m/Y', strtotime($paidProductData['from']));
@@ -1407,11 +1409,50 @@ class DataController extends Controller
         $expiry_from = date('d/m/Y', strtotime($purchaseData['from']));
         $expiry_to = date('d/m/Y', strtotime($purchaseData['to']));
 
+        $buyer = User::where('userIdx', $user->userIdx)->get()->first();
+        $seller = OfferProduct::with('region')
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->where('offerProducts.productIdx', $request->pid)
+                        ->get()
+                        ->first();
+        $product = OfferProduct::where('productIdx', $request->pid)->get()->first();
+
         if(!$product || $product->productBidType!="free"){ 
             return Redirect::back();
         }else if(!$lastPurchase || $lastPurchase->to < date('Y-m-d')){
             $paidProductObj = Purchase::create($purchaseData);
+
+            $soldProductData = $purchaseData;
+            unset($soldProductData['userIdx']);
+            $soldProductData['sellerIdx'] = $seller->userIdx;
+            $soldProductData['buyerIdx'] = $user->userIdx;
+            $soldProductObj = Sale::create($soldProductData);
         }
+        $mailData['seller'] = $seller;
+        $mailData['buyer'] = $buyer;
+        $mailData['finalPrice'] = 0;
+        $mailData['product'] = $product;
+        $mailData['expiry_from'] = date('d/m/Y', strtotime($purchaseData['from']));
+        $mailData['expiry_to'] = date('d/m/Y', strtotime($purchaseData['to']));
+
+        $this->sendEmail("buydata", [
+            'from'=>'cg@jts.ec', 
+            'to'=>$buyer['email'], 
+            'subject'=>'You’ve successfully purchased a data product', 
+            'name'=>'Databroker',
+            'data'=>$mailData
+        ]);  
+        $this->sendEmail("selldata", [
+            'from'=>'cg@jts.ec', 
+            'to'=>$seller['email'], 
+            'subject'=>'You’ve sold a data product', 
+            'name'=>'Databroker',
+            'data'=>$mailData
+        ]);
+
         $data = array('product', 'expiry_from', 'expiry_to');
         return view('data.get_data', compact($data));
     }

@@ -114,9 +114,14 @@ class ProfileController extends Controller
                         ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
                         ->join('sales', 'sales.productIdx', '=', 'offerProducts.productIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'sales.bidIdx')
-                        ->where('sales.userIdx', $user->userIdx)
+                        ->where('sales.sellerIdx', $user->userIdx)
                         ->orderby('sales.created_at', 'desc')
                         ->get(["offers.*", "offerProducts.*", "sales.*", "bids.*", "offerProducts.productIdx as pid"]);
+        foreach ($sales as $key => $sale) {
+            $buyerIdx = $sale->buyerIdx;
+            $buyerCompanyName = Company::join('users', 'users.companyIdx', '=', 'companies.companyIdx')->where('users.userIdx', $buyerIdx)->get()->first()->companyName;
+            $sale['buyerCompanyName'] = $buyerCompanyName;
+        }
         $user = User::where('userIdx', $user->userIdx)->get()->first();
         $data = array('sales', 'user');
         return view('account.sales', compact($data));

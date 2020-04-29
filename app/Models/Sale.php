@@ -15,6 +15,6 @@ class Sale extends Model
      * @var array
      */
     protected $fillable = [
-        'productIdx', 'userIdx', 'bidIdx', 'from', 'to'
+        'productIdx', 'sellerIdx', 'buyerIdx', 'bidIdx', 'from', 'to'
     ];
 }
