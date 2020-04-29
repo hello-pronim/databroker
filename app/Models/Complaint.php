@@ -12,6 +12,6 @@ class Complaint extends Model
     protected $primaryKey = 'complaintIdx';
 
     protected $fillable = [
-        'userIdx', 'complaintTarget', 'complaintKind', 'complaintContent'
+        'userIdx', 'complaintTarget', 'complaintKind', 'complaintContent', 'productIdx'
     ];
 }

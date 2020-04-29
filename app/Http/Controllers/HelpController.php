@@ -239,7 +239,7 @@ class HelpController extends Controller
 
         $data['message'] = $message;
 
-        if($request->productIdx){
+        if(isset($request->productIdx)){
             $data['productTitle'] = OfferProduct::where('productIdx', $request->productIdx)->get()->first()->productTitle;
             $data['companyName'] = $request->companyName;
         }
@@ -252,6 +252,7 @@ class HelpController extends Controller
         $complaint['userIdx'] = $user->userIdx;
         $complaint['complaintTarget'] = $data['companyName'];
         $complaint['complaintContent'] = $message;
+        if(isset($request->productIdx)) $complaint['productIdx'] = $request->productIdx;
         
         Complaint::create($complaint);
 
