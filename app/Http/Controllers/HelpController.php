@@ -78,7 +78,7 @@ class HelpController extends Controller
         );
         $texts = array(
             'title' => 'Buying data',
-            'title-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
+            'title-description' => 'Are you or your company looking to access and purchase data? Databroker is the perfect place to find and access the data you need. Our platform offers Data products from the leading data providers around the world in many different genres to match your needs. We also provide a community area for your specific community and detailed requirements. The buying process is streamlined for buyers to have a smooth experience with only a Credit Card required. Our staff are always online to make sure your data buying questions are answered promptly. Please browse below to find our detailed Help on Data Buying and how the process works for data purchases.',
             'section2' => 'Top 10 FAQ',
             'faq_explain' => '(Short explanation) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
         );
@@ -142,7 +142,7 @@ class HelpController extends Controller
         );
         $texts = array(
             'title' => 'Selling data',
-            'title-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
+            'title-description' => 'Is your company ready to sell data? Databroker allows your company to post your data Offers on our platform where buyers from around the world come to search for data. We offer  a complete solution for auto-uploading data streams and feeds and our staff are always online ready to get you set up in no time. Read below for our detailed sellers getting started information and FAQs.',
             'section2' => 'Top 10 FAQ',
             'faq_explain' => '(Short explanation) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
         );

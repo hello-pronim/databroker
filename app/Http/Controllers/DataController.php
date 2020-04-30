@@ -1421,7 +1421,6 @@ class DataController extends Controller
                         ->where('offerProducts.productIdx', $request->pid)
                         ->get()
                         ->first();
-        $product = OfferProduct::where('productIdx', $request->pid)->get()->first();
 
         if(!$product || $product->productBidType!="free"){ 
             return Redirect::back();
@@ -1433,31 +1432,32 @@ class DataController extends Controller
             $soldProductData['sellerIdx'] = $seller->userIdx;
             $soldProductData['buyerIdx'] = $user->userIdx;
             $soldProductObj = Sale::create($soldProductData);
-        }
-        $mailData['seller'] = $seller;
-        $mailData['buyer'] = $buyer;
-        $mailData['finalPrice'] = 0;
-        $mailData['product'] = $product;
-        $mailData['expiry_from'] = date('d/m/Y', strtotime($purchaseData['from']));
-        $mailData['expiry_to'] = date('d/m/Y', strtotime($purchaseData['to']));
 
-        $this->sendEmail("buydata", [
-            'from'=>'cg@jts.ec', 
-            'to'=>$buyer['email'], 
-            'subject'=>'You’ve successfully purchased a data product', 
-            'name'=>'Databroker',
-            'data'=>$mailData
-        ]);  
-        $this->sendEmail("selldata", [
-            'from'=>'cg@jts.ec', 
-            'to'=>$seller['email'], 
-            'subject'=>'You’ve sold a data product', 
-            'name'=>'Databroker',
-            'data'=>$mailData
-        ]);
+            $mailData['seller'] = $seller;
+            $mailData['buyer'] = $buyer;
+            $mailData['finalPrice'] = 0;
+            $mailData['product'] = $product;
+            $mailData['expiry_from'] = date('d/m/Y', strtotime($purchaseData['from']));
+            $mailData['expiry_to'] = date('d/m/Y', strtotime($purchaseData['to']));
 
-        $data = array('product', 'expiry_from', 'expiry_to');
-        return view('data.get_data', compact($data));
+            $this->sendEmail("buydata", [
+                'from'=>'cg@jts.ec', 
+                'to'=>$buyer['email'], 
+                'subject'=>'You’ve successfully purchased a data product', 
+                'name'=>'Databroker',
+                'data'=>$mailData
+            ]);  
+            $this->sendEmail("selldata", [
+                'from'=>'cg@jts.ec', 
+                'to'=>$seller['email'], 
+                'subject'=>'You’ve sold a data product', 
+                'name'=>'Databroker',
+                'data'=>$mailData
+            ]);
+
+            $data = array('product', 'expiry_from', 'expiry_to');
+            return view('data.get_data', compact($data));
+        }else return redirect(route('account.purchases'));
     }
 
     public function bid(Request $request){
