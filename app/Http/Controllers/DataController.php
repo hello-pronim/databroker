@@ -33,6 +33,7 @@ use App\User;
 use App\Models\Business;
 
 use Redirect;
+use Config;
 
 class DataController extends Controller
 {
@@ -60,7 +61,11 @@ class DataController extends Controller
         
         $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->where('deleted', 0)->get();
         
-        $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
+        $prev_route = "";        
+        if( parse_url(url()->previous(), PHP_URL_HOST ) ==  parse_url(Config::get('app.url'), PHP_URL_HOST ) ){
+            $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
+        }
+        
         
         $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where("productStatus", 1)->get();
 
