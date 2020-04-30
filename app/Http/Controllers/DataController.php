@@ -1452,7 +1452,7 @@ class DataController extends Controller
 
             $data = array('product', 'expiry_from', 'expiry_to');
             return view('data.get_data', compact($data));
-        }else return redirect('account.purchases');
+        }else return redirect(route('account.purchases'));
     }
 
     public function bid(Request $request){

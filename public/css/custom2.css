@@ -1889,12 +1889,9 @@ body .select2-search--dropdown {
 }
 
 .help .faq-entry {
-	height: 60px;
+	height: auto;
 	border-bottom: 1px solid #D0D7DD;
-}
-
-.help .faq-entry.expanded {
-	height: 120px;
+	padding: 10px 0px;
 }
 
 .help .faq-entry:last-of-type {
