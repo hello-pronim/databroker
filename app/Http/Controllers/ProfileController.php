@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Business;
 use App\Models\Provider;
 use App\Models\Company;
+use App\Models\Complaint;
 use App\Models\Offer;
 use App\Models\OfferProduct;
 use App\Models\Bid;
@@ -115,12 +116,15 @@ class ProfileController extends Controller
                         ->join('sales', 'sales.productIdx', '=', 'offerProducts.productIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'sales.bidIdx')
                         ->where('sales.sellerIdx', $user->userIdx)
-                        ->orderby('sales.created_at', 'desc')
+                        ->orderby('sales.created_at', 'desc') 
                         ->get(["offers.*", "offerProducts.*", "sales.*", "bids.*", "offerProducts.productIdx as pid"]);
         foreach ($sales as $key => $sale) {
             $buyerIdx = $sale->buyerIdx;
             $buyerCompanyName = Company::join('users', 'users.companyIdx', '=', 'companies.companyIdx')->where('users.userIdx', $buyerIdx)->get()->first()->companyName;
+            $hasComplaints = Complaint::where('productIdx', $sale->productIdx)->get()->count();
             $sale['buyerCompanyName'] = $buyerCompanyName;
+            if($hasComplaints) $sale['hasComplaints'] = 1;
+            else $sale['hasComplaints'] = 0;
         }
         $user = User::where('userIdx', $user->userIdx)->get()->first();
         $data = array('sales', 'user');
