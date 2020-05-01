@@ -17,6 +17,8 @@ use App\Models\OfferSample;
 use App\Models\OfferCountry;
 use App\Models\OfferProduct;
 use App\Models\UseCase;
+use App\Models\FAQ;
+use App\Models\HelpTopic;
 use App\Models\Complaint;
 use App\User;
 
@@ -50,128 +52,28 @@ class HelpController extends Controller
 
     public function buying_data(Request $request)
     {
-        $topics = array(
-            array(
-                'id'        => 1, 
-                'title'     => 'Topic', 
-            ),
-            array(
-                'id'        => 2, 
-                'title'     => 'Lorem ipsum dolor sit amet', 
-            ),
-            array(
-                'id'        => 3, 
-                'title'     => 'Nunc varius risus sed metus bibendum, ac efficitur lorem ornare.', 
-            ),
-            array(
-                'id'        => 4, 
-                'title'     => 'Nunc varius risus sed metus bibendum, ac efficitur lorem ornare.', 
-            ),
-            array(
-                'id'        => 5, 
-                'title'     => 'Topic', 
-            ),
-            array(
-                'id'        => 6, 
-                'title'     => 'Lorem ipsum dolor sit amet', 
-            ),
-        );
+        $topics = HelpTopic::where('page', 'buying')->get();
         $texts = array(
             'title' => 'Buying data',
             'title-description' => 'Are you or your company looking to access and purchase data? Databroker is the perfect place to find and access the data you need. Our platform offers Data products from the leading data providers around the world in many different genres to match your needs. We also provide a community area for your specific community and detailed requirements. The buying process is streamlined for buyers to have a smooth experience with only a Credit Card required. Our staff are always online to make sure your data buying questions are answered promptly. Please browse below to find our detailed Help on Data Buying and how the process works for data purchases.',
             'section2' => 'Top 10 FAQ',
             'faq_explain' => '(Short explanation) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
         );
-        $faqs = array(
-            array(
-                'id'        => '1',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '2',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '3',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '4',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '5',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '6',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-        );
+        $faqs = FAQ::where('for', 'buying')->orderby('created_at', 'desc')->limit(10)->get();
         $data = array( 'topics', 'texts', 'faqs' );
         return view('help.buying-data', compact($data));
     }
 
     public function selling_data(Request $request)
     {
-        $topics = array(
-            array(
-                'id'        => 1, 
-                'title'     => 'Topic', 
-            ),
-            array(
-                'id'        => 2, 
-                'title'     => 'Lorem ipsum dolor sit amet', 
-            ),
-            array(
-                'id'        => 3, 
-                'title'     => 'Nunc varius risus sed metus bibendum, ac efficitur lorem ornare.', 
-            ),
-            array(
-                'id'        => 4, 
-                'title'     => 'Nunc varius risus sed metus bibendum, ac efficitur lorem ornare.', 
-            ),
-            array(
-                'id'        => 5, 
-                'title'     => 'Topic', 
-            ),
-            array(
-                'id'        => 6, 
-                'title'     => 'Lorem ipsum dolor sit amet', 
-            ),
-        );
+        $topics = HelpTopic::where('page', 'selling')->get();
         $texts = array(
             'title' => 'Selling data',
             'title-description' => 'Is your company ready to sell data? Databroker allows your company to post your data Offers on our platform where buyers from around the world come to search for data. We offer  a complete solution for auto-uploading data streams and feeds and our staff are always online ready to get you set up in no time. Read below for our detailed sellers getting started information and FAQs.',
             'section2' => 'Top 10 FAQ',
             'faq_explain' => '(Short explanation) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
         );
-        $faqs = array(
-            array(
-                'id'        => '1',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '2',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '3',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '4',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '5',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '6',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-        );
+        $faqs = FAQ::where('for', 'selling')->orderby('created_at', 'desc')->limit(10)->get();
         $data = array( 'topics', 'texts', 'faqs' );
         return view('help.selling-data', compact($data));
     }

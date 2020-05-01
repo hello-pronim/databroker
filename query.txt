@@ -480,3 +480,8 @@ ALTER TABLE `databroker_new`.`complaints` ADD COLUMN `productIdx` INT(11) NULL A
 #2020-04-30
 CREATE TABLE `databroker_new`.`transactions` ( `transactionIdx` INT(11) NOT NULL AUTO_INCREMENT, `transactionType` VARCHAR(64), `senderIdx` INT(11), `receiverIdx` INT(11), `productIdx` INT(11), `amount` FLOAT, `status` VARCHAR(64), PRIMARY KEY (`transactionIdx`) ); 
 ALTER TABLE `databroker_new`.`transactions` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `status`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
+
+CREATE TABLE `databroker_new`.`faqs` ( `faqIdx` INT(11) NOT NULL AUTO_INCREMENT, `faq` TEXT, `description` TEXT, `for` VARCHAR(64), PRIMARY KEY (`faqIdx`) );
+ALTER TABLE `databroker_new`.`faqs` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `for`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
+CREATE TABLE `databroker_new`.`helpTopics` ( `helpTopicIdx` INT(11) NOT NULL AUTO_INCREMENT, `page` VARCHAR(64), `title` VARCHAR(64), `description` TEXT(64), PRIMARY KEY (`helpTopicIdx`) ) ENGINE=INNODB CHARSET=utf8 COLLATE=utf8_estonian_ci; 
+ALTER TABLE `databroker_new`.`helpTopics` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `description`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`, COLLATE=utf8_general_ci; 

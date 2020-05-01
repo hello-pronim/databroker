@@ -26,6 +26,8 @@ use App\Models\HomeTrending;
 use App\Models\HomeMarketplace;
 use App\Models\HomeTeamPicks;
 use App\Models\HomeFeaturedProvider;
+use App\Models\FAQ;
+use App\Models\HelpTopic;
 use App\Models\Admin;
 use Response;
 use Image;
@@ -680,4 +682,99 @@ class AdminController extends Controller
         
     }
 
+    public function help_faqs(Request $request){
+        $faqs = FAQ::get();
+        $data = array('faqs');
+        return view('admin.help_faqs', compact($data));
+    }
+    public function edit_help_faq(Request $request, $fid = 0){
+        if($fid==0){
+            return view('admin.help_faqs_edit');
+        }else{
+            $faq = FAQ::where('faqIdx', $fid)->get()->first();
+            $data = array('faq');
+            return view('admin.help_faqs_edit', compact($data));
+        }
+    }
+    public function update_help_faq(Request $request){
+        if($request->faqIdx==0){
+            $faq['faq'] = $request->faq;
+            $faq['description'] = $request->description;
+            $faq['for'] = $request->for;
+            FAQ::create($faq);
+        }else{
+            $faq['faq'] = $request->faq;
+            $faq['description'] = $request->description;
+            $faq['for'] = $request->for;
+            FAQ::where('faqIdx', $request->faqIdx)->update($faq);
+        }
+        return "success";
+    }
+    public function delete_help_faq(Request $request){
+        FAQ::where('faqIdx', $request->fid)->delete();
+        return "success";
+    }
+
+    public function help_buying_data(Request $request){
+        $topics = HelpTopic::where('page', 'buying')->get();
+        $data = array('topics');
+        return view('admin.help_buying_data', compact($data));
+    }
+    public function edit_help_buying_data(Request $request, $tid = 0){
+        if($tid==0){
+            return view('admin.help_buying_data_edit');
+        }else{
+            $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
+            $data = array('topic');
+            return view('admin.help_buying_data_edit', compact($data));
+        }
+    }
+    public function update_help_buying_data(Request $request){
+        if($request->helpTopicIdx==0){
+            $topic['page'] = "buying";
+            $topic['title'] = $request->title;
+            HelpTopic::create($topic);
+        }else{
+            $topic['page'] = "buying";
+            $topic['title'] = $request->title;
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
+        }
+        return "success";
+    }
+
+    public function delete_help_buying_data(Request $request){
+        HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->delete();
+        return "success";
+    }
+
+    public function help_selling_data(Request $request){
+        $topics = HelpTopic::where('page', 'selling')->get();
+        $data = array('topics');
+        return view('admin.help_selling_data', compact($data));
+    }
+    public function edit_help_selling_data(Request $request, $tid = 0){
+        if($tid==0){
+            return view('admin.help_selling_data_edit');
+        }else{
+            $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
+            $data = array('topic');
+            return view('admin.help_selling_data_edit', compact($data));
+        }
+    }
+    public function update_help_selling_data(Request $request){
+        if($request->helpTopicIdx==0){
+            $topic['page'] = "selling";
+            $topic['title'] = $request->title;
+            HelpTopic::create($topic);
+        }else{
+            $topic['page'] = "selling";
+            $topic['title'] = $request->title;
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
+        }
+        return "success";
+    }
+    public function delete_help_selling_data(Request $request){
+        HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->delete();
+        return "success";
+    }
 }

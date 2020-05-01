@@ -45,11 +45,11 @@
                                     @foreach ( $faqs as $faq )
                                     <div class="faq-entry flex-hcenter flex-vertical">
                                         <div class="flex-vcenter-justify">
-                                            <div class="para question">{{ $faq['question'] }}</div>
+                                            <div class="para question">{{ $faq['faq'] }}</div>
                                             <div class="dropdown-arrow"></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-10 para-small description">{{ $texts['faq_explain'] }}</div>
+                                            <div class="col-lg-10 para-small description">{!! $faq['description'] !!}</div>
                                         </div>
                                     </div>
                                     @endforeach
