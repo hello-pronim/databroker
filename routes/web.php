@@ -205,7 +205,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::post('/admin/help/faqs/delete/{fid}', 'AdminController@delete_help_faq')->name('admin.help.delete_faq');	
 
 
-		Route::get('/admin/help/guarantees', 'Adminxdr54Controller@help_guarantees')->name('admin.help.guarantee');
+		Route::get('/admin/help/guarantees', 'AdminController@help_guarantees')->name('admin.help.guarantee');
 		Route::get('/admin/help/guarantees/add_new', 'AdminController@edit_help_guarantee')->name('admin.help.add_guarantee');
 		Route::get('/admin/help/guarantees/edit/{tid}', 'AdminController@edit_help_guarantee')->where('tid', '[0-9]+')->name('admin.help.edit_guarantee');
 		Route::get('/admin/help/guarantees/delete/{tid}', 'AdminController@delete_help_guarantee')->where('tid', '[0-9]+')->name('admin.help.delete_guarantee');
