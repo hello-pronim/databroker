@@ -2,6 +2,7 @@
 
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
 @endsection
 
 @section('content')
@@ -10,7 +11,7 @@
     <div class="m-subheader ">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h3 class="m-subheader__title m-subheader__title--separator"><b style="color: #9102f7;">CMS Selling data topics</h3>
+                <h3 class="m-subheader__title m-subheader__title--separator"><b style="color: #9102f7;">CMS Help - Questions about selling data</h3>
             </div>
         </div>
     </div>
@@ -61,6 +62,7 @@
 
 @section('additional_javascript')
     <script src="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.js') }}"></script>
+    <script src="{{ asset('js/plugins/sweetalert.min.js') }}"></script>
     <script src="{{ asset('adminpanel/js/help_selling_data.js') }}"></script>            
 @endsection
 

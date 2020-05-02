@@ -710,8 +710,8 @@ class AdminController extends Controller
         }
         return "success";
     }
-    public function delete_help_faq(Request $request){
-        FAQ::where('faqIdx', $request->fid)->delete();
+    public function delete_help_faq(Request $request, $fid){
+        FAQ::where('faqIdx', $fid)->delete();
         return "success";
     }
 
@@ -742,8 +742,8 @@ class AdminController extends Controller
         return "success";
     }
 
-    public function delete_help_buying_data(Request $request){
-        HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->delete();
+    public function delete_help_buying_data(Request $request, $tid){
+        HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }
 
@@ -773,8 +773,105 @@ class AdminController extends Controller
         }
         return "success";
     }
-    public function delete_help_selling_data(Request $request){
-        HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->delete();
+    public function delete_help_selling_data(Request $request, $tid){
+        HelpTopic::where('helpTopicIdx', $tid)->delete();
+        return "success";
+    }
+    public function help_guarantees(Request $request){
+        $topics = HelpTopic::where('page', 'guarantees')->get();
+        $data = array('topics');
+        return view('admin.help_guarantees', compact($data));
+    }
+    public function edit_help_guarantee(Request $request, $tid = 0){
+        if($tid == 0){
+            return view('admin.help_guarantee_edit');
+        }else{
+            $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
+            $data = array('topic');
+            return view('admin.help_guarantee_edit', compact($data));
+        }
+    }
+    public function delete_help_guarantee(Request $request, $tid){
+        HelpTopic::where('helpTopicIdx', $tid)->delete();
+        return "success";
+    }
+    public function update_help_guarantee(Request $request){
+        if($request->helpTopicIdx==0){
+            $topic['page'] = "guarantees";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::create($topic);
+        }else{
+            $topic['page'] = "guarantees";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
+        }
+        return "success";
+    }
+    public function help_complaints(Request $request){
+        $topics = HelpTopic::where('page', 'complaints')->get();
+        $data = array('topics');
+        return view('admin.help_complaints', compact($data));
+    }
+    public function edit_help_complaint(Request $request, $tid = 0){
+        if($tid == 0){
+            return view('admin.help_complaint_edit');
+        }else{
+            $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
+            $data = array('topic');
+            return view('admin.help_complaint_edit', compact($data));
+        }
+    }
+    public function delete_help_complaint(Request $request, $tid){
+        HelpTopic::where('helpTopicIdx', $tid)->delete();
+        return "success";
+    }
+    public function update_help_complaint(Request $request){
+        if($request->helpTopicIdx==0){
+            $topic['page'] = "complaints";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::create($topic);
+        }else{
+            $topic['page'] = "complaints";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
+        }
+        return "success";
+    }
+
+    public function help_feedbacks(Request $request){
+        $topics = HelpTopic::where('page', 'feedbacks')->get();
+        $data = array('topics');
+        return view('admin.help_feedbacks', compact($data));
+    }
+    public function edit_help_feedback(Request $request, $tid = 0){
+        if($tid == 0){
+            return view('admin.help_feedback_edit');
+        }else{
+            $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
+            $data = array('topic');
+            return view('admin.help_feedback_edit', compact($data));
+        }
+    }
+    public function delete_help_feedback(Request $request, $tid){
+        HelpTopic::where('helpTopicIdx', $tid)->delete();
+        return "success";
+    }
+    public function update_help_feedback(Request $request){
+        if($request->helpTopicIdx==0){
+            $topic['page'] = "feedbacks";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::create($topic);
+        }else{
+            $topic['page'] = "feedbacks";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
+        }
         return "success";
     }
 }

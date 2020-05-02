@@ -485,3 +485,4 @@ CREATE TABLE `databroker_new`.`faqs` ( `faqIdx` INT(11) NOT NULL AUTO_INCREMENT,
 ALTER TABLE `databroker_new`.`faqs` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `for`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
 CREATE TABLE `databroker_new`.`helpTopics` ( `helpTopicIdx` INT(11) NOT NULL AUTO_INCREMENT, `page` VARCHAR(64), `title` VARCHAR(64), `description` TEXT(64), PRIMARY KEY (`helpTopicIdx`) ) ENGINE=INNODB CHARSET=utf8 COLLATE=utf8_estonian_ci; 
 ALTER TABLE `databroker_new`.`helpTopics` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `description`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`, COLLATE=utf8_general_ci; 
+ALTER TABLE `databroker_new`.`helptopics` CHANGE `description` `description` TEXT CHARSET utf8 COLLATE utf8_estonian_ci NULL; 

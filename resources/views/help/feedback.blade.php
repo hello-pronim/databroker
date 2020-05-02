@@ -36,14 +36,16 @@
                     </div>
                 </div>
                 <div id="usecase-list" class="mgh30">
+                @if(count($topics) > 0)
+                    @foreach($topics as $topic)
                     <div class="row">                
                         <div class="col-md-12">
-                            <h3 class="text-bold">Why your feedback is important to us</h3>
-                            <p class="fs-18">When we understand why something helps you or frustrates you, or how a new feature could bring benefits, we can use that information to develop Databroker more effectively.</p>
-                            <p class="fs-18"><b>If you’re sharing your thoughts about a particular part of the marketplace</b>, or a certain process, please be as detailed as possible when explaining what you like or dislike.</p>
-                            <p class="fs-18"><b>If you’re submitting an idea for something new</b>, please give us as much information to work with as you can, e.g. why your idea would be good for the Databroker community, what problems it could solve etc.</p>
+                            <h3 class="text-bold">{{$topic->title}}</h3>
+                            <p class="fs-18">{!! $topic->description !!}</p>
                         </div>                
                     </div> 
+                    @endforeach
+                @endif
                     <div class="row">                
                         <div class="col-md-12">
                             <br/>

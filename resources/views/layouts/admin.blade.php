@@ -160,6 +160,9 @@
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.faqs') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;FAQs</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.buying_data') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Buying data</a></li>
                                     <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.selling_data') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Selling data</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.guarantee') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Guarantee</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.complaint') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;File a complaint</a></li>
+                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.feedback') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Feedback</a></li>
                                 </ul>
                             </li>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">

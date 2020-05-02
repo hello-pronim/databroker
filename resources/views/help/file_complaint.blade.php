@@ -38,22 +38,16 @@
                         <!-- <h4 class="h4_intro">FOR BUYERS: 30-day warranty</h4> -->
                     </div>
                 </div>
+                @if(count($topics) > 0)
                 <div id="usecase-list" class="mgh30">
+                    @foreach($topics as $topic)
                     <div class="row">                
                         <div class="col-md-12">
-                            <h3 class="text-bold">Why the time limit?</h3>
-                            <p class="fs-18">We believe that a 30-day warranty period gives you the time to check the data and make sure it’s what you expected to receive.</p>
-                            <p class="fs-18"> If there is a mismatch, you should contact the seller as soon as possible to discuss the problem, keeping in mind the deadline to file a complaint.   </p>
+                            <h3 class="text-bold">{{$topic->title}}</h3>
+                            <p class="fs-18">{!! $topic->description !!}</p>
                         </div>                
                     </div> 
-                    <div class="row">                
-                        <div class="col-md-12">
-                            <h3 class="text-bold">What happens when I file a complaint? </h3>
-                            <p class="fs-18">When you file a complaint, the first action we take is to freeze the seller’s earnings related to that sale. </p>
-                            <p class="fs-18">A Databroker mediator then investigates the complaint, working with you and the seller to try to come to an agreement. If an agreement can’t be reached, the mediator will make a final, binding decision.</p>
-                            <p class="fs-18">If the complaint is deemed valid, we’ll reimburse the amount you paid.</p>
-                        </div>                
-                    </div>  
+                    @endforeach
                     <div class="row">                
                         <div class="col-md-12">
                             <br/>
@@ -62,6 +56,7 @@
                         </div>                
                     </div>  
                 </div>
+                @endif
             </div>
         </div>  
     </div>  

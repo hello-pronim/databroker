@@ -201,8 +201,27 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/admin/help/faqs', 'AdminController@help_faqs')->name('admin.help.faqs');		
 		Route::get('/admin/help/faqs/add_new', 'AdminController@edit_help_faq')->name('admin.help.add_faq');	
 		Route::get('/admin/help/faqs/edit/{fid}', 'AdminController@edit_help_faq')->where('fid', '[0-9]+')->name('admin.help.edit_faq');
-		Route::post('/admin/help/faqs/update', 'AdminController@update_help_faq')->name('admin.help.update_faq');	
-		Route::get('/admin/help/faqs/delete/{fid}', 'AdminController@delete_help_faq')->name('admin.help.delete_faq');	
+		Route::get('/admin/help/faqs/update', 'AdminController@update_help_faq')->name('admin.help.update_faq');	
+		Route::post('/admin/help/faqs/delete/{fid}', 'AdminController@delete_help_faq')->name('admin.help.delete_faq');	
+
+
+		Route::get('/admin/help/guarantees', 'Adminxdr54Controller@help_guarantees')->name('admin.help.guarantee');
+		Route::get('/admin/help/guarantees/add_new', 'AdminController@edit_help_guarantee')->name('admin.help.add_guarantee');
+		Route::get('/admin/help/guarantees/edit/{tid}', 'AdminController@edit_help_guarantee')->where('tid', '[0-9]+')->name('admin.help.edit_guarantee');
+		Route::get('/admin/help/guarantees/delete/{tid}', 'AdminController@delete_help_guarantee')->where('tid', '[0-9]+')->name('admin.help.delete_guarantee');
+		Route::post('/admin/help/guarantees/update', 'AdminController@update_help_guarantee')->where('tid', '[0-9]+')->name('admin.help.update_guarantee');
+
+		Route::get('/admin/help/complaints', 'AdminController@help_complaints')->name('admin.help.complaint');
+		Route::get('/admin/help/complaints/add_new', 'AdminController@edit_help_complaint')->name('admin.help.add_complaint');
+		Route::get('/admin/help/complaints/edit/{tid}', 'AdminController@edit_help_complaint')->where('tid', '[0-9]+')->name('admin.help.edit_complaint');
+		Route::get('/admin/help/complaints/delete/{tid}', 'AdminController@delete_help_complaint')->where('tid', '[0-9]+')->name('admin.help.delete_complaint');
+		Route::post('/admin/help/complaints/update', 'AdminController@update_help_complaint')->where('tid', '[0-9]+')->name('admin.help.update_complaint');
+
+		Route::get('/admin/help/feedbacks', 'AdminController@help_feedbacks')->name('admin.help.feedback');	
+		Route::get('/admin/help/feedbacks/add_new', 'AdminController@edit_help_feedback')->name('admin.help.add_feedback');
+		Route::get('/admin/help/feedbacks/edit/{tid}', 'AdminController@edit_help_feedback')->where('tid', '[0-9]+')->name('admin.help.edit_feedback');
+		Route::get('/admin/help/feedbacks/delete/{tid}', 'AdminController@delete_help_feedback')->where('tid', '[0-9]+')->name('admin.help.delete_feedback');
+		Route::post('/admin/help/feedbacks/update', 'AdminController@update_help_feedback')->where('tid', '[0-9]+')->name('admin.help.update_feedback');	
 	});
 
 	$communities = Community::get();

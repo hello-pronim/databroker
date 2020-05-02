@@ -24,7 +24,7 @@ var board_data_table;
                     orderable: false,
                     render: function(data, type, full, meta) {
                         return `
-                            <a href="/admin/help/buying_data/edit/` + data + `" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
+                            <a href="/admin/help/guarantees/edit/` + data + `" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
                             <i class="la la-edit"></i>
                             </a>
                             <a href="#" class="btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" onclick="wantDelete('`+data+`');"><i class="la la-trash" title="Delete"></i>
@@ -59,11 +59,11 @@ function wantDelete(record_idx){
         headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: '/admin/help/buying_data/delete/'+record_idx,
+        url: '/admin/help/guarantees/delete/'+record_idx,
         method: 'get',
         success: function(res){
           if(res=="success"){
-            window.location.href="/admin/help/buying_data";
+            window.location.href="/admin/help/guarantees";
           }
         }
       });

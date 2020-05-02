@@ -80,12 +80,16 @@ class HelpController extends Controller
 
     public function guarantee()
     {
-        return view('help.guarantee');
+        $topics = HelpTopic::where('page', 'guarantees')->get();
+        $data = array('topics');
+        return view('help.guarantee', compact($data));
     }
 
     public function file_complaint()
     {
-        return view('help.file_complaint');
+        $topics = HelpTopic::where('page', 'complaints')->get();
+        $data = array('topics');
+        return view('help.file_complaint', compact($data));
     }
 
     public function send_file_complaint(Request $request)
@@ -176,6 +180,8 @@ class HelpController extends Controller
 
     public function feedback()
     {
-        return view('help.feedback');
+        $topics = HelpTopic::where('page', 'feedbacks')->get();
+        $data = array('topics');
+        return view('help.feedback', compact($data));
     }
 }
