@@ -94,7 +94,7 @@
 				                	@if( explode("-", $sample['sampleType'])[0] == 'file')
 				                	<div class="file">
 				                		<p>{{$sample['sampleDescription']}}</p>
-				                		<a class="download" href="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}"><i class="material-icons">get_app</i><span>{{$sample['sampleFileName']}}</span></a>
+				                		<a class="download" href="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}" target="_blank"><i class="material-icons">get_app</i><span>{{$sample['sampleFileName']}}</span></a>
 				                	</div>	
 				                	@endif					                	
 				                	@if( explode("-", $sample['sampleType'])[0] == 'image')				                	
