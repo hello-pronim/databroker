@@ -8,7 +8,7 @@ $(function(){
 	$( "#board_form" ).validate({
 	    // define validation rules
 	    rules: {
-	        title: {
+	        faq: {
 	            required: true,
 	        },
 	        description: {
@@ -28,7 +28,7 @@ $(function(){
 	    submitHandler: function (form) {
 	    	$.ajax(
                     {
-                        url: "/admin/help/selling_data/update", 
+                        url: "/admin/help/selling_data/faq/update", 
                         type: "POST",
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
                         data: $("#board_form").serialize(),
@@ -36,7 +36,7 @@ $(function(){
                                 {   
                                     if(result == "success")
                                     {
-                                        window.location.href = "/admin/help/selling_data";
+                                        window.location.href = "/admin/help/selling_data/faqs";
                                     }
                                     
                                 },

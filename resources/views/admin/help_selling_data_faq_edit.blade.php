@@ -6,7 +6,11 @@
 	<div class="m-subheader ">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
-				<h3 class="m-subheader__title m-subheader__title--separator"><b style="color: #9102f7;">CMS Help - Buying data - Title and intro</h3>
+				<h3 class="m-subheader__title m-subheader__title--separator">
+					@if(isset($faq)) Edit FAQ
+					@else Add new FAQ
+					@endif
+				</h3>
 			</div>
 		</div>
 	</div>
@@ -16,7 +20,7 @@
 		<div class="m-portlet">
 			<!--begin::Form-->
 			<form class="m-form m-form--fit m-form--label-align-right" id="board_form" novalidate="novalidate">
-				<input type="hidden" name="helpTopicIdx" value="{{ isset($header)? $header->helpTopicIdx : 0 }}">
+				<input type="hidden" name="faqIdx" value="{{ isset($faq)? $faq->faqIdx : 0 }}">
 				<div class="m-portlet__body">
 					<div class="m-form__content">
 						<div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="m_form_1_msg">
@@ -34,14 +38,14 @@
 					</div>
 					<div class="form-group m-form__group row">
 						<div class="col-md-6 m-form__group-sub">
-							<label class="form-control-label">Title *</label>
-							<input type="text" class="form-control m-input" name="title" placeholder="Enter title" value="{{ isset($header)? $header->title: '' }}">
+							<label class="form-control-label">FAQ *</label>
+							<input type="text" class="form-control m-input" name="faq" placeholder="Enter FAQ" value="{{ isset($faq)? $faq->faq: '' }}">
 						</div>
 					</div>
 					<div class="form-group m-form__group row">
 						<div class="col-md-12 m-form__group-sub">
 							<label for="exampleTextarea">Description</label>
-							<textarea class="form-control m-input summernote" rows="5" name="description" placeholder="Enter introduction">{{ isset($header)? $header->description : '' }}</textarea>
+							<textarea class="form-control m-input summernote" rows="5" name="description" placeholder="Enter FAQ description">{{ isset($faq)? $faq->description : '' }}</textarea>
 						</div>
 					</div>
 				</div>
@@ -50,6 +54,7 @@
 						<div class="row">
 							<div class="col-lg-9 ml-lg-auto">
 								<button type="submit" class="btn btn-success">Save</button>
+								<a href="{{ route('admin.help.selling_data_faqs') }}" class="btn btn-secondary">Cancel</a>
 							</div>
 						</div>
 					</div>
@@ -63,6 +68,6 @@
 @endsection
 
 @section('additional_javascript')
-    <script src="{{ asset('adminpanel/js/help_buying_data.js') }}"></script>        
+    <script src="{{ asset('adminpanel/js/help_selling_faq_add_new.js') }}"></script>        
 @endsection
 

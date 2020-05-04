@@ -24,7 +24,7 @@ $(function(){
 	    submitHandler: function (form) {
 	    	$.ajax(
                     {
-                        url: "/admin/help/buying_data/update", 
+                        url: "/admin/help/buying_data/topic/update", 
                         type: "POST",
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
                         data: $("#board_form").serialize(),
@@ -32,7 +32,7 @@ $(function(){
                                 {   
                                     if(result == "success")
                                     {
-                                        window.location.href = "/admin/help/buying_data";
+                                        window.location.href = "/admin/help/buying_data/topics";
                                     }
                                 },
                         error: function (msg) 

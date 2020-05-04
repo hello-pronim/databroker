@@ -47,12 +47,12 @@
                 <table class="table table-striped- table-bordered table-hover table-checkable" id="board_table">
                     <thead>
                         <tr>
-                            <th>Thumbnails</th>
+                            <th>Image</th>
                             <th>Status</th>
                             <th>Order</th>
                             <th>Title</th>
                             <th>Date</th>
-                            <th>Legion</th>
+                            <th>Region</th>
                             <th>Logo</th>
                             <th>Actions</th>
                         </tr>

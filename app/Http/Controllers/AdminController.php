@@ -682,54 +682,73 @@ class AdminController extends Controller
         
     }
 
-    public function help_faqs(Request $request){
-        $faqs = FAQ::get();
-        $data = array('faqs');
-        return view('admin.help_faqs', compact($data));
+    public function help_buying_data(Request $request){
+        $header = HelpTopic::where('page', 'buying_header')->get()->first();
+        $data = array('header');
+        return view('admin.help_buying_data', compact($data));
     }
-    public function edit_help_faq(Request $request, $fid = 0){
+    public function update_help_buying_data(Request $request){
+        if($request->helpTopicIdx==0){
+            $header['title'] = $request->title;
+            $header['description'] = $request->description;
+            $header['page'] = 'buying_header';
+            HelpTopic::create($header);
+        }else{
+            $header['title'] = $request->title;
+            $header['description'] = $request->description;
+            $header['page'] = 'buying_header';
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($header);
+        }
+        return "success";
+    }
+    public function help_buying_faqs(Request $request){
+        $faqs = FAQ::where('for', 'buying')->get();
+        $data = array('faqs');
+        return view('admin.help_buying_data_faqs', compact($data));
+    }
+    public function edit_help_buying_faq(Request $request, $fid = 0){
         if($fid==0){
-            return view('admin.help_faqs_edit');
+            return view('admin.help_buying_data_faq_edit');
         }else{
             $faq = FAQ::where('faqIdx', $fid)->get()->first();
             $data = array('faq');
-            return view('admin.help_faqs_edit', compact($data));
+            return view('admin.help_buying_data_faq_edit', compact($data));
         }
     }
-    public function update_help_faq(Request $request){
+    public function update_help_buying_faq(Request $request){
         if($request->faqIdx==0){
             $faq['faq'] = $request->faq;
             $faq['description'] = $request->description;
-            $faq['for'] = $request->for;
+            $faq['for'] = "buying";
             FAQ::create($faq);
         }else{
             $faq['faq'] = $request->faq;
             $faq['description'] = $request->description;
-            $faq['for'] = $request->for;
+            $faq['for'] = "buying";
             FAQ::where('faqIdx', $request->faqIdx)->update($faq);
         }
         return "success";
     }
-    public function delete_help_faq(Request $request, $fid){
+    public function delete_help_buying_faq(Request $request, $fid){
         FAQ::where('faqIdx', $fid)->delete();
         return "success";
     }
 
-    public function help_buying_data(Request $request){
+    public function help_buying_data_topics(Request $request){
         $topics = HelpTopic::where('page', 'buying')->get();
         $data = array('topics');
-        return view('admin.help_buying_data', compact($data));
+        return view('admin.help_buying_data_topics', compact($data));
     }
-    public function edit_help_buying_data(Request $request, $tid = 0){
+    public function edit_help_buying_data_topic(Request $request, $tid = 0){
         if($tid==0){
-            return view('admin.help_buying_data_edit');
+            return view('admin.help_buying_data_topic_edit');
         }else{
             $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
             $data = array('topic');
-            return view('admin.help_buying_data_edit', compact($data));
+            return view('admin.help_buying_data_topic_edit', compact($data));
         }
     }
-    public function update_help_buying_data(Request $request){
+    public function update_help_buying_data_topic(Request $request){
         if($request->helpTopicIdx==0){
             $topic['page'] = "buying";
             $topic['title'] = $request->title;
@@ -742,26 +761,78 @@ class AdminController extends Controller
         return "success";
     }
 
-    public function delete_help_buying_data(Request $request, $tid){
+    public function delete_help_buying_data_topic(Request $request, $tid){
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }
 
     public function help_selling_data(Request $request){
-        $topics = HelpTopic::where('page', 'selling')->get();
-        $data = array('topics');
+        $header = HelpTopic::where('page', 'selling_header')->get()->first();
+        $data = array('header');
         return view('admin.help_selling_data', compact($data));
     }
-    public function edit_help_selling_data(Request $request, $tid = 0){
+    public function update_help_selling_data(Request $request){
+        if($request->helpTopicIdx==0){
+            $header['title'] = $request->title;
+            $header['description'] = $request->description;
+            $header['page'] = 'selling_header';
+            HelpTopic::create($header);
+        }else{
+            $header['title'] = $request->title;
+            $header['description'] = $request->description;
+            $header['page'] = 'selling_header';
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($header);
+        }
+        return "success";
+    }
+    public function help_selling_faqs(Request $request){
+        $faqs = FAQ::where('for', 'selling')->get();
+        $data = array('faqs');
+        return view('admin.help_selling_data_faqs', compact($data));
+    }
+    public function edit_help_selling_faq(Request $request, $fid = 0){
+        if($fid==0){
+            return view('admin.help_selling_data_faq_edit');
+        }else{
+            $faq = FAQ::where('faqIdx', $fid)->get()->first();
+            $data = array('faq');
+            return view('admin.help_selling_data_faq_edit', compact($data));
+        }
+    }
+    public function update_help_selling_faq(Request $request){
+        if($request->faqIdx==0){
+            $faq['faq'] = $request->faq;
+            $faq['description'] = $request->description;
+            $faq['for'] = "selling";
+            FAQ::create($faq);
+        }else{
+            $faq['faq'] = $request->faq;
+            $faq['description'] = $request->description;
+            $faq['for'] = "selling";
+            FAQ::where('faqIdx', $request->faqIdx)->update($faq);
+        }
+        return "success";
+    }
+    public function delete_help_selling_faq(Request $request, $fid){
+        FAQ::where('faqIdx', $fid)->delete();
+        return "success";
+    }
+
+    public function help_selling_data_topics(Request $request){
+        $topics = HelpTopic::where('page', 'selling')->get();
+        $data = array('topics');
+        return view('admin.help_selling_data_topics', compact($data));
+    }
+    public function edit_help_selling_data_topic(Request $request, $tid = 0){
         if($tid==0){
-            return view('admin.help_selling_data_edit');
+            return view('admin.help_selling_data_topic_edit');
         }else{
             $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
             $data = array('topic');
-            return view('admin.help_selling_data_edit', compact($data));
+            return view('admin.help_selling_data_topic_edit', compact($data));
         }
     }
-    public function update_help_selling_data(Request $request){
+    public function update_help_selling_data_topic(Request $request){
         if($request->helpTopicIdx==0){
             $topic['page'] = "selling";
             $topic['title'] = $request->title;
@@ -773,7 +844,7 @@ class AdminController extends Controller
         }
         return "success";
     }
-    public function delete_help_selling_data(Request $request, $tid){
+    public function delete_help_selling_data_topic(Request $request, $tid){
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }

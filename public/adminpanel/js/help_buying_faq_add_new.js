@@ -11,9 +11,6 @@ $(function(){
 	        faq: {
 	            required: true,
 	        },
-	        for: {
-	            required: true,
-	        },
 	        description: {
 	            required: true,
 	            minlength: 20 
@@ -31,7 +28,7 @@ $(function(){
 	    submitHandler: function (form) {
 	    	$.ajax(
                     {
-                        url: "/admin/help/faqs/update", 
+                        url: "/admin/help/buying_data/faq/update", 
                         type: "POST",
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
                         data: $("#board_form").serialize(),
@@ -39,7 +36,7 @@ $(function(){
                                 {   
                                     if(result == "success")
                                     {
-                                        window.location.href = "/admin/help/faqs";
+                                        window.location.href = "/admin/help/buying_data/faqs";
                                     }
                                     
                                 },

@@ -39,7 +39,10 @@
     color: aquamarine;
 }
 .subsider_ul{
-    margin-left: 40px;
+    margin-left: 30px;
+}
+.subsider_sub_ul{
+    padding-left: 20px;
 }
 .m-menu__link{
     color: white;

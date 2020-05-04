@@ -10,8 +10,8 @@
             <div class="blog-header mgt60">
                 <div class="row">
                     <div class="col-lg-6">
-                        <h1 class="h1-small">{{ $texts['title'] }}</h1>
-                        <p class="para">{{ $texts['title-description'] }}</p>
+                        <h1 class="h1-small">{{ $header->title }}</h1>
+                        <p class="para">{!! $header->description !!}</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="pull-right">
@@ -40,7 +40,7 @@
                     <div class="col-lg-8">
                         <div class="flex-vertical flex-vcenter">
                             <div class="divider-green"></div>
-                            <h2 class="h2">{{ $texts['section2'] }}</h2>
+                            <h2 class="h2">Top 10 faqs</h2>
                             <div class="faq-list-container">
                                 <div class="faq-list">
                                     @foreach ( $faqs as $faq )

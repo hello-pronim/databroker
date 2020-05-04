@@ -41,24 +41,6 @@
 							<label class="form-control-label">FAQ *</label>
 							<input type="text" class="form-control m-input" name="faq" placeholder="Enter FAQ" value="{{ isset($faq)? $faq->faq: '' }}">
 						</div>
-						<div class="col-md-6 m-form__group-sub">
-                            <label class="form-control-label">For *</label>
-							<select class="form-control m-input" name="for">
-								<option value="">Select</option>
-								@if(isset($faq))
-									@if($faq->for=='buying')
-								<option value="buying" selected>Buying data</option>
-								<option value="selling">Selling data</option>
-									@else
-								<option value="buying">Buying data</option>
-								<option value="selling" selected>Selling data</option>
-									@endif
-								@else
-								<option value="buying">Buying data</option>
-								<option value="selling">Selling data</option>
-								@endif
-							</select>
-						</div>
 					</div>
 					<div class="form-group m-form__group row">
 						<div class="col-md-12 m-form__group-sub">
@@ -72,7 +54,7 @@
 						<div class="row">
 							<div class="col-lg-9 ml-lg-auto">
 								<button type="submit" class="btn btn-success">Save</button>
-								<a href="{{ route('admin.help.faqs') }}" class="btn btn-secondary">Cancel</a>
+								<a href="{{ route('admin.help.buying_data_faqs') }}" class="btn btn-secondary">Cancel</a>
 							</div>
 						</div>
 					</div>
@@ -86,6 +68,6 @@
 @endsection
 
 @section('additional_javascript')
-    <script src="{{ asset('adminpanel/js/help_faqs_add_new.js') }}"></script>        
+    <script src="{{ asset('adminpanel/js/help_buying_faq_add_new.js') }}"></script>        
 @endsection
 

@@ -11,7 +11,7 @@
     <div class="m-subheader ">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h3 class="m-subheader__title m-subheader__title--separator"><b style="color: #9102f7;">CMS Help - FAQs</h3>
+                <h3 class="m-subheader__title m-subheader__title--separator"><b style="color: #9102f7;">CMS Help - Buying data - FAQs</h3>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item">
-                                <a href="{{ route('admin.help.add_faq') }}" class="btn btn-focus m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                                <a href="{{ route('admin.help.add_buying_faq') }}" class="btn btn-focus m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
                                     <span>
                                         <i class="la la-cart-plus"></i>
                                         <span>New FAQ</span>
@@ -39,7 +39,6 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>For</th>
                             <th>FAQ</th>
                             <th>Actions</th>
                         </tr>
@@ -48,7 +47,6 @@
                         @foreach($faqs as $index=>$faq)                      
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{ $faq->for=="buying"? "Buying data" : "Selling data"}}</td>
                                 <td>{{ $faq->faq }}</td>
                                 <td>{{ $faq->faqIdx }}</td>
                             </tr>
@@ -65,6 +63,6 @@
 @section('additional_javascript')
     <script src="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.js') }}"></script>
     <script src="{{ asset('js/plugins/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('adminpanel/js/help_faqs.js') }}"></script>            
+    <script src="{{ asset('adminpanel/js/help_buying_faqs.js') }}"></script>            
 @endsection
 

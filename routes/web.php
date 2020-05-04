@@ -187,16 +187,30 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/admin/preview_check/{url}/{model}/{check}', 'AdminController@preview_check')->name('admin.preview_check');
 
 		Route::get('/admin/help/buying_data', 'AdminController@help_buying_data')->name('admin.help.buying_data');
-		Route::get('/admin/help/buying_data/add_new', 'AdminController@edit_help_buying_data')->name('admin.help.add_buying_data');
-		Route::get('/admin/help/buying_data/edit/{tid}', 'AdminController@edit_help_buying_data')->where('tid', '[0-9]+')->name('admin.help.edit_buying_data');
-		Route::get('/admin/help/buying_data/delete/{tid}', 'AdminController@delete_help_buying_data')->where('tid', '[0-9]+')->name('admin.help.delete_buying_data');
 		Route::post('/admin/help/buying_data/update', 'AdminController@update_help_buying_data')->name('admin.help.update_buying_data');
+		Route::get('/admin/help/buying_data/faqs', 'AdminController@help_buying_faqs')->name('admin.help.buying_data_faqs');
+		Route::get('/admin/help/buying_data/faq/add_new', 'AdminController@edit_help_buying_faq')->name('admin.help.add_buying_faq');	
+		Route::get('/admin/help/buying_data/faq/edit/{fid}', 'AdminController@edit_help_buying_faq')->where('fid', '[0-9]+')->name('admin.help.edit_buying_faq');
+		Route::post('/admin/help/buying_data/faq/update', 'AdminController@update_help_buying_faq')->name('admin.help.update_buying_faq');	
+		Route::get('/admin/help/buying_data/faq/delete/{fid}', 'AdminController@delete_help_buying_faq')->name('admin.help.delete_buying_faq');	
+		Route::get('/admin/help/buying_data/topics', 'AdminController@help_buying_data_topics')->name('admin.help.buying_data_topics');
+		Route::get('/admin/help/buying_data/topic/add_new', 'AdminController@edit_help_buying_data_topic')->name('admin.help.add_buying_data_topic');
+		Route::get('/admin/help/buying_data/topic/edit/{tid}', 'AdminController@edit_help_buying_data_topic')->where('tid', '[0-9]+')->name('admin.help.edit_buying_data_topic');
+		Route::get('/admin/help/buying_data/topic/delete/{tid}', 'AdminController@delete_help_buying_data_topic')->where('tid', '[0-9]+')->name('admin.help.delete_buying_data_topic');
+		Route::post('/admin/help/buying_data/topic/update', 'AdminController@update_help_buying_data_topic')->name('admin.help.update_buying_data_topic');
 
 		Route::get('/admin/help/selling_data', 'AdminController@help_selling_data')->name('admin.help.selling_data');
-		Route::get('/admin/help/selling_data/add_new', 'AdminController@edit_help_selling_data')->name('admin.help.add_selling_data');
-		Route::get('/admin/help/selling_data/edit/{tid}', 'AdminController@edit_help_selling_data')->where('tid', '[0-9]+')->name('admin.help.edit_selling_data');
-		Route::get('/admin/help/selling_data/delete/{tid}', 'AdminController@delete_help_selling_data')->where('tid', '[0-9]+')->name('admin.help.delete_selling_data');
 		Route::post('/admin/help/selling_data/update', 'AdminController@update_help_selling_data')->name('admin.help.update_selling_data');
+		Route::get('/admin/help/selling_data/faqs', 'AdminController@help_selling_faqs')->name('admin.help.selling_data_faqs');
+		Route::get('/admin/help/selling_data/faq/add_new', 'AdminController@edit_help_selling_faq')->name('admin.help.add_selling_faq');	
+		Route::get('/admin/help/selling_data/faq/edit/{fid}', 'AdminController@edit_help_selling_faq')->where('fid', '[0-9]+')->name('admin.help.edit_selling_faq');
+		Route::post('/admin/help/selling_data/faq/update', 'AdminController@update_help_selling_faq')->name('admin.help.update_selling_faq');	
+		Route::get('/admin/help/selling_data/faq/delete/{fid}', 'AdminController@delete_help_selling_faq')->name('admin.help.delete_selling_faq');	
+		Route::get('/admin/help/selling_data/topics', 'AdminController@help_selling_data_topics')->name('admin.help.selling_data_topics');
+		Route::get('/admin/help/selling_data/topic/add_new', 'AdminController@edit_help_selling_data_topic')->name('admin.help.add_selling_data_topic');
+		Route::get('/admin/help/selling_data/topic/edit/{tid}', 'AdminController@edit_help_selling_data_topic')->where('tid', '[0-9]+')->name('admin.help.edit_selling_data_topic');
+		Route::get('/admin/help/selling_data/topic/delete/{tid}', 'AdminController@delete_help_selling_data_topic')->where('tid', '[0-9]+')->name('admin.help.delete_selling_data_topic');
+		Route::post('/admin/help/selling_data/topic/update', 'AdminController@update_help_selling_data_topic')->name('admin.help.update_selling_data_topic');
 
 		Route::get('/admin/help/faqs', 'AdminController@help_faqs')->name('admin.help.faqs');		
 		Route::get('/admin/help/faqs/add_new', 'AdminController@edit_help_faq')->name('admin.help.add_faq');	

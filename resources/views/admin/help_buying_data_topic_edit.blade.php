@@ -48,7 +48,7 @@
 						<div class="row">
 							<div class="col-lg-9 ml-lg-auto">
 								<button type="submit" class="btn btn-success">Save</button>
-								<a href="{{ route('admin.help.selling_data') }}" class="btn btn-secondary">Cancel</a>
+								<a href="{{ route('admin.help.buying_data_topics') }}" class="btn btn-secondary">Cancel</a>
 							</div>
 						</div>
 					</div>
@@ -62,6 +62,6 @@
 @endsection
 
 @section('additional_javascript')
-    <script src="{{ asset('adminpanel/js/help_buying_data_add_new.js') }}"></script>        
+    <script src="{{ asset('adminpanel/js/help_buying_data_topic_add_new.js') }}"></script>        
 @endsection
 
