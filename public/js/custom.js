@@ -279,8 +279,14 @@ $(document).ready(function(){
       Array.from(new FormData(form).entries())
            .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
     );
-    $('.period_select input[type="number"]').change(function(e){
-        console.log('price changed');
+    $('.period_select input[type="number"]').on('input', function(e){
+        var val = $(this).val();
+        if(parseFloat(val) < 0.5){
+            console.log('.error_notice.'+$(this).attr('name')+'_min');
+            $(this).closest('.period_select').find('.error_notice.'+$(this).attr('name')+'_min').show();
+        }else{
+            $(this).closest('.period_select').find('.error_notice.'+$(this).attr('name')+'_min').hide();
+        }
     });
     $("#add_product").submit(function(e){
         e.preventDefault();

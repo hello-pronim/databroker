@@ -96,7 +96,7 @@
 						</div>
 					</div>
 	            	<div class="row mgt30">
-	            		<div class="col-lg-6">
+	            		<div class="col-lg-12">
 			                <h4 class="h4_intro text-left">How will you handle pricing for this data product? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper period">
 				        		@foreach ($bidTypes as $bidtype)
@@ -107,7 +107,7 @@
 									</label>
 									<div class="period_select">
 										@if ($bidtype['biddable'])
-										<label class="pure-material-textfield-outlined">
+										<label class="pure-material-textfield-outlined mb-0 p-0">
 					                        <span class="currency">€ </span><input type="number" step="0.01" name="{{$bidtype['type']}}_price" class="form-control2 input_data" placeholder="0.00" value="{{$product['productPrice']}}"> 
 					                    </label>
 					                    <span>(tax incl.)</span>
@@ -123,7 +123,7 @@
 						                </div>		
 						                @if($bidtype['type']=='free')
 						                <div class="row">
-						                	<div class="col-lg-12">
+						                	<div class="col-lg-6">
 						                		<label class="pure-material-textfield-outlined">
 						                			<input type="text" id="dataUrl" name="dataUrl" class="form-control input_data w-100" placeholder=" " value="{{$product->productUrl}}">
 						                			<span>{{ trans('pages.data_url') }}</span>
