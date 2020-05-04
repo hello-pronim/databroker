@@ -106,12 +106,8 @@
 								@foreach($offer['region'] as $region)
 				            		<span>{{ $region->regionName }}</span>
 				            	@endforeach
-				            </h6>			     
-				            @if(preg_match("@^https?://@", $offer['provider']->companyURL))       
-							<a href="{{ $offer['provider']->companyURL }}">
-							@else     
-							<a href="https://{{ $offer['provider']->companyURL }}">
-							@endif
+				            </h6>			           
+							<a href="{{ route('data.company_offers', ['companyIdx'=>$offer['companyIdx']]) }}">
 								@if( file_exists( public_path() . '/uploads/company/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
 								<img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" />
 								@else

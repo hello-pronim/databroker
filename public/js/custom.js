@@ -453,7 +453,7 @@ $(document).ready(function(){
                                         list += '<span>'+elem.regionName+'</span>';
                                     }    
                                     if(elem.provider.companyURL.indexOf('https')>-1){
-                                        list+='</h6>'+ '<a href="'+elem.provider.companyURL+'">';
+                                        list+='</h6>'+ '<a href="/company/'+elem.companyIdx+'/offers">';
                                         if(elem.provider.companyLogo){
                                             list+='<img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" />';    
                                         }else{
@@ -464,7 +464,7 @@ $(document).ready(function(){
                                     '</div>'+
                                 '</div>';   
                                     }else{
-                                        list+='</h6>'+ '<a href="https://'+elem.provider.companyURL+'">'
+                                        list+='</h6>'+ '<a href="/company/'+elem.companyIdx+'/offers">'
                                         if(elem.provider.companyLogo){
                                             list+='<img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" />';    
                                         }else{

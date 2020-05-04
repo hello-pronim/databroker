@@ -93,7 +93,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
                                                 <div class="mb-20">
-                                                    @if($sale->redeemed == 0)
+                                                    @if($sale->redeemed != 1)
                                                         @if(date('Y-m-d')>=$sale['redeem_date'])
                                                     <p class="para">Earnings can be redeemed</p>
                                                     <button type="button" class="customize-btn btn-next">REDEEM NOW</button>

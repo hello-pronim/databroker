@@ -123,7 +123,13 @@
 							@foreach($offer['region'] as $region)
 			            		<span>{{ $region->regionName }}</span>
 			            	@endforeach</h6>
-						<a href="{{ $offer['provider']->companyURL }}"><img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" /></a>
+						<a href="{{ route('data.company_offers', ['companyIdx'=>$offer['companyIdx']])}}">
+							@if( file_exists( public_path() . '/uploads/company/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
+							<img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" />
+							@else
+							<img class="img" src="{{ asset('uploads/company/default.png') }}" />
+							@endif
+						</a>
 					</div>			
 				</div>	
 			</div>

@@ -51,16 +51,19 @@ class Offer extends Model
 
     protected static function filter_offer($param){
         if($param->region){
-            $dataoffer = Offer::with(['provider'])->select('offers.*', 'regions.*')
+            $dataoffer = Offer::with(['provider'])->select('offers.*', 'regions.*', 'companies.*')
                         ->leftjoin('offerCountries', 'offerCountries.offerIdx', '=',  'offers.offerIdx')
                         ->leftjoin('regions', 'regions.regionIdx', '=',  'offerCountries.regionIdx');
         }else{
-            $dataoffer = Offer::with(['region', 'provider'])->select('offers.*'); 
+            $dataoffer = Offer::with(['region', 'provider'])->select('offers.*', 'companies.*'); 
         }   
 
         $dataoffer->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
                   ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
-                  ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx');
+                  ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                  ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                  ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                  ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx');
 
         if($param->community && $param->community != 'all'){            
             $dataoffer->where('communities.communityIdx', $param->community);
