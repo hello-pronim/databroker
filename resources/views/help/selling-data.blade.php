@@ -34,6 +34,7 @@
                     </div>
                     @endforeach
                 </div>
+                @if(count($faqs) > 0)
                 <div class="row">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
@@ -58,6 +59,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>  
     </div>
