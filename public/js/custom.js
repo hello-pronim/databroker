@@ -279,6 +279,9 @@ $(document).ready(function(){
       Array.from(new FormData(form).entries())
            .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
     );
+    $('.period_select input[type="number"]').change(function(e){
+        console.log('price changed');
+    });
     $("#add_product").submit(function(e){
         e.preventDefault();
 
