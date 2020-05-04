@@ -93,24 +93,17 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
                                                 <div class="mb-20">
-                                                    <h4>
-                                                        Warranty expires on
-                                                    </h4>
-                                                    <div class="date">
-                                                        {{date('d/m/Y', strtotime($sale->to))}}
-                                                    </div>
-                                                    @if($sale->productMoreInfo)
-                                                    <li class="more_dropdown">
-                                                        <a href="javascript:;" class="more_info">More Info <i class="material-icons">arrow_drop_down</i>
-                                                            <i class="material-icons open">arrow_drop_up</i>
-                                                        </a>
-                                                        <div>
-                                                            {{$sale->productMoreInfo}}
-                                                        </div>
-                                                    </li>
+                                                    @if($sale->redeemed == 0)
+                                                        @if(date('Y-m-d')>=$sale['redeem_date'])
+                                                    <p class="para">Earnings can be redeemed</p>
+                                                    <button type="button" class="customize-btn btn-next">REDEEM NOW</button>
+                                                        @else
+                                                    <p class="para">Earnings can be redeemed as of <br/> <span class="fs-14">{{date('d/m/Y', strtotime($sale['redeem_date']))}}</span></p>
+                                                    <p class="fs-14 text-grey">We will send you an email notification.</p>
+                                                        @endif
+                                                    @else
+                                                    <p class="para">Earnings redeemed on<br/><span class='fs-14'>{{date('d/m/Y', strtotime($sale->redeemed_at))}}</span></p>
                                                     @endif
-                                                    <div class="mt-20">Problems with the data?</div>
-                                                    <a href="{{route('help.send_file_complaint').'?pid='.$sale->pid}}">File a complaint</a>
                                                 </div>
                                             </div>
                                         </div>

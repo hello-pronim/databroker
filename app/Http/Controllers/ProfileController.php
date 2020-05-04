@@ -122,11 +122,20 @@ class ProfileController extends Controller
             $buyerIdx = $sale->buyerIdx;
             $buyerCompanyName = Company::join('users', 'users.companyIdx', '=', 'companies.companyIdx')->where('users.userIdx', $buyerIdx)->get()->first()->companyName;
             $hasComplaints = Complaint::where('productIdx', $sale->productIdx)->get()->count();
+            $sale['redeem_date'] = date('Y-m-d', strtotime('+2 weeks', strtotime($sale->from)));
             $sale['buyerCompanyName'] = $buyerCompanyName;
             if($hasComplaints) $sale['hasComplaints'] = 1;
             else $sale['hasComplaints'] = 0;
         }
         $user = User::where('userIdx', $user->userIdx)->get()->first();
+        // $client = new \GuzzleHttp\Client();
+        // $address = $user->wallet;
+        // $url = "https://dxs-swagger.herokuapp.com/ethereum/balanceof/".$user->wallet;
+        // $response = $client->request("GET", $url, [
+        //     'headers'=> ['Content-Type' => 'application/json'],
+        //     'body'=> '{}'
+        // ]);
+        //$balance = json_decode($response->getBody()->getContents());
         $data = array('sales', 'user');
         return view('account.sales', compact($data));
     }

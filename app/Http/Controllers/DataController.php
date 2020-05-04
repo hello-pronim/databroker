@@ -1262,6 +1262,8 @@ class DataController extends Controller
                     unset($soldProductData['userIdx']);
                     $soldProductData['sellerIdx'] = $seller->userIdx;
                     $soldProductData['buyerIdx'] = $user->userIdx;
+                    $soldProductData['redeemed'] = 0;
+                    $soldProductData['redeemed_at'] = null;
                     $soldProductObj = Sale::create($soldProductData);
 
                     $data['expiry_from'] = date('d/m/Y', strtotime($paidProductData['from']));
@@ -1431,6 +1433,8 @@ class DataController extends Controller
             unset($soldProductData['userIdx']);
             $soldProductData['sellerIdx'] = $seller->userIdx;
             $soldProductData['buyerIdx'] = $user->userIdx;
+            $soldProductData['redeemed'] = 0;
+            $soldProductData['redeemed_at'] = null;
             $soldProductObj = Sale::create($soldProductData);
 
             $mailData['seller'] = $seller;
