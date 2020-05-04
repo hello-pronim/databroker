@@ -13,7 +13,7 @@
     <div class="bg-pattern1-left"></div>
     <div class="container">
         <div class="app-section align-items-center">
-        	<form id="add_product" action="{{ route('data_offer_submit_product') }}" method="post">
+        	<form id="add_product" action="{{ route('data_offer_submit_product') }}" method="post" novalidate>
         		@csrf        		
         		<input type="hidden" name="offerIdx" value="{{ $offer['offerIdx'] }}">
         		<div class="blog-header mgt60">
@@ -155,7 +155,7 @@
 						                    </select>				                    				                        
 						                </div>			
 										<div>
-											<span class="error_notice no_bidding_price"> This field is required. </span>
+											<span class="error_notice no_bidding_price"> Price is required. </span>
 								            <span class="error_notice no_bidding_period"> Please select a period.</span>
 								            <span class="error_notice no_bidding_price_min"> Price should be more than € 0.5.</span>
 								        </div>			                
@@ -182,9 +182,9 @@
 						                    </select>				                    				                        
 						                </div>
 						                <div>
-											<span class="error_notice bidding_possible_price"> This field is required. </span>
-								            <span class="error_notice bidding_possible_period"> Please select a period.</span>
+											<span class="error_notice bidding_possible_price"> Price is required. </span>
 									        <span class="error_notice bidding_possible_price_min"> Price should be more than € 0.5.</span>
+								            <span class="error_notice bidding_possible_period"> Please select a period.</span>
 								       	</div>
 									</div>
 				                </div>							

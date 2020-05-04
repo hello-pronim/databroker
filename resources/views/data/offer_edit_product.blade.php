@@ -13,7 +13,7 @@
     <div class="bg-pattern1-left"></div>
     <div class="container">
         <div class="app-section align-items-center">
-        	<form id="add_product" action="{{ route('data_offer_submit_product') }}" method="post">
+        	<form id="add_product" action="{{ route('data_offer_submit_product') }}" method="post" novalidate>
         		@csrf        		
         		<input type="hidden" name="offerIdx" value="{{ $offer['offerIdx'] }}">
         		<input type="hidden" name="productIdx" value="{{ $product['productIdx'] }}">
@@ -132,13 +132,13 @@
 						                </div>
 						                @endif			         
 						                <div>
-											<span class="error_notice {{$bidtype['type']}}_price"> This field is required. </span>
-											<span class="error_notice {{$bidtype['type']}}_period"> Please select a period.</span>
+											<span class="error_notice {{$bidtype['type']}}_price"> Price is required. </span>
 											@if($bidtype['type']=="no_bidding" || $bidtype['type']=="bidding_possible")
 											<span class="error_notice {{$bidtype['type']}}_price_min"> Price should be more than € 0.5.</span>
 											@elseif($bidtype['type']=='free')
 											<span class="error_notice dataUrl">You must provide a URL where the buyer can get the data for free.</span>
 											@endif
+											<span class="error_notice {{$bidtype['type']}}_period"> Please select a period.</span>
 						                </div>       
 									</div>	
 				        		</div>

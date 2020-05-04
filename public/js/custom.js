@@ -281,7 +281,7 @@ $(document).ready(function(){
     );
     $('.period_select input[type="number"]').on('input', function(e){
         var val = $(this).val();
-        if(parseFloat(val) < 0.5){
+        if(parseFloat(val) < 0.5 || !(parseFloat(val)>0)){
             console.log('.error_notice.'+$(this).attr('name')+'_min');
             $(this).closest('.period_select').find('.error_notice.'+$(this).attr('name')+'_min').show();
         }else{
@@ -315,7 +315,7 @@ $(document).ready(function(){
                 $(_this).find('.error_notice.licenceUrl').show();
             } if(bidType=="no_bidding" && parseFloat($('input[name="no_bidding_price"]').val())<0.5){
                 $(_this).find('.error_notice.no_bidding_price_min').show();
-            } if(bidType=="bidding_possible" && parseFloat($('input[name="bidding_possible_price"]').val())<0.5){
+            } if(bidType=="bidding_possible" && (parseFloat($('input[name="bidding_possible_price"]').val())<0.5 || !(parseFloat($('input[name="bidding_possible_price"]').val())>0))){
                 $(_this).find('.error_notice.bidding_possible_price_min').show();
             } if(bidType=="free" && !validateURL($("#dataUrl").val())){
                 $(_this).find('.error_notice.dataUrl').show();
