@@ -42,7 +42,7 @@
 						</a>
 						<div class="card-author">
 							<p> Data provided by {{ $featured_data->companyName }} </p>
-							<a href="{{route('data.company_offers', ['companyIdx'=>$featured_data->companyIdx])}}"><img src="{{ asset('uploads/company/tiny/'.($featured_data->companyLogo??'')) }}" style="height:50px;"></a>
+							<a href="{{route('data.company_offers', ['companyIdx'=>$featured_data->companyIdx])}}"><img src="{{ asset('uploads/company/tiny/'.($featured_data->companyLogo??'')) }}"></a>
 						</div>	
                         @endif					
 					</div>
