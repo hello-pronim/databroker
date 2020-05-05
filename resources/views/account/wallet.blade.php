@@ -23,7 +23,7 @@
                 </div>                                              
             </div>
             <div class="row mt-40">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <label class="fs-18">Wallet address: <span>{{$address}}</span></label>
                     <br>
                     <div class="wallet_fill">
@@ -37,7 +37,7 @@
             </div>
 
             <div class="row mt-30">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <span class="fs-30 text-bold"> Total value of your wallet: </span>
                     <span class="text-warning fs-30 text-bold ml-15">DTX {{$balance->balance}}</span>
                 </div>    
