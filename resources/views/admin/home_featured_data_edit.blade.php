@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('additional_css')    
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+@endsection
+
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
@@ -94,6 +98,13 @@
 @endsection
 
 @section('additional_javascript')
-    <script src="{{ asset('adminpanel/js/home_featured_data_add_new.js') }}"></script>        
+    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>
+    <script src="{{ asset('adminpanel/js/home_featured_data_add_new.js') }}"></script>      
+    <script type="text/javascript">
+    	$('select[name="providerIdx"]').select2({
+            placeholder: "Select provider",
+            width: '100%',
+        });
+    </script>       
 @endsection
 
