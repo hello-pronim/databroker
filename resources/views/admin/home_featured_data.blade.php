@@ -71,8 +71,8 @@
                                 <td>{{ $board->featured_data_title }}</td>
                                 <td>{{ $board->companyName }}</td>
                                 <td>
-                                    @if(file_exists(public_path("uploads/comapny/thumb/".$board->companyLogo))) 
-                                        {{ asset("uploads/comapny/thumb/".$board->companyLogo) }}
+                                    @if(file_exists(public_path("uploads/company/thumb/".$board->companyLogo))) 
+                                        {{ asset("uploads/company/thumb/".$board->companyLogo) }}
                                     @else 
                                         {{ asset("uploads/company/thumb/default.png") }}
                                     @endif
