@@ -490,3 +490,7 @@ ALTER TABLE `databroker_new`.`helpTopics` CHANGE `description` `description` TEX
 #2020-05-04
 ALTER TABLE `databroker_new`.`sales` ADD COLUMN `redeemed` INT(11) NULL AFTER `to`; 
 ALTER TABLE `databroker_new`.`sales` ADD COLUMN `redeemed_at` DATE NULL AFTER `redeemed`; 
+
+#2020-05-05
+ALTER TABLE `databroker_new`.`home_featured_data` CHANGE `featured_data_provider` `featured_data_provider` INT(11) NULL, CHANGE `logo_url` `read_more_url` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL; 
+ALTER TABLE `databroker_new`.`home_featured_data` DROP COLUMN `logo`, CHANGE `featured_data_provider` `providerIdx` INT(11) NULL; 

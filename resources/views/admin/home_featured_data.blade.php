@@ -47,7 +47,7 @@
                 <table class="table table-striped- table-bordered table-hover table-checkable" id="board_table">
                     <thead>
                         <tr>
-                            <th>Thumbnails</th>
+                            <th>Image</th>
                             <th>Status</th>
                             <th>Title</th>
                             <th>Provider</th>
@@ -67,12 +67,12 @@
                                 </td>
                                 <td>{{ $board->active?'Published':'Preview' }}</td>
                                 <td>{{ $board->featured_data_title }}</td>
-                                <td>{{ $board->featured_data_provider }}</td>
+                                <td>{{ $board->companyName }}</td>
                                 <td>
-                                    @if(file_exists(public_path("uploads/home/featured_data/logo/".$board->logo))) 
-                                        {{ asset("uploads/home/featured_data/logo/".$board->logo) }}
+                                    @if(file_exists(public_path("uploads/company/".$board->companyLogo))) 
+                                        {{ asset("uploads/company/".$board->companyLogo) }}
                                     @else 
-                                        {{ asset("uploads/home/featured_data/default.jpg") }}
+                                        {{ asset("uploads/company/default.jpg") }}
                                     @endif
                                 </td>
                                 <td>{{ $board->id }}</td>

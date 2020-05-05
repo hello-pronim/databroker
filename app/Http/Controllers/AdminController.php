@@ -108,7 +108,10 @@ class AdminController extends Controller
 
     public function home_featured_data()
     {
-        $boards = HomeFeaturedData::get();
+        $boards = HomeFeaturedData::join('providers', 'providers.providerIdx', '=', 'home_featured_data.providerIdx')
+                                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                ->get();
         $data = array('boards');
         return view('admin.home_featured_data', compact($data));
     }
@@ -116,7 +119,8 @@ class AdminController extends Controller
     public function home_featured_data_edit()
     {
             $board = HomeFeaturedData::first(); 
-            $data = array('board');
+            $providers = Provider::get();
+            $data = array('board', 'providers');
             return view('admin.home_featured_data_edit', compact($data));
     }
 
@@ -634,7 +638,11 @@ class AdminController extends Controller
     {
         $url = $url;
         $model = $model;
-        $featured_data = HomeFeaturedData::first();
+        $featured_data = HomeFeaturedData::join('providers', 'providers.providerIdx', '=', 'home_featured_data.providerIdx')
+                                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                        ->get()
+                                        ->first();
         $trendings = HomeTrending::orderby('order', 'asc')->limit(6)->get();
         $marketplaces = HomeMarketplace::orderby('order', 'asc')->limit(3)->get();
         $teampicks = HomeTeamPicks::orderby('order', 'asc')->limit(3)->get();
