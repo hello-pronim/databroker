@@ -29,7 +29,7 @@ var board_data_table;
                     targets: -2,
                     orderable: false,
                     render: function(data, type, full, meta) {
-                        return `<img src="` + data + `" style="height: 40px;">`;
+                        return `<img src="` + data + `">`;
                     },
                 },
                 {

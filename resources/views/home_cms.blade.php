@@ -83,7 +83,7 @@
 						<h4 class="card-title">{{ $marketplace->title }}</h4>
                         <h6 class="card-category">{{ $marketplace->legion }}</h6>
                         <a href="{{ $marketplace->logo_url??'' }}">
-                            <img class="img" src="{{ asset('uploads/home/marketplace/logo/'.($marketplace->logo??'')) }}" />
+                            <img class="img" src="{{ asset('uploads/home/marketplace/logo/thumb/'.($marketplace->logo??'')) }}" />
                         </a>
 						
 					</div>			
@@ -124,13 +124,13 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="#pablo">
-							<img class="img" src="{{ asset('uploads/home/teampicks/tiny/'.($teampick->image??'')) }}" id="responsive-card-img"/>
+							<img class="img" src="{{ asset('uploads/home/teampicks/tiny/'.($teampick->image??'')) }}"/>
 						</a>
 					</div>
 					<div class="card-body text-left">
 						<h4 class="card-title">{{ $teampick->title??'' }}</h4>
 						<h6 class="card-category">{{ $teampick->legion??'' }}</h6>
-						<a href="{{ $teampick->logo_url??'' }}"><img class="img" src="{{ asset('uploads/home/teampicks/logo/'.($teampick->logo??'')) }}" /></a>
+						<a href="{{ $teampick->logo_url??'' }}"><img class="img" src="{{ asset('uploads/home/teampicks/logo/thumb/'.($teampick->logo??'')) }}" /></a>
 					</div>			
 				</div>	
             </div>	
@@ -151,10 +151,10 @@
                     <a href="{{ route('data.company_offers', ['companyIdx'=>$featured_provider->companyIdx]) }}">
                         <div class="app-partner-item">
                             <div class="img">
-                                @if(file_exists(public_path("uploads/company/".$featured_provider->companyLogo))) 
-                                <img src="{{ asset('uploads/company/'.$featured_provider->companyLogo) }}" style="height:75px;">
+                                @if(file_exists(public_path("uploads/company/tiny/".$featured_provider->companyLogo))) 
+                                <img src="{{ asset('uploads/company/tiny/'.$featured_provider->companyLogo) }}" style="height:75px;">
                                 @else 
-                                <img src="{{ asset('uploads/company/default.png') }}" style="height:75px;">
+                                <img src="{{ asset('uploads/company/default_tiny.png') }}" style="height:75px;">
                                 @endif
                             </div>        
                         </div>
@@ -195,7 +195,11 @@
 				<div class="card card-profile card-plain">
 					<div class="card-header">
 						<a href="{{ route('about.usecase_detail',  ['id' => ($top_usecase->articleIdx??'')] ) }}">
-							<img class="img" src="{{ asset('uploads/usecases/tiny/'.($top_usecase->image??'')) }}" />
+                            @if( file_exists(public_path( "uploads/usecases/tiny/".$top_usecase->image??'' )) )  
+                            <img class="img" src="{{ asset('uploads/usecases/tiny/'.($top_usecase->image??'')) }}" />
+                            @else 
+                            <img class="img" src="{{ asset('uploads/default_tiny.jpg') }}" />
+                            @endif
 						</a>
 					</div>
 					<div class="card-body text-left">

@@ -32,7 +32,7 @@
                                 <a href="{{ route('about.news_detail',  ['id' => $update->articleIdx] ) }}">
                                     <div class="card card-profile card-plain">                  
                                         <div class="card-header holder" id="resposive-card-header">        
-                                            <img class="img" src="{{ asset('uploads/usecases/medium/'.$update->image) }}" id="responsive-card-img"/>
+                                            <img class="img" src="{{ asset('uploads/usecases/tiny/'.$update->image) }}" id="responsive-card-img"/>
                                         </div>
                                         <div class="card-body text-left">
                                             <div class="para-small">
@@ -75,7 +75,7 @@
                             <a href="{{ route('about.news_detail',  ['id' => $update->articleIdx] ) }}" target="_blank">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder" id="resposive-card-header">        
-                                        <img class="img" src="{{ asset('uploads/usecases/medium/'.$update->image) }}" id="responsive-card-img"/>
+                                        <img class="img" src="{{ asset('uploads/usecases/tiny/'.$update->image) }}" id="responsive-card-img"/>
                                     </div>
                                     <div class="card-body text-left">
                                         <div class="para-small">

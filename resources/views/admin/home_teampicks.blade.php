@@ -47,7 +47,7 @@
                 <table class="table table-striped- table-bordered table-hover table-checkable" id="board_table">
                     <thead>
                         <tr>
-                            <th>Image</th>
+                            <th align="center">Image</th>
                             <th>Status</th>
                             <th>Order</th>
                             <th>Title</th>
@@ -60,9 +60,9 @@
                     <tbody>
                         @foreach($boards as $board)                      
                             <tr>
-                                <td>
-                                    @if(file_exists(public_path("uploads/home/teampicks/tiny/".$board->image))) 
-                                        {{ asset("uploads/home/teampicks/tiny/".$board->image) }}
+                                <td align="center">
+                                    @if(file_exists(public_path("uploads/home/teampicks/thumb/".$board->image))) 
+                                        {{ asset("uploads/home/teampicks/thumb/".$board->image) }}
                                     @else 
                                         {{ asset("uploads/home/teampicks/default.jpg") }}
                                     @endif
@@ -72,11 +72,11 @@
                                 <td>{{ $board->title }}</td>
                                 <td>{{ ($board->updated_at)->toDateString() }}</td>
                                 <td>{{ $board->legion }}</td>
-                                <td>
-                                    @if(file_exists(public_path("uploads/home/teampicks/logo/".$board->logo))) 
-                                        {{ asset("uploads/home/teampicks/logo/".$board->logo) }}
+                                <td align="center">
+                                    @if(file_exists(public_path("uploads/home/teampicks/logo/thumb/".$board->logo))) 
+                                        {{ asset("uploads/home/teampicks/logo/thumb/".$board->logo) }}
                                     @else 
-                                        {{ asset("uploads/home/teampicks/default.jpg") }}
+                                        {{ asset("uploads/default_thumb.jpg") }}
                                     @endif
                                 </td>
                                 <td>{{ $board->id }}</td>

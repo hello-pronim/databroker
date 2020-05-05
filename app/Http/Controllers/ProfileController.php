@@ -24,6 +24,7 @@ use App\Models\Region;
 use App\Models\LinkedUser;
 
 use Redirect;
+use Image;
 use DB;
 
 class ProfileController extends Controller
@@ -240,7 +241,22 @@ class ProfileController extends Controller
             if(file_exists($companyLogo_path.'/'.$request->old_companyLogo)){                                
                 File::delete($companyLogo_path.'/'.$request->old_companyLogo);
             }
-            $request->file('companyLogo_1')->move($companyLogo_path, $fileName);  
+
+            $getfiles = $request->file('companyLogo_1');
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+            $tinyimg->resize(215,215, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/company/medium').'/'.$fileName);
+            $tinyimg->resize(70,70, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/company/tiny').'/'.$fileName);
+            $tinyimg->resize(40,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/company/thumb').'/'.$fileName);
+            //image compress end
+
+            $getfiles->move($companyLogo_path, $fileName);  
             $company['companyLogo'] = $fileName;  
         }
 

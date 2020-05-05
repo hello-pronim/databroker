@@ -29,7 +29,7 @@
                         <div class="col-md-12 col-sm-12">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder">        
-                                        <img class="img" src="{{ asset('uploads/usecases/'.$update[0]->image) }}"  id="news_detail_img"/>
+                                        <img class="img" src="{{ asset('uploads/usecases/large/'.$update[0]->image) }}"  id="news_detail_img"/>
                                     </div>
                                 </div>  
                         </div>  

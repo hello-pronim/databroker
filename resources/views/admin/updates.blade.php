@@ -48,9 +48,9 @@
                     <tbody>
                         @foreach($boards as $board)                      
                             <tr>
-                                <td>
-                                    @if(file_exists(public_path("uploads/usecases/tiny/".$board->articleIdx.".jpg"))) 
-                                        {{ asset("uploads/usecases/tiny/".$board->articleIdx.".jpg") }}
+                                <td align="center">
+                                    @if(file_exists(public_path("uploads/usecases/thumb/".$board->articleIdx.".jpg"))) 
+                                        {{ asset("uploads/usecases/thumb/".$board->articleIdx.".jpg") }}
                                     @else 
                                         {{ asset("uploads/usecases/default.png") }}
                                     @endif

@@ -47,8 +47,8 @@
                     </div>
                     <div class="row">                            
                         <div class="col companylogo">                            
-                            @if( file_exists( public_path() . '/uploads/company/'.$company->companyLogo) && $company->companyLogo )
-                            <img src="{{ asset('/uploads/company/'.$company->companyLogo) }}">
+                            @if( file_exists( public_path() . '/uploads/company/medium/'.$company->companyLogo) && $company->companyLogo )
+                            <img src="{{ asset('/uploads/company/medium/'.$company->companyLogo) }}">
                             @else
                             <img class="img" src="{{ asset('/uploads/company/default.png') }}" />
                             @endif

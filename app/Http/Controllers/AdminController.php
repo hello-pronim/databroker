@@ -33,6 +33,7 @@ use Response;
 use Image;
 use Session;
 use Redirect;
+use File;
 
 class AdminController extends Controller
 {
@@ -146,9 +147,12 @@ class AdminController extends Controller
             $fileName = $id.'.jpg';  
             //image compress start
             $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->resize(300,400, function ($constraint) {
+            $tinyimg->fit(300,200, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/home/featured_data/tiny').'/'.$fileName);
+            $tinyimg->fit(80,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/featured_data/thumb').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/home/featured_data'), $fileName);
             HomeFeaturedData::find($id)->update(['image' => $fileName, 'active' => 0]);
@@ -172,9 +176,14 @@ class AdminController extends Controller
                 $fileName = $id.'.jpg';
                 //image compress start
                 $tinyimg = Image::make($getfiles->getRealPath());
-                $tinyimg->resize(500,500, function ($constraint) {
+                $tinyimg->resize(140,140, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(public_path('uploads/home/featured_data/logo').'/'.$fileName);
+                
+                $tinyimg->resize(80,80, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/home/marketplace/logo/thumb').'/'.$fileName);
+            
                 //image compress end
                 HomeFeaturedData::find($id)->update(['logo' => $fileName, 'active' => 0]);
                 return "true";
@@ -195,7 +204,7 @@ class AdminController extends Controller
             if($fileExtention == 'svg')
             {
                 $fileName = $id.'.svg';
-                $getfiles->move(public_path('uploads/home/trending/'), $fileName);
+                $getfiles->move(public_path('uploads/home/trending/'), $fileName);                
                 HomeTrending::find($id)->update(['image' => $fileName, 'active' => 0]);
                 return "true";
             }
@@ -204,9 +213,12 @@ class AdminController extends Controller
                 $fileName = $id.'.jpg';
                 //image compress start
                 $tinyimg = Image::make($getfiles->getRealPath());
-                $tinyimg->resize(500,500, function ($constraint) {
+                $tinyimg->resize(60, 60, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(public_path('uploads/home/trending').'/'.$fileName);
+                $tinyimg->resize(40,40, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/home/trending/thumb').'/'.$fileName);
                 //image compress end
                 HomeTrending::find($id)->update(['image' => $fileName, 'active' => 0]);
                 return "true";
@@ -290,12 +302,21 @@ class AdminController extends Controller
             $fileName = $id.'.jpg';  
             //image compress start
             $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->resize(1000,1100, function ($constraint) {
+            $tinyimg->fit(1200,800, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/large').'/'.$fileName);
+
+            $tinyimg->fit(750,500, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/home/marketplace/medium').'/'.$fileName);
-            $tinyimg->resize(300,400, function ($constraint) {
+
+            $tinyimg->fit(300,200, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/home/marketplace/tiny').'/'.$fileName);
+
+            $tinyimg->fit(60,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/thumb').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/home/marketplace'), $fileName);
             HomeMarketplace::find($id)->update(['image' => $fileName, 'active' => 0]);
@@ -306,6 +327,17 @@ class AdminController extends Controller
     {
             $getfiles = $request->file('uploadedFile');
             $fileName = $id.'.jpg';  
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+
+            $tinyimg->resize(140,140, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/logo/tiny').'/'.$fileName);
+
+            $tinyimg->resize(80,80, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/logo/thumb').'/'.$fileName);
+            //image compress end
             $getfiles->move(public_path('uploads/home/marketplace/logo'), $fileName);
             HomeMarketplace::find($id)->update(['logo' => $fileName, 'active' => 0]);
             return "true";
@@ -353,6 +385,18 @@ class AdminController extends Controller
     {
             $getfiles = $request->file('uploadedFile');
             $fileName = $id.'.jpg';  
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+
+            $tinyimg->resize(140,140, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/teampicks/logo/tiny').'/'.$fileName);
+
+            $tinyimg->resize(80,80, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/teampicks/logo/thumb').'/'.$fileName);
+            //image compress end
+
             $getfiles->move(public_path('uploads/home/teampicks/logo'), $fileName);
             HomeTeamPicks::find($id)->update(['logo' => $fileName, 'active' => 0]);
             return "true";
@@ -364,12 +408,21 @@ class AdminController extends Controller
             $fileName = $id.'.jpg';  
             //image compress start
             $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->resize(1000,1100, function ($constraint) {
+            $tinyimg->fit(1200,800, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/teampicks/large').'/'.$fileName);
+
+            $tinyimg->fit(750,500, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/home/teampicks/medium').'/'.$fileName);
-            $tinyimg->resize(300,400, function ($constraint) {
+
+            $tinyimg->fit(300,200, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/home/teampicks/tiny').'/'.$fileName);
+
+            $tinyimg->fit(60,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/teampicks/thumb').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/home/teampicks'), $fileName);
             HomeTeamPicks::find($id)->update(['image' => $fileName, 'active' => 0]);
@@ -484,15 +537,24 @@ class AdminController extends Controller
     public function usecases_upload_attach(Request $request, $articleIdx = 0)
     {
             $getfiles = $request->file('uploadedFile');
-            $fileName = $articleIdx.'.jpg';  
+            $fileName = $articleIdx.'.jpg';              
             //image compress start
             $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->resize(1000,1100, function ($constraint) {
+            $tinyimg->fit(1200,800, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/usecases/medium').'/'.$fileName);
-            $tinyimg->resize(300,400, function ($constraint) {
+            })->save(public_path('uploads/home/usecases/large').'/'.$fileName);
+
+            $tinyimg->fit(750,500, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/usecases/tiny').'/'.$fileName);
+            })->save(public_path('uploads/home/usecases/medium').'/'.$fileName);
+
+            $tinyimg->fit(300,200, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/usecases/tiny').'/'.$fileName);
+
+            $tinyimg->fit(60,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/usecases/thumb').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/usecases'), $fileName);
             Article::find($articleIdx)->update(['image' => $fileName]);
@@ -619,15 +681,24 @@ class AdminController extends Controller
 
     public function media_upload_attach(Request $request, $mediaIdx = 0){
         $getfiles = $request->file('uploadedFile');
-        $fileName = "media_".$mediaIdx.'.jpg';  
+        $fileName = "media_".$mediaIdx.'.jpg';         
         //image compress start
         $tinyimg = Image::make($getfiles->getRealPath());
-        $tinyimg->resize(1000,1100, function ($constraint) {
+        $tinyimg->fit(1200,800, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('images/gallery/thumbs/medium').'/'.$fileName);
-        $tinyimg->resize(300,400, function ($constraint) {
+        })->save(public_path('uploads/gallery/thumbs/large').'/'.$fileName);
+
+        $tinyimg->fit(750,500, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('images/gallery/thumbs/tiny').'/'.$fileName);
+        })->save(public_path('uploads/gallery/thumbs/medium').'/'.$fileName);
+
+        $tinyimg->fit(300,200, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/gallery/thumbs/tiny').'/'.$fileName);
+
+        $tinyimg->fit(60,40, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/gallery/thumbs/thumb').'/'.$fileName);
         //image compress end
         $getfiles->move(public_path('images/gallery/thumbs'), $fileName);
         Gallery::find($mediaIdx)->update(['thumb' => 'images/gallery/thumbs/'.$fileName]);
@@ -953,4 +1024,60 @@ class AdminController extends Controller
         }
         return "success";
     }
+ 
+    public function compress_images(Request $request){
+        if(isset($request->path)){
+            $path = public_path('uploads/'.$request->path);
+            $files = File::allfiles($path);
+            // /dd($files);
+            if($request->path == "usecases" || $request->path == "offer" ){
+                foreach ($files as $key => $file) {                
+                    $fileName = $file->getFilename();                
+                    if($path ."/". $fileName == $file->getpathName() && File::exists($path . "/". $fileName)){
+                        $tinyimg = Image::make($file->getpathName());
+                        $tinyimg->fit(1200,800, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/large/". $fileName);
+                        sleep(0.3);
+                        $tinyimg->fit(750,500, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/medium/".$fileName);
+                        sleep(0.3);
+                        $tinyimg->fit(300,200, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/tiny/" . $fileName);
+                        sleep(0.3);
+                        $tinyimg->fit(60,40, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/thumb/". $fileName);
+                        sleep(0.3);
+                    }                
+                }    
+            }
+            
+
+            if($request->path == "company"){
+                foreach ($files as $key => $file) {                
+                    $fileName = $file->getFilename();        
+                    if($path ."/". $fileName == $file->getpathName() && File::exists($path . "/". $fileName)){
+                        //image compress start
+                        $tinyimg = Image::make($file->getpathName());
+                        $tinyimg->resize(215,215, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path ."/medium/".$fileName);
+                        $tinyimg->resize(70,70, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/tiny/" . $fileName);
+                        $tinyimg->resize(40,40, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/thumb/". $fileName);
+                        //image compress end
+                    }    
+                }    
+            }
+
+            echo "success";
+        }                
+    }
+    
 }

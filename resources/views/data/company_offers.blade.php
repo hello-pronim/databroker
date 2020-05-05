@@ -31,10 +31,10 @@
 					<div class="card card-profile card-plain mb-0">					
 						<div class="card-header">
 							<a href="/data/{{ $offer['offerIdx'] }}">
-								@if( file_exists( public_path() . '/'. $offer['offerImage']) && $offer['offerImage'] )
-								<img class="img" src="{{ asset($offer['offerImage']) }}" />
+								@if( file_exists( public_path() . '/uploads/offer/tiny/'. $offer['offerImage']) && $offer['offerImage'] )
+								<img class="img" src="{{ asset('uploads/offer/tiny/'.$offer['offerImage']) }}" />
 								@else
-								<img class="img" src="{{ asset('uploads/offer/default.png') }}" />
+								<img class="img" src="{{ asset('uploads/offer/tiny/default.png') }}" />
 								@endif
 							</a>
 						</div>
@@ -46,10 +46,10 @@
 				            	@endforeach
 				            </h6>			     
 							<a href="{{route('data.company_offers', ['companyIdx'=>$offer['companyIdx']])}}">
-								@if( file_exists( public_path() . '/uploads/company/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
-								<img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" />
+								@if( file_exists( public_path() . '/uploads/company/thumb/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
+								<img class="img" src="{{ asset('uploads/company/thumb/'.$offer['provider']->companyLogo) }}" />
 								@else
-								<img class="img" src="{{ asset('uploads/company/default.png') }}" />
+								<img class="img" src="{{ asset('uploads/company/thumb/default.png') }}" />
 								@endif
 							</a>
 						</div>

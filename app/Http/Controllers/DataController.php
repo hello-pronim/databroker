@@ -36,6 +36,7 @@ use App\Models\Business;
 
 use Redirect;
 use Config;
+use File;
 
 class DataController extends Controller
 {
@@ -213,7 +214,7 @@ class DataController extends Controller
         
         $offer_images = [$offer['offerImage']];
         if($offer['offerImage']){
-            $offer_path = URL::to('/');    
+            $offer_path = URL::to('/uploads/offer/medium');    
         }
 
         $offersample_path = URL::to('/uploads/offersample');
@@ -828,7 +829,16 @@ class DataController extends Controller
     public function filter_offer(Request $request){
 
         $dataoffer = Offer::filter_offer($request);
-            
+        
+        $temp = array();
+        foreach ($dataoffer["offers"] as $key => $offer) {
+            if(!File::exists(public_path('uploads/offer/tiny/' . $offer["offerImage"]))){
+                $offer["offerImage"] = null;
+            }      
+            array_push($temp, $offer);      
+        }
+
+        $dataoffer["offers"] = $temp;        
         return response()->json($dataoffer);
     }
 

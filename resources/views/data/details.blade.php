@@ -32,8 +32,8 @@
 	        <div class="blog-content">
 	        	<div class="row">
 	        		<div class="col-lg-8">
-	        			@if( file_exists(public_path() . '/'. $offer['offerImage'] ) && $offer['offerImage'] )
-	        			<img class="blog-img" src="{{ asset($offer['offerImage']) }}" />
+	        			@if( file_exists(public_path() . '/uploads/offer/medium/'. $offer['offerImage'] ) && $offer['offerImage'] )
+	        			<img class="blog-img" src="{{ asset('uploads/offer/medium/'. $offer['offerImage']) }}" />
 	        		    @else
 	        		    <img class="blog-img" src="{{ asset('uploads/offer/default.png') }}" />
 	        		    @endif  	
@@ -207,10 +207,10 @@
 	        			<label class="author"><a target="_blank" href="https://{{ $offer['provider']->companyURL }}">{{ $offer['provider']->companyURL }}</a></label>
 	        			@endif
 	        			<div class="author_avatar">	        				
-	        				@if( file_exists( public_path() . '/uploads/company/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
-	        				<img src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}">
+	        				@if( file_exists( public_path() . '/uploads/company/tiny/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
+	        				<img src="{{ asset('uploads/company/medium/'.$offer['provider']->companyLogo) }}">
 	        				@else
-	        				<img class="img" src="{{ asset('uploads/company/default.png') }}" />
+	        				<img class="img" src="{{ asset('uploads/company/default_medium.png') }}" />
 	        				@endif
 	        			</div>	        			
 	        			<p class="short-desc">

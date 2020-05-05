@@ -89,7 +89,7 @@ class Offer extends Model
         }else{
             $result = $dataoffer->offset($param->loadmore)->orderby('offers.offerIdx', 'DESC')->limit(12)->distinct('offers')->get();
         }    
-
+        
         $res = array( 'total_count' => $total_count, 'offers' => $result );
 
         return $res;                    

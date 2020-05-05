@@ -445,7 +445,7 @@ $(document).ready(function(){
                                 '<div class="card-header">' +
                                     '<a href="/data/'+elem.offerIdx+'">' ;
                         if(elem.offerImage && elem.offerImage != "null"){
-                            list +='<img class="img" src="/'+elem.offerImage+'" />';
+                            list +='<img class="img" src="/uploads/offer/tiny/'+elem.offerImage+'" />';
                         }else{
                             list +='<img class="img" src="/uploads/offer/default.png" />';
                         }
@@ -464,9 +464,9 @@ $(document).ready(function(){
                                     if(elem.provider.companyURL.indexOf('https')>-1){
                                         list+='</h6>'+ '<a href="/company/'+elem.companyIdx+'/offers">';
                                         if(elem.provider.companyLogo){
-                                            list+='<img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" />';    
+                                            list+='<img class="img" src="/uploads/company/thumb/'+elem.provider.companyLogo+'" />';    
                                         }else{
-                                            list+='<img class="img" src="/uploads/company/default.png" />';    
+                                            list+='<img class="img" src="/uploads/company/default_thumb.png" />';    
                                         }
                                         list+='</a>'+ 
                                         '</div>'+
@@ -475,9 +475,9 @@ $(document).ready(function(){
                                     }else{
                                         list+='</h6>'+ '<a href="/company/'+elem.companyIdx+'/offers">'
                                         if(elem.provider.companyLogo){
-                                            list+='<img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" />';    
+                                            list+='<img class="img" src="/uploads/company/thumb/'+elem.provider.companyLogo+'" />';    
                                         }else{
-                                            list+='<img class="img" src="/uploads/company/default.png" />';    
+                                            list+='<img class="img" src="/uploads/company/default_thumb.png" />';    
                                         }
                                         list+='</a>'+ 
                                         '</div>'+
