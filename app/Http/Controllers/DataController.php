@@ -30,6 +30,7 @@ use App\Models\Bid;
 use App\Models\BillingInfo;
 use App\Models\Message;
 use App\Models\ApiProductKey;
+use App\Models\Transaction;
 use App\User;
 use App\Models\Business;
 
@@ -1253,6 +1254,35 @@ class DataController extends Controller
                     $data['finalPrice'] = $request->productPrice;
                     $data['product'] = $product;
 
+                    $datetime = time();
+                    $sellerIdx = base_convert($seller->userIdx, 10, 26);
+                    $sellerIdx = str_pad($sellerIdx, 5, '0', STR_PAD_LEFT);
+                    $srnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 30);
+                    $stransactionId = $sellerIdx . $datetime . $srnd;
+                    $stransaction['transactionId'] = $stransactionId;
+                    $stransaction['transactionType'] = 'sold';
+                    $stransaction['senderIdx'] = $user->userIdx;
+                    $stransaction['receiverIdx'] = $seller->userIdx;
+                    $stransaction['productIdx'] = $request->productIdx;
+                    $stransaction['amount'] = $request->productPrice;
+                    $stransaction['status'] = 'pending';
+
+                    Transaction::create($stransaction);
+
+                    $buyerIdx = base_convert($user->userIdx, 10, 26);
+                    $buyerIdx = str_pad($buyerIdx, 5, '0', STR_PAD_LEFT);
+                    $brnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 30);
+                    $btransactionId = $buyerIdx . $datetime . $brnd;
+                    $btransaction['transactionId'] = $btransactionId;
+                    $btransaction['transactionType'] = 'purchased';
+                    $btransaction['senderIdx'] = $user->userIdx;
+                    $btransaction['receiverIdx'] = $seller->userIdx;
+                    $btransaction['productIdx'] = $request->productIdx;
+                    $btransaction['amount'] = -(floatval($request->productPrice));
+                    $btransaction['status'] = 'pending';
+
+                    Transaction::create($btransaction);
+
                     $paidProductData['productIdx'] = $request->productIdx;
                     $paidProductData['userIdx'] = $user->userIdx;
                     $paidProductData['bidIdx'] = $request->bidIdx;
@@ -1265,10 +1295,17 @@ class DataController extends Controller
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($paidProductData['from'])));
                     else if($product['productAccessDays']=='year')
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
+                    $paidProductData['transactionId'] = $btransactionId;
                     $paidProductObj = Purchase::create($paidProductData);
 
                     if($product->productType=="Api flow"){
-                        $apiKey = base64_encode($paidProductObj->purchaseIdx . "|" . date('Y-m-d H:i:s'));
+                        $datetime = time();
+                        $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 20);
+
+                        $purchaseIdx = base_convert($paidProductObj->purchaseIdx, 10, 26);
+                        $purchaseIdx = str_pad($purchaseIdx, 5, '0', STR_PAD_LEFT);
+                        $apiKey = $purchaseIdx . base64_encode($datetime) . $rnd;
+
                         ApiProductKey::create([
                             'purchaseIdx' => $paidProductObj->purchaseIdx,
                             'apiKey' => $apiKey
@@ -1281,6 +1318,7 @@ class DataController extends Controller
                     $soldProductData['buyerIdx'] = $user->userIdx;
                     $soldProductData['redeemed'] = 0;
                     $soldProductData['redeemed_at'] = null;
+                    $soldProductData['transactionId'] = $stransactionId;
                     $soldProductObj = Sale::create($soldProductData);
 
                     $data['expiry_from'] = date('d/m/Y', strtotime($paidProductData['from']));
@@ -1396,9 +1434,12 @@ class DataController extends Controller
             $expiry_from = date('d/m/Y', strtotime($paidProductObj['from']));
             $expiry_to = date('d/m/Y', strtotime($paidProductObj['to']));
             $apiKey="";
-            if($product->productType=='Api flow')
+            $transactionId = "";
+            if($product->productType=='Api flow'){
                 $apiKey = $paidProductObj->apiKey;
-            $data = array('product', 'expiry_from', 'expiry_to', 'apiKey');
+                $transactionId = $paidProductObj->transactionId;
+            }
+            $data = array('product', 'expiry_from', 'expiry_to', 'apiKey', 'transactionId');
             return view('data.pay_success', compact($data));
         }
     }

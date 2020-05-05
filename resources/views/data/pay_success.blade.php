@@ -84,6 +84,10 @@
                                     <span class="info-label">{{trans('data.api_key')}}:</span>
                                     <span class="info-text">{{$apiKey}}</span>
                                 </div>
+                                <div class="mt-20">
+                                    <span class="info-label">Transaction ID:</span>
+                                    <span class="info-text">{{$transactionId}}</span>
+                                </div>
                             @elseif($product->productType=="Stream")
                                 <p class="fs-16">{{$product->offerDescription}}</p>
                                 <div class="buttons flex-vcenter mt-20">

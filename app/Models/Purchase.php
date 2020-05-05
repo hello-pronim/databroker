@@ -15,6 +15,6 @@ class Purchase extends Model
      * @var array
      */
     protected $fillable = [
-        'productIdx', 'userIdx', 'bidIdx', 'from', 'to'
+        'productIdx', 'userIdx', 'bidIdx', 'from', 'to', 'transactionId'
     ];
 }

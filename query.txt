@@ -496,3 +496,7 @@ ALTER TABLE `databroker_new`.`home_featured_data` CHANGE `featured_data_provider
 ALTER TABLE `databroker_new`.`home_featured_data` DROP COLUMN `logo`, CHANGE `featured_data_provider` `providerIdx` INT(11) NULL; 
 CREATE TABLE `databroker_new`.`apiProductKeys` ( `apiProductKeyIdx` INT(11) NOT NULL AUTO_INCREMENT, `purchaseIdx` INT(11), `apiKey` VARCHAR(64), PRIMARY KEY (`apiProductKeyIdx`) );
 ALTER TABLE `databroker_new`.`apiProductKeys` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `apiKey`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
+ALTER TABLE `databroker_new`.`transactions` CHANGE `transactionIdx` `id` INT(11) NOT NULL, ADD COLUMN `transactionId` VARCHAR(64) NULL AFTER `id`; 
+ALTER TABLE `databroker_new`.`transactions` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `databroker_new`.`purchases` ADD COLUMN `transactionId` VARCHAR(64) NULL AFTER `to`; 
+ALTER TABLE `databroker_new`.`sales` ADD COLUMN `transactionId` VARCHAR(64) NULL AFTER `redeemed_at`;
