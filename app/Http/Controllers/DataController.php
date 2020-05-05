@@ -29,6 +29,7 @@ use App\Models\UseCase;
 use App\Models\Bid;
 use App\Models\BillingInfo;
 use App\Models\Message;
+use App\Models\ApiProductKey;
 use App\User;
 use App\Models\Business;
 
@@ -1265,6 +1266,14 @@ class DataController extends Controller
                     else if($product['productAccessDays']=='year')
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
                     $paidProductObj = Purchase::create($paidProductData);
+
+                    if($product->productType=="Api flow"){
+                        $apiKey = base64_encode($paidProductObj->purchaseIdx . "|" . date('Y-m-d H:i:s'));
+                        ApiProductKey::create([
+                            'purchaseIdx' => $paidProductObj->purchaseIdx,
+                            'apiKey' => $apiKey
+                        ]);
+                    }
 
                     $soldProductData = $paidProductData;
                     unset($soldProductData['userIdx']);
