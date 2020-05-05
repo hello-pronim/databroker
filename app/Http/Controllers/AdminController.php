@@ -1065,10 +1065,10 @@ class AdminController extends Controller
                         $tinyimg->resize(215,215, function ($constraint) {
                             $constraint->aspectRatio();
                         })->save($path ."/medium/".$fileName);
-                        $tinyimg->resize(70,70, function ($constraint) {
+                        $tinyimg->resize(150,70, function ($constraint) {
                             $constraint->aspectRatio();
                         })->save($path . "/tiny/" . $fileName);
-                        $tinyimg->resize(40,40, function ($constraint) {
+                        $tinyimg->resize(80,40, function ($constraint) {
                             $constraint->aspectRatio();
                         })->save($path . "/thumb/". $fileName);
                         //image compress end
