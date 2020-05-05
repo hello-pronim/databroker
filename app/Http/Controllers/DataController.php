@@ -1547,6 +1547,7 @@ class DataController extends Controller
             $mailData['expiry_to'] = date('d/m/Y', strtotime($purchaseData['to']));
 
             $apiKey="";
+            $transactionId = "";
             if($product->productType=="Api flow"){
                 $datetime = time();
                 $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 20);
@@ -1559,6 +1560,7 @@ class DataController extends Controller
                     'purchaseIdx' => $paidProductObj->purchaseIdx,
                     'apiKey' => $apiKey
                 ]);
+                $transactionId = $btransactionId;
             }
 
             $this->sendEmail("buydata", [
@@ -1576,7 +1578,7 @@ class DataController extends Controller
                 'data'=>$mailData
             ]);
 
-            $data = array('product', 'expiry_from', 'expiry_to', 'apiKey');
+            $data = array('product', 'expiry_from', 'expiry_to', 'apiKey', 'transactionId');
             return view('data.get_data', compact($data));
         }else return redirect(route('account.purchases'));
     }
