@@ -1348,7 +1348,7 @@ class DataController extends Controller
                         'data'=>$data
                     ]);
 
-                    return redirect(route('data.pay_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
+                    return redirect(route('data.pay_success', ['purIdx'=>$paidProductObj->purchaseIdx]));
                 } catch ( \Exception $e ) {
                     $errorBody = $e->getJsonBody();
                     $err = $errorBody['error'];
@@ -1379,23 +1379,26 @@ class DataController extends Controller
         if(!$user){
             return redirect('/login');
         }else{
+            $paidProductObj = Purchase::join('apiProductKeys', 'apiProductKeys.purchaseIdx', '=', 'purchases.purchaseIdx')
+                                        ->where('purchases.purchaseIdx', $request->purIdx)
+                                        ->orderby('purchases.created_at', 'DESC')
+                                        ->limit(1)
+                                        ->get()
+                                        ->first();
             $product = OfferProduct::with('region')
                                     ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                                     ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                                     ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                     ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                                    ->where('productIdx', $request->pid)
+                                    ->where('productIdx', $paidProductObj->productIdx)
                                     ->get()
                                     ->first();
-            $paidProductObj = Purchase::where('userIdx', $user->userIdx)
-                                        ->where('productIdx', $request->pid)
-                                        ->orderby('created_at', 'DESC')
-                                        ->limit(1)
-                                        ->get()
-                                        ->first();
             $expiry_from = date('d/m/Y', strtotime($paidProductObj['from']));
             $expiry_to = date('d/m/Y', strtotime($paidProductObj['to']));
-            $data = array('product', 'expiry_from', 'expiry_to');
+            $apiKey="";
+            if($product->productType=='Api flow')
+                $apiKey = $paidProductObj->apiKey;
+            $data = array('product', 'expiry_from', 'expiry_to', 'apiKey');
             return view('data.pay_success', compact($data));
         }
     }
