@@ -63,7 +63,7 @@
                                 <p class="fs-16">{{$detail->offerDescription}}</p>
                                 <div class="mt-20">
                                     <span class="info-label">{{trans('data.api_key')}}:</span>
-                                    <span class="info-text">*************************************</span>
+                                    <span class="info-text">{{$detail->apiKey}}</span>
                                 </div>
                             @elseif($detail->productType=="Stream")
                                 <p class="fs-16">{{$detail->offerDescription}}</p>

@@ -95,6 +95,7 @@ class ProfileController extends Controller
         $detail = Offer::with(['region', 'provider'])
                         ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
                         ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
+                        ->leftjoin('apiProductKeys', 'apiProductKeys.purchaseIdx', '=', 'purchases.purchaseIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
                         ->where('purchases.purchaseIdx', $request->pid)
                         ->get()
