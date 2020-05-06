@@ -13,5 +13,6 @@ yarn-error.log
 /public/css/app.css
 /public/js/app.js
 /public/uploads
+/public/images/gallery
 composer.lock
 package-lock.json

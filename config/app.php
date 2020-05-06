@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'databroker.global'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://dev.databroker.com'),
+    'url' => env('APP_URL', 'https://databroker.global'),
 
     'asset_url' => env('ASSET_URL', null),
 

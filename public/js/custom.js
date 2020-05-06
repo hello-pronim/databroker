@@ -279,6 +279,15 @@ $(document).ready(function(){
       Array.from(new FormData(form).entries())
            .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
     );
+    $('.period_select input[type="number"]').on('input', function(e){
+        var val = $(this).val();
+        if(parseFloat(val) < 0.5 || !(parseFloat(val)>0)){
+            console.log('.error_notice.'+$(this).attr('name')+'_min');
+            $(this).closest('.period_select').find('.error_notice.'+$(this).attr('name')+'_min').show();
+        }else{
+            $(this).closest('.period_select').find('.error_notice.'+$(this).attr('name')+'_min').hide();
+        }
+    });
     $("#add_product").submit(function(e){
         e.preventDefault();
 
@@ -299,14 +308,17 @@ $(document).ready(function(){
                         $(_this).find('.error_notice.'+elem_name).show();                    
                     }                    
                 }else{
-                    $(_this).find('.error_notice.'+elem_name).show();
+                    if(elem_name != 'dataUrl')
+                        $(_this).find('.error_notice.'+elem_name).show();
                 }                
             } if(!validateURL($("#licenseUrl").val())){
                 $(_this).find('.error_notice.licenceUrl').show();
             } if(bidType=="no_bidding" && parseFloat($('input[name="no_bidding_price"]').val())<0.5){
                 $(_this).find('.error_notice.no_bidding_price_min').show();
-            } if(bidType=="bidding_possible" && parseFloat($('input[name="bidding_possible_price"]').val())<0.5){
+            } if(bidType=="bidding_possible" && (parseFloat($('input[name="bidding_possible_price"]').val())<0.5 || !(parseFloat($('input[name="bidding_possible_price"]').val())>0))){
                 $(_this).find('.error_notice.bidding_possible_price_min').show();
+            } if(bidType=="free" && !validateURL($("#dataUrl").val())){
+                $(_this).find('.error_notice.dataUrl').show();
             }
         });
         if(formValues.format === undefined){
@@ -433,7 +445,7 @@ $(document).ready(function(){
                                 '<div class="card-header">' +
                                     '<a href="/data/'+elem.offerIdx+'">' ;
                         if(elem.offerImage && elem.offerImage != "null"){
-                            list +='<img class="img" src="/'+elem.offerImage+'" />';
+                            list +='<img class="img" src="/uploads/offer/tiny/'+elem.offerImage+'" />';
                         }else{
                             list +='<img class="img" src="/uploads/offer/default.png" />';
                         }
@@ -450,22 +462,22 @@ $(document).ready(function(){
                                         list += '<span>'+elem.regionName+'</span>';
                                     }    
                                     if(elem.provider.companyURL.indexOf('https')>-1){
-                                        list+='</h6>'+ '<a href="'+elem.provider.companyURL+'">';
+                                        list+='</h6>'+ '<a href="/company/'+elem.companyIdx+'/offers">';
                                         if(elem.provider.companyLogo){
-                                            list+='<img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" />';    
+                                            list+='<img class="img" src="/uploads/company/thumb/'+elem.provider.companyLogo+'" />';    
                                         }else{
-                                            list+='<img class="img" src="/uploads/company/default.png" />';    
+                                            list+='<img class="img" src="/uploads/company/default_thumb.png" />';    
                                         }
                                         list+='</a>'+ 
                                         '</div>'+
                                     '</div>'+
                                 '</div>';   
                                     }else{
-                                        list+='</h6>'+ '<a href="https://'+elem.provider.companyURL+'">'
+                                        list+='</h6>'+ '<a href="/company/'+elem.companyIdx+'/offers">'
                                         if(elem.provider.companyLogo){
-                                            list+='<img class="img" src="/uploads/company/'+elem.provider.companyLogo+'" />';    
+                                            list+='<img class="img" src="/uploads/company/thumb/'+elem.provider.companyLogo+'" />';    
                                         }else{
-                                            list+='<img class="img" src="/uploads/company/default.png" />';    
+                                            list+='<img class="img" src="/uploads/company/default_thumb.png" />';    
                                         }
                                         list+='</a>'+ 
                                         '</div>'+

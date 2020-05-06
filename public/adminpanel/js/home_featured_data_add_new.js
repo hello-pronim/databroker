@@ -14,7 +14,10 @@ $(function(){
 	            required: true,
 	            minlength: 20 
 			},
-            featured_data_provider: {
+            providerIdx: {
+                required: true,
+            },
+            read_more_url: {
                 required: true,
             }
 	    },

@@ -1,5 +1,7 @@
 @extends('layouts.data')
 
+@section('title', 'Payment was successful | Databroker ')
+
 @section('content')
 <div class="container-fluid app-wapper bg-pattern-side app-wapper-success">
 	<div class="container">
@@ -20,21 +22,21 @@
                                     <p class="fs-16">
                                         Access the API now.<br/>
                                         We also sent you a confirmation via email including a link to the API access information.<br/>
-                                        The link expires on {{$expiry_to}} so make sure to access the information before this date.<br/>
+                                        The link expires on {{$expire_on}} so make sure to access the information before this date.<br/>
                                         You can also access it via <a href="{{route('account.purchases')}}">Purchases</a> in your account.
                                     </p>
                                 @elseif($product->productType=="Stream")
                                     <p class="fs-16">
                                         Access the data stream now.<br/>
                                         We also sent you a confirmation via email including a link to the data stream.<br/>
-                                        The link expires on {{$expiry_to}} so make sure to access the data stream before this date.<br/>
+                                        The link expires on {{$expire_on}} so make sure to access the data stream before this date.<br/>
                                         You can also access it via <a href="{{route('account.purchases')}}">Purchases</a> in your account.
                                     </p>
                                 @elseif($product->productType=="File")
                                     <p class="fs-16">
                                         Download the file now.<br/>
                                         We also sent you a confirmation via email including a link to download the data.<br/>
-                                        The link expires at {{$expiry_to}} so make sure you download the data before this date.<br/>
+                                        The link expires at {{$expire_on}} so make sure you download the data before this date.<br/>
                                         You can also access it via <a href="{{route('account.purchases')}}">Purchases</a> in your account.
                                     </p>
                                 @endif
@@ -66,7 +68,7 @@
                                             <td><div class="info-label">{{ trans('data.access_to_this_data') }}: </div></td>
                                             <td>
                                                 <div class="col info-text">
-                                                1 {{$product->productAccessDays}} ( From : {{$expiry_from}} until {{$expiry_to}} )
+                                                1 {{$product->productAccessDays}} ( From : {{$from}} until {{$to}} )
                                                 </div>
                                             </td>
                                         </tr>
@@ -80,7 +82,15 @@
                                 <p class="fs-16">{{$product->offerDescription}}</p>
                                 <div class="mt-20">
                                     <span class="info-label">{{trans('data.api_key')}}:</span>
-                                    <span class="info-text">*************************************</span>
+                                    <span class="info-text" id="uniqueId">{{$apiKey}}</span>
+                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
+                                </div>
+                                <div class="mt-20">
+                                    <span class="info-label fs-10">Transaction ID:</span>
+                                    <span class="info-label fs-10">{{$transactionId}}</span>
+                                </div>
+                                <div class="buttons flex-vcenter mt-20">
+                                    <a href="{{route('home')}}"><button type="button" class="customize-btn btn-next">{{ trans('data.continue_to_databroker') }}</button></a>
                                 </div>
                             @elseif($product->productType=="Stream")
                                 <p class="fs-16">{{$product->offerDescription}}</p>

@@ -1,9 +1,12 @@
 @extends('layouts.data')
 
+@section('title', 'Purchase detail | Databroker ')
+
 @section('content')
 <div class="container-fluid app-wapper bg-pattern-side app-wapper-success">
 	<div class="container">
         <div class="app-section app-reveal-section align-items-center">
+            <a href="{{ route('account.purchases') }}" class="back-icon text-grey"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
         	<div class="row blog-header">
                 <div class="col-md-12">
         			<h1>{{$detail->productTitle}}</h1>
@@ -32,7 +35,15 @@
                                         </tr>
                                         <tr>
                                             <td><div class="info-label">{{ trans('data.price') }}: </div></td>
-                                            <td><div class="col info-text"><span class="text-red">€ {{$detail->bidPrice!=0 ? $detail->bidPrice : $detail->productPrice}}</span> (tax incl.)</div></td>
+                                            <td>
+                                                <div class="col info-text">
+                                                    @if($detail->productBidType=="free")
+                                                    <span class="text-red">Free</span>
+                                                    @else
+                                                    <span class="text-red">€ {{$detail->bidPrice!=0 ? $detail->bidPrice : $detail->productPrice}}</span> (tax incl.)
+                                                    @endif
+                                                </div>
+                                            </td>
                                         </tr>   
                                         <tr>
                                             <td><div class="info-label">{{ trans('data.access_to_this_data') }}: </div></td>
@@ -53,7 +64,12 @@
                                 <p class="fs-16">{{$detail->offerDescription}}</p>
                                 <div class="mt-20">
                                     <span class="info-label">{{trans('data.api_key')}}:</span>
-                                    <span class="info-text">*************************************</span>
+                                    <span class="info-text" id="uniqueId">{{$detail->apiKey}}</span>
+                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
+                                </div>
+                                <div class="mt-20">
+                                    <span class="info-label fs-10">Transaction ID:</span>
+                                    <span class="info-label fs-10">{{$detail->transactionId}}</span>
                                 </div>
                             @elseif($detail->productType=="Stream")
                                 <p class="fs-16">{{$detail->offerDescription}}</p>
@@ -62,7 +78,13 @@
                                 </div>
                             @elseif($detail->productType=="File")
                                 <div class="buttons flex-vcenter">
+                                    @if($detail->productBidType=="free")
+                                    <a href="{{$detail->productUrl}}" download>
+                                        <button type="button" class="customize-btn btn-next">{{ trans('data.download_file') }}</button>
+                                    </a>
+                                    @else
                                     <button type="button" class="customize-btn btn-next">{{ trans('data.download_file') }}</button>
+                                    @endif
                                 </div>
                             @endif
                             </div>

@@ -315,9 +315,9 @@
 	      		<div class="col-xl-12">
 	      			<div class="gallery column3 max-h350">
 			      		<div class="mdb-lightbox col-xl-4 flex-center thumb-container" ng-repeat="image in media.images" ng-click="imgClick(image)">
-			      			<img src="{{asset('images/gallery/thumbs/')}}/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%>" ng-if="image.id!==media.selected.id" />
-			      			<img src="{{asset('images/gallery/thumbs/')}}/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%> active" ng-if="image.id===media.selected.id" />
-			      			<span class="thumb-title" ng-show="media.current==='community'"><%= image.community %></span>
+			      			<img src="/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%>" ng-if="image.id!==media.selected.id" />
+			      			<img src="/<%= image.thumb %>" class="thumb <%= media.current==='community'?'thumb-community':''%> active" ng-if="image.id===media.selected.id" />
+			      			<span class="thumb-title" ng-show="media.current==='community'"><%= image.communityName %></span>
 			      		</div>
 					</div>
 	      		</div>
@@ -384,7 +384,6 @@
 				var images = [];
 				angular.forEach(mediaMap, function(subMap, category) {
 					var obj = subMap[0][1];
-					console.log(obj);
 					// obj.url = obj.url.replace(/\\/g, '/');
 				  	this.push(obj);
 				}, images);
@@ -395,10 +394,13 @@
 			};
 
 			var prepareCommunityImages = function (community) {
+				console.log(community);
 				var mediaMap = $scope.media.mediaMap;
+				console.log(mediaMap);
 				var images = [];
 				angular.forEach(mediaMap[community][''], function(img, seq) {
 					// img.url = img.url.replace(/\\/g, '/');
+					console.log(img);
 					this.push(img);
 				}, images);
 				$scope.media.current = 'image';
@@ -409,8 +411,9 @@
 			$scope.imgClick = function (img) {
 				var current = $scope.media.current;
 				if (current === 'community') {
-					$scope.media.currentCommunity = img.community;
-					prepareCommunityImages(img.id);
+					console.log(img);
+					$scope.media.currentCommunity = img.communityName;
+					prepareCommunityImages(img.community);
 				} else {
 					$scope.media.selected = img;
 				}
@@ -422,8 +425,10 @@
 
 			$scope.logoSelected = function () {
 				var selected = $scope.media.selected;
+				console.log(selected);
 				if (selected) {
 					var url = selected.url;
+					selected.thumb = '/'+ selected.thumb;
 					$('#offerImage')[0].previewOnlineImage(selected);
 				}
 				prepareCommunities();

@@ -22,13 +22,22 @@ use App\Models\OfferCountry;
 use App\Models\HomeFeaturedProvider;
 use App\Models\ProductCountry;
 use App\Models\Purchase;
+use App\Models\Sale;
 use App\Models\PaidHistory;
 use App\Models\RegionProduct;
 use App\Models\UseCase;
 use App\Models\Bid;
 use App\Models\BillingInfo;
+use App\Models\Message;
+use App\Models\ApiProductKey;
+use App\Models\Transaction;
 use App\User;
 use App\Models\Business;
+
+use Redirect;
+use Config;
+use File;
+use Image;
 
 class DataController extends Controller
 {
@@ -56,7 +65,11 @@ class DataController extends Controller
         
         $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->where('deleted', 0)->get();
         
-        $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
+        $prev_route = "";        
+        if( parse_url(url()->previous(), PHP_URL_HOST ) ==  parse_url(Config::get('app.url'), PHP_URL_HOST ) ){
+            $prev_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
+        }
+        
         
         $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where("productStatus", 1)->get();
 
@@ -139,7 +152,7 @@ class DataController extends Controller
                     $gallery_map[$content] = [];
                 if (!isset($gallery_map[$content][$subcontent]))
                     $gallery_map[$content][$subcontent] = [];
-                $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'community'=>$communityName, 'url' => $path, 'thumb' => $thumb];
+                $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'community'=>$content, 'communityName'=>$communityName, 'url' => $path, 'thumb' => $thumb];
                 //$gallery_map[$content][$sequence] = ['id' => $id, 'url' => $path, 'thumb' => $thumb];
             }
 
@@ -202,7 +215,7 @@ class DataController extends Controller
         
         $offer_images = [$offer['offerImage']];
         if($offer['offerImage']){
-            $offer_path = URL::to('/');    
+            $offer_path = URL::to('/uploads/offer/medium');    
         }
 
         $offersample_path = URL::to('/uploads/offersample');
@@ -251,10 +264,13 @@ class DataController extends Controller
                 $gallery_map[$content] = [];
             if (!isset($gallery_map[$content][$subcontent]))
                 $gallery_map[$content][$subcontent] = [];
-            $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'community'=>$communityName, 'url' => $path, 'thumb' => $thumb];
-        }
+            $gallery_map[$content][$subcontent][$sequence] = ['id' => $id, 'community'=>$content, 'communityName'=>$communityName, 'url' => $path, 'thumb' => $thumb];
 
-        $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList', 'gallery_map' );
+        }
+        if(isset($offer_path))
+            $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_path', 'offer_images', 'theme_json', 'themeCheckList', 'gallery_map' );
+        else
+            $data = array( 'offerIdx', 'regions', 'countries', 'communities', 'offer', 'products', 'id', 'link_to_market', 'regionCheckList', 'usecase', 'sample_files', 'sample_images', 'offersample_path', 'offer_images', 'theme_json', 'themeCheckList', 'gallery_map' );
         // die(json_encode(compact($data)));
         return view('data.offers', compact($data));
     }
@@ -333,6 +349,7 @@ class DataController extends Controller
                     ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
                     ->leftjoin('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                     ->leftjoin('users', 'users.userIdx', '=', 'providers.userIdx')
+                    ->leftjoin('companies', 'users.companyIdx', '=', 'companies.companyIdx')
                     ->where('users.companyIdx', $request->companyIdx)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')            
@@ -344,6 +361,7 @@ class DataController extends Controller
                     ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
                     ->leftjoin('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                     ->leftjoin('users', 'users.userIdx', '=', 'providers.userIdx')
+                    ->leftjoin('companies', 'users.companyIdx', '=', 'companies.companyIdx')
                     ->where('users.companyIdx', $request->companyIdx)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')
@@ -412,15 +430,60 @@ class DataController extends Controller
             $offer_data['providerIdx'] = $providerIdx;
             $offer_data['status'] = '1';
 
+            $offerCount = Offer::where('providerIdx', $providerIdx)->get()->count();
             $offer_obj = Offer::create($offer_data);
+            if($offerCount==0){//pipeDrive api integration(data provider case)
+                $userObj = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
+                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                ->join('regions', 'regions.regionIdx', '=', 'companies.regionIdx')
+                                ->where('users.userIdx', $user->userIdx)
+                                ->get()
+                                ->first()
+                                ->toArray();
+                $query['user_type'] = "data_provider";
+                $query['firstname'] = $userObj['firstname'];
+                $query['lastname'] = $userObj['lastname'];
+                $query['email'] = $userObj['email'];
+                $query['companyName'] = $userObj['companyName'];
+                $query['businessName'] = $userObj['businessName'];
+                $query['role'] = $userObj['role'];
+                $query['jobTitle'] = $userObj['jobTitle'];
+                $query['region'] = $userObj['regionName'];
+                $query['companyURL'] = $userObj['companyURL'];
+                $query['companyVAT'] = $userObj['companyVAT'];
+                $client = new \GuzzleHttp\Client();
+                $url = "https://prod-107.westeurope.logic.azure.com:443/workflows/bdf7e02c893d426c8f8e101408d30471/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=RvoLkDUgsGbKOUk8oorOUrhXpjcSIdf1_29oSPDA-Tw";
+                $response = $client->request("POST", $url, [
+                    'headers'=> ['Content-Type' => 'application/json'],
+                    'body'=> json_encode($query)
+                ]);
+            }
             $offerIdx = $offer_obj['offerIdx'];
 
             $offerimagefile = $request->file('offerImage_1');
             if ($offerimagefile != null) {
-                $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
-                $ret = $offerimagefile->move($offerImage_path, $fileName);
-                $fileName = 'uploads/offer/' . $fileName;
-                $offer_data['offerImage'] = $fileName;
+                $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();                
+
+                $tinyimg = Image::make($offerimagefile->getRealPath());
+                $tinyimg->fit(1200,800, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/large/". $fileName);      
+
+                $tinyimg->fit(750,500, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/medium/".$fileName);
+                
+                $tinyimg->fit(300,200, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/tiny/" . $fileName);
+
+                $tinyimg->fit(60,40, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/thumb/". $fileName);                
+
+                $ret = $offerimagefile->move($offerImage_path, $fileName);                
+                $offer_data['offerImage'] = $fileName;       
+
             } else {  
                 $fileName = $request->input('gallery_offerImage_1');
                 $offer_data['offerImage'] = $fileName;
@@ -518,9 +581,31 @@ class DataController extends Controller
             $offerIdx = $id;
             $offerimagefile = $request->file('offerImage_1');
             if ($offerimagefile != null) {
-                $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
+                $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();                
+
+                $tinyimg = Image::make($offerimagefile->getRealPath());
+                $tinyimg->fit(1200,800, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/large/". $fileName);      
+
+                $tinyimg->fit(750,500, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/medium/".$fileName);
+                
+                $tinyimg->fit(300,200, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/tiny/" . $fileName);
+
+                $tinyimg->fit(60,40, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/thumb/". $fileName);
+
                 $ret = $offerimagefile->move($offerImage_path, $fileName);
-                $offer_data['offerImage'] =  'uploads/offer/'. $fileName;
+                $offer_data['offerImage'] =  $fileName;
+                
+            } else {
+                $fileName = $request->input('gallery_offerImage_1');
+                $offer_data['offerImage'] = $fileName;
             }
 
             Offer::find($id)->update($offer_data);
@@ -675,7 +760,8 @@ class DataController extends Controller
         $product_data['productAccessDays'] = $request->$period;        
         if( $request->period == "no_bidding" || $request->period == "bidding_possible" ){
             $product_data['productPrice'] = $request->$price;
-        }
+        }else if($request->period == 'free')
+            $product_data['productUrl'] = $request->dataUrl;
         $product_data['productMoreInfo'] = $request->productMoreInfo;
         $product_data['productTitle'] = $request->productTitle;
         $product_data['productLicenseUrl'] = $request->licenceUrl;
@@ -726,6 +812,9 @@ class DataController extends Controller
 
         $dataoffer = Offer::with(['region', 'provider', 'usecase'])
                 ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                 ->where('communities.communityName', ucfirst($category))
                 ->where('offers.status', 1)
                 ->orderby('offers.offerIdx', 'DESC')
@@ -754,8 +843,11 @@ class DataController extends Controller
 
         $offers = Offer::with(['region', 'provider', 'usecase'])
             ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
-            //->where('communities.communityName', ucfirst($community))
-            //->where('offers.status', 1)
+            ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+            ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+            ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+            ->where('communities.communityName', ucfirst($community))
+            ->where('offers.status', 1)
             ->limit(3)
             ->get();
         $featured_providers = HomeFeaturedProvider::join('providers', 'providers.providerIdx', '=', 'home_featured_provider.providerIdx')
@@ -775,7 +867,16 @@ class DataController extends Controller
     public function filter_offer(Request $request){
 
         $dataoffer = Offer::filter_offer($request);
-            
+        
+        $temp = array();
+        foreach ($dataoffer["offers"] as $key => $offer) {
+            if(!File::exists(public_path('uploads/offer/tiny/' . $offer["offerImage"]))){
+                $offer["offerImage"] = null;
+            }      
+            array_push($temp, $offer);      
+        }
+
+        $dataoffer["offers"] = $temp;        
         return response()->json($dataoffer);
     }
 
@@ -937,6 +1038,9 @@ class DataController extends Controller
         $companyIdx = str_pad($companyIdx, 5, '0', STR_PAD_LEFT);
         $communityIdx = str_pad($communityIdx, 5, '0', STR_PAD_LEFT);
         $uniqueId = $companyIdx . $communityIdx . $datetime . $rnd;
+
+        OfferProduct::where('productIdx', $pid)->update(['uniqueProductIdx'=>$uniqueId]);
+
         $data = array('id', 'uniqueId');
         return view('data.offer_product_publish_confirm', compact($data));
     }        
@@ -947,19 +1051,24 @@ class DataController extends Controller
         $offerTitle = $offer['offerTitle'];
         $productTitle = $product['productTitle'];
 
-        $offer = Offer::where('offerIdx', '=', $id)->first();
-        $providerIdx = $offer['providerIdx'];
-        $communityIdx = $offer['communityIdx'];
-        $userIdx = Provider::where('providerIdx', '=', $providerIdx)->first()['userIdx'];
-        $companyIdx = User::where('userIdx', '=', $userIdx)->first()['companyIdx'];
-        $datetime = time();
-        $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 12);
+        $uniqueId = $product->uniqueProductIdx;
+        if(!$uniqueId){
+            $offer = Offer::where('offerIdx', '=', $id)->first();
+            $providerIdx = $offer['providerIdx'];
+            $communityIdx = $offer['communityIdx'];
+            $userIdx = Provider::where('providerIdx', '=', $providerIdx)->first()['userIdx'];
+            $companyIdx = User::where('userIdx', '=', $userIdx)->first()['companyIdx'];
+            $datetime = time();
+            $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 12);
 
-        $companyIdx = base_convert($companyIdx, 10, 26);
-        $communityIdx = base_convert($communityIdx, 10, 26);
-        $companyIdx = str_pad($companyIdx, 5, '0', STR_PAD_LEFT);
-        $communityIdx = str_pad($communityIdx, 5, '0', STR_PAD_LEFT);
-        $uniqueId = $companyIdx . $communityIdx . $datetime . $rnd;
+            $companyIdx = base_convert($companyIdx, 10, 26);
+            $communityIdx = base_convert($communityIdx, 10, 26);
+            $companyIdx = str_pad($companyIdx, 5, '0', STR_PAD_LEFT);
+            $communityIdx = str_pad($communityIdx, 5, '0', STR_PAD_LEFT);
+            $uniqueId = $companyIdx . $communityIdx . $datetime . $rnd;
+
+            OfferProduct::where('productIdx', $pid)->update(['uniqueProductIdx'=>$uniqueId]);
+        }
 
         $data = array('id', 'pid', 'offerTitle', 'productTitle', 'uniqueId');
         return view('data.offer_product_update_confirm', compact($data));
@@ -1132,12 +1241,12 @@ class DataController extends Controller
             'postal_code.required'=>'The postal code is required.',
             'regionIdx.required'=>'The country field is required.',
             'card_number.required'=>'The card number is required.',
-            'card_number.numeric'=>'The card number must be numeric.',
+            'card_number.numeric'=>'The card number should be numeric.',
             'card_number.min'=>'The card number is invalid.',
             'exp_month'=>'The expiry month is required.',
             'exp_year'=>'The expiry year is required.',
             'cvc.required'=>'The CVC is required.',
-            'cvc.numeric'=>'The CVC must be numeric.',
+            'cvc.numeric'=>'The CVC should be numeric.',
             'cvc.min'=>'The CVC is invalid.'
         ]);
         if ($validator->fails()) {
@@ -1193,6 +1302,37 @@ class DataController extends Controller
                     $data['finalPrice'] = $request->productPrice;
                     $data['product'] = $product;
 
+                    $datetime = time();
+                    $sellerIdx = base_convert($seller->userIdx, 10, 26);
+                    $sellerIdx = str_pad($sellerIdx, 5, '0', STR_PAD_LEFT);
+                    $srnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 30);
+                    $stransactionId = $sellerIdx . $datetime . $srnd;
+                    $stransaction['transactionId'] = $stransactionId;
+                    $stransaction['transactionType'] = 'sold';
+                    $stransaction['userIdx'] = $seller->userIdx;
+                    $stransaction['senderIdx'] = $user->userIdx;
+                    $stransaction['receiverIdx'] = $seller->userIdx;
+                    $stransaction['productIdx'] = $request->productIdx;
+                    $stransaction['amount'] = floatval($request->productPrice);
+                    $stransaction['status'] = 'pending';
+
+                    Transaction::create($stransaction);
+
+                    $buyerIdx = base_convert($user->userIdx, 10, 26);
+                    $buyerIdx = str_pad($buyerIdx, 5, '0', STR_PAD_LEFT);
+                    $brnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 30);
+                    $btransactionId = $buyerIdx . $datetime . $brnd;
+                    $btransaction['transactionId'] = $btransactionId;
+                    $btransaction['transactionType'] = 'purchased';
+                    $btransaction['userIdx'] = $user->userIdx;
+                    $btransaction['senderIdx'] = $user->userIdx;
+                    $btransaction['receiverIdx'] = $seller->userIdx;
+                    $btransaction['productIdx'] = $request->productIdx;
+                    $btransaction['amount'] = -(floatval($request->productPrice));
+                    $btransaction['status'] = 'pending';
+
+                    Transaction::create($btransaction);
+
                     $paidProductData['productIdx'] = $request->productIdx;
                     $paidProductData['userIdx'] = $user->userIdx;
                     $paidProductData['bidIdx'] = $request->bidIdx;
@@ -1205,10 +1345,37 @@ class DataController extends Controller
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($paidProductData['from'])));
                     else if($product['productAccessDays']=='year')
                         $paidProductData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($paidProductData['from'])));
+                    $paidProductData['transactionId'] = $btransactionId;
                     $paidProductObj = Purchase::create($paidProductData);
 
-                    $data['expiry_from'] = date('d/m/Y', strtotime($paidProductData['from']));
-                    $data['expiry_to'] = date('d/m/Y', strtotime($paidProductData['to']));
+                    if($product->productType=="Api flow"){
+                        $datetime = time();
+                        $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 20);
+
+                        $purchaseIdx = base_convert($paidProductObj->purchaseIdx, 10, 26);
+                        $purchaseIdx = str_pad($purchaseIdx, 5, '0', STR_PAD_LEFT);
+                        $apiKey = $purchaseIdx . base64_encode($datetime) . $rnd;
+
+                        ApiProductKey::create([
+                            'purchaseIdx' => $paidProductObj->purchaseIdx,
+                            'apiKey' => $apiKey
+                        ]);
+                    }
+
+                    $soldProductData = $paidProductData;
+                    unset($soldProductData['userIdx']);
+                    $soldProductData['sellerIdx'] = $seller->userIdx;
+                    $soldProductData['buyerIdx'] = $user->userIdx;
+                    $soldProductData['redeemed'] = 0;
+                    $soldProductData['redeemed_at'] = null;
+                    $soldProductData['transactionId'] = $stransactionId;
+                    $soldProductObj = Sale::create($soldProductData);
+
+                    $data['from'] = date('d/m/Y', strtotime($paidProductData['from']));
+                    $data['to'] = date('d/m/Y', strtotime($paidProductData['to']));
+                    $data['expire_at'] = date('d/m/Y', strtotime('+1 day', strtotime($paidProductData['to'])));
+                    $data['warranty_to'] = date('d/m/Y', strtotime('+30 days', strtotime($paidProductData['from'])));
+                    $data['redeemed_on'] = date('d/m/Y', strtotime('+14 days', strtotime($paidProductData['from'])));
 
                     $history['userIdx'] = $user->userIdx;
                     $history['productIdx'] = $request->productIdx;
@@ -1272,7 +1439,7 @@ class DataController extends Controller
                         'data'=>$data
                     ]);
 
-                    return redirect(route('data.pay_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
+                    return redirect(route('data.pay_success', ['purIdx'=>$paidProductObj->purchaseIdx]));
                 } catch ( \Exception $e ) {
                     $errorBody = $e->getJsonBody();
                     $err = $errorBody['error'];
@@ -1305,23 +1472,160 @@ class DataController extends Controller
         }else{
             $product = OfferProduct::with('region')
                                     ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                    ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
                                     ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                                     ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                     ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                                    ->where('productIdx', $request->pid)
+                                    ->where('purchases.purchaseIdx', $request->purIdx)
                                     ->get()
                                     ->first();
-            $paidProductObj = Purchase::where('userIdx', $user->userIdx)
-                                        ->where('productIdx', $request->pid)
-                                        ->orderby('created_at', 'DESC')
-                                        ->limit(1)
-                                        ->get()
-                                        ->first();
-            $expiry_from = date('d/m/Y', strtotime($paidProductObj['from']));
-            $expiry_to = date('d/m/Y', strtotime($paidProductObj['to']));
-            $data = array('product', 'expiry_from', 'expiry_to');
+            $from = date('d/m/Y', strtotime($product->from));
+            $to = date('d/m/Y', strtotime($product->to));
+            $expire_on = date('d/m/Y', strtotime('+1 day', strtotime($product->to)));
+            $apiKey="";
+            $transactionId = "";
+            if($product->productType=='Api flow'){
+                $apiKey = ApiProductKey::where('purchaseIdx', $request->purIdx)->get()->first()->apiKey;
+                $transactionId = $product->transactionId;
+            }
+            $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId');
             return view('data.pay_success', compact($data));
         }
+    }
+
+    public function get_data(Request $request){
+        $user = $this->getAuthUser();
+        if(!$user)
+           return redirect('/login')->with('target', 'get free data');
+        $product = OfferProduct::with('region')
+                                ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                ->where('offerProducts.productIdx', $request->pid)
+                                ->where('offerProducts.offerIdx', $request->id)
+                                ->get()
+                                ->first();
+        $lastPurchase = Purchase::where('productIdx', $request->pid)->where('userIdx', $user->userIdx)->orderby('created_at', 'desc')->get()->first();
+
+        $purchaseData['productIdx'] = $request->pid;
+        $purchaseData['userIdx'] = $user->userIdx;
+        $purchaseData['bidIdx'] = 0;
+        $purchaseData['from'] = date('Y-m-d H:i:s');
+        if($product['productAccessDays']=='day')
+            $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($purchaseData['from'])));
+        else if($product['productAccessDays']=='week')
+            $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+7 day', strtotime($purchaseData['from'])));
+        else if($product['productAccessDays']=='month')
+            $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 month', strtotime($purchaseData['from'])));
+        else if($product['productAccessDays']=='year')
+            $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($purchaseData['from'])));
+
+        $from = date('d/m/Y', strtotime($purchaseData['from']));
+        $to = date('d/m/Y', strtotime($purchaseData['to']));
+        $expire_on = date('d/m/Y', strtotime('+1 day', strtotime($purchaseData['to'])));
+
+        $buyer = User::where('userIdx', $user->userIdx)->get()->first();
+        $seller = OfferProduct::with('region')
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->where('offerProducts.productIdx', $request->pid)
+                        ->get()
+                        ->first();
+
+        if(!$product || $product->productBidType!="free"){ 
+            return Redirect::back();
+        }else if(!$lastPurchase || $lastPurchase->to < date('Y-m-d')){
+            $datetime = time();
+            $sellerIdx = base_convert($seller->userIdx, 10, 26);
+            $sellerIdx = str_pad($sellerIdx, 5, '0', STR_PAD_LEFT);
+            $srnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 30);
+            $stransactionId = $sellerIdx . $datetime . $srnd;
+            $stransaction['transactionId'] = $stransactionId;
+            $stransaction['transactionType'] = 'sold';
+            $stransaction['userIdx'] = $seller->userIdx;
+            $stransaction['senderIdx'] = $user->userIdx;
+            $stransaction['receiverIdx'] = $seller->userIdx;
+            $stransaction['productIdx'] = $request->pid;
+            $stransaction['amount'] = 0.00;
+            $stransaction['status'] = 'complete';
+
+            Transaction::create($stransaction);
+
+            $buyerIdx = base_convert($user->userIdx, 10, 26);
+            $buyerIdx = str_pad($buyerIdx, 5, '0', STR_PAD_LEFT);
+            $brnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 30);
+            $btransactionId = $buyerIdx . $datetime . $brnd;
+            $btransaction['transactionId'] = $btransactionId;
+            $btransaction['transactionType'] = 'purchased';
+            $btransaction['userIdx'] = $user->userIdx;
+            $btransaction['senderIdx'] = $user->userIdx;
+            $btransaction['receiverIdx'] = $seller->userIdx;
+            $btransaction['productIdx'] = $request->pid;
+            $btransaction['amount'] = 0.00;
+            $btransaction['status'] = 'complete';
+
+            Transaction::create($btransaction);
+
+            $purchaseData['transactionId'] = $btransactionId;
+            $paidProductObj = Purchase::create($purchaseData);
+
+            $soldProductData = $purchaseData;
+            unset($soldProductData['userIdx']);
+            $soldProductData['sellerIdx'] = $seller->userIdx;
+            $soldProductData['buyerIdx'] = $user->userIdx;
+            $soldProductData['redeemed'] = 0;
+            $soldProductData['redeemed_at'] = null;
+            $soldProductData['transactionId'] = $stransactionId;
+            $soldProductObj = Sale::create($soldProductData);
+
+            $mailData['seller'] = $seller;
+            $mailData['buyer'] = $buyer;
+            $mailData['finalPrice'] = 0;
+            $mailData['product'] = $product;
+            $mailData['from'] = date('d/m/Y', strtotime($purchaseData['from']));
+            $mailData['to'] = date('d/m/Y', strtotime($purchaseData['to']));
+            $mailData['expire_at'] = date('d/m/Y', strtotime('+1 day', strtotime($purchaseData['to'])));
+            $mailData['warranty_to'] = date('d/m/Y', strtotime('+30 days', strtotime($purchaseData['from'])));
+            $mailData['redeemed_on'] = date('d/m/Y', strtotime('+14 days', strtotime($purchaseData['from'])));
+
+            $apiKey="";
+            $transactionId = "";
+            if($product->productType=="Api flow"){
+                $datetime = time();
+                $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 20);
+
+                $purchaseIdx = base_convert($paidProductObj->purchaseIdx, 10, 26);
+                $purchaseIdx = str_pad($purchaseIdx, 5, '0', STR_PAD_LEFT);
+                $apiKey = $purchaseIdx . base64_encode($datetime) . $rnd;
+
+                ApiProductKey::create([
+                    'purchaseIdx' => $paidProductObj->purchaseIdx,
+                    'apiKey' => $apiKey
+                ]);
+                $transactionId = $btransactionId;
+            }
+
+            $this->sendEmail("buydata", [
+                'from'=>'cg@jts.ec', 
+                'to'=>$buyer['email'], 
+                'subject'=>'You’ve successfully purchased a data product', 
+                'name'=>'Databroker',
+                'data'=>$mailData
+            ]);  
+            $this->sendEmail("selldata", [
+                'from'=>'cg@jts.ec', 
+                'to'=>$seller['email'], 
+                'subject'=>'You’ve sold a data product', 
+                'name'=>'Databroker',
+                'data'=>$mailData
+            ]);
+
+            $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId');
+            return view('data.get_data', compact($data));
+        }else return redirect(route('account.purchases'));
     }
 
     public function bid(Request $request){
@@ -1346,88 +1650,8 @@ class DataController extends Controller
 
         $messages = [
             'bidPrice.required' => 'Your bid price is required.',
-            'bidPrice.numeric' => 'Bid price must be numeric.',
-            'bidPrice.min' => 'Bid price must be more than €0.5.'
-        ];
-
-        $validator = Validator::make($request->all(), $fields, $messages);
-
-        if($validator->fails()){
-            return redirect(url()->previous())
-                        ->withErrors($validator)
-                        ->withInput();             
-        }
-
-        $bidData['userIdx'] = $user->userIdx;
-        $bidData['productIdx'] = $request->productIdx;
-        $bidData['bidPrice'] = $request->bidPrice;
-        $bidData['bidMessage'] = $request->bidMessage;
-        $bidData['bidStatus'] = 0;
-
-        $bidObj = Bid::where('userIdx', $user->userIdx)->where('productIdx', $request->productIdx)->get()->first();
-        if(!$bidObj){
-            $bidObj = Bid::create($bidData);
-
-            $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
-                        ->join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')
-                        ->where('offers.offerIdx', $request->offerIdx)
-                        ->get()
-                        ->first();
-            $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                        ->where('userIdx', $user->userIdx)->get()->first();
-
-            $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
-            $product['from'] = date('Y-m-d');
-            if($product->productAccessDays=="day")
-                $product['to'] = date('Y-m-d', strtotime('+1 day', strtotime($product['from'])));
-            else if($product->productAccessDays=="week")
-                $product['to'] = date('Y-m-d', strtotime('+7 day', strtotime($product['from'])));
-            else if($product->productAccessDays=='month')
-                $product['to'] = date('Y-m-d', strtotime('+1 month', strtotime($product['from'])));
-            else if($product->productAccessDays=='year')
-                $product['to'] = date('Y-m-d', strtotime('+1 year', strtotime($product['from'])));
-
-            $data['seller'] = $seller;
-            $data['buyer'] = $buyer;
-            $data['product'] = $product;
-            $data['bid'] = $bidObj;
-
-            $this->sendEmail("sendbid", [
-                'from'=>'cg@jts.ec', 
-                'to'=>$seller['email'], 
-                'subject'=>'You’ve received a bid on a data product', 
-                'name'=>'Databroker',
-                'data'=>$data
-            ]);    
-
-            return redirect(route('data.send_bid_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
-        }
-    }
-    public function edit_bid(Request $request){
-        $user = $this->getAuthUser();
-        if(!$user) {
-           return redirect('/login')->with('target', 'send a bid for this data');
-        }else{
-            $product = OfferProduct::with('region')->where('productIdx', $request->pid)->get()->first();
-            $offer = Offer::where('offerIdx', $request->id)->get()->first();
-            $providerIdx = $offer['providerIdx'];
-            $provider = Provider::with('region')->where('providerIdx', $providerIdx)->get()->first();
-            $bid = Bid::where('productIdx', $request->pid)->where('userIdx', $user->userIdx)->get()->first();
-            $data = array('product', 'provider', 'bid');
-            return view('data.edit_bid', compact($data));
-        }
-    }
-    public function update_bid(Request $request){
-        $user = $this->getAuthUser();
-
-        $fields = [
-            'bidPrice' => ['required', 'numeric', 'min:0.5']
-        ];
-
-        $messages = [
-            'bidPrice.required' => 'Your bid price is required.',
-            'bidPrice.numeric' => 'Bid price must be numeric.',
-            'bidPrice.min' => 'Bid price must be more than €0.5.'
+            'bidPrice.numeric' => 'Bid price should be numeric.',
+            'bidPrice.min' => 'Bid price should be higher than €0.50'
         ];
 
         $validator = Validator::make($request->all(), $fields, $messages);
@@ -1455,6 +1679,102 @@ class DataController extends Controller
                     ->where('userIdx', $user->userIdx)->get()->first();
 
         $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
+
+
+        $msgData['bidIdx'] = $bidObj->bidIdx;
+        $msgData['senderIdx'] = $user->userIdx;
+        $msgData['receiverIdx'] = $seller->userIdx;
+        $msgData['message'] = $request->bidMessage;
+        
+        Message::create($msgData);
+
+        $product['from'] = date('Y-m-d');
+        if($product->productAccessDays=="day")
+            $product['to'] = date('Y-m-d', strtotime('+1 day', strtotime($product['from'])));
+        else if($product->productAccessDays=="week")
+            $product['to'] = date('Y-m-d', strtotime('+7 day', strtotime($product['from'])));
+        else if($product->productAccessDays=='month')
+            $product['to'] = date('Y-m-d', strtotime('+1 month', strtotime($product['from'])));
+        else if($product->productAccessDays=='year')
+            $product['to'] = date('Y-m-d', strtotime('+1 year', strtotime($product['from'])));
+
+        $data['seller'] = $seller;
+        $data['buyer'] = $buyer;
+        $data['product'] = $product;
+        $data['bid'] = $bidObj;
+
+        $this->sendEmail("sendbid", [
+            'from'=>'cg@jts.ec', 
+            'to'=>$seller['email'], 
+            'subject'=>'You’ve received a bid on a data product', 
+            'name'=>'Databroker',
+            'data'=>$data
+        ]);    
+
+        return redirect(route('data.send_bid_success', ['id'=>$request->offerIdx, 'pid'=>$request->productIdx]));
+    }
+    public function edit_bid(Request $request){
+        $user = $this->getAuthUser();
+        if(!$user) {
+           return redirect('/login')->with('target', 'send a bid for this data');
+        }else{
+            $bid = Bid::where('bidIdx', $request->bid)->get()->first();
+            $product = OfferProduct::with('region')->where('productIdx', $bid->productIdx)->get()->first();
+            $offer = Offer::join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+                            ->where('offerProducts.productIdx', $bid->productIdx)
+                            ->get()
+                            ->first();
+            $providerIdx = $offer['providerIdx'];
+            $provider = Provider::with('region')->where('providerIdx', $providerIdx)->get()->first();
+            $data = array('product', 'provider', 'bid');
+            return view('data.edit_bid', compact($data));
+        }
+    }
+    public function update_bid(Request $request){
+        $user = $this->getAuthUser();
+
+        $fields = [
+            'bidPrice' => ['required', 'numeric', 'min:0.5']
+        ];
+
+        $messages = [
+            'bidPrice.required' => 'Your bid price is required.',
+            'bidPrice.numeric' => 'Bid price should be numeric.',
+            'bidPrice.min' => 'Bid price should be higher than €0.50'
+        ];
+
+        $validator = Validator::make($request->all(), $fields, $messages);
+
+        if($validator->fails()){
+            return redirect(url()->previous())
+                        ->withErrors($validator)
+                        ->withInput();             
+        }
+
+        $bidData['userIdx'] = $user->userIdx;
+        $bidData['productIdx'] = $request->productIdx;
+        $bidData['bidPrice'] = $request->bidPrice;
+        $bidData['bidMessage'] = $request->bidMessage;
+        $bidData['bidStatus'] = 0;
+
+        Bid::where('bidIdx', $request->bid)->update($bidData);
+        $bidObj = Bid::where('bidIdx', $request->bid)->get()->first();
+
+        $seller = User::join('providers', 'providers.userIdx', '=', 'users.userIdx')
+                    ->join('offers', 'offers.providerIdx', '=', 'providers.providerIdx')
+                    ->where('offers.offerIdx', $request->offerIdx)
+                    ->get()
+                    ->first();
+        $buyer = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                    ->where('userIdx', $user->userIdx)->get()->first();
+
+        $product = OfferProduct::with('region')->where('productIdx', $request->productIdx)->get()->first();
+
+        $msgData['bidIdx'] = $request->bid;
+        $msgData['senderIdx'] = $user->userIdx;
+        $msgData['receiverIdx'] = $seller->userIdx;
+        $msgData['message'] = $request->bidMessage;
+        Message::create($msgData);
 
         $data['seller'] = $seller;
         $data['buyer'] = $buyer;
@@ -1537,9 +1857,16 @@ class DataController extends Controller
                         ->get(['offerProducts.*', 'offerProducts.created_at as createdAt', 'bids.*', 'offers.*', 'providers.*'])
                         ->first();
 
+        $msgData['bidIdx'] = $request->bidIdx;
+        $msgData['senderIdx'] = $user->userIdx;
+        $msgData['receiverIdx'] = $buyer->userIdx;
+        $msgData['message'] = $request->bidResponse;
+        Message::create($msgData);
+
         $mailData['seller'] = $seller;
         $mailData['buyer'] = $buyer;
         $mailData['product'] = $product;
+        $mailData['bidIdx'] = $request->bidIdx;
 
         if($request->response==1){
             $this->sendEmail("acceptbid", [

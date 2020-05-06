@@ -47,32 +47,34 @@
                 <table class="table table-striped- table-bordered table-hover table-checkable" id="board_table">
                     <thead>
                         <tr>
-                            <th>Thumbnails</th>
+                            <th align="center">Image</th>
                             <th>Status</th>
                             <th>Title</th>
                             <th>Provider</th>
-                            <th>Logo</th>
+                            <th align="center">Logo</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($boards as $board)                      
                             <tr>
-                                <td>
-                                    @if(file_exists(public_path("uploads/home/featured_data/tiny/".$board->image))) 
-                                        {{ asset("uploads/home/featured_data/tiny/".$board->image) }}
-                                    @else 
-                                        {{ asset("uploads/home/featured_data/tiny/default.jpg") }}
+                                <td align="center">
+                                    @if(file_exists(public_path("uploads/home/featured_data/thumb/".$board->image))) 
+                                        {{ asset("uploads/home/featured_data/thumb/".$board->image) }}
+                                    @elseif(file_exists(public_path("uploads/home/featured_data/".$board->image))) 
+                                        {{ asset("uploads/home/featured_data/".$board->image) }}
+                                    @else
+                                        {{ asset("uploads/default_thumb.jpg") }}
                                     @endif
                                 </td>
                                 <td>{{ $board->active?'Published':'Preview' }}</td>
                                 <td>{{ $board->featured_data_title }}</td>
-                                <td>{{ $board->featured_data_provider }}</td>
+                                <td>{{ $board->companyName }}</td>
                                 <td>
-                                    @if(file_exists(public_path("uploads/home/featured_data/logo/".$board->logo))) 
-                                        {{ asset("uploads/home/featured_data/logo/".$board->logo) }}
+                                    @if(file_exists(public_path("uploads/company/thumb/".$board->companyLogo))) 
+                                        {{ asset("uploads/company/thumb/".$board->companyLogo) }}
                                     @else 
-                                        {{ asset("uploads/home/featured_data/default.jpg") }}
+                                        {{ asset("uploads/company/thumb/default.png") }}
                                     @endif
                                 </td>
                                 <td>{{ $board->id }}</td>

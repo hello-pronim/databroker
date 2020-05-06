@@ -2,6 +2,7 @@
 
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
 @endsection
 
 @section('content')
@@ -47,16 +48,16 @@
                     <tbody>
                         @foreach($boards as $board)                      
                             <tr>
-                                <td>
-                                    @if(file_exists(public_path("uploads/usecases/tiny/".$board->articleIdx.".jpg"))) 
-                                        {{ asset("uploads/usecases/tiny/".$board->articleIdx.".jpg") }}
+                                <td align="center">
+                                    @if(file_exists(public_path("uploads/usecases/thumb/".$board->articleIdx.".jpg"))) 
+                                        {{ asset("uploads/usecases/thumb/".$board->articleIdx.".jpg") }}
                                     @else 
-                                        {{ asset("uploads/usecases/default.jpg") }}
+                                        {{ asset("uploads/default_thumb.jpg") }}
                                     @endif
                                 </td>
                                 <td>{{ $board->articleTitle }}</td>
                                 <td>{{ $board->community->communityName }}</td>
-                                <td>{{ ($board->published)->toDateString() }}</td>
+                                <td>{{ $board->published? date('d/m/Y', strtotime($board->published)): ""}}</td>
                                 <td>{{ $board->articleIdx }}</td>
                             </tr>
                         @endforeach
@@ -65,7 +66,7 @@
             </div>
         </div>
         <input type="file" id="upload_attach" accept=".gif,.jpg,.jpeg,.png" style="display: none;">
-        <input type="hidden" id="hidden_communityIdx" name="hidden_communityIdx" value="{{ $communityIdx }}">
+        <input type="hidden" name="communityIdx" value="{{$communityIdx}}">
     </div>
 </div>
 
@@ -73,6 +74,7 @@
 
 @section('additional_javascript')
     <script src="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.js') }}"></script>
+    <script src="{{ asset('js/plugins/sweetalert.min.js') }}"></script>
     <script src="{{ asset('adminpanel/js/usecases.js') }}"></script>            
 @endsection
 

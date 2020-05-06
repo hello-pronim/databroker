@@ -18,6 +18,7 @@ use App\Models\Company;
 use App\Models\Business;
 use App\Models\LinkedUser;
 use App\Models\Subscription;
+use App\Models\Wallet;
 
 class RegisterController extends Controller
 {
@@ -125,9 +126,40 @@ class RegisterController extends Controller
                     'companyName'=>$data['companyName']
                 ]);
             //else $userStatus=2;
+            $data['companyIdx'] = $companyObj['companyIdx'];
             $companyIdx = $companyObj['companyIdx'];
         }
         $data['userStatus'] = $userStatus;
+
+        $query = $data;
+        $query['user_type'] = "data_buyer";
+        $query['job_title'] = "";
+        $query['region'] = "";
+        $query['companyURL'] = "";
+        $query['companyVAT'] = "";
+        unset($query['_token']);
+        unset($query['companyIdx']);
+        unset($query['userStatus']);
+        unset($query['password']);
+        unset($query['password_confirmation']);
+
+        $client1 = new \GuzzleHttp\Client();
+        $url = "https://prod-107.westeurope.logic.azure.com:443/workflows/bdf7e02c893d426c8f8e101408d30471/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=RvoLkDUgsGbKOUk8oorOUrhXpjcSIdf1_29oSPDA-Tw";
+        $response = $client1->request("POST", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=> json_encode($query)
+        ]);
+
+        //create a wallet
+        $client2 = new \GuzzleHttp\Client();
+        $url = "https://dxs-swagger.herokuapp.com/ethereum/wallet";
+        $response = $client2->request("POST", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=>'{}'
+        ]);
+        $responseBody = json_decode($response->getBody()->getContents());
+        $walletAddress = $responseBody->address;
+        $walletPrivateKey = $responseBody->privatekey;
 
         $this->sendEmail("register", [
             'from'=>'ce@jts.ec', 
@@ -145,12 +177,9 @@ class RegisterController extends Controller
             'businessName' => $businessName,
             'role' => $role,
             'userStatus' => $userStatus,
+            'wallet'=>$walletAddress,
+            'walletPrivateKey'=>$walletPrivateKey,
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    protected function redirectTo()
-    {
-        return '/register_nl';
     }
 }

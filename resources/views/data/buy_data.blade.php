@@ -62,7 +62,11 @@
 		                            <div class="form-check">
 		                                <label class="form-check-label">
 		                                    <input type="checkbox" class="form-check-input" name="license_seller">
+	        								@if(preg_match("@^https?://@", $product->productLicenseUrl))
 		                                    <p class="text-black fs-16 lh-24">{!! trans('data.accept_license_seller', ['url'=>$product->productLicenseUrl]) !!}</p>
+		                                    @else
+		                                    <p class="text-black fs-16 lh-24">{!! trans('data.accept_license_seller', ['url'=>"https://".$product->productLicenseUrl]) !!}</p>
+		                                    @endif
 		                                    <span class="form-check-sign">
 		                                        <span class="custom-check check"></span>
 		                                    </span>
@@ -282,7 +286,7 @@
 	            					</p>
 			        			</div>
 			        			<div class="mt-20">
-			        				<p class="para text-red">€ {{$product->productPrice}}</p>
+			        				<p class="para text-red">€ {{$finalPrice}}</p>
 									<p class="para">
 						        		<span class="text-grey">{{ trans('data.access_to_this_data') }}: </span>
 						        		<span>1 {{$product->productAccessDays}}</span>

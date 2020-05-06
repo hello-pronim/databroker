@@ -1,5 +1,7 @@
 @extends('layouts.data')
 
+@section('title', 'Update your bid | Databroker ')
+
 @section('content')
 <div class="container-fluid app-wapper app-bids-wapper">
 	<div class="bg-pattern1-left"></div>
@@ -15,11 +17,14 @@
 	            </p>
 	        </div>
 	        <div class="blog-content">
-	        	<div class="para text-red">
-	        	@if($product->productPrice)
-	        		<span>€ {{$product->productPrice}}</span>
+	        	<div class="para">
+	        		<span class="text-grey">{{ trans('data.price') }}: </span>
+	        	@if($product->productBidType=="bidding_only")
+	        		<span class="text-red">N/A</span>
+	        	@elseif($product->productBidType=="free")
+	        		<span class="text-red">FREE</span>
 	        	@else
-	        		<span>FREE</span>
+	        		<span class="text-red">€ {{$product->productPrice}}</span>
 	        	@endif
 	        	</div>
 	        	<div class="para">
@@ -32,21 +37,20 @@
 	        	</div>
 	        	<div class="row mt-30">
 	        		<div class="col-md-6 auth-section">
-	        			<form method="POST" action="{{route('data.update_bid', ['id'=>$product->offerIdx, 'pid'=>$product->productIdx])}}">
+	        			<form method="POST" action="{{route('data.update_bid', ['bid'=>$bid->bidIdx])}}">
                         	@csrf
-                        	<input type="hidden" name="bidIdx" value="{{$bid->bidIdx}}">
                         	<input type="hidden" name="offerIdx" value="{{$product->offerIdx}}">
                         	<input type="hidden" name="productIdx" value="{{$product->productIdx}}">
                         	<input type="hidden" name="companyName" value="{{$provider->companyName}}">
-		        			<label class="pure-material-textfield-outlined">
-		                        <input type="text" id="bidPrice" name="bidPrice" class="form-control input_data price_input @error('bidPrice') is-invalid @enderror" placeholder=" "  value="{{ old('bidPrice', $bid->bidPrice) }}" autocomplete="bidPrice" autofocus>
-		                        <span>{{ trans('data.your_bid') }}</span>
-		                        <div class="error_notice">{{ trans('validation.required', ['attribute' => 'Your bid']) }}</div>
-		                        @error('bidPrice')
-		                            <span class="invalid-feedback" role="alert">
-		                                <strong>{{ $message }}</strong>
-		                            </span>
-		                        @enderror
+		        			<label class="pure-material-textfield-outlined currency-input">
+		        				<span class="currency">€</span>
+		                        <input type="number" id="bidPrice" step="0.01" placeholder="0.00" name="bidPrice" class="form-control input_data price_input @error('bidPrice') is-invalid @enderror" placeholder=" "  value="{{ old('bidPrice', $bid->bidPrice) }}" autofocus>
+		                        <div class="error_notice mt-10">Bid price should be higher than €0.50</div>
+	                            <span class="invalid-feedback" role="alert">
+	                            	@error('bidPrice')
+	                                <strong>{{ $message }}</strong>
+	                        		@enderror
+	                            </span>
 		                    </label>
 		                    <label class="pure-material-textfield-outlined">
 								<textarea name="bidMessage" class="form-control input_data user-message @error('bidMessage') is-invalid @enderror" placeholder="{{ trans('data.add_message_optional') }}" maxlength="100" autofocus>{{ old('bidMessage', $bid->bidMessage)}}</textarea>
@@ -79,3 +83,13 @@
 	</div>
 </div>
 @endsection	
+
+@section('additional_javascript')
+<script type="text/javascript">
+	$('input[name="bidPrice"]').on('input', function(){
+		if(parseFloat($(this).val())<0.5 || !(parseFloat($(this).val())>=0))
+			$(this).parent().find('.invalid-feedback').html("<strong>Bid price should be higher than €0.50</strong>");
+		else $(this).parent().find('.invalid-feedback').html("");
+	})
+</script>
+@endsection

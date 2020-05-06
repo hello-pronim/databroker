@@ -29,6 +29,7 @@
 	<div class="container">		
 	    <div class="row">
 	    	<div class="col-md-12">
+                @if(isset($featured_data))
 				<div class="card card-raised card-background" style="background-image: url({{ asset('uploads/home/featured_data/'.($featured_data->image??'')) }})">
 					<div class="card-body">
 						<h6 class="card-category text-info tx-success">{{ trans('home.featured_data') }}</h6>
@@ -36,15 +37,16 @@
 						<div class="card-description text-white" id="home_featured_data">
 							{!! $featured_data->featured_data_content??'' !!}						
                         </div>
-						<a href="#pablo" class="btn btn-round readmore">
+						<a href="{{$featured_data->read_more_url}}" class="btn btn-round readmore">
 							READ MORE
 						</a>
 						<div class="card-author">
-							<p> Data provided by {{ $featured_data->featured_data_provider??'' }} </p>
-							<a href="{{ $featured_data->logo_url??'' }}"><img src="{{ asset('uploads/home/featured_data/logo/'.($featured_data->logo??'')) }}" style="height:50px;"></a>
+							<p> Data provided by {{ $featured_data->companyName }} </p>
+							<a href="{{ route('data.company_offers', ['companyIdx'=>$featured_data->companyIdx]) }}"><img src="{{ asset('uploads/company/'.($featured_data->companyLogo??'')) }}" style="height:50px;"></a>
 						</div>						
 					</div>
                 </div>
+                @endif
 			</div>
 	    </div>
 	</div>

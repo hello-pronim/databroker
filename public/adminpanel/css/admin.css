@@ -39,7 +39,10 @@
     color: aquamarine;
 }
 .subsider_ul{
-    margin-left: 40px;
+    margin-left: 30px;
+}
+.subsider_sub_ul{
+    padding-left: 20px;
 }
 .m-menu__link{
     color: white;
@@ -86,4 +89,7 @@
 #board_form select+.form-control-feedback{
     position: absolute;
     bottom: 0px;
+}
+#board_form .form-control-feedback{
+    color: #F44336;
 }

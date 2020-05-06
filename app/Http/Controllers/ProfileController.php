@@ -15,11 +15,18 @@ use Illuminate\Support\Facades\File;
 use App\Models\Business;
 use App\Models\Provider;
 use App\Models\Company;
+use App\Models\Complaint;
 use App\Models\Offer;
 use App\Models\OfferProduct;
 use App\Models\Bid;
+use App\Models\Message;
 use App\Models\Region;
+use App\Models\Transaction;
 use App\Models\LinkedUser;
+
+use Redirect;
+use Image;
+use DB;
 
 class ProfileController extends Controller
 {
@@ -78,6 +85,7 @@ class ProfileController extends Controller
                         ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
                         ->where('purchases.userIdx', $user->userIdx)
+                        ->orderby('purchases.created_at', 'desc')
                         ->get(["offers.*", "offerProducts.*", "purchases.*", "bids.*", "offerProducts.productIdx as pid"]);
         $data = array('purchases');
         return view('account.purchases', compact($data));
@@ -89,6 +97,7 @@ class ProfileController extends Controller
         $detail = Offer::with(['region', 'provider'])
                         ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
                         ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
+                        ->leftjoin('apiProductKeys', 'apiProductKeys.purchaseIdx', '=', 'purchases.purchaseIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
                         ->where('purchases.purchaseIdx', $request->pid)
                         ->get()
@@ -101,6 +110,37 @@ class ProfileController extends Controller
         if(!$detail) return redirect(route('account.purchases'));
         $data = array('detail', 'company');
         return view('account.purchases_detail', compact($data));
+    }
+
+    public function sales(Request $request){
+        $user = $this->getAuthUser();
+        $sales = Offer::with(['region', 'provider'])
+                        ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+                        ->join('sales', 'sales.productIdx', '=', 'offerProducts.productIdx')
+                        ->leftjoin('bids', 'bids.bidIdx', '=', 'sales.bidIdx')
+                        ->where('sales.sellerIdx', $user->userIdx)
+                        ->orderby('sales.created_at', 'desc') 
+                        ->get(["offers.*", "offerProducts.*", "sales.*", "bids.*", "offerProducts.productIdx as pid"]);
+        foreach ($sales as $key => $sale) {
+            $buyerIdx = $sale->buyerIdx;
+            $buyerCompanyName = Company::join('users', 'users.companyIdx', '=', 'companies.companyIdx')->where('users.userIdx', $buyerIdx)->get()->first()->companyName;
+            $hasComplaints = Complaint::where('productIdx', $sale->productIdx)->get()->count();
+            $sale['redeem_date'] = date('Y-m-d', strtotime('+2 weeks', strtotime($sale->from)));
+            $sale['buyerCompanyName'] = $buyerCompanyName;
+            if($hasComplaints) $sale['hasComplaints'] = 1;
+            else $sale['hasComplaints'] = 0;
+        }
+        $user = User::where('userIdx', $user->userIdx)->get()->first();
+        // $client = new \GuzzleHttp\Client();
+        // $address = $user->wallet;
+        // $url = "https://dxs-swagger.herokuapp.com/ethereum/balanceof/".$user->wallet;
+        // $response = $client->request("GET", $url, [
+        //     'headers'=> ['Content-Type' => 'application/json'],
+        //     'body'=> '{}'
+        // ]);
+        //$balance = json_decode($response->getBody()->getContents());
+        $data = array('sales', 'user');
+        return view('account.sales', compact($data));
     }
 
     public function update(Request $request)
@@ -202,7 +242,22 @@ class ProfileController extends Controller
             if(file_exists($companyLogo_path.'/'.$request->old_companyLogo)){                                
                 File::delete($companyLogo_path.'/'.$request->old_companyLogo);
             }
-            $request->file('companyLogo_1')->move($companyLogo_path, $fileName);  
+
+            $getfiles = $request->file('companyLogo_1');
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+            $tinyimg->resize(215,215, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/company/medium').'/'.$fileName);
+            $tinyimg->resize(70,70, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/company/tiny').'/'.$fileName);
+            $tinyimg->resize(40,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/company/thumb').'/'.$fileName);
+            //image compress end
+
+            $getfiles->move($companyLogo_path, $fileName);  
             $company['companyLogo'] = $fileName;  
         }
 
@@ -223,18 +278,51 @@ class ProfileController extends Controller
     }
 
     public function wallet(Request $request){
-        return view('account.wallet');
+        $user = $this->getAuthUser();
+        $userObj = User::where('userIdx', $user->userIdx)->get()->first();
+
+        if(!$userObj->wallet){
+            $client2 = new \GuzzleHttp\Client();
+            $url = "https://dxs-swagger.herokuapp.com/ethereum/wallet";
+            $response = $client2->request("POST", $url, [
+                'headers'=> ['Content-Type' => 'application/json'],
+                'body'=>'{}'
+            ]);
+            $responseBody = json_decode($response->getBody()->getContents());
+            $walletAddress = $responseBody->address;
+            $walletPrivateKey = $responseBody->privatekey;
+
+            User::where('userIdx', $user->userIdx)->update(['wallet'=>$walletAddress, 'walletPrivateKey'=>$walletPrivateKey]);
+        }
+
+        $userObj = User::where('userIdx', $user->userIdx)->get()->first();
+        
+        $client = new \GuzzleHttp\Client();
+        $address = $userObj->wallet;
+        $url = "https://dxs-swagger.herokuapp.com/ethereum/balanceof/".$userObj->wallet;
+        $response = $client->request("GET", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=> '{}'
+        ]);
+        $balance = json_decode($response->getBody()->getContents());
+        $transactions = Transaction::where('userIdx', $user->userIdx)
+                                    ->orderby('updated_at', 'desc')
+                                    ->get();
+        $data = array('address', 'balance', 'transactions');
+        return view('account.wallet', compact($data));
     }
 
     public function buyer_bids(){
         $user = Auth::user();
 
         $bidProducts = OfferProduct::with('region')
-                        ->join('bids', 'bids.productIdx', '=', 'offerProducts.productIdx')
+                        ->join(DB::raw("(SELECT *, bids.created_at as createdAt FROM bids ORDER BY createdAt DESC) as bids"), function($join){
+                                $join->on("bids.productIdx", "=", "offerProducts.productIdx");})
                         ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                         ->join('providers', 'offers.providerIdx', '=', 'providers.providerIdx')
                         ->join('regions', 'regions.regionIdx', '=', 'providers.regionIdx')
                         ->where('bids.userIdx', $user->userIdx)
+                        ->groupby('offerProducts.productIdx')
                         ->get();
         
         $bidUsers = array();
@@ -256,7 +344,10 @@ class ProfileController extends Controller
                         ->where('bids.userIdx', $user->userIdx)
                         ->orderby('bids.created_at', 'desc')
                         ->get(["users.*", 'companies.*', 'offerProducts.*', 'offers.*', 'bids.*', 'bids.created_at as createdAt']);
-
+            foreach ($users as $key => $user) {
+                $messages = Message::where('bidIdx', $user->bidIdx)->orderby('created_at', 'asc')->get();
+                $user['messages'] = $messages;
+            }
             array_push($bidUsers, array(
                 'offerIdx'=>$bid['offerIdx'],
                 'productIdx'=>$bid['productIdx'], 
@@ -274,9 +365,12 @@ class ProfileController extends Controller
         
         $bidProducts = OfferProduct::with('region')
                                 ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                ->join(DB::raw("(SELECT *, bids.created_at as createdAt FROM bids ORDER BY createdAt DESC) as bids"), function($join){
+                                        $join->on("bids.productIdx", "=", "offerProducts.productIdx");})
                                 ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                                 ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                 ->where('users.userIdx', $user->userIdx)
+                                ->groupby('offerProducts.productIdx')
                                 ->get();
 
         $bidUsers = array();
@@ -297,7 +391,10 @@ class ProfileController extends Controller
                         ->where('bids.productIdx', $bid['productIdx'])
                         ->orderby('bids.created_at', 'desc')
                         ->get(["users.*", 'companies.*', 'offerProducts.*', 'offers.*', 'bids.*', 'bids.created_at as createdAt']);
-
+            foreach ($users as $key => $user) {
+                $messages = Message::where('bidIdx', $user->bidIdx)->orderby('created_at', 'asc')->get();
+                $user['messages'] = $messages;
+            }
             array_push($bidUsers, array(
                 'offerIdx'=>$bid['offerIdx'],
                 'productIdx'=>$bid['productIdx'], 

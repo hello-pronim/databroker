@@ -49,5 +49,9 @@ return [
     'monitoring_of_the_conformity_of_databroker'=>'Monitoring of the conformity of Databroker',
     'transfer_outside_the_eea_and_third_parties'=>'Transfer outside the eea and third parties',
     'end_of_service_delivery'=>'End of service delivery',
-    'updates'=>'Updates'
+    'updates'=>'Updates',
+    'matchmaking_meta_title'=>'DataMatch matchmaking service | Databroker',
+    'matchmaking_meta_desc'=>'You know what data you need, but can’t find it? Let us help! Thanks to our personalised DataMatch service, we’ll find just the data you’re looking for!',
+    'usecases_overview_meta_title'=>'Real-life use cases for data | Databroker',
+    'usecases_overview_meta_desc'=>'Looking for inspiration for how data can supercharge your business? Browse our use cases for practical ways that data can solve real-life challenges.'
 ];

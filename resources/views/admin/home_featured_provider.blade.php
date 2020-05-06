@@ -60,12 +60,12 @@
                     <tbody>
                         @foreach($boards as $board)                      
                             <tr>
-                                <td>
+                                <td align="center">
                                     <a href="{{ route('data.company_offers', ['companyIdx'=>$board->companyIdx]) }}">
-                                    @if(file_exists(public_path("uploads/company/".$board->companyLogo))) 
-                                        <img src='{{ asset("uploads/company/".$board->companyLogo) }}' style="height: 40px;">
+                                    @if(file_exists(public_path("uploads/company/thumb/".$board->companyLogo))) 
+                                        <img src='{{ asset("uploads/company/thumb/".$board->companyLogo) }}' style="height: 40px;">
                                     @else 
-                                        <img src='{{ asset("uploads/company/default.png") }}' style="height: 40px;">
+                                        <img src='{{ asset("uploads/company/default_thumb.png") }}' style="height: 40px;">
                                     @endif
                                     </a>
                                 </td>

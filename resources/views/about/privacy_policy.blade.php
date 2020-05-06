@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Privacy policy | Databroker")
+
 @section('content')       
 <div class="container-fluid app-wapper bg-pattern-side app-wapper-privacy-policy">
     <div class="container">

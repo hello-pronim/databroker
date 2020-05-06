@@ -9,7 +9,7 @@
         <div class="app-section app-reveal-section align-items-center data-detail">
             <div class="blog-header">
                 <h1>My purchases</h1>
-                <p class="desc">Here you can find an overview of all the data products you have purchased, including any products that were shared with you at no cost. 
+                <p class="para">Here you can find an overview of all the data products you have purchased, including any products that were shared with you at no cost. 
                     <br>
                     Purchases are shown in chronological order, with the most recent activity at the top.
                 </p>
@@ -50,7 +50,11 @@
                                                         Price:
                                                     </div>
                                                     <div class="col-8 field-value">
+                                                        @if($purchase->productBidType=="free")
+                                                        <span>Free</span>
+                                                        @else
                                                         <span>€ {{$purchase->bidPrice!=0 ? $purchase->bidPrice : $purchase->productPrice}} (tax incl.)</span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="row field-row">
@@ -74,9 +78,13 @@
                                                     <h4 class="company">
                                                         {{$purchase->provider->companyName}}
                                                     </h4>
+                                                    @if($purchase->productBidType=="free")
+                                                    <div class="price">Free</div>
+                                                    @else
                                                     <div class="price">
                                                         € {{$purchase->bidPrice!=0 ? $purchase->bidPrice : $purchase->productPrice}} <span class="color-black">(tax incl.)</span>
                                                     </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
@@ -85,7 +93,7 @@
                                                         Warranty expires on
                                                     </h4>
                                                     <div class="date">
-                                                        {{date('d/m/Y', strtotime($purchase->to))}}
+                                                        {{date('d/m/Y', strtotime('+30 days', strtotime($purchase->from)))}}
                                                     </div>
                                                     @if($purchase->productMoreInfo)
                                                     <li class="more_dropdown">
@@ -106,15 +114,15 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-12">
-                                        @if(date('Y-m-d')>date('Y-m-d', strtotime($purchase->to)))
-                                        <div class="text-grey">The link to the data product expired on {{date('d/m/Y', strtotime($purchase->to))}}</div>
+                                        @if(date('Y-m-d') > date('Y-m-d', strtotime($purchase->to)))
+                                        <div class="text-grey">The link to the data product expired on {{date('d/m/Y', strtotime('+1 day', strtotime($purchase->to)))}}</div>
                                         @else
                                         <a href="{{route('account.purchases_detail', ['pid'=>$purchase->purchaseIdx])}}">
                                             <button class="btn readmore-inourblog-btn pure-material-button-outlined btn-transparent mt-0">
                                                 View data product
                                             </button>
                                         </a>
-                                        <div class="text-grey">Link expires on {{date('d/m/Y', strtotime($purchase->to))}}</div>
+                                        <div class="text-grey">Link expires on {{date('d/m/Y', strtotime('+1 day', strtotime($purchase->to)))}}</div>
                                         @endif
                                     </div>
                                 </div>

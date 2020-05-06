@@ -20,10 +20,9 @@ class HomeFeaturedData extends Model
         'id',
         'featured_data_title',
         'featured_data_content',
-        'featured_data_provider',
-        'logo',
+        'providerIdx',
         'image',
-        'logo_url',
+        'read_more_url',
         'active'
     ];
 }

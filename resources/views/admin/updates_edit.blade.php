@@ -46,7 +46,7 @@
 						</div>
 						<div class="col-md-2 m-form__group-sub">
 							<label class="form-control-label">Published Date *</label>
-							<input type="text" class="form-control m-input" name="published" placeholder="Date like 2000-01-30" value="{{ ($board->published)->toDateString()??'' }}">
+							<input type="text" class="form-control m-input" name="published" placeholder="DD/MM/YYYY" value="{{ $board->published? date('d/m/Y', strtotime($board->published)):'' }}" autocomplete="off">
 						</div>
 						<div class="col-md-3 m-form__group-sub">
                             <label class="form-control-label">Author *</label>

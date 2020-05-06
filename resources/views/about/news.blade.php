@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Databroker updates | Databroker')
-@section('description', 'Read about the latest Databroker developments, updates, events and products. Sign up for our NewsBytes to get the latest updates straight in your inbox!')
+@section('title', 'Databroker news | Databroker')
+@section('description', 'Read about the latest Databroker developments, news, events and products. Sign up for our NewsBytes to get the latest updates straight in your inbox!')
 
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
@@ -32,7 +32,7 @@
                                 <a href="{{ route('about.news_detail',  ['id' => $update->articleIdx] ) }}">
                                     <div class="card card-profile card-plain">                  
                                         <div class="card-header holder" id="resposive-card-header">        
-                                            <img class="img" src="{{ asset('uploads/usecases/medium/'.$update->image) }}" id="responsive-card-img"/>
+                                            <img class="img" src="{{ asset('uploads/usecases/tiny/'.$update->image) }}" id="responsive-card-img"/>
                                         </div>
                                         <div class="card-body text-left">
                                             <div class="para-small">
@@ -75,7 +75,7 @@
                             <a href="{{ route('about.news_detail',  ['id' => $update->articleIdx] ) }}" target="_blank">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder" id="resposive-card-header">        
-                                        <img class="img" src="{{ asset('uploads/usecases/medium/'.$update->image) }}" id="responsive-card-img"/>
+                                        <img class="img" src="{{ asset('uploads/usecases/tiny/'.$update->image) }}" id="responsive-card-img"/>
                                     </div>
                                     <div class="card-body text-left">
                                         <div class="para-small">

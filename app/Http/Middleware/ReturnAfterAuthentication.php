@@ -17,7 +17,8 @@ class ReturnAfterAuthentication
      */
     public function handle($request, Closure $next)
     {        
-        $request->session()->put('url.intended', $request->url());       
+        if(strpos($request->url(), 'register_nl') === false)
+            $request->session()->put('url.intended', $request->url());       
         return $next($request);
     }
 }

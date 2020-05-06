@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add a new data product | Databroker')
+@section('title', 'Edit data product | Databroker')
 @section('description', '')
 
 @section('additional_css')	
@@ -13,7 +13,7 @@
     <div class="bg-pattern1-left"></div>
     <div class="container">
         <div class="app-section align-items-center">
-        	<form id="add_product" action="{{ route('data_offer_submit_product') }}" method="post">
+        	<form id="add_product" action="{{ route('data_offer_submit_product') }}" method="post" novalidate>
         		@csrf        		
         		<input type="hidden" name="offerIdx" value="{{ $offer['offerIdx'] }}">
         		<input type="hidden" name="productIdx" value="{{ $product['productIdx'] }}">
@@ -96,7 +96,7 @@
 						</div>
 					</div>
 	            	<div class="row mgt30">
-	            		<div class="col-lg-6">
+	            		<div class="col-lg-12">
 			                <h4 class="h4_intro text-left">How will you handle pricing for this data product? <i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_pricing_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper period">
 				        		@foreach ($bidTypes as $bidtype)
@@ -107,7 +107,7 @@
 									</label>
 									<div class="period_select">
 										@if ($bidtype['biddable'])
-										<label class="pure-material-textfield-outlined">
+										<label class="pure-material-textfield-outlined mb-0 p-0">
 					                        <span class="currency">€ </span><input type="number" step="0.01" name="{{$bidtype['type']}}_price" class="form-control2 input_data" placeholder="0.00" value="{{$product['productPrice']}}"> 
 					                    </label>
 					                    <span>(tax incl.)</span>
@@ -120,13 +120,25 @@
 						                    	<option value="{{$period['key']}}" @if ($product['productAccessDays'] == $period['key']) selected @endif>{{$period['label']}}</option>
 						                    	@endforeach
 						                    </select>						                    
-						                </div>						         
+						                </div>		
+						                @if($bidtype['type']=='free')
+						                <div class="row">
+						                	<div class="col-lg-6">
+						                		<label class="pure-material-textfield-outlined">
+						                			<input type="text" id="dataUrl" name="dataUrl" class="form-control input_data w-100" placeholder=" " value="{{$product->productUrl}}">
+						                			<span>{{ trans('pages.data_url') }}</span>
+						                		</label>
+						                	</div>
+						                </div>
+						                @endif			         
 						                <div>
-											<span class="error_notice {{$bidtype['type']}}_price"> This field is required. </span>
-											<span class="error_notice {{$bidtype['type']}}_period"> Please select a period.</span>
+											<span class="error_notice {{$bidtype['type']}}_price"> Price is required. </span>
 											@if($bidtype['type']=="no_bidding" || $bidtype['type']=="bidding_possible")
-											<span class="error_notice {{$bidtype['type']}}_price_min"> Price should be more than € 0.5.</span>
+											<span class="error_notice {{$bidtype['type']}}_price_min"> Price should be higher than € 0.50</span>
+											@elseif($bidtype['type']=='free')
+											<span class="error_notice dataUrl">You must provide a URL where the buyer can get the data for free.</span>
 											@endif
+											<span class="error_notice {{$bidtype['type']}}_period"> Please select a period.</span>
 						                </div>       
 									</div>	
 				        		</div>

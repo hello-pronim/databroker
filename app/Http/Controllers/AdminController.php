@@ -26,11 +26,14 @@ use App\Models\HomeTrending;
 use App\Models\HomeMarketplace;
 use App\Models\HomeTeamPicks;
 use App\Models\HomeFeaturedProvider;
+use App\Models\FAQ;
+use App\Models\HelpTopic;
 use App\Models\Admin;
 use Response;
 use Image;
 use Session;
 use Redirect;
+use File;
 
 class AdminController extends Controller
 {
@@ -106,7 +109,10 @@ class AdminController extends Controller
 
     public function home_featured_data()
     {
-        $boards = HomeFeaturedData::get();
+        $boards = HomeFeaturedData::join('providers', 'providers.providerIdx', '=', 'home_featured_data.providerIdx')
+                                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                ->get();
         $data = array('boards');
         return view('admin.home_featured_data', compact($data));
     }
@@ -114,7 +120,8 @@ class AdminController extends Controller
     public function home_featured_data_edit()
     {
             $board = HomeFeaturedData::first(); 
-            $data = array('board');
+            $providers = Provider::get();
+            $data = array('board', 'providers');
             return view('admin.home_featured_data_edit', compact($data));
     }
 
@@ -140,9 +147,12 @@ class AdminController extends Controller
             $fileName = $id.'.jpg';  
             //image compress start
             $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->resize(300,400, function ($constraint) {
+            $tinyimg->fit(300,200, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/home/featured_data/tiny').'/'.$fileName);
+            $tinyimg->fit(80,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/featured_data/thumb').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/home/featured_data'), $fileName);
             HomeFeaturedData::find($id)->update(['image' => $fileName, 'active' => 0]);
@@ -166,9 +176,14 @@ class AdminController extends Controller
                 $fileName = $id.'.jpg';
                 //image compress start
                 $tinyimg = Image::make($getfiles->getRealPath());
-                $tinyimg->resize(500,500, function ($constraint) {
+                $tinyimg->resize(140,140, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(public_path('uploads/home/featured_data/logo').'/'.$fileName);
+                
+                $tinyimg->resize(80,80, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/home/marketplace/logo/thumb').'/'.$fileName);
+            
                 //image compress end
                 HomeFeaturedData::find($id)->update(['logo' => $fileName, 'active' => 0]);
                 return "true";
@@ -189,7 +204,7 @@ class AdminController extends Controller
             if($fileExtention == 'svg')
             {
                 $fileName = $id.'.svg';
-                $getfiles->move(public_path('uploads/home/trending/'), $fileName);
+                $getfiles->move(public_path('uploads/home/trending/'), $fileName);                
                 HomeTrending::find($id)->update(['image' => $fileName, 'active' => 0]);
                 return "true";
             }
@@ -198,9 +213,12 @@ class AdminController extends Controller
                 $fileName = $id.'.jpg';
                 //image compress start
                 $tinyimg = Image::make($getfiles->getRealPath());
-                $tinyimg->resize(500,500, function ($constraint) {
+                $tinyimg->resize(60, 60, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(public_path('uploads/home/trending').'/'.$fileName);
+                $tinyimg->resize(40,40, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/home/trending/thumb').'/'.$fileName);
                 //image compress end
                 HomeTrending::find($id)->update(['image' => $fileName, 'active' => 0]);
                 return "true";
@@ -284,12 +302,21 @@ class AdminController extends Controller
             $fileName = $id.'.jpg';  
             //image compress start
             $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->resize(1000,1100, function ($constraint) {
+            $tinyimg->fit(1200,800, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/large').'/'.$fileName);
+
+            $tinyimg->fit(750,500, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/home/marketplace/medium').'/'.$fileName);
-            $tinyimg->resize(300,400, function ($constraint) {
+
+            $tinyimg->fit(300,200, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/home/marketplace/tiny').'/'.$fileName);
+
+            $tinyimg->fit(60,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/thumb').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/home/marketplace'), $fileName);
             HomeMarketplace::find($id)->update(['image' => $fileName, 'active' => 0]);
@@ -300,6 +327,17 @@ class AdminController extends Controller
     {
             $getfiles = $request->file('uploadedFile');
             $fileName = $id.'.jpg';  
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+
+            $tinyimg->resize(140,140, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/logo/tiny').'/'.$fileName);
+
+            $tinyimg->resize(80,80, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/logo/thumb').'/'.$fileName);
+            //image compress end
             $getfiles->move(public_path('uploads/home/marketplace/logo'), $fileName);
             HomeMarketplace::find($id)->update(['logo' => $fileName, 'active' => 0]);
             return "true";
@@ -347,6 +385,18 @@ class AdminController extends Controller
     {
             $getfiles = $request->file('uploadedFile');
             $fileName = $id.'.jpg';  
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+
+            $tinyimg->resize(140,140, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/teampicks/logo/tiny').'/'.$fileName);
+
+            $tinyimg->resize(80,80, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/teampicks/logo/thumb').'/'.$fileName);
+            //image compress end
+
             $getfiles->move(public_path('uploads/home/teampicks/logo'), $fileName);
             HomeTeamPicks::find($id)->update(['logo' => $fileName, 'active' => 0]);
             return "true";
@@ -358,12 +408,21 @@ class AdminController extends Controller
             $fileName = $id.'.jpg';  
             //image compress start
             $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->resize(1000,1100, function ($constraint) {
+            $tinyimg->fit(1200,800, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/teampicks/large').'/'.$fileName);
+
+            $tinyimg->fit(750,500, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/home/teampicks/medium').'/'.$fileName);
-            $tinyimg->resize(300,400, function ($constraint) {
+
+            $tinyimg->fit(300,200, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/home/teampicks/tiny').'/'.$fileName);
+
+            $tinyimg->fit(60,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/teampicks/thumb').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/home/teampicks'), $fileName);
             HomeTeamPicks::find($id)->update(['image' => $fileName, 'active' => 0]);
@@ -439,45 +498,63 @@ class AdminController extends Controller
         return view('admin.usecases_add_new', compact($data));
     }
 
-    public function usecases_edit($id, $communityIdx)
+    public function usecases_edit(Request $request)
     {
-        $id = $id;
-        $communityIdx = $communityIdx;
+        $id = $request->id;
         $categories = Community::get();  
         $board = Article::where('articleIdx', $id)->first(); 
+        $communityIdx = $board->communityIdx;
         $data = array( 'categories', 'id', 'board', 'communityIdx' );
         return view('admin.usecases_edit', compact($data));
     }
 
+    public function usecases_delete(Request $request){
+        Article::where('articleIdx', $request->id)->delete();
+        return "success";
+    }
+
     public function usecases_update(Request $request)
     {
-            if($request->input('id')) {
-                $articleIdx = $request->input('id');
-                $data = $request->all();
-                unset($data['id']);
-                Article::find($articleIdx)->update($data);
-                return "success";
-            } else {
-                $data = $request->all();
-                // $data['published'] = date("Y-m-d");
-                unset($data['id']);
-                Article::create($data);
-                return "success";
-            }
+        $date = explode("/", $request->published);
+        $published = $date[2].'-'.$date[1].'-'.$date[0];
+        if($request->input('id')) {
+            $articleIdx = $request->input('id');
+            $data = $request->all();
+            $data['published'] = date('Y-m-d', strtotime($published));
+            unset($data['id']);
+            Article::find($articleIdx)->update($data);
+            return "success";
+        } else {
+            $data = $request->all();
+            // $data['published'] = date("Y-m-d");
+            $data['published'] = date('Y-m-d', strtotime($published));
+            unset($data['id']);
+            Article::create($data);
+            return "success";
+        }
     }
 
     public function usecases_upload_attach(Request $request, $articleIdx = 0)
     {
             $getfiles = $request->file('uploadedFile');
-            $fileName = $articleIdx.'.jpg';  
+            $fileName = $articleIdx.'.jpg';              
             //image compress start
             $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->resize(1000,1100, function ($constraint) {
+            $tinyimg->fit(1200,800, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/usecases/medium').'/'.$fileName);
-            $tinyimg->resize(300,400, function ($constraint) {
+            })->save(public_path('uploads/home/usecases/large').'/'.$fileName);
+
+            $tinyimg->fit(750,500, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/usecases/tiny').'/'.$fileName);
+            })->save(public_path('uploads/home/usecases/medium').'/'.$fileName);
+
+            $tinyimg->fit(300,200, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/usecases/tiny').'/'.$fileName);
+
+            $tinyimg->fit(60,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/usecases/thumb').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/usecases'), $fileName);
             Article::find($articleIdx)->update(['image' => $fileName]);
@@ -498,19 +575,25 @@ class AdminController extends Controller
 
     public function updates_update(Request $request)
     {
+        $date = explode("/", $request->published);
+        $published = $date[2].'-'.$date[1].'-'.$date[0];
         if($request->input('id')) {
             $articleIdx = $request->input('id');
             $data = $request->all();
-            unset($data['id']);
+            $data['published'] = date('Y-m-d', strtotime($published));
             Article::find($articleIdx)->update($data);
             return "success";
         } else {
             $data = $request->all();
-            // $data['published'] = date("Y-m-d");
+            $data['published'] = date('Y-m-d', strtotime($published));
             unset($data['id']);
             Article::create($data);
             return "success";
         }
+    }
+    public function updates_delete(Request $request){
+        Article::where('articleIdx', $request->id)->delete();
+        return "success";
     }
 
     public function updates_edit($id)
@@ -539,6 +622,11 @@ class AdminController extends Controller
             $data = array('id', 'communities', 'media');
         }
         return view('admin.media_edit', compact($data));
+    }
+
+    public function delete_media(Request $request){
+        Gallery::where('id', $request->mid)->delete();
+        return "success";
     }
 
     public function media_update(Request $request){
@@ -593,18 +681,27 @@ class AdminController extends Controller
 
     public function media_upload_attach(Request $request, $mediaIdx = 0){
         $getfiles = $request->file('uploadedFile');
-        $fileName = "media_".$mediaIdx.'.jpg';  
+        $fileName = "media_".$mediaIdx.'.jpg';         
         //image compress start
         $tinyimg = Image::make($getfiles->getRealPath());
-        $tinyimg->resize(1000,1100, function ($constraint) {
+        $tinyimg->fit(1200,800, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('images/gallery/thumbs/medium').'/'.$fileName);
-        $tinyimg->resize(300,400, function ($constraint) {
+        })->save(public_path('uploads/gallery/thumbs/large').'/'.$fileName);
+
+        $tinyimg->fit(750,500, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('images/gallery/thumbs/tiny').'/'.$fileName);
+        })->save(public_path('uploads/gallery/thumbs/medium').'/'.$fileName);
+
+        $tinyimg->fit(300,200, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/gallery/thumbs/tiny').'/'.$fileName);
+
+        $tinyimg->fit(60,40, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/gallery/thumbs/thumb').'/'.$fileName);
         //image compress end
         $getfiles->move(public_path('images/gallery/thumbs'), $fileName);
-        Gallery::find($mediaIdx)->update(['thumb' => $fileName]);
+        Gallery::find($mediaIdx)->update(['thumb' => 'images/gallery/thumbs/'.$fileName]);
         return "true";
     }
 
@@ -612,7 +709,11 @@ class AdminController extends Controller
     {
         $url = $url;
         $model = $model;
-        $featured_data = HomeFeaturedData::first();
+        $featured_data = HomeFeaturedData::join('providers', 'providers.providerIdx', '=', 'home_featured_data.providerIdx')
+                                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                        ->get()
+                                        ->first();
         $trendings = HomeTrending::orderby('order', 'asc')->limit(6)->get();
         $marketplaces = HomeMarketplace::orderby('order', 'asc')->limit(3)->get();
         $teampicks = HomeTeamPicks::orderby('order', 'asc')->limit(3)->get();
@@ -660,4 +761,323 @@ class AdminController extends Controller
         
     }
 
+    public function help_buying_data(Request $request){
+        $header = HelpTopic::where('page', 'buying_header')->get()->first();
+        $data = array('header');
+        return view('admin.help_buying_data', compact($data));
+    }
+    public function update_help_buying_data(Request $request){
+        if($request->helpTopicIdx==0){
+            $header['title'] = $request->title;
+            $header['description'] = $request->description;
+            $header['page'] = 'buying_header';
+            HelpTopic::create($header);
+        }else{
+            $header['title'] = $request->title;
+            $header['description'] = $request->description;
+            $header['page'] = 'buying_header';
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($header);
+        }
+        return "success";
+    }
+    public function help_buying_faqs(Request $request){
+        $faqs = FAQ::where('for', 'buying')->get();
+        $data = array('faqs');
+        return view('admin.help_buying_data_faqs', compact($data));
+    }
+    public function edit_help_buying_faq(Request $request, $fid = 0){
+        if($fid==0){
+            return view('admin.help_buying_data_faq_edit');
+        }else{
+            $faq = FAQ::where('faqIdx', $fid)->get()->first();
+            $data = array('faq');
+            return view('admin.help_buying_data_faq_edit', compact($data));
+        }
+    }
+    public function update_help_buying_faq(Request $request){
+        if($request->faqIdx==0){
+            $faq['faq'] = $request->faq;
+            $faq['description'] = $request->description;
+            $faq['for'] = "buying";
+            FAQ::create($faq);
+        }else{
+            $faq['faq'] = $request->faq;
+            $faq['description'] = $request->description;
+            $faq['for'] = "buying";
+            FAQ::where('faqIdx', $request->faqIdx)->update($faq);
+        }
+        return "success";
+    }
+    public function delete_help_buying_faq(Request $request, $fid){
+        FAQ::where('faqIdx', $fid)->delete();
+        return "success";
+    }
+
+    public function help_buying_data_topics(Request $request){
+        $topics = HelpTopic::where('page', 'buying')->get();
+        $data = array('topics');
+        return view('admin.help_buying_data_topics', compact($data));
+    }
+    public function edit_help_buying_data_topic(Request $request, $tid = 0){
+        if($tid==0){
+            return view('admin.help_buying_data_topic_edit');
+        }else{
+            $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
+            $data = array('topic');
+            return view('admin.help_buying_data_topic_edit', compact($data));
+        }
+    }
+    public function update_help_buying_data_topic(Request $request){
+        if($request->helpTopicIdx==0){
+            $topic['page'] = "buying";
+            $topic['title'] = $request->title;
+            HelpTopic::create($topic);
+        }else{
+            $topic['page'] = "buying";
+            $topic['title'] = $request->title;
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
+        }
+        return "success";
+    }
+
+    public function delete_help_buying_data_topic(Request $request, $tid){
+        HelpTopic::where('helpTopicIdx', $tid)->delete();
+        return "success";
+    }
+
+    public function help_selling_data(Request $request){
+        $header = HelpTopic::where('page', 'selling_header')->get()->first();
+        $data = array('header');
+        return view('admin.help_selling_data', compact($data));
+    }
+    public function update_help_selling_data(Request $request){
+        if($request->helpTopicIdx==0){
+            $header['title'] = $request->title;
+            $header['description'] = $request->description;
+            $header['page'] = 'selling_header';
+            HelpTopic::create($header);
+        }else{
+            $header['title'] = $request->title;
+            $header['description'] = $request->description;
+            $header['page'] = 'selling_header';
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($header);
+        }
+        return "success";
+    }
+    public function help_selling_faqs(Request $request){
+        $faqs = FAQ::where('for', 'selling')->get();
+        $data = array('faqs');
+        return view('admin.help_selling_data_faqs', compact($data));
+    }
+    public function edit_help_selling_faq(Request $request, $fid = 0){
+        if($fid==0){
+            return view('admin.help_selling_data_faq_edit');
+        }else{
+            $faq = FAQ::where('faqIdx', $fid)->get()->first();
+            $data = array('faq');
+            return view('admin.help_selling_data_faq_edit', compact($data));
+        }
+    }
+    public function update_help_selling_faq(Request $request){
+        if($request->faqIdx==0){
+            $faq['faq'] = $request->faq;
+            $faq['description'] = $request->description;
+            $faq['for'] = "selling";
+            FAQ::create($faq);
+        }else{
+            $faq['faq'] = $request->faq;
+            $faq['description'] = $request->description;
+            $faq['for'] = "selling";
+            FAQ::where('faqIdx', $request->faqIdx)->update($faq);
+        }
+        return "success";
+    }
+    public function delete_help_selling_faq(Request $request, $fid){
+        FAQ::where('faqIdx', $fid)->delete();
+        return "success";
+    }
+
+    public function help_selling_data_topics(Request $request){
+        $topics = HelpTopic::where('page', 'selling')->get();
+        $data = array('topics');
+        return view('admin.help_selling_data_topics', compact($data));
+    }
+    public function edit_help_selling_data_topic(Request $request, $tid = 0){
+        if($tid==0){
+            return view('admin.help_selling_data_topic_edit');
+        }else{
+            $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
+            $data = array('topic');
+            return view('admin.help_selling_data_topic_edit', compact($data));
+        }
+    }
+    public function update_help_selling_data_topic(Request $request){
+        if($request->helpTopicIdx==0){
+            $topic['page'] = "selling";
+            $topic['title'] = $request->title;
+            HelpTopic::create($topic);
+        }else{
+            $topic['page'] = "selling";
+            $topic['title'] = $request->title;
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
+        }
+        return "success";
+    }
+    public function delete_help_selling_data_topic(Request $request, $tid){
+        HelpTopic::where('helpTopicIdx', $tid)->delete();
+        return "success";
+    }
+    public function help_guarantees(Request $request){
+        $topics = HelpTopic::where('page', 'guarantees')->get();
+        $data = array('topics');
+        return view('admin.help_guarantees', compact($data));
+    }
+    public function edit_help_guarantee(Request $request, $tid = 0){
+        if($tid == 0){
+            return view('admin.help_guarantee_edit');
+        }else{
+            $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
+            $data = array('topic');
+            return view('admin.help_guarantee_edit', compact($data));
+        }
+    }
+    public function delete_help_guarantee(Request $request, $tid){
+        HelpTopic::where('helpTopicIdx', $tid)->delete();
+        return "success";
+    }
+    public function update_help_guarantee(Request $request){
+        if($request->helpTopicIdx==0){
+            $topic['page'] = "guarantees";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::create($topic);
+        }else{
+            $topic['page'] = "guarantees";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
+        }
+        return "success";
+    }
+    public function help_complaints(Request $request){
+        $topics = HelpTopic::where('page', 'complaints')->get();
+        $data = array('topics');
+        return view('admin.help_complaints', compact($data));
+    }
+    public function edit_help_complaint(Request $request, $tid = 0){
+        if($tid == 0){
+            return view('admin.help_complaint_edit');
+        }else{
+            $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
+            $data = array('topic');
+            return view('admin.help_complaint_edit', compact($data));
+        }
+    }
+    public function delete_help_complaint(Request $request, $tid){
+        HelpTopic::where('helpTopicIdx', $tid)->delete();
+        return "success";
+    }
+    public function update_help_complaint(Request $request){
+        if($request->helpTopicIdx==0){
+            $topic['page'] = "complaints";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::create($topic);
+        }else{
+            $topic['page'] = "complaints";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
+        }
+        return "success";
+    }
+
+    public function help_feedbacks(Request $request){
+        $topics = HelpTopic::where('page', 'feedbacks')->get();
+        $data = array('topics');
+        return view('admin.help_feedbacks', compact($data));
+    }
+    public function edit_help_feedback(Request $request, $tid = 0){
+        if($tid == 0){
+            return view('admin.help_feedback_edit');
+        }else{
+            $topic = HelpTopic::where('helpTopicIdx', $tid)->get()->first();
+            $data = array('topic');
+            return view('admin.help_feedback_edit', compact($data));
+        }
+    }
+    public function delete_help_feedback(Request $request, $tid){
+        HelpTopic::where('helpTopicIdx', $tid)->delete();
+        return "success";
+    }
+    public function update_help_feedback(Request $request){
+        if($request->helpTopicIdx==0){
+            $topic['page'] = "feedbacks";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::create($topic);
+        }else{
+            $topic['page'] = "feedbacks";
+            $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
+        }
+        return "success";
+    }
+ 
+    public function compress_images(Request $request){
+        if(isset($request->path)){
+            $path = public_path('uploads/'.$request->path);
+            $files = File::allfiles($path);
+            // /dd($files);
+            if($request->path == "usecases" || $request->path == "offer" ){
+                foreach ($files as $key => $file) {                
+                    $fileName = $file->getFilename();                
+                    if($path ."/". $fileName == $file->getpathName() && File::exists($path . "/". $fileName)){
+                        $tinyimg = Image::make($file->getpathName());
+                        $tinyimg->fit(1200,800, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/large/". $fileName);
+                        sleep(0.3);
+                        $tinyimg->fit(750,500, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/medium/".$fileName);
+                        sleep(0.3);
+                        $tinyimg->fit(300,200, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/tiny/" . $fileName);
+                        sleep(0.3);
+                        $tinyimg->fit(60,40, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/thumb/". $fileName);
+                        sleep(0.3);
+                    }                
+                }    
+            }
+            
+
+            if($request->path == "company"){
+                foreach ($files as $key => $file) {                
+                    $fileName = $file->getFilename();        
+                    if($path ."/". $fileName == $file->getpathName() && File::exists($path . "/". $fileName)){
+                        //image compress start
+                        $tinyimg = Image::make($file->getpathName());
+                        $tinyimg->resize(215,215, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path ."/medium/".$fileName);
+                        $tinyimg->resize(150,70, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/tiny/" . $fileName);
+                        $tinyimg->resize(80,40, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($path . "/thumb/". $fileName);
+                        //image compress end
+                    }    
+                }    
+            }
+
+            echo "success";
+        }                
+    }
+    
 }

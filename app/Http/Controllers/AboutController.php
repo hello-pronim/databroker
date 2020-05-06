@@ -20,6 +20,7 @@ use App\Models\UseCase;
 use App\Models\Contact;
 use App\Models\Subscription;
 use App\Models\Article;
+use Session;
 use Response;
 use Newsletter;
 
@@ -640,23 +641,25 @@ class AboutController extends Controller
         $countries = Region::where('regionType', 'country')->get(); 
         $user = $this->getAuthUser();
         $userData = null;
+        $next_url = Session::get('url.intended');
         if($user){
             $userData = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')->where('userIdx', $user->userIdx)->get()->first();
             $seenFlag = 0;
             $subscription = Subscription::where('email', $userData['email'])->get()->first();
             if(!$subscription){
-                $data = array( 'communities', 'businesses', 'countries', 'userData' ); 
+                $data = array( 'communities', 'businesses', 'countries', 'userData', 'next_url' ); 
                 return view('auth.nl_push', compact($data));
             }else{
                 return redirect()->back();
             }
         }else{
-            $data = array( 'communities', 'businesses', 'countries'); 
+            $data = array( 'communities', 'businesses', 'countries', 'next_url'); 
             return view('auth.register_nl', compact($data));
         }
     }  
 
     protected function create_nl(Request $request){
+
         if($request->userIdx)
             $rules = [
                 "community"=> 'required|array|min:1'
@@ -743,6 +746,9 @@ class AboutController extends Controller
             'body'=> json_encode($query)
         ]);
 
-        return view('auth.register_nl_success');
+        $next_url = Session::get('url.intended');
+        $data = array('next_url');
+
+        return view('auth.register_nl_success', compact($data));
     }
 }

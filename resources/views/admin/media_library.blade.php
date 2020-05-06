@@ -2,6 +2,7 @@
 
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
 @endsection
 
 @section('content')
@@ -49,8 +50,8 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>
-                                    @if($image->thumb && file_exists(public_path('images/gallery/thumbs/'.$image->thumb))) 
-                                        {{ asset('images/gallery/thumbs/'.$image->thumb) }}
+                                    @if($image->thumb && file_exists(public_path($image->thumb))) 
+                                        {{ asset($image->thumb) }}
                                     @else 
                                         {{ asset('images/gallery/thumbs/default.png') }}
                                     @endif
@@ -72,6 +73,7 @@
 
 @section('additional_javascript')
     <script src="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.js') }}"></script>
+    <script src="{{ asset('js/plugins/sweetalert.min.js') }}"></script>
     <script src="{{ asset('adminpanel/js/media_library.js') }}"></script>            
 @endsection
 

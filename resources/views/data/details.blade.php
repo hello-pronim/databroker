@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $offer['offerTitle']."|Databroker" }}
+{{ $offer['offerTitle']." | Databroker" }}
 @stop
 @section('description', 'Looking for data to help you make insight-driven business decisions? Explore our marketplace and get easy access to a world of data.')
 
@@ -32,10 +32,10 @@
 	        <div class="blog-content">
 	        	<div class="row">
 	        		<div class="col-lg-8">
-	        			@if( file_exists(public_path() . '/'. $offer['offerImage'] ) && $offer['offerImage'] )
-	        			<img class="blog-img" src="{{ asset($offer['offerImage']) }}" />
+	        			@if( file_exists(public_path() . '/uploads/offer/medium/'. $offer['offerImage'] ) && $offer['offerImage'] )
+	        			<img class="blog-img" src="{{ asset('uploads/offer/medium/'. $offer['offerImage']) }}" />
 	        		    @else
-	        		    <img class="img" src="{{ asset('uploads/offer/default.png') }}" />
+	        		    <img class="blog-img" src="{{ asset('uploads/offer/default.png') }}" />
 	        		    @endif  	
 			            <div class="nav-tabs-wrapper mt-30">
 			                <ul class="nav nav-tabs">
@@ -94,7 +94,7 @@
 				                	@if( explode("-", $sample['sampleType'])[0] == 'file')
 				                	<div class="file">
 				                		<p>{{$sample['sampleDescription']}}</p>
-				                		<a class="download" href="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}"><i class="material-icons">get_app</i><span>{{$sample['sampleFileName']}}</span></a>
+				                		<a class="download" href="{{ asset('uploads/offersample/'.$sample['sampleFileName']) }}" target="_blank"><i class="material-icons">get_app</i><span>{{$sample['sampleFileName']}}</span></a>
 				                	</div>	
 				                	@endif					                	
 				                	@if( explode("-", $sample['sampleType'])[0] == 'image')				                	
@@ -125,7 +125,7 @@
 				                	@foreach($products as $product)
 				                	<div class="buy_list">				                		
 				                		<div class="row">
-				                			<div class="col col-8">
+				                			<div class="col col-md-8">
 					                			<div class="text-left">
 						                			<h3>{{$product->productTitle}}</h3>	
 						                			<label class="country offer-location">
@@ -142,21 +142,21 @@
 						                			@endif
 						                		</div>
 						                	</div>
-						                	<div class="col col-4">
+						                	<div class="col col-md-4">
 						                		<div class="text-right">
-						                			@if(!$product->productPrice)
+						                			@if($product->productBidType=="bidding_only")
 						                			<p class="price">Make your best bid</p>
-						                			@elseif($product->productPrice>0 && $product->productBidType != 'free')
-						                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }} <span class="color-black">(tax incl.)</span></p>
-						                			@else
+						                			@elseif($product->productBidType=="free")
 						                			<p class="price">FREE</p>
+						                			@else
+						                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }} <span class="color-black">(tax incl.)</span></p>
 						                			@endif
 
 						                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 {{ $product->productAccessDays }}</span></p>
 						                		</div>	
 						                	</div>
 				                		</div>	 
-			                			<div class="flex-row align-items-center justify-content-end">
+			                			<div class="product_actions">
 				                			@if($product->productBidType == 'no_bidding')
 				                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
 				                				<button type="button" class="customize-btn my-0">BUY NOW</button>
@@ -174,7 +174,7 @@
 				                			</a>
 				                			<br>
 				                			@elseif($product->productBidType == 'free')
-				                			<a href="javascript:;">
+				                			<a href="{{route('data.get_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
 				                				<button type="button" class="customize-btn my-0">GET DATA</button>
 				                			</a>
 			                				@endif
@@ -207,10 +207,10 @@
 	        			<label class="author"><a target="_blank" href="https://{{ $offer['provider']->companyURL }}">{{ $offer['provider']->companyURL }}</a></label>
 	        			@endif
 	        			<div class="author_avatar">	        				
-	        				@if( file_exists( public_path() . '/uploads/company/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
-	        				<img src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}">
+	        				@if( file_exists( public_path() . '/uploads/company/tiny/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
+	        				<img src="{{ asset('uploads/company/medium/'.$offer['provider']->companyLogo) }}">
 	        				@else
-	        				<img class="img" src="{{ asset('uploads/company/default.png') }}" />
+	        				<img class="img" src="{{ asset('uploads/company/default_medium.png') }}" />
 	        				@endif
 	        			</div>	        			
 	        			<p class="short-desc">

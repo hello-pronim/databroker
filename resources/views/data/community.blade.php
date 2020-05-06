@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', trans('home.'.str_replace( ' ', '_', strtolower($community) ).'_desc_meta_title'))
+@section('description', trans('home.'.str_replace( ' ', '_', strtolower($community) ).'_desc_meta_desc'))
+
 @section('content')
 <div class="container-fluid app-wapper">	
     <div class="container">
@@ -120,7 +123,13 @@
 							@foreach($offer['region'] as $region)
 			            		<span>{{ $region->regionName }}</span>
 			            	@endforeach</h6>
-						<a href="{{ $offer['provider']->companyURL }}"><img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" /></a>
+						<a href="{{ route('data.company_offers', ['companyIdx'=>$offer['companyIdx']])}}">
+							@if( file_exists( public_path() . '/uploads/company/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
+							<img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" />
+							@else
+							<img class="img" src="{{ asset('uploads/company/default.png') }}" />
+							@endif
+						</a>
 					</div>			
 				</div>	
 			</div>

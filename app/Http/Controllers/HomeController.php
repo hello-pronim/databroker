@@ -33,7 +33,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $featured_data = HomeFeaturedData::where('active', 1)->first();
+        $featured_data = HomeFeaturedData::join('providers', 'providers.providerIdx', '=', 'home_featured_data.providerIdx')
+                                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                        ->where('active', 1)
+                                        ->get()
+                                        ->first();
         $trendings = HomeTrending::where('active', 1)->orderby('order', 'asc')->limit(6)->get();
         $marketplaces = HomeMarketplace::where('active', 1)->orderby('order', 'asc')->limit(3)->get();
         $teampicks = HomeTeamPicks::where('active', 1)->orderby('order', 'asc')->limit(3)->get();

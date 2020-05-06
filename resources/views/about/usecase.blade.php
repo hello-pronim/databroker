@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Real-life use cases for data | Databroker')
-@section('description', 'Looking for inspiration for how data can supercharge your business? Browse our use cases for practical ways that data can solve real-life challenges.')
+@section('title', trans('about.usecases_overview_meta_title'))
+@section('description', trans('about.usecases_overview_meta_desc'))
 
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('css/imageuploadify.min.css') }}">
@@ -41,7 +41,7 @@
                             <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder" id="resposive-card-header">        
-                                        <img class="img" src="{{ asset('uploads/usecases/medium/'.$usecase->image) }}" id="responsive-card-img" />
+                                        <img class="img" src="{{ asset('uploads/usecases/tiny/'.$usecase->image) }}" id="responsive-card-img" />
                                     </div>
                                     <div class="card-body text-left">
                                         <div class="para-small">
@@ -82,7 +82,7 @@
                         <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
                             <div class="card card-profile card-plain">                  
                                 <div class="card-header holder" id="resposive-card-header">        
-                                    <img class="img" src="{{ asset('uploads/usecases/medium/'.$usecase->image) }}" id="responsive-card-img"/>
+                                    <img class="img" src="{{ asset('uploads/usecases/tiny/'.$usecase->image) }}" id="responsive-card-img"/>
                                 </div>
                                 <div class="card-body text-left">
                                     <div class="para-small">

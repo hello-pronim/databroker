@@ -111,7 +111,11 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															Price : € {{$data['finalPrice']}}
+															@if($data['finalPrice']>0)
+																Price : € {{$data['finalPrice']}}
+															@else
+																Price : FREE
+															@endif
 														</td>
 													</tr>
 													<tr>
@@ -121,7 +125,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															From : {{$data['expiry_from']}} to {{$data['expiry_to']}}
+															From : {{$data['from']}} to {{$data['to']}}
 														</td>
 													</tr>
 													<tr>
@@ -133,7 +137,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-10" style="font-style: italic;">
-															This link expires at {{$data['expiry_to']}}, so make sure you access the data before this date.
+															This link expires at {{$data['expire_at']}}, so make sure you access the data before this date.
 														</td>
 													</tr>
 													<tr>
@@ -159,7 +163,7 @@
 															<ul class="m-0">
 																<li class="py-10">You have 30-day warranty period, which gives you time to ensure that the data is what you expected to receive.</li>
 																<li class="py-10">During this time, Databroker holds the seller’s earnings from the sale, and only releases them once the warranty period ends.</li>
-																<li class="py-10">If there's a problem with the data, we recommend that you contact the data provider as soon as possible to try to find a solution. But if that doesn’t help, you can file a complaint within 30 days of your purchase.<br/>
+																<li class="py-10">If there's a problem with the data, we recommend that you contact the data provider as soon as possible to try to find a solution. But if that doesn’t help, you can file a complaint within 30 days of your purchase.(Until {{$data['warranty_to']}})<br/>
 																Read more about <a href="{{route('help.file_complaint')}}">filing a complaint</a>.</li>
 															</ul>
 														</td>

@@ -109,8 +109,9 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															Price : @if($data['product']->productPrice) €{{$data['product']->productPrice}}
-																	@else {{ "N/A" }}
+															Price : @if($data['product']->productBidType=="bidding_only") {{ "N/A" }}
+																	@elseif($data['product']->productBidType=="free") {{ "Free" }}
+																	@else €{{$data['product']->productPrice}} (tax incl.)
 																	@endif
 														</td>
 													</tr>
@@ -131,7 +132,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-25 flex-row">
-															<a href="{{route('data.buy_data', ['id'=>$data['product']->offerIdx, 'pid'=>$data['product']->productIdx]).'?bidIdx='.$data['buyer']->bidIdx}}" class="btn btn-primary">
+															<a href="{{route('data.buy_data', ['id'=>$data['product']->offerIdx, 'pid'=>$data['product']->productIdx]).'?bidIdx='.$data['bidIdx']}}" class="btn btn-primary">
 																BUY DATA AT AGREED PRICE
 															</a>
 														</td>

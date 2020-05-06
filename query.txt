@@ -453,3 +453,55 @@ INSERT INTO `databroker_new`.`admin` (`username`, `firstname`, `lastname`, `emai
 ALTER TABLE `databroker_new`.`home_featured_provider` DROP COLUMN `active`, DROP COLUMN `title`, DROP COLUMN `image`, DROP COLUMN `logo_url`, ADD COLUMN `providerIdx` INT(11) NULL AFTER `id`; 
 ALTER TABLE `databroker_new`.`home_featured_provider` ADD COLUMN `active` INT(11) NULL AFTER `order`;
 ALTER TABLE `databroker_new`.`home_featured_provider` CHANGE `providerIdx` `providerIdx` INT(11) NOT NULL, CHANGE `order` `order` INT(11) NOT NULL, CHANGE `active` `active` INT(11) NOT NULL; 
+
+#2020-04-23
+ALTER TABLE `databroker_new`.`messages` ADD COLUMN `bidIdx` INT(11) NOT NULL AFTER `messageIdx`, CHANGE `userIdx` `senderIdx` INT(11) NOT NULL, CHANGE `providerIdx` `receiverIdx` INT(11) NOT NULL, CHANGE `messageContent` `message` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL; 
+ALTER TABLE `databroker_new`.`messages` DROP FOREIGN KEY `fk_Messages_Users1`;
+
+#2020-04-24
+ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `productUrl` VARCHAR(255) NULL AFTER `productLicenseUrl`; 
+
+#2020-04-27
+ALTER TABLE `databroker_new`.`users` CHANGE `wallet` `wallet` VARCHAR(64) NULL; 
+#2020-04-28
+ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `uniqueProductIdx` VARCHAR(256) NULL AFTER `productStatus`; 
+ALTER TABLE `databroker_new`.`users` CHANGE `wallet` `wallet` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL, ADD COLUMN `walletPrivateKey` VARCHAR(255) NULL AFTER `wallet`;
+UPDATE offerProducts SET productAccessDays= "day" WHERE productAccessDays="1 day";
+UPDATE offerProducts SET productAccessDays= "month" WHERE productAccessDays="1 month";
+UPDATE offerProducts SET productAccessDays= "year" WHERE productAccessDays="1 year";
+
+CREATE TABLE `databroker_new`.`sales` ( `saleIdx` INT(11) NOT NULL AUTO_INCREMENT, `productIdx` INT(11), `userIdx` INT(11), `bidIdx` INT(11), `from` DATE, `to` DATE, PRIMARY KEY (`saleIdx`) ) ENGINE=INNODB CHARSET=utf8 COLLATE=utf8_general_ci; 
+ALTER TABLE `databroker_new`.`sales` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `to`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`;
+
+#2020-04-29
+ALTER TABLE `databroker_new`.`sales` CHANGE `userIdx` `sellerIdx` INT(11) NULL, ADD COLUMN `buyerIdx` INT(11) NULL AFTER `sellerIdx`; 
+ALTER TABLE `databroker_new`.`complaints` ADD COLUMN `productIdx` INT(11) NULL AFTER `complaintTarget`; 
+
+#2020-04-30
+CREATE TABLE `databroker_new`.`transactions` ( `transactionIdx` INT(11) NOT NULL AUTO_INCREMENT, `transactionType` VARCHAR(64), `senderIdx` INT(11), `receiverIdx` INT(11), `productIdx` INT(11), `amount` FLOAT, `status` VARCHAR(64), PRIMARY KEY (`transactionIdx`) ); 
+ALTER TABLE `databroker_new`.`transactions` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `status`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
+
+CREATE TABLE `databroker_new`.`faqs` ( `faqIdx` INT(11) NOT NULL AUTO_INCREMENT, `faq` TEXT, `description` TEXT, `for` VARCHAR(64), PRIMARY KEY (`faqIdx`) );
+ALTER TABLE `databroker_new`.`faqs` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `for`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
+CREATE TABLE `databroker_new`.`helpTopics` ( `helpTopicIdx` INT(11) NOT NULL AUTO_INCREMENT, `page` VARCHAR(64), `title` VARCHAR(64), `description` TEXT(64), PRIMARY KEY (`helpTopicIdx`) ) ENGINE=INNODB CHARSET=utf8 COLLATE=utf8_estonian_ci; 
+ALTER TABLE `databroker_new`.`helpTopics` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `description`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`, COLLATE=utf8_general_ci; 
+ALTER TABLE `databroker_new`.`helpTopics` CHANGE `description` `description` TEXT CHARSET utf8 COLLATE utf8_estonian_ci NULL; 
+
+#2020-05-04
+ALTER TABLE `databroker_new`.`sales` ADD COLUMN `redeemed` INT(11) NULL AFTER `to`; 
+ALTER TABLE `databroker_new`.`sales` ADD COLUMN `redeemed_at` DATE NULL AFTER `redeemed`; 
+
+#2020-05-05
+UPDATE offers SET offerImage = SUBSTRING(offerImage, 15) WHERE SUBSTRING(offerImage, 0, 14) <> 'uploads/offer/'; 
+
+ALTER TABLE `databroker_new`.`home_featured_data` CHANGE `featured_data_provider` `featured_data_provider` INT(11) NULL, CHANGE `logo_url` `read_more_url` VARCHAR(255) CHARSET utf8 COLLATE utf8_general_ci NULL; 
+ALTER TABLE `databroker_new`.`home_featured_data` DROP COLUMN `logo`, CHANGE `featured_data_provider` `providerIdx` INT(11) NULL; 
+CREATE TABLE `databroker_new`.`apiProductKeys` ( `apiProductKeyIdx` INT(11) NOT NULL AUTO_INCREMENT, `purchaseIdx` INT(11), `apiKey` VARCHAR(64), PRIMARY KEY (`apiProductKeyIdx`) );
+ALTER TABLE `databroker_new`.`apiProductKeys` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `apiKey`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
+ALTER TABLE `databroker_new`.`transactions` CHANGE `transactionIdx` `id` INT(11) NOT NULL, ADD COLUMN `transactionId` VARCHAR(64) NULL AFTER `id`; 
+ALTER TABLE `databroker_new`.`transactions` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `databroker_new`.`purchases` ADD COLUMN `transactionId` VARCHAR(64) NULL AFTER `to`; 
+ALTER TABLE `databroker_new`.`sales` ADD COLUMN `transactionId` VARCHAR(64) NULL AFTER `redeemed_at`;
+
+#2020-05-06
+ALTER TABLE `databroker_new`.`transactions` ADD COLUMN `userIdx` INT(11) NULL AFTER `transactionType`; 

@@ -33,7 +33,7 @@
                         <div class="col-md-12 col-sm-12">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder" id="detail-cms-image">        
-                                        <img class="img" src="{{ asset('uploads/usecases/'.$update[0]->image) }}"  id="news_detail_img"/>
+                                        <img class="img" src="{{ asset('uploads/usecases/large/'.$update[0]->image) }}"  id="news_detail_img"/>
                                     </div>
                                 </div>  
                         </div>  
@@ -70,7 +70,7 @@
                         <a href="{{ route('about.news_detail',  ['id' => $update->articleIdx] ) }}">
                             <div class="card card-profile card-plain">                  
                                 <div class="card-header holder" id="resposive-card-header">        
-                                    <img class="img" src="{{ asset('uploads/usecases/medium/'.$update->image) }}" id="responsive-card-img"/>
+                                    <img class="img" src="{{ asset('uploads/usecases/tiny/'.$update->image) }}" id="responsive-card-img"/>
                                 </div>
                                 <div class="card-body text-left">
                                     <div class="para-small">

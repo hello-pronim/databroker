@@ -76,6 +76,12 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 	border:1px solid #fff !important;
 }
 /*font-size*/
+.fs-10{
+	font-size: 10px !important;
+}
+.fs-12{
+	font-size: 12px !important;
+}
 .fs-14{
 	font-size: 14px !important;
 }
@@ -99,6 +105,12 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 }
 .fs-40{
 	font-size: 40px !important;
+}
+.lh-1{
+	line-height: 1;
+}
+.lh-1-half{
+	line-height: 1.5;
 }
 .hr-h{	
 	margin:0 10px;
@@ -262,6 +274,9 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 }
 .align-items-center{
 	align-items: center;
+}
+.align-items-end{
+	align-items: flex-end;
 }
 .justify-content-start{
 	justify-content: flex-start;
@@ -724,7 +739,7 @@ a.dropdown-toggle:after{
 	margin-top: 30px;
 }
 .card.card-background .card-body .card-author img{
-	width: 92px;
+	width: 70px;
 	margin-top: -5px;
 }
 .card.card-profile .card-body .img{
@@ -874,10 +889,9 @@ a.dropdown-toggle:after{
 /*Blogs*/
 .blog-header h1, .cat-header h1{
 	font-size: 40px;
-	line-height: 44px;
+	line-height: 60px;
 	font-weight: bold;
 	color: #06038D;	
-	line-height: 46px;
 }
 .blog-header p.area{
 	font-size: 18px;
@@ -926,6 +940,7 @@ a.dropdown-toggle:after{
 }
 .blog-content .explain{
 	font-size: 24px;
+	line-height: 1.5;
 	font-weight: bold;
 	color: #020A09;
 }
@@ -940,11 +955,11 @@ a.dropdown-toggle:after{
 }
 .blog-content .author_avatar{
 	border: 1px solid #DAE1E5;
-	padding: 30px 40px;
+	padding: 10px;
 	width: fit-content;
 	margin:10px 0 30px 0;
-	max-width: 210px;
-	min-width: 200px;
+	max-width: 235px;
+	min-width: 235px;
 }
 .blog-content .author_avatar img{
 	width: 100%;
@@ -997,6 +1012,7 @@ a.dropdown-toggle:after{
 }
 .blog-content .link-content .link-box p{
 	font-size: 18px;
+	word-break: break-word;
 }
 .blog-content .link-content .link-box .region{
 	padding: 15px 0px;
@@ -1059,6 +1075,12 @@ a.dropdown-toggle:after{
 	padding-left: 20px;
 	padding-right: 20px;
 	margin: 15px 0px 15px 20px;
+}
+.blog-content .link-content .link-box .buy_lists .buy_list .product_actions{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
 }
 .form-check .form-check-sign .check.is-invalid{
 	border-color:#eb4444;
@@ -1386,6 +1408,9 @@ a.dropdown-toggle:after{
 #transactions table tr{
 	border-bottom: 1px solid #D0D7DD;
 }
+#transactions table tr:last-child{
+	border-bottom: 0px;
+}
 #transactions table td{
 	border-top: none;
 	font-size: 14px;
@@ -1527,7 +1552,7 @@ a.dropdown-toggle:after{
 .profileinfo .companylogo img{
 	border:1px solid #DAE1E5;
 	max-width: 215px;
-	max-height: 120px;    
+	max-height: 215px;    
     margin-top: 30px;    
 }
 #company-profile-edit-section .fileupload{
@@ -1573,7 +1598,7 @@ a.dropdown-toggle:after{
 .period .period_select{
 	display: none;
 }
-.period input{
+.period input.form-control2{
 	max-width: 150px;
 	padding-left: 30px;
 }
@@ -1932,4 +1957,13 @@ a[data-target='#mediaLibraryModal']:hover{
 	border-color: unset!important;
 	color: unset!important;
 	border-bottom-width: 0px!important;
+}
+.currency-input .currency{
+	position: absolute;
+	left: 20px;
+	top: 22px;
+	font-size; 18px;
+}
+.currency-input >input{
+	padding-left: 32px;
 }

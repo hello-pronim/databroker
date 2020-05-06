@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ config('app.locale') }}</title>
+        <title>@yield('title')</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="title" content="@yield('title')">
         <meta name="description" content="@yield('description')">
 
         <meta property="og:title" content="@yield('title')">
-        <meta property="og:site_name" content="beta.databroker.global">
-        <meta property="og:url" content="https://beta.databroker.global/">
+        <meta property="og:site_name" content="{{ config('app.name') }} ">
+        <meta property="og:url" content="{{ config('app.url') }} ">
         <meta property="og:description" content="@yield('description')">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="https://beta.databroker.global/images/Databroker_social-share.jpg">
+        <meta property="og:image" content="{{ config('app.url') }}/images/Databroker_social-share.jpg">
 
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline'; img-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> -->
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -378,12 +378,12 @@
   					<div class="col-md-4 col-lg-3">
   						<h5>{{ trans('home.helpsupport') }}</h5>
   						<ul class="list-unstyled" data-turbolinks="false"> 
-  							<li><a href="javascript:;">{{ trans('home.buying_data') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.selling_data') }}</a></li> 
-                <li><a href="{{ route('about.privacy_policy') }}">{{ trans('home.privacy_security') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.our_gurantee') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.file_complaint') }}</a></li> 
-                <li><a href="javascript:;">{{ trans('home.give_feedback') }}</a></li>                 
+  							<li><a href="{{ route('help.buying_data') }}">{{ trans('home.buying_data') }}</a></li> 
+                            <li><a href="{{ route('help.selling_data') }}">{{ trans('home.selling_data') }}</a></li> 
+                            <li><a href="{{ route('about.privacy_policy') }}">{{ trans('home.privacy_security') }}</a></li> 
+                            <li><a href="{{ route('help.guarantee') }}">{{ trans('home.our_gurantee') }}</a></li> 
+                            <li><a href="{{ route('help.file_complaint') }}">{{ trans('home.file_complaint') }}</a></li> 
+                            <li><a href="{{ route('help.feedback') }}">{{ trans('home.give_feedback') }}</a></li>                   
   						</ul>
   					</div>
   					<div class="col-md-12 col-lg-3 footer-newsletter">
@@ -457,9 +457,9 @@
         		<div class="app-section app-footer-section align-items-center">
         			<div class="app-footer-link">
 	                    <!--a href="">Terms and Conditions</a-->
-	                    <a href="{{ route('about.terms_conditions') }}" target="_blank">{{ trans('home.terms_conditions') }}</a>
-	                    <a href="{{ route('about.privacy_policy') }}" target="_blank">{{ trans('home.privacy_policy') }}</a>
-	                    <a href="{{ route('about.cookie_policy') }}"  target="_blank" style="padding-right: 0;">{{ trans('home.cookie_policy') }}</a>
+	                    <a href="{{ route('about.terms_conditions') }}">{{ trans('home.terms_conditions') }}</a>
+	                    <a href="{{ route('about.privacy_policy') }}">{{ trans('home.privacy_policy') }}</a>
+	                    <a href="{{ route('about.cookie_policy') }}"  style="padding-right: 0;">{{ trans('home.cookie_policy') }}</a>
 	                </div>
 	                <div class="site_footer_logo_container">
                       <svg class="site_footer_logo" id="logo-white" xmlns="http://www.w3.org/2000/svg" width="525.314" height="90.848" viewBox="0 0 525.314 90.848">

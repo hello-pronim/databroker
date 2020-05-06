@@ -100,13 +100,15 @@
 									<div class="row field-price">
 										<div class="col col-3"><span class="label">{{ trans('pages.price') }}</span></div>
 										<div class="col-9">
-											@if($product['productPrice'])
+											@if($product['productBidType']=="bidding_only")
+											N/A
+											@elseif($product['productBidType']=="free")
+											<span class="value text-warning">FREE</span>
+											@else
 											<span class="value text-warning">
 												<span class="currency">€ </span>{{ round($product['productPrice']) }}
 											</span>
 											<span>(tax incl.)</span>
-											@elseif($product['productBidType']=="bidding_only")
-											N/A
 											@endif
 										</div>
 									</div>

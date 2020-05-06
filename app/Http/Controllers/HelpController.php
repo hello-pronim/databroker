@@ -17,6 +17,8 @@ use App\Models\OfferSample;
 use App\Models\OfferCountry;
 use App\Models\OfferProduct;
 use App\Models\UseCase;
+use App\Models\FAQ;
+use App\Models\HelpTopic;
 use App\Models\Complaint;
 use App\User;
 
@@ -50,140 +52,34 @@ class HelpController extends Controller
 
     public function buying_data(Request $request)
     {
-        $topics = array(
-            array(
-                'id'        => 1, 
-                'title'     => 'Topic', 
-            ),
-            array(
-                'id'        => 2, 
-                'title'     => 'Lorem ipsum dolor sit amet', 
-            ),
-            array(
-                'id'        => 3, 
-                'title'     => 'Nunc varius risus sed metus bibendum, ac efficitur lorem ornare.', 
-            ),
-            array(
-                'id'        => 4, 
-                'title'     => 'Nunc varius risus sed metus bibendum, ac efficitur lorem ornare.', 
-            ),
-            array(
-                'id'        => 5, 
-                'title'     => 'Topic', 
-            ),
-            array(
-                'id'        => 6, 
-                'title'     => 'Lorem ipsum dolor sit amet', 
-            ),
-        );
-        $texts = array(
-            'title' => 'Buying data',
-            'title-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
-            'section2' => 'Top 10 FAQ',
-            'faq_explain' => '(Short explanation) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
-        );
-        $faqs = array(
-            array(
-                'id'        => '1',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '2',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '3',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '4',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '5',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '6',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-        );
-        $data = array( 'topics', 'texts', 'faqs' );
+        $topics = HelpTopic::where('page', 'buying')->get();
+        $header = HelpTopic::where('page', 'buying_header')->get()->first();
+        $faqs = FAQ::where('for', 'buying')->orderby('created_at', 'desc')->limit(10)->get();
+        $data = array( 'topics', 'header', 'faqs' );
         return view('help.buying-data', compact($data));
     }
 
     public function selling_data(Request $request)
     {
-        $topics = array(
-            array(
-                'id'        => 1, 
-                'title'     => 'Topic', 
-            ),
-            array(
-                'id'        => 2, 
-                'title'     => 'Lorem ipsum dolor sit amet', 
-            ),
-            array(
-                'id'        => 3, 
-                'title'     => 'Nunc varius risus sed metus bibendum, ac efficitur lorem ornare.', 
-            ),
-            array(
-                'id'        => 4, 
-                'title'     => 'Nunc varius risus sed metus bibendum, ac efficitur lorem ornare.', 
-            ),
-            array(
-                'id'        => 5, 
-                'title'     => 'Topic', 
-            ),
-            array(
-                'id'        => 6, 
-                'title'     => 'Lorem ipsum dolor sit amet', 
-            ),
-        );
-        $texts = array(
-            'title' => 'Selling data',
-            'title-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
-            'section2' => 'Top 10 FAQ',
-            'faq_explain' => '(Short explanation) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor.',
-        );
-        $faqs = array(
-            array(
-                'id'        => '1',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '2',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '3',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '4',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '5',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-            array(
-                'id'        => '6',
-                'question'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-            ),
-        );
-        $data = array( 'topics', 'texts', 'faqs' );
+        $topics = HelpTopic::where('page', 'selling')->get();
+        $header = HelpTopic::where('page', 'selling_header')->get()->first();
+        $faqs = FAQ::where('for', 'selling')->orderby('created_at', 'desc')->limit(10)->get();
+        $data = array( 'topics', 'header', 'faqs' );
         return view('help.selling-data', compact($data));
     }
 
     public function guarantee()
     {
-        return view('help.guarantee');
+        $topics = HelpTopic::where('page', 'guarantees')->get();
+        $data = array('topics');
+        return view('help.guarantee', compact($data));
     }
 
     public function file_complaint()
     {
-        return view('help.file_complaint');
+        $topics = HelpTopic::where('page', 'complaints')->get();
+        $data = array('topics');
+        return view('help.file_complaint', compact($data));
     }
 
     public function send_file_complaint(Request $request)
@@ -239,7 +135,7 @@ class HelpController extends Controller
 
         $data['message'] = $message;
 
-        if($request->productIdx){
+        if(isset($request->productIdx)){
             $data['productTitle'] = OfferProduct::where('productIdx', $request->productIdx)->get()->first()->productTitle;
             $data['companyName'] = $request->companyName;
         }
@@ -252,12 +148,14 @@ class HelpController extends Controller
         $complaint['userIdx'] = $user->userIdx;
         $complaint['complaintTarget'] = $data['companyName'];
         $complaint['complaintContent'] = $message;
+        if(isset($request->productIdx)) $complaint['productIdx'] = $request->productIdx;
         
         Complaint::create($complaint);
 
         $this->sendEmail("complaint", [
             'from'=>"cg@jts.ec", 
-            'to'=>env('DB_TEAM_EMAIL'), 
+            //'to'=>env('DB_TEAM_EMAIL'),
+            'to'=>'hello@databroker.global', 
             'name'=>'Databroker', 
             'subject'=>'Someone has sent a complaint on Databroker',
             'data'=>$data
@@ -273,6 +171,8 @@ class HelpController extends Controller
 
     public function feedback()
     {
-        return view('help.feedback');
+        $topics = HelpTopic::where('page', 'feedbacks')->get();
+        $data = array('topics');
+        return view('help.feedback', compact($data));
     }
 }
