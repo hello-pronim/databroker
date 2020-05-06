@@ -1408,6 +1408,9 @@ a.dropdown-toggle:after{
 #transactions table tr{
 	border-bottom: 1px solid #D0D7DD;
 }
+#transactions table tr:last-child{
+	border-bottom: 0px;
+}
 #transactions table td{
 	border-top: none;
 	font-size: 14px;
