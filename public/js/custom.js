@@ -445,7 +445,7 @@ $(document).ready(function(){
                                 '<div class="card-header">' +
                                     '<a href="/data/'+elem.offerIdx+'">' ;
                         if(elem.offerImage && elem.offerImage != "null"){
-                            list +='<img class="img" src="/uploads/offer/tiny/'+elem.offerImage+'" />';
+                            list +='<img class="img" src="'+elem.offerImage+'" />';
                         }else{
                             list +='<img class="img" src="/uploads/offer/default.png" />';
                         }
