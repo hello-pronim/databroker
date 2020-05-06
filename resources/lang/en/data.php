@@ -62,5 +62,6 @@ return [
     'from'=>'From',
     'download_file'=>'Download file',
     'api_key'=>'API key',
-    'configure_now'=>'Configure now'
+    'configure_now'=>'Configure now',
+    'continue_to_databroker'=>'Continue to databroker'
 ];

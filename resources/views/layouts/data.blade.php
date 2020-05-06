@@ -210,9 +210,9 @@
           <div class="app-section app-footer-section align-items-center">
             <div class="app-footer-link">
                     <!--a href="">Terms and Conditions</a-->
-                    <a href="/terms-conditions">{{ trans('home.terms_conditions') }}</a>
-                    <a href="/privacy-policy">{{ trans('home.privacy_policy') }}</a>
-                    <a href="/cookie-policy" style="padding-right: 0;">{{ trans('home.cookie_policy') }}</a>
+                    <a href="{{ route('about.terms_conditions') }}" target="_blank"> {{ trans('home.terms_conditions') }}</a>
+                    <a href="{{ route('about.privacy_policy') }}" target="_blank"> {{ trans('home.privacy_policy') }}</a>
+                    <a href="{{ route('about.cookie_policy') }}" style="padding-right: 0;" target="_blank">{{ trans('home.cookie_policy') }}</a>
                 </div>
                 <div class="site_footer_logo_container">
                     <svg class="site_footer_logo" id="logo-white" xmlns="http://www.w3.org/2000/svg" width="525.314" height="90.848" viewBox="0 0 525.314 90.848">

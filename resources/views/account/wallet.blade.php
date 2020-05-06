@@ -53,42 +53,35 @@
                     </h3>                        
                     <table class="table">                      
                       <tbody>
+                        @if(count($transactions) > 0)
+                            @foreach($transactions as $transaction)
                         <tr>                          
-                            <td>02/02/2007</td>
+                            <td>{{date('d/m/Y H:i:s', strtotime($transaction->created_at))}}</td>
+                            @if($transaction->amount > 0)
                             <td class="text-center">
-                                <i class="material-icons">call_received</i><span class="text-grey">OUT</span>
+                                <i class="material-icons">call_received</i><span class="text-grey">IN</span>
                             </td>
-                            <td class="text-right text-warning">
-                                DTX xxx / € xxx
-                            </td>
-                        </tr>
-                        <tr>                          
-                            <td>02/02/2007</td>
+                            @elseif($transaction->amount < 0)
                             <td class="text-center">
-                                <i class="material-icons text-warning">call_made</i><span class="text-warning">IN</span>
+                                <i class="material-icons text-warning">call_made</i><span class="text-grey">OUT</span>
                             </td>
-                            <td class="text-right text-warning">
-                                DTX xxx / € xxx
-                            </td>
-                        </tr>  
-                        <tr>                          
-                            <td>02/02/2007</td>
+                            @elseif($transaction->amount == 0)
+                                @if($transaction->transactionType=="sold")
                             <td class="text-center">
-                                <i class="material-icons">call_received</i><span class="text-grey">OUT</span>
+                                <i class="material-icons">call_received</i><span class="text-grey">IN</span>
                             </td>
-                            <td class="text-right text-warning">
-                                DTX xxx / € xxx
-                            </td>
-                        </tr>
-                        <tr>                          
-                            <td>02/02/2007</td>
+                                @elseif($transaction->transactionType=="purchased")
                             <td class="text-center">
-                                <i class="material-icons text-warning">call_made</i><span class="text-warning">IN</span>
+                                <i class="material-icons text-warning">call_made</i><span class="text-grey">OUT</span>
                             </td>
+                                @endif
+                            @endif
                             <td class="text-right text-warning">
-                                DTX xxx / € xxx
+                                € {{$transaction->amount}} ({{$transaction->status}})
                             </td>
-                        </tr>                        
+                        </tr>                 
+                            @endforeach
+                        @endif
                       </tbody>
                     </table>    
 

@@ -89,6 +89,9 @@
                                     <span class="info-label fs-10">Transaction ID:</span>
                                     <span class="info-label fs-10">{{$transactionId}}</span>
                                 </div>
+                                <div class="buttons flex-vcenter mt-20">
+                                    <a href="{{route('home')}}"><button type="button" class="customize-btn btn-next">{{ trans('data.continue_to_databroker') }}</button></a>
+                                </div>
                             @elseif($product->productType=="Stream")
                                 <p class="fs-16">{{$product->offerDescription}}</p>
                                 <div class="buttons flex-vcenter mt-20">
