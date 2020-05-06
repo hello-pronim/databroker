@@ -1309,10 +1309,11 @@ class DataController extends Controller
                     $stransactionId = $sellerIdx . $datetime . $srnd;
                     $stransaction['transactionId'] = $stransactionId;
                     $stransaction['transactionType'] = 'sold';
+                    $stransaction['userIdx'] = $seller->userIdx;
                     $stransaction['senderIdx'] = $user->userIdx;
                     $stransaction['receiverIdx'] = $seller->userIdx;
                     $stransaction['productIdx'] = $request->productIdx;
-                    $stransaction['amount'] = $request->productPrice;
+                    $stransaction['amount'] = floatval($request->productPrice);
                     $stransaction['status'] = 'pending';
 
                     Transaction::create($stransaction);
@@ -1323,6 +1324,7 @@ class DataController extends Controller
                     $btransactionId = $buyerIdx . $datetime . $brnd;
                     $btransaction['transactionId'] = $btransactionId;
                     $btransaction['transactionType'] = 'purchased';
+                    $btransaction['userIdx'] = $user->userIdx;
                     $btransaction['senderIdx'] = $user->userIdx;
                     $btransaction['receiverIdx'] = $seller->userIdx;
                     $btransaction['productIdx'] = $request->productIdx;
@@ -1543,10 +1545,11 @@ class DataController extends Controller
             $stransactionId = $sellerIdx . $datetime . $srnd;
             $stransaction['transactionId'] = $stransactionId;
             $stransaction['transactionType'] = 'sold';
+            $stransaction['userIdx'] = $seller->userIdx;
             $stransaction['senderIdx'] = $user->userIdx;
             $stransaction['receiverIdx'] = $seller->userIdx;
             $stransaction['productIdx'] = $request->pid;
-            $stransaction['amount'] = 0;
+            $stransaction['amount'] = 0.00;
             $stransaction['status'] = 'complete';
 
             Transaction::create($stransaction);
@@ -1557,10 +1560,11 @@ class DataController extends Controller
             $btransactionId = $buyerIdx . $datetime . $brnd;
             $btransaction['transactionId'] = $btransactionId;
             $btransaction['transactionType'] = 'purchased';
+            $btransaction['userIdx'] = $user->userIdx;
             $btransaction['senderIdx'] = $user->userIdx;
             $btransaction['receiverIdx'] = $seller->userIdx;
             $btransaction['productIdx'] = $request->pid;
-            $btransaction['amount'] = 0;
+            $btransaction['amount'] = 0.00;
             $btransaction['status'] = 'complete';
 
             Transaction::create($btransaction);

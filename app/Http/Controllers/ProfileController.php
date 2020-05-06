@@ -21,6 +21,7 @@ use App\Models\OfferProduct;
 use App\Models\Bid;
 use App\Models\Message;
 use App\Models\Region;
+use App\Models\Transaction;
 use App\Models\LinkedUser;
 
 use Redirect;
@@ -304,7 +305,10 @@ class ProfileController extends Controller
             'body'=> '{}'
         ]);
         $balance = json_decode($response->getBody()->getContents());
-        $data = array('address', 'balance');
+        $transactions = Transaction::where('userIdx', $user->userIdx)
+                                    ->orderby('updated_at', 'desc')
+                                    ->get();
+        $data = array('address', 'balance', 'transactions');
         return view('account.wallet', compact($data));
     }
 

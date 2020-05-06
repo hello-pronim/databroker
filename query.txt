@@ -502,3 +502,6 @@ ALTER TABLE `databroker_new`.`transactions` CHANGE `transactionIdx` `id` INT(11)
 ALTER TABLE `databroker_new`.`transactions` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `databroker_new`.`purchases` ADD COLUMN `transactionId` VARCHAR(64) NULL AFTER `to`; 
 ALTER TABLE `databroker_new`.`sales` ADD COLUMN `transactionId` VARCHAR(64) NULL AFTER `redeemed_at`;
+
+#2020-05-06
+ALTER TABLE `databroker_new`.`transactions` ADD COLUMN `userIdx` INT(11) NULL AFTER `transactionType`; 

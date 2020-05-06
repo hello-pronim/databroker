@@ -43,7 +43,7 @@
                     @foreach($topics as $topic)
                     <div class="row">                
                         <div class="col-md-12">
-                            <h3 class="text-bold">{{$topic->title}}</h3>
+                            <h2 class="text-bold fs-30 lh-1">{{$topic->title}}</h2>
                             <p class="fs-18">{!! $topic->description !!}</p>
                         </div>                
                     </div> 
