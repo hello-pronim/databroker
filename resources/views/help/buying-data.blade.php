@@ -10,8 +10,8 @@
             <div class="blog-header mgt60">
                 <div class="row">
                     <div class="col-lg-6">
-                        <h1 class="h1-small">{{ $header->title }}</h1>
-                        <p class="para">{!! $header->description !!}</p>
+                        <h1 class="h1-small">{{ isset($header) ? $header->title : "" }}</h1>
+                        <p class="para">{!! isset($header) ? $header->description : "" !! }</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="pull-right">
@@ -22,6 +22,7 @@
                 </div>
             </div>  
             <div class="blog-content">
+                @if(count($topics) > 0)
                 <div class="row mgb80">             
                     @foreach ( $topics as $topic )
                     <div class="col-lg-4 mgh30">
@@ -34,6 +35,7 @@
                     </div>
                     @endforeach
                 </div>
+                @endif
                 @if(count($faqs) > 0)
                 <div class="row">
                     <div class="col-lg-2"></div>

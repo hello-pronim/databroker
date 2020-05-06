@@ -157,7 +157,7 @@
 										<div>
 											<span class="error_notice no_bidding_price"> Price is required. </span>
 								            <span class="error_notice no_bidding_period"> Please select a period.</span>
-								            <span class="error_notice no_bidding_price_min"> Price should be more than € 0.5.</span>
+								            <span class="error_notice no_bidding_price_min"> Price should be higher than € 0.50</span>
 								        </div>			                
 									</div>
 				                </div>

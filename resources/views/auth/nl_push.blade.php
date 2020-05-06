@@ -59,7 +59,7 @@
                     <div class="form-group row mb-0">                        
                         <div class="col-md-12 flex-row justify-content-between align-items-center">                                
                             <button type="submit" class="customize-btn">Sign Up</button>
-                            <a class="text-grey" href="{{ route('home') }}">
+                            <a class="text-grey" href="{{ $next_url }}">
                                 {{ trans("pages.not_right_now") }}
                             </a>
                         </div>

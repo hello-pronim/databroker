@@ -134,7 +134,7 @@
 						                <div>
 											<span class="error_notice {{$bidtype['type']}}_price"> Price is required. </span>
 											@if($bidtype['type']=="no_bidding" || $bidtype['type']=="bidding_possible")
-											<span class="error_notice {{$bidtype['type']}}_price_min"> Price should be more than € 0.5.</span>
+											<span class="error_notice {{$bidtype['type']}}_price_min"> Price should be higher than € 0.50</span>
 											@elseif($bidtype['type']=='free')
 											<span class="error_notice dataUrl">You must provide a URL where the buyer can get the data for free.</span>
 											@endif

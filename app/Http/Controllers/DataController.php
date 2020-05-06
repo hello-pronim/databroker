@@ -1203,12 +1203,12 @@ class DataController extends Controller
             'postal_code.required'=>'The postal code is required.',
             'regionIdx.required'=>'The country field is required.',
             'card_number.required'=>'The card number is required.',
-            'card_number.numeric'=>'The card number must be numeric.',
+            'card_number.numeric'=>'The card number should be numeric.',
             'card_number.min'=>'The card number is invalid.',
             'exp_month'=>'The expiry month is required.',
             'exp_year'=>'The expiry year is required.',
             'cvc.required'=>'The CVC is required.',
-            'cvc.numeric'=>'The CVC must be numeric.',
+            'cvc.numeric'=>'The CVC should be numeric.',
             'cvc.min'=>'The CVC is invalid.'
         ]);
         if ($validator->fails()) {
@@ -1331,8 +1331,11 @@ class DataController extends Controller
                     $soldProductData['transactionId'] = $stransactionId;
                     $soldProductObj = Sale::create($soldProductData);
 
-                    $data['expiry_from'] = date('d/m/Y', strtotime($paidProductData['from']));
-                    $data['expiry_to'] = date('d/m/Y', strtotime($paidProductData['to']));
+                    $data['from'] = date('d/m/Y', strtotime($paidProductData['from']));
+                    $data['to'] = date('d/m/Y', strtotime($paidProductData['to']));
+                    $data['expire_at'] = date('d/m/Y', strtotime('+1 day', strtotime($paidProductData['to'])));
+                    $data['warranty_to'] = date('d/m/Y', strtotime('+30 days', strtotime($paidProductData['from'])));
+                    $data['redeemed_on'] = date('d/m/Y', strtotime('+14 days', strtotime($paidProductData['from'])));
 
                     $history['userIdx'] = $user->userIdx;
                     $history['productIdx'] = $request->productIdx;
@@ -1427,29 +1430,25 @@ class DataController extends Controller
         if(!$user){
             return redirect('/login');
         }else{
-            $paidProductObj = Purchase::join('apiProductKeys', 'apiProductKeys.purchaseIdx', '=', 'purchases.purchaseIdx')
-                                        ->where('purchases.purchaseIdx', $request->purIdx)
-                                        ->orderby('purchases.created_at', 'DESC')
-                                        ->limit(1)
-                                        ->get()
-                                        ->first();
             $product = OfferProduct::with('region')
                                     ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                    ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
                                     ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                                     ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                     ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                                    ->where('productIdx', $paidProductObj->productIdx)
+                                    ->where('purchases.purchaseIdx', $request->purIdx)
                                     ->get()
                                     ->first();
-            $expiry_from = date('d/m/Y', strtotime($paidProductObj['from']));
-            $expiry_to = date('d/m/Y', strtotime($paidProductObj['to']));
+            $from = date('d/m/Y', strtotime($product->from));
+            $to = date('d/m/Y', strtotime($product->to));
+            $expire_on = date('d/m/Y', strtotime('+1 day', strtotime($product->to)));
             $apiKey="";
             $transactionId = "";
             if($product->productType=='Api flow'){
-                $apiKey = $paidProductObj->apiKey;
-                $transactionId = $paidProductObj->transactionId;
+                $apiKey = ApiProductKey::where('purchaseIdx', $request->purIdx)->get()->first()->apiKey;
+                $transactionId = $product->transactionId;
             }
-            $data = array('product', 'expiry_from', 'expiry_to', 'apiKey', 'transactionId');
+            $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId');
             return view('data.pay_success', compact($data));
         }
     }
@@ -1482,8 +1481,9 @@ class DataController extends Controller
         else if($product['productAccessDays']=='year')
             $purchaseData['to'] = date('Y-m-d H:i:s', strtotime('+1 year', strtotime($purchaseData['from'])));
 
-        $expiry_from = date('d/m/Y', strtotime($purchaseData['from']));
-        $expiry_to = date('d/m/Y', strtotime($purchaseData['to']));
+        $from = date('d/m/Y', strtotime($purchaseData['from']));
+        $to = date('d/m/Y', strtotime($purchaseData['to']));
+        $expire_on = date('d/m/Y', strtotime('+1 day', strtotime($purchaseData['to'])));
 
         $buyer = User::where('userIdx', $user->userIdx)->get()->first();
         $seller = OfferProduct::with('region')
@@ -1543,8 +1543,11 @@ class DataController extends Controller
             $mailData['buyer'] = $buyer;
             $mailData['finalPrice'] = 0;
             $mailData['product'] = $product;
-            $mailData['expiry_from'] = date('d/m/Y', strtotime($purchaseData['from']));
-            $mailData['expiry_to'] = date('d/m/Y', strtotime($purchaseData['to']));
+            $mailData['from'] = date('d/m/Y', strtotime($purchaseData['from']));
+            $mailData['to'] = date('d/m/Y', strtotime($purchaseData['to']));
+            $mailData['expire_at'] = date('d/m/Y', strtotime('+1 day', strtotime($purchaseData['to'])));
+            $mailData['warranty_to'] = date('d/m/Y', strtotime('+30 days', strtotime($purchaseData['from'])));
+            $mailData['redeemed_on'] = date('d/m/Y', strtotime('+14 days', strtotime($purchaseData['from'])));
 
             $apiKey="";
             $transactionId = "";
@@ -1578,7 +1581,7 @@ class DataController extends Controller
                 'data'=>$mailData
             ]);
 
-            $data = array('product', 'expiry_from', 'expiry_to', 'apiKey', 'transactionId');
+            $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId');
             return view('data.get_data', compact($data));
         }else return redirect(route('account.purchases'));
     }
@@ -1605,8 +1608,8 @@ class DataController extends Controller
 
         $messages = [
             'bidPrice.required' => 'Your bid price is required.',
-            'bidPrice.numeric' => 'Bid price must be numeric.',
-            'bidPrice.min' => 'Bid price must be more than €0.5.'
+            'bidPrice.numeric' => 'Bid price should be numeric.',
+            'bidPrice.min' => 'Bid price should be higher than €0.50'
         ];
 
         $validator = Validator::make($request->all(), $fields, $messages);
@@ -1694,8 +1697,8 @@ class DataController extends Controller
 
         $messages = [
             'bidPrice.required' => 'Your bid price is required.',
-            'bidPrice.numeric' => 'Bid price must be numeric.',
-            'bidPrice.min' => 'Bid price must be more than €0.5.'
+            'bidPrice.numeric' => 'Bid price should be numeric.',
+            'bidPrice.min' => 'Bid price should be higher than €0.50'
         ];
 
         $validator = Validator::make($request->all(), $fields, $messages);
@@ -1821,6 +1824,7 @@ class DataController extends Controller
         $mailData['seller'] = $seller;
         $mailData['buyer'] = $buyer;
         $mailData['product'] = $product;
+        $mailData['bidIdx'] = $request->bidIdx;
 
         if($request->response==1){
             $this->sendEmail("acceptbid", [

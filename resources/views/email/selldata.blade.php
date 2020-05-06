@@ -125,7 +125,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-27 py-10">
-															From : {{$data['expiry_from']}} to {{$data['expiry_to']}}
+															From : {{$data['from']}} to {{$data['to']}}
 														</td>
 													</tr>
 													<tr>
@@ -151,7 +151,7 @@
 															<ul class="m-0">
 																<li class="py-10">The buyer has a 30-day warranty period to ensure that the data is what they expected to receive.</li>
 																<li class="py-10">During this time, Databroker holds your earnings related to this sale.</li>
-																<li class="py-10">Provided the buyer has not filed a complaint by [end of warranty period], you will be able to redeem the earnings as of [start of redeem period]. You can see this in your <a href="#">account</a> and we will also inform you via email.</li>
+																<li class="py-10">Provided the buyer has not filed a complaint by {{$data['warranty_to']}}, you will be able to redeem the earnings as of {{$data['redeemed_on']}}. You can see this in your <a href="#">account</a> and we will also inform you via email.</li>
 															</ul>
 														</td>
 													</tr>

@@ -6,6 +6,7 @@
 <div class="container-fluid app-wapper bg-pattern-side app-wapper-success">
 	<div class="container">
         <div class="app-section app-reveal-section align-items-center">
+            <a href="{{ route('account.purchases') }}" class="back-icon text-grey"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
         	<div class="row blog-header">
                 <div class="col-md-12">
         			<h1>{{$detail->productTitle}}</h1>
@@ -64,7 +65,7 @@
                                 <div class="mt-20">
                                     <span class="info-label">{{trans('data.api_key')}}:</span>
                                     <span class="info-text" id="uniqueId">{{$detail->apiKey}}</span>
-                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">{{trans('pages.Copy_ID')}}</a></span>
+                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
                                 </div>
                                 <div class="mt-20">
                                     <span class="info-label fs-10">Transaction ID:</span>

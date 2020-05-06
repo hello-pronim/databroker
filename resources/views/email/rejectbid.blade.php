@@ -132,7 +132,7 @@
 													</tr>
 													<tr>
 														<td class="fs-18 lh-24 py-25 flex-row">
-															<a href="{{route('data.edit_bid', ['bid'=>$data['product']->bidIdx])}}" class="btn btn-primary">
+															<a href="{{route('data.edit_bid', ['bid'=>$data['bidIdx']])}}" class="btn btn-primary">
 																SEND NEW BID
 															</a>
 														</td>
