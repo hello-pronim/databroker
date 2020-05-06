@@ -386,7 +386,7 @@ class DataController extends Controller
 
         foreach ($dataoffer as $key => $offer) {
             if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {                           
-                $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+                $offer['offerImage'] = '/uploads/offer/tiny/'.$offer['offerImage'];    
             }
             $dataoffer[$key]=$offer;
         }                    
