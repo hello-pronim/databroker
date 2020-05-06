@@ -1507,6 +1507,7 @@ class DataController extends Controller
             $stransactionId = $sellerIdx . $datetime . $srnd;
             $stransaction['transactionId'] = $stransactionId;
             $stransaction['transactionType'] = 'sold';
+            $stransaction['userIdx'] = $seller->userIdx;
             $stransaction['senderIdx'] = $user->userIdx;
             $stransaction['receiverIdx'] = $seller->userIdx;
             $stransaction['productIdx'] = $request->pid;
@@ -1521,6 +1522,7 @@ class DataController extends Controller
             $btransactionId = $buyerIdx . $datetime . $brnd;
             $btransaction['transactionId'] = $btransactionId;
             $btransaction['transactionType'] = 'purchased';
+            $btransaction['userIdx'] = $user->userIdx;
             $btransaction['senderIdx'] = $user->userIdx;
             $btransaction['receiverIdx'] = $seller->userIdx;
             $btransaction['productIdx'] = $request->pid;
