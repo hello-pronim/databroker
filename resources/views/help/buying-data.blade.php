@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <h1 class="h1-small">{{ isset($header) ? $header->title : "" }}</h1>
-                        <p class="para">{!! isset($header) ? $header->description : "" !! }</p>
+                        <p class="para">{!! isset($header) ? $header->description : "" !!}</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="pull-right">
