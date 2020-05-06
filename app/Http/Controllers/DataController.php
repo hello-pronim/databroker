@@ -37,6 +37,7 @@ use App\Models\Business;
 use Redirect;
 use Config;
 use File;
+use Image;
 
 class DataController extends Controller
 {
@@ -461,10 +462,28 @@ class DataController extends Controller
 
             $offerimagefile = $request->file('offerImage_1');
             if ($offerimagefile != null) {
-                $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
-                $ret = $offerimagefile->move($offerImage_path, $fileName);
-                $fileName = 'uploads/offer/' . $fileName;
-                $offer_data['offerImage'] = $fileName;
+                $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();                
+
+                $tinyimg = Image::make($offerimagefile->getRealPath());
+                $tinyimg->fit(1200,800, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/large/". $fileName);      
+
+                $tinyimg->fit(750,500, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/medium/".$fileName);
+                
+                $tinyimg->fit(300,200, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/tiny/" . $fileName);
+
+                $tinyimg->fit(60,40, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/thumb/". $fileName);                
+
+                $ret = $offerimagefile->move($offerImage_path, $fileName);                
+                $offer_data['offerImage'] = $fileName;       
+
             } else {  
                 $fileName = $request->input('gallery_offerImage_1');
                 $offer_data['offerImage'] = $fileName;
@@ -562,9 +581,28 @@ class DataController extends Controller
             $offerIdx = $id;
             $offerimagefile = $request->file('offerImage_1');
             if ($offerimagefile != null) {
-                $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();
+                $fileName = "offer_".$offerIdx.'.'.$offerimagefile->extension();                
+
+                $tinyimg = Image::make($offerimagefile->getRealPath());
+                $tinyimg->fit(1200,800, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/large/". $fileName);      
+
+                $tinyimg->fit(750,500, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/medium/".$fileName);
+                
+                $tinyimg->fit(300,200, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/tiny/" . $fileName);
+
+                $tinyimg->fit(60,40, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($offerImage_path . "/thumb/". $fileName);
+
                 $ret = $offerimagefile->move($offerImage_path, $fileName);
-                $offer_data['offerImage'] =  'uploads/offer/'. $fileName;
+                $offer_data['offerImage'] =  $fileName;
+                
             } else {
                 $fileName = $request->input('gallery_offerImage_1');
                 $offer_data['offerImage'] = $fileName;
