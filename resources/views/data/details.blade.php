@@ -32,8 +32,8 @@
 	        <div class="blog-content">
 	        	<div class="row">
 	        		<div class="col-lg-8">
-	        			@if( file_exists(public_path() . '/uploads/offer/medium/'. $offer['offerImage'] ) && $offer['offerImage'] )
-	        			<img class="blog-img" src="{{ asset('uploads/offer/medium/'. $offer['offerImage']) }}" />
+	        			@if( file_exists(public_path() . $offer['offerImage'] ) && $offer['offerImage'] )
+	        			<img class="blog-img" src="{{ asset( $offer['offerImage'] ) }}" />
 	        		    @else
 	        		    <img class="blog-img" src="{{ asset('uploads/offer/default.png') }}" />
 	        		    @endif  	

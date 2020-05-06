@@ -107,7 +107,11 @@ class DataController extends Controller
         if(  $prev_route && strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
         }
-    
+
+        if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage'] ) {            
+            $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+        }
+            
         $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user_info' => $user_info, 'products' => $products);
         return view('data.details')->with($data);
     }
@@ -214,8 +218,12 @@ class DataController extends Controller
         //$offer_path = URL::to('/uploads/offer');
         
         $offer_images = [$offer['offerImage']];
-        if($offer['offerImage']){
-            $offer_path = URL::to('/uploads/offer/medium');    
+        if($offer['offerImage']){        
+            if (strpos($offer['offerImage'], '/images/gallery') !== false ) {
+                $offer_path = URL::to('');
+            }else{
+                $offer_path = URL::to('/uploads/offer/medium');    
+            }
         }
 
         $offersample_path = URL::to('/uploads/offersample');
@@ -329,6 +337,13 @@ class DataController extends Controller
                     ->distinct('offers')
                     ->get()
                     ->count();
+        
+        foreach ($dataoffer as $key => $offer) {
+            if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {                           
+                $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+            }
+            $dataoffer[$key]=$offer;
+        }   
 
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
         return view('data.category', compact($data));
@@ -369,6 +384,12 @@ class DataController extends Controller
                     ->get()
                     ->count();
 
+        foreach ($dataoffer as $key => $offer) {
+            if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {                           
+                $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+            }
+            $dataoffer[$key]=$offer;
+        }                    
         $data = array('company', 'dataoffer', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
         return view('data.company_offers', compact($data));
     }
@@ -409,7 +430,12 @@ class DataController extends Controller
                     ->distinct('offers.offerIdx')
                     ->get()
                     ->count();
-
+        foreach ($dataoffer as $key => $offer) {
+            if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {                           
+                $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+            }
+            $dataoffer[$key]=$offer;
+        }                       
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
         return view('data.category', compact($data));
     }
@@ -825,7 +851,14 @@ class DataController extends Controller
                 ->where('offers.status', 1)
                 ->get()
                 ->count();
-
+        
+        foreach ($dataoffer as $key => $offer) {
+            if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {                           
+                $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+            }
+            $dataoffer[$key]=$offer;            
+        }   
+                
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page' );                
         return view('data.category', compact($data));
 
@@ -870,7 +903,12 @@ class DataController extends Controller
         
         $temp = array();
         foreach ($dataoffer["offers"] as $key => $offer) {
-            if(!File::exists(public_path('uploads/offer/tiny/' . $offer["offerImage"]))){
+        
+            if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {
+                $offer['offerImage'] = '/uploads/offer/tiny/'.$offer['offerImage'];    
+            }        
+
+            if(!File::exists(public_path( $offer["offerImage"]))){
                 $offer["offerImage"] = null;
             }      
             array_push($temp, $offer);      

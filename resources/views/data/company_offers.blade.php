@@ -30,9 +30,9 @@
 				<div class="col-md-4 mb-20">
 					<div class="card card-profile card-plain mb-0">					
 						<div class="card-header">
-							<a href="/data/{{ $offer['offerIdx'] }}">
-								@if( file_exists( public_path() . '/uploads/offer/tiny/'. $offer['offerImage']) && $offer['offerImage'] )
-								<img class="img" src="{{ asset('uploads/offer/tiny/'.$offer['offerImage']) }}" />
+							<a href="/data/{{ $offer['offerIdx'] }}">							
+								@if( file_exists( public_path() . $offer['offerImage']) && $offer['offerImage'] )
+								<img class="img" src="{{ asset( $offer['offerImage'] ) }}" />
 								@else
 								<img class="img" src="{{ asset('uploads/offer/tiny/default.png') }}" />
 								@endif
