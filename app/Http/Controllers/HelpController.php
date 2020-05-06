@@ -154,7 +154,8 @@ class HelpController extends Controller
 
         $this->sendEmail("complaint", [
             'from'=>"cg@jts.ec", 
-            'to'=>env('DB_TEAM_EMAIL'), 
+            //'to'=>env('DB_TEAM_EMAIL'),
+            'to'=>'hello@databroker.global', 
             'name'=>'Databroker', 
             'subject'=>'Someone has sent a complaint on Databroker',
             'data'=>$data
