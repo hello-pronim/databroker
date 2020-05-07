@@ -6,7 +6,7 @@
 <div class="container-fluid app-wapper bg-pattern-side app-wapper-success">
 	<div class="container">
         <div class="app-section app-reveal-section align-items-center">
-            <a href="{{ route('account.purchases') }}" class="back-icon text-grey"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
+            <a href="{{ route('account.sales') }}" class="back-icon text-grey"><i class="material-icons">keyboard_backspace</i><span>Back</span></a>
         	<div class="row blog-header">
                 <div class="col-md-12">
         			<h1>{{$detail->productTitle}}</h1>
