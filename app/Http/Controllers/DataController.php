@@ -779,6 +779,10 @@ class DataController extends Controller
             $product_data['offerIdx'] = $request->offerIdx;
         }
         $product_data['productType'] = $request->format;
+        if($request->format=="Stream"){
+            $product_data['streamIP'] = $request->streamIP;
+            $product_data['streamPort'] = $request->streamPort;
+        }
         //$product_data['productMoreInfo'] = $request->productMoreInfo;
         $product_data['productBidType'] = $request->period;
         $period = $product_data['productBidType'].'_period';
@@ -1386,7 +1390,7 @@ class DataController extends Controller
                     $paidProductData['transactionId'] = $btransactionId;
                     $paidProductObj = Purchase::create($paidProductData);
 
-                    if($product->productType=="Api flow"){
+                    if($product->productType=="Api flow" || $product->productType=="Stream"){
                         $datetime = time();
                         $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 20);
 
@@ -1522,7 +1526,7 @@ class DataController extends Controller
             $expire_on = date('d/m/Y', strtotime('+1 day', strtotime($product->to)));
             $apiKey="";
             $transactionId = "";
-            if($product->productType=='Api flow'){
+            if($product->productType=='Api flow' || $product->productType=="Stream"){
                 $apiKey = ApiProductKey::where('purchaseIdx', $request->purIdx)->get()->first()->apiKey;
                 $transactionId = $product->transactionId;
             }

@@ -80,13 +80,16 @@ class ProfileController extends Controller
     public function purchases(Request $request)
     {
         $user = $this->getAuthUser();
-        $purchases = Offer::with(['region', 'provider'])
-                        ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+        $purchases = OfferProduct::with(['region'])
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
                         ->where('purchases.userIdx', $user->userIdx)
                         ->orderby('purchases.created_at', 'desc')
-                        ->get(["offers.*", "offerProducts.*", "purchases.*", "bids.*", "offerProducts.productIdx as pid"]);
+                        ->get();
         $data = array('purchases');
         return view('account.purchases', compact($data));
     }
@@ -94,8 +97,11 @@ class ProfileController extends Controller
     public function purchases_detail(Request $request)
     {
         $user = $this->getAuthUser();
-        $detail = Offer::with(['region', 'provider'])
-                        ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+        $detail = OfferProduct::with(['region'])
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
                         ->leftjoin('apiProductKeys', 'apiProductKeys.purchaseIdx', '=', 'purchases.purchaseIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')

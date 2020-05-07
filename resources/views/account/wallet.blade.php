@@ -62,14 +62,14 @@
                                 <i class="material-icons text-warning">call_made</i><span class="text-warning">IN</span>
                             </td>
                             <td class="text-right text-warning">
-                                € {{$transaction->amount}} ({{$transaction->status}})
+                                € {{number_format((float)$transaction->amount, 2, '.', '')}} ({{$transaction->status}})
                             </td>
                             @elseif($transaction->amount < 0)
                             <td class="text-center">
                                 <i class="material-icons text-grey">call_received</i><span class="text-grey">OUT</span>
                             </td>
                             <td class="text-right text-grey">
-                                € {{$transaction->amount}} ({{$transaction->status}})
+                                - € {{number_format(-(float)$transaction->amount, 2, '.', '')}} ({{$transaction->status}})
                             </td>
                             @elseif($transaction->amount == 0)
                                 @if($transaction->transactionType=="sold")
@@ -77,14 +77,14 @@
                                 <i class="material-icons text-warning">call_made</i><span class="text-warning">IN</span>
                             </td>
                             <td class="text-right text-warning">
-                                € {{$transaction->amount}} ({{$transaction->status}})
+                                € {{number_format((float)$transaction->amount, 2, '.', '')}} ({{$transaction->status}})
                             </td>
                                 @elseif($transaction->transactionType=="purchased")
                             <td class="text-center">
                                 <i class="material-icons text-grey">call_received</i><span class="text-grey">OUT</span>
                             </td>
                             <td class="text-right text-grey">
-                                € {{$transaction->amount}} ({{$transaction->status}})
+                                € {{number_format((float)$transaction->amount, 2, '.', '')}} ({{$transaction->status}})
                             </td>
                                 @endif
                             @endif

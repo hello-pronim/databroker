@@ -292,6 +292,7 @@ $(document).ready(function(){
         e.preventDefault();
 
         var bidType = $('input[name="period"]:checked').val();
+        var dataType = $('input[name="format"]:checked').val();
         var _this = this;
         var formValues = JSON.parse(serialize_form(_this));
         
@@ -308,7 +309,7 @@ $(document).ready(function(){
                         $(_this).find('.error_notice.'+elem_name).show();                    
                     }                    
                 }else{
-                    if(elem_name != 'dataUrl')
+                    if(elem_name != 'dataUrl' && elem_name !="streamIP" && elem_name != "streamPort")
                         $(_this).find('.error_notice.'+elem_name).show();
                 }                
             } if(!validateURL($("#licenseUrl").val())){
@@ -319,6 +320,10 @@ $(document).ready(function(){
                 $(_this).find('.error_notice.bidding_possible_price_min').show();
             } if(bidType=="free" && !validateURL($("#dataUrl").val())){
                 $(_this).find('.error_notice.dataUrl').show();
+            } if(dataType=="Stream" && $('#streamIP').val() == ""){
+                $(_this).find('.error_notice.streamIP').show();
+            } if(dataType=="Stream" && $('#streamPort').val() == ""){
+                $(_this).find('.error_notice.streamPort').show();
             }
         });
         if(formValues.format === undefined){
@@ -559,6 +564,17 @@ $(document).ready(function(){
     });
 
     product_period();
+
+    function product_format(){
+        $('.stream_detail').hide();
+        $("input[name='format']:checked").parent().parent().find('.stream_detail').show();
+    }
+
+    $("input[name='format']").change(function(){
+        product_format();
+    });
+    product_format();
+
     $(".data_publish").click(function(e){
         e.preventDefault();
 

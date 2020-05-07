@@ -53,7 +53,7 @@
 	                            </span>
 		                    </label>
 		                    <label class="pure-material-textfield-outlined">
-								<textarea name="bidMessage" class="form-control input_data user-message @error('bidMessage') is-invalid @enderror" placeholder="{{ trans('data.add_message_optional') }}" maxlength="100" autofocus>{{ old('bidMessage', $bid->bidMessage)}}</textarea>
+								<textarea name="bidMessage" class="form-control input_data user-message @error('bidMessage') is-invalid @enderror" placeholder="{{ trans('data.add_message_optional') }}" maxlength="1000" autofocus>{{ old('bidMessage', $bid->bidMessage)}}</textarea>
 								<div class="error_notice">{{ trans('validation.required', ['attribute' => 'Message']) }}</div>
 		                        @error('bidMessage')
 		                            <span class="invalid-feedback" role="alert">

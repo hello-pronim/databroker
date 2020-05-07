@@ -91,6 +91,22 @@
                                 </div>
                             @elseif($product->productType=="Stream")
                                 <p class="fs-16">{{$product->offerDescription}}</p>
+                                <div class="mt-20">
+                                    <span class="info-label">{{trans('data.stream_ip')}}:</span>
+                                    <span class="info-text">{{$product->streamIP}}</span>
+                                    <span class="mlr-20"><b>:</b></span>
+                                    <span class="info-label">{{trans('data.stream_port')}}:</span>
+                                    <span class="info-text">{{$product->streamPort}}</span>
+                                </div>
+                                <div class="mt-20">
+                                    <span class="info-label">{{trans('data.api_key')}}:</span>
+                                    <span class="info-text" id="uniqueId">{{$apiKey}}</span>
+                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
+                                </div>
+                                <div class="mt-20">
+                                    <span class="info-label fs-10">Transaction ID:</span>
+                                    <span class="info-label fs-10">{{$transactionId}}</span>
+                                </div>
                                 <div class="buttons flex-vcenter mt-20">
                                     <button type="button" class="customize-btn btn-next">{{ trans('data.configure_now') }}</button>
                                 </div>

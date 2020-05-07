@@ -11,8 +11,11 @@
                 <div class="col-md-12">
         			<h1>{{$detail->productTitle}}</h1>
                 	<p class="para text-bold">
-                        @foreach($detail->region as $region)
-                            {{$region->regionName." "}}
+                        @foreach($detail->region as $key=>$region)
+                            {{$region->regionName}}
+                            @if(count($detail->region)>$key+1)
+                            <span>,</span>
+                            @endif
                         @endforeach
                     </p>
                 </div>
@@ -73,6 +76,22 @@
                                 </div>
                             @elseif($detail->productType=="Stream")
                                 <p class="fs-16">{{$detail->offerDescription}}</p>
+                                <div class="mt-20">
+                                    <span class="info-label">{{trans('data.stream_ip')}}:</span>
+                                    <span class="info-text">{{$detail->streamIP}}</span>
+                                    <span class="mlr-20"><b>:</b></span>
+                                    <span class="info-label">{{trans('data.stream_port')}}:</span>
+                                    <span class="info-text">{{$detail->streamPort}}</span>
+                                </div>
+                                <div class="mt-20">
+                                    <span class="info-label">{{trans('data.api_key')}}:</span>
+                                    <span class="info-text" id="uniqueId">{{$detail->apiKey}}</span>
+                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
+                                </div>
+                                <div class="mt-20">
+                                    <span class="info-label fs-10">Transaction ID:</span>
+                                    <span class="info-label fs-10">{{$detail->transactionId}}</span>
+                                </div>
                                 <div class="buttons flex-vcenter mt-20">
                                     <button type="button" class="customize-btn btn-next">{{ trans('data.configure_now') }}</button>
                                 </div>
