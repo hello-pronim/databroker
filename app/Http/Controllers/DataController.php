@@ -1406,6 +1406,7 @@ class DataController extends Controller
 
                     $soldProductData = $paidProductData;
                     unset($soldProductData['userIdx']);
+                    $soldProductData['purchaseIdx'] = $paidProductObj->purchaseIdx;
                     $soldProductData['sellerIdx'] = $seller->userIdx;
                     $soldProductData['buyerIdx'] = $user->userIdx;
                     $soldProductData['redeemed'] = 0;
@@ -1616,6 +1617,7 @@ class DataController extends Controller
 
             $soldProductData = $purchaseData;
             unset($soldProductData['userIdx']);
+            $soldProductData['purchaseIdx'] = $paidProductObj->purchaseIdx;
             $soldProductData['sellerIdx'] = $seller->userIdx;
             $soldProductData['buyerIdx'] = $user->userIdx;
             $soldProductData['redeemed'] = 0;

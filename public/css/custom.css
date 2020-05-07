@@ -189,6 +189,10 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 	margin-left: 20px;
 	margin-right: 20px;
 }
+.plr-0{
+	padding-left: 0px!important;
+	padding-right: 0px!important;
+}
 .pd-15{
 	padding: 15px !important;
 }
@@ -201,6 +205,9 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 .pb-10{
 	padding-bottom: 10px!important;
 }
+.pl-5{
+	padding-left: 5px!important;
+}
 .pl-15{
 	padding-left: 15px!important;
 }
@@ -212,6 +219,9 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 }
 .pl-30{
 	padding-left: 30px!important;
+}
+.pr-0{
+	padding-right: 0px!important;
 }
 .pr-15{
 	padding-right: 15px!important;
@@ -1405,21 +1415,32 @@ a.dropdown-toggle:after{
     right: -20px;
     top: -5px;
 }
-#transactions table tr{
+#transactions .table >tbody >tr{
 	border-bottom: 1px solid #D0D7DD;
 }
-#transactions table tr:last-child{
+#transactions .table >tbody >tr:last-child{
 	border-bottom: 0px;
 }
-#transactions table td{
+#transactions .table >tbody >tr >td{
 	border-top: none;
 	font-size: 14px;
+	padding: 12px 50px;
 }
-#transactions table td i{
+#transactions .table >tbody >tr >td:first-child{
+	padding-left: 0px;
+}
+#transactions .table >tbody >tr >td:last-child{
+	padding-right: 0px;
+}
+#transactions .table >tbody >tr >td i{
 	transform: rotate(45deg);
 	font-size: 16px;
 	vertical-align: text-top;
 	margin-right: 10px;
+}
+#transactions .sub-table >tbody >tr >td{
+	padding: 0px;
+	border-top-width: 0px;
 }
 
 #bids{

@@ -35,8 +35,11 @@
                                                 {{$sale->productTitle}}
                                             </h4>
                                             <div class="item-location">
-                                                @foreach($sale->region as $region)
+                                                @foreach($sale->region as $key=>$region)
                                                     {{$region->regionName}}
+                                                    @if(count($sale->region)>$key+1)
+                                                    <span>, </span>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                             <br>
