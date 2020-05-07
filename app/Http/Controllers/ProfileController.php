@@ -123,7 +123,12 @@ class ProfileController extends Controller
                         ->get(["offers.*", "offerProducts.*", "sales.*", "bids.*", "offerProducts.productIdx as pid"]);
         foreach ($sales as $key => $sale) {
             $buyerIdx = $sale->buyerIdx;
-            $buyerCompanyName = Company::join('users', 'users.companyIdx', '=', 'companies.companyIdx')->where('users.userIdx', $buyerIdx)->get()->first()->companyName;
+            $buyerCompanyName = Company::join('users', 'users.companyIdx', '=', 'companies.companyIdx')
+                                    ->join('sales', 'sales.buyerIdx', '=', 'users.userIdx')
+                                    ->where('users.userIdx', $buyerIdx)
+                                    ->get()
+                                    ->first()
+                                    ->companyName;
             $hasComplaints = Complaint::where('productIdx', $sale->productIdx)->get()->count();
             $sale['redeem_date'] = date('Y-m-d', strtotime('+2 weeks', strtotime($sale->from)));
             $sale['buyerCompanyName'] = $buyerCompanyName;
