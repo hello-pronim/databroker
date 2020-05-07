@@ -71,9 +71,12 @@
                                 $datediff = $redeem_date - $now;
                                 $diff = round($datediff / (60*60*24));
                             @endphp
-                            @if($transaction->transactionType!="complete")
+                            @if($transaction->status!="complete")
                                 <span class="text-grey fs-12">
-                                    <a href="{{route('account.sales_detail', ['sid'=>$transaction->saleIdx])}}">Redeem</a> in {{$diff}} days
+                                    <a href="{{route('account.sales_detail', ['sid'=>$transaction->saleIdx])}}">Redeem</a>
+                                    @if($diff>0)
+                                    <span> in {{$diff}} days</span>
+                                    @endif
                                 </span>
                             @endif
                             </td>

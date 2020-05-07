@@ -19,6 +19,8 @@ use App\Models\Complaint;
 use App\Models\Offer;
 use App\Models\OfferProduct;
 use App\Models\Bid;
+use App\Models\Purchase;
+use App\Models\Sale;
 use App\Models\Message;
 use App\Models\Region;
 use App\Models\Transaction;
@@ -178,6 +180,44 @@ class ProfileController extends Controller
         if(!$detail) return redirect(route('account.sales'));
         $data = array('detail', 'company');
         return view('account.sales_detail', compact($data));
+    }
+
+    public function sales_redeem(Request $request){
+        $user = $this->getAuthUser();
+        $sale = Sale::where('saleIdx', $request->sid)->get()->first();
+        if(!$sale || $sale->sellerIdx!=$user->userIdx) return redirect(route('account.sales'));
+        $user = User::where('userIdx', $user->userIdx)->get()->first();
+        if($sale->bidIdx!=0){
+            $amount = Bid::where('bidIdx', $sale->bidIdx)->get()->first()->bidPrice;
+        }else{
+            $amount = OfferProduct::where('productIdx', $sale->productIdx)->get()->first()->productPrice;
+        }
+
+        $client = new \GuzzleHttp\Client();
+        $address = $user->wallet;
+        $query['address'] = $address;
+        $query['amount'] = floatval($amount) * 9 / 10;
+        $url = "https://dxs-swagger.herokuapp.com/ethereum/wallet/addfunds";
+        $response = $client->request("POST", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=> json_encode($query)
+        ]);
+        $res = $response->getBody()->getContents();
+        if($res=="Sucess"){
+            Sale::where('saleIdx', $request->sid)->update([
+                'redeemed'=>1,
+                'redeemed_at'=>date('Y-m-d H:i:s')
+            ]);
+            $purchase = Purchase::where('purchaseIdx', $sale->purchaseIdx)->get()->first();
+            Transaction::where('transactionId', $sale->transactionId)->update([
+                'status' => 'complete',
+                'amount' => $query['amount']
+            ]);
+            Transaction::where('transactionId', $purchase->transactionId)->update([
+                'status' => 'complete'
+            ]);
+        }
+        return redirect(route('account.sales'));
     }
 
     public function update(Request $request)
