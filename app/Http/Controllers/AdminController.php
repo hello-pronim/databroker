@@ -580,7 +580,7 @@ class AdminController extends Controller
         if($request->input('id')) {
             $articleIdx = $request->input('id');
             $data = $request->all();
-            $data['published'] = date('Y-m-d', strtotime($published));
+            $data['published'] = date('Y-m-d', strtotime($published));            
             Article::find($articleIdx)->update($data);
             return "success";
         } else {

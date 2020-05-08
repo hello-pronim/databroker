@@ -505,3 +505,6 @@ ALTER TABLE `databroker_new`.`sales` ADD COLUMN `transactionId` VARCHAR(64) NULL
 
 #2020-05-06
 ALTER TABLE `databroker_new`.`transactions` ADD COLUMN `userIdx` INT(11) NULL AFTER `transactionType`; 
+
+#2020-05-07
+ALTER TABLE `articles` CHANGE COLUMN `articleContent` `articleContent` TEXT NULL DEFAULT NULL ;
