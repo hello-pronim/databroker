@@ -62,6 +62,8 @@ return [
     'from'=>'From',
     'download_file'=>'Download file',
     'api_key'=>'API key',
+    'stream_ip'=>'IP',
+    'stream_port'=>'Port',
     'configure_now'=>'Configure now',
     'continue_to_databroker'=>'Continue to databroker'
 ];

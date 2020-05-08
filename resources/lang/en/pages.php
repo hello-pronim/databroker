@@ -12,6 +12,8 @@ return [
     'please_select' => 'Please Select',
     'enter_url' => 'Enter URL',
     'data_url' => 'Data URL',
+    'stream_ip' => 'IP',
+    'stream_port' => 'Port',
     'enter_name' => 'Enter Name',
     'confirm' => 'Confirm',
     'send_message' => 'Send a Message',

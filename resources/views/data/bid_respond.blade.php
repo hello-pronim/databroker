@@ -61,7 +61,7 @@
 			        			@enderror
 			        		</div>
 			        		<label class="pure-material-textfield-outlined">
-								<textarea name="bidResponse" class="form-control input_data user-message @error('bidResponse') is-invalid @enderror" placeholder="{{ trans('data.add_message_optional') }}" maxlength="100" autofocus>{{ old('bidResponse')}}</textarea>
+								<textarea name="bidResponse" class="form-control input_data user-message @error('bidResponse') is-invalid @enderror" placeholder="{{ trans('data.add_message_optional') }}" maxlength="1000" autofocus>{{ old('bidResponse')}}</textarea>
 								<div class="error_notice">{{ trans('validation.required', ['attribute' => 'Message']) }}</div>
 		                        @error('bidResponse')
 		                            <span class="invalid-feedback" role="alert">

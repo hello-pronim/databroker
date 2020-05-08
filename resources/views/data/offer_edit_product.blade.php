@@ -86,11 +86,33 @@
 	            		<div class="col-lg-6">
 			                <h4 class="h4_intro text-left">In which format will the data be provided?<i class="material-icons text-grey text-top" data-toggle="tooltip" data-placement="auto"  title="" data-container="body" data-original-title="{{ trans('description.product_data_provided_tooptip') }}">help</i></h4>
 				        	<div class="radio-wrapper format">
-				        		@foreach ($prodTypeList as $prodType)		                    
-			                    <label class="container para">{{$prodType}}
-								  <input type="radio" @if ($prodType == $product['productType']) checked="checked" @endif name="format" value="{{$prodType}}">
-								  <span class="checkmark"></span>
-								</label>
+				        		@foreach ($prodTypeList as $prodType)	
+				        		<div class="mb-10">	                    
+				                    <label class="container para">{{$prodType}}
+									  <input type="radio" @if ($prodType == $product['productType']) checked="checked" @endif name="format" value="{{$prodType}}">
+									  <span class="checkmark"></span>
+									</label>
+									@if($prodType=="Stream")
+									<div class="stream_detail">
+										<div class="row">
+						                	<div class="col-lg-6">
+						                		<label class="pure-material-textfield-outlined mb-0">
+						                			<input type="text" id="streamIP" name="streamIP" class="form-control input_data w-100" placeholder=" " value="{{$product['streamIP']}}">
+						                			<span>{{ trans('pages.stream_ip') }}</span>
+						                		</label>
+						                	</div>
+						                	<div class="col-lg-6">
+						                		<label class="pure-material-textfield-outlined mb-0">
+						                			<input type="text" id="streamPort" name="streamPort" class="form-control input_data w-100" placeholder=" " value="{{$product['streamPort']}}">
+						                			<span>{{ trans('pages.stream_port') }}</span>
+						                		</label>
+						                	</div>
+						                </div>		
+										<span class="error_notice streamIP"> IP is required.</span>
+										<span class="error_notice streamPort"> Port is required.</span>
+									</div>
+									@endif
+								</div>
 								@endforeach
 			                </div>
 						</div>
@@ -230,6 +252,8 @@
 
 @section('additional_javascript')
 	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>   
+	<script src="{{ asset('js/plugins/inputmask.js') }}"></script>
+	<script src="{{ asset('js/plugins/jquery.inputmask.js') }}"></script>
 	<script type="text/javascript">
 		let active_id = $('.list-dxc .selectable-list-item.active').attr('item-id');
 		$.each($('.list-data .selectable-list-item'), function(key, value){
@@ -254,5 +278,6 @@
 			$('.list-data .selectable-list-item.selected').removeClass('selected');
 			$(this).addClass('selected');
 		});
+		$("input[name='streamIP']").inputmask({"mask":"999.999.999.999"});
 	</script>
 @endsection

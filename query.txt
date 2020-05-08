@@ -508,3 +508,7 @@ ALTER TABLE `databroker_new`.`transactions` ADD COLUMN `userIdx` INT(11) NULL AF
 
 #2020-05-07
 ALTER TABLE `articles` CHANGE COLUMN `articleContent` `articleContent` TEXT NULL DEFAULT NULL ;
+
+#2020-05-07
+ALTER TABLE `databroker_new`.`offerproducts` ADD COLUMN `streamIP` VARCHAR(255) NULL AFTER `productUrl`, ADD COLUMN `streamPort` VARCHAR(255) NULL AFTER `streamIP`; 
+ALTER TABLE `databroker_new`.`sales` ADD COLUMN `purchaseIdx` INT(11) NULL AFTER `saleIdx`; 

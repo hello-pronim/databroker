@@ -16,7 +16,7 @@ class OfferProduct extends Model
      * @var array
      */
     protected $fillable = [
-        'productIdx', 'offerIdx', 'productType', 'productTitle', 'productMoreInfo', 'productAccessDays', 'productBidType', 'productPrice', 'productInstruction', 'productStatus', 'productLicenseUrl', 'productUrl', 'uniqueProductIdx'
+        'productIdx', 'offerIdx', 'productType', 'productTitle', 'productMoreInfo', 'productAccessDays', 'productBidType', 'productPrice', 'productInstruction', 'productStatus', 'productLicenseUrl', 'productUrl', 'streamIP', 'streamPort', 'uniqueProductIdx'
     ];    
 
     public function offer(){

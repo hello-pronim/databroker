@@ -35,8 +35,11 @@
                                                 {{$sale->productTitle}}
                                             </h4>
                                             <div class="item-location">
-                                                @foreach($sale->region as $region)
+                                                @foreach($sale->region as $key=>$region)
                                                     {{$region->regionName}}
+                                                    @if(count($sale->region)>$key+1)
+                                                    <span>, </span>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                             <br>
@@ -96,7 +99,7 @@
                                                     @if($sale->redeemed != 1)
                                                         @if(date('Y-m-d')>=$sale['redeem_date'])
                                                     <p class="para">Earnings can be redeemed</p>
-                                                    <button type="button" class="customize-btn btn-next">REDEEM NOW</button>
+                                                    <a href="{{route('account.sales_redeem', ['sid'=>$sale['saleIdx']])}}"><button type="button" class="customize-btn btn-next">REDEEM NOW</button></a>
                                                         @else
                                                     <p class="para">Earnings can be redeemed as of <br/> <span class="fs-14">{{date('d/m/Y', strtotime($sale['redeem_date']))}}</span></p>
                                                     <p class="fs-14 text-grey">We will send you an email notification.</p>

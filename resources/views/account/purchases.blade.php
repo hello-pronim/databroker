@@ -76,7 +76,7 @@
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 seller">
                                                 <div class="mb-20">
                                                     <h4 class="company">
-                                                        {{$purchase->provider->companyName}}
+                                                        {{$purchase->companyName}}
                                                     </h4>
                                                     @if($purchase->productBidType=="free")
                                                     <div class="price">Free</div>

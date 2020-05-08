@@ -121,11 +121,6 @@
 														</td>
 													</tr>
 													<tr>
-														<td class="fs-18 lh-27 py-10">
-															From : {{date('d/m/Y', strtotime($data['product']['from']))}} to {{date('d/m/Y', strtotime($data['product']['to']))}}
-														</td>
-													</tr>
-													<tr>
 														<td class="fs-18 lh-24 py-10">
 															Message: 
 														</td>

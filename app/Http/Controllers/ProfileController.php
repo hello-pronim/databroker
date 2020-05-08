@@ -19,6 +19,8 @@ use App\Models\Complaint;
 use App\Models\Offer;
 use App\Models\OfferProduct;
 use App\Models\Bid;
+use App\Models\Purchase;
+use App\Models\Sale;
 use App\Models\Message;
 use App\Models\Region;
 use App\Models\Transaction;
@@ -80,13 +82,16 @@ class ProfileController extends Controller
     public function purchases(Request $request)
     {
         $user = $this->getAuthUser();
-        $purchases = Offer::with(['region', 'provider'])
-                        ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+        $purchases = OfferProduct::with(['region'])
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
                         ->where('purchases.userIdx', $user->userIdx)
                         ->orderby('purchases.created_at', 'desc')
-                        ->get(["offers.*", "offerProducts.*", "purchases.*", "bids.*", "offerProducts.productIdx as pid"]);
+                        ->get();
         $data = array('purchases');
         return view('account.purchases', compact($data));
     }
@@ -94,8 +99,11 @@ class ProfileController extends Controller
     public function purchases_detail(Request $request)
     {
         $user = $this->getAuthUser();
-        $detail = Offer::with(['region', 'provider'])
-                        ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+        $detail = OfferProduct::with(['region'])
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
                         ->leftjoin('apiProductKeys', 'apiProductKeys.purchaseIdx', '=', 'purchases.purchaseIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
@@ -114,8 +122,11 @@ class ProfileController extends Controller
 
     public function sales(Request $request){
         $user = $this->getAuthUser();
-        $sales = Offer::with(['region', 'provider'])
-                        ->join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
+        $sales = OfferProduct::with(['region'])
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->join('sales', 'sales.productIdx', '=', 'offerProducts.productIdx')
                         ->leftjoin('bids', 'bids.bidIdx', '=', 'sales.bidIdx')
                         ->where('sales.sellerIdx', $user->userIdx)
@@ -123,7 +134,12 @@ class ProfileController extends Controller
                         ->get(["offers.*", "offerProducts.*", "sales.*", "bids.*", "offerProducts.productIdx as pid"]);
         foreach ($sales as $key => $sale) {
             $buyerIdx = $sale->buyerIdx;
-            $buyerCompanyName = Company::join('users', 'users.companyIdx', '=', 'companies.companyIdx')->where('users.userIdx', $buyerIdx)->get()->first()->companyName;
+            $buyerCompanyName = Company::join('users', 'users.companyIdx', '=', 'companies.companyIdx')
+                                    ->join('sales', 'sales.buyerIdx', '=', 'users.userIdx')
+                                    ->where('users.userIdx', $buyerIdx)
+                                    ->get()
+                                    ->first()
+                                    ->companyName;
             $hasComplaints = Complaint::where('productIdx', $sale->productIdx)->get()->count();
             $sale['redeem_date'] = date('Y-m-d', strtotime('+2 weeks', strtotime($sale->from)));
             $sale['buyerCompanyName'] = $buyerCompanyName;
@@ -141,6 +157,67 @@ class ProfileController extends Controller
         //$balance = json_decode($response->getBody()->getContents());
         $data = array('sales', 'user');
         return view('account.sales', compact($data));
+    }
+
+    public function sales_detail(Request $request){
+        $user = $this->getAuthUser();
+        $detail = OfferProduct::with(['region'])
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->join('sales', 'sales.productIdx', '=', 'offerProducts.productIdx')
+                        ->leftjoin('apiProductKeys', 'apiProductKeys.purchaseIdx', '=', 'sales.purchaseIdx')
+                        ->leftjoin('bids', 'bids.bidIdx', '=', 'sales.bidIdx')
+                        ->where('sales.saleIdx', $request->sid)
+                        ->get()
+                        ->first();
+        $company = Offer::join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->where('offers.offerIdx', $detail['offerIdx'])
+                        ->get()
+                        ->first()
+                        ->companyName;
+        if(!$detail) return redirect(route('account.sales'));
+        $data = array('detail', 'company');
+        return view('account.sales_detail', compact($data));
+    }
+
+    public function sales_redeem(Request $request){
+        $user = $this->getAuthUser();
+        $sale = Sale::where('saleIdx', $request->sid)->get()->first();
+        if(!$sale || $sale->sellerIdx!=$user->userIdx) return redirect(route('account.sales'));
+        $user = User::where('userIdx', $user->userIdx)->get()->first();
+        if($sale->bidIdx!=0){
+            $amount = Bid::where('bidIdx', $sale->bidIdx)->get()->first()->bidPrice;
+        }else{
+            $amount = OfferProduct::where('productIdx', $sale->productIdx)->get()->first()->productPrice;
+        }
+
+        $client = new \GuzzleHttp\Client();
+        $address = $user->wallet;
+        $query['address'] = $address;
+        $query['amount'] = floatval($amount) * 9 / 10;
+        $url = "https://dxs-swagger.herokuapp.com/ethereum/wallet/addfunds";
+        $response = $client->request("POST", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=> json_encode($query)
+        ]);
+        $res = $response->getBody()->getContents();
+        if($res=="Sucess"){
+            Sale::where('saleIdx', $request->sid)->update([
+                'redeemed'=>1,
+                'redeemed_at'=>date('Y-m-d H:i:s')
+            ]);
+            $purchase = Purchase::where('purchaseIdx', $sale->purchaseIdx)->get()->first();
+            Transaction::where('transactionId', $sale->transactionId)->update([
+                'status' => 'complete',
+                'amount' => $query['amount']
+            ]);
+            Transaction::where('transactionId', $purchase->transactionId)->update([
+                'status' => 'complete'
+            ]);
+        }
+        return redirect(route('account.sales'));
     }
 
     public function update(Request $request)
@@ -305,9 +382,10 @@ class ProfileController extends Controller
             'body'=> '{}'
         ]);
         $balance = json_decode($response->getBody()->getContents());
-        $transactions = Transaction::where('userIdx', $user->userIdx)
-                                    ->orderby('updated_at', 'desc')
-                                    ->get();
+        $transactions = Transaction::leftjoin('sales', 'sales.transactionId', '=', 'transactions.transactionId')
+                                    ->where('transactions.userIdx', $user->userIdx)
+                                    ->orderby('transactions.updated_at', 'desc')
+                                    ->get(['transactions.*', 'sales.*', 'transactions.updated_at as updatedAt']);
         $data = array('address', 'balance', 'transactions');
         return view('account.wallet', compact($data));
     }
