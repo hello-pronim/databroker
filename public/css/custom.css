@@ -1991,3 +1991,9 @@ a[data-target='#mediaLibraryModal']:hover{
 .currency-input >input{
 	padding-left: 32px;
 }
+.price_td{
+	min-width: 50px;
+}
+.d-inline{
+	display: inline-block!important;
+}

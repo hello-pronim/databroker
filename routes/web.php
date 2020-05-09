@@ -239,6 +239,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::post('/admin/help/feedbacks/update', 'AdminController@update_help_feedback')->where('tid', '[0-9]+')->name('admin.help.update_feedback');	
 		//compress Images
 		Route::get('/admin/compress_images', 'AdminController@compress_images')->name('admin.compress_images');
+
+		Route::get('/admin/users', 'AdminController@users')->name('admin.users');
+		Route::get('/admin/company_users/{cid}', 'AdminController@company_users')->where('cid', '[0-9]+')->name('admin.company_users');
 	});
 
 	$communities = Community::get();

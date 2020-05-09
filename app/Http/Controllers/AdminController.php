@@ -18,9 +18,11 @@ use App\Models\OfferTheme;
 use App\Models\OfferSample;
 use App\Models\OfferCountry;
 use App\Models\UseCase;
+use App\Models\Company;
 use App\Models\Contact;
 use App\Models\Subscription;
 use App\Models\Article;
+use App\Models\LinkedUser;
 use App\Models\HomeFeaturedData;
 use App\Models\HomeTrending;
 use App\Models\HomeMarketplace;
@@ -1080,4 +1082,30 @@ class AdminController extends Controller
         }                
     }
     
+    public function users(Request $request){
+        $users = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->where('users.userStatus', 1)
+                        ->get(["users.*", 'companies.*', 'users.created_at as createdAt']);
+        $count_invited = User::get()->count();
+        $count_pending = LinkedUser::get()->count();
+        $data = array('users', 'count_invited', 'count_pending');
+        return view('admin.users', compact($data));
+    }
+
+    public function company_users(Request $request){
+        $users = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->where('users.userStatus', 2)
+                        ->where('companies.companyIdx', $request->cid)
+                        ->get(['users.*', 'companies.*', 'users.created_at as createdAt']);
+        $count_confirmed = $users->count();
+        $pending_users = User::join('linked_users', 'linked_users.invite_userIdx', '=', 'users.userIdx')
+                        ->where('users.companyIdx', $request->cid)
+                        ->get();
+        $count_pending = $pending_users->count();
+
+        $count_all = $count_confirmed + $count_pending;
+        $company = Company::where('companyIdx', $request->cid)->get()->first();
+        $data = array('users', 'company', 'count_all', 'count_confirmed');
+        return view('admin.company_users', compact($data));
+    }
 }
