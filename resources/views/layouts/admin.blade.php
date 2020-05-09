@@ -203,13 +203,12 @@
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                                 </a>
                             </li>
-                            <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
-                                <a href="{{ route('admin.users') }}" class="m-menu__link" id="usecase-sidebar">
+                            <a href="{{ route('admin.users') }}" class="m-menu__link">
+                                <div class="sidebar_header">
                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                            User
-                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
-                                </a>
-                            </li>
+                                    Users
+                                </div>
+                            </a>
                             <div class="sidebar_header">
                                 <a href="{{route('admin.logout')}}">
                                     <i class="fa fa-sign-out" style="font-size:30px" aria-hidden="true"></i>

@@ -17,6 +17,7 @@ use App\Models\Gallery;
 use App\Models\OfferTheme;
 use App\Models\OfferSample;
 use App\Models\OfferCountry;
+use App\Models\OfferProduct;
 use App\Models\UseCase;
 use App\Models\Company;
 use App\Models\Contact;
@@ -1086,9 +1087,20 @@ class AdminController extends Controller
         $users = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->where('users.userStatus', 1)
                         ->get(["users.*", 'companies.*', 'users.created_at as createdAt']);
-        $count_invited = User::get()->count();
-        $count_pending = LinkedUser::get()->count();
-        $data = array('users', 'count_invited', 'count_pending');
+        foreach($users as $user){
+            $count_all = User::where('companyIdx', $user->companyIdx)->where('userStatus', 2)->get()->count();
+            $count_pending = LinkedUser::where('invite_userIdx', $user->userIdx)->get()->count();
+            $count_products = OfferProduct::join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                        ->where('users.userIdx', $user->userIdx)
+                                        ->get()
+                                        ->count();
+            $user['count_all'] = $count_all;
+            $user['count_pending'] = $count_pending;
+            $user['count_products'] = $count_products;
+        }
+        $data = array('users');
         return view('admin.users', compact($data));
     }
 

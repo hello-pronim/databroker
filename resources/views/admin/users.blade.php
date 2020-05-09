@@ -39,13 +39,16 @@
                     <thead>
                         <tr>
                             <th>User ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>Reg.Date</th>
                             <th>CompanyName</th>
                             <th>Industry</th>
-                            <th>Job title</th>
-                            <th>Role</th>
-                            <th>Created at</th>
+                            <th>Admin Email</th>
+                            <th>Admin Firstname</th>
+                            <th>Admin Lastname</th>
+                            <th>Admin Title</th>
+                            <th>Admin Role</th>
+                            <th>Users</th>
+                            <th>Products</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -53,13 +56,16 @@
                         @foreach($users as $user)                      
                             <tr>
                                 <td align="center">{{$user->userIdx}}</td>
-                                <td>{{ $user->firstname." ".$user->lastname }}</td>
-                                <td>{{ $user->email}}</td>
+                                <td>{{ date('d/m/Y H:i:s', strtotime($user->createdAt)) }}</td>
                                 <td><a href="{{route('admin.company_users', ['cid'=>$user->companyIdx])}}">{{ $user->companyName}}</a></td>
                                 <td>{{ $user->businessName}}</td>
+                                <td>{{ $user->email}}</td>
+                                <td>{{ $user->firstname}}</td>
+                                <td>{{ $user->lastname }}</td>
                                 <td>{{ $user->jobTitle }}</td>
                                 <td>{{ $user->role }}</td>
-                                <td>{{ date('d/m/Y H:i:s', strtotime($user->createdAt)) }}</td>
+                                <td>{{ $user['count_all'] . " invted " . "/" . $user['count_pending'] . " pending"}}</td>
+                                <td>{{ $user->count_products }}</td>
                                 <td>{{ $user->userIdx }}</td>
                             </tr>
                         @endforeach

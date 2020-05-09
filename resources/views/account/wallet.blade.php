@@ -61,7 +61,7 @@
                             <td class="text-left">
                                 <i class="material-icons text-warning">call_made</i><span class="text-warning">IN</span>
                             </td>
-                            <td class="text-warning text-right plr-0">€ {{number_format((float)$transaction->amount, 2, '.', '')}}</td>
+                            <td class="text-warning text-right plr-0">€{{number_format((float)$transaction->amount, 2, '.', '')}}</td>
                             <td class="text-warning pl-5 pr-0">({{$transaction->status}})</td>
                             <td class="plr-0">
                             @php
@@ -83,7 +83,7 @@
                             <td class="text-left">
                                 <i class="material-icons text-grey">call_received</i><span class="text-grey">OUT</span>
                             </td>
-                            <td class="text-grey text-right plr-0">- € {{number_format(-(float)$transaction->amount, 2, '.', '')}}</td>
+                            <td class="text-grey text-right plr-0">- €{{number_format(-(float)$transaction->amount, 2, '.', '')}}</td>
                             <td class="text-grey pl-5 pr-0">({{$transaction->status}})</td>
                             <td></td>
                             @elseif($transaction->amount == 0)
@@ -91,14 +91,14 @@
                             <td class="text-left">
                                 <i class="material-icons text-warning">call_made</i><span class="text-warning">IN</span>
                             </td>
-                            <td class="text-warning text-right plr-0">€ {{number_format((float)$transaction->amount, 2, '.', '')}}</td>
+                            <td class="text-warning text-right plr-0">€{{number_format((float)$transaction->amount, 2, '.', '')}}</td>
                             <td class="text-warning pl-5 pr-0">({{$transaction->status}})</td>
                             <td></td>
                                 @elseif($transaction->transactionType=="purchased")
                             <td class="text-left">
                                 <i class="material-icons text-grey">call_received</i><span class="text-grey">OUT</span>
                             </td>
-                            <td class="text-grey text-right plr-0">€ {{number_format((float)$transaction->amount, 2, '.', '')}}</td>
+                            <td class="text-grey text-right plr-0">€{{number_format((float)$transaction->amount, 2, '.', '')}}</td>
                             <td class="text-grey pl-5 pr-0">({{$transaction->status}})</td>
                             <td></td>
                                 @endif

@@ -11,7 +11,7 @@
     <div class="m-subheader ">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h3 class="m-subheader__title m-subheader__title--separator"><b style="color: #9102f7;">{{$company->companyName}}</b> - ({{$count_all}} invited/ {{$count_confirmed}} confirmed)</h3>
+                <h3 class="m-subheader__title m-subheader__title--separator"><b style="color: #9102f7;">{{$company->companyName}}</b></h3>
             </div>
         </div>
     </div>
@@ -39,7 +39,8 @@
                     <thead>
                         <tr>
                             <th>User ID</th>
-                            <th>Name</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
                             <th>Email</th>
                             <th>Industry</th>
                             <th>Job title</th>
@@ -52,7 +53,8 @@
                         @foreach($users as $user)                      
                             <tr>
                                 <td align="center">{{$user->userIdx}}</td>
-                                <td>{{ $user->firstname." ".$user->lastname }}</td>
+                                <td>{{ $user->firstname }}</td>
+                                <td>{{ $user->lastname }}</td>
                                 <td>{{ $user->email}}</td>
                                 <td>{{ $user->businessName}}</td>
                                 <td>{{ $user->jobTitle }}</td>
