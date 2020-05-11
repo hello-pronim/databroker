@@ -689,19 +689,19 @@ class AdminController extends Controller
         $tinyimg = Image::make($getfiles->getRealPath());
         $tinyimg->fit(1200,800, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('uploads/gallery/thumbs/large').'/'.$fileName);
+        })->save(public_path('images/gallery/thumbs/large').'/'.$fileName);
 
         $tinyimg->fit(750,500, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('uploads/gallery/thumbs/medium').'/'.$fileName);
+        })->save(public_path('images/gallery/thumbs/medium').'/'.$fileName);
 
         $tinyimg->fit(300,200, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('uploads/gallery/thumbs/tiny').'/'.$fileName);
+        })->save(public_path('images/gallery/thumbs/tiny').'/'.$fileName);
 
         $tinyimg->fit(60,40, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('uploads/gallery/thumbs/thumb').'/'.$fileName);
+        })->save(public_path('images/gallery/thumbs/thumb').'/'.$fileName);
         //image compress end
         $getfiles->move(public_path('images/gallery/thumbs'), $fileName);
         Gallery::find($mediaIdx)->update(['thumb' => 'images/gallery/thumbs/'.$fileName]);
