@@ -3,6 +3,12 @@
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
+    <style type="text/css">
+        #admin_users tr:hover{cursor: pointer;}
+        #admin_users .table-child td{padding: 10px 20px;}
+        #admin_users .table-child-title{position: absolute;left: 200px;}
+        #admin_users .hidden{display: none;}
+    </style>
 @endsection
 
 @section('content')
@@ -35,12 +41,14 @@
                 </div>
             </div>
             <div class="m-portlet__body">
-                <table class="table table-striped- table-bordered table-hover table-checkable" id="board_table">
+                <table class="table table-striped- table-bordered table-hover table-checkable" id="admin_users">
                     <thead>
                         <tr>
+                            <th class="hidden"></th>
+                            <th></th>
                             <th>User ID</th>
-                            <th>Reg.Date</th>
-                            <th>CompanyName</th>
+                            <th>Date Registered</th>
+                            <th>Company Name</th>
                             <th>Industry</th>
                             <th>Admin Email</th>
                             <th>Admin Firstname</th>
@@ -55,18 +63,24 @@
                     <tbody>
                         @foreach($users as $user)                      
                             <tr>
-                                <td align="center">{{$user->userIdx}}</td>
-                                <td>{{ date('d/m/Y H:i:s', strtotime($user->createdAt)) }}</td>
-                                <td><a href="{{route('admin.company_users', ['cid'=>$user->companyIdx])}}">{{ $user->companyName}}</a></td>
-                                <td>{{ $user->businessName}}</td>
-                                <td>{{ $user->email}}</td>
-                                <td>{{ $user->firstname}}</td>
-                                <td>{{ $user->lastname }}</td>
-                                <td>{{ $user->jobTitle }}</td>
-                                <td>{{ $user->role }}</td>
-                                <td>{{ $user['count_all'] . " invited " . "/" . $user['count_pending'] . " pending"}}</td>
-                                <td>{{ $user->count_products }}</td>
-                                <td>{{ $user->userIdx }}</td>
+                                <td class="hidden">{{$user->count_all}}</td>
+                                <td class="details-control">
+                                @if($user->count_all!=0)
+                                    <h4>+</h4>
+                                @endif
+                                </td>
+                                <td class="details-control" align="center">{{$user->userIdx}}</td>
+                                <td class="details-control">{{ date('d/m/Y H:i:s', strtotime($user->createdAt)) }}</td>
+                                <td class="details-control">{{ $user->companyName}}</a>
+                                <td class="details-control">{{ $user->businessName}}</td>
+                                <td class="details-control">{{ $user->email}}</td>
+                                <td class="details-control">{{ $user->firstname}}</td>
+                                <td class="details-control">{{ $user->lastname }}</td>
+                                <td class="details-control">{{ $user->jobTitle? $user->jobTitle : "N/A" }}</td>
+                                <td class="details-control">{{ $user->role }}</td>
+                                <td class="details-control">{{ $user['count_all'] . " invited " . "/" . $user['count_pending'] . " pending"}}</td>
+                                <td class="details-control">{{ $user->count_products }}</td>
+                                <td class="details-control">{{ $user->userIdx }}</td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -1105,21 +1105,24 @@ class AdminController extends Controller
     }
 
     public function company_users(Request $request){
+        $companyIdx = User::where('userIdx', $request->adminUserIdx)->get()->first()->companyIdx;
         $users = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->where('users.userStatus', 2)
-                        ->where('companies.companyIdx', $request->cid)
-                        ->get(['users.*', 'companies.*', 'users.created_at as createdAt']);
+                        ->where('companies.companyIdx', $companyIdx)
+                        ->get(['users.*', 'companies.*', 'users.created_at as createdAt'])
+                        ->toArray();
+        $result = array();
         foreach ($users as $user) {
+            $temp = $user;
             $count_products = OfferProduct::join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                                         ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                                         ->join('users', 'users.userIdx', '=', 'providers.userIdx')
-                                        ->where('users.userIdx', $user->userIdx)
+                                        ->where('users.userIdx', $user['userIdx'])
                                         ->get()
                                         ->count();
-            $user['count_products'] = $count_products;
+            $temp['count_products'] = $count_products;
+            array_push($result, $temp);
         }
-        $company = Company::where('companyIdx', $request->cid)->get()->first();
-        $data = array('users', 'company');
-        return view('admin.company_users', compact($data));
+        return json_encode(array('users'=>$result));
     }
 }

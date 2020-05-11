@@ -40,12 +40,12 @@
                         <tr>
                             <th>User ID</th>
                             <th>Reg.Date</th>
-                            <th>CompanyName</th>
+                            <th>Company Name</th>
                             <th>Industry</th>
                             <th>Email</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Job title</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Job Title</th>
                             <th>Role</th>
                             <th>Products</th>
                             <th>Action</th>

@@ -241,7 +241,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/admin/compress_images', 'AdminController@compress_images')->name('admin.compress_images');
 
 		Route::get('/admin/users', 'AdminController@users')->name('admin.users');
-		Route::get('/admin/company_users/{cid}', 'AdminController@company_users')->where('cid', '[0-9]+')->name('admin.company_users');
+		Route::get('/admin/company_users/{adminUserIdx}', 'AdminController@company_users')->where('adminUserIdx', '[0-9]+')->name('admin.company_users');
 	});
 
 	$communities = Community::get();

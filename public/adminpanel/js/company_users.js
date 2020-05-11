@@ -35,7 +35,7 @@ var companyIdx = $('#companyIdx').val();
             ],
         };
 
-        board_data_table = table.dataTable(settings);
+        board_data_table = table.DataTable(settings);
     }
 
     initTableWithDynamicRows();
