@@ -108,12 +108,16 @@ class DataController extends Controller
             $prev_route = '';
         }
 
-        if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage'] ) {            
-            $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
-        }
+        if ($offer['offerImage']) {                           
+            if (strpos($offer['offerImage'], 'media_') === false ) {                           
+                $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+            }else{
+                $offer['offerImage'] = '/images/gallery/thumbs/medium/'.$offer['offerImage'];    
+            }
+        }    
             
         $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user_info' => $user_info, 'products' => $products);
-        return view('data.details')->with($data);
+        return view('data.details')->with($data);        
     }
 
     public function offers(Request $request){       
@@ -219,8 +223,8 @@ class DataController extends Controller
         
         $offer_images = [$offer['offerImage']];
         if($offer['offerImage']){        
-            if (strpos($offer['offerImage'], '/images/gallery') !== false ) {
-                $offer_path = URL::to('');
+            if (strpos($offer['offerImage'], 'media_') !== false ) {
+                $offer_path = URL::to('/images/gallery/thumbs/medium');
             }else{
                 $offer_path = URL::to('/uploads/offer/medium');    
             }
@@ -339,9 +343,13 @@ class DataController extends Controller
                     ->count();
         
         foreach ($dataoffer as $key => $offer) {
-            if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {                           
-                $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
-            }
+            if ($offer['offerImage']) {                           
+                if (strpos($offer['offerImage'], 'media_') === false ) {                           
+                    $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+                }else{
+                    $offer['offerImage'] = '/images/gallery/thumbs/medium/'.$offer['offerImage'];    
+                }
+            }    
             $dataoffer[$key]=$offer;
         }   
 
@@ -385,9 +393,13 @@ class DataController extends Controller
                     ->count();
 
         foreach ($dataoffer as $key => $offer) {
-            if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {                           
-                $offer['offerImage'] = '/uploads/offer/tiny/'.$offer['offerImage'];    
-            }
+            if ($offer['offerImage']) {                           
+                if (strpos($offer['offerImage'], 'media_') === false ) {                           
+                    $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+                }else{
+                    $offer['offerImage'] = '/images/gallery/thumbs/medium/'.$offer['offerImage'];    
+                }
+            }    
             $dataoffer[$key]=$offer;
         }                    
         $data = array('company', 'dataoffer', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
@@ -431,9 +443,13 @@ class DataController extends Controller
                     ->get()
                     ->count();
         foreach ($dataoffer as $key => $offer) {
-            if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {                           
-                $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
-            }
+            if ($offer['offerImage']) {                           
+                if (strpos($offer['offerImage'], 'media_') === false ) {                           
+                    $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+                }else{
+                    $offer['offerImage'] = '/images/gallery/thumbs/medium/'.$offer['offerImage'];    
+                }
+            }    
             $dataoffer[$key]=$offer;
         }                       
         $data = array('dataoffer', 'category', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
@@ -512,7 +528,7 @@ class DataController extends Controller
 
             } else {  
                 $fileName = $request->input('gallery_offerImage_1');
-                $offer_data['offerImage'] = $fileName;
+                $offer_data['offerImage'] =  basename( $fileName );
             }
             
             Offer::where('offerIdx', $offerIdx)->update(array( "offerImage" => $fileName ));        
@@ -631,7 +647,7 @@ class DataController extends Controller
                 
             } else {
                 $fileName = $request->input('gallery_offerImage_1');
-                $offer_data['offerImage'] = $fileName;
+                $offer_data['offerImage'] = basename( $fileName );
             }
 
             Offer::find($id)->update($offer_data);
@@ -857,9 +873,14 @@ class DataController extends Controller
                 ->count();
         
         foreach ($dataoffer as $key => $offer) {
-            if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {                           
-                $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
-            }
+            if ($offer['offerImage']) {                           
+                if (strpos($offer['offerImage'], 'media_') === false ) {                           
+                    $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+                }else{
+                    $offer['offerImage'] = '/images/gallery/thumbs/medium/'.$offer['offerImage'];    
+                }
+            }    
+
             $dataoffer[$key]=$offer;            
         }   
                 
@@ -908,8 +929,12 @@ class DataController extends Controller
         $temp = array();
         foreach ($dataoffer["offers"] as $key => $offer) {
         
-            if (strpos($offer['offerImage'], '/images/gallery') === false && $offer['offerImage']) {
-                $offer['offerImage'] = '/uploads/offer/tiny/'.$offer['offerImage'];    
+            if ($offer['offerImage']) {                           
+                if (strpos($offer['offerImage'], 'media_') === false ) {                           
+                    $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
+                }else{
+                    $offer['offerImage'] = '/images/gallery/thumbs/medium/'.$offer['offerImage'];    
+                }
             }        
 
             if(!File::exists(public_path( $offer["offerImage"]))){

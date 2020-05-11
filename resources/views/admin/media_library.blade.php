@@ -39,7 +39,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Thumbnails</th>
+                            <th align="center">Thumbnails</th>
                             <th>Community</th>
                             <th>Hero</th>
                             <th>Actions</th>
@@ -49,11 +49,11 @@
                         @foreach($images as $index=>$image)                      
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>
-                                    @if($image->thumb && file_exists(public_path($image->thumb))) 
-                                        {{ asset($image->thumb) }}
+                                <td align="center">
+                                    @if($image->thumb && file_exists(public_path('images/gallery/thumbs/thumb/'.$image->thumb))) 
+                                        {{ asset('images/gallery/thumbs/thumb/'.$image->thumb) }}
                                     @else 
-                                        {{ asset('images/gallery/thumbs/default.png') }}
+                                        {{ asset('images/gallery/thumbs/thumb/default.png') }}
                                     @endif
                                 </td>
                                 <td>{{ $image->communityName }}</td>
