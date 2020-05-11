@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
     <style type="text/css">
         #admin_users tr:hover{cursor: pointer;}
+        #admin_users tr.shown{background-color: #f7f8fa;}
+        #admin_users .table-child{background-color: #f7f8fa;}
         #admin_users .table-child td{padding: 10px 20px;}
         #admin_users .table-child-title{position: absolute;left: 200px;}
         #admin_users .hidden{display: none;}
@@ -24,22 +26,6 @@
     <!-- END: Subheader -->
     <div class="m-content">
         <div class="m-portlet m-portlet--mobile">
-            <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-tools">
-                        <ul class="m-portlet__nav">
-                            <li class="m-portlet__nav-item">
-                                <a href="#" class="btn btn-focus m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
-                                    <span>
-                                        <i class="la la-cart-plus"></i>
-                                        <span>New User</span>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <div class="m-portlet__body">
                 <table class="table table-striped- table-bordered table-hover table-checkable" id="admin_users">
                     <thead>
@@ -70,7 +56,7 @@
                                 @endif
                                 </td>
                                 <td class="details-control" align="center">{{$user->userIdx}}</td>
-                                <td class="details-control">{{ date('d/m/Y H:i:s', strtotime($user->createdAt)) }}</td>
+                                <td class="details-control">{{ date('d/m/Y', strtotime($user->createdAt)) }}</td>
                                 <td class="details-control">{{ $user->companyName}}</a>
                                 <td class="details-control">{{ $user->businessName}}</td>
                                 <td class="details-control">{{ $user->email}}</td>

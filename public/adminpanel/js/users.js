@@ -55,11 +55,11 @@ var admin_table;
         if (row.child.isShown()) {
             row.child.hide();
             tr.removeClass("shown");
-            tr.find("td:eq(1)").html("<h3>+</h3>");
+            tr.find("td:eq(1)").html("<h4>+</h4>");
         } else {
           if(row.data()[0]!=0){
             row.child( getCompanyUsers(row.data()), 'table-child no-padding no-borders').show();
-            tr.find("td:eq(1)").html("<h3>-</h3>");
+            tr.find("td:eq(1)").html("<h4>-</h4>");
             tr.addClass("shown");
           }
         }
