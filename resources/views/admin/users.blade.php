@@ -64,7 +64,7 @@
                                 <td>{{ $user->lastname }}</td>
                                 <td>{{ $user->jobTitle }}</td>
                                 <td>{{ $user->role }}</td>
-                                <td>{{ $user['count_all'] . " invted " . "/" . $user['count_pending'] . " pending"}}</td>
+                                <td>{{ $user['count_all'] . " invited " . "/" . $user['count_pending'] . " pending"}}</td>
                                 <td>{{ $user->count_products }}</td>
                                 <td>{{ $user->userIdx }}</td>
                             </tr>
