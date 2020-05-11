@@ -542,19 +542,19 @@ class AdminController extends Controller
             $tinyimg = Image::make($getfiles->getRealPath());
             $tinyimg->fit(1200,800, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/home/usecases/large').'/'.$fileName);
+            })->save(public_path('uploads/usecases/large').'/'.$fileName);
 
             $tinyimg->fit(750,500, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/home/usecases/medium').'/'.$fileName);
+            })->save(public_path('uploads/usecases/medium').'/'.$fileName);
 
             $tinyimg->fit(300,200, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/home/usecases/tiny').'/'.$fileName);
+            })->save(public_path('uploads/usecases/tiny').'/'.$fileName);
 
             $tinyimg->fit(60,40, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/home/usecases/thumb').'/'.$fileName);
+            })->save(public_path('uploads/usecases/thumb').'/'.$fileName);
             //image compress end
             $getfiles->move(public_path('uploads/usecases'), $fileName);
             Article::find($articleIdx)->update(['image' => $fileName]);
@@ -701,7 +701,7 @@ class AdminController extends Controller
         })->save(public_path('images/gallery/thumbs/thumb').'/'.$fileName);
         //image compress end
         $getfiles->move(public_path('images/gallery/thumbs'), $fileName);
-        Gallery::find($mediaIdx)->update(['thumb' => 'images/gallery/thumbs/'.$fileName]);
+        Gallery::find($mediaIdx)->update(['thumb' => $fileName]);
         return "true";
     }
 
@@ -1027,10 +1027,15 @@ class AdminController extends Controller
  
     public function compress_images(Request $request){
         if(isset($request->path)){
-            $path = public_path('uploads/'.$request->path);
+            if($request->path == "gallery"){
+                $path = public_path('images/gallery/thumbs');    
+            }else{
+                $path = public_path('uploads/'.$request->path);    
+            }
+            
             $files = File::allfiles($path);
             // /dd($files);
-            if($request->path == "usecases" || $request->path == "offer" ){
+            if($request->path == "usecases" || $request->path == "offer" || $request->path == "gallery" ){
                 foreach ($files as $key => $file) {                
                     $fileName = $file->getFilename();                
                     if($path ."/". $fileName == $file->getpathName() && File::exists($path . "/". $fileName)){
