@@ -68,7 +68,6 @@ class ProfileController extends Controller
 
         $data = array('admin', 'user', 'users', 'invited_users', 'businesses', 'company');
         return view('account.profile', compact($data));
-
     }
 
     public function company(){

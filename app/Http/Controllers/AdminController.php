@@ -1130,4 +1130,34 @@ class AdminController extends Controller
         }
         return json_encode(array('users'=>$result));
     }
+    public function edit_user(Request $request){
+        $user = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                    ->where('users.userIdx', $request->userIdx)
+                    ->get()
+                    ->first();
+        $businesses = Business::get();
+
+        $data = array('user', 'businesses');
+        return view('admin.edit_user', compact($data));
+    }
+    public function update_user(Request $request){
+        $user = User::where('userIdx', $request->userIdx)->get()->first();
+        if($user){
+            $data = array();
+            $data['firstname'] = $request->firstname;
+            $data['lastname'] = $request->lastname;
+            $data['email'] = $request->email;
+            $data['jobTitle'] = $request->jobTitle;
+            if($request->businessName2=="Other industry") 
+                $data['businessName'] = $request->businessName;
+            else $data['businessName'] = $request->businessName2;
+            if($request->role2=="Other")
+                $data['role'] = $request->role;
+            else $data['role'] = $request->role2;
+
+            User::where('userIdx', $request->userIdx)->update($data);
+            echo "success";
+        }else 
+            echo "fail";
+    }
 }
