@@ -1109,15 +1109,17 @@ class AdminController extends Controller
                         ->where('users.userStatus', 2)
                         ->where('companies.companyIdx', $request->cid)
                         ->get(['users.*', 'companies.*', 'users.created_at as createdAt']);
-        $count_confirmed = $users->count();
-        $pending_users = User::join('linked_users', 'linked_users.invite_userIdx', '=', 'users.userIdx')
-                        ->where('users.companyIdx', $request->cid)
-                        ->get();
-        $count_pending = $pending_users->count();
-
-        $count_all = $count_confirmed + $count_pending;
+        foreach ($users as $user) {
+            $count_products = OfferProduct::join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                        ->where('users.userIdx', $user->userIdx)
+                                        ->get()
+                                        ->count();
+            $user['count_products'] = $count_products;
+        }
         $company = Company::where('companyIdx', $request->cid)->get()->first();
-        $data = array('users', 'company', 'count_all', 'count_confirmed');
+        $data = array('users', 'company');
         return view('admin.company_users', compact($data));
     }
 }

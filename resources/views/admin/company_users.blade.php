@@ -39,13 +39,15 @@
                     <thead>
                         <tr>
                             <th>User ID</th>
+                            <th>Reg.Date</th>
+                            <th>CompanyName</th>
+                            <th>Industry</th>
+                            <th>Email</th>
                             <th>Firstname</th>
                             <th>Lastname</th>
-                            <th>Email</th>
-                            <th>Industry</th>
                             <th>Job title</th>
                             <th>Role</th>
-                            <th>Created at</th>
+                            <th>Products</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -53,13 +55,15 @@
                         @foreach($users as $user)                      
                             <tr>
                                 <td align="center">{{$user->userIdx}}</td>
+                                <td>{{ date('d/m/Y H:i:s', strtotime($user->createdAt)) }}</td>
+                                <td>{{ $user->companyName }}</td>
+                                <td>{{ $user->businessName}}</td>
+                                <td>{{ $user->email}}</td>
                                 <td>{{ $user->firstname }}</td>
                                 <td>{{ $user->lastname }}</td>
-                                <td>{{ $user->email}}</td>
-                                <td>{{ $user->businessName}}</td>
                                 <td>{{ $user->jobTitle }}</td>
                                 <td>{{ $user->role }}</td>
-                                <td>{{ date('d/m/Y H:i:s', strtotime($user->createdAt)) }}</td>
+                                <td>{{ $user->count_products }}</td>
                                 <td>{{ $user->userIdx }}</td>
                             </tr>
                         @endforeach
