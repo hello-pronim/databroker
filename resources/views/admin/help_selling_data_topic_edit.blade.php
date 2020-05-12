@@ -42,6 +42,22 @@
 							<input type="text" class="form-control m-input" name="title" placeholder="Enter title" value="{{ isset($topic)? $topic->title: '' }}">
 						</div>
 					</div>
+					<div class="form-group m-form__group row">
+						<div class="col-md-6 m-form__group-sub">
+							<label class="form-control-label">Meta title *</label>
+							<input type="text" class="form-control m-input" name="meta_title" placeholder="Meta title" value="{{ isset($topic)? $topic->meta_title: '' }}">
+						</div>
+						<div class="col-md-6 m-form__group-sub">
+							<label class="form-control-label">Meta description *</label>
+							<input type="text" class="form-control m-input" name="meta_description" placeholder="Meta description" value="{{ isset($topic)? $topic->meta_description: '' }}">
+						</div>
+					</div>
+					<div class="form-group m-form__group row">
+						<div class="col-md-12 m-form__group-sub">
+							<label for="exampleTextarea">Topic description</label>
+							<textarea class="form-control m-input summernote" rows="5" name="description" placeholder="Enter topic description">{{ isset($topic)? $topic->description : '' }}</textarea>
+						</div>
+					</div>
 				</div>
 				<div class="m-portlet__foot m-portlet__foot--fit">
 					<div class="m-form__actions m-form__actions">

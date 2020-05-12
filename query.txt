@@ -518,3 +518,9 @@ ALTER TABLE `databroker_new`.`offerProducts` DROP COLUMN `streamIP`, DROP COLUMN
 CREATE TABLE `databroker_new`.`streams` ( `streamIdx` INT(11) NOT NULL AUTO_INCREMENT, `purchaseIdx` INT(11), `IP` VARCHAR(64), `port` VARCHAR(64), PRIMARY KEY (`streamIdx`) ); 
 ALTER TABLE `databroker_new`.`streams` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `port`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
 ALTER TABLE `databroker_new`.`streams` ADD COLUMN `userIdx` INT(11) NULL AFTER `streamIdx`; 
+
+#2020-05-13
+ALTER TABLE `databroker_new`.`helptopics` CHANGE `description` `description` LONGTEXT NULL; 
+ALTER TABLE `databroker_new`.`helptopics` CHANGE `title` `title` VARCHAR(255) CHARSET utf8 COLLATE utf8_estonian_ci NULL; 
+ALTER TABLE `databroker_new`.`faqs` CHANGE `description` `description` LONGTEXT NULL; 
+ALTER TABLE `databroker_new`.`helptopics` ADD COLUMN `meta_title` VARCHAR(255) NULL AFTER `description`, ADD COLUMN `meta_description` LONGTEXT NULL AFTER `meta_title`; 

@@ -25,7 +25,7 @@
                         <a href = "{{ route('help.buying_data') }}">
                             <div class="flex-center flex-vertical help-item-container">
                                 <div class="icon-75 icon-cart-buying"></div>
-                                <p class="h3 text-center">QUESTIONS ABOUT BUYING DATA?</p>
+                                <h2 class="fs-20 text-black text-bold text-center">QUESTIONS ABOUT BUYING DATA?</h2>
                             </div>
                         </a>
                     </div>
@@ -33,14 +33,14 @@
                         <a href = "{{ route('help.selling_data') }}">
                             <div class="flex-center flex-vertical help-item-container">
                                 <div class="icon-75 icon-cart-selling"></div>
-                                <p class="h3 text-center">QUESTIONS ABOUT SELLING DATA?</p>
+                                <h2 class="fs-20 text-black text-bold text-center">QUESTIONS ABOUT SELLING DATA?</h2>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-4 mgh30">
                         <div class="flex-center flex-vertical help-item-container">
                             <div class="divider-green"></div>
-                            <p class="h3 text-center">DIDN’T FIND THE ANSWER?</p>
+                            <h2 class="fs-20 text-black text-bold text-center">DIDN’T FIND THE ANSWER?</h2>
                             <p class="para mgb25 text-center">Don’t hesitate to contact us, <br/> we’ll be happy to help!</p>
                             <a href="{{ route('contact') }}"><button class="customize-btn">CONTACT US</button></a>
                         </div>
@@ -49,7 +49,7 @@
                         <a href="{{ route('help.guarantee') }}">
                             <div class="flex-center flex-vertical help-item-container small">
                                 <div class="divider-green"></div>
-                                <p class="h3 text-center">OUR GUARANTEES</p>
+                                <h2 class="fs-20 text-black text-bold text-center">OUR GUARANTEES</h2>
                             </div>
                         </a>
                     </div>
@@ -57,7 +57,7 @@
                         <a href="{{ route('help.file_complaint') }}">
                             <div class="flex-center flex-vertical help-item-container small">
                                 <div class="divider-green"></div>
-                                <p class="h3 text-center">FILE A COMPLAINT</p>
+                                <h2 class="fs-20 text-black text-bold text-center">FILE A COMPLAINT</h2>
                             </div>
                         </a>
                     </div>
@@ -65,7 +65,7 @@
                         <a href="{{ route('help.feedback') }}">
                             <div class="flex-center flex-vertical help-item-container small">
                                 <div class="divider-green"></div>
-                                <p class="h3 text-center">SHARE YOUR FEEDBACK</p>
+                                <h2 class="fs-20 text-black text-bold text-center">SHARE YOUR FEEDBACK</h2>
                             </div>
                         </a>
                         

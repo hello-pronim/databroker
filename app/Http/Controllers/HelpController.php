@@ -59,6 +59,12 @@ class HelpController extends Controller
         return view('help.buying-data', compact($data));
     }
 
+    public function buying_data_topic(Request $request){
+        $topic = HelpTopic::where('helpTopicIdx', $request->topicIdx)->get()->first();
+        $data = array('topic');
+        return view('help.buying-data-topic', compact($data));
+    }
+
     public function selling_data(Request $request)
     {
         $topics = HelpTopic::where('page', 'selling')->get();
@@ -66,6 +72,12 @@ class HelpController extends Controller
         $faqs = FAQ::where('for', 'selling')->orderby('created_at', 'desc')->limit(10)->get();
         $data = array( 'topics', 'header', 'faqs' );
         return view('help.selling-data', compact($data));
+    }
+
+    public function selling_data_topic(Request $request){
+        $topic = HelpTopic::where('helpTopicIdx', $request->topicIdx)->get()->first();
+        $data = array('topic');
+        return view('help.selling-data-topic', compact($data));
     }
 
     public function guarantee()

@@ -10,7 +10,17 @@ $(function(){
 	    rules: {
 	        title: {
 	            required: true,
-	        }
+	        },
+            meta_title: {
+                required: true,
+            },
+            meta_description: {
+                required: true,
+            },
+            description: {
+                required: true,
+            }
+
 	    },
 	    //display error alert on form submit  
 	    invalidHandler: function(event, validator) {     

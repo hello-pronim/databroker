@@ -15,6 +15,6 @@ class HelpTopic extends Model
      * @var array
      */
     protected $fillable = [
-        'page', 'title', 'description'
+        'page', 'title', 'description', 'meta_title', 'meta_description'
     ];
 }

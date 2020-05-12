@@ -834,10 +834,16 @@ class AdminController extends Controller
         if($request->helpTopicIdx==0){
             $topic['page'] = "buying";
             $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            $topic['meta_title'] = $request->meta_title;
+            $topic['meta_description'] = $request->meta_description;
             HelpTopic::create($topic);
         }else{
             $topic['page'] = "buying";
             $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            $topic['meta_title'] = $request->meta_title;
+            $topic['meta_description'] = $request->meta_description;
             HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
         }
         return "success";
@@ -918,10 +924,16 @@ class AdminController extends Controller
         if($request->helpTopicIdx==0){
             $topic['page'] = "selling";
             $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            $topic['meta_title'] = $request->meta_title;
+            $topic['meta_description'] = $request->meta_description;
             HelpTopic::create($topic);
         }else{
             $topic['page'] = "selling";
             $topic['title'] = $request->title;
+            $topic['description'] = $request->description;
+            $topic['meta_title'] = $request->meta_title;
+            $topic['meta_description'] = $request->meta_description;
             HelpTopic::where('helpTopicIdx', $request->helpTopicIdx)->update($topic);
         }
         return "success";
