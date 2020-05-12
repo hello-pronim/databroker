@@ -178,8 +178,9 @@ class ProfileController extends Controller
                         ->get()
                         ->first()
                         ->companyName;
+        $stream = Stream::where('purchaseIdx', $detail->purchaseIdx)->get()->first();
         if(!$detail) return redirect(route('account.sales'));
-        $data = array('detail', 'company');
+        $data = array('detail', 'company', 'stream');
         return view('account.sales_detail', compact($data));
     }
 

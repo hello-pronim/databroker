@@ -76,13 +76,15 @@
                                 </div>
                             @elseif($detail->productType=="Stream")
                                 <p class="fs-16">{{$detail->offerDescription}}</p>
+                                @if(isset($stream))
                                 <div class="mt-20">
                                     <span class="info-label">{{trans('data.stream_ip')}}:</span>
-                                    <span class="info-text">{{$detail->streamIP}}</span>
+                                    <span class="info-text">{{$stream->IP}}</span>
                                     <span class="mlr-20"><b>:</b></span>
                                     <span class="info-label">{{trans('data.stream_port')}}:</span>
-                                    <span class="info-text">{{$detail->streamPort}}</span>
+                                    <span class="info-text">{{$stream->port}}</span>
                                 </div>
+                                @endif
                                 <div class="mt-20">
                                     <span class="info-label">{{trans('data.api_key')}}:</span>
                                     <span class="info-text" id="uniqueId">{{$detail->apiKey}}</span>
@@ -91,19 +93,6 @@
                                 <div class="mt-20">
                                     <span class="info-label fs-10">Transaction ID:</span>
                                     <span class="info-label fs-10">{{$detail->transactionId}}</span>
-                                </div>
-                                <div class="buttons flex-vcenter mt-20">
-                                    <button type="button" class="customize-btn btn-next">{{ trans('data.configure_now') }}</button>
-                                </div>
-                            @elseif($detail->productType=="File")
-                                <div class="buttons flex-vcenter">
-                                    @if($detail->productBidType=="free")
-                                    <a href="{{$detail->productUrl}}" download>
-                                        <button type="button" class="customize-btn btn-next">{{ trans('data.download_file') }}</button>
-                                    </a>
-                                    @else
-                                    <button type="button" class="customize-btn btn-next">{{ trans('data.download_file') }}</button>
-                                    @endif
                                 </div>
                             @endif
                             </div>
