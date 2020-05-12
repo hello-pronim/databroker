@@ -59,7 +59,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::post('/data/buy/{id}/{pid}', 'DataController@pay_data')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.pay_data');
 		Route::get('/data/buy/success/{purIdx}', 'DataController@pay_success')->where('purIdx', '[0-9]+')->name('data.pay_success');
 
-		Route::get('/data/get/{id}/{pid}', 'DataController@get_data')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.get_data');
+		Route::get('/data/get/review/{id}/{pid}', 'DataController@get_data')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.get_data');
+		Route::post('/data/get/review/{id}/{pid}', 'DataController@take_data')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.take_data');
+		Route::get('/data/get/success/{purIdx}', 'DataController@get_success')->where('purIdx', '[0-9]+')->name('data.get_success');
 
 		Route::get('/data/stream/configure/{purIdx}', 'DataController@configure_stream')->where('purIdx', '[0-9]+')->name('data.configure_stream');
 		Route::post('/data/stream/save', 'DataController@save_stream')->name('data.save_stream');

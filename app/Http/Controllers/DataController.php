@@ -827,7 +827,7 @@ class DataController extends Controller
             for( $i=0; $i< count($country); $i++ ){
                 $productcountry_data['regionIdx'] = $country[$i];
                 RegionProduct::create($productcountry_data);
-            }            
+            }
         }else{
             $productcountry_data['regionIdx'] = $country;
             RegionProduct::create($productcountry_data);
@@ -1570,6 +1570,41 @@ class DataController extends Controller
                                 ->where('offerProducts.offerIdx', $request->id)
                                 ->get()
                                 ->first();
+        $data = array('product');
+        return view('data.get_data_review', compact($data));
+    }
+
+    public function take_data(Request $request){
+        $user = $this->getAuthUser();
+        if(!$user)
+           return redirect('/login')->with('target', 'get free data');
+
+        $fields = [
+            'termcondition_privacypolicy' => ['required'],
+            'license_seller' => ['required'],
+        ];
+        $messages = [
+            'termcondition_privacypolicy.required'=>'Please confirm that you accept Databroker’s Terms and conditions and Privacy policy.',
+            'license_seller.required'=>'Please confirm that you accept the data provider’s licence for the use of this data.',
+        ];
+
+        $validator = Validator::make($request->all(), $fields, $messages);
+
+        if($validator->fails()){
+            return redirect(url()->previous())
+                    ->withErrors($validator)
+                    ->withInput();             
+        }
+
+        $product = OfferProduct::with('region')
+                                ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                ->where('offerProducts.productIdx', $request->pid)
+                                ->where('offerProducts.offerIdx', $request->id)
+                                ->get()
+                                ->first();
         $lastPurchase = Purchase::where('productIdx', $request->pid)->where('userIdx', $user->userIdx)->orderby('created_at', 'desc')->get()->first();
 
         $purchaseData['productIdx'] = $request->pid;
@@ -1658,7 +1693,7 @@ class DataController extends Controller
 
             $apiKey="";
             $transactionId = "";
-            if($product->productType=="Api flow"){
+            if($product->productType=="Api flow" || $product->productType=="Stream"){
                 $datetime = time();
                 $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 20);
 
@@ -1688,9 +1723,31 @@ class DataController extends Controller
                 'data'=>$mailData
             ]);
 
-            $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId');
-            return view('data.get_data', compact($data));
+            return redirect(route('data.get_success', ['purIdx'=>$paidProductObj->purchaseIdx]));
         }else return redirect(route('account.purchases'));
+    }
+
+    public function get_success(Request $request){
+        $product = OfferProduct::with('region')
+                                ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                                ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                                ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                                ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                                ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
+                                ->where('purchases.purchaseIdx', $request->purIdx)
+                                ->get()
+                                ->first();
+        $from = date('d/m/Y', strtotime($product['from']));
+        $to = date('d/m/Y', strtotime($product['to']));
+        $expire_on = date('d/m/Y', strtotime('+1 day', strtotime($product['to'])));
+        $apiKey="";
+        $transactionId = $product->transactionId;
+        if($product->productType=="Api flow" || $product->productType=="Stream"){
+            $apiKeyObj = ApiProductKey::where('purchaseIdx', $request->purIdx)->get()->first();
+            if($apiKeyObj) $apiKey = $apiKeyObj->apiKey;
+        }
+        $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId');
+        return view('data.get_success', compact($data));
     }
 
     public function bid(Request $request){
