@@ -520,7 +520,7 @@ ALTER TABLE `databroker_new`.`streams` ADD COLUMN `created_at` TIMESTAMP NULL AF
 ALTER TABLE `databroker_new`.`streams` ADD COLUMN `userIdx` INT(11) NULL AFTER `streamIdx`; 
 
 #2020-05-13
-ALTER TABLE `databroker_new`.`helptopics` CHANGE `description` `description` LONGTEXT NULL; 
-ALTER TABLE `databroker_new`.`helptopics` CHANGE `title` `title` VARCHAR(255) CHARSET utf8 COLLATE utf8_estonian_ci NULL; 
+ALTER TABLE `databroker_new`.`helpTopics` CHANGE `description` `description` LONGTEXT NULL; 
+ALTER TABLE `databroker_new`.`helpTopics` CHANGE `title` `title` VARCHAR(255) CHARSET utf8 COLLATE utf8_estonian_ci NULL; 
 ALTER TABLE `databroker_new`.`faqs` CHANGE `description` `description` LONGTEXT NULL; 
-ALTER TABLE `databroker_new`.`helptopics` ADD COLUMN `meta_title` VARCHAR(255) NULL AFTER `description`, ADD COLUMN `meta_description` LONGTEXT NULL AFTER `meta_title`; 
+ALTER TABLE `databroker_new`.`helpTopics` ADD COLUMN `meta_title` VARCHAR(255) NULL AFTER `description`, ADD COLUMN `meta_description` LONGTEXT NULL AFTER `meta_title`; 
