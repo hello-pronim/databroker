@@ -38,7 +38,7 @@
                 <table class="table table-striped- table-bordered table-hover table-checkable" id="board_table">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>Topic ID</th>
                             <th>Title</th>
                             <th>Actions</th>
                         </tr>
@@ -46,7 +46,7 @@
                     <tbody>
                         @foreach($topics as $index=>$topic)                      
                             <tr>
-                                <td>{{$index+1}}</td>
+                                <td>{{ $topic->helpTopicIdx }}</td>
                                 <td>{{ $topic->title }}</td>
                                 <td>{{ $topic->helpTopicIdx }}</td>
                             </tr>
