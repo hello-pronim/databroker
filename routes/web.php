@@ -244,6 +244,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/admin/company_users/{adminUserIdx}', 'AdminController@company_users')->where('adminUserIdx', '[0-9]+')->name('admin.company_users');
 		Route::get('/admin/users/edit/{userIdx}', 'AdminController@edit_user')->name('admin.edit_user');
 		Route::post('/admin/users/update', 'AdminController@update_user')->name('admin.update_user');
+		Route::get('/admin/users/delete/{userIdx}', 'AdminController@delete_user')->name('admin.delete_user');
 	});
 
 	$communities = Community::get();

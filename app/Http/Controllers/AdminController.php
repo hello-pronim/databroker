@@ -1160,4 +1160,58 @@ class AdminController extends Controller
         }else 
             echo "fail";
     }
+    public function delete_user(Request $request){
+        $user = User::where('userIdx', $request->userIdx)->get()->first();
+        if($user){
+            if($user->userStatus==1){
+                $subusers = User::where('companyIdx', $user->companyIdx)->get();
+                if($subusers->count()>0){
+                    foreach ($subusers as $user) {
+                        $provider = Provider::where('userIdx', $user->userIdx)->get()->first();
+                        if($provider){
+                            $offer = Offer::where('providerIdx', $provider->providerIdx)->get()->first();
+                            if($offer){
+                                $products = OfferProduct::where('offerIdx', $offer->offerIdx)->get();
+                                foreach ($products as $product) {
+                                    RegionProduct::where('productIdx', $product->productIdx)->delete();
+                                }
+                                OfferProduct::where('offerIdx', $offer->offerIdx)->delete();
+                            }
+                            OfferCountry::where('offerIdx', $offer->offerIdx)->delete();
+                            OfferSample::where('offerIdx', $offer->offerIdx)->delete();
+                            OfferTheme::where('offerIdx', $offer->offerIdx)->delete();
+                            Offer::where('providerIdx', $provider->providerIdx)->delete();
+                            Provider::where('userIdx', $user->userIdx)->delete();
+                        }
+                        User::where('userIdx', $user->userIdx)->delete();
+                    }
+                }
+                User::where('userIdx', $request->userIdx)->delete();
+                echo "success";
+            }else if($user->userStatus==2){
+                try{
+                    $provider = Provider::where('userIdx', $request->userIdx)->get()->first();
+                    if($provider){
+                        $offer = Offer::where('providerIdx', $provider->providerIdx)->get()->first();
+                        if($offer){
+                            $products = OfferProduct::where('offerIdx', $offer->offerIdx)->get();
+                            foreach ($products as $product) {
+                                RegionProduct::where('productIdx', $product->productIdx)->delete();
+                            }
+                            OfferProduct::where('offerIdx', $offer->offerIdx)->delete();
+                        }
+                        OfferCountry::where('offerIdx', $offer->offerIdx)->delete();
+                        OfferSample::where('offerIdx', $offer->offerIdx)->delete();
+                        OfferTheme::where('offerIdx', $offer->offerIdx)->delete();
+                        Offer::where('providerIdx', $provider->providerIdx)->delete();
+                        Provider::where('userIdx', $request->userIdx)->delete();
+                    }
+                    User::where('userIdx', $request->userIdx)->delete();
+                    echo "success";
+                }catch(Exception $e){
+                    echo "fail";
+                }
+            }
+        }else echo "fail";
+    }
 }

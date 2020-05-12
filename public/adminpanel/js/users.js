@@ -185,7 +185,7 @@ function wantDelete(record_idx){
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         url: '/admin/users/delete/'+record_idx,
-        method: 'post',
+        method: 'get',
         success: function(res){
           if(res=="success"){
             window.location.href="/admin/users";
