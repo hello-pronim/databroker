@@ -512,3 +512,9 @@ ALTER TABLE `articles` CHANGE COLUMN `articleContent` `articleContent` TEXT NULL
 #2020-05-07
 ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `streamIP` VARCHAR(255) NULL AFTER `productUrl`, ADD COLUMN `streamPort` VARCHAR(255) NULL AFTER `streamIP`; 
 ALTER TABLE `databroker_new`.`sales` ADD COLUMN `purchaseIdx` INT(11) NULL AFTER `saleIdx`; 
+
+#2020-05-12
+ALTER TABLE `databroker_new`.`offerProducts` DROP COLUMN `streamIP`, DROP COLUMN `streamPort`; 
+CREATE TABLE `databroker_new`.`streams` ( `streamIdx` INT(11) NOT NULL AUTO_INCREMENT, `purchaseIdx` INT(11), `IP` VARCHAR(64), `port` VARCHAR(64), PRIMARY KEY (`streamIdx`) ); 
+ALTER TABLE `databroker_new`.`streams` ADD COLUMN `created_at` TIMESTAMP NULL AFTER `port`, ADD COLUMN `updated_at` TIMESTAMP NULL AFTER `created_at`; 
+ALTER TABLE `databroker_new`.`streams` ADD COLUMN `userIdx` INT(11) NULL AFTER `streamIdx`; 

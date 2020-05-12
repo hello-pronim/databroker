@@ -25,6 +25,7 @@ use App\Models\Message;
 use App\Models\Region;
 use App\Models\Transaction;
 use App\Models\LinkedUser;
+use App\Models\Stream;
 
 use Redirect;
 use Image;
@@ -114,8 +115,9 @@ class ProfileController extends Controller
                         ->get()
                         ->first()
                         ->companyName;
+        $stream = Stream::where('userIdx', $user->userIdx)->where('purchaseIdx', $request->pid)->get()->first();
         if(!$detail) return redirect(route('account.purchases'));
-        $data = array('detail', 'company');
+        $data = array('detail', 'company', 'stream');
         return view('account.purchases_detail', compact($data));
     }
 

@@ -65,5 +65,7 @@ return [
     'stream_ip'=>'IP',
     'stream_port'=>'Port',
     'configure_now'=>'Configure now',
-    'continue_to_databroker'=>'Continue to databroker'
+    'save'=>'Save',
+    'continue_to_databroker'=>'Continue to databroker',
+    'save_stream_success'=>'You have successfully configured stream details.',
 ];

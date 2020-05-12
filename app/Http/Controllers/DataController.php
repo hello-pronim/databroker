@@ -33,6 +33,7 @@ use App\Models\ApiProductKey;
 use App\Models\Transaction;
 use App\User;
 use App\Models\Business;
+use App\Models\Stream;
 
 use Redirect;
 use Config;
@@ -795,11 +796,6 @@ class DataController extends Controller
             $product_data['offerIdx'] = $request->offerIdx;
         }
         $product_data['productType'] = $request->format;
-        if($request->format=="Stream"){
-            $product_data['streamIP'] = $request->streamIP;
-            $product_data['streamPort'] = $request->streamPort;
-        }
-        //$product_data['productMoreInfo'] = $request->productMoreInfo;
         $product_data['productBidType'] = $request->period;
         $period = $product_data['productBidType'].'_period';
         $price = $product_data['productBidType'].'_price';
@@ -1957,5 +1953,63 @@ class DataController extends Controller
         }
 
         return redirect(route('profile.seller_bids'));
+    }
+    public function configure_stream(Request $request){
+        $user = $this->getAuthUser();
+        if(!$user)
+            return redirect('/login')->with('target', 'configure stream details');
+        $product = OfferProduct::with(['region'])
+                        ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
+                        ->leftjoin('apiProductKeys', 'apiProductKeys.purchaseIdx', '=', 'purchases.purchaseIdx')
+                        ->leftjoin('bids', 'bids.bidIdx', '=', 'purchases.bidIdx')
+                        ->where('purchases.purchaseIdx', $request->purIdx)
+                        ->get()
+                        ->first();
+        $company = Offer::join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->where('offers.offerIdx', $product->offerIdx)
+                        ->get()
+                        ->first()
+                        ->companyName;
+        $stream = Stream::where('userIdx', $user->userIdx)->where('purchaseIdx', $request->purIdx)->get()->first();
+        $data = array('product', 'stream', 'company');
+        return view('data.configure_stream', compact($data));
+    }
+    public function save_stream(Request $request){
+        $fields = [
+            'IP' => ['required'],
+            'port' => ['required', 'numeric']
+        ];
+
+        $messages = [
+            'bidPrice.required' => 'Your bid price is required.',
+            'bidPrice.numeric' => 'Bid price should be numeric.',
+            'bidPrice.min' => 'Bid price should be higher than €0.50'
+        ];
+
+        $validator = Validator::make($request->all(), $fields, $messages);
+
+        if($validator->fails()){
+            return redirect(url()->previous())
+                        ->withErrors($validator)
+                        ->withInput();             
+        }
+        $user = $this->getAuthUser();
+        $stream['purchaseIdx'] = $request->purchaseIdx;
+        $stream['userIdx'] = $user->userIdx;
+        $stream['IP'] = $request->IP;
+        $stream['port'] = $request->port;
+
+        if($request->streamIdx==0)
+            Stream::create($stream);
+        else Stream::where('streamIdx', $request->streamIdx)->update($stream);
+
+        return redirect(route('data.save_stream_success'));
+    }
+    public function save_stream_success(Request $request){
+        return view('data.save_stream_success');
     }
 }

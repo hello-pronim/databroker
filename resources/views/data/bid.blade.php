@@ -11,8 +11,11 @@
 	            <h1>Send a bid to {{$provider->companyName}}</h1>
 	            <p class="para text-bold">{{$product->productTitle}}</p>
 	            <p class="para">
-	            	@foreach($product['region'] as $region)
+	            	@foreach($product['region'] as $key=>$region)
 	            		<span>{{$region->regionName}}</span>
+	            		@if(count($product['region'])>$key+1)
+	            		<span>, </span>
+	            		@endif
 	            	@endforeach
 	            </p>
 	        </div>

@@ -60,6 +60,10 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/data/buy/success/{purIdx}', 'DataController@pay_success')->where('purIdx', '[0-9]+')->name('data.pay_success');
 
 		Route::get('/data/get/{id}/{pid}', 'DataController@get_data')->where('id', '[0-9]+')->where('pid', '[0-9]+')->name('data.get_data');
+
+		Route::get('/data/stream/configure/{purIdx}', 'DataController@configure_stream')->where('purIdx', '[0-9]+')->name('data.configure_stream');
+		Route::post('/data/stream/save', 'DataController@save_stream')->name('data.save_stream');
+		Route::get('/data/stream/save/success', 'DataController@save_stream_success')->name('data.save_stream_success');
 		
 		Route::post('/data/add', 'DataController@add_offer')->name('data.add_offer');
 		Route::post('/data/update-status', 'DataController@data_update_status')->name('data.update_status');			

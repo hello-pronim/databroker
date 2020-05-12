@@ -101,24 +101,6 @@
 									  <input type="radio" name="format" value="Stream">
 									  <span class="checkmark"></span>
 									</label>
-									<div class="stream_detail">
-										<div class="row">
-						                	<div class="col-lg-6">
-						                		<label class="pure-material-textfield-outlined mb-0">
-						                			<input type="text" id="streamIP" name="streamIP" class="form-control input_data w-100" placeholder=" " value="">
-						                			<span>{{ trans('pages.stream_ip') }}</span>
-						                		</label>
-						                	</div>
-						                	<div class="col-lg-6">
-						                		<label class="pure-material-textfield-outlined mb-0">
-						                			<input type="text" id="streamPort" name="streamPort" class="form-control input_data w-100" placeholder=" " value="">
-						                			<span>{{ trans('pages.stream_port') }}</span>
-						                		</label>
-						                	</div>
-						                </div>		
-										<span class="error_notice streamIP"> IP is required.</span>
-										<span class="error_notice streamPort"> Port is required.</span>
-									</div>
 								</div>
 			                </div>
 			                <span class="error_notice format"> Please select the data format.</span>
@@ -315,8 +297,6 @@
 
 @section('additional_javascript')
 	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>
-	<script src="{{ asset('js/plugins/inputmask.js') }}"></script>
-	<script src="{{ asset('js/plugins/jquery.inputmask.js') }}"></script>
 
 	<script type="text/javascript">
 		let active_id = $('.list-dxc .selectable-list-item.active').attr('item-id');
@@ -342,6 +322,5 @@
 			$('.list-data .selectable-list-item.selected').removeClass('selected');
 			$(this).addClass('selected');
 		});
-		$("input[name='streamIP']").inputmask({"mask":"999.999.999.999"});
 	</script>
 @endsection
