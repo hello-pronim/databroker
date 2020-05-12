@@ -83,6 +83,7 @@ class ProfileController extends Controller
     {
         $user = $this->getAuthUser();
         $purchases = OfferProduct::with(['region'])
+                        ->select("offerProducts.*", "offers.*", "providers.*", "users.*", "companies.*", "purchases.*", "bids.*", "purchases.productIdx as productIDX")
                         ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                         ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                         ->join('users', 'users.userIdx', '=', 'providers.userIdx')
