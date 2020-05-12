@@ -1570,8 +1570,14 @@ class DataController extends Controller
                                 ->where('offerProducts.offerIdx', $request->id)
                                 ->get()
                                 ->first();
-        $data = array('product');
-        return view('data.get_data_review', compact($data));
+        $lastPurchase = Purchase::where('productIdx', $request->pid)->where('userIdx', $user->userIdx)->orderby('created_at', 'desc')->get()->first();
+        
+        if(!$product || $product->productBidType!="free"){ 
+            return Redirect::back();
+        } else if(!$lastPurchase || $lastPurchase->to < date('Y-m-d')){
+            $data = array('product');
+            return view('data.get_data_review', compact($data));
+        } else return redirect(route('account.purchases'));
     }
 
     public function take_data(Request $request){
@@ -1605,7 +1611,6 @@ class DataController extends Controller
                                 ->where('offerProducts.offerIdx', $request->id)
                                 ->get()
                                 ->first();
-        $lastPurchase = Purchase::where('productIdx', $request->pid)->where('userIdx', $user->userIdx)->orderby('created_at', 'desc')->get()->first();
 
         $purchaseData['productIdx'] = $request->pid;
         $purchaseData['userIdx'] = $user->userIdx;
@@ -1634,97 +1639,93 @@ class DataController extends Controller
                         ->get()
                         ->first();
 
-        if(!$product || $product->productBidType!="free"){ 
-            return Redirect::back();
-        }else if(!$lastPurchase || $lastPurchase->to < date('Y-m-d')){
+        $datetime = time();
+        $sellerIdx = base_convert($seller->userIdx, 10, 26);
+        $sellerIdx = str_pad($sellerIdx, 5, '0', STR_PAD_LEFT);
+        $srnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 30);
+        $stransactionId = $sellerIdx . $datetime . $srnd;
+        $stransaction['transactionId'] = $stransactionId;
+        $stransaction['transactionType'] = 'sold';
+        $stransaction['userIdx'] = $seller->userIdx;
+        $stransaction['senderIdx'] = $user->userIdx;
+        $stransaction['receiverIdx'] = $seller->userIdx;
+        $stransaction['productIdx'] = $request->pid;
+        $stransaction['amount'] = 0.00;
+        $stransaction['status'] = 'complete';
+
+        Transaction::create($stransaction);
+
+        $buyerIdx = base_convert($user->userIdx, 10, 26);
+        $buyerIdx = str_pad($buyerIdx, 5, '0', STR_PAD_LEFT);
+        $brnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 30);
+        $btransactionId = $buyerIdx . $datetime . $brnd;
+        $btransaction['transactionId'] = $btransactionId;
+        $btransaction['transactionType'] = 'purchased';
+        $btransaction['userIdx'] = $user->userIdx;
+        $btransaction['senderIdx'] = $user->userIdx;
+        $btransaction['receiverIdx'] = $seller->userIdx;
+        $btransaction['productIdx'] = $request->pid;
+        $btransaction['amount'] = 0.00;
+        $btransaction['status'] = 'complete';
+
+        Transaction::create($btransaction);
+
+        $purchaseData['transactionId'] = $btransactionId;
+        $paidProductObj = Purchase::create($purchaseData);
+
+        $soldProductData = $purchaseData;
+        unset($soldProductData['userIdx']);
+        $soldProductData['purchaseIdx'] = $paidProductObj->purchaseIdx;
+        $soldProductData['sellerIdx'] = $seller->userIdx;
+        $soldProductData['buyerIdx'] = $user->userIdx;
+        $soldProductData['redeemed'] = 0;
+        $soldProductData['redeemed_at'] = null;
+        $soldProductData['transactionId'] = $stransactionId;
+        $soldProductObj = Sale::create($soldProductData);
+
+        $mailData['seller'] = $seller;
+        $mailData['buyer'] = $buyer;
+        $mailData['finalPrice'] = 0;
+        $mailData['product'] = $product;
+        $mailData['from'] = date('d/m/Y', strtotime($purchaseData['from']));
+        $mailData['to'] = date('d/m/Y', strtotime($purchaseData['to']));
+        $mailData['expire_at'] = date('d/m/Y', strtotime('+1 day', strtotime($purchaseData['to'])));
+        $mailData['warranty_to'] = date('d/m/Y', strtotime('+30 days', strtotime($purchaseData['from'])));
+        $mailData['redeemed_on'] = date('d/m/Y', strtotime('+14 days', strtotime($purchaseData['from'])));
+
+        $apiKey="";
+        $transactionId = "";
+        if($product->productType=="Api flow" || $product->productType=="Stream"){
             $datetime = time();
-            $sellerIdx = base_convert($seller->userIdx, 10, 26);
-            $sellerIdx = str_pad($sellerIdx, 5, '0', STR_PAD_LEFT);
-            $srnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 30);
-            $stransactionId = $sellerIdx . $datetime . $srnd;
-            $stransaction['transactionId'] = $stransactionId;
-            $stransaction['transactionType'] = 'sold';
-            $stransaction['userIdx'] = $seller->userIdx;
-            $stransaction['senderIdx'] = $user->userIdx;
-            $stransaction['receiverIdx'] = $seller->userIdx;
-            $stransaction['productIdx'] = $request->pid;
-            $stransaction['amount'] = 0.00;
-            $stransaction['status'] = 'complete';
+            $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 20);
 
-            Transaction::create($stransaction);
+            $purchaseIdx = base_convert($paidProductObj->purchaseIdx, 10, 26);
+            $purchaseIdx = str_pad($purchaseIdx, 5, '0', STR_PAD_LEFT);
+            $apiKey = $purchaseIdx . base64_encode($datetime) . $rnd;
 
-            $buyerIdx = base_convert($user->userIdx, 10, 26);
-            $buyerIdx = str_pad($buyerIdx, 5, '0', STR_PAD_LEFT);
-            $brnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 30);
-            $btransactionId = $buyerIdx . $datetime . $brnd;
-            $btransaction['transactionId'] = $btransactionId;
-            $btransaction['transactionType'] = 'purchased';
-            $btransaction['userIdx'] = $user->userIdx;
-            $btransaction['senderIdx'] = $user->userIdx;
-            $btransaction['receiverIdx'] = $seller->userIdx;
-            $btransaction['productIdx'] = $request->pid;
-            $btransaction['amount'] = 0.00;
-            $btransaction['status'] = 'complete';
-
-            Transaction::create($btransaction);
-
-            $purchaseData['transactionId'] = $btransactionId;
-            $paidProductObj = Purchase::create($purchaseData);
-
-            $soldProductData = $purchaseData;
-            unset($soldProductData['userIdx']);
-            $soldProductData['purchaseIdx'] = $paidProductObj->purchaseIdx;
-            $soldProductData['sellerIdx'] = $seller->userIdx;
-            $soldProductData['buyerIdx'] = $user->userIdx;
-            $soldProductData['redeemed'] = 0;
-            $soldProductData['redeemed_at'] = null;
-            $soldProductData['transactionId'] = $stransactionId;
-            $soldProductObj = Sale::create($soldProductData);
-
-            $mailData['seller'] = $seller;
-            $mailData['buyer'] = $buyer;
-            $mailData['finalPrice'] = 0;
-            $mailData['product'] = $product;
-            $mailData['from'] = date('d/m/Y', strtotime($purchaseData['from']));
-            $mailData['to'] = date('d/m/Y', strtotime($purchaseData['to']));
-            $mailData['expire_at'] = date('d/m/Y', strtotime('+1 day', strtotime($purchaseData['to'])));
-            $mailData['warranty_to'] = date('d/m/Y', strtotime('+30 days', strtotime($purchaseData['from'])));
-            $mailData['redeemed_on'] = date('d/m/Y', strtotime('+14 days', strtotime($purchaseData['from'])));
-
-            $apiKey="";
-            $transactionId = "";
-            if($product->productType=="Api flow" || $product->productType=="Stream"){
-                $datetime = time();
-                $rnd = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') ,1 , 20);
-
-                $purchaseIdx = base_convert($paidProductObj->purchaseIdx, 10, 26);
-                $purchaseIdx = str_pad($purchaseIdx, 5, '0', STR_PAD_LEFT);
-                $apiKey = $purchaseIdx . base64_encode($datetime) . $rnd;
-
-                ApiProductKey::create([
-                    'purchaseIdx' => $paidProductObj->purchaseIdx,
-                    'apiKey' => $apiKey
-                ]);
-                $transactionId = $btransactionId;
-            }
-
-            $this->sendEmail("buydata", [
-                'from'=>'cg@jts.ec', 
-                'to'=>$buyer['email'], 
-                'subject'=>'You’ve successfully purchased a data product', 
-                'name'=>'Databroker',
-                'data'=>$mailData
-            ]);  
-            $this->sendEmail("selldata", [
-                'from'=>'cg@jts.ec', 
-                'to'=>$seller['email'], 
-                'subject'=>'You’ve sold a data product', 
-                'name'=>'Databroker',
-                'data'=>$mailData
+            ApiProductKey::create([
+                'purchaseIdx' => $paidProductObj->purchaseIdx,
+                'apiKey' => $apiKey
             ]);
+            $transactionId = $btransactionId;
+        }
 
-            return redirect(route('data.get_success', ['purIdx'=>$paidProductObj->purchaseIdx]));
-        }else return redirect(route('account.purchases'));
+        $this->sendEmail("buydata", [
+            'from'=>'cg@jts.ec', 
+            'to'=>$buyer['email'], 
+            'subject'=>'You’ve successfully purchased a data product', 
+            'name'=>'Databroker',
+            'data'=>$mailData
+        ]);  
+        $this->sendEmail("selldata", [
+            'from'=>'cg@jts.ec', 
+            'to'=>$seller['email'], 
+            'subject'=>'You’ve sold a data product', 
+            'name'=>'Databroker',
+            'data'=>$mailData
+        ]);
+
+        return redirect(route('data.get_success', ['purIdx'=>$paidProductObj->purchaseIdx]));
     }
 
     public function get_success(Request $request){
