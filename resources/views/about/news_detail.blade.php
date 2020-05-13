@@ -20,7 +20,7 @@
             <div class="blog-header row">                
                 <div class="col-md-12">
                     <h1 class="h1-small" id="update_title">{{$update[0]->articleTitle}}</h1>
-                    <p class="fs-18"><h3 class="color-green" id="update_published"><b>- By&nbsp;{{ $update[0]->author }}&nbsp;|&nbsp;{{ date_format($update[0]->published,"F d, Y") }}</b></h3></p>
+                    <h4 class="color-green" id="update_published"><b>- By&nbsp;{{ $update[0]->author }}&nbsp;|&nbsp;{{ date_format($update[0]->published,"F d, Y") }}</b></h4>
                 </div>                
             </div>          
             <div class="blog-content" id="updates_blog_content">
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="row">                
-                        <div class="col-md-12" id="updates-article-content">
+                        <div class="col-md-12" id="updates-article-content" class="cms-content">
                             {!! $update[0]->articleContent !!}
                         </div>                
                     </div> 

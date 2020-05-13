@@ -11,7 +11,7 @@
 				<div class="card card-raised card-background" style="background-image: url({{ asset('images/communities/'.str_replace( ' ', '_', $community).'/hero.jpg') }})">
 					<div class="hero_overlay_bg"></div>
 					<div class="card-body">						
-						<h3 class="card-title fs-40">{{ $community }}</h3>
+						<h2 class="card-title fs-40">{{ $community }}</h2>
 						<p class="text-white fs-18">
 							{{ trans('description.'.str_replace( ' ', '_', $community).'_intro') }}
 						</p>
@@ -36,7 +36,7 @@
         	<a href="{{ route('data_community.'.str_replace( ' ', '_', strtolower($community))) }}" ><button type="button" class="button secondary-btn mgh25 w225">{{ trans('pages.view_dataoffer') }}</button></a>
         </div>
 
-        <h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('pages.discover_improve_business', ['community' => strtolower($community)])}} </h1>
+        <h2 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('pages.discover_improve_business', ['community' => strtolower($community)])}} </h2>
 		<div class="row">			
 			<div class="col-md-4">
 				<div class="card card-profile card-plain">
@@ -107,7 +107,7 @@
 
 <div class="container-fluid app-wapper">	
 	<div class="container">
-		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.team_picks') }} </h1>
+		<h2 class="mt-80 mb-20 fs-30 text-bold text-left"> {{ trans('home.team_picks') }} </h2>
 		<div class="row">
 			@foreach($offers as $offer)		
 			<div class="col-md-4">
@@ -164,7 +164,7 @@
             @endforeach
         </div> 
 
-        <h1 class="mt-80 mb-20 fs-30 text-bold text-left"> New In The {{$community}} Community </h1>
+        <h2 class="mt-80 mb-20 fs-30 text-bold text-left"> New In The {{$community}} Community </h2>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card card-profile card-plain">

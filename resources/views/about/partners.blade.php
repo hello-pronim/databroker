@@ -27,7 +27,7 @@
             <div class="blog-content">
                 <div class="row">
                     <div class="col-lg-4 flex-vcenter mgh30">
-                        <h3 class="text-bold">Technology partners</h3>
+                        <h2 class="text-bold">Technology partners</h2>
                     </div>
                 </div>
                 <div id="partner-list" class="mgh30">

@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div>
-                            <h3 class="text-bold">Connecting and serving</h3>
+                            <h2 class="text-bold">Connecting and serving</h2>
                             <p class="para">
                                 Responding to the needs of our data-driven age, Databroker is there to connect and serve, whatever the size of your organisation or company, and whatever your data needs.
                             </p>
@@ -30,7 +30,7 @@
                             </p>
                         </div>
                         <div>
-                            <h3 class="text-bold">Personalised DataMatch service</h3>
+                            <h2 class="text-bold">Personalised DataMatch service</h2>
                             <p class="para">
                                 For those who have trouble finding the data they need, we offer a tailor-made DataMatch service. Based on your specific needs, our DataMatch Advisor searches for potential data partners from our wide global network, and contacts you when they find what you need. At no extra cost.
                             </p>
@@ -38,7 +38,7 @@
                             <a href="{{ route('about.matchmaking') }}"><span class="color-green">Discover our DataMatch service</span></a>
                         </div>
                         <div>
-                            <h3 class="text-bold">Platform-as-a-Service solution (Paas)</h3>
+                            <h2 class="text-bold">Platform-as-a-Service solution (Paas)</h2>
                             <p class="para">
                                 Databroker is also available as white-labeled Platform-as-a-Service solution (PaaS), allowing data-rich companies to achieve, and even exceed their business ambitions by operating their own data exchange platform.
                             </p>

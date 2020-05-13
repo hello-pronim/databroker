@@ -11,7 +11,7 @@
             <div class="blog-header mgt60">
                 <h1>{{ $topic->title }}</h1>
             </div>  
-            <div class="blog-content">
+            <div class="blog-content cms-content">
                 {!! $topic->description !!}
             </div>
         </div>  

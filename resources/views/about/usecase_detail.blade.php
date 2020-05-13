@@ -29,20 +29,22 @@
                     </div>                
                 </div>  
                 <br>
-                <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                                <div class="card card-profile card-plain">                  
-                                    <div class="card-header holder" id="detail-cms-image">        
-                                        <img class="img" src="{{ asset('uploads/usecases/large/'.$usecase[0]->image) }}"  id="news_detail_img"/>
-                                    </div>
-                                </div>  
-                        </div>  
+                <div class="blog-content cms-content">
+                    <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                    <div class="card card-profile card-plain">                  
+                                        <div class="card-header holder" id="detail-cms-image">        
+                                            <img class="img" src="{{ asset('uploads/usecases/large/'.$usecase[0]->image) }}"  id="news_detail_img"/>
+                                        </div>
+                                    </div>  
+                            </div>  
+                    </div>
+                    <div class="row">                
+                            <div class="col-md-12" id="updates-article-content-sec">
+                                {!! $usecase[0]->articleContent !!}
+                            </div>                
+                    </div> 
                 </div>
-                <div class="row">                
-                        <div class="col-md-12" id="updates-article-content-sec">
-                            {!! $usecase[0]->articleContent !!}
-                        </div>                
-                </div> 
             </div>
         </div>
     </div>

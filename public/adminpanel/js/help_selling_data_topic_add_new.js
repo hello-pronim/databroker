@@ -10,6 +10,15 @@ $(function(){
         rules: {
             title: {
                 required: true,
+            },
+            meta_title: {
+                required: true,
+            },
+            meta_description: {
+                required: true,
+            },
+            description: {
+                minlength: 20 
             }
         },
         //display error alert on form submit  
@@ -44,5 +53,18 @@ $(function(){
                 );
         }
     });  
-    $(".summernote").summernote({height: 600,linkTargetBlank: true});
+    $(".summernote").summernote({
+        height: 600,
+        linkTargetBlank: true,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'italic', 'underline', 'clear']],
+          ['fontname', ['fontname']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+    });
 });

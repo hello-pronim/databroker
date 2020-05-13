@@ -24,25 +24,27 @@
             <div class="article-body">
                 <div class="blog-header row">                
                     <div class="col-md-12">
-                        <h1 class="h1-small" id="update_title">{{$update[0]->articleTitle}}</h1>
-                        <p class="fs-18"><h3 class="color-green" id="update_published"><b>- By&nbsp;{{ $update[0]->author }}&nbsp;|&nbsp;{{ date_format($update[0]->published,"F d, Y") }}</b></h3></p>
+                        <h1 class="h1-small">{{$update[0]->articleTitle}}</h1>
+                        <h4 class="color-green"><b>- By&nbsp;{{ $update[0]->author }}&nbsp;|&nbsp;{{ date_format($update[0]->published,"F d, Y") }}</b></h4>
                     </div>                
                 </div>  
                 <br>
-                <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                                <div class="card card-profile card-plain">                  
-                                    <div class="card-header holder" id="detail-cms-image">        
-                                        <img class="img" src="{{ asset('uploads/usecases/large/'.$update[0]->image) }}"  id="news_detail_img"/>
-                                    </div>
-                                </div>  
-                        </div>  
+                <div class="blog-content cms-content">
+                    <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                    <div class="card card-profile card-plain">                  
+                                        <div class="card-header holder" id="detail-cms-image">        
+                                            <img class="img" src="{{ asset('uploads/usecases/large/'.$update[0]->image) }}"  id="news_detail_img"/>
+                                        </div>
+                                    </div>  
+                            </div>  
+                    </div>
+                    <div class="row">                
+                            <div class="col-md-12" id="updates-article-content-sec">
+                                {!! $update[0]->articleContent !!}
+                            </div>                
+                    </div> 
                 </div>
-                <div class="row">                
-                        <div class="col-md-12" id="updates-article-content-sec">
-                            {!! $update[0]->articleContent !!}
-                        </div>                
-                </div> 
             </div>
         </div>
     </div>

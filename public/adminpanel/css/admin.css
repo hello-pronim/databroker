@@ -1,3 +1,7 @@
+body{
+    counter-reset: section;
+    font-family: DM Sans!important;
+}
 #admin_container{
     width: 100%;
 }
@@ -51,6 +55,9 @@
     color: aquamarine;
     text-decoration: none;
 }
+.m-form .form-control-label, .m-form label{
+    font-size: 14px;
+}
 #published_date::-webkit-inner-spin-button{
     display: none;
 }
@@ -93,3 +100,12 @@
 #board_form .form-control-feedback{
     color: #F44336;
 }
+.note-editable p{font-size: 18px!important;font-family: DM Sans!important;}
+.note-editable span{font-size: 18px!important;font-family: DM Sans!important;}
+.note-editable a{color: #78E6D0!important;cursor: pointer!important;font-family: DM Sans!important;}
+.note-editable h1, .note-editable h1 span{font-size: 40px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
+.note-editable h2, .note-editable h2 span{font-size: 30px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
+.note-editable h3, .note-editable h3 span{font-size: 24px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
+.note-editable h4, .note-editable h4 span{font-size: 20px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
+.note-editable h5, .note-editable h5 span{font-size: 18px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
+.note-editable h6, .note-editable h6 span{font-size: 14px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}

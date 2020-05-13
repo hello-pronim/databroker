@@ -48,9 +48,9 @@
             
 			<div id="transactions" class="row">
                 <div class="col-lg-6">
-                    <h3 class="fs-30 text-bold">
+                    <h2 class="fs-30 text-bold">
                         <span>{{ trans('pages.transactions') }}</span>
-                    </h3>                        
+                    </h2>                        
                     <table class="table">                      
                       <tbody>
                         @if(count($transactions) > 0)

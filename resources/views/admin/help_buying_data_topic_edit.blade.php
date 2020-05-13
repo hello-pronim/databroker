@@ -78,6 +78,6 @@
 @endsection
 
 @section('additional_javascript')
-    <script src="{{ asset('adminpanel/js/help_buying_data_topic_add_new.js') }}"></script>        
+    <script src="{{ asset('adminpanel/js/help_buying_data_topic_add_new.js') }}"></script> 
 @endsection
 

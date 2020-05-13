@@ -54,5 +54,18 @@ $(function(){
                 );
 	    }
 	});  
-	$(".summernote").summernote({height: 300,linkTargetBlank: true});
+    $(".summernote").summernote({
+        height: 600,
+        linkTargetBlank: true,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'italic', 'underline', 'clear']],
+          ['fontname', ['fontname']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+    });
 });

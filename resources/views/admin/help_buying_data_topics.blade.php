@@ -3,6 +3,9 @@
 @section('additional_css')
     <link rel="stylesheet" href="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
+    <style type="text/css">
+        #board_table .hidden{display: none;}
+    </style>
 @endsection
 
 @section('content')
@@ -40,6 +43,7 @@
                         <tr>
                             <th>Topic ID</th>
                             <th>Title</th>
+                            <th class="hidden">Content</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -48,6 +52,7 @@
                             <tr>
                                 <td>{{ $topic->helpTopicIdx }}</td>
                                 <td>{{ $topic->title }}</td>
+                                <td class="hidden">{{ $topic->description }}</td>
                                 <td>{{ $topic->helpTopicIdx }}</td>
                             </tr>
                         @endforeach

@@ -10,7 +10,7 @@
             <div class="row">
             	<div class="col-md-12">
             		<div class="mt-50">
-            			<h3 class="ml-20 text-bold text-uppercase">1. What are cookies?</h3><br>
+            			<h2 class="ml-20 text-bold text-uppercase">1. What are cookies?</h3><br>
 	            		<p class="fs-18">Cookies are small (text) files, which are stored onto your device by the server of the website you visit. Cookies contain information used by the server to:</p>
 	            		<ul class="fs-18 list-style-none">
 	            			<li>-	Optimize functionality of the website.</li>
@@ -23,7 +23,7 @@
 	            		<p class="fs-18">If you wish, you can configure most browsers to reject cookies or to notify you when cookies are being sent.</p>
             		</div>
             		<div class="mt-50">
-            			<h3 class="ml-20 text-bold text-uppercase">2. Which cookies do we use?</h3><br>
+            			<h2 class="ml-20 text-bold text-uppercase">2. Which cookies do we use?</h3><br>
 	            		<p class="fs-18">A distinction can be made in the types of cookies in relation to the controlling and processing of the cookies:</p>
 	            		<ul class="fs-18 list-style-none">
 	            			<li>

@@ -23,7 +23,7 @@
 		<div class="app-monetize-section-item0 ml-0 mt-20"></div>
 		<div class="row">
 			<div class="col-lg-6">
-				<h3 class="text-bold">{{ trans('pages.advantage_databroker') }}</h3>	
+				<h2 class="text-bold">{{ trans('pages.advantage_databroker') }}</h2>	
 			</div>			
 		</div>	
 		<div class="row mt-30">
