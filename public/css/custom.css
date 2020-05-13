@@ -2005,7 +2005,7 @@ a[data-target='#mediaLibraryModal']:hover{
 }
 .cms-content p{font-size: 18px!important;font-family: DM Sans!important;}
 .cms-content span{font-size: 18px!important;font-family: DM Sans!important;}
-.cms-content a{color: #78E6D0!important;cursor: pointer!important;font-family: DM Sans!important;}
+.cms-content a, .cms-content a span{color: #78E6D0!important;cursor: pointer!important;font-family: DM Sans!important;}
 .cms-content h1, .cms-content h1 span{font-size: 40px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
 .cms-content h2, .cms-content h2 span{font-size: 30px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
 .cms-content h3, .cms-content h3 span{font-size: 24px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
