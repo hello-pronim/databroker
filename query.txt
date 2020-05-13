@@ -524,3 +524,6 @@ ALTER TABLE `databroker_new`.`helpTopics` CHANGE `description` `description` LON
 ALTER TABLE `databroker_new`.`helpTopics` CHANGE `title` `title` VARCHAR(255) CHARSET utf8 COLLATE utf8_estonian_ci NULL; 
 ALTER TABLE `databroker_new`.`faqs` CHANGE `description` `description` LONGTEXT NULL; 
 ALTER TABLE `databroker_new`.`helpTopics` ADD COLUMN `meta_title` VARCHAR(255) NULL AFTER `description`, ADD COLUMN `meta_description` LONGTEXT NULL AFTER `meta_title`; 
+
+#2020-05-14
+ALTER TABLE `databroker_new`.`articles` ADD COLUMN `active` INT(11) NULL AFTER `published`; 

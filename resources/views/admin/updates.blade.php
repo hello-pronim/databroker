@@ -45,7 +45,8 @@
                             <th>Title</th>
                             <th class="hidden">Content</th>
                             <th>Author</th>
-                            <th>Published</th>
+                            <th>Published on</th>
+                            <th>Active</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -63,6 +64,7 @@
                                 <td class="hidden">{{$board->articleContent}}</td>
                                 <td>{{ $board->author }}</td>
                                 <td>{{ $board->published ? date('d/m/Y', strtotime($board->published)):"" }}</td>
+                                <td>{{ $board->active ? "Published" : "Unpublished"}}</td>
                                 <td>{{ $board->articleIdx }}</td>
                             </tr>
                         @endforeach

@@ -27,6 +27,7 @@ class Article extends Model
         'author',
         'link',
         'published',
+        'active'
     ];
 
     protected $casts = [

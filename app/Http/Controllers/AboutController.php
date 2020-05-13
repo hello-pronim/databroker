@@ -233,8 +233,8 @@ class AboutController extends Controller
      */
     public function usecase(Request $request)
     {        
-        $usecases = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(9)->get();
-        $usecases2 = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(3)->get();
+        $usecases = Article::where('communityIdx', '<>', null)->with('community')->where('active', 1)->orderby('published', 'desc')->limit(9)->get();
+        $usecases2 = Article::where('communityIdx', '<>', null)->with('community')->where('active', 1)->orderby('published', 'desc')->limit(3)->get();
         $communities = Community::all();
         $data = array( 'usecases', 'usecases2', 'communities' );
         return view('about.usecase', compact($data));
@@ -242,8 +242,8 @@ class AboutController extends Controller
 
     public function news(Request $request)
     {        
-        $updates = Article::where('communityIdx', null)->orderby('published', 'desc')->limit(9)->get();
-        $updates2 = Article::where('communityIdx', null)->orderby('published', 'desc')->limit(3)->get();
+        $updates = Article::where('communityIdx', null)->where('active', 1)->orderby('published', 'desc')->limit(9)->get();
+        $updates2 = Article::where('communityIdx', null)->where('active', 1)->orderby('published', 'desc')->limit(3)->get();
         $data = array( 'updates', 'updates2');
         return view('about.news', compact($data));
     }

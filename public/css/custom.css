@@ -2003,12 +2003,86 @@ a[data-target='#mediaLibraryModal']:hover{
 .d-inline{
 	display: inline-block!important;
 }
-.cms-content p{font-size: 18px!important;font-family: DM Sans!important;}
-.cms-content span{font-size: 18px!important;font-family: DM Sans!important;}
-.cms-content a, .cms-content a span{color: #78E6D0!important;cursor: pointer!important;font-family: DM Sans!important;}
-.cms-content h1, .cms-content h1 span{font-size: 40px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
-.cms-content h2, .cms-content h2 span{font-size: 30px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
-.cms-content h3, .cms-content h3 span{font-size: 24px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
-.cms-content h4, .cms-content h4 span{font-size: 20px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
-.cms-content h5, .cms-content h5 span{font-size: 18px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
-.cms-content h6, .cms-content h6 span{font-size: 14px!important;font-weight:bold;line-height: 1.2;font-family: DM Sans!important;}
+.cms-content p{
+	font-size: 18px!important;
+	font-family: DM Sans!important;
+}
+.cms-content span{
+	font-size: 18px!important;
+	font-family: DM Sans!important;
+}
+.cms-content a, .cms-content a span{
+	color: #78E6D0!important;
+	cursor: pointer!important;
+	font-family: DM Sans!important;
+}
+.cms-content h1, .cms-content h1 span, .cms-content h1 ol li, .cms-content h1 ul li{
+	font-size: 40px!important;
+	font-weight:bold;
+	line-height: 1.2;
+	font-family: DM Sans!important;
+}
+.cms-content h2, .cms-content h2 span, .cms-content h2 ol li, .cms-content h2 ul li{
+	font-size: 30px!important;
+	font-weight:bold;
+	line-height: 1.2;
+	font-family: DM Sans!important;
+}
+.cms-content h3, .cms-content h3 span, .cms-content h3 ol li, .cms-content h3 ul li{
+	font-size: 24px!important;
+	font-weight:bold;
+	line-height: 1.2;
+	font-family: DM Sans!important;
+}
+.cms-content h4, .cms-content h4 span, .cms-content h4 ol li, .cms-content h4 ul li{
+	font-size: 20px!important;
+	font-weight:bold;
+	line-height: 1.2;
+	font-family: DM Sans!important;
+}
+.cms-content h5, .cms-content h5 span, .cms-content h5 ol li, .cms-content h5 ul li{
+	font-size: 18px!important;
+	font-weight:bold;
+	line-height: 1.2;
+	font-family: DM Sans!important;
+}
+.cms-content h6, .cms-content h6 span, .cms-content h6 ol li, .cms-content h6 ul li{
+	font-size: 14px!important;
+	font-weight:bold;
+	line-height: 1.2;
+	font-family: DM Sans!important;
+}
+.cms-content ol {
+	list-style: none; 
+	counter-reset: li; 
+	padding-left: 1em;}
+.cms-content ol li {
+	counter-increment: li; 
+	font-size; 18px;
+	font-family: DM Sans!important;
+}
+.cms-content ol li::before {
+	content: counter(li)".";
+	color: #78E6D0!important;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em; 
+	font-size: 18px;
+}
+.cms-content ul {
+	list-style: none; 
+	padding-left: 1em;
+}
+.cms-content ul li{
+	font-size: 18px!important; 
+	font-family: DM Sans!important;
+}
+.cms-content ul li::before {
+	content: "\2022";
+	color: #78E6D0!important;
+	font-weight: bold;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em; 
+	text-align: center;
+}

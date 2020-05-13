@@ -537,6 +537,14 @@ class AdminController extends Controller
         }
     }
 
+    public function usecases_publish(Request $request){
+        $articleIdx = $request->articleIdx;
+        $article = Article::where('articleIdx', $articleIdx)->get()->first();
+        $new['active'] = 1 - $article->active;
+        Article::where('articleIdx', $articleIdx)->update($new);
+        echo "success";
+    }
+
     public function usecases_upload_attach(Request $request, $articleIdx = 0)
     {
             $getfiles = $request->file('uploadedFile');
@@ -594,6 +602,15 @@ class AdminController extends Controller
             return "success";
         }
     }
+
+    public function updates_publish(Request $request){
+        $articleIdx = $request->articleIdx;
+        $article = Article::where('articleIdx', $articleIdx)->get()->first();
+        $new['active'] = 1 - $article->active;
+        Article::where('articleIdx', $articleIdx)->update($new);
+        echo "success";
+    }
+
     public function updates_delete(Request $request){
         Article::where('articleIdx', $request->id)->delete();
         return "success";

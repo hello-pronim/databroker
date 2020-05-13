@@ -34,8 +34,15 @@ var board_data_table;
                     title: 'Actions',
                     orderable: false,
                     render: function(data, type, full, meta) {
-                        return `
-                            <a href="/admin/updates/edit/`+data+`" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
+                      var publish_icon = `<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" onclick="publish_record('`+data+`');" title="Publish">
+                            <i class="la la-thumbs-up"></i>
+                            </a>`;
+                      if(full[5]=="Published")
+                        publish_icon = `<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" onclick="publish_record('`+data+`');" title="Unpublish">
+                            <i class="la la-thumbs-down"></i>
+                            </a>`;
+                        return publish_icon + `
+                            <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
                             <i class="la la-edit"></i>
                             </a>
                             <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" onclick="attach_record('`+data+`');"><i class="la la-image" title="Upload Image"></i>
@@ -73,6 +80,22 @@ toastr.options = {
 };
 
 var attach_record_idx;
+
+function publish_record(record_idx){
+  $.ajax({
+    headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/admin/updates/publish',
+    data: {articleIdx: record_idx},
+    method: 'post',
+    success: function(res){
+      if(res=="success"){
+        window.location.href="/admin/updates";
+      }
+    }
+  });
+}
 
 function attach_record(record_idx) {
     attach_record_idx = record_idx;
