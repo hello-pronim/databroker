@@ -52,7 +52,7 @@ class HelpController extends Controller
 
     public function buying_data(Request $request)
     {
-        $topics = HelpTopic::where('page', 'buying')->get();
+        $topics = HelpTopic::where('page', 'buying')->where('active', 1)->get();
         $header = HelpTopic::where('page', 'buying_header')->get()->first();
         $faqs = FAQ::where('for', 'buying')->orderby('created_at', 'desc')->limit(10)->get();
         $data = array( 'topics', 'header', 'faqs' );
@@ -67,7 +67,7 @@ class HelpController extends Controller
 
     public function selling_data(Request $request)
     {
-        $topics = HelpTopic::where('page', 'selling')->get();
+        $topics = HelpTopic::where('page', 'selling')->where('active', 1)->get();
         $header = HelpTopic::where('page', 'selling_header')->get()->first();
         $faqs = FAQ::where('for', 'selling')->orderby('created_at', 'desc')->limit(10)->get();
         $data = array( 'topics', 'header', 'faqs' );

@@ -866,6 +866,14 @@ class AdminController extends Controller
         return "success";
     }
 
+    public function publish_help_buying_data_topic(Request $request){
+        $helpTopicIdx = $request->helpTopicIdx;
+        $topic = HelpTopic::where('helpTopicIdx', $helpTopicIdx)->get()->first();
+        $new['active'] = 1 - $topic->active;
+        HelpTopic::where('helpTopicIdx', $helpTopicIdx)->update($new);
+        echo "success";
+    }
+
     public function delete_help_buying_data_topic(Request $request, $tid){
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
@@ -955,6 +963,15 @@ class AdminController extends Controller
         }
         return "success";
     }
+
+    public function publish_help_selling_data_topic(Request $request){
+        $helpTopicIdx = $request->helpTopicIdx;
+        $topic = HelpTopic::where('helpTopicIdx', $helpTopicIdx)->get()->first();
+        $new['active'] = 1 - $topic->active;
+        HelpTopic::where('helpTopicIdx', $helpTopicIdx)->update($new);
+        echo "success";
+    }
+
     public function delete_help_selling_data_topic(Request $request, $tid){
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";

@@ -209,6 +209,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/admin/help/buying_data/topic/edit/{tid}', 'AdminController@edit_help_buying_data_topic')->where('tid', '[0-9]+')->name('admin.help.edit_buying_data_topic');
 		Route::get('/admin/help/buying_data/topic/delete/{tid}', 'AdminController@delete_help_buying_data_topic')->where('tid', '[0-9]+')->name('admin.help.delete_buying_data_topic');
 		Route::post('/admin/help/buying_data/topic/update', 'AdminController@update_help_buying_data_topic')->name('admin.help.update_buying_data_topic');
+		Route::post('/admin/help/buying_data/topic/publish', 'AdminController@publish_help_buying_data_topic')->name('admin.help.publish_buying_data_topic');
 
 		Route::get('/admin/help/selling_data', 'AdminController@help_selling_data')->name('admin.help.selling_data');
 		Route::post('/admin/help/selling_data/update', 'AdminController@update_help_selling_data')->name('admin.help.update_selling_data');
@@ -222,6 +223,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::get('/admin/help/selling_data/topic/edit/{tid}', 'AdminController@edit_help_selling_data_topic')->where('tid', '[0-9]+')->name('admin.help.edit_selling_data_topic');
 		Route::get('/admin/help/selling_data/topic/delete/{tid}', 'AdminController@delete_help_selling_data_topic')->where('tid', '[0-9]+')->name('admin.help.delete_selling_data_topic');
 		Route::post('/admin/help/selling_data/topic/update', 'AdminController@update_help_selling_data_topic')->name('admin.help.update_selling_data_topic');
+		Route::post('/admin/help/selling_data/topic/publish', 'AdminController@publish_help_selling_data_topic')->name('admin.help.publish_selling_data_topic');
 
 		Route::get('/admin/help/faqs', 'AdminController@help_faqs')->name('admin.help.faqs');		
 		Route::get('/admin/help/faqs/add_new', 'AdminController@edit_help_faq')->name('admin.help.add_faq');	

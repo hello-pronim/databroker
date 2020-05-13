@@ -23,7 +23,14 @@ var board_data_table;
                     title: 'Actions',
                     orderable: false,
                     render: function(data, type, full, meta) {
-                        return `
+                        var publish_icon = `<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" onclick="publish_record('`+data+`');" title="Publish">
+                            <i class="la la-thumbs-up"></i>
+                            </a>`;
+                        if(full[3]=="Published")
+                            publish_icon = `<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" onclick="publish_record('`+data+`');" title="Unpublish">
+                                <i class="la la-thumbs-down"></i>
+                                </a>`;
+                        return publish_icon + `
                             <a href="/admin/help/buying_data/topic/edit/` + data + `" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
                             <i class="la la-edit"></i>
                             </a>
@@ -41,6 +48,21 @@ var board_data_table;
 
 })(window.jQuery);
 
+function publish_record(record_idx){
+  $.ajax({
+    headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/admin/help/buying_data/topic/publish',
+    data: {helpTopicIdx: record_idx},
+    method: 'post',
+    success: function(res){
+      if(res=="success"){
+        window.location.href="/admin/help/buying_data/topics";
+      }
+    }
+  });
+}
 function wantDelete(record_idx){
   swal({
     title: "Are you sure?",

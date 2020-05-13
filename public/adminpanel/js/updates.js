@@ -34,6 +34,7 @@ var board_data_table;
                     title: 'Actions',
                     orderable: false,
                     render: function(data, type, full, meta) {
+                      console.log(full);
                       var publish_icon = `<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" onclick="publish_record('`+data+`');" title="Publish">
                             <i class="la la-thumbs-up"></i>
                             </a>`;

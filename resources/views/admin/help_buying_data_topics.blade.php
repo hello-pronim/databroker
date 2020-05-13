@@ -44,6 +44,7 @@
                             <th>Topic ID</th>
                             <th>Title</th>
                             <th class="hidden">Content</th>
+                            <th>Active</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -53,6 +54,7 @@
                                 <td>{{ $topic->helpTopicIdx }}</td>
                                 <td>{{ $topic->title }}</td>
                                 <td class="hidden">{{ $topic->description }}</td>
+                                <td>{{ $topic->active ? "Published" : "Unpublished" }}</td>
                                 <td>{{ $topic->helpTopicIdx }}</td>
                             </tr>
                         @endforeach
