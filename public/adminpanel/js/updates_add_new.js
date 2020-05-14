@@ -17,6 +17,9 @@ $(function(){
 	            required: true,
 	            minlength: 20 
 			},
+            category: {
+                required: true,
+            },
 			meta_title: {
 				required: true,
 			},
@@ -63,6 +66,18 @@ $(function(){
                 );
 	    }
 	});  
+    var btnAttch = function (context) {
+        var ui = $.summernote.ui;
+        var button = ui.button({
+            contents:
+            '<label class="custom-file-upload mb-0 lh-1"> <input type="file" class="input-file hidden" id="input-file" multiple/>' +
+            '<i class="la la-paperclip"></i> </label>',
+            container: false,
+            tooltip: 'Attach file',
+         });
+        return button.render();
+    }
+
 	$(".summernote").summernote({
         height: 600,
         linkTargetBlank: true,
@@ -75,6 +90,23 @@ $(function(){
           ['table', ['table']],
           ['insert', ['link', 'picture', 'video']],
           ['view', ['fullscreen', 'codeview', 'help']],
+          ['btnAttch', ['btnAttch']]
         ],
+        buttons: {
+            btnAttch: btnAttch
+        },
+        disableDragAndDrop: true,
+        disableResizeEditor: true,
+        callbacks: {
+            onInit: function () {
+                console.log("AAAAAAAAAAAAA");
+            },
+        }
     });
+
+    var files;
+    $("#input-file").change(function(e){
+        files = e.target.files;
+        console.log(files);
+    })
 });

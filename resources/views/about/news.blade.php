@@ -36,7 +36,8 @@
                                         </div>
                                         <div class="card-body text-left">
                                             <div class="para-small">
-                                                <span class="color-green"><b>- By&nbsp;{{ $update->author }}&nbsp;|&nbsp;{{ date_format($update->published,"F d, Y") }}</b></span>
+                                                <!-- <span class="color-green"><b>- By&nbsp;{{ $update->author }}&nbsp;|&nbsp;{{ date_format($update->published,"F d, Y") }}</b></span> -->
+                                                <span class="color-green"><b>{{$update->category??""}}</b></span>
                                             </div>
                                             <h4 class="offer-title card-title">{{ $update->articleTitle }}</h4>
                                         </div>

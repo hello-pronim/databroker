@@ -2,6 +2,15 @@ body{
     counter-reset: section;
     font-family: DM Sans!important;
 }
+.m-0{
+    margin: 0px!important;
+}
+.mb-0{
+    margin-bottom: 0px!important;
+}
+.lh-1{
+    line-height: 1!important;
+}
 #admin_container{
     width: 100%;
 }
@@ -183,4 +192,7 @@ body{
     width: 1em;
     margin-left: -1em; 
     text-align: center;
+}
+.hidden{
+    display: none;
 }

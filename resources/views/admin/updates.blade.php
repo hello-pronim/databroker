@@ -43,6 +43,7 @@
                         <tr>
                             <th>Thumbnails</th>
                             <th>Title</th>
+                            <th>Category</th>
                             <th class="hidden">Content</th>
                             <th>Author</th>
                             <th>Published on</th>
@@ -61,6 +62,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $board->articleTitle }}</td>
+                                <td>{{ $board->category }}</td>
                                 <td class="hidden">{{$board->articleContent}}</td>
                                 <td>{{ $board->author }}</td>
                                 <td>{{ $board->published ? date('d/m/Y', strtotime($board->published)):"" }}</td>

@@ -21,6 +21,7 @@ class Article extends Model
         'communityIdx',
         'articleTitle',
         'articleContent',
+        'category',
         'image',
         'meta_title',
         'meta_desc',

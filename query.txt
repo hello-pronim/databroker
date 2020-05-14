@@ -528,3 +528,4 @@ ALTER TABLE `databroker_new`.`helpTopics` ADD COLUMN `meta_title` VARCHAR(255) N
 #2020-05-14
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `active` INT(11) NULL AFTER `published`; 
 ALTER TABLE `databroker_new`.`helpTopics` ADD COLUMN `active` INT(11) NULL AFTER `meta_description`; 
+ALTER TABLE `databroker_new`.`articles` ADD COLUMN `category` VARCHAR(255) NULL AFTER `articleContent`;

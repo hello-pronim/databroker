@@ -40,15 +40,21 @@
 						</div>
 					</div>
 					<div class="form-group m-form__group row">
-						<div class="col-md-7 m-form__group-sub">
+						<div class="col-md-6 m-form__group-sub">
 							<label class="form-control-label">Article Title *</label>
 							<input type="text" class="form-control m-input" name="articleTitle" placeholder="Enter article title" value="">
 						</div>
-						<div class="col-md-2 m-form__group-sub">
+						<div class="col-md-6 m-form__group-sub">
+							<label class="form-control-label">Article Category *</label>
+							<input type="text" class="form-control m-input" name="category" placeholder="Enter category" value="">
+						</div>
+					</div>
+					<div class="form-group m-form__group row">
+						<div class="col-md-6 m-form__group-sub">
 							<label class="form-control-label">Published Date *</label>
 							<input type="text" class="form-control m-input" name="published" placeholder="DD/MM/YYYY" value="" autocomplete="off">
                         </div>
-                        <div class="col-md-3 m-form__group-sub">
+                        <div class="col-md-6 m-form__group-sub">
 							<label class="form-control-label">Author *</label>
 							<input type="text" class="form-control m-input" name="author" placeholder="Enter article author" value="">
 						</div>
