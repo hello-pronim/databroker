@@ -148,6 +148,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::post('/admin/usecases/upload_attach/{articleIdx}', 'AdminController@usecases_upload_attach')->name('admin.usecases_upload_attach');
 		Route::get('/admin/usecases/edit/{id}', 'AdminController@usecases_edit')->where('id', '[0-9]+')->name('admin.usecases_edit');
 		Route::post('/admin/usecases/delete/{id}', 'AdminController@usecases_delete')->where('id', '[0-9]+')->name('admin.usecases_delete');
+		Route::post('/admin/usecases/summernote/upload_attach', 'AdminController@usecases_summernote_upload')->name('admin.usecases.summernote_upload');
+
 		//admin route media
 		Route::get('/admin/media_library', 'AdminController@media_library')->name('admin.media_library');
 		Route::get('/admin/media/add_new', 'AdminController@edit_media')->name('admin.add_media');

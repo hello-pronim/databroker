@@ -572,6 +572,19 @@ class AdminController extends Controller
             return "true";
     }
 
+    public function usecases_summernote_upload(Request $request){
+        $files = $request->file('files');
+        $names = array();
+        foreach ($files as $key => $file) {
+            $fileName = $file->getClientOriginalName();
+            array_push($names, $fileName);
+            if ($file->isValid()) {
+                $file->move(public_path('adminpanel/uploads/usecases'), $fileName);
+            }
+        }
+        return json_encode(array('success'=>true, 'result'=>$names));
+    }
+
     public function updates()
     {   
         $boards = Article::where('communityIdx', null)->orderBy('published', 'DESC')->get();

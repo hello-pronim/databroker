@@ -65,8 +65,7 @@ $(function(){
                     }
                 );
 	    }
-	});  
-    var range;
+	});
     var btnAttch = function (context) {
         var ui = $.summernote.ui;
         var button = ui.button({
@@ -133,7 +132,7 @@ $(function(){
                     node.innerHTML = "";
                     for(var i=0; i<names.length; i++)
                     {
-                        node.innerHTML += "<a href='"+domain+"/adminpanel/uploads/updates/"+names[i]+"' target='_blank' download='"+names[i]+"'>"+
+                        node.innerHTML += "<a href='/adminpanel/uploads/updates/"+names[i]+"' target='_blank' download='"+names[i]+"'>"+
                                             "<i class='material-icons'>get_app</i>" + 
                                             "<span class='ml-10'>"+names[i]+"</span>"+
                                            "</a><br/>";

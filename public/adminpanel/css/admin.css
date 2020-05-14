@@ -206,7 +206,7 @@ body{
 }
 .note-editable .attach-files a span{
     color: #BAC0C5!important;
-    font-size: 14px;
+    font-size: 14px!important;
     vertical-align: top;
 }
 .hidden{

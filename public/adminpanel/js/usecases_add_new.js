@@ -62,5 +62,83 @@ $(function(){
                 );
 	    }
 	});  
-	$(".summernote").summernote({height: 600,linkTargetBlank: true});
+	var btnAttch = function (context) {
+        var ui = $.summernote.ui;
+        var button = ui.button({
+            contents:
+            '<label class="custom-file-upload mb-0 lh-1"> <input type="file" class="input-file hidden" id="input-file" multiple/>' +
+            '<i class="la la-paperclip"></i> </label>',
+            container: false,
+            tooltip: 'Attach file',
+            click: function(){
+                $('.summernote').summernote('editor.saveRange');
+            }
+         });
+        return button.render();
+    }
+
+	$(".summernote").summernote({
+        height: 600,
+        linkTargetBlank: true,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'italic', 'underline', 'clear']],
+          ['fontname', ['fontname']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']],
+          ['btnAttch', ['btnAttch']]
+        ],
+        buttons: {
+            btnAttch: btnAttch
+        },
+        disableDragAndDrop: true,
+        disableResizeEditor: true,
+        callbacks: {
+            onInit: function () {
+            },
+        }
+    });
+
+    var files;
+    $("#input-file").change(function(e){
+        var form_data = new FormData();
+
+        // Read selected files
+        var totalfiles = e.target.files.length;
+        for (var index = 0; index < totalfiles; index++) {
+            form_data.append("files[]", e.target.files[index]);
+        }
+        // AJAX request
+        $.ajax({
+            url: '/admin/usecases/summernote/upload_attach', 
+            type: 'post',
+            data: form_data,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if(response.success){
+                    var names = response.result;
+                    var domain = window.location.protocol + window.location.host;
+                    var node = document.createElement('span');
+                    node.classList.add("attach-files");
+                    node.innerHTML = "";
+                    for(var i=0; i<names.length; i++)
+                    {
+                        node.innerHTML += "<a href='/adminpanel/uploads/usecases/"+names[i]+"' target='_blank' download='"+names[i]+"'>"+
+                                            "<i class='material-icons'>get_app</i>" + 
+                                            "<span class='ml-10'>"+names[i]+"</span>"+
+                                           "</a><br/>";
+                    }
+                    range = $(".summernote").summernote('restoreRange');
+                    $('.summernote').summernote('editor.restoreRange');
+                    $('.summernote').summernote('editor.focus');
+                    $('.summernote').summernote('editor.insertNode', node);
+                }
+            }
+        });
+    })
 });
