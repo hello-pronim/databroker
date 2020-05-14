@@ -43,7 +43,7 @@ var board_data_table;
                             <i class="la la-thumbs-down"></i>
                             </a>`;
                         return publish_icon + `
-                            <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
+                            <a href="/admin/updates/edit/` + data + `" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Update">
                             <i class="la la-edit"></i>
                             </a>
                             <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" onclick="attach_record('`+data+`');"><i class="la la-image" title="Upload Image"></i>
