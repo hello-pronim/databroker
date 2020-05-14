@@ -624,6 +624,19 @@ class AdminController extends Controller
         return view('admin.updates_edit', compact($data));
     }
 
+    public function updates_summernote_upload(Request $request){
+        $files = $request->file('files');
+        $names = array();
+        foreach ($files as $key => $file) {
+            $fileName = $file->getClientOriginalName();
+            array_push($names, $fileName);
+            if ($file->isValid()) {
+                $file->move(public_path('adminpanel/uploads/updates'), $fileName);
+            }
+        }
+        return json_encode(array('success'=>true, 'result'=>$names));
+    }
+
     public function media_library(Request $request){
         $images = Gallery::join('communities', 'communities.communityIdx', '=', 'gallery.content')
                             ->orderby('gallery.content', 'asc')

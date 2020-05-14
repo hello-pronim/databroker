@@ -163,6 +163,7 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		Route::post('/admin/updates/publish', 'AdminController@updates_publish')->name('admin.updates_publish');
 		Route::get('/admin/updates/edit/{id}', 'AdminController@updates_edit')->where('id', '[0-9]+')->name('admin.updates_edit');
 		Route::post('/admin/updates/delete/{id}', 'AdminController@updates_delete')->where('id', '[0-9]+')->name('admin.updates_delete');
+		Route::post('/admin/updates/summernote/upload_attach', 'AdminController@updates_summernote_upload')->name('admin.updates.summernote_upload');
 
 		Route::get('/admin',  "AdminController@index")->name('admin.index');
 		Route::get('/admin/home', 'AdminController@home')->name('admin.home');

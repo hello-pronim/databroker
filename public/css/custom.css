@@ -2086,3 +2086,8 @@ a[data-target='#mediaLibraryModal']:hover{
 	margin-left: -1em; 
 	text-align: center;
 }
+.cms-content .attach-files a{
+	color: #BAC0C5!important;
+    font-size: 14px;
+    vertical-align: top;
+}

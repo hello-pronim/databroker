@@ -66,6 +66,7 @@ $(function(){
                 );
 	    }
 	});  
+    var range;
     var btnAttch = function (context) {
         var ui = $.summernote.ui;
         var button = ui.button({
@@ -74,6 +75,9 @@ $(function(){
             '<i class="la la-paperclip"></i> </label>',
             container: false,
             tooltip: 'Attach file',
+            click: function(){
+                $('.summernote').summernote('editor.saveRange');
+            }
          });
         return button.render();
     }
@@ -99,14 +103,47 @@ $(function(){
         disableResizeEditor: true,
         callbacks: {
             onInit: function () {
-                console.log("AAAAAAAAAAAAA");
             },
         }
     });
 
     var files;
     $("#input-file").change(function(e){
-        files = e.target.files;
-        console.log(files);
+        var form_data = new FormData();
+
+        // Read selected files
+        var totalfiles = e.target.files.length;
+        for (var index = 0; index < totalfiles; index++) {
+            form_data.append("files[]", e.target.files[index]);
+        }
+        // AJAX request
+        $.ajax({
+            url: '/admin/updates/summernote/upload_attach', 
+            type: 'post',
+            data: form_data,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if(response.success){
+                    var names = response.result;
+                    var domain = window.location.protocol + window.location.host;
+                    var node = document.createElement('span');
+                    node.classList.add("attach-files");
+                    node.innerHTML = "";
+                    for(var i=0; i<names.length; i++)
+                    {
+                        node.innerHTML += "<a href='"+domain+"/adminpanel/uploads/updates/"+names[i]+"' target='_blank' download='"+names[i]+"'>"+
+                                            "<i class='material-icons'>get_app</i>" + 
+                                            "<span class='ml-10'>"+names[i]+"</span>"+
+                                           "</a><br/>";
+                    }
+                    range = $(".summernote").summernote('restoreRange');
+                    $('.summernote').summernote('editor.restoreRange');
+                    $('.summernote').summernote('editor.focus');
+                    $('.summernote').summernote('editor.insertNode', node);
+                }
+            }
+        });
     })
 });
