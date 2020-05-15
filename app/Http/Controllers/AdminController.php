@@ -123,6 +123,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_featured_data');
+        Session::put('menu_item_child_child', '');
         $boards = HomeFeaturedData::join('providers', 'providers.providerIdx', '=', 'home_featured_data.providerIdx')
                                 ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                 ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
@@ -135,6 +136,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_featured_data');
+        Session::put('menu_item_child_child', '');
         $board = HomeFeaturedData::first(); 
         $providers = Provider::get();
         $data = array('board', 'providers');
@@ -145,6 +147,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_featured_data');
+        Session::put('menu_item_child_child', '');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -163,6 +166,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_featured_data');
+        Session::put('menu_item_child_child', '');
         $getfiles = $request->file('uploadedFile');
         $fileName = $id.'.jpg';  
         //image compress start
@@ -183,6 +187,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_featured_data');
+        Session::put('menu_item_child_child', '');
 
         $getfiles = $request->file('uploadedFile');
         $fileExtention = $getfiles->getClientOriginalExtension();
@@ -216,6 +221,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_trending');
+        Session::put('menu_item_child_child', '');
         $boards = HomeTrending::orderby('order', 'asc')->get();
         $data = array('boards');
         return view('admin.home_trending', compact($data));
@@ -225,6 +231,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_trending');
+        Session::put('menu_item_child_child', '');
         $getfiles = $request->file('uploadedFile');
         $fileExtention = $getfiles->getClientOriginalExtension();
         if($fileExtention == 'svg')
@@ -255,6 +262,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_trending');
+        Session::put('menu_item_child_child', '');
         if($id == '')
         {
             return view('admin.home_trending_edit');
@@ -272,6 +280,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_trending');
+        Session::put('menu_item_child_child', '');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -291,6 +300,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_marketplace');
+        Session::put('menu_item_child_child', '');
         $boards = HomeMarketplace::orderby('order', 'asc')->get();
         $data = array('boards');
         return view('admin.home_marketplace', compact($data));
@@ -300,6 +310,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_marketplace');
+        Session::put('menu_item_child_child', '');
         if($id == '')
         {
             return view('admin.home_marketplace_edit');
@@ -317,6 +328,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_marketplace');
+        Session::put('menu_item_child_child', '');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -336,6 +348,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_marketplace');
+        Session::put('menu_item_child_child', '');
         $getfiles = $request->file('uploadedFile');
         $fileName = $id.'.jpg';  
         //image compress start
@@ -365,6 +378,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_marketplace');
+        Session::put('menu_item_child_child', '');
         $getfiles = $request->file('uploadedFile');
         $fileName = $id.'.jpg';  
         //image compress start
@@ -387,6 +401,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_teampicks');
+        Session::put('menu_item_child_child', '');
         $boards = HomeTeamPicks::orderby('order', 'asc')->get();
         $data = array('boards');
         return view('admin.home_teampicks', compact($data));
@@ -413,6 +428,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_teampicks');
+        Session::put('menu_item_child_child', '');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -431,6 +447,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_teampicks');
+        Session::put('menu_item_child_child', '');
         $getfiles = $request->file('uploadedFile');
         $fileName = $id.'.jpg';  
         //image compress start
@@ -454,6 +471,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_teampicks');
+        Session::put('menu_item_child_child', '');
         $getfiles = $request->file('uploadedFile');
         $fileName = $id.'.jpg';  
         //image compress start
@@ -483,6 +501,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_featured_provider');
+        Session::put('menu_item_child_child', '');
         $boards = HomeFeaturedProvider::join('providers', 'providers.providerIdx', '=', 'home_featured_provider.providerIdx')
                         ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                         ->orderby('order', 'asc')
@@ -495,6 +514,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_featured_provider');
+        Session::put('menu_item_child_child', '');
         if($id == '')
         {
             $providers = Provider::get();
@@ -515,6 +535,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_featured_provider');
+        Session::put('menu_item_child_child', '');
         $id = $request->id;
         $board = HomeFeaturedProvider::where('id', $id)->delete(); 
         return redirect(route('admin.home_featured_provider'));
@@ -524,6 +545,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'home');
         Session::put('menu_item_child', 'home_featured_provider');
+        Session::put('menu_item_child_child', '');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -543,6 +565,7 @@ class AdminController extends Controller
     {   
         Session::put('menu_item_parent', 'usecases');
         Session::put('menu_item_child', $id);
+        Session::put('menu_item_child_child', '');
         $communityIdx = $id;
         $communityName = Community::where('communityIdx', $id)->pluck('communityName')->first();
         $boards = Article::with('community')->where('communityIdx', $id)->orderBy('published', 'DESC')->get();
@@ -554,6 +577,7 @@ class AdminController extends Controller
     {
         Session::put('menu_item_parent', 'usecases');
         Session::put('menu_item_child', $id);
+        Session::put('menu_item_child_child', '');
         $categories = Community::get();
         $communityIdx = $id;  
         $data = array( 'categories', 'communityIdx' );
@@ -568,6 +592,7 @@ class AdminController extends Controller
 
         Session::put('menu_item_parent', 'usecases');
         Session::put('menu_item_child', $board->communityIdx);
+        Session::put('menu_item_child_child', '');
 
         $communityIdx = $board->communityIdx;
         $data = array( 'categories', 'id', 'board', 'communityIdx' );
@@ -651,6 +676,8 @@ class AdminController extends Controller
     public function updates()
     {   
         Session::put('menu_item_parent', 'updates');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $boards = Article::where('communityIdx', null)->orderBy('published', 'DESC')->get();
         $data = array('boards');
         return view('admin.updates', compact($data));
@@ -659,12 +686,16 @@ class AdminController extends Controller
     public function updates_add_new()
     {
         Session::put('menu_item_parent', 'updates');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         return view('admin.updates_add_new');
     }
 
     public function updates_update(Request $request)
     {
         Session::put('menu_item_parent', 'updates');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $date = explode("/", $request->published);
         $published = $date[2].'-'.$date[1].'-'.$date[0];
         if($request->input('id')) {
@@ -684,6 +715,8 @@ class AdminController extends Controller
 
     public function updates_publish(Request $request){
         Session::put('menu_item_parent', 'updates');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $articleIdx = $request->articleIdx;
         $article = Article::where('articleIdx', $articleIdx)->get()->first();
         $new['active'] = 1 - $article->active;
@@ -693,6 +726,8 @@ class AdminController extends Controller
 
     public function updates_delete(Request $request){
         Session::put('menu_item_parent', 'updates');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         Article::where('articleIdx', $request->id)->delete();
         return "success";
     }
@@ -700,6 +735,8 @@ class AdminController extends Controller
     public function updates_edit($id)
     {
         Session::put('menu_item_parent', 'updates');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $id = $id;
         $board = Article::where('articleIdx', $id)->first(); 
         $data = array('id', 'board');
@@ -708,6 +745,8 @@ class AdminController extends Controller
 
     public function updates_summernote_upload(Request $request){
         Session::put('menu_item_parent', 'updates');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $files = $request->file('files');
         $names = array();
         foreach ($files as $key => $file) {
@@ -722,6 +761,8 @@ class AdminController extends Controller
 
     public function media_library(Request $request){
         Session::put('menu_item_parent', 'media');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $images = Gallery::join('communities', 'communities.communityIdx', '=', 'gallery.content')
                             ->orderby('gallery.content', 'asc')
                             ->get();
@@ -731,6 +772,8 @@ class AdminController extends Controller
 
     public function edit_media($id = 0){
         Session::put('menu_item_parent', 'media');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         if( $id == 0 ){
             $communities = Community::get();
             $data = array('communities');
@@ -744,12 +787,16 @@ class AdminController extends Controller
 
     public function delete_media(Request $request){
         Session::put('menu_item_parent', 'media');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         Gallery::where('id', $request->mid)->delete();
         return "success";
     }
 
     public function media_update(Request $request){
         Session::put('menu_item_parent', 'media');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -801,6 +848,8 @@ class AdminController extends Controller
 
     public function media_upload_attach(Request $request, $mediaIdx = 0){
         Session::put('menu_item_parent', 'media');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $getfiles = $request->file('uploadedFile');
         $fileName = "media_".$mediaIdx.'.jpg';         
         //image compress start
@@ -1153,6 +1202,7 @@ class AdminController extends Controller
     public function edit_help_guarantee(Request $request, $tid = 0){
         Session::put('menu_item_parent', 'help');
         Session::put('menu_item_child', 'guarantee');
+        Session::put('menu_item_child_child', '');
         if($tid == 0){
             return view('admin.help_guarantee_edit');
         }else{
@@ -1164,6 +1214,7 @@ class AdminController extends Controller
     public function delete_help_guarantee(Request $request, $tid){
         Session::put('menu_item_parent', 'help');
         Session::put('menu_item_child', 'guarantee');
+        Session::put('menu_item_child_child', '');
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }
@@ -1186,6 +1237,7 @@ class AdminController extends Controller
     public function help_complaints(Request $request){
         Session::put('menu_item_parent', 'help');
         Session::put('menu_item_child', 'complaint');
+        Session::put('menu_item_child_child', '');
         $topics = HelpTopic::where('page', 'complaints')->get();
         $data = array('topics');
         return view('admin.help_complaints', compact($data));
@@ -1193,6 +1245,7 @@ class AdminController extends Controller
     public function edit_help_complaint(Request $request, $tid = 0){
         Session::put('menu_item_parent', 'help');
         Session::put('menu_item_child', 'complaint');
+        Session::put('menu_item_child_child', '');
         if($tid == 0){
             return view('admin.help_complaint_edit');
         }else{
@@ -1204,12 +1257,14 @@ class AdminController extends Controller
     public function delete_help_complaint(Request $request, $tid){
         Session::put('menu_item_parent', 'help');
         Session::put('menu_item_child', 'complaint');
+        Session::put('menu_item_child_child', '');
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }
     public function update_help_complaint(Request $request){
         Session::put('menu_item_parent', 'help');
         Session::put('menu_item_child', 'complaint');
+        Session::put('menu_item_child_child', '');
         if($request->helpTopicIdx==0){
             $topic['page'] = "complaints";
             $topic['title'] = $request->title;
@@ -1227,6 +1282,7 @@ class AdminController extends Controller
     public function help_feedbacks(Request $request){
         Session::put('menu_item_parent', 'help');
         Session::put('menu_item_child', 'feedback');
+        Session::put('menu_item_child_child', '');
         $topics = HelpTopic::where('page', 'feedbacks')->get();
         $data = array('topics');
         return view('admin.help_feedbacks', compact($data));
@@ -1234,6 +1290,7 @@ class AdminController extends Controller
     public function edit_help_feedback(Request $request, $tid = 0){
         Session::put('menu_item_parent', 'help');
         Session::put('menu_item_child', 'feedback');
+        Session::put('menu_item_child_child', '');
         if($tid == 0){
             return view('admin.help_feedback_edit');
         }else{
@@ -1245,12 +1302,14 @@ class AdminController extends Controller
     public function delete_help_feedback(Request $request, $tid){
         Session::put('menu_item_parent', 'help');
         Session::put('menu_item_child', 'feedback');
+        Session::put('menu_item_child_child', '');
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }
     public function update_help_feedback(Request $request){
         Session::put('menu_item_parent', 'help');
         Session::put('menu_item_child', 'feedback');
+        Session::put('menu_item_child_child', '');
         if($request->helpTopicIdx==0){
             $topic['page'] = "feedbacks";
             $topic['title'] = $request->title;
@@ -1327,6 +1386,8 @@ class AdminController extends Controller
     
     public function users(Request $request){
         Session::put('menu_item_parent', 'users');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $users = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->where('users.userStatus', 1)
                         ->get(["users.*", 'companies.*', 'users.created_at as createdAt']);
@@ -1349,6 +1410,8 @@ class AdminController extends Controller
 
     public function company_users(Request $request){
         Session::put('menu_item_parent', 'users');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $companyIdx = User::where('userIdx', $request->adminUserIdx)->get()->first()->companyIdx;
         $users = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->where('users.userStatus', 2)
@@ -1371,6 +1434,8 @@ class AdminController extends Controller
     }
     public function edit_user(Request $request){
         Session::put('menu_item_parent', 'users');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $user = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                     ->where('users.userIdx', $request->userIdx)
                     ->get()
@@ -1382,6 +1447,8 @@ class AdminController extends Controller
     }
     public function update_user(Request $request){
         Session::put('menu_item_parent', 'users');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $user = User::where('userIdx', $request->userIdx)->get()->first();
         if($user){
             $data = array();
@@ -1403,6 +1470,8 @@ class AdminController extends Controller
     }
     public function delete_user(Request $request){
         Session::put('menu_item_parent', 'users');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
         $user = User::where('userIdx', $request->userIdx)->get()->first();
         if($user){
             if($user->userStatus==1){
