@@ -14,6 +14,12 @@ body{
 .lh-1{
     line-height: 1!important;
 }
+.fs-12{
+    font-size: 12px!important;
+}
+.fs-14{
+    font-size: 14px!important;
+}
 #admin_container{
     width: 100%;
 }
@@ -115,6 +121,10 @@ body{
 .note-editor .note-toolbar-wrapper{
     z-index: 100;
 }
+/*.note-editor .panel-heading.note-toolbar .btn .btn-custom i{
+    font-size: 1.1rem;
+    color: #6f727d;
+}*/
 .note-editable p{
     font-size: 18px!important;
     font-family: DM Sans!important;
@@ -168,7 +178,7 @@ body{
 }
 .note-editable ol li {
     counter-increment: li; 
-    font-size; 18px;
+    font-size: 18px;
     font-family: DM Sans!important;
     list-style-type: none!important;
 }

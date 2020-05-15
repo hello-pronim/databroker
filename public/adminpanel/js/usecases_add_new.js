@@ -77,6 +77,20 @@ $(function(){
         return button.render();
     }
 
+    var btnSlide = function (context) {
+        var ui = $.summernote.ui;
+        var button = ui.button({
+            contents: '<i class="material-icons fs-14">filter</i>',
+            container: false,
+            tooltip: 'Slide Embed',
+            click: function(){
+                $('.summernote').summernote('editor.saveRange');
+                $("#custom-modal-slide").modal('show');
+            }
+         });
+        return button.render();
+    }
+
 	$(".summernote").summernote({
         height: 600,
         linkTargetBlank: true,
@@ -89,15 +103,37 @@ $(function(){
           ['table', ['table']],
           ['insert', ['link', 'picture', 'video']],
           ['view', ['fullscreen', 'codeview', 'help']],
-          ['btnAttch', ['btnAttch']]
+          ['btnAttch', ['btnAttch']],
+          ['btnSlide', ['btnSlide']]
         ],
         buttons: {
-            btnAttch: btnAttch
+            btnAttch: btnAttch,
+            btnSlide: btnSlide
         },
         disableDragAndDrop: true,
         disableResizeEditor: true,
         callbacks: {
             onInit: function () {
+                var custom_modal = `<div class="modal" id="custom-modal-slide" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Insert Slide">`+
+                                        `<div class="modal-dialog">` +
+                                            `<div class="modal-content">` +
+                                                `<div class="modal-header">` +
+                                                    `<button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>` +
+                                                    `<h4 class="modal-title">Insert Slide</h4>` +
+                                                `</div>` +
+                                                `<div class="modal-body">` +
+                                                    `<div class="form-group note-form-group row-fluid">` + 
+                                                        `<label class="note-form-label">Paste the embed slide code below</label>` +
+                                                        `<textarea class="note-embed-code form-control note-form-control note-input" rows="10" type="text"/>` +
+                                                    `</div>` +
+                                                `</div>` +
+                                                `<div class="modal-footer">` + 
+                                                    `<button type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-slideshare-btn">Insert Slide</button>` + 
+                                                `</div>` +
+                                            `</div>` +
+                                        `</div>` +
+                                    `</div>`;
+                $('.note-editor.note-frame').append(custom_modal);
             },
         }
     });
@@ -140,5 +176,17 @@ $(function(){
                 }
             }
         });
-    })
+    });
+    $(".note-slideshare-btn").click(function(){
+        var embed_code = $('.note-embed-code').val();
+        var node = document.createElement('span');
+        node.classList.add("slideshare-embed-code");
+        node.innerHTML = embed_code;
+        console.log(embed_code);
+        $('.note-embed-code').val("");
+        $("#custom-modal-slide").modal('hide');
+        $('.summernote').summernote('editor.restoreRange');
+        $('.summernote').summernote('editor.focus');
+        $('.summernote').summernote('editor.insertNode', node);
+    });
 });

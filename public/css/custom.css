@@ -2058,7 +2058,7 @@ a[data-target='#mediaLibraryModal']:hover{
 	padding-left: 1em;}
 .cms-content ol li {
 	counter-increment: li; 
-	font-size; 18px;
+	font-size: 18px;
 	font-family: DM Sans!important;
 	list-style-type: none!important;
 }
