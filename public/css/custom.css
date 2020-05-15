@@ -2060,6 +2060,7 @@ a[data-target='#mediaLibraryModal']:hover{
 	counter-increment: li; 
 	font-size; 18px;
 	font-family: DM Sans!important;
+	list-style-type: none!important;
 }
 .cms-content ol li::before {
 	content: counter(li)".";
@@ -2076,6 +2077,7 @@ a[data-target='#mediaLibraryModal']:hover{
 .cms-content ul li{
 	font-size: 18px!important; 
 	font-family: DM Sans!important;
+	list-style-type: none!important;
 }
 .cms-content ul li::before {
 	content: "\2022";

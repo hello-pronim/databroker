@@ -170,6 +170,7 @@ body{
     counter-increment: li; 
     font-size; 18px;
     font-family: DM Sans!important;
+    list-style-type: none!important;
 }
 .note-editable ol li::before {
     content: counter(li)".";
@@ -186,6 +187,7 @@ body{
 .note-editable ul li{
     font-size: 18px!important; 
     font-family: DM Sans!important;
+    list-style-type: none!important;
 }
 .note-editable ul li::before {
     content: "\2022";
