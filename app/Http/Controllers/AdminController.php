@@ -91,6 +91,15 @@ class AdminController extends Controller
     public function logout(){
         if(Session::has('admin_user'))
             Session::forget('admin_user');
+        if(Session::has('menu_item_parent')){
+            Session::forget('menu_item_parent');
+            if(Session::has('menu_item_child'))
+            {
+                Session::forget('menu_item_child');
+                if(Session::has('menu_item_child_child'))
+                    Session::forget('menu_item_child_child');
+            }
+        }
         return redirect(route('admin.login'));
     }
 
@@ -112,6 +121,8 @@ class AdminController extends Controller
 
     public function home_featured_data()
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_featured_data');
         $boards = HomeFeaturedData::join('providers', 'providers.providerIdx', '=', 'home_featured_data.providerIdx')
                                 ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                                 ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
@@ -122,14 +133,18 @@ class AdminController extends Controller
 
     public function home_featured_data_edit()
     {
-            $board = HomeFeaturedData::first(); 
-            $providers = Provider::get();
-            $data = array('board', 'providers');
-            return view('admin.home_featured_data_edit', compact($data));
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_featured_data');
+        $board = HomeFeaturedData::first(); 
+        $providers = Provider::get();
+        $data = array('board', 'providers');
+        return view('admin.home_featured_data_edit', compact($data));
     }
 
     public function home_featured_data_update(Request $request)
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_featured_data');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -146,55 +161,61 @@ class AdminController extends Controller
 
     public function home_featured_data_upload_attach(Request $request, $id = 0)
     {
-            $getfiles = $request->file('uploadedFile');
-            $fileName = $id.'.jpg';  
-            //image compress start
-            $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->fit(300,200, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/featured_data/tiny').'/'.$fileName);
-            $tinyimg->fit(80,40, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/featured_data/thumb').'/'.$fileName);
-            //image compress end
-            $getfiles->move(public_path('uploads/home/featured_data'), $fileName);
-            HomeFeaturedData::find($id)->update(['image' => $fileName, 'active' => 0]);
-            return "true";
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_featured_data');
+        $getfiles = $request->file('uploadedFile');
+        $fileName = $id.'.jpg';  
+        //image compress start
+        $tinyimg = Image::make($getfiles->getRealPath());
+        $tinyimg->fit(300,200, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/featured_data/tiny').'/'.$fileName);
+        $tinyimg->fit(80,40, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/featured_data/thumb').'/'.$fileName);
+        //image compress end
+        $getfiles->move(public_path('uploads/home/featured_data'), $fileName);
+        HomeFeaturedData::find($id)->update(['image' => $fileName, 'active' => 0]);
+        return "true";
     }
 
     public function home_featured_data_upload_logo(Request $request, $id = 0)
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_featured_data');
 
-            $getfiles = $request->file('uploadedFile');
-            $fileExtention = $getfiles->getClientOriginalExtension();
-            if($fileExtention == 'svg')
-            {
-                $fileName = $id.'.svg';
-                $getfiles->move(public_path('uploads/home/featured_data/logo/'), $fileName);
-                HomeFeaturedData::find($id)->update(['logo' => $fileName, 'active' => 0]);
-                return "true";
-            }
-            else
-            {
-                $fileName = $id.'.jpg';
-                //image compress start
-                $tinyimg = Image::make($getfiles->getRealPath());
-                $tinyimg->resize(140,140, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/home/featured_data/logo').'/'.$fileName);
-                
-                $tinyimg->resize(80,80, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/home/marketplace/logo/thumb').'/'.$fileName);
+        $getfiles = $request->file('uploadedFile');
+        $fileExtention = $getfiles->getClientOriginalExtension();
+        if($fileExtention == 'svg')
+        {
+            $fileName = $id.'.svg';
+            $getfiles->move(public_path('uploads/home/featured_data/logo/'), $fileName);
+            HomeFeaturedData::find($id)->update(['logo' => $fileName, 'active' => 0]);
+            return "true";
+        }
+        else
+        {
+            $fileName = $id.'.jpg';
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+            $tinyimg->resize(140,140, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/featured_data/logo').'/'.$fileName);
             
-                //image compress end
-                HomeFeaturedData::find($id)->update(['logo' => $fileName, 'active' => 0]);
-                return "true";
-            }
+            $tinyimg->resize(80,80, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/marketplace/logo/thumb').'/'.$fileName);
+        
+            //image compress end
+            HomeFeaturedData::find($id)->update(['logo' => $fileName, 'active' => 0]);
+            return "true";
+        }
     }
 
     public function home_trending()
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_trending');
         $boards = HomeTrending::orderby('order', 'asc')->get();
         $data = array('boards');
         return view('admin.home_trending', compact($data));
@@ -202,34 +223,38 @@ class AdminController extends Controller
 
     public function home_trending_upload_attach(Request $request, $id = 0)
     {
-            $getfiles = $request->file('uploadedFile');
-            $fileExtention = $getfiles->getClientOriginalExtension();
-            if($fileExtention == 'svg')
-            {
-                $fileName = $id.'.svg';
-                $getfiles->move(public_path('uploads/home/trending/'), $fileName);                
-                HomeTrending::find($id)->update(['image' => $fileName, 'active' => 0]);
-                return "true";
-            }
-            else
-            {
-                $fileName = $id.'.jpg';
-                //image compress start
-                $tinyimg = Image::make($getfiles->getRealPath());
-                $tinyimg->resize(60, 60, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/home/trending').'/'.$fileName);
-                $tinyimg->resize(40,40, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/home/trending/thumb').'/'.$fileName);
-                //image compress end
-                HomeTrending::find($id)->update(['image' => $fileName, 'active' => 0]);
-                return "true";
-            }
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_trending');
+        $getfiles = $request->file('uploadedFile');
+        $fileExtention = $getfiles->getClientOriginalExtension();
+        if($fileExtention == 'svg')
+        {
+            $fileName = $id.'.svg';
+            $getfiles->move(public_path('uploads/home/trending/'), $fileName);                
+            HomeTrending::find($id)->update(['image' => $fileName, 'active' => 0]);
+            return "true";
+        }
+        else
+        {
+            $fileName = $id.'.jpg';
+            //image compress start
+            $tinyimg = Image::make($getfiles->getRealPath());
+            $tinyimg->resize(60, 60, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/trending').'/'.$fileName);
+            $tinyimg->resize(40,40, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/home/trending/thumb').'/'.$fileName);
+            //image compress end
+            HomeTrending::find($id)->update(['image' => $fileName, 'active' => 0]);
+            return "true";
+        }
     }
 
     public function home_trending_edit($id = '')
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_trending');
         if($id == '')
         {
             return view('admin.home_trending_edit');
@@ -245,6 +270,8 @@ class AdminController extends Controller
 
     public function home_trending_update(Request $request)
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_trending');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -262,6 +289,8 @@ class AdminController extends Controller
 
     public function home_marketplace()
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_marketplace');
         $boards = HomeMarketplace::orderby('order', 'asc')->get();
         $data = array('boards');
         return view('admin.home_marketplace', compact($data));
@@ -269,6 +298,8 @@ class AdminController extends Controller
 
     public function home_marketplace_edit($id = '')
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_marketplace');
         if($id == '')
         {
             return view('admin.home_marketplace_edit');
@@ -284,6 +315,8 @@ class AdminController extends Controller
 
     public function home_marketplace_update(Request $request)
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_marketplace');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -301,53 +334,59 @@ class AdminController extends Controller
 
     public function home_marketplace_upload_attach(Request $request, $id = 0)
     {
-            $getfiles = $request->file('uploadedFile');
-            $fileName = $id.'.jpg';  
-            //image compress start
-            $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->fit(1200,800, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/marketplace/large').'/'.$fileName);
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_marketplace');
+        $getfiles = $request->file('uploadedFile');
+        $fileName = $id.'.jpg';  
+        //image compress start
+        $tinyimg = Image::make($getfiles->getRealPath());
+        $tinyimg->fit(1200,800, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/marketplace/large').'/'.$fileName);
 
-            $tinyimg->fit(750,500, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/marketplace/medium').'/'.$fileName);
+        $tinyimg->fit(750,500, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/marketplace/medium').'/'.$fileName);
 
-            $tinyimg->fit(300,200, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/marketplace/tiny').'/'.$fileName);
+        $tinyimg->fit(300,200, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/marketplace/tiny').'/'.$fileName);
 
-            $tinyimg->fit(60,40, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/marketplace/thumb').'/'.$fileName);
-            //image compress end
-            $getfiles->move(public_path('uploads/home/marketplace'), $fileName);
-            HomeMarketplace::find($id)->update(['image' => $fileName, 'active' => 0]);
-            return "true";
+        $tinyimg->fit(60,40, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/marketplace/thumb').'/'.$fileName);
+        //image compress end
+        $getfiles->move(public_path('uploads/home/marketplace'), $fileName);
+        HomeMarketplace::find($id)->update(['image' => $fileName, 'active' => 0]);
+        return "true";
     }
 
     public function home_marketplace_upload_logo(Request $request, $id = 0)
     {
-            $getfiles = $request->file('uploadedFile');
-            $fileName = $id.'.jpg';  
-            //image compress start
-            $tinyimg = Image::make($getfiles->getRealPath());
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_marketplace');
+        $getfiles = $request->file('uploadedFile');
+        $fileName = $id.'.jpg';  
+        //image compress start
+        $tinyimg = Image::make($getfiles->getRealPath());
 
-            $tinyimg->resize(140,140, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/marketplace/logo/tiny').'/'.$fileName);
+        $tinyimg->resize(140,140, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/marketplace/logo/tiny').'/'.$fileName);
 
-            $tinyimg->resize(80,80, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/marketplace/logo/thumb').'/'.$fileName);
-            //image compress end
-            $getfiles->move(public_path('uploads/home/marketplace/logo'), $fileName);
-            HomeMarketplace::find($id)->update(['logo' => $fileName, 'active' => 0]);
-            return "true";
+        $tinyimg->resize(80,80, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/marketplace/logo/thumb').'/'.$fileName);
+        //image compress end
+        $getfiles->move(public_path('uploads/home/marketplace/logo'), $fileName);
+        HomeMarketplace::find($id)->update(['logo' => $fileName, 'active' => 0]);
+        return "true";
     }
 
     public function home_teampicks()
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_teampicks');
         $boards = HomeTeamPicks::orderby('order', 'asc')->get();
         $data = array('boards');
         return view('admin.home_teampicks', compact($data));
@@ -355,6 +394,8 @@ class AdminController extends Controller
 
     public function home_teampicks_edit($id = '')
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_teampicks');
         if($id == '')
         {
             return view('admin.home_teampicks_edit');
@@ -370,6 +411,8 @@ class AdminController extends Controller
 
     public function home_teampicks_update(Request $request)
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_teampicks');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -386,54 +429,60 @@ class AdminController extends Controller
 
     public function home_teampicks_upload_logo(Request $request, $id = 0)
     {
-            $getfiles = $request->file('uploadedFile');
-            $fileName = $id.'.jpg';  
-            //image compress start
-            $tinyimg = Image::make($getfiles->getRealPath());
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_teampicks');
+        $getfiles = $request->file('uploadedFile');
+        $fileName = $id.'.jpg';  
+        //image compress start
+        $tinyimg = Image::make($getfiles->getRealPath());
 
-            $tinyimg->resize(140,140, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/teampicks/logo/tiny').'/'.$fileName);
+        $tinyimg->resize(140,140, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/teampicks/logo/tiny').'/'.$fileName);
 
-            $tinyimg->resize(80,80, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/teampicks/logo/thumb').'/'.$fileName);
-            //image compress end
+        $tinyimg->resize(80,80, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/teampicks/logo/thumb').'/'.$fileName);
+        //image compress end
 
-            $getfiles->move(public_path('uploads/home/teampicks/logo'), $fileName);
-            HomeTeamPicks::find($id)->update(['logo' => $fileName, 'active' => 0]);
-            return "true";
+        $getfiles->move(public_path('uploads/home/teampicks/logo'), $fileName);
+        HomeTeamPicks::find($id)->update(['logo' => $fileName, 'active' => 0]);
+        return "true";
     }
 
     public function home_teampicks_upload_attach(Request $request, $id = 0)
     {
-            $getfiles = $request->file('uploadedFile');
-            $fileName = $id.'.jpg';  
-            //image compress start
-            $tinyimg = Image::make($getfiles->getRealPath());
-            $tinyimg->fit(1200,800, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/teampicks/large').'/'.$fileName);
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_teampicks');
+        $getfiles = $request->file('uploadedFile');
+        $fileName = $id.'.jpg';  
+        //image compress start
+        $tinyimg = Image::make($getfiles->getRealPath());
+        $tinyimg->fit(1200,800, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/teampicks/large').'/'.$fileName);
 
-            $tinyimg->fit(750,500, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/teampicks/medium').'/'.$fileName);
+        $tinyimg->fit(750,500, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/teampicks/medium').'/'.$fileName);
 
-            $tinyimg->fit(300,200, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/teampicks/tiny').'/'.$fileName);
+        $tinyimg->fit(300,200, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/teampicks/tiny').'/'.$fileName);
 
-            $tinyimg->fit(60,40, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/home/teampicks/thumb').'/'.$fileName);
-            //image compress end
-            $getfiles->move(public_path('uploads/home/teampicks'), $fileName);
-            HomeTeamPicks::find($id)->update(['image' => $fileName, 'active' => 0]);
-            return "true";
+        $tinyimg->fit(60,40, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/home/teampicks/thumb').'/'.$fileName);
+        //image compress end
+        $getfiles->move(public_path('uploads/home/teampicks'), $fileName);
+        HomeTeamPicks::find($id)->update(['image' => $fileName, 'active' => 0]);
+        return "true";
     }
 
     public function home_featured_provider()
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_featured_provider');
         $boards = HomeFeaturedProvider::join('providers', 'providers.providerIdx', '=', 'home_featured_provider.providerIdx')
                         ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                         ->orderby('order', 'asc')
@@ -444,6 +493,8 @@ class AdminController extends Controller
 
     public function home_featured_provider_edit($id = '')
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_featured_provider');
         if($id == '')
         {
             $providers = Provider::get();
@@ -462,6 +513,8 @@ class AdminController extends Controller
 
     public function home_featured_provider_delete(Request $request)
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_featured_provider');
         $id = $request->id;
         $board = HomeFeaturedProvider::where('id', $id)->delete(); 
         return redirect(route('admin.home_featured_provider'));
@@ -469,6 +522,8 @@ class AdminController extends Controller
 
     public function home_featured_provider_update(Request $request)
     {
+        Session::put('menu_item_parent', 'home');
+        Session::put('menu_item_child', 'home_featured_provider');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -486,6 +541,8 @@ class AdminController extends Controller
 
     public function usecases($id)
     {   
+        Session::put('menu_item_parent', 'usecases');
+        Session::put('menu_item_child', $id);
         $communityIdx = $id;
         $communityName = Community::where('communityIdx', $id)->pluck('communityName')->first();
         $boards = Article::with('community')->where('communityIdx', $id)->orderBy('published', 'DESC')->get();
@@ -495,6 +552,8 @@ class AdminController extends Controller
 
     public function usecases_add_new($id)
     {
+        Session::put('menu_item_parent', 'usecases');
+        Session::put('menu_item_child', $id);
         $categories = Community::get();
         $communityIdx = $id;  
         $data = array( 'categories', 'communityIdx' );
@@ -506,6 +565,10 @@ class AdminController extends Controller
         $id = $request->id;
         $categories = Community::get();  
         $board = Article::where('articleIdx', $id)->first(); 
+
+        Session::put('menu_item_parent', 'usecases');
+        Session::put('menu_item_child', $board->communityIdx);
+
         $communityIdx = $board->communityIdx;
         $data = array( 'categories', 'id', 'board', 'communityIdx' );
         return view('admin.usecases_edit', compact($data));
@@ -587,6 +650,7 @@ class AdminController extends Controller
 
     public function updates()
     {   
+        Session::put('menu_item_parent', 'updates');
         $boards = Article::where('communityIdx', null)->orderBy('published', 'DESC')->get();
         $data = array('boards');
         return view('admin.updates', compact($data));
@@ -594,11 +658,13 @@ class AdminController extends Controller
 
     public function updates_add_new()
     {
+        Session::put('menu_item_parent', 'updates');
         return view('admin.updates_add_new');
     }
 
     public function updates_update(Request $request)
     {
+        Session::put('menu_item_parent', 'updates');
         $date = explode("/", $request->published);
         $published = $date[2].'-'.$date[1].'-'.$date[0];
         if($request->input('id')) {
@@ -617,6 +683,7 @@ class AdminController extends Controller
     }
 
     public function updates_publish(Request $request){
+        Session::put('menu_item_parent', 'updates');
         $articleIdx = $request->articleIdx;
         $article = Article::where('articleIdx', $articleIdx)->get()->first();
         $new['active'] = 1 - $article->active;
@@ -625,12 +692,14 @@ class AdminController extends Controller
     }
 
     public function updates_delete(Request $request){
+        Session::put('menu_item_parent', 'updates');
         Article::where('articleIdx', $request->id)->delete();
         return "success";
     }
 
     public function updates_edit($id)
     {
+        Session::put('menu_item_parent', 'updates');
         $id = $id;
         $board = Article::where('articleIdx', $id)->first(); 
         $data = array('id', 'board');
@@ -638,6 +707,7 @@ class AdminController extends Controller
     }
 
     public function updates_summernote_upload(Request $request){
+        Session::put('menu_item_parent', 'updates');
         $files = $request->file('files');
         $names = array();
         foreach ($files as $key => $file) {
@@ -651,6 +721,7 @@ class AdminController extends Controller
     }
 
     public function media_library(Request $request){
+        Session::put('menu_item_parent', 'media');
         $images = Gallery::join('communities', 'communities.communityIdx', '=', 'gallery.content')
                             ->orderby('gallery.content', 'asc')
                             ->get();
@@ -659,6 +730,7 @@ class AdminController extends Controller
     }
 
     public function edit_media($id = 0){
+        Session::put('menu_item_parent', 'media');
         if( $id == 0 ){
             $communities = Community::get();
             $data = array('communities');
@@ -671,11 +743,13 @@ class AdminController extends Controller
     }
 
     public function delete_media(Request $request){
+        Session::put('menu_item_parent', 'media');
         Gallery::where('id', $request->mid)->delete();
         return "success";
     }
 
     public function media_update(Request $request){
+        Session::put('menu_item_parent', 'media');
         if($request->input('id')) {
             $id = $request->input('id');
             $data = $request->all();
@@ -726,6 +800,7 @@ class AdminController extends Controller
     }
 
     public function media_upload_attach(Request $request, $mediaIdx = 0){
+        Session::put('menu_item_parent', 'media');
         $getfiles = $request->file('uploadedFile');
         $fileName = "media_".$mediaIdx.'.jpg';         
         //image compress start
@@ -808,11 +883,17 @@ class AdminController extends Controller
     }
 
     public function help_buying_data(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_title_intro');
         $header = HelpTopic::where('page', 'buying_header')->get()->first();
         $data = array('header');
         return view('admin.help_buying_data', compact($data));
     }
     public function update_help_buying_data(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_title_intro');
         if($request->helpTopicIdx==0){
             $header['title'] = $request->title;
             $header['description'] = $request->description;
@@ -827,11 +908,17 @@ class AdminController extends Controller
         return "success";
     }
     public function help_buying_faqs(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_faqs');
         $faqs = FAQ::where('for', 'buying')->get();
         $data = array('faqs');
         return view('admin.help_buying_data_faqs', compact($data));
     }
     public function edit_help_buying_faq(Request $request, $fid = 0){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_faqs');
         if($fid==0){
             return view('admin.help_buying_data_faq_edit');
         }else{
@@ -841,6 +928,9 @@ class AdminController extends Controller
         }
     }
     public function update_help_buying_faq(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_faqs');
         if($request->faqIdx==0){
             $faq['faq'] = $request->faq;
             $faq['description'] = $request->description;
@@ -855,16 +945,25 @@ class AdminController extends Controller
         return "success";
     }
     public function delete_help_buying_faq(Request $request, $fid){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_faqs');
         FAQ::where('faqIdx', $fid)->delete();
         return "success";
     }
 
     public function help_buying_data_topics(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_topics');
         $topics = HelpTopic::where('page', 'buying')->get();
         $data = array('topics');
         return view('admin.help_buying_data_topics', compact($data));
     }
     public function edit_help_buying_data_topic(Request $request, $tid = 0){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_topics');
         if($tid==0){
             return view('admin.help_buying_data_topic_edit');
         }else{
@@ -874,6 +973,9 @@ class AdminController extends Controller
         }
     }
     public function update_help_buying_data_topic(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_topics');
         if($request->helpTopicIdx==0){
             $topic['page'] = "buying";
             $topic['title'] = $request->title;
@@ -893,6 +995,9 @@ class AdminController extends Controller
     }
 
     public function publish_help_buying_data_topic(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_topics');
         $helpTopicIdx = $request->helpTopicIdx;
         $topic = HelpTopic::where('helpTopicIdx', $helpTopicIdx)->get()->first();
         $new['active'] = 1 - $topic->active;
@@ -901,16 +1006,25 @@ class AdminController extends Controller
     }
 
     public function delete_help_buying_data_topic(Request $request, $tid){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'buying_data');
+        Session::put('menu_item_child_child', 'buying_topics');
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }
 
     public function help_selling_data(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_title_intro');
         $header = HelpTopic::where('page', 'selling_header')->get()->first();
         $data = array('header');
         return view('admin.help_selling_data', compact($data));
     }
     public function update_help_selling_data(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_title_intro');
         if($request->helpTopicIdx==0){
             $header['title'] = $request->title;
             $header['description'] = $request->description;
@@ -925,11 +1039,17 @@ class AdminController extends Controller
         return "success";
     }
     public function help_selling_faqs(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_faqs');
         $faqs = FAQ::where('for', 'selling')->get();
         $data = array('faqs');
         return view('admin.help_selling_data_faqs', compact($data));
     }
     public function edit_help_selling_faq(Request $request, $fid = 0){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_faqs');
         if($fid==0){
             return view('admin.help_selling_data_faq_edit');
         }else{
@@ -939,6 +1059,9 @@ class AdminController extends Controller
         }
     }
     public function update_help_selling_faq(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_faqs');
         if($request->faqIdx==0){
             $faq['faq'] = $request->faq;
             $faq['description'] = $request->description;
@@ -953,16 +1076,25 @@ class AdminController extends Controller
         return "success";
     }
     public function delete_help_selling_faq(Request $request, $fid){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_faqs');
         FAQ::where('faqIdx', $fid)->delete();
         return "success";
     }
 
     public function help_selling_data_topics(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_topics');
         $topics = HelpTopic::where('page', 'selling')->get();
         $data = array('topics');
         return view('admin.help_selling_data_topics', compact($data));
     }
     public function edit_help_selling_data_topic(Request $request, $tid = 0){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_topics');
         if($tid==0){
             return view('admin.help_selling_data_topic_edit');
         }else{
@@ -972,6 +1104,9 @@ class AdminController extends Controller
         }
     }
     public function update_help_selling_data_topic(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_topics');
         if($request->helpTopicIdx==0){
             $topic['page'] = "selling";
             $topic['title'] = $request->title;
@@ -991,6 +1126,9 @@ class AdminController extends Controller
     }
 
     public function publish_help_selling_data_topic(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_topics');
         $helpTopicIdx = $request->helpTopicIdx;
         $topic = HelpTopic::where('helpTopicIdx', $helpTopicIdx)->get()->first();
         $new['active'] = 1 - $topic->active;
@@ -999,15 +1137,22 @@ class AdminController extends Controller
     }
 
     public function delete_help_selling_data_topic(Request $request, $tid){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'selling_data');
+        Session::put('menu_item_child_child', 'selling_topics');
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }
     public function help_guarantees(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'guarantee');
         $topics = HelpTopic::where('page', 'guarantees')->get();
         $data = array('topics');
         return view('admin.help_guarantees', compact($data));
     }
     public function edit_help_guarantee(Request $request, $tid = 0){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'guarantee');
         if($tid == 0){
             return view('admin.help_guarantee_edit');
         }else{
@@ -1017,10 +1162,14 @@ class AdminController extends Controller
         }
     }
     public function delete_help_guarantee(Request $request, $tid){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'guarantee');
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }
     public function update_help_guarantee(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'guarantee');
         if($request->helpTopicIdx==0){
             $topic['page'] = "guarantees";
             $topic['title'] = $request->title;
@@ -1035,11 +1184,15 @@ class AdminController extends Controller
         return "success";
     }
     public function help_complaints(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'complaint');
         $topics = HelpTopic::where('page', 'complaints')->get();
         $data = array('topics');
         return view('admin.help_complaints', compact($data));
     }
     public function edit_help_complaint(Request $request, $tid = 0){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'complaint');
         if($tid == 0){
             return view('admin.help_complaint_edit');
         }else{
@@ -1049,10 +1202,14 @@ class AdminController extends Controller
         }
     }
     public function delete_help_complaint(Request $request, $tid){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'complaint');
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }
     public function update_help_complaint(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'complaint');
         if($request->helpTopicIdx==0){
             $topic['page'] = "complaints";
             $topic['title'] = $request->title;
@@ -1068,11 +1225,15 @@ class AdminController extends Controller
     }
 
     public function help_feedbacks(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'feedback');
         $topics = HelpTopic::where('page', 'feedbacks')->get();
         $data = array('topics');
         return view('admin.help_feedbacks', compact($data));
     }
     public function edit_help_feedback(Request $request, $tid = 0){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'feedback');
         if($tid == 0){
             return view('admin.help_feedback_edit');
         }else{
@@ -1082,10 +1243,14 @@ class AdminController extends Controller
         }
     }
     public function delete_help_feedback(Request $request, $tid){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'feedback');
         HelpTopic::where('helpTopicIdx', $tid)->delete();
         return "success";
     }
     public function update_help_feedback(Request $request){
+        Session::put('menu_item_parent', 'help');
+        Session::put('menu_item_child', 'feedback');
         if($request->helpTopicIdx==0){
             $topic['page'] = "feedbacks";
             $topic['title'] = $request->title;
@@ -1161,6 +1326,7 @@ class AdminController extends Controller
     }
     
     public function users(Request $request){
+        Session::put('menu_item_parent', 'users');
         $users = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->where('users.userStatus', 1)
                         ->get(["users.*", 'companies.*', 'users.created_at as createdAt']);
@@ -1182,6 +1348,7 @@ class AdminController extends Controller
     }
 
     public function company_users(Request $request){
+        Session::put('menu_item_parent', 'users');
         $companyIdx = User::where('userIdx', $request->adminUserIdx)->get()->first()->companyIdx;
         $users = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                         ->where('users.userStatus', 2)
@@ -1203,6 +1370,7 @@ class AdminController extends Controller
         return json_encode(array('users'=>$result));
     }
     public function edit_user(Request $request){
+        Session::put('menu_item_parent', 'users');
         $user = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                     ->where('users.userIdx', $request->userIdx)
                     ->get()
@@ -1213,6 +1381,7 @@ class AdminController extends Controller
         return view('admin.edit_user', compact($data));
     }
     public function update_user(Request $request){
+        Session::put('menu_item_parent', 'users');
         $user = User::where('userIdx', $request->userIdx)->get()->first();
         if($user){
             $data = array();
@@ -1233,6 +1402,7 @@ class AdminController extends Controller
             echo "fail";
     }
     public function delete_user(Request $request){
+        Session::put('menu_item_parent', 'users');
         $user = User::where('userIdx', $request->userIdx)->get()->first();
         if($user){
             if($user->userStatus==1){

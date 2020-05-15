@@ -212,3 +212,13 @@ body{
 .hidden{
     display: none;
 }
+.hide{
+    display: none;
+}
+.m-menu__link.active{
+    background-color: white;
+    color: black!important;
+}
+.m-menu__sidebar.active a{
+    color: aquamarine;
+}

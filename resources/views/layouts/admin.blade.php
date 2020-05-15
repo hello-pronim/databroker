@@ -1,4 +1,8 @@
-
+@php
+    $menu_item_parent = request()->session()->get('menu_item_parent');
+    $menu_item_child = request()->session()->get('menu_item_child');
+    $menu_item_child_child = request()->session()->get('menu_item_child_child');
+@endphp
 <!DOCTYPE html>
 <html>
     <head>
@@ -98,18 +102,18 @@
                                 CMS
                             </div>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
-                                <span class="m-menu__link menu-home" id="usecase-sidebar">
+                                <span class="m-menu__link menu-home {{$menu_item_parent=='home'?'active':''}}" id="usecase-sidebar">
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                             Home
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                                 </span>
-                                <ul class="subsider_ul menu-home" style="display: none;">
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.home_featured_data') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Featured Data</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.home_trending') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Trending</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.home_marketplace') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Marketplace</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.home_teampicks') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Team Picks</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.home_featured_provider') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Providers</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 6 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Top use cases</a></li>
+                                <ul class="subsider_ul menu-home {{$menu_item_parent=='home'?'':'hide'}}">
+                                    <li class="m-menu__sidebar {{$menu_item_child=='home_featured_data'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.home_featured_data') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Featured Data</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child=='home_trending'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.home_trending') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Trending</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child=='home_marketplace'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.home_marketplace') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Marketplace</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child=='home_teampicks'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.home_teampicks') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Team Picks</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child=='home_featured_provider'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.home_featured_provider') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Providers</a></li>
+                                    <!-- <li class="m-menu__sidebar {{$menu_item_child=='home_top_usecases'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 6 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Top use cases</a></li> -->
                                 </ul>
                             </li>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
@@ -134,64 +138,64 @@
                                 </a>
                             </li>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
-                                    <span class="m-menu__link menu-usecases" id="usecase-sidebar">
-                                        <i class="fa fa-briefcase" aria-hidden="true"></i>
-                                                Use cases
-                                        <i class="m-menu__ver-arrow la la-angle-right"></i>
-                                    </span>
+                                <span class="m-menu__link menu-usecases {{$menu_item_parent=='usecases'?'active':''}}" id="usecase-sidebar">
+                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                            Use cases
+                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </span>
                                     
-                                <ul class="subsider_ul menu-usecases" style="display: none;">
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 1 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Geographics</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 2 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Environment</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 7 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Transport</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 3 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;People</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 5 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Agriculture</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 6 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Energy</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 8 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Economy</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 9 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Supply Chain</a></li>
+                                <ul class="subsider_ul menu-usecases {{$menu_item_parent=='usecases'?'':'hide'}}">
+                                    <li class="m-menu__sidebar {{$menu_item_child==1?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 1 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Geographics</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child==2?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 2 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Environment</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child==7?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 7 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Transport</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child==3?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 3 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;People</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child==5?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 5 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Agriculture</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child==6?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 6 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Energy</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child==8?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 8 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Economy</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child==9?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.usecases', [ 'id' => 9 ]) }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Supply Chain</a></li>
                                 </ul>
                             </li>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
-                                <span class="m-menu__link menu-help" id="usecase-sidebar">
+                                <span class="m-menu__link menu-help {{$menu_item_parent=='help'?'active':''}}" id="usecase-sidebar">
                                     <i class="fa fa-deaf" aria-hidden="true"></i>
                                             Help 
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                                 </span>
-                                <ul class="subsider_ul menu-help" style="display: none;">
+                                <ul class="subsider_ul menu-help {{$menu_item_parent=='help'?'':'hide'}}">
                                     <li class="m-menu__sidebar m-menu__item m_menu-item--parent"  aria-haspopup="true">
                                         <span class="m-menu__link menu-sub-buying">
                                             <i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Buying data
                                         </span>
-                                        <ul class="subsider_sub_ul menu-sub-buying" style="display: none;">
-                                            <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.buying_data') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Title and intro</a></li>
-                                            <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.buying_data_topics') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Content</a></li>
-                                            <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.buying_data_faqs') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;FAQs</a></li>
+                                        <ul class="subsider_sub_ul menu-sub-buying {{$menu_item_child=='buying_data'?'':'hide'}}">
+                                            <li class="m-menu__sidebar {{$menu_item_child_child=='buying_title_intro'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.help.buying_data') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Title and intro</a></li>
+                                            <li class="m-menu__sidebar {{$menu_item_child_child=='buying_topics'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.help.buying_data_topics') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Content</a></li>
+                                            <li class="m-menu__sidebar {{$menu_item_child_child=='buying_faqs'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.help.buying_data_faqs') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;FAQs</a></li>
                                         </ul>
                                     </li>
                                     <li class="m-menu__sidebar m-menu__item m_menu-item--parent"  aria-haspopup="true">
                                         <span class="m-menu__link menu-sub-selling">
                                             <i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Selling data
                                         </span>
-                                        <ul class="subsider_sub_ul menu-sub-selling" style="display: none;">
-                                            <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.selling_data') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Title and intro</a></li>
-                                            <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.selling_data_topics') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Content</a></li>
-                                            <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.selling_data_faqs') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;FAQs</a></li>
+                                        <ul class="subsider_sub_ul menu-sub-selling {{$menu_item_child=='selling_data'?'':'hide'}}">
+                                            <li class="m-menu__sidebar {{$menu_item_child_child=='selling_title_intro'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.help.selling_data') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Title and intro</a></li>
+                                            <li class="m-menu__sidebar {{$menu_item_child_child=='selling_topics'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.help.selling_data_topics') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Content</a></li>
+                                            <li class="m-menu__sidebar {{$menu_item_child_child=='selling_faqs'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.help.selling_data_faqs') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;FAQs</a></li>
                                         </ul>
                                     </li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.guarantee') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Guarantee</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.complaint') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;File a complaint</a></li>
-                                    <li class="m-menu__sidebar"  aria-haspopup="true"><a href="{{ route('admin.help.feedback') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Feedback</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child=='guarantee'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.help.guarantee') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Guarantee</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child=='complaint'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.help.complaint') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;File a complaint</a></li>
+                                    <li class="m-menu__sidebar {{$menu_item_child=='feedback'?'active':''}}"  aria-haspopup="true"><a href="{{ route('admin.help.feedback') }}" class="m-menu__link"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;Feedback</a></li>
                                 </ul>
                             </li>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
-                                <a href="{{ route('admin.updates') }}" class="m-menu__link" id="usecase-sidebar">
+                                <a href="{{ route('admin.updates') }}" class="m-menu__link {{$menu_item_parent=='updates'?'active':''}}" id="usecase-sidebar">
                                     <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                                             Updates
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                                 </a>
                             </li>
                             <li class="m-menu__item  m-menu__item--parent"  aria-haspopup="true">
-                                <a href="{{ route('admin.media_library') }}" class="m-menu__link" id="usecase-sidebar">
+                                <a href="{{ route('admin.media_library') }}" class="m-menu__link {{$menu_item_parent=='media'?'active':''}}" id="usecase-sidebar">
                                     <i class="fa fa-picture-o" aria-hidden="true"></i>
                                             Media
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
@@ -204,7 +208,7 @@
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                                 </a>
                             </li>
-                            <a href="{{ route('admin.users') }}" class="m-menu__link">
+                            <a href="{{ route('admin.users') }}" class="m-menu__link {{$menu_item_parent=='users'?'active':''}}">
                                 <div class="sidebar_header">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     Users
@@ -231,68 +235,46 @@
         <script src="{{ asset('adminpanel/assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
         <script src="{{ asset('adminpanel/assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
         <script>
-            var prop_usecases = true;
             $('.m-menu__link.menu-usecases').click(function(){
-                if(prop_usecases == true)
-                {
-                    $('.subsider_ul.menu-usecases').css('display', 'inherit');
+                    $('.m-menu__item.m-menu__item--parent .m-menu__link.active').removeClass('active');
+                    $('.m-menu__link.menu-usecases').addClass('active');
+                if($('.subsider_ul.menu-usecases').hasClass('hide')){
+                    $('.subsider_ul.menu-usecases').removeClass('hide');
                 }
                 else
-                {
-                    $('.subsider_ul.menu-usecases').css("display", "none");
-                }
-                prop_usecases = prop_usecases?false:true;
+                    $('.subsider_ul.menu-usecases').addClass("hide");
             });
-            var prop_home = true;
             $('.m-menu__link.menu-home').click(function(){
-                if(prop_home == true)
-                {
-                    $('.subsider_ul.menu-home').css('display','inherit');
+                $('.m-menu__item.m-menu__item--parent .m-menu__link.active').removeClass('active');
+                $('.m-menu__link.menu-home').addClass('active');
+                if($('.subsider_ul.menu-home').hasClass('hide')){
+                    $('.subsider_ul.menu-home').removeClass('hide');
                 }
                 else
-                {
-                    $('.subsider_ul.menu-home').css('display','none');
-                }
-                prop_home = prop_home?false:true;
+                    $('.subsider_ul.menu-home').addClass('hide');
             });
-            var prop_help = true;
             $('.m-menu__link.menu-help').click(function(){
-                if(prop_help == true)
-                {
-                    $('.subsider_ul.menu-help').css('display','inherit');
-                }
+                $('.m-menu__item.m-menu__item--parent .m-menu__link.active').removeClass('active');
+                $('.m-menu__link.menu-help').addClass('active');
+                if($('.subsider_ul.menu-help').hasClass('hide'))
+                    $('.subsider_ul.menu-help').removeClass('hide');
                 else
-                {
-                    $('.subsider_ul.menu-help').css('display','none');
-                }
-                prop_help = prop_help?false:true;
-            })
-            
-            var prop_help_buying = true;
+                    $('.subsider_ul.menu-help').addClass('hide');
+            });
             $('.m-menu__link.menu-sub-buying').click(function(){
-                if(prop_help_buying == true)
-                {
-                    $('.subsider_sub_ul.menu-sub-buying').css('display','inherit');
-                }
+                $('.m-menu__item.m-menu__item--parent .m-menu__link.active').removeClass('active');
+                if($('.subsider_sub_ul.menu-sub-buying').hasClass('hide'))
+                    $('.subsider_sub_ul.menu-sub-buying').removeClass('hide');
                 else
-                {
-                    $('.subsider_sub_ul.menu-sub-buying').css('display','none');
-                }
-                prop_help_buying = prop_help_buying?false:true;
-            })
-
-            var prop_help_selling = true;
+                    $('.subsider_sub_ul.menu-sub-buying').addClass('hide');
+            });
             $('.m-menu__link.menu-sub-selling').click(function(){
-                if(prop_help_selling == true)
-                {
-                    $('.subsider_sub_ul.menu-sub-selling').css('display','inherit');
-                }
+                $('.m-menu__item.m-menu__item--parent .m-menu__link.active').removeClass('active');
+                if($('.subsider_sub_ul.menu-sub-selling').hasClass('hide'))
+                    $('.subsider_sub_ul.menu-sub-selling').removeClass('hide');
                 else
-                {
-                    $('.subsider_sub_ul.menu-sub-selling').css('display','none');
-                }
-                prop_help_selling = prop_help_selling?false:true;
-            })
+                    $('.subsider_sub_ul.menu-sub-selling').addClass('hide');
+            });
         </script>
         @yield('additional_javascript')
     </body>
