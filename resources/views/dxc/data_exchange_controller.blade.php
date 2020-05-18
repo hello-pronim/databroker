@@ -16,7 +16,7 @@
 			<div class="blog-content">
 				<div class="row">
 					<div class="col-md-6">
-	                    <label class="fs-18">Wallet address: <span class="text-black">{{$address}}</span></label>
+	                    <label class="fs-18">Account ID: <span class="text-black">{{$address}}</span></label>
 	                    <br>
 	                    <label class="fs-18">API key: <span class="text-black">{{$apiKey}}</span></label>
 	                    <br>
