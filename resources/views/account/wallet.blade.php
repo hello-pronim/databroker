@@ -24,7 +24,9 @@
             </div>
             <div class="row mt-40">
                 <div class="col-lg-12">
-                    <label class="fs-18">Wallet address: <span>{{$address}}</span></label>
+                    <label class="fs-18">Wallet address: <span class="text-black">{{$address}}</span></label>
+                    <br>
+                    <label class="fs-18">API key: <span class="text-black">{{$apiKey}}</span></label>
                     <br>
                     <div class="wallet_fill">
                         <a class="download" href="http://dev.databroker.com/uploads/offersample/ipro1-2-2020_20200110.docx"><i class="material-icons rotated">get_app</i><span>Fill wallet</span></a>    

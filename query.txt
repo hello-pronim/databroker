@@ -529,3 +529,6 @@ ALTER TABLE `databroker_new`.`helpTopics` ADD COLUMN `meta_title` VARCHAR(255) N
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `active` INT(11) NULL AFTER `published`; 
 ALTER TABLE `databroker_new`.`helpTopics` ADD COLUMN `active` INT(11) NULL AFTER `meta_description`; 
 ALTER TABLE `databroker_new`.`articles` ADD COLUMN `category` VARCHAR(255) NULL AFTER `articleContent`;
+
+#2020-05-18
+ALTER TABLE `databroker_new`.`users` ADD COLUMN `apiKey` VARCHAR(255) NULL AFTER `walletPrivateKey`;

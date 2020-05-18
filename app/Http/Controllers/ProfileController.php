@@ -372,13 +372,39 @@ class ProfileController extends Controller
             $walletAddress = $responseBody->address;
             $walletPrivateKey = $responseBody->privatekey;
 
-            User::where('userIdx', $user->userIdx)->update(['wallet'=>$walletAddress, 'walletPrivateKey'=>$walletPrivateKey]);
+            $client3 = new \GuzzleHttp\Client();
+            $url = "http://161.35.212.38:3333/user/apikey/".$walletAddress;
+            $response = $client3->request("GET", $url, [
+                'headers'=> ['Content-Type' => 'application/json'],
+                'body'=>'{}'
+            ]);
+            $apikey = $response->getBody()->getContents();
+
+            User::where('userIdx', $user->userIdx)->update([
+                'wallet'=>$walletAddress, 
+                'walletPrivateKey'=>$walletPrivateKey,
+                'apikey'=>$apikey
+            ]);
+        }
+        else if(!$userObj->apiKey){
+            $walletAddress = $userObj->wallet;
+            $client3 = new \GuzzleHttp\Client();
+            $url = "http://161.35.212.38:3333/user/apikey/".$walletAddress;
+            $response = $client3->request("GET", $url, [
+                'headers'=> ['Content-Type' => 'application/json'],
+                'body'=>'{}'
+            ]);
+            $apikey = $response->getBody()->getContents();
+            User::where('userIdx', $user->userIdx)->update([
+                'apikey'=>$apikey
+            ]);
         }
 
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
         
         $client = new \GuzzleHttp\Client();
         $address = $userObj->wallet;
+        $apiKey = $userObj->apiKey;
         $url = "https://dxs-swagger.herokuapp.com/ethereum/balanceof/".$userObj->wallet;
         $response = $client->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
@@ -389,7 +415,7 @@ class ProfileController extends Controller
                                     ->where('transactions.userIdx', $user->userIdx)
                                     ->orderby('transactions.updated_at', 'desc')
                                     ->get(['transactions.*', 'sales.*', 'transactions.updated_at as updatedAt']);
-        $data = array('address', 'balance', 'transactions');
+        $data = array('address', 'apiKey', 'balance', 'transactions');
         return view('account.wallet', compact($data));
     }
 

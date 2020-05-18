@@ -15,8 +15,16 @@
 			<div class="app-monetize-section-item0 ml-0 mt-20"></div>
 			<div class="blog-content">
 				<div class="row">
+					<div class="col-md-6">
+	                    <label class="fs-18">Wallet address: <span class="text-black">{{$address}}</span></label>
+	                    <br>
+	                    <label class="fs-18">API key: <span class="text-black">{{$apiKey}}</span></label>
+	                    <br>
+					</div>
+				</div>
+				<div class="row">
 					<div class="col col-6">
-						<table class="table">
+						<table class="table mt-30">
 					        <thead>
 					          	<tr>
 					          		<th>

@@ -161,6 +161,14 @@ class RegisterController extends Controller
         $walletAddress = $responseBody->address;
         $walletPrivateKey = $responseBody->privatekey;
 
+        $client3 = new \GuzzleHttp\Client();
+        $url = "http://161.35.212.38:3333/user/apikey/".$walletAddress;
+        $response = $client3->request("GET", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=>'{}'
+        ]);
+        $apikey = $response->getBody()->getContents();
+
         $this->sendEmail("register", [
             'from'=>'ce@jts.ec', 
             'to'=>$data['email'], 
@@ -179,6 +187,7 @@ class RegisterController extends Controller
             'userStatus' => $userStatus,
             'wallet'=>$walletAddress,
             'walletPrivateKey'=>$walletPrivateKey,
+            'apiKey'=>$apikey,
             'password' => Hash::make($data['password']),
         ]);
     }

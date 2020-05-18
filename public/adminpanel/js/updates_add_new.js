@@ -186,7 +186,6 @@ $(function(){
         var node = document.createElement('span');
         node.classList.add("slideshare-embed-code");
         node.innerHTML = embed_code;
-        console.log(embed_code);
         $('.note-embed-code').val("");
         $("#custom-modal-slide").modal('hide');
         $('.summernote').summernote('editor.restoreRange');
