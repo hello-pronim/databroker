@@ -300,7 +300,19 @@ class DataController extends Controller
 
         $products = OfferProduct::with(['region'])->where('offerIdx', '=', $id)->orderby('updated_at', 'DESC')->get();
 
-        $data = array( 'offer', 'products', 'id', 'link_to_market' );
+        $user = $this->getAuthUser();  
+        $userObj = User::where('userIdx', $user->userIdx)->get()->first();
+        $walletAddress = "0xaFd6E98D5B2504A65D2528072314e59d2974bEDc";
+        $client = new \GuzzleHttp\Client();
+        $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
+        $response = $client->request("GET", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=>'{}'
+        ]);
+        $response = json_decode($response->getBody()->getContents());
+        $dxcs = $response->dxcs;
+
+        $data = array( 'offer', 'products', 'id', 'link_to_market', 'dxcs' );
         return view('data.offer_detail', compact($data));
     }
 
@@ -742,7 +754,19 @@ class DataController extends Controller
         $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
 
-        $data = array( 'countries', 'offer', 'regions' );
+        $user = $this->getAuthUser();  
+        $userObj = User::where('userIdx', $user->userIdx)->get()->first();
+        $walletAddress = "0xaFd6E98D5B2504A65D2528072314e59d2974bEDc";
+        $client = new \GuzzleHttp\Client();
+        $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
+        $response = $client->request("GET", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=>'{}'
+        ]);
+        $response = json_decode($response->getBody()->getContents());
+        $dxcs = $response->dxcs;
+
+        $data = array( 'countries', 'offer', 'regions', 'dxcs' );
         return view('data.offer_add_product', compact($data));
     }
 
@@ -780,7 +804,21 @@ class DataController extends Controller
             ['key' => 'year', 'label' => '1 year'],
         ];
 
-        $data = array( 'offer', 'product', 'id', 'pid', 'link_to_market', 'countries', 'regions', 'regionCheckList', 'prodTypeList', 'accessPeriodList', 'bidTypes' );
+        $user = $this->getAuthUser();  
+        $userObj = User::where('userIdx', $user->userIdx)->get()->first();
+        $walletAddress = "0xaFd6E98D5B2504A65D2528072314e59d2974bEDc";
+        $client = new \GuzzleHttp\Client();
+        $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
+        $response = $client->request("GET", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=>'{}'
+        ]);
+        $response = json_decode($response->getBody()->getContents());
+        $dxcs = $response->dxcs; 
+        // var_dump($dxcs);
+        // exit;
+
+        $data = array( 'offer', 'product', 'id', 'pid', 'link_to_market', 'countries', 'regions', 'regionCheckList', 'prodTypeList', 'accessPeriodList', 'bidTypes', 'dxcs' );
         return view('data.offer_edit_product', compact($data));
     }
 

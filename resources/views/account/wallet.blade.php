@@ -40,8 +40,12 @@
 
             <div class="row mt-30">
                 <div class="col-lg-12">
-                    <span class="fs-30 text-bold"> Total value of your wallet: </span>
-                    <span class="text-warning fs-30 text-bold ml-15">DTX {{$balance->balance}}</span>
+                    <div class="flex-row">
+                        <span class="fs-30 text-bold"> Total value of your wallet: </span>
+                        <div>
+                            <p class="text-warning fs-30 text-bold ml-15">€ {{$totalSale}} <span class="fs-24 text-grey">(€ {{$pendingSale}} pending)</span></p>
+                            <p class="text-grey fs-30 text-bold ml-15">DTX {{$balance->balance}}</div>
+                    </div>
                 </div>    
             </div>
             

@@ -415,7 +415,28 @@ class ProfileController extends Controller
                                     ->where('transactions.userIdx', $user->userIdx)
                                     ->orderby('transactions.updated_at', 'desc')
                                     ->get(['transactions.*', 'sales.*', 'transactions.updated_at as updatedAt']);
-        $data = array('address', 'apiKey', 'balance', 'transactions');
+
+        $sales = Sale::join('offerProducts', 'offerProducts.productIdx', 'sales.productIdx')
+                        ->leftJoin('bids', 'bids.bidIdx', '=', 'sales.bidIdx')
+                        ->where('sales.sellerIdx', $user->userIdx)
+                        ->get();
+        $totalSale = 0;
+        $pendingSale = 0;
+        foreach ($sales as $sale) {
+            if(!$sale->bidPrice && $sale->productPrice>0) 
+                $totalSale += $sale->productPrice;
+            else
+                $totalSale += $sale->bidPrice;
+            if($sale->redeemed==0){
+                if(!$sale->bidPrice && $sale->productPrice>0) 
+                    $pendingSale += $sale->productPrice;
+                else
+                    $pendingSale += $sale->bidPrice;
+            }
+        }
+        $totalSale = number_format((float)$totalSale, 2, '.', '');
+        $pendingSale = number_format((float)$pendingSale, 2, '.', '');
+        $data = array('address', 'apiKey', 'balance', 'transactions', 'totalSale', 'pendingSale');
         return view('account.wallet', compact($data));
     }
 

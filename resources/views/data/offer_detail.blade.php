@@ -4,6 +4,7 @@
 @section('description', '')
 
 @section('additional_css')
+    <link rel="stylesheet" href="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.css') }}">
 @endsection
 
 @section('content')
@@ -175,49 +176,54 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
-													<div class="col col-4">
-														<p class="para text-center">Select the DXC</p class="para">
-														<ul class="selectable-list list-dxc list-style-none pl-0 text-center border-grey">
-															<li class="selectable-list-item active selected" item-id="1">85.120.23.12</li>
-															<li class="selectable-list-item" item-id="2">85.120.23.13</li>
-														</ul>
-													</div>
-													<div class="col col-8">
-														<p class="para text-center">Select the data</p class="para">
-														<table class="table border-grey">
-															<thead>
-																<tr>
-																	<th class="text-bold fs-16 text-black">Data</th>
-																	<th class="text-bold fs-16 text-black">Type</th>
-																	<th class="text-bold fs-16 text-black">Product name</th>
-																</tr>
-															</thead>
-															<tbody class="selectable-list list-data">
-																<tr class="selectable-list-item" parent-id="1">
-																	<td>Weather-file1.csv</td>
-																	<td>File</td>
-																	<td>Weather global</td>
-																</tr>
-																<tr class="selectable-list-item" parent-id="1">
-																	<td>Weather-germany1.csv</td>
-																	<td>File</td>
-																	<td>Weather germany</td>
-																</tr>
-																<tr class="selectable-list-item" parent-id="2">
-																	<td>Weather-file2.csv</td>
-																	<td>File</td>
-																	<td>Weather global</td>
-																</tr>
-																<tr class="selectable-list-item" parent-id="2">
-																	<td>Weather-germany2.csv</td>
-																	<td>File</td>
-																	<td>Weather germany</td>
-																</tr>
-															</tbody>
-														</table>
+												@if(count($dxcs)>0)
+												<div class="row mgt30">
+													<div class="col-12">
+														<h4 class="h4_intro text-left">Identify your data source</h4>
+														<div class="row">
+															<div class="col col-3">
+																<div class="list-dxc-container">
+																	<p class="para text-center fs-16 lh-1">Select the DXC</p class="para">
+																	<ul class="selectable-list list-dxc list-style-none pl-0 text-center border-grey">
+																		@foreach($dxcs as $key=>$dxc)
+																			@if($dxc->acceptanceStatus=="ACCEPTED")
+																		<li class="selectable-list-item @if($key==0) active selected @endif" item-id="{{$key+1}}">{{$dxc->host}}</li>
+																			@endif
+																		@endforeach
+																	</ul>
+																</div>
+															</div>
+															<div class="col col-9 pl-0">
+																<div class="table-dxc-data-container">
+																	<p class="para text-center fs-16 lh-1">Select the data</p class="para">
+																	<table class="table border-grey table-dxc-data">
+																		<thead>
+																			<tr>
+																				<th class="text-bold fs-16 text-black">Data</th>
+																				<th class="text-bold fs-16 text-black">Type</th>
+																				<th class="text-bold fs-16 text-black">Product name</th>
+																			</tr>
+																		</thead>
+																		<tbody class="selectable-list list-data">
+																			@foreach($dxcs as $key=>$dxc)
+																				@if($dxc->acceptanceStatus=="ACCEPTED")
+																					@foreach($dxc->products as $index=>$pp)
+																			<tr class="selectable-list-item" parent-id="{{$key+1}}">
+																				<td>{{$pp->dataname}}</td>
+																				<td>{{$pp->type}}</td>
+																				<td>{{$pp->name}}</td>
+																			</tr>
+																					@endforeach
+																				@endif
+																			@endforeach
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
+												@endif
 											</div>
 										</div>
 									</div>
@@ -303,6 +309,7 @@
 @endsection
 
 @section('additional_javascript') 
+    <script src="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.js') }}"></script>
 	<script type="text/javascript">
 		let active_id = $('.list-dxc .selectable-list-item.active').attr('item-id');
 		$.each($('.list-data .selectable-list-item'), function(key, value){
@@ -327,6 +334,25 @@
 			$('.list-data .selectable-list-item.selected').removeClass('selected');
 			$(this).addClass('selected');
 		});
+		var initTableWithDynamicRows = function() {
+	        var table = $('.table-dxc-data');
+
+	        var settings = {
+	            responsive: true,
+
+	            lengthMenu: [5, 10, 25, 50],
+
+	            pageLength: 10,
+
+	            language: {
+	                'lengthMenu': 'Display _MENU_',
+	            },
+	        };
+
+	        board_data_table = table.dataTable(settings);
+	    }
+
+	    initTableWithDynamicRows();
 	</script>
 @endsection
 

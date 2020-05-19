@@ -107,10 +107,10 @@ input:-webkit-autofill:active  { /*autofilled input background color*/
 	font-size: 40px !important;
 }
 .lh-1{
-	line-height: 1;
+	line-height: 1!important;
 }
 .lh-1-half{
-	line-height: 1.5;
+	line-height: 1.5!important;
 }
 .hr-h{	
 	margin:0 10px;
@@ -1973,6 +1973,7 @@ a[data-target='#mediaLibraryModal']:hover{
 }
 .selectable-list .selectable-list-item.selected{
 	background-color: #DCDCDC;
+	color: black;
 }
 .selectable-list .selectable-list-item:hover{
 	background-color: #DCDCDC;
@@ -2097,4 +2098,31 @@ a[data-target='#mediaLibraryModal']:hover{
 	color: #BAC0C5!important;
     font-size: 14px!important;
     vertical-align: top;
+}
+.dataTables_wrapper label{
+	margin-bottom: 0px;
+}
+.list-dxc-container >p{
+	margin-top: 9px;
+}
+.list-dxc-container .list-dxc{
+	margin-top: 17px;
+}
+.table-dxc-data-container{
+	position: relative;
+}
+.table-dxc-data-container >p{
+	position: absolute;
+	left: 135px;
+	top: 9px;
+	margin-bottom: 0px;
+}
+div.dataTables_wrapper div.dataTables_info{
+	font-size: 12px;
+	color: #aaa;
+	padding-top: 5px;
+}
+.dataTables_paginate .page-item.active >a{
+	background-color: #06038D;
+	border-color: #06038D;
 }
