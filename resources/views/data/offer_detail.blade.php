@@ -74,12 +74,14 @@
 							<p class="para">Need help? You can find detailed instructions in our <a href="{{ route('help.buying_data') }}" class="link-market">{{ trans('pages.help_section') }}</a></p>
 						</div>
 						<div class="col-6">
-							@if ( $offer['status'] == 1 )	
-							<a href="{{ route('data_offer_add_product', ['id'=>$id]) }}"><button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>	<!-- goto #29 --></a>
-							@else						
-							<a class="" data-toggle="modal" data-target="#pubRecommendModal" data-id="{{ $offer['offerIdx'] }}" data-type="offer">
-								<button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>
-							</a>
+							@if(count($dxcs)>0)
+								@if ( $offer['status'] == 1)	
+								<a href="{{ route('data_offer_add_product', ['id'=>$id]) }}"><button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>	<!-- goto #29 --></a>
+								@else						
+								<a class="" data-toggle="modal" data-target="#pubRecommendModal" data-id="{{ $offer['offerIdx'] }}" data-type="offer">
+									<button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>
+								</a>
+								@endif
 							@endif
 						</div>
 					</div>
@@ -134,6 +136,7 @@
 											@endif
 										</span>
 										<div class="buttons">
+											@if(count($dxcs)>0)
 											<a class="icon-button btn-edit" href="{{route('data_offer_edit_product', ['id'=>$id, 'pid'=>$product['productIdx']])}}">
 												<i class="icon material-icons">
 													edit
@@ -141,7 +144,7 @@
 												{{ trans('pages.edit') }}
 											</a>
 											<span class="seperator">|</span>							
-											
+											@endif
 											@if ( $product['productStatus'] == 0 )
 											<a class="icon-button btn-edit data_publish" data-id="{{ $product['productIdx'] }}" data-type="product">
 												<i class="icon material-icons">
@@ -167,6 +170,7 @@
 											{{ trans('pages.hidden_numbers') }}
 										</div>
 										<div class="copy-id"><a class="link-market">{{trans('pages.Copy_ID')}}</a></div> -->
+										@if(count($dxcs)>0)
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="row">
@@ -176,7 +180,6 @@
 														</div>
 													</div>
 												</div>
-												@if(count($dxcs)>0)
 												<div class="row mgt30">
 													<div class="col-12">
 														<div class="row">
@@ -222,9 +225,9 @@
 														</div>
 													</div>
 												</div>
-												@endif
 											</div>
 										</div>
+										@endif
 									</div>
 								</div>
 							</div>

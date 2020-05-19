@@ -534,4 +534,4 @@ ALTER TABLE `databroker_new`.`articles` ADD COLUMN `category` VARCHAR(255) NULL 
 ALTER TABLE `databroker_new`.`users` ADD COLUMN `apiKey` VARCHAR(255) NULL AFTER `walletPrivateKey`;
 
 #2020-05-19
-ALTER TABLE `databroker_new`.`offerproducts` ADD COLUMN `dxc` VARCHAR(255) NULL AFTER `productPrice`, ADD COLUMN `did` VARCHAR(255) NULL AFTER `dxc`; 
+ALTER TABLE `databroker_new`.`offerProducts` ADD COLUMN `dxc` VARCHAR(255) NULL AFTER `productPrice`, ADD COLUMN `did` VARCHAR(255) NULL AFTER `dxc`; 
