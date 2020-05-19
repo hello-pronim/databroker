@@ -300,7 +300,7 @@ $(document).ready(function(){
 
         $(_this).find("input, textarea, select").each(function(key, elem){     
             $(_this).find('.error_notice').removeClass('active');
-            if( $(elem).val() == ""){
+            if( $(elem).val() == "" && $(elem).attr('name')!="DataTables_Table_0_length" && $(elem).attr('type')!="search"){
                 var elem_name = $(elem).attr("name").replace('[]','');
                 var period_radio = $(this).parent().parent().parent().find('input[type="radio"]');
 
@@ -309,7 +309,7 @@ $(document).ready(function(){
                         $(_this).find('.error_notice.'+elem_name).show();                    
                     }                    
                 }else{
-                    if(elem_name != 'dataUrl' && elem_name !="streamIP" && elem_name != "streamPort")
+                    if(elem_name != 'dataUrl')
                         $(_this).find('.error_notice.'+elem_name).show();
                 }                
             } if(!validateURL($("#licenseUrl").val())){
@@ -339,6 +339,7 @@ $(document).ready(function(){
                 submit_flag = false;
             }
         });
+        console.log(submit_flag);
 
         if( submit_flag ){
             $.ajax({

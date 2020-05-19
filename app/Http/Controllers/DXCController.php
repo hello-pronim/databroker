@@ -33,7 +33,7 @@ class DXCController extends Controller
         $address = $userObj->wallet;
         $apiKey = $userObj->apiKey;
 
-        $walletAddress = "0xaFd6E98D5B2504A65D2528072314e59d2974bEDc";
+        $walletAddress = $userObj->wallet;
         $client = new \GuzzleHttp\Client();
         $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
         $response = $client->request("GET", $url, [

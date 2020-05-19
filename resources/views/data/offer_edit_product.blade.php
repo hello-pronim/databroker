@@ -156,11 +156,12 @@
 							<div class="row">
 								<div class="col col-3">
 									<div class="list-dxc-container">
-										<p class="para text-center fs-16 lh-1">Select the DXC</p class="para">
+										<p class="para text-center fs-16 lh-1">Select the DXC</p>
+										<input type="hidden" name="dxc" id="dxc" value="{{$product->dxc?$product->dxc:$dxcs[0]->host}}">
 										<ul class="selectable-list list-dxc list-style-none pl-0 text-center border-grey">
 											@foreach($dxcs as $key=>$dxc)
 												@if($dxc->acceptanceStatus=="ACCEPTED")
-											<li class="selectable-list-item @if($key==0) active selected @endif" item-id="{{$key+1}}">{{$dxc->host}}</li>
+											<li class="selectable-list-item" item-id="{{$key+1}}">{{$dxc->host}}</li>
 												@endif
 											@endforeach
 										</ul>
@@ -168,7 +169,8 @@
 								</div>
 								<div class="col col-9 pl-0">
 									<div class="table-dxc-data-container">
-										<p class="para text-center fs-16 lh-1">Select the data</p class="para">
+										<p class="para text-center fs-16 lh-1">Select the data</p>
+										<input type="hidden" name="did" id="did" value="{{$product->did}}">
 										<table class="table border-grey table-dxc-data">
 											<thead>
 												<tr>
@@ -181,7 +183,7 @@
 												@foreach($dxcs as $key=>$dxc)
 													@if($dxc->acceptanceStatus=="ACCEPTED")
 														@foreach($dxc->products as $index=>$pp)
-												<tr class="selectable-list-item" parent-id="{{$key+1}}">
+												<tr class="selectable-list-item @if($product->did==$pp->did) selected @endif" did="{{$pp->did}}" parent-id="{{$key+1}}">
 													<td>{{$pp->dataname}}</td>
 													<td>{{$pp->type}}</td>
 													<td>{{$pp->name}}</td>
@@ -196,6 +198,8 @@
 							</div>
 						</div>
 					</div>
+					<span class="error_notice dxc">Please select the DXC.</span>
+					<span class="error_notice did">Please select your data source.</span>
 					@endif
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">
@@ -235,13 +239,28 @@
 	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>   
     <script src="{{ asset('adminpanel/assets/vendors/custom/datatables/datatables.bundle.js') }}"></script>
 	<script type="text/javascript">
-		let active_id = $('.list-dxc .selectable-list-item.active').attr('item-id');
+		let dxc = $('input[name="dxc"]').val();
+		let active_id = 1;
+		if(dxc){
+			$.each($('.list-dxc .selectable-list-item'), function(key, value){
+				if($(value).html()==dxc){
+					$(value).addClass('active');
+					$(value).addClass('selected');
+					active_id = $(value).attr('item-id');
+				}
+			});
+		}else{
+			$('.list-dxc .selectable-list-item:first-child').addClass('active');
+			$('.list-dxc .selectable-list-item:first-child').addClass('selected');
+		}
 		$.each($('.list-data .selectable-list-item'), function(key, value){
 			if($(value).attr('parent-id')==active_id){
 				$(value).addClass('active');
 			}
 		});
 		$('.list-dxc .selectable-list-item').click(function(e){
+			let dxc = $(this).html();
+			$("input[name='dxc']").val(dxc);
 			let active_id = $(this).attr('item-id');
 			$('.list-dxc .selectable-list-item.active').removeClass('active');
 			$('.list-dxc .selectable-list-item.selected').removeClass('selected');
@@ -255,6 +274,8 @@
 			});
 		});
 		$('.list-data .selectable-list-item').click(function(e){
+			let did = $(this).attr('did');
+			$('input[name="did"]').val(did);
 			$('.list-data .selectable-list-item.selected').removeClass('selected');
 			$(this).addClass('selected');
 		});

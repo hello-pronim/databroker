@@ -72,38 +72,7 @@ class DataController extends Controller
         }
         
         
-        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where("productStatus", 1)->get();
-
-        $user = $this->getAuthUser();
-        if($user){
-            foreach ($products as $key => $product) {
-                $purchase = Purchase::where('productIdx', $product->productIdx)
-                                    ->where('userIdx', $user->userIdx)
-                                    ->orderby('purchaseIdx', 'DESC')
-                                    ->get()
-                                    ->first();
-                if($purchase){//purchased
-                    if($purchase['from']>=date('Y-m-d') && $purchase['to']<=date('Y-m-d')){ //now in use
-                        $product['canBid'] = 0;
-                        $product['canBuy'] = 0;
-                    }else{//already expired
-                        $product['canBid'] = 1;
-                        $product['canBuy'] = 1;
-                    }
-                }else{//not purchased yet
-                    $product['canBuy'] = 1;
-                    $bid = Bid::where('userIdx', $user->userIdx)
-                                ->where('productIdx', $product->productIdx)
-                                ->orderby('bidIdx', 'desc')
-                                ->get()
-                                ->first();
-                    if($bid){
-                        //if(date('Y-m-d', strtotime($bid->created_at))<=date('Y-m-d') && date('Y-m-d', strtotime('+2 day', strtotime($bid->created_at))))
-                    }
-                }
-            }
-
-        }
+        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where("productStatus", 1)->where('did', '!=', null)->get();
 
         if(  $prev_route && strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
@@ -302,7 +271,7 @@ class DataController extends Controller
 
         $user = $this->getAuthUser();  
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
-        $walletAddress = "0xaFd6E98D5B2504A65D2528072314e59d2974bEDc";
+        $walletAddress = $userObj->wallet;
         $client = new \GuzzleHttp\Client();
         $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
         $response = $client->request("GET", $url, [
@@ -756,7 +725,7 @@ class DataController extends Controller
 
         $user = $this->getAuthUser();  
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
-        $walletAddress = "0xaFd6E98D5B2504A65D2528072314e59d2974bEDc";
+        $walletAddress = $userObj->wallet;
         $client = new \GuzzleHttp\Client();
         $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
         $response = $client->request("GET", $url, [
@@ -806,7 +775,7 @@ class DataController extends Controller
 
         $user = $this->getAuthUser();  
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
-        $walletAddress = "0xaFd6E98D5B2504A65D2528072314e59d2974bEDc";
+        $walletAddress = $userObj->wallet;
         $client = new \GuzzleHttp\Client();
         $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
         $response = $client->request("GET", $url, [
@@ -842,6 +811,8 @@ class DataController extends Controller
             $product_data['productPrice'] = $request->$price;
         }else if($request->period == 'free')
             $product_data['productUrl'] = $request->dataUrl;
+        $product_data['dxc'] = $request->dxc;
+        $product_data['did'] = $request->did;
         $product_data['productMoreInfo'] = $request->productMoreInfo;
         $product_data['productTitle'] = $request->productTitle;
         $product_data['productLicenseUrl'] = $request->licenceUrl;

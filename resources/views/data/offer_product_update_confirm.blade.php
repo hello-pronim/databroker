@@ -16,7 +16,7 @@
 		            <div class="h1-big text-center">Your data product {{ $productTitle }} for {{ $offerTitle }} has been updated successfully.</div>
 		        </div>		        
 		        <div class="blog-content text-center">
-		            <div class="h3 mgt30">There is still some action required from you before you can sell the data.</div>
+		            <!-- <div class="h3 mgt30">There is still some action required from you before you can sell the data.</div>
 		            <div class="para mgt30">To enable selling, go to the Data Exchange Controller and declare this data product using this ID.</div>
 		            <div class="mgt30">
 						<div class="user-id">
@@ -24,7 +24,7 @@
 							<span id="uniqueId">{{$uniqueId}}</span>
 						</div>
 						<div class="copy-id"><a class="link-market" id="copyToClipboard">{{trans('pages.Copy_ID')}}</a></div>
-					</div>
+					</div> -->
 		            <div class="flex-center mgt30">
 		            	<a href="{{ route('data_offer_detail', ['id' => $id]) }}"><button class="primary-btn mgr30">GO TO DATA PRODUCT IN YOUR ACCOUNT</button></a>
 		            	<a href="{{ route('data_details', $id) }}"><button class="secondary-btn">VIEW DATA PRODUCT ON THE MARKETPLACE</button></a>

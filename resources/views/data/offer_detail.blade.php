@@ -179,11 +179,10 @@
 												@if(count($dxcs)>0)
 												<div class="row mgt30">
 													<div class="col-12">
-														<h4 class="h4_intro text-left">Identify your data source</h4>
 														<div class="row">
 															<div class="col col-3">
 																<div class="list-dxc-container">
-																	<p class="para text-center fs-16 lh-1">Select the DXC</p class="para">
+																	<p class="para text-center fs-16 lh-1">Select the DXC</p>
 																	<ul class="selectable-list list-dxc list-style-none pl-0 text-center border-grey">
 																		@foreach($dxcs as $key=>$dxc)
 																			@if($dxc->acceptanceStatus=="ACCEPTED")
@@ -195,7 +194,7 @@
 															</div>
 															<div class="col col-9 pl-0">
 																<div class="table-dxc-data-container">
-																	<p class="para text-center fs-16 lh-1">Select the data</p class="para">
+																	<p class="para text-center fs-16 lh-1">Select the data</p>
 																	<table class="table border-grey table-dxc-data">
 																		<thead>
 																			<tr>
