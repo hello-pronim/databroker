@@ -100,6 +100,7 @@ class ProfileController extends Controller
     public function purchases_detail(Request $request)
     {
         $user = $this->getAuthUser();
+        $userObj = User::where('userIdx', $user->userIdx)->get()->first();
         $detail = OfferProduct::with(['region'])
                         ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                         ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
@@ -118,7 +119,17 @@ class ProfileController extends Controller
                         ->companyName;
         $stream = Stream::where('userIdx', $user->userIdx)->where('purchaseIdx', $request->pid)->get()->first();
         if(!$detail) return redirect(route('account.purchases'));
-        $data = array('detail', 'company', 'stream');
+        $dataAccess = null;
+        if($detail->productType=="File"){
+            $client = new \GuzzleHttp\Client();
+            $url = "http://161.35.212.38:3333/dxc/product/".$detail->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+            $response = $client->request("GET", $url, [
+                'headers'=> ['Content-Type' => 'application/json'],
+                'body'=>'{}'
+            ]);
+            $dataAccess = json_decode($response->getBody()->getContents());
+        }
+        $data = array('detail', 'company', 'stream', 'dataAccess');
         return view('account.purchases_detail', compact($data));
     }
 

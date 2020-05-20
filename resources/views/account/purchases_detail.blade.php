@@ -106,7 +106,9 @@
                                         <button type="button" class="customize-btn btn-next">{{ trans('data.download_file') }}</button>
                                     </a>
                                     @else
-                                    <button type="button" class="customize-btn btn-next">{{ trans('data.download_file') }}</button>
+                                    <a href="{{$dataAccess->url}}">
+                                        <button type="button" class="customize-btn btn-next">{{ trans('data.download_file') }}</button>
+                                    </a>
                                     @endif
                                 </div>
                             @endif

@@ -113,7 +113,9 @@
                                 </div>
                             @elseif($product->productType=="File")
                                 <div class="buttons flex-vcenter">
-                                    <button type="button" class="customize-btn btn-next">{{ trans('data.download_file') }}</button>
+                                    <a href="{{$dataAccess->url}}">
+                                        <button type="button" class="customize-btn btn-next">{{ trans('data.download_file') }}</button>
+                                    </a>
                                 </div>
                             @endif
                             </div>

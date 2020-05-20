@@ -97,11 +97,11 @@
 							<div class="row product-fields-block">
 								<div class="col col-6 product-fields">
 									<div class="row field-format">
-										<div class="col col-3"><span class="label">{{ trans('pages.format') }}</span></div>
+										<div class="col col-3"><span class="label">{{ trans('pages.format') }}:</span></div>
 										<div class="col col-9 value">{{ $product['productType'] }}</div>
 									</div>
 									<div class="row field-price">
-										<div class="col col-3"><span class="label">{{ trans('pages.price') }}</span></div>
+										<div class="col col-3"><span class="label">{{ trans('pages.price') }}:</span></div>
 										<div class="col-9">
 											@if($product['productBidType']=="bidding_only")
 											N/A
@@ -120,7 +120,7 @@
 										<div class="col-9 value text-warning">{{ str_replace('_', ' ',$product['productBidType']) }}</div>
 									</div>
 									<div class="row field-period">
-										<div class="col col-3"><span class="label">{{ trans('pages.Access_to_this_data') }}</span></div>
+										<div class="col col-3"><span class="label">{{ trans('pages.Access_to_this_data') }}:</span></div>
 										<div class="col-9 value">1 {{ $product['productAccessDays'] }}</div>
 									</div>
 								</div>
@@ -180,7 +180,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row mgt30">
+												<div class="row">
 													<div class="col-12">
 														<div class="row">
 															<div class="col col-3">

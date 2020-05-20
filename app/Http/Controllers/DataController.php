@@ -1543,6 +1543,7 @@ class DataController extends Controller
         if(!$user){
             return redirect('/login');
         }else{
+            $userObj = User::where('userIdx', $user->userIdx)->get()->first();
             $product = OfferProduct::with('region')
                                     ->join('offers', 'offers.offerIdx', '=', 'offerProducts.offerIdx')
                                     ->join('purchases', 'purchases.productIdx', '=', 'offerProducts.productIdx')
@@ -1557,11 +1558,21 @@ class DataController extends Controller
             $expire_on = date('d/m/Y', strtotime('+1 day', strtotime($product->to)));
             $apiKey="";
             $transactionId = "";
+            $dataAccess = null;
             if($product->productType=='Api flow' || $product->productType=="Stream"){
                 $apiKey = ApiProductKey::where('purchaseIdx', $request->purIdx)->get()->first()->apiKey;
                 $transactionId = $product->transactionId;
+            }else{
+                $client = new \GuzzleHttp\Client();
+                $url = "http://161.35.212.38:3333/dxc/product/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+                $response = $client->request("GET", $url, [
+                    'headers'=> ['Content-Type' => 'application/json'],
+                    'body'=>'{}'
+                ]);
+                $dataAccess = json_decode($response->getBody()->getContents());
             }
-            $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId');
+
+            $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId', 'dataAccess');
             return view('data.pay_success', compact($data));
         }
     }
@@ -1752,11 +1763,20 @@ class DataController extends Controller
         $expire_on = date('d/m/Y', strtotime('+1 day', strtotime($product['to'])));
         $apiKey="";
         $transactionId = $product->transactionId;
+        $dataAccess = null;
         if($product->productType=="Api flow" || $product->productType=="Stream"){
             $apiKeyObj = ApiProductKey::where('purchaseIdx', $request->purIdx)->get()->first();
             if($apiKeyObj) $apiKey = $apiKeyObj->apiKey;
+        }else{
+            $client = new \GuzzleHttp\Client();
+            $url = "http://161.35.212.38:3333/dxc/product/".$product->did."/geturlfor/".$userObj->wallet;
+            $response = $client->request("GET", $url, [
+                'headers'=> ['Content-Type' => 'application/json'],
+                'body'=>'{}'
+            ]);
+            $dataAccess = json_decode($response->getBody()->getContents());
         }
-        $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId');
+        $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId', 'dataAccess');
         return view('data.get_success', compact($data));
     }
 
