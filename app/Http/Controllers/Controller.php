@@ -72,7 +72,7 @@ class Controller extends BaseController
     public function createApiKeyForAllUsers(){
         $result = $this->createWalletForAllUsers();
         if($result == "success"){
-            $users = User::where('apiKey', null)->get()->toArray();
+            $users = User::get()->toArray();
             foreach ($users as $key => $user) {
                 $walletAddress = $user['wallet'];
                 $client2 = new \GuzzleHttp\Client();
