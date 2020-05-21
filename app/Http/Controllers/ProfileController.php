@@ -160,15 +160,25 @@ class ProfileController extends Controller
             else $sale['hasComplaints'] = 0;
         }
         $user = User::where('userIdx', $user->userIdx)->get()->first();
-        // $client = new \GuzzleHttp\Client();
-        // $address = $user->wallet;
-        // $url = "https://dxs-swagger.herokuapp.com/ethereum/balanceof/".$user->wallet;
-        // $response = $client->request("GET", $url, [
-        //     'headers'=> ['Content-Type' => 'application/json'],
-        //     'body'=> '{}'
-        // ]);
+
+        $totalSale = 0;
+        $pendingSale = 0;
+        foreach ($sales as $sale) {
+            if(!$sale->bidPrice && $sale->productPrice>0) 
+                $totalSale += $sale->productPrice;
+            else
+                $totalSale += $sale->bidPrice;
+            if($sale->redeemed==0){
+                if(!$sale->bidPrice && $sale->productPrice>0) 
+                    $pendingSale += $sale->productPrice;
+                else
+                    $pendingSale += $sale->bidPrice;
+            }
+        }
+        $totalSale = number_format((float)$totalSale, 2, '.', '');
+        $pendingSale = number_format((float)$pendingSale, 2, '.', '');
         //$balance = json_decode($response->getBody()->getContents());
-        $data = array('sales', 'user');
+        $data = array('sales', 'user', 'totalSale', 'pendingSale');
         return view('account.sales', compact($data));
     }
 
@@ -211,7 +221,7 @@ class ProfileController extends Controller
         $address = $user->wallet;
         $query['address'] = $address;
         $query['amount'] = floatval($amount) * 9 / 10;
-        $url = "https://dxs-swagger.herokuapp.com/ethereum/wallet/addfunds";
+        $url = "http://161.35.212.38:3333/ethereum/wallet/addfunds";
         $response = $client->request("POST", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=> json_encode($query)
@@ -374,7 +384,7 @@ class ProfileController extends Controller
 
         if(!$userObj->wallet){
             $client2 = new \GuzzleHttp\Client();
-            $url = "https://dxs-swagger.herokuapp.com/ethereum/wallet";
+            $url = "http://161.35.212.38:3333/ethereum/wallet";
             $response = $client2->request("POST", $url, [
                 'headers'=> ['Content-Type' => 'application/json'],
                 'body'=>'{}'
@@ -416,7 +426,7 @@ class ProfileController extends Controller
         $client = new \GuzzleHttp\Client();
         $address = $userObj->wallet;
         $apiKey = $userObj->apiKey;
-        $url = "https://dxs-swagger.herokuapp.com/ethereum/balanceof/".$userObj->wallet;
+        $url = "http://161.35.212.38:3333/ethereum/balanceof/".$userObj->wallet;
         $response = $client->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=> '{}'

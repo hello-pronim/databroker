@@ -10,10 +10,10 @@
             <div class="blog-header">
                 <h1>My sales</h1>
                 <p class="para">Here you can find an overview of all the data products you have sold or shared.</p>
-                <!-- <p class="para">
-                    <span class="text-grey">Total value of your sales:</span> <span class="text-red text-bold">€ XXX / DTX XXX</span><br/>
+                <p class="para">
+                    <span class="text-grey">Total value of your sales:</span> <span class="text-red text-bold">€ {{$totalSale}} <span class="text-grey">(€ {{$pendingSale}} pending)</span></span><br/>
                     This amount includes all sales that have been fully completed, i.e. where you have redeemed the DTX amount at the end of the 30-day warranty period. 
-                </p> -->
+                </p>
                 <p class="para">
                     <a href="{{route('account.wallet')}}">Go to my wallet</a>
                 </p>
