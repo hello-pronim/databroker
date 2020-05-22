@@ -61,6 +61,7 @@ class HelpController extends Controller
 
     public function buying_data_topic(Request $request){
         $topic = HelpTopic::where('helpTopicIdx', $request->topicIdx)->get()->first();
+        if(!$topic) return view('errors.404');
         $data = array('topic');
         return view('help.buying-data-topic', compact($data));
     }
@@ -76,6 +77,7 @@ class HelpController extends Controller
 
     public function selling_data_topic(Request $request){
         $topic = HelpTopic::where('helpTopicIdx', $request->topicIdx)->get()->first();
+        if(!$topic) return view('errors.404');
         $data = array('topic');
         return view('help.selling-data-topic', compact($data));
     }

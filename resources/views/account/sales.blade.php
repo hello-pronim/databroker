@@ -96,16 +96,18 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 warranty">
                                                 <div class="mb-20">
-                                                    @if($sale->redeemed != 1)
-                                                        @if(date('Y-m-d')>=$sale['redeem_date'])
-                                                    <p class="para">Earnings can be redeemed</p>
-                                                    <a href="{{route('account.sales_redeem', ['sid'=>$sale['saleIdx']])}}"><button type="button" class="customize-btn btn-next">REDEEM NOW</button></a>
+                                                    @if($sale->productBidType!="free")
+                                                        @if($sale->redeemed != 1)
+                                                            @if(date('Y-m-d')>=$sale['redeem_date'])
+                                                        <p class="para">Earnings can be redeemed</p>
+                                                        <a href="{{route('account.sales_redeem', ['sid'=>$sale['saleIdx']])}}"><button type="button" class="customize-btn btn-next">REDEEM NOW</button></a>
+                                                            @else
+                                                        <p class="para">Earnings can be redeemed as of <br/> <span class="fs-14">{{date('d/m/Y', strtotime($sale['redeem_date']))}}</span></p>
+                                                        <p class="fs-14 text-grey">We will send you an email notification.</p>
+                                                            @endif
                                                         @else
-                                                    <p class="para">Earnings can be redeemed as of <br/> <span class="fs-14">{{date('d/m/Y', strtotime($sale['redeem_date']))}}</span></p>
-                                                    <p class="fs-14 text-grey">We will send you an email notification.</p>
+                                                        <p class="para">Earnings redeemed on<br/><span class='fs-14'>{{date('d/m/Y', strtotime($sale->redeemed_at))}}</span></p>
                                                         @endif
-                                                    @else
-                                                    <p class="para">Earnings redeemed on<br/><span class='fs-14'>{{date('d/m/Y', strtotime($sale->redeemed_at))}}</span></p>
                                                     @endif
                                                 </div>
                                             </div>

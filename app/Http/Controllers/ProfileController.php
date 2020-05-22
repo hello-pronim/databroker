@@ -112,6 +112,7 @@ class ProfileController extends Controller
                         ->where('purchases.purchaseIdx', $request->pid)
                         ->get()
                         ->first();
+        if(!$detail) return view('errors.404');
         $company = Offer::join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                         ->where('offers.offerIdx', $detail['offerIdx'])
                         ->get()
@@ -195,6 +196,7 @@ class ProfileController extends Controller
                         ->where('sales.saleIdx', $request->sid)
                         ->get()
                         ->first();
+        if(!$detail) return view('errors.404');
         $company = Offer::join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                         ->where('offers.offerIdx', $detail['offerIdx'])
                         ->get()

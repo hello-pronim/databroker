@@ -62,6 +62,8 @@ class DataController extends Controller
     {   
         $offer = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
 
+        if(!$offer) return view('errors.404');
+
         $user_info = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')->where('users.userIdx', $offer->provider->userIdx)->first();
         
         $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->where('deleted', 0)->get();
@@ -167,6 +169,8 @@ class DataController extends Controller
 
         $offerId = $id;
         $offer = Offer::with(['region', 'theme'])->where('offers.offerIdx', '=', $id)->first();
+
+        if(!$offer) return view('errors.404');
         
         $communityIdx = $offer['communityIdx'];
         $community = Community::find($communityIdx);
@@ -261,6 +265,8 @@ class DataController extends Controller
     {   
         $offerId = $id;
         $offer = Offer::with(['region'])->where('offers.offerIdx', '=', $id)->first();
+
+        if(!$offer) return view('errors.404');
         
         $communityIdx = $offer['communityIdx'];
         $community = Community::find($communityIdx);
@@ -348,6 +354,7 @@ class DataController extends Controller
         $per_page = 11;
 
         $company = Company::where('companyIdx', $request->companyIdx)->get()->first();
+        if(!$company) return view('errors.404');
         $curTheme = Theme::where('themeIdx', $request->theme)->get()->first();
 
         $dataoffer = Offer::with(['region'])
@@ -720,6 +727,7 @@ class DataController extends Controller
 
     public function offer_add_product($offerIdx , Request $request) {        
         $offer = Offer::with(['region'])->where('offers.OfferIdx', $offerIdx)->first();
+        if(!$offer) return view('errors.404');
         $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
 
@@ -742,6 +750,8 @@ class DataController extends Controller
     public function offer_edit_product($id, $pid, Request $request) {   
         $offerId = $id;
         $offer = Offer::with(['region'])->where('offers.offerIdx', '=', $id)->first();
+
+        if(!$offer) return view('errors.404');
         $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
         
@@ -1180,6 +1190,7 @@ class DataController extends Controller
                     ->where('offers.offerIdx', $request->id)
                     ->get()
                     ->first();
+        if(!$offer) return view('errors.404');
         $data = array('offer');
         return view('data.send_message', compact($data));
     }
@@ -1260,6 +1271,7 @@ class DataController extends Controller
                                     ->where('offerProducts.productIdx', $request->pid)
                                     ->get()
                                     ->first();
+            if(!$product) return view('errors.404');
             $finalPrice = $product->productPrice;
             if($request->bidIdx){
                 $bid = Bid::where('bidIdx', $request->bidIdx)->get()->first();
@@ -1497,6 +1509,17 @@ class DataController extends Controller
 
                     PaidHistory::create($history);
 
+                    // $userObj = User::where('userIdx', $user->userIdx)->get()->first();
+                    // $client = new \GuzzleHttp\Client();
+                    // $url = "http://161.35.212.38:3333/ethereum​/deal";
+                    // $query['did'] = $product->did;
+                    // $query['ownerAddress'] = 
+                    // $response = $client->request("GET", $url, [
+                    //     'headers'=> ['Content-Type' => 'application/json'],
+                    //     'body'=>json_encode($query)
+                    // ]);
+                    // $dataAccess = json_decode($response->getBody()->getContents());
+
                     $this->sendEmail("buydata", [
                         'from'=>'cg@jts.ec', 
                         'to'=>$buyer['email'], 
@@ -1590,6 +1613,7 @@ class DataController extends Controller
                                 ->where('offerProducts.offerIdx', $request->id)
                                 ->get()
                                 ->first();
+        if(!$product) return view('errors.404');
         $lastPurchase = Purchase::where('productIdx', $request->pid)->where('userIdx', $user->userIdx)->orderby('created_at', 'desc')->get()->first();
         
         if(!$product || $product->productBidType!="free"){ 
@@ -1698,8 +1722,8 @@ class DataController extends Controller
         $soldProductData['purchaseIdx'] = $paidProductObj->purchaseIdx;
         $soldProductData['sellerIdx'] = $seller->userIdx;
         $soldProductData['buyerIdx'] = $user->userIdx;
-        $soldProductData['redeemed'] = 0;
-        $soldProductData['redeemed_at'] = null;
+        $soldProductData['redeemed'] = 1;
+        $soldProductData['redeemed_at'] = date('Y-m-d');
         $soldProductData['transactionId'] = $stransactionId;
         $soldProductObj = Sale::create($soldProductData);
 
@@ -1786,7 +1810,9 @@ class DataController extends Controller
            return redirect('/login')->with('target', 'send a bid for this data');
         }else{
             $product = OfferProduct::with('region')->where('productIdx', $request->pid)->get()->first();
+            if(!$product) return view('errors.404');
             $offer = Offer::where('offerIdx', $request->id)->get()->first();
+            if(!$offer) return view('errors.404');
             $providerIdx = $offer['providerIdx'];
             $provider = Provider::with('region')->where('providerIdx', $providerIdx)->get()->first();
             $data = array('product', 'provider');
@@ -1871,6 +1897,7 @@ class DataController extends Controller
            return redirect('/login')->with('target', 'send a bid for this data');
         }else{
             $bid = Bid::where('bidIdx', $request->bid)->get()->first();
+            if(!$bid) return view('errors.404');
             $product = OfferProduct::with('region')->where('productIdx', $bid->productIdx)->get()->first();
             $offer = Offer::join('offerProducts', 'offerProducts.offerIdx', '=', 'offers.offerIdx')
                             ->where('offerProducts.productIdx', $bid->productIdx)
@@ -1960,6 +1987,7 @@ class DataController extends Controller
                     ->join('offerProducts', 'offerProducts.productIdx', '=', 'bids.productIdx')
                     ->get(["bids.*", "bids.created_at as createdAt", "users.*", "companies.*", "offerProducts.*"])
                     ->first();
+        if(!$bidObj) return view('errors.404');
         $data = array('bidObj');
         return view('data.bid_respond', compact($data));
     }
@@ -2056,6 +2084,7 @@ class DataController extends Controller
                         ->where('purchases.purchaseIdx', $request->purIdx)
                         ->get()
                         ->first();
+        if(!$product) return view('errors.404');
         $company = Offer::join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                         ->where('offers.offerIdx', $product->offerIdx)
                         ->get()

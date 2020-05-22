@@ -68,4 +68,6 @@ return [
     'save'=>'Save',
     'continue_to_databroker'=>'Continue to databroker',
     'save_stream_success'=>'You have successfully configured stream details.',
+    'cant_find_page'=>"Sorry, we can't find the page you're looking for.",
+    'go_to_home'=>'Go to home',
 ];
