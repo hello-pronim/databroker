@@ -18,6 +18,11 @@ use App\Http\Controllers\DataController;
 Route::get('/styleguide', function () {
     return view('styleguide');
 });
+Route::get('/cms', function(){
+	return "AAAAAAA";
+	$content = require 'cms/typo3/index.php'; 
+    return $content;
+});
 Route::get('/createWalletForAllUsers', 'Controller@createWalletForAllUsers')->name('createWalletForAllUsers');
 Route::get('/createApiKeyForAllUsers', 'Controller@createApiKeyForAllUsers')->name('createApiKeyForAllUsers');
 

@@ -1,5 +1,12 @@
 @extends('layouts.admin')
 
+@section('additional_css')    
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+    <style type="text/css">
+    	.other_category{display: none;}
+    </style>
+@endsection
+
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
@@ -44,9 +51,27 @@
 							<label class="form-control-label">Article Title *</label>
 							<input type="text" class="form-control m-input" name="articleTitle" placeholder="Enter article title" value="{{ $board->articleTitle??'' }}">
 						</div>
-						<div class="col-md-6 m-form__group-sub">
+						<div class="col-md-3 m-form__group-sub">
 							<label class="form-control-label">Article Category *</label>
-							<input type="text" class="form-control m-input" name="category" placeholder="Enter category" value="{{ $board->category??'' }}">
+							<select class="form-control m-input" name="category">
+                                <option value="">Select</option>
+                                @foreach($categories as $category)
+                                	@if($category == $board->category)
+                                <option value="{{$category}}" selected>{{$category}}</option>
+                                	@else
+                                <option value="{{$category}}">{{$category}}</option>
+                                	@endif
+                                @endforeach
+                                @if(!in_array($board->category, $categories))
+                                <option value="Other" selected>Other</option>
+                                @else
+                                <option value="Other">Other</option>
+                                @endif
+                            </select>
+						</div>
+						<div class="col-md-3 m-form__group-sub other_category">
+							<label class="form-control-label">Other Category *</label>
+							<input type="text" class="form-control m-input" name="category1" placeholder="Other category" value="{{!in_array($board->category, $categories)?$board->category:''}}">
 						</div>
 					</div>
 					<div class="form-group m-form__group row">
@@ -95,6 +120,21 @@
 @endsection
 
 @section('additional_javascript')
+    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>
     <script src="{{ asset('adminpanel/js/updates_add_new.js') }}"></script>        
+    <script type="text/javascript">
+    	$('select[name="category"]').select2({
+            placeholder: "Select category",
+            width: '100%',
+        });
+        let option = $('select[name="category"]').val();
+        if(option=="Other") $('.other_category').show();
+        else $('.other_category').hide();
+        $('select[name="category"]').change(function(){
+        	let option = $(this).val();
+        	if(option=="Other") $('.other_category').show();
+        	else $('.other_category').hide();
+        });
+    </script>    
 @endsection
 

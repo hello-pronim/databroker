@@ -1509,16 +1509,37 @@ class DataController extends Controller
 
                     PaidHistory::create($history);
 
-                    // $userObj = User::where('userIdx', $user->userIdx)->get()->first();
-                    // $client = new \GuzzleHttp\Client();
-                    // $url = "http://161.35.212.38:3333/ethereum​/deal";
-                    // $query['did'] = $product->did;
-                    // $query['ownerAddress'] = 
-                    // $response = $client->request("GET", $url, [
-                    //     'headers'=> ['Content-Type' => 'application/json'],
-                    //     'body'=>json_encode($query)
-                    // ]);
-                    // $dataAccess = json_decode($response->getBody()->getContents());
+                    $userObj = User::where('userIdx', $user->userIdx)->get()->first();
+                    $client = new \GuzzleHttp\Client();
+                    $url = "http://161.35.212.38:3333/ethereum/deal";
+                    $query['did'] = $product->did;
+                    $query['ownerAddress'] = $userObj->wallet;
+                    $query['ownerPercentage'] = 0;
+                    $query['publisherAddress'] = $userObj->wallet;
+                    $query['publisherPercentage'] = 90;
+                    $query['userAddress'] = $userObj->wallet;
+                    $query['marketplaceAddress'] = $userObj->wallet;
+                    $query['marketplacePercentage'] = 10;
+                    $query['amount'] = floatval($request->productPrice);
+                    $query['validFrom'] = strtotime($paidProductData['from']);
+                    $query['validUntil'] = strtotime($paidProductData['to']);
+
+                    $response = $client->request("POST", $url, [
+                        'headers'=> ['Content-Type' => 'application/json'],
+                        'body'=>json_encode($query)
+                    ]);
+                    $response = $response->getBody()->getContents();
+
+                    $client = new \GuzzleHttp\Client();
+                    $query = array();
+                    $query['address'] = $seller->wallet;
+                    $query['amount'] = floatval($request->productPrice);
+                    $url = "http://161.35.212.38:3333/ethereum/wallet/addfunds";
+                    $response = $client->request("POST", $url, [
+                        'headers'=> ['Content-Type' => 'application/json'],
+                        'body'=> json_encode($query)
+                    ]);
+                    $res = $response->getBody()->getContents();
 
                     $this->sendEmail("buydata", [
                         'from'=>'cg@jts.ec', 

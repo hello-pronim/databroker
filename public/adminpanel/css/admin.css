@@ -118,9 +118,6 @@ body{
 #board_form .form-control-feedback{
     color: #F44336;
 }
-.note-editor .note-toolbar-wrapper{
-    z-index: 100;
-}
 /*.note-editor .panel-heading.note-toolbar .btn .btn-custom i{
     font-size: 1.1rem;
     color: #6f727d;

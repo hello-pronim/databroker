@@ -1937,12 +1937,12 @@ a[data-target='#mediaLibraryModal']:hover{
 	font-size: 2rem !important;
 	letter-spacing: .1px;
 }
-#updates-article-content-sec h3 {
+/*#updates-article-content-sec h3 {
 	font-size: 1.75rem !important;
     line-height: 36px;
 	font-weight: 500 !important;
 	letter-spacing: .1px;
-}
+}*/
 #updates-article-content-sec h4 {
 	font-size: 1.5rem !important;
 	letter-spacing: .1px;
@@ -2041,7 +2041,14 @@ a[data-target='#mediaLibraryModal']:hover{
 	line-height: 1.2;
 	font-family: DM Sans!important;
 }
-.cms-content h5, .cms-content h5 span, .cms-content h5 ol li, .cms-content h5 ul li{
+.cms-content h5{
+	font-size: 18px!important;
+	font-weight:bold;
+	line-height: 1.2;
+	margin-bottom: 10px;
+	font-family: DM Sans!important;
+}
+.cms-content h5 span, .cms-content h5 ol li, .cms-content h5 ul li{
 	font-size: 18px!important;
 	font-weight:bold;
 	line-height: 1.2;
@@ -2049,6 +2056,7 @@ a[data-target='#mediaLibraryModal']:hover{
 }
 .cms-content h6, .cms-content h6 span, .cms-content h6 ol li, .cms-content h6 ul li{
 	font-size: 14px!important;
+	text-transform: inherit;
 	font-weight:bold;
 	line-height: 1.2;
 	font-family: DM Sans!important;
@@ -2125,4 +2133,7 @@ div.dataTables_wrapper div.dataTables_info{
 .dataTables_paginate .page-item.active >a{
 	background-color: #06038D;
 	border-color: #06038D;
+}
+.ytp-cued-thumbnail-overlay:hover .ytp-button.ytp-large-play-button .ytp-large-play-button-bg{
+	fill: #78E6D0!important;
 }

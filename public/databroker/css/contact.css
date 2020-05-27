@@ -177,7 +177,7 @@ select {
     background-size: cover;
 }
 
-.article-body h1 {
+/*.article-body h1 {
     text-align: left;
 }
 
@@ -188,7 +188,7 @@ select {
 
 .article-body p {
     text-align: left;
-}
+}*/
 
 .article-body-item-category {
     font-size: 19px;

@@ -121,7 +121,6 @@ $(document).ready(function() {
     };
 
     setupMaxLimitCheckGroup = () => {
-        console.log('setupMaxLimitCheckGroup');
         $ele = $('.limited-check-group input[type=checkbox]');
         $ele.on('change', function(evt) {
             checkStatusChanged(this);

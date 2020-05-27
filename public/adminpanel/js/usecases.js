@@ -17,10 +17,6 @@ var communityIdx= $("input[name='communityIdx']").val();
                 'lengthMenu': 'Display _MENU_',
             },
 
-            order: [
-                [ 4, "desc" ]
-            ],
-
             columnDefs: [
                 {
                     targets: 0,

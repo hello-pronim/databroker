@@ -241,7 +241,7 @@ class AboutController extends Controller
     }
 
     public function news(Request $request)
-    {        
+    {
         $updates = Article::where('communityIdx', null)->where('active', 1)->orderby('published', 'desc')->limit(9)->get();
         $updates2 = Article::where('communityIdx', null)->where('active', 1)->orderby('published', 'desc')->limit(3)->get();
         $data = array( 'updates', 'updates2');

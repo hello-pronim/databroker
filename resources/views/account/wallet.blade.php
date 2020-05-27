@@ -42,9 +42,7 @@
                 <div class="col-lg-12">
                     <div class="flex-row">
                         <span class="fs-30 text-bold"> Total value of your wallet: </span>
-                        <div>
-                            <p class="text-warning fs-30 text-bold ml-15">€ {{$totalSale}} <span class="fs-24 text-grey">(€ {{$pendingSale}} pending)</span></p>
-                            <p class="text-grey fs-30 text-bold ml-15">DTX {{$balance->balance}}</div>
+                        <span class="text-warning fs-30 text-bold ml-15">DTX {{$balance->availableDTX}} / € {{$balance->availableEUR}}</span>
                     </div>
                 </div>    
             </div>

@@ -220,10 +220,9 @@ class ProfileController extends Controller
         }
 
         $client = new \GuzzleHttp\Client();
-        $address = $user->wallet;
-        $query['address'] = $address;
-        $query['amount'] = floatval($amount) * 9 / 10;
-        $url = "http://161.35.212.38:3333/ethereum/wallet/addfunds";
+        //$query['index'] = $sale->index;
+        $query['index'] = 1;
+        $url = "http://161.35.212.38:3333/ethereum/payout";
         $response = $client->request("POST", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=> json_encode($query)
@@ -438,6 +437,8 @@ class ProfileController extends Controller
                                     ->where('transactions.userIdx', $user->userIdx)
                                     ->orderby('transactions.updated_at', 'desc')
                                     ->get(['transactions.*', 'sales.*', 'transactions.updated_at as updatedAt']);
+                                    // var_dump($transactions->toArray());
+                                    // exit;
 
         $sales = Sale::join('offerProducts', 'offerProducts.productIdx', 'sales.productIdx')
                         ->leftJoin('bids', 'bids.bidIdx', '=', 'sales.bidIdx')

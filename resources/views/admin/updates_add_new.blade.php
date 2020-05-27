@@ -1,5 +1,12 @@
 @extends('layouts.admin')
 
+@section('additional_css')    
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+    <style type="text/css">
+    	.other_category{display: none;}
+    </style>
+@endsection
+
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
@@ -44,9 +51,19 @@
 							<label class="form-control-label">Article Title *</label>
 							<input type="text" class="form-control m-input" name="articleTitle" placeholder="Enter article title" value="">
 						</div>
-						<div class="col-md-6 m-form__group-sub">
+						<div class="col-md-3 m-form__group-sub">
 							<label class="form-control-label">Article Category *</label>
-							<input type="text" class="form-control m-input" name="category" placeholder="Enter category" value="">
+							<select class="form-control m-input" name="category">
+                                <option value="">Select</option>
+                                @foreach($categories as $category)
+                                <option value="{{$category}}">{{$category}}</option>
+                                @endforeach
+                                <option value="Other">Other</option>
+                            </select>
+						</div>
+						<div class="col-md-3 m-form__group-sub other_category">
+							<label class="form-control-label">Other Category *</label>
+							<input type="text" class="form-control m-input" name="category1" placeholder="Other category" value="">
 						</div>
 					</div>
 					<div class="form-group m-form__group row">
@@ -95,6 +112,18 @@
 @endsection
 
 @section('additional_javascript')
-    <script src="{{ asset('adminpanel/js/updates_add_new.js') }}"></script>        
+    <script src="{{ asset('js/plugins/select2.min.js') }}"></script>
+    <script src="{{ asset('adminpanel/js/updates_add_new.js') }}"></script> 
+    <script type="text/javascript">
+    	$('select[name="category"]').select2({
+            placeholder: "Select category",
+            width: '100%',
+        });
+        $('select[name="category"]').change(function(){
+        	let option = $(this).val();
+        	if(option=="Other") $('.other_category').show();
+        	else $('.other_category').hide();
+        });
+    </script>             
 @endsection
 

@@ -786,7 +786,10 @@ $(document).ready(function(){
             $('#buy-data').get(0).submit();
         }
     }
-
+    console.log($('.note-video-clip').html());
+    $('.note-video-clip').contents().find('.ytp-cued-thumbnail-overlay').hover(function(){
+        let _this = $(this);
+    })
 });
 
 /*Dropdown Menu*/

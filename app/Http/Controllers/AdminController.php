@@ -32,6 +32,7 @@ use App\Models\HomeFeaturedProvider;
 use App\Models\FAQ;
 use App\Models\HelpTopic;
 use App\Models\Admin;
+use App\Models\UpdatesCategories;
 use Response;
 use Image;
 use Session;
@@ -688,7 +689,32 @@ class AdminController extends Controller
         Session::put('menu_item_parent', 'updates');
         Session::put('menu_item_child', '');
         Session::put('menu_item_child_child', '');
-        return view('admin.updates_add_new');
+
+        $categories = UpdatesCategories::get();
+        $cats = array();
+        foreach ($categories as $key => $category) {
+            array_push($cats, $category->category);
+        }
+        $categories = $cats;
+        $data = array('categories');
+        return view('admin.updates_add_new', compact($data));
+    }
+
+    public function updates_edit($id)
+    {
+        Session::put('menu_item_parent', 'updates');
+        Session::put('menu_item_child', '');
+        Session::put('menu_item_child_child', '');
+        $id = $id;
+        $board = Article::where('articleIdx', $id)->first(); 
+        $categories = UpdatesCategories::get();
+        $cats = array();
+        foreach ($categories as $key => $category) {
+            array_push($cats, $category->category);
+        }
+        $categories = $cats;
+        $data = array('id', 'board', 'categories');
+        return view('admin.updates_edit', compact($data));
     }
 
     public function updates_update(Request $request)
@@ -701,11 +727,19 @@ class AdminController extends Controller
         if($request->input('id')) {
             $articleIdx = $request->input('id');
             $data = $request->all();
+            if($data['category']=="Other") {
+                $data['category'] = $data['category1'];
+            }
+            unset($data['category1']);
             $data['published'] = date('Y-m-d', strtotime($published));            
             Article::find($articleIdx)->update($data);
             return "success";
         } else {
             $data = $request->all();
+            if($data['category']=="Other") {
+                $data['category'] = $data['category1'];
+            }
+            unset($data['category1']);
             $data['published'] = date('Y-m-d', strtotime($published));
             unset($data['id']);
             Article::create($data);
@@ -730,17 +764,6 @@ class AdminController extends Controller
         Session::put('menu_item_child_child', '');
         Article::where('articleIdx', $request->id)->delete();
         return "success";
-    }
-
-    public function updates_edit($id)
-    {
-        Session::put('menu_item_parent', 'updates');
-        Session::put('menu_item_child', '');
-        Session::put('menu_item_child_child', '');
-        $id = $id;
-        $board = Article::where('articleIdx', $id)->first(); 
-        $data = array('id', 'board');
-        return view('admin.updates_edit', compact($data));
     }
 
     public function updates_summernote_upload(Request $request){
