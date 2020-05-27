@@ -394,40 +394,23 @@ class ProfileController extends Controller
             $walletAddress = $responseBody->address;
             $walletPrivateKey = $responseBody->privatekey;
 
-            $client3 = new \GuzzleHttp\Client();
-            $url = "http://161.35.212.38:3333/user/apikey/".$walletAddress;
-            $response = $client3->request("GET", $url, [
-                'headers'=> ['Content-Type' => 'application/json'],
-                'body'=>'{}'
-            ]);
-            $apikey = $response->getBody()->getContents();
-
             User::where('userIdx', $user->userIdx)->update([
                 'wallet'=>$walletAddress, 
-                'walletPrivateKey'=>$walletPrivateKey,
-                'apikey'=>$apikey
-            ]);
-        }
-        else if(!$userObj->apiKey){
-            $walletAddress = $userObj->wallet;
-            $client3 = new \GuzzleHttp\Client();
-            $url = "http://161.35.212.38:3333/user/apikey/".$walletAddress;
-            $response = $client3->request("GET", $url, [
-                'headers'=> ['Content-Type' => 'application/json'],
-                'body'=>'{}'
-            ]);
-            $apikey = $response->getBody()->getContents();
-            User::where('userIdx', $user->userIdx)->update([
-                'apikey'=>$apikey
+                'walletPrivateKey'=>$walletPrivateKey
             ]);
         }
 
-        $userObj = User::where('userIdx', $user->userIdx)->get()->first();
-        
-        $client = new \GuzzleHttp\Client();
         $address = $userObj->wallet;
-        $apiKey = $userObj->apiKey;
-        $url = "http://161.35.212.38:3333/ethereum/balanceof/".$userObj->wallet;
+        $client3 = new \GuzzleHttp\Client();
+        $url = "http://161.35.212.38:3333/user/apikey/".$address;
+        $response = $client3->request("GET", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=>'{}'
+        ]);
+        $apiKey = $response->getBody()->getContents();
+
+        $client = new \GuzzleHttp\Client();
+        $url = "http://161.35.212.38:3333/ethereum/balanceof/".$address;
         $response = $client->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=> '{}'
@@ -437,8 +420,6 @@ class ProfileController extends Controller
                                     ->where('transactions.userIdx', $user->userIdx)
                                     ->orderby('transactions.updated_at', 'desc')
                                     ->get(['transactions.*', 'sales.*', 'transactions.updated_at as updatedAt']);
-                                    // var_dump($transactions->toArray());
-                                    // exit;
 
         $sales = Sale::join('offerProducts', 'offerProducts.productIdx', 'sales.productIdx')
                         ->leftJoin('bids', 'bids.bidIdx', '=', 'sales.bidIdx')

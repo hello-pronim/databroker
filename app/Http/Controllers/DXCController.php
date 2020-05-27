@@ -33,10 +33,18 @@ class DXCController extends Controller
         $address = $userObj->wallet;
         $apiKey = $userObj->apiKey;
 
+        $client1 = new \GuzzleHttp\Client();
+        $url = "http://161.35.212.38:3333/user/apikey/".$address;
+        $response = $client1->request("GET", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=>'{}'
+        ]);
+        $apiKey = $response->getBody()->getContents();
+
         $walletAddress = $userObj->wallet;
-        $client = new \GuzzleHttp\Client();
+        $client2 = new \GuzzleHttp\Client();
         $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
-        $response = $client->request("GET", $url, [
+        $response = $client2->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=>'{}'
         ]);
@@ -47,6 +55,14 @@ class DXCController extends Controller
         return view('dxc.data_exchange_controller', compact($data));
     }
     public function update_apiKey(Request $request){
-        echo "success";
+        $client = new \GuzzleHttp\Client();
+        $url = "http://161.35.212.38:3333/user/apikey/".$request->address.'?forceNew=true';
+        $response = $client->request("GET", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=>'{}'
+        ]);
+        $apiKey = $response->getBody()->getContents();
+        if($apiKey!="") return "success";
+        else return "fail";
     }
 }

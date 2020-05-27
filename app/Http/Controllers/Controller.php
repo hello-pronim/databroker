@@ -52,42 +52,11 @@ class Controller extends BaseController
             $walletAddress = $responseBody->address;
             $walletPrivateKey = $responseBody->privatekey;
 
-            $client2 = new \GuzzleHttp\Client();
-            $url = "http://161.35.212.38:3333/user/apikey/".$walletAddress;
-            $response = $client2->request("GET", $url, [
-                'headers'=> ['Content-Type' => 'application/json'],
-                'body'=>'{}'
-            ]);
-            $apikey = $response->getBody()->getContents();
-
             User::where('userIdx', $user['userIdx'])->update([
                 'wallet'=>$walletAddress,
-                'walletPrivateKey'=>$walletPrivateKey,
-                'apiKey'=>$apikey
+                'walletPrivateKey'=>$walletPrivateKey
             ]);
         }
         return "success";
-    }
-
-    public function createApiKeyForAllUsers(){
-        $result = $this->createWalletForAllUsers();
-        if($result == "success"){
-            $users = User::get()->toArray();
-            foreach ($users as $key => $user) {
-                $walletAddress = $user['wallet'];
-                $client2 = new \GuzzleHttp\Client();
-                $url = "http://161.35.212.38:3333/user/apikey/".$walletAddress;
-                $response = $client2->request("GET", $url, [
-                    'headers'=> ['Content-Type' => 'application/json'],
-                    'body'=>'{}'
-                ]);
-                $apikey = $response->getBody()->getContents();
-
-                User::where('userIdx', $user['userIdx'])->update([
-                    'apiKey'=>$apikey
-                ]);
-            }
-            echo "success";
-        }
     }
 }

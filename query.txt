@@ -544,3 +544,6 @@ INSERT INTO `databroker_new`.`updatesCategories` (`categoryIdx`, `category`) VAL
 INSERT INTO `databroker_new`.`updatesCategories` (`categoryIdx`, `category`) VALUES ('4', 'Mid-year update');
 INSERT INTO `databroker_new`.`updatesCategories` (`categoryIdx`, `category`) VALUES ('5', 'The Databroker Team');
 INSERT INTO `databroker_new`.`updatesCategories` (`categoryIdx`, `category`) VALUES ('6', 'Company Update');
+
+#2020-05-27
+ALTER TABLE `databroker_new`.`users` DROP COLUMN `apiKey`;
