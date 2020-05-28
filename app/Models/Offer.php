@@ -51,11 +51,11 @@ class Offer extends Model
 
     protected static function filter_offer($param){
         if($param->region){
-            $dataoffer = Offer::with(['provider'])->select('offers.*', 'regions.*', 'companies.*')
+            $dataoffer = Offer::with(['region', 'provider'])->select('offers.*', 'regions.*', 'companies.*', 'users.*')
                         ->leftjoin('offerCountries', 'offerCountries.offerIdx', '=',  'offers.offerIdx')
                         ->leftjoin('regions', 'regions.regionIdx', '=',  'offerCountries.regionIdx');
         }else{
-            $dataoffer = Offer::with(['region', 'provider'])->select('offers.*', 'companies.*'); 
+            $dataoffer = Offer::with(['region', 'provider'])->select('offers.*', 'companies.*', 'users.*'); 
         }   
 
         $dataoffer->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')

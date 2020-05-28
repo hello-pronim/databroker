@@ -219,7 +219,7 @@
 	        			<a href="{{route('data.send_message', ['id'=> $offer['offerIdx']])}}">
 	        				<button  type="button" class="secondary-btn mgh25">CONTACT THE DATA PROVIDER</button>
 	        			</a><br/>
-	        			<a href="{{route('data.company_offers', ['companyIdx'=>$user_info->companyIdx])}}">
+	        			<a href="{{route('data.company_offers', ['companyName'=>str_replace(' ', '-', $user_info->companyName)])}}">
 	        				View more data from {{ $offer['provider']->companyName }}
 	        			</a>
 	        		</div>

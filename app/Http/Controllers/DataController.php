@@ -60,13 +60,33 @@ class DataController extends Controller
      */
     public function details(Request $request)
     {   
-        $offer = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])->where('offerIdx', $request->id)->first();
+        $offers = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->get();
+        $offer = null;
+        foreach ($offers as $key => $off) {
+            $provider_name = strtolower($off->firstname . $off->lastname);
+            $reg = $off->region;
+            $offer_region = "";
+            $offer_title = str_replace(' ', '-', strtolower($off->offerTitle));
+            foreach ($reg as $key => $r) {
+                $offer_region = $offer_region . str_replace(' ', '-', strtolower($r->regionName));
+                if($key+1 < count($reg)) $offer_region = $offer_region . "-";
+            }
+            if($request->name == $provider_name && $request->param == $offer_title.'-'.$offer_region){
+                $offer = $off;
+                break;
+            }
+        }
 
         if(!$offer) return view('errors.404');
 
-        $user_info = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')->where('users.userIdx', $offer->provider->userIdx)->first();
+        $user_info = User::join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                            ->where('users.userIdx', $offer->provider->userIdx)
+                            ->first();
         
-        $offersample = OfferSample::with('offer')->where('offerIdx', $request->id)->where('deleted', 0)->get();
+        $offersample = OfferSample::with('offer')->where('offerIdx', $offer->offerIdx)->where('deleted', 0)->get();
         
         $prev_route = "";        
         if( parse_url(url()->previous(), PHP_URL_HOST ) ==  parse_url(Config::get('app.url'), PHP_URL_HOST ) ){
@@ -74,7 +94,7 @@ class DataController extends Controller
         }
         
         
-        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $request->id)->where("productStatus", 1)->where('did', '!=', null)->get();
+        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $offer->offerIdx)->where("productStatus", 1)->where('did', '!=', null)->get();
 
         if(  $prev_route && strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
@@ -88,7 +108,7 @@ class DataController extends Controller
             }
         }    
             
-        $data = array('id'=>$request->id, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user_info' => $user_info, 'products' => $products);
+        $data = array('id'=>$offer->offerIdx, 'offer' => $offer, 'offersample' => $offersample, 'prev_route' => $prev_route, 'user_info' => $user_info, 'products' => $products);
         return view('data.details')->with($data);        
     }
 
@@ -346,23 +366,28 @@ class DataController extends Controller
     }
 
     public function company_offers(Request $request){
-
         $communities = Community::get();
         $regions = Region::where('regionType', 'area')->get();
         $countries = Region::where('regionType', 'country')->get();
         $themes = Theme::get();
         $per_page = 11;
 
-        $company = Company::where('companyIdx', $request->companyIdx)->get()->first();
+        $companies = Company::get();
+        $company = null;
+        foreach ($companies as $key => $comp) {
+            if($request->companyName==str_replace(' ', '-', $comp->companyName)){
+                $company = $comp;
+                break;
+            }
+        }
         if(!$company) return view('errors.404');
-        $curTheme = Theme::where('themeIdx', $request->theme)->get()->first();
 
         $dataoffer = Offer::with(['region'])
                     ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
                     ->leftjoin('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                     ->leftjoin('users', 'users.userIdx', '=', 'providers.userIdx')
                     ->leftjoin('companies', 'users.companyIdx', '=', 'companies.companyIdx')
-                    ->where('users.companyIdx', $request->companyIdx)
+                    ->where('users.companyIdx', $company->companyIdx)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')            
                     ->limit($per_page)
@@ -374,7 +399,7 @@ class DataController extends Controller
                     ->leftjoin('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                     ->leftjoin('users', 'users.userIdx', '=', 'providers.userIdx')
                     ->leftjoin('companies', 'users.companyIdx', '=', 'companies.companyIdx')
-                    ->where('users.companyIdx', $request->companyIdx)
+                    ->where('users.companyIdx', $company->companyIdx)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')
                     ->distinct('offers')
@@ -388,10 +413,10 @@ class DataController extends Controller
                 }else{
                     $offer['offerImage'] = '/images/gallery/thumbs/medium/'.$offer['offerImage'];    
                 }
-            }    
+            }
             $dataoffer[$key]=$offer;
         }                    
-        $data = array('company', 'dataoffer', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page', 'curTheme' );                
+        $data = array('company', 'dataoffer', 'communities', 'regions', 'countries', 'themes', 'totalcount', 'per_page' );                
         return view('data.company_offers', compact($data));
     }
 
@@ -1510,8 +1535,21 @@ class DataController extends Controller
                     PaidHistory::create($history);
 
                     $userObj = User::where('userIdx', $user->userIdx)->get()->first();
+
+                    $client = new \GuzzleHttp\Client();
+                    $query = array();
+                    $query['address'] = $seller->wallet;
+                    $query['amount'] = floatval($request->productPrice);
+                    $url = "http://161.35.212.38:3333/ethereum/wallet/addfunds";
+                    $response = $client->request("POST", $url, [
+                        'headers'=> ['Content-Type' => 'application/json'],
+                        'body'=> json_encode($query)
+                    ]);
+                    $res = $response->getBody()->getContents();
+
                     $client = new \GuzzleHttp\Client();
                     $url = "http://161.35.212.38:3333/ethereum/deal";
+                    $query = array();
                     $query['did'] = $product->did;
                     $query['ownerAddress'] = $userObj->wallet;
                     $query['ownerPercentage'] = 0;
@@ -1529,17 +1567,6 @@ class DataController extends Controller
                         'body'=>json_encode($query)
                     ]);
                     $response = $response->getBody()->getContents();
-
-                    $client = new \GuzzleHttp\Client();
-                    $query = array();
-                    $query['address'] = $seller->wallet;
-                    $query['amount'] = floatval($request->productPrice);
-                    $url = "http://161.35.212.38:3333/ethereum/wallet/addfunds";
-                    $response = $client->request("POST", $url, [
-                        'headers'=> ['Content-Type' => 'application/json'],
-                        'body'=> json_encode($query)
-                    ]);
-                    $res = $response->getBody()->getContents();
 
                     $this->sendEmail("buydata", [
                         'from'=>'cg@jts.ec', 

@@ -444,12 +444,18 @@ $(document).ready(function(){
                 console.log(res);               
                 var list= "";
                 $.each(res.offers, function(key, elem){                                       
-                   
+                    let provider_name = (elem.firstname+elem.lastname).toLowerCase();
+                    let offer_title = elem.offerTitle.toLowerCase().replace(/\s/g, '-');
+                    let offer_region = "";
+                    $.each(elem.region, function(k, e){
+                        offer_region+=e.regionName.toLowerCase().replace(/\s/g, '-');
+                        if(k+1 < elem.region.length) offer_region+="-";
+                    });
                     list += 
                         '<div class="col-md-4 mb-20">' +
                             '<div class="card card-profile card-plain mb-0">' +
                                 '<div class="card-header">' +
-                                    '<a href="/data/'+elem.offerIdx+'">' ;
+                                    '<a href="/'+provider_name+'/'+offer_title+'-'+offer_region+'">' ;
                         if(elem.offerImage && elem.offerImage != "null"){
                             list +='<img class="img" src="'+elem.offerImage+'" />';
                         }else{
@@ -468,7 +474,7 @@ $(document).ready(function(){
                                         list += '<span>'+elem.regionName+'</span>';
                                     }    
                                     if(elem.provider.companyURL.indexOf('https')>-1){
-                                        list+='</h6>'+ '<a href="/company/'+elem.companyIdx+'/offers">';
+                                        list+='</h6>'+ '<a href="/'+elem.companyName.replace(/\s/g, '-')+'/offers">';
                                         if(elem.provider.companyLogo){
                                             list+='<img class="img" src="/uploads/company/thumb/'+elem.provider.companyLogo+'" />';    
                                         }else{
@@ -479,7 +485,7 @@ $(document).ready(function(){
                                     '</div>'+
                                 '</div>';   
                                     }else{
-                                        list+='</h6>'+ '<a href="/company/'+elem.companyIdx+'/offers">'
+                                        list+='</h6>'+ '<a href="/'+elem.companyName.replace(/\s/g, '-')+'/offers">'
                                         if(elem.provider.companyLogo){
                                             list+='<img class="img" src="/uploads/company/thumb/'+elem.provider.companyLogo+'" />';    
                                         }else{
