@@ -61,7 +61,7 @@
                         @foreach($boards as $board)                      
                             <tr>
                                 <td align="center">
-                                    <a href="{{ route('data.company_offers', ['companyIdx'=>$board->companyIdx]) }}">
+                                    <a href="{{ route('data.company_offers', ['companyName'=>str_replace(' ', '-', $board->companyName)]) }}">
                                     @if(file_exists(public_path("uploads/company/thumb/".$board->companyLogo))) 
                                         <img src='{{ asset("uploads/company/thumb/".$board->companyLogo) }}' style="height: 40px;">
                                     @else 
@@ -71,7 +71,7 @@
                                 </td>
                                 <td>{{ $board->firstname }}</td>
                                 <td>{{ $board->lastname }}</td>
-                                <td><a href="{{ route('data.company_offers', ['companyIdx'=>$board->companyIdx]) }}">{{$board->companyName}}</a></td>
+                                <td><a href="{{ route('data.company_offers', ['companyIdx'=>str_replace(' ', '-', $board->companyName)]) }}">{{$board->companyName}}</a></td>
                                 <td>
                                     @if(preg_match("@^https?://@", $board->companyURL)) <a href="{{ $board->companyURL }}">{{$board->companyURL}}</a>
                                     @else <a href="https://{{ $board->companyURL }}">{{$board->companyURL}}</a>
