@@ -42,7 +42,7 @@
 						</a>
 						<div class="card-author">
 							<p> Data provided by {{ $featured_data->companyName }} </p>
-							<a href="{{ route('data.company_offers', ['companyName'=>str_replace(' ', '-', $featured_data->companyName)]) }}"><img src="{{ asset('uploads/company/'.($featured_data->companyLogo??'')) }}" style="height:50px;"></a>
+							<a href="{{ route('data.company_offers', ['companyName'=>str_replace(' ', '-', strtolower($featured_data->companyName))]) }}"><img src="{{ asset('uploads/company/'.($featured_data->companyLogo??'')) }}" style="height:50px;"></a>
 						</div>						
 					</div>
                 </div>
@@ -148,7 +148,7 @@
             @foreach($featured_providers as $featured_provider)
             <div class="col-md-4 col-lg-2 col-xl-2">
                 <div>
-                    <a href="{{ route('data.company_offers', ['companyIdx'=>str_replace(' ', '-', $featured_provider->companyName)]) }}">
+                    <a href="{{ route('data.company_offers', ['companyIdx'=>str_replace(' ', '-', strtolower($featured_provider->companyName))]) }}">
                         <div class="app-partner-item">
                             <div class="img">
                                 @if(file_exists(public_path("uploads/company/".$featured_provider->companyLogo))) 

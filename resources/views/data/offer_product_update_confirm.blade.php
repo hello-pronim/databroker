@@ -26,8 +26,17 @@
 						<div class="copy-id"><a class="link-market" id="copyToClipboard">{{trans('pages.Copy_ID')}}</a></div>
 					</div> -->
 		            <div class="flex-center mgt30">
+		            	@php
+							$companyName = strtolower($offer['companyName']);
+							$title = str_replace(' ', '-', strtolower($offer['offerTitle']) );
+							$region = "";
+							foreach($offer['region'] as $key=>$r){
+								$region = $region . str_replace(' ', '-', strtolower($r->regionName));
+								if($key+1 < count($offer['region'])) $region = $region . "-";
+							}
+						@endphp
 		            	<a href="{{ route('data_offer_detail', ['id' => $id]) }}"><button class="primary-btn mgr30">GO TO DATA PRODUCT IN YOUR ACCOUNT</button></a>
-		            	<a href="{{ route('data_details', $id) }}"><button class="secondary-btn">VIEW DATA PRODUCT ON THE MARKETPLACE</button></a>
+		            	<a href="{{ route('data_details', ['companyName'=>$companyName, 'param'=>$title . '-' . $region]) }}"><button class="secondary-btn">VIEW DATA PRODUCT ON THE MARKETPLACE</button></a>
 		            </div>
 		        </div>
 			</div>

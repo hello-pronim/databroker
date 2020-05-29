@@ -66,7 +66,7 @@ class DataController extends Controller
                         ->get();
         $offer = null;
         foreach ($offers as $key => $off) {
-            $provider_name = strtolower($off->firstname . $off->lastname);
+            $companyName = strtolower($off->companyName);
             $reg = $off->region;
             $offer_region = "";
             $offer_title = str_replace(' ', '-', strtolower($off->offerTitle));
@@ -74,7 +74,7 @@ class DataController extends Controller
                 $offer_region = $offer_region . str_replace(' ', '-', strtolower($r->regionName));
                 if($key+1 < count($reg)) $offer_region = $offer_region . "-";
             }
-            if($request->name == $provider_name && $request->param == $offer_title.'-'.$offer_region){
+            if($request->companyName == $companyName && $request->param == $offer_title.'-'.$offer_region){
                 $offer = $off;
                 break;
             }
@@ -329,7 +329,10 @@ class DataController extends Controller
         $dataoffer = Offer::with(['region', 'provider'])
             ->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
             ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
-            ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+            ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+            ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+            ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+            ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
             ->where('communities.communityName', ucfirst($category))
             ->where('themes.themeIdx', $request->theme)
             ->where('offers.status', 1)
@@ -342,6 +345,9 @@ class DataController extends Controller
                     ->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
                     ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
                     ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                    ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                    ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                    ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                     ->where('communities.communityName', ucfirst($category))
                     ->where('themes.themeIdx', $request->theme)
                     ->where('offers.status', 1)
@@ -375,7 +381,7 @@ class DataController extends Controller
         $companies = Company::get();
         $company = null;
         foreach ($companies as $key => $comp) {
-            if($request->companyName==str_replace(' ', '-', $comp->companyName)){
+            if($request->companyName==str_replace(' ', '-', strtolower($comp->companyName))){
                 $company = $comp;
                 break;
             }
@@ -435,27 +441,45 @@ class DataController extends Controller
         $curTheme = Theme::where('themeIdx', $request->theme)->get()->first();
         session(['curCommunity'=>$category]);
 
-        $dataoffer = Offer::leftjoin('offerCountries', 'offerCountries.offerIdx', '=', 'offers.offerIdx')
-                    ->leftjoin('regions', 'regions.regionIdx', '=', 'offerCountries.regionIdx')
-                    ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+        $dataoffers = Offer::with(['region', 'provider', 'usecase'])
+                            ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                            ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                            ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                            ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                            ->where('communities.communityName', ucfirst($category))
+                            ->where('offers.status', 1)
+                            ->orderby('offers.offerIdx', 'DESC')
+                            ->limit($per_page)
+                            ->distinct('offers.offerIdx')
+                            ->get();
+        $dataoffer = array();
+        foreach ($dataoffers as $key => $doffer) {
+            $regs = $doffer->region;
+            foreach ($regs as $key => $reg) {
+                if($reg->regionIdx==$request->regionIdx)
+                    array_push($dataoffer, $doffer);
+            }
+        }
+
+        $total = Offer::with(['region', 'provider', 'usecase'])
+                    ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                    ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                    ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                    ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                     ->where('communities.communityName', ucfirst($category))
-                    ->where('regions.regionIdx', $request->regionIdx)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')
-                    ->limit($per_page)
                     ->distinct('offers.offerIdx')
                     ->get();
+        $totalcount = 0;
+        foreach ($total as $key => $doffer) {
+            $regs = $doffer->region;
+            foreach ($regs as $key => $reg) {
+                if($reg->regionIdx==$request->regionIdx)
+                    $totalcount++;
+            }
+        }
 
-        $totalcount = Offer::leftjoin('offerCountries', 'offerCountries.offerIdx', '=', 'offers.offerIdx')
-                    ->leftjoin('regions', 'regions.regionIdx', '=', 'offerCountries.regionIdx')
-                    ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
-                    ->where('communities.communityName', ucfirst($category))
-                    ->where('regions.regionIdx', $request->regionIdx)
-                    ->where('offers.status', 1)
-                    ->orderby('offers.offerIdx', 'DESC')
-                    ->distinct('offers.offerIdx')
-                    ->get()
-                    ->count();
         foreach ($dataoffer as $key => $offer) {
             if ($offer['offerImage']) {                           
                 if (strpos($offer['offerImage'], 'media_') === false ) {                           
@@ -1132,7 +1156,10 @@ class DataController extends Controller
     }
 
     public function offer_product_publish_confirm($id, $pid, Request $request){
-        $offer = Offer::where('offerIdx', '=', $id)->first();
+        $offer = Offer::with(['region'])->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->where('offerIdx', '=', $id)
+                        ->first();
         $providerIdx = $offer['providerIdx'];
         $communityIdx = $offer['communityIdx'];
         $userIdx = Provider::where('providerIdx', '=', $providerIdx)->first()['userIdx'];
@@ -1148,12 +1175,15 @@ class DataController extends Controller
 
         OfferProduct::where('productIdx', $pid)->update(['uniqueProductIdx'=>$uniqueId]);
 
-        $data = array('id', 'uniqueId');
+        $data = array('id', 'uniqueId', 'offer');
         return view('data.offer_product_publish_confirm', compact($data));
     }        
 
     public function offer_product_update_confirm($id, $pid, Request $request){
-        $offer = Offer::find($id);
+        $offer = Offer::with(['region'])->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->where('offerIdx', '=', $id)
+                        ->first();
         $product = OfferProduct::find($pid);
         $offerTitle = $offer['offerTitle'];
         $productTitle = $product['productTitle'];
@@ -1177,7 +1207,7 @@ class DataController extends Controller
             OfferProduct::where('productIdx', $pid)->update(['uniqueProductIdx'=>$uniqueId]);
         }
 
-        $data = array('id', 'pid', 'offerTitle', 'productTitle', 'uniqueId');
+        $data = array('id', 'pid', 'offerTitle', 'productTitle', 'uniqueId', 'offer');
         return view('data.offer_product_update_confirm', compact($data));
     }
 
@@ -1273,13 +1303,19 @@ class DataController extends Controller
         if(!$user)
             return redirect('/login')->with('target', 'contact the data provider');
         $offerIdx = $request->id;
+        $offer = Offer::with(['region'])
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->where('offers.offerIdx', $offerIdx)
+                        ->get()
+                        ->first();
         $seller = Offer::join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                         ->join('users', 'users.userIdx', '=', 'providers.userIdx')
-                        ->where('offers.offerIdx', $request->offerIdx)
+                        ->where('offers.offerIdx', $request->id)
                         ->where('users.userIdx', $user->userIdx)
                         ->get()
                         ->first();
-        $data = array('offerIdx', 'seller');
+        $data = array('offerIdx', 'seller', 'offer');
         return view('data.send_message_success', compact($data));
     }
 
@@ -2020,12 +2056,17 @@ class DataController extends Controller
     }
     public function send_bid_success(Request $request){
         $product = OfferProduct::with('region')->where('productIdx', $request->pid)->get()->first();
-        $offer = Offer::where('offerIdx', $request->id)->get()->first();
+        $offer = Offer::with(['region'])
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->where('offers.offerIdx', $request->id)
+                        ->get()
+                        ->first();
         $providerIdx = $offer['providerIdx'];
         $provider = Provider::with('region')->where('providerIdx', $providerIdx)->get()->first();
         $companyName = $provider->companyName;
         $offerIdx = $request->id;
-        $data = array('companyName', 'offerIdx');
+        $data = array('companyName', 'offerIdx', 'offer');
         return view("data.send_bid_success", compact($data));
     }
     public function bid_respond(Request $request){

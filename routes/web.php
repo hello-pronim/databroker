@@ -81,9 +81,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/', 'HomeController@index')->name('home');
 	Route::post('/offer/filter', 'DataController@filter_offer')->name('data.filter_offer');	
 
-	Route::get('/offers/{name}/{param}', 'DataController@details')->name('data_details');
+	Route::get('/offers/{companyName}/{param}', 'DataController@details')->name('data_details');
 	Route::get('/{community}/theme/{theme}', 'DataController@offer_theme_filter')->where('theme', '[0-9]+')->name('data.offer_theme_filter');
-	Route::get('/company/{companyName}/offers', 'DataController@company_offers')->name('data.company_offers');
+	Route::get('/offers/{companyName}', 'DataController@company_offers')->name('data.company_offers');
 	Route::get('/{community}/region/{regionIdx}', 'DataController@offer_region_filter')->where('regionIdx', '[0-9]+')->name('data.offer_region_filter');
 	Route::get('/getAllThemes', 'DataController@get_all_themes')->name('data.get_all_themes');
 
@@ -275,10 +275,15 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 		
 		Route::get('/community/'.$community_route, function() use($data){			
 			return $data['datacontroller']->community($data['community']->communityName);
-		})->name('data.community_'.$community_route);	
+		})->name('data.community_'.$community_route);
 	}
 	Route::get('/register_nl', 'AboutController@register_nl')->name('register_nl'); 
-	Route::post('/register_nl', 'AboutController@create_nl')->name('create_nl'); 
+	Route::post('/register_nl', 'AboutController@create_nl')->name('create_nl');
+
+	Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap.index');
+	Route::get('/sitemap.xml/communities', 'SitemapController@communities')->name('sitemap.communities');
+	Route::get('/sitemap.xml/offers', 'SitemapController@offers')->name('sitemap.offers');
+	Route::get('/sitemap.xml/company_offers', 'SitemapController@company_offers')->name('sitemap.company_offers');
 });
 
 Auth::routes(['verify' => true]);

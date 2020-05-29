@@ -123,7 +123,7 @@
 							@foreach($offer['region'] as $region)
 			            		<span>{{ $region->regionName }}</span>
 			            	@endforeach</h6>
-						<a href="{{ route('data.company_offers', ['companyName'=>str_replace(' ', '-', $offer['companyName'])])}}">
+						<a href="{{ route('data.company_offers', ['companyName'=>str_replace(' ', '-', strtolower($offer['companyName']))])}}">
 							@if( file_exists( public_path() . '/uploads/company/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
 							<img class="img" src="{{ asset('uploads/company/'.$offer['provider']->companyLogo) }}" />
 							@else
@@ -147,7 +147,7 @@
         	@foreach($featured_providers as $featured_provider)
         	<div class="col-md-4 col-lg-2 col-xl-2">
                 <div>
-                    <a href="{{ route('data.company_offers', ['companyName'=>str_replace(' ', '-', $featured_provider->companyName)]) }}">
+                    <a href="{{ route('data.company_offers', ['companyName'=>str_replace(' ', '-', strtolower($featured_provider->companyName))]) }}">
                         <div class="app-partner-item">
                             <div class="img">
                                 @if(file_exists(public_path("uploads/company/".$featured_provider->companyLogo))) 

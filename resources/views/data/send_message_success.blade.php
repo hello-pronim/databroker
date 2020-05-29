@@ -14,8 +14,17 @@
                 <div class="form-group row mb-0">                        
                     <div class="col-md-4">                                
                     </div>
-                    <div class="col-md-4">                                
-                        <a href="{{ route('data_details', [ 'id' => $offerIdx ] ) }}"><button class="customize-btn">{{ trans('data.continue') }}</button></a>
+                    <div class="col-md-4">                    
+                        @php
+                            $companyName = strtolower($offer['companyName']);
+                            $title = str_replace(' ', '-', strtolower($offer['offerTitle']) );
+                            $region = "";
+                            foreach($offer['region'] as $key=>$r){
+                                $region = $region . str_replace(' ', '-', strtolower($r->regionName));
+                                if($key+1 < count($offer['region'])) $region = $region . "-";
+                            }
+                        @endphp            
+                        <a href="{{route('data_details', ['companyName'=>$companyName, 'param'=>$title . '-' . $region])}}"><button class="customize-btn">{{ trans('data.continue') }}</button></a>
                     </div>
                     <div class="col-md-4">                                
                     </div>

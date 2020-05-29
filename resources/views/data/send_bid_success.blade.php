@@ -10,7 +10,16 @@
             	<div class="success-msg">
 					<h1 class="text-primary text-center text-bold">{{trans('data.bid_send_success')}} {{$companyName}}</h1>
                 	<h4 class="text-center text-bold">You'll receive an email when they respond to your bid.<br/>Remember that you can also follow up on your bids in the <a href="{{route('profile.buyer_bids')}}">Bids sent</a> section of your account.</h4>
-                	<a href="{{route('data_details', ['id'=>$offerIdx])}}">
+                    @php
+                        $companyName = strtolower($offer['companyName']);
+                        $title = str_replace(' ', '-', strtolower($offer['offerTitle']) );
+                        $region = "";
+                        foreach($offer['region'] as $key=>$r){
+                            $region = $region . str_replace(' ', '-', strtolower($r->regionName));
+                            if($key+1 < count($offer['region'])) $region = $region . "-";
+                        }
+                    @endphp
+                	<a href="{{route('data_details', ['companyName'=>$companyName, 'param'=>$title . '-' . $region])}}">
                 		<button type="button" class="customize-btn">{{trans('data.continue')}}</button>
                 	</a>
 				</div>

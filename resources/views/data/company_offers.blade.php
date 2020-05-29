@@ -31,7 +31,7 @@
 					<div class="card card-profile card-plain mb-0">					
 						<div class="card-header">
 							@php
-								$provider_name = strtolower($offer['firstname'].$offer['lastname']);
+								$companyName = strtolower($offer['companyName']);
 								$title = str_replace(' ', '-', strtolower($offer['offerTitle']) );
 								$region = "";	
 								foreach($offer['region'] as $key=>$r){
@@ -39,7 +39,7 @@
 									if($key+1 < count($offer['region'])) $region = $region . "-";
 								}
 							@endphp
-							<a href="{{route('data_details', ['name'=>$provider_name, 'param'=>$title . '-' . $region])}}">							
+							<a href="{{route('data_details', ['companyName'=>$companyName, 'param'=>$title . '-' . $region])}}">							
 								@if( file_exists( public_path() . $offer['offerImage']) && $offer['offerImage'] )
 								<img class="img" src="{{ asset( $offer['offerImage'] ) }}" />
 								@else
@@ -54,7 +54,7 @@
 				            		<span>{{ $region->regionName }}</span>
 				            	@endforeach
 				            </h6>			     
-							<a href="{{route('data.company_offers', ['companyName'=>str_replace(' ', '-', $offer['companyName'])])}}">
+							<a href="{{route('data.company_offers', ['companyName'=>str_replace(' ', '-', strtolower($offer['companyName']))])}}">
 								@if( file_exists( public_path() . '/uploads/company/thumb/'.$offer['provider']->companyLogo) && $offer['provider']->companyLogo )
 								<img class="img" src="{{ asset('uploads/company/thumb/'.$offer['provider']->companyLogo) }}" />
 								@else

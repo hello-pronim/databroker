@@ -67,10 +67,10 @@ $(document).ready(function(){
     });
 
     var community = $("#community").val();
-    $.each( $("#theme option"), function(key, elem){                        
+    $.each( $("#theme option"), function(key, elem){
         if( community != 'all' && $(elem).attr('value') != 'all' && community  != $(elem).attr("community-id") ){
             $(elem).remove();
-        }            
+        }
     });
     
     $('[data-toggle="tooltip"]').tooltip();
