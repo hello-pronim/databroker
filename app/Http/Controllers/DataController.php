@@ -1583,26 +1583,26 @@ class DataController extends Controller
                     ]);
                     $res = $response->getBody()->getContents();
 
-                    $client = new \GuzzleHttp\Client();
-                    $url = "http://161.35.212.38:3333/ethereum/deal";
-                    $query = array();
-                    $query['did'] = $product->did;
-                    $query['ownerAddress'] = $userObj->wallet;
-                    $query['ownerPercentage'] = 0;
-                    $query['publisherAddress'] = $userObj->wallet;
-                    $query['publisherPercentage'] = 90;
-                    $query['userAddress'] = $userObj->wallet;
-                    $query['marketplaceAddress'] = $userObj->wallet;
-                    $query['marketplacePercentage'] = 10;
-                    $query['amount'] = floatval($request->productPrice);
-                    $query['validFrom'] = strtotime($paidProductData['from']);
-                    $query['validUntil'] = strtotime($paidProductData['to']);
+                    // $client = new \GuzzleHttp\Client();
+                    // $url = "http://161.35.212.38:3333/ethereum/deal";
+                    // $query = array();
+                    // $query['did'] = $product->did;
+                    // $query['ownerAddress'] = $userObj->wallet;
+                    // $query['ownerPercentage'] = 0;
+                    // $query['publisherAddress'] = $userObj->wallet;
+                    // $query['publisherPercentage'] = 90;
+                    // $query['userAddress'] = $userObj->wallet;
+                    // $query['marketplaceAddress'] = $userObj->wallet;
+                    // $query['marketplacePercentage'] = 10;
+                    // $query['amount'] = floatval($request->productPrice);
+                    // $query['validFrom'] = strtotime($paidProductData['from']);
+                    // $query['validUntil'] = strtotime($paidProductData['to']);
 
-                    $response = $client->request("POST", $url, [
-                        'headers'=> ['Content-Type' => 'application/json'],
-                        'body'=>json_encode($query)
-                    ]);
-                    $response = $response->getBody()->getContents();
+                    // $response = $client->request("POST", $url, [
+                    //     'headers'=> ['Content-Type' => 'application/json'],
+                    //     'body'=>json_encode($query)
+                    // ]);
+                    // $response = $response->getBody()->getContents();
 
                     $this->sendEmail("buydata", [
                         'from'=>'cg@jts.ec', 
@@ -1671,7 +1671,7 @@ class DataController extends Controller
                 $transactionId = $product->transactionId;
             }else{
                 $client = new \GuzzleHttp\Client();
-                $url = "http://161.35.212.38:3333/dxc/product/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+                $url = "http://161.35.212.38:3333/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
                 $response = $client->request("GET", $url, [
                     'headers'=> ['Content-Type' => 'application/json'],
                     'body'=>'{}'
@@ -1877,7 +1877,7 @@ class DataController extends Controller
             if($apiKeyObj) $apiKey = $apiKeyObj->apiKey;
         }else{
             $client = new \GuzzleHttp\Client();
-            $url = "http://161.35.212.38:3333/dxc/product/".$product->did."/geturlfor/".$userObj->wallet;
+            $url = "http://161.35.212.38:3333/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
             $response = $client->request("GET", $url, [
                 'headers'=> ['Content-Type' => 'application/json'],
                 'body'=>'{}'

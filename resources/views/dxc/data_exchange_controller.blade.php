@@ -73,7 +73,7 @@
 							            </div>
 					          		</th>
 						            <th scope="col">DXC IP Address</th>
-						            <th scope="col">#Data Products</th>
+						            <th scope="col">#Data Sources</th>
 						            <th scope="col">Status</th>
 					          	</tr>
 					        </thead>
@@ -92,7 +92,7 @@
 							            </div>
 						            </td>
 						            <td>{{$dxc->host}}</td>
-						            <td><a href="#">{{count($dxc->products)}}</a></td>
+						            <td><a href="#">{{count($dxc->datasources)}}</a></td>
 						        	<td>
 						        		@if($dxc->acceptanceStatus=="ACCEPTED")
 						        		<div class="dot-success"></div>

@@ -176,18 +176,18 @@
 												<tr>
 													<th class="text-bold fs-16 text-black">Data</th>
 													<th class="text-bold fs-16 text-black">Type</th>
-													<th class="text-bold fs-16 text-black">Product name</th>
 												</tr>
 											</thead>
 											<tbody class="selectable-list list-data">
 												@foreach($dxcs as $key=>$dxc)
 													@if($dxc->acceptanceStatus=="ACCEPTED")
-														@foreach($dxc->products as $index=>$pp)
+														@foreach($dxc->datasources as $index=>$pp)
+															@if($pp->available)
 												<tr class="selectable-list-item @if($product->did==$pp->did) selected @endif" did="{{$pp->did}}" parent-id="{{$key+1}}">
-													<td>{{$pp->dataname}}</td>
-													<td>{{$pp->type}}</td>
 													<td>{{$pp->name}}</td>
+													<td>{{$pp->type}}</td>
 												</tr>
+															@endif
 														@endforeach
 													@endif
 												@endforeach

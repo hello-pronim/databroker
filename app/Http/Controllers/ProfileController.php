@@ -123,7 +123,7 @@ class ProfileController extends Controller
         $dataAccess = null;
         if($detail->productType=="File"){
             $client = new \GuzzleHttp\Client();
-            $url = "http://161.35.212.38:3333/dxc/product/".$detail->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+            $url = "http://161.35.212.38:3333/dxc/datasource/".$detail->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
             $response = $client->request("GET", $url, [
                 'headers'=> ['Content-Type' => 'application/json'],
                 'body'=>'{}'
