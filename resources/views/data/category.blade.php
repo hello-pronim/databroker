@@ -15,7 +15,7 @@
 	        	<div class="row">
 	        		<div class="col-lg-12">
 	        			<h4 class="text-green">{{ trans('pages.explore_data_offer') }}</h4>
-			            <h1 class="mt-0">{{$category}} Community <span class="theme_text">@if(isset($curTheme)) {{"/ ".$curTheme->themeName}} @endif</span><span class="region_text"></span></h1>
+			            <h1 class="mt-0">{{$category}} Community<span class="theme_text">@if(isset($curTheme)) {{"/".$curTheme->themeName}} @endif</span><span class="region_text"></span></h1>
 			        </div>    
 			    </div>
 			    <div class="row">
@@ -153,5 +153,5 @@
 @endsection
 
 @section('additional_javascript')
-	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>        
+	<script src="{{ asset('js/plugins/select2.min.js') }}"></script>
 @endsection

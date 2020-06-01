@@ -42,25 +42,27 @@ $(document).ready(function(){
         var filterBy = window.location.pathname.split('/')[2];
         if(regionIdx && filterBy=="region"){
             if($(elem).attr("value")){
-                if( $(elem).attr("value") == regionIdx){
+                if( $(elem).html().toLowerCase().replace(" ", "-") == regionIdx){
                     $("#region input[name='region']").val(regionIdx);
                     $("#region .select span").html($(elem).html()); 
                     $("#region .select").addClass("chosen"); 
+                    $(".region_text").html("/"+$(elem).html());
                 }            
             }    
         }    
     });
 
     $.each($("#region .region-select span.region"), function(key, elem){     
-        var regionIdx = window.location.pathname.split("/")[3];
+        var regionName = window.location.pathname.split("/")[3];
         var filterBy = window.location.pathname.split('/')[2];
-        if(regionIdx && filterBy=="region"){
+        if(regionName && filterBy=="region"){
             if($(elem).attr("region-id")){
-                if( $(elem).attr("region-id") == regionIdx){
+                if( $(elem).html().toLowerCase().replace(" ", "-") == regionName){
                     $(elem).addClass('active');
                     $("#region input[name='region']").val($(elem).attr('region-id'));
                     $("#region .select span").html($(elem).html()); 
                     $("#region .select").addClass("chosen"); 
+                    $(".region_text").html("/"+$(elem).html());
                 }            
             }    
         }    

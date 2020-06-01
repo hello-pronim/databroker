@@ -456,7 +456,7 @@ class DataController extends Controller
         foreach ($dataoffers as $key => $doffer) {
             $regs = $doffer->region;
             foreach ($regs as $key => $reg) {
-                if($reg->regionIdx==$request->regionIdx)
+                if(str_replace( ' ', '-', strtolower($reg->regionName))==$request->regionName)
                     array_push($dataoffer, $doffer);
             }
         }

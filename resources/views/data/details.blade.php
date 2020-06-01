@@ -70,8 +70,11 @@
 				                <div class="region">
 				                	<label>{{ trans('pages.region') }}: </label> 
 				                	<span>
-				                		@foreach($offer['region'] as $region)
-						            		<a href="{{route('data.offer_region_filter', ['community'=>str_replace( ' ', '_', strtolower($offer['community']->communityName)), 'regionIdx'=>$region->regionIdx])}}">{{ $region->regionName }}</a>
+				                		@foreach($offer['region'] as $key=>$region)
+						            		<a href="{{route('data.offer_region_filter', ['community'=>str_replace( ' ', '_', strtolower($offer['community']->communityName)), 'regionName'=>str_replace( ' ', '-', strtolower($region->regionName))])}}">{{ $region->regionName }}</a>
+						            		@if($key+1 < count($offer['region'])) 
+						            		<span></span>
+						            		@endif
 						            	@endforeach
 				                	</span>
 				                </div>
