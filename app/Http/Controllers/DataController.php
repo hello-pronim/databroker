@@ -79,13 +79,13 @@ class DataController extends Controller
                 $offer_region = $offer_region . str_replace(' ', '-', strtolower($r->regionName));
                 if($key+1 < count($reg)) $offer_region = $offer_region . "-";
             }
-            //echo $companyName.'/'.$offer_title.'/'.$offer_region.'/////////////////';
+            echo $companyName.'/'.$offer_title.'-'.$offer_region.'/////////////////';
             if($request->companyName == $companyName && $request->param == $offer_title.'-'.$offer_region){
                 $offer = $off;
                 break;
             }
         }
-            //exit;
+            exit;
 
         if(!$offer) return view('errors.404');
 
