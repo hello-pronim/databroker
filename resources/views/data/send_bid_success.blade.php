@@ -11,7 +11,7 @@
 					<h1 class="text-primary text-center text-bold">{{trans('data.bid_send_success')}} {{$companyName}}</h1>
                 	<h4 class="text-center text-bold">You'll receive an email when they respond to your bid.<br/>Remember that you can also follow up on your bids in the <a href="{{route('profile.buyer_bids')}}">Bids sent</a> section of your account.</h4>
                     @php
-                        $companyName = strtolower($offer['companyName']);
+                        $companyName = str_replace(' ', '', strtolower($offer['companyName']));
                         $title = str_replace(' ', '-', strtolower($offer['offerTitle']) );
                         $region = "";
                         foreach($offer['region'] as $key=>$r){

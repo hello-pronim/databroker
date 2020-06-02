@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     @foreach ($offers as $offer)
     	@php
-    	$companyName = strtolower($offer['companyName']);
+    	$companyName = str_replace(' ', '', strtolower($offer['companyName']));
 		$title = str_replace(' ', '-', strtolower($offer['offerTitle']) );
 		$region = "";
 		foreach($offer['region'] as $key=>$r){

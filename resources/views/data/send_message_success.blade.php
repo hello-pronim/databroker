@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-md-4">                    
                         @php
-                            $companyName = strtolower($offer['companyName']);
+                            $companyName = str_replace(' ', '', strtolower($offer['companyName']));
                             $title = str_replace(' ', '-', strtolower($offer['offerTitle']) );
                             $region = "";
                             foreach($offer['region'] as $key=>$r){

@@ -31,7 +31,7 @@
 					<div class="card card-profile card-plain mb-0">					
 						<div class="card-header">
 							@php
-								$companyName = strtolower($offer['companyName']);
+								$companyName = str_replace(' ', '', strtolower($offer['companyName']));
 								$title = str_replace(' ', '-', strtolower($offer['offerTitle']) );
 								$region = "";	
 								foreach($offer['region'] as $key=>$r){
