@@ -84,6 +84,8 @@ class DataController extends Controller
                 break;
             }
         }
+        var_dump($offer);
+        exit;
 
         if(!$offer) return view('errors.404');
 
