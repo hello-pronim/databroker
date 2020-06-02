@@ -453,14 +453,14 @@ class AboutController extends Controller
         ]);
 
         $this->sendEmail("contact", [
-            'from'=>"cg@jts.ec", 
+            'from'=>$data['email'], 
             'to'=>env('DB_TEAM_EMAIL'), 
             'name'=>'Databroker', 
             'subject'=>'Message to the Databroker Team',
             'data'=>$data
         ]);
         $this->sendEmail("contact", [
-            'from'=>"cg@jts.ec", 
+            'from'=>$data['email'], 
             'to'=>"valentina@settlemint.com", 
             'name'=>'Databroker', 
             'subject'=>'Message to the Databroker Team',
