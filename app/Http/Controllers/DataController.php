@@ -67,10 +67,7 @@ class DataController extends Controller
                         ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                         ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                         ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
-                        ->distinct('offers')
                         ->get();
-                        var_dump($offers->toArray());
-                        exit;
         $offer = null;
         foreach ($offers as $key => $off) {
             $companyName = str_replace(' ', '', strtolower($off->companyName));
