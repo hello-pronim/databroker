@@ -71,7 +71,7 @@ class DataController extends Controller
                         ->get();
         $offer = null;
         foreach ($offers as $key => $off) {
-            $companyName = str_replace(' ', '' strtolower($off->companyName));
+            $companyName = str_replace(' ', '', strtolower($off->companyName));
             $reg = $off->region;
             $offer_region = "";
             $offer_title = str_replace(' ', '-', strtolower($off->offerTitle));
