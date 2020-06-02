@@ -446,7 +446,7 @@ $(document).ready(function(){
                 console.log(res);               
                 var list= "";
                 $.each(res.offers, function(key, elem){                                       
-                    let provider_name = (elem.firstname+elem.lastname).toLowerCase();
+                    let companyName = (elem.companyName).toLowerCase();
                     let offer_title = elem.offerTitle.toLowerCase().replace(/\s/g, '-');
                     let offer_region = "";
                     $.each(elem.region, function(k, e){
@@ -457,7 +457,7 @@ $(document).ready(function(){
                         '<div class="col-md-4 mb-20">' +
                             '<div class="card card-profile card-plain mb-0">' +
                                 '<div class="card-header">' +
-                                    '<a href="/'+provider_name+'/'+offer_title+'-'+offer_region+'">' ;
+                                    '<a href="/offers/'+companyName+'/'+offer_title+'-'+offer_region+'">' ;
                         if(elem.offerImage && elem.offerImage != "null"){
                             list +='<img class="img" src="'+elem.offerImage+'" />';
                         }else{

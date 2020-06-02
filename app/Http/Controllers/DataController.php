@@ -60,9 +60,14 @@ class DataController extends Controller
      */
     public function details(Request $request)
     {   
-        $offers = Offer::with(['region', 'theme', 'provider', 'community', 'usecase'])
+        $offers = Offer::with(['region', 'provider', 'usecase'])
+                        ->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
+                        ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
+                        ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
                         ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                         ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->distinct('offers')
                         ->get();
         $offer = null;
         foreach ($offers as $key => $off) {
@@ -326,7 +331,7 @@ class DataController extends Controller
         $curTheme = Theme::where('themeIdx', $request->theme)->get()->first();
         session(['curCommunity'=>$category]);
 
-        $dataoffer = Offer::with(['region', 'provider'])
+        $dataoffers = Offer::with(['region', 'provider'])
             ->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
             ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
             ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
@@ -334,14 +339,17 @@ class DataController extends Controller
             ->join('users', 'users.userIdx', '=', 'providers.userIdx')
             ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
             ->where('communities.communityName', ucfirst($category))
-            ->where('themes.themeIdx', $request->theme)
             ->where('offers.status', 1)
-            ->orderby('offers.offerIdx', 'DESC')            
-            ->limit($per_page)
-            ->distinct('offers')
+            ->orderby('offers.offerIdx', 'DESC')
             ->get();
+        $dataoffer = array();
+        foreach ($dataoffers as $key => $doffer) {
+            if(str_replace( ' ', '-', strtolower($doffer->themeName))==$request->theme)
+                array_push($dataoffer, $doffer);
+        }
+        $dataoffer = array_slice($dataoffer, 0, $per_page);
 
-        $totalcount = Offer::with(['region', 'provider'])
+        $total = Offer::with(['region', 'provider'])
                     ->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
                     ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
                     ->leftjoin('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
@@ -349,12 +357,14 @@ class DataController extends Controller
                     ->join('users', 'users.userIdx', '=', 'providers.userIdx')
                     ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
                     ->where('communities.communityName', ucfirst($category))
-                    ->where('themes.themeIdx', $request->theme)
                     ->where('offers.status', 1)
                     ->orderby('offers.offerIdx', 'DESC')
-                    ->distinct('offers')
-                    ->get()
-                    ->count();
+                    ->get();
+        $totalcount = 0;
+        foreach ($total as $key => $doffer) {
+            if(str_replace( ' ', '-', strtolower($doffer->themeName))==$request->theme)
+                $totalcount++;
+        }
         
         foreach ($dataoffer as $key => $offer) {
             if ($offer['offerImage']) {                           
@@ -449,7 +459,6 @@ class DataController extends Controller
                             ->where('communities.communityName', ucfirst($category))
                             ->where('offers.status', 1)
                             ->orderby('offers.offerIdx', 'DESC')
-                            ->limit($per_page)
                             ->distinct('offers.offerIdx')
                             ->get();
         $dataoffer = array();
@@ -460,6 +469,7 @@ class DataController extends Controller
                     array_push($dataoffer, $doffer);
             }
         }
+        $dataoffer = array_slice($dataoffer, 0, $per_page);
 
         $total = Offer::with(['region', 'provider', 'usecase'])
                     ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
