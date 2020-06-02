@@ -60,9 +60,7 @@ class DataController extends Controller
      */
     public function details(Request $request)
     {   
-        $offers = Offer::with(['region', 'provider', 'usecase'])
-                        ->leftjoin('offerThemes', 'offerThemes.offerIdx', '=',  'offers.offerIdx')
-                        ->leftjoin('themes', 'themes.themeIdx', '=',  'offerThemes.themeIdx')                    
+        $offers = Offer::with(['region', 'provider', 'usecase', 'theme'])                   
                         ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
                         ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
                         ->join('users', 'users.userIdx', '=', 'providers.userIdx')
