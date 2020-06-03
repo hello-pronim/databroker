@@ -305,7 +305,7 @@ class AboutController extends Controller
                 $id = $usecase->articleIdx;
                 $image = $usecase->image;
                 $output .= '<div class="col-md-4">'.
-                                '<a href="/about/usecase/'. $id .'" target="_blank">
+                                '<a href="/about/usecase/'. str_replace(' ', '-', strtolower($title)) .'" target="_blank">
                                     <div class="card card-profile card-plain">
                                         <div class="card-header holder" id="responsive-card-header">'.
                                             '<img class="img" src="/uploads/usecases/medium/'. $image .'" id="responsive-card-img">
@@ -332,9 +332,16 @@ class AboutController extends Controller
         }
     }
 
-    public function usecase_detail($id){
+    public function usecase_detail(Request $request){
 
-        $usecase = Article::where('articleIdx', $id)->with('community')->get();
+        $usecases = Article::with('community')->get();
+        $usecase = null;
+        foreach ($usecases as $key => $uc) {
+            if(str_replace( ' ', '-', strtolower($uc->articleTitle))==$request->title){
+                $usecase = $uc;
+                break;
+            }
+        }
         $usecases2 = Article::where('communityIdx', '<>', null)->with('community')->orderby('published', 'desc')->limit(3)->get();
         $data = array('usecase', 'usecases2');
         return view('about.usecase_detail', compact($data));

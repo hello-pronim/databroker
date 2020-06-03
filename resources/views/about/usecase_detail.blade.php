@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $usecase[0]->meta_title }}
+{{ $usecase->meta_title }}
 @stop
 @section('description')
-{{ $usecase[0]->meta_desc }}
+{{ $usecase->meta_desc }}
 @stop
 
 @section('additional_css')
@@ -24,8 +24,8 @@
             <div class="article-body">
                 <div class="blog-header row">                
                     <div class="col-md-12">
-                        <h1 class="h1-small" id="update_title">{{$usecase[0]->articleTitle}}</h1>
-                        <p class="fs-18"><b>Published in</b>:&nbsp; <a href="{{ route('data_community.'.str_replace(' ', '_', strtolower($usecase[0]->community->communityName))) }}"><span class="h3" id="matchmaking-detail-category"><b>{{ $usecase[0]->community->communityName }}</b></span></a></p>
+                        <h1 class="h1-small" id="update_title">{{$usecase->articleTitle}}</h1>
+                        <p class="fs-18"><b>Published in</b>:&nbsp; <a href="{{ route('data_community.'.str_replace(' ', '_', strtolower($usecase->community->communityName))) }}"><span class="h3" id="matchmaking-detail-category"><b>{{ $usecase->community->communityName }}</b></span></a></p>
                     </div>                
                 </div>  
                 <br>
@@ -34,14 +34,14 @@
                             <div class="col-md-12 col-sm-12">
                                     <div class="card card-profile card-plain">                  
                                         <div class="card-header holder" id="detail-cms-image">        
-                                            <img class="img" src="{{ asset('uploads/usecases/large/'.$usecase[0]->image) }}"  id="news_detail_img"/>
+                                            <img class="img" src="{{ asset('uploads/usecases/large/'.$usecase->image) }}"  id="news_detail_img"/>
                                         </div>
                                     </div>  
                             </div>  
                     </div>
                     <div class="row">                
                             <div class="col-md-12" id="updates-article-content-sec">
-                                {!! $usecase[0]->articleContent !!}
+                                {!! $usecase->articleContent !!}
                             </div>                
                     </div> 
                 </div>
@@ -71,7 +71,7 @@
                 <div class="row">
                     @foreach ( $usecases2 as $usecase )
                     <div class="col-md-4">
-                        <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
+                        <a href="{{ route('about.usecase_detail',  ['title' => str_replace(' ', '-', strtolower($usecase->articleTitle))] ) }}">
                             <div class="card card-profile card-plain">                  
                                 <div class="card-header holder" id="resposive-card-header">        
                                     <img class="img" src="{{ asset('uploads/usecases/tiny/'.$usecase->image) }}" id="responsive-card-img"/>

@@ -129,8 +129,8 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::get('/emailtest', 'HomeController@test')->name('test.email'); 	
 
 	Route::get('/download/data-toolkit', 'AboutController@download')->name('download.data-toolkit');
-	Route::get('/about/usecase/{id}', 'AboutController@usecase_detail')->where('id', '[0-9]+')->name('about.usecase_detail');
-	Route::get('/about/updates/{id}', 'AboutController@news_detail')->where('id', '[0-9]+')->name('about.news_detail');
+	Route::get('/about/usecase/{title}', 'AboutController@usecase_detail')->name('about.usecase_detail');
+	Route::get('/about/updates/{title}', 'AboutController@news_detail')->name('about.news_detail');
 
 
 	Route::group(['middleware' => ['guest_auth']], function(){

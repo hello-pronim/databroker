@@ -38,7 +38,7 @@
                     <div class="row">
                         @foreach ( $usecases as $usecase )
                         <div class="col-md-4">
-                            <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
+                            <a href="{{ route('about.usecase_detail',  ['title' => str_replace( ' ', '-', strtolower($usecase->articleTitle))] ) }}">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder" id="resposive-card-header">        
                                         <img class="img" src="{{ asset('uploads/usecases/tiny/'.$usecase->image) }}" id="responsive-card-img" />
@@ -79,7 +79,7 @@
                 <div class="row" id="load-data">
                     @foreach ( $usecases2 as $usecase )
                     <div class="col-md-4">
-                        <a href="{{ route('about.usecase_detail',  ['id' => $usecase->articleIdx] ) }}">
+                        <a href="{{ route('about.usecase_detail',  ['title' => str_replace( ' ', '-', strtolower($usecase->articleTitle))] ) }}">
                             <div class="card card-profile card-plain">                  
                                 <div class="card-header holder" id="resposive-card-header">        
                                     <img class="img" src="{{ asset('uploads/usecases/tiny/'.$usecase->image) }}" id="responsive-card-img"/>
