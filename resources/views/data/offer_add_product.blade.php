@@ -265,8 +265,6 @@
 							</div>
 						</div>
 					</div>
-					<span class="error_notice dxc">Please select the DXC.</span>
-					<span class="error_notice did">Please select your data source.</span>
 					@endif
 	            	<div class="row mgt30">
 	            		<div class="col-lg-6">

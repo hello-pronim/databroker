@@ -74,14 +74,12 @@
 							<p class="para">Need help? You can find detailed instructions in our <a href="{{ route('help.buying_data') }}" class="link-market">{{ trans('pages.help_section') }}</a></p>
 						</div>
 						<div class="col-6">
-							@if(count($dxcs)>0)
-								@if ( $offer['status'] == 1)	
-								<a href="{{ route('data_offer_add_product', ['id'=>$id]) }}"><button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>	<!-- goto #29 --></a>
-								@else						
-								<a class="" data-toggle="modal" data-target="#pubRecommendModal" data-id="{{ $offer['offerIdx'] }}" data-type="offer">
-									<button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>
-								</a>
-								@endif
+							@if ( $offer['status'] == 1)	
+							<a href="{{ route('data_offer_add_product', ['id'=>$id]) }}"><button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>	<!-- goto #29 --></a>
+							@else						
+							<a class="" data-toggle="modal" data-target="#pubRecommendModal" data-id="{{ $offer['offerIdx'] }}" data-type="offer">
+								<button type="button" class="customize-btn btn-add pull-right">{{ trans('pages.ADD_DATA_PRODUCT') }}</button>
+							</a>
 							@endif
 						</div>
 					</div>
@@ -136,15 +134,13 @@
 											@endif
 										</span>
 										<div class="buttons">
-											@if(count($dxcs)>0)
 											<a class="icon-button btn-edit" href="{{route('data_offer_edit_product', ['id'=>$id, 'pid'=>$product['productIdx']])}}">
 												<i class="icon material-icons">
 													edit
 												</i>
 												{{ trans('pages.edit') }}
 											</a>
-											<span class="seperator">|</span>							
-											@endif
+											<span class="seperator">|</span>
 											@if ( $product['productStatus'] == 0 )
 											<a class="icon-button btn-edit data_publish" data-id="{{ $product['productIdx'] }}" data-type="product">
 												<i class="icon material-icons">

@@ -84,24 +84,23 @@
                             @if($product->productType=="Api flow")
                                 <p class="fs-16">{{$product->offerDescription}}</p>
                                 <div class="mt-20">
-                                    <span class="info-label">{{trans('data.api_key')}}:</span>
-                                    <span class="info-text" id="uniqueId">{{$apiKey}}</span>
-                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
-                                </div>
-                                <div class="mt-20">
                                     <span class="info-label fs-10">Transaction ID:</span>
                                     <span class="info-label fs-10">{{$transactionId}}</span>
+                                </div>
+                                <div class="mt-20">
+                                    <span class="info-label">API URL:</span>
+                                    <span class="info-text"><a href="{{$dataAccess->url}}">{{$dataAccess->url}}</a></span>
+                                </div>
+                                <div class="mt-20">
+                                    <span class="info-label">API Key:</span>
+                                    <span class="info-text" id="uniqueId" style="word-break: break-all;">{{$dataAccess->DXC_KEY}}</span>
+                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
                                 </div>
                                 <div class="buttons flex-vcenter mt-20">
                                     <a href="{{route('home')}}"><button type="button" class="customize-btn btn-next">{{ trans('data.continue_to_databroker') }}</button></a>
                                 </div>
                             @elseif($product->productType=="Stream")
                                 <p class="fs-16">{{$product->offerDescription}}</p>
-                                <div class="mt-20">
-                                    <span class="info-label">{{trans('data.api_key')}}:</span>
-                                    <span class="info-text" id="uniqueId">{{$apiKey}}</span>
-                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
-                                </div>
                                 <div class="mt-20">
                                     <span class="info-label fs-10">Transaction ID:</span>
                                     <span class="info-label fs-10">{{$transactionId}}</span>
