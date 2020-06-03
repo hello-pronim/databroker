@@ -52,7 +52,7 @@
 						<input type="hidden" name="address" id="address" value="{{$address}}">
 	                    <label class="fs-18">Account ID: <span class="text-black">{{$address}}</span></label>
 	                    <br>
-	                    <label class="fs-18">API key: <span class="text-black">{{$apiKey}}</span></label>
+	                    <label class="fs-18">DXC Key: <span class="text-black">{{$apiKey}}</span></label>
 	                    <a href="#" class="ml-30 btn-newKey">New key</a>
 	                    <br>
 					</div>

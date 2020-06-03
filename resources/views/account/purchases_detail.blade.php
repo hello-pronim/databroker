@@ -74,7 +74,7 @@
                                     <span class="info-text">{{$dataAccess->url}}</span>
                                 </div>
                                 <div class="mt-20">
-                                    <span class="info-label">API Key:</span>
+                                    <span class="info-label">DXC Product Key:</span>
                                     <span class="info-text" id="uniqueId" style="word-break: break-all;">{{$dataAccess->DXC_KEY}}</span>
                                     <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
                                 </div>
