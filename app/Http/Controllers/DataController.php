@@ -1674,7 +1674,7 @@ class DataController extends Controller
             $transactionId = "";
             $dataAccess = null;
             if($product->productType=='Api flow' || $product->productType=="Stream"){
-                //$apiKey = ApiProductKey::where('purchaseIdx', $request->purIdx)->get()->first()->apiKey;
+                $apiKey = ApiProductKey::where('purchaseIdx', $request->purIdx)->get()->first()->apiKey;
                 $transactionId = $product->transactionId;
             }
             $client = new \GuzzleHttp\Client();
@@ -1685,7 +1685,7 @@ class DataController extends Controller
             ]);
             $dataAccess = json_decode($response->getBody()->getContents());
 
-            $data = array('product', 'from', 'to', 'expire_on', 'transactionId', 'dataAccess');
+            $data = array('product', 'from', 'to', 'expire_on', 'transactionId', 'apiKey', 'dataAccess');
             return view('data.pay_success', compact($data));
         }
     }
@@ -1881,15 +1881,16 @@ class DataController extends Controller
         if($product->productType=="Api flow" || $product->productType=="Stream"){
             $apiKeyObj = ApiProductKey::where('purchaseIdx', $request->purIdx)->get()->first();
             if($apiKeyObj) $apiKey = $apiKeyObj->apiKey;
-        }else{
-            $client = new \GuzzleHttp\Client();
-            $url = "http://161.35.212.38:3333/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
-            $response = $client->request("GET", $url, [
-                'headers'=> ['Content-Type' => 'application/json'],
-                'body'=>'{}'
-            ]);
-            $dataAccess = json_decode($response->getBody()->getContents());
         }
+
+        $client = new \GuzzleHttp\Client();
+        $url = "http://161.35.212.38:3333/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+        $response = $client->request("GET", $url, [
+            'headers'=> ['Content-Type' => 'application/json'],
+            'body'=>'{}'
+        ]);
+        $dataAccess = json_decode($response->getBody()->getContents());
+
         $data = array('product', 'from', 'to', 'expire_on', 'apiKey', 'transactionId', 'dataAccess');
         return view('data.get_success', compact($data));
     }

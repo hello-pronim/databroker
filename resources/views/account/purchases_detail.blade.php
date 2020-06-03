@@ -66,13 +66,17 @@
                             @if($detail->productType=="Api flow")
                                 <p class="fs-16">{{$detail->offerDescription}}</p>
                                 <div class="mt-20">
-                                    <span class="info-label">{{trans('data.api_key')}}:</span>
-                                    <span class="info-text" id="uniqueId">{{$detail->apiKey}}</span>
-                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
-                                </div>
-                                <div class="mt-20">
                                     <span class="info-label fs-10">Transaction ID:</span>
                                     <span class="info-label fs-10">{{$detail->transactionId}}</span>
+                                </div>
+                                <div class="mt-20">
+                                    <span class="info-label">API URL:</span>
+                                    <span class="info-text">{{$dataAccess->url}}</span>
+                                </div>
+                                <div class="mt-20">
+                                    <span class="info-label">API Key:</span>
+                                    <span class="info-text" id="uniqueId" style="word-break: break-all;">{{$dataAccess->DXC_KEY}}</span>
+                                    <span class="copy-id"><a class="link-market" id="copyToClipboard">Copy key</a></span>
                                 </div>
                             @elseif($detail->productType=="Stream")
                                 <p class="fs-16">{{$detail->offerDescription}}</p>
