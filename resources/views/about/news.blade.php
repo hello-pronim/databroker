@@ -29,7 +29,7 @@
                         @if($updates)
                             @foreach ( $updates as $update )
                             <div class="col-md-4">
-                                <a href="{{ route('about.news_detail',  ['id' => $update->articleIdx] ) }}">
+                                <a href="{{ route('about.news_detail',  ['title' => str_replace(' ', '-', strtolower($update->articleTitle))] ) }}">
                                     <div class="card card-profile card-plain">                  
                                         <div class="card-header holder" id="resposive-card-header">        
                                             <img class="img" src="{{ asset('uploads/usecases/tiny/'.$update->image) }}" id="responsive-card-img"/>
@@ -73,7 +73,7 @@
                     @if($updates2)
                         @foreach ( $updates2 as $update )
                         <div class="col-md-4">
-                            <a href="{{ route('about.news_detail',  ['id' => $update->articleIdx] ) }}" target="_blank">
+                            <a href="{{ route('about.news_detail',  ['title' => str_replace(' ', '-', strtolower($update->articleTitle))] ) }}" target="_blank">
                                 <div class="card card-profile card-plain">                  
                                     <div class="card-header holder" id="resposive-card-header">        
                                         <img class="img" src="{{ asset('uploads/usecases/tiny/'.$update->image) }}" id="responsive-card-img"/>

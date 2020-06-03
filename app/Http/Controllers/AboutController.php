@@ -263,7 +263,7 @@ class AboutController extends Controller
                 $id = $update->articleIdx;
                 $image = $update->image;
                 $output .= '<div class="col-md-4">'.
-                                '<a href="/about/updates/'. $id .'" target="_blank">
+                                '<a href="/about/updates/'. str_replace(' ', '-', strtolower($title)) .'" target="_blank">
                                     <div class="card card-profile card-plain">
                                         <div class="card-header holder" id="responsive-card-header">'.
                                             '<img class="img" src="/uploads/usecases/medium/'. $image .'" id="responsive-card-img">
@@ -347,14 +347,21 @@ class AboutController extends Controller
         return view('about.usecase_detail', compact($data));
     }
 
-    public function news_detail($id){
+    public function news_detail(Request $request){
         // usecases detail
         // $usecase = Article::where('articleIdx', $id)->with('community')->get();
         // $usecases2 = Article::with('community')->orderby('published', 'desc')->limit(3)->get();
         // $data = array('usecase', 'usecases2');
         // return view('about.news_detail', compact($data));
 
-        $update = Article::where('articleIdx', $id)->get();
+        $updates = Article::get();
+        $update = null;
+        foreach ($updates as $key => $u) {
+            if(str_replace( ' ', '-', strtolower($u->articleTitle))==$request->title){
+                $update = $u;
+                break;
+            }
+        }
         $updates2 = Article::where('communityIdx', null)->orderby('published', 'desc')->limit(3)->get();
         $data = array('update', 'updates2');
         // return view('about.news_detail', compact($data));

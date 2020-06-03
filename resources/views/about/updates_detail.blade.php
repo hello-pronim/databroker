@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $update[0]->meta_title }}
+{{ $update->meta_title }}
 @stop
 @section('description')
-{{ $update[0]->meta_desc }}
+{{ $update->meta_desc }}
 @stop
 
 @section('additional_css')
@@ -24,8 +24,8 @@
             <div class="article-body">
                 <div class="blog-header row">                
                     <div class="col-md-12">
-                        <h1 class="h1-small">{{$update[0]->articleTitle}}</h1>
-                        <h4 class="color-green"><b>- By&nbsp;{{ $update[0]->author }}&nbsp;|&nbsp;{{ date_format($update[0]->published,"F d, Y") }}</b></h4>
+                        <h1 class="h1-small">{{$update->articleTitle}}</h1>
+                        <h4 class="color-green"><b>- By&nbsp;{{ $update->author }}&nbsp;|&nbsp;{{ date_format($update->published,"F d, Y") }}</b></h4>
                     </div>                
                 </div>  
                 <br>
@@ -34,14 +34,14 @@
                             <div class="col-md-12 col-sm-12">
                                     <div class="card card-profile card-plain">                  
                                         <div class="card-header holder" id="detail-cms-image">        
-                                            <img class="img" src="{{ asset('uploads/usecases/large/'.$update[0]->image) }}"  id="news_detail_img"/>
+                                            <img class="img" src="{{ asset('uploads/usecases/large/'.$update->image) }}"  id="news_detail_img"/>
                                         </div>
                                     </div>  
                             </div>  
                     </div>
                     <div class="row">                
                             <div class="col-md-12" id="updates-article-content-sec">
-                                {!! $update[0]->articleContent !!}
+                                {!! $update->articleContent !!}
                             </div>                
                     </div> 
                 </div>
@@ -69,7 +69,7 @@
                 <div class="row">
                     @foreach ( $updates2 as $update )
                     <div class="col-md-4">
-                        <a href="{{ route('about.news_detail',  ['id' => $update->articleIdx] ) }}">
+                        <a href="{{ route('about.news_detail',  ['title' => str_replace(' ', '-', strtolower($update->articleTitle))] ) }}">
                             <div class="card card-profile card-plain">                  
                                 <div class="card-header holder" id="resposive-card-header">        
                                     <img class="img" src="{{ asset('uploads/usecases/tiny/'.$update->image) }}" id="responsive-card-img"/>
