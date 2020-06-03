@@ -60,7 +60,14 @@ class HelpController extends Controller
     }
 
     public function buying_data_topic(Request $request){
-        $topic = HelpTopic::where('helpTopicIdx', $request->topicIdx)->get()->first();
+        $topics = HelpTopic::get();
+        $topic = null;
+        foreach ($topics as $key => $t) {
+            if($request->title == str_replace(" ", "-", strtolower($t->title))){
+                $topic = $t;
+                break;
+            }
+        }
         if(!$topic) return view('errors.404');
         $data = array('topic');
         return view('help.buying-data-topic', compact($data));
@@ -76,7 +83,14 @@ class HelpController extends Controller
     }
 
     public function selling_data_topic(Request $request){
-        $topic = HelpTopic::where('helpTopicIdx', $request->topicIdx)->get()->first();
+        $topics = HelpTopic::get();
+        $topic = null;
+        foreach ($topics as $key => $t) {
+            if($request->title == str_replace(" ", "-", strtolower($t->title))){
+                $topic = $t;
+                break;
+            }
+        }
         if(!$topic) return view('errors.404');
         $data = array('topic');
         return view('help.selling-data-topic', compact($data));

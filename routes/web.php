@@ -117,9 +117,9 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	
 	Route::get('/help', 'HelpController@index')->name('help.overview');    	
 	Route::get('/help/buying-data', 'HelpController@buying_data')->name('help.buying_data'); 
-	Route::get('/help/buying-data/topic/{topicIdx}', 'HelpController@buying_data_topic')->where('topicIdx', '[0-9]+')->name('help.buying_data_topic');
+	Route::get('/help/buying-data/topic/{title}', 'HelpController@buying_data_topic')->name('help.buying_data_topic');
 	Route::get('/help/selling-data', 'HelpController@selling_data')->name('help.selling_data');  
-	Route::get('/help/selling-data/topic/{topicIdx}', 'HelpController@selling_data_topic')->where('topicIdx', '[0-9]+')->name('help.selling_data_topic');
+	Route::get('/help/selling-data/topic/{title}', 'HelpController@selling_data_topic')->name('help.selling_data_topic');
 	Route::get('/help/guarantee', 'HelpController@guarantee')->name('help.guarantee'); 
 	Route::get('/help/file_complaint', 'HelpController@file_complaint')->name('help.file_complaint');
 	Route::get('/help/file_complaint/send', 'HelpController@send_file_complaint')->name('help.send_file_complaint');

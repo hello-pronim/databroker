@@ -26,7 +26,7 @@
                 <div class="row mgb80">             
                     @foreach ( $topics as $topic )
                     <div class="col-lg-4 mgh30">
-                        <a href="{{route('help.selling_data_topic', ['topicIdx'=>$topic->helpTopicIdx])}}">
+                        <a href="{{route('help.selling_data_topic', ['title'=>str_replace(' ', '-', strtolower($topic->title))])}}">
                             <div class="flex-center flex-vertical help-item-container small pd40">
                                 <div class="divider-green"></div>
                                 <h2 class="fs-20 lh-1-half text-black text-bold text-center">{{$topic->title}}</h2>
