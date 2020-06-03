@@ -96,7 +96,7 @@ class DataController extends Controller
         }
         
         
-        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $offer->offerIdx)->where("productStatus", 1)->where('did', '!=', null)->get();
+        $products = OfferProduct::with(['region'])->where('offerIdx', '=', $offer->offerIdx)->where("productStatus", 1)->get();
 
         if(  $prev_route && strpos($prev_route, 'data_community.') === false ){
             $prev_route = '';
