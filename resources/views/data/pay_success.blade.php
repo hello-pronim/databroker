@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="mt-20">
                                     <span class="info-label">API URL:</span>
-                                    <span class="info-text"><a href="{{$dataAccess->url}}">{{$dataAccess->url}}</a></span>
+                                    <span class="info-text">{{$dataAccess->url}}</span>
                                 </div>
                                 <div class="mt-20">
                                     <span class="info-label">API Key:</span>
