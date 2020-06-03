@@ -147,40 +147,45 @@
 						                	</div>
 						                	<div class="col col-md-4">
 						                		<div class="text-right">
-						                			@if($product->productBidType=="bidding_only")
-						                			<p class="price">Make your best bid</p>
-						                			@elseif($product->productBidType=="free")
-						                			<p class="price">FREE</p>
-						                			@else
-						                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }} <span class="color-black">(tax incl.)</span></p>
-						                			@endif
-
-						                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 {{ $product->productAccessDays }}</span></p>
+							                			@if($product->productBidType=="free")
+							                			<p class="price">FREE</p>
+						                				@elseif(!$product->dxc || !$product->did)
+						                				<p class="price">Soon available for buying</p>
+							                			@elseif($product->productBidType=="bidding_only")
+							                			<p class="price">Make your best bid</p>
+							                			@else
+							                			<p class="price"><span class="currency">€</span>{{ $product->productPrice }} <span class="color-black">(tax incl.)</span></p>
+							                			@endif
+							                			<p class="expiry"><label>{{ trans('pages.access_to_data') }} : </label> <span>1 {{ $product->productAccessDays }}</span></p>
 						                		</div>	
 						                	</div>
 				                		</div>	 
 			                			<div class="product_actions">
-				                			@if($product->productBidType == 'no_bidding')
-				                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
-				                				<button type="button" class="customize-btn my-0">BUY NOW</button>
-				                			</a>
-				                			@elseif($product->productBidType == 'bidding_only')
-				                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
-				                				<button type="button" class="customize-btn my-0">SEND BID</button>
-				                			</a>
-				                			@elseif($product->productBidType == 'bidding_possible')
-				                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
-				                				<button type="button" class="customize-btn my-0">SEND BID</button>
-				                			</a>
-				                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
-				                				<button type="button" class="customize-btn my-0">BUY NOW</button>
-				                			</a>
-				                			<br>
-				                			@elseif($product->productBidType == 'free')
-				                			<a href="{{route('data.get_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
-				                				<button type="button" class="customize-btn my-0">GET DATA</button>
-				                			</a>
-			                				@endif
+					                			@if($product->productBidType == 'free')
+					                			<a href="{{route('data.get_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+					                				<button type="button" class="customize-btn my-0">GET DATA</button>
+					                			</a>
+			                					@elseif(!$product->dxc || !$product->did)
+			                					<a href="{{route('data.send_message', ['id'=> $offer['offerIdx']])}}">
+					                				<button type="button" class="customize-btn my-0">CONTACT SELLER</button>
+					                			</a>
+					                			@elseif($product->productBidType == 'no_bidding')
+					                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+					                				<button type="button" class="customize-btn my-0">BUY NOW</button>
+					                			</a>
+					                			@elseif($product->productBidType == 'bidding_only')
+					                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+					                				<button type="button" class="customize-btn my-0">SEND BID</button>
+					                			</a>
+					                			@elseif($product->productBidType == 'bidding_possible')
+					                			<a href="{{route('data.bid', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+					                				<button type="button" class="customize-btn my-0">SEND BID</button>
+					                			</a>
+					                			<a href="{{route('data.buy_data', ['id'=>$id, 'pid'=>$product->productIdx])}}">
+					                				<button type="button" class="customize-btn my-0">BUY NOW</button>
+					                			</a>
+					                			<br>
+				                				@endif
 			                			</div>			                		
 				                	</div>
 				                	@endforeach				                	
