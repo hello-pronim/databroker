@@ -190,11 +190,12 @@
 	<div class="container">
 		<h1 class="mt-80 mb-20 fs-30 text-bold text-left"> {{trans('home.top_usecase')}} </h1>
 		<div class="row">
+        @if(count($top_usecases))
 			@foreach($top_usecases as $top_usecase)
 			<div class="col-md-6 col-lg-4 col-xl-4">
 				<div class="card card-profile card-plain">
 					<div class="card-header">
-						<a href="{{ route('about.usecase_detail',  ['id' => ($top_usecase->articleIdx??'')] ) }}">
+						<a href="{{ route('about.usecase_detail',  ['title' => str_replace(' ', '-', strtolower($top_usecase->articleTitle))] ) }}">
                             @if( file_exists(public_path( "uploads/usecases/tiny/".$top_usecase->image??'' )) )  
                             <img class="img" src="{{ asset('uploads/usecases/tiny/'.($top_usecase->image??'')) }}" />
                             @else 
@@ -209,6 +210,7 @@
 				</div>	
 			</div>
 			@endforeach	
+        @endif
   		</div>  		
   	</div>  	
 </div>
