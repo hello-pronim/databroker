@@ -122,7 +122,7 @@ class ProfileController extends Controller
         if(!$detail) return redirect(route('account.purchases'));
                 
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:3333/dxc/datasource/".$detail->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+        $url = "http://161.35.212.38:8081/dxc/datasource/".$detail->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
         $response = $client->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=>'{}'
@@ -220,7 +220,7 @@ class ProfileController extends Controller
         $client = new \GuzzleHttp\Client();
         //$query['index'] = $sale->index;
         $query['index'] = 1;
-        $url = "http://161.35.212.38:3333/ethereum/payout";
+        $url = "http://161.35.212.38:8081/ethereum/payout";
         $response = $client->request("POST", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=> json_encode($query)
@@ -383,7 +383,7 @@ class ProfileController extends Controller
 
         if(!$userObj->wallet){
             $client2 = new \GuzzleHttp\Client();
-            $url = "http://161.35.212.38:3333/ethereum/wallet";
+            $url = "http://161.35.212.38:8081/ethereum/wallet";
             $response = $client2->request("POST", $url, [
                 'headers'=> ['Content-Type' => 'application/json'],
                 'body'=>'{}'
@@ -400,7 +400,7 @@ class ProfileController extends Controller
 
         $address = $userObj->wallet;
         $client3 = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:3333/user/apikey/".$address;
+        $url = "http://161.35.212.38:8081/user/apikey/".$address;
         $response = $client3->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=>'{}'
@@ -408,7 +408,7 @@ class ProfileController extends Controller
         $apiKey = $response->getBody()->getContents();
 
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:3333/ethereum/balanceof/".$address;
+        $url = "http://161.35.212.38:8081/ethereum/balanceof/".$address;
         $response = $client->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=> '{}'

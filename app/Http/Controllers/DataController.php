@@ -301,7 +301,7 @@ class DataController extends Controller
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
         $walletAddress = $userObj->wallet;
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
+        $url = "http://161.35.212.38:8081/dxc/getfor/".$walletAddress;
         $response = $client->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=>'{}'
@@ -791,7 +791,7 @@ class DataController extends Controller
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
         $walletAddress = $userObj->wallet;
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
+        $url = "http://161.35.212.38:8081/dxc/getfor/".$walletAddress;
         $response = $client->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=>'{}'
@@ -843,7 +843,7 @@ class DataController extends Controller
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
         $walletAddress = $userObj->wallet;
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:3333/dxc/getfor/".$walletAddress;
+        $url = "http://161.35.212.38:8081/dxc/getfor/".$walletAddress;
         $response = $client->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=>'{}'
@@ -1583,7 +1583,7 @@ class DataController extends Controller
                     $query = array();
                     $query['address'] = $seller->wallet;
                     $query['amount'] = floatval($request->productPrice);
-                    $url = "http://161.35.212.38:3333/ethereum/wallet/addfunds";
+                    $url = "http://161.35.212.38:8081/ethereum/wallet/addfunds";
                     $response = $client->request("POST", $url, [
                         'headers'=> ['Content-Type' => 'application/json'],
                         'body'=> json_encode($query)
@@ -1591,7 +1591,7 @@ class DataController extends Controller
                     $res = $response->getBody()->getContents();
 
                     // $client = new \GuzzleHttp\Client();
-                    // $url = "http://161.35.212.38:3333/ethereum/deal";
+                    // $url = "http://161.35.212.38:8081/ethereum/deal";
                     // $query = array();
                     // $query['did'] = $product->did;
                     // $query['ownerAddress'] = $userObj->wallet;
@@ -1678,7 +1678,7 @@ class DataController extends Controller
                 $transactionId = $product->transactionId;
             }
             $client = new \GuzzleHttp\Client();
-            $url = "http://161.35.212.38:3333/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+            $url = "http://161.35.212.38:8081/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
             $response = $client->request("GET", $url, [
                 'headers'=> ['Content-Type' => 'application/json'],
                 'body'=>'{}'
@@ -1884,7 +1884,7 @@ class DataController extends Controller
         }
 
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:3333/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+        $url = "http://161.35.212.38:8081/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
         $response = $client->request("GET", $url, [
             'headers'=> ['Content-Type' => 'application/json'],
             'body'=>'{}'
