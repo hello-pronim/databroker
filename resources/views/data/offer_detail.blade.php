@@ -179,7 +179,7 @@
 												<div class="row">
 													<div class="col-12">
 														<div class="row">
-															<div class="col col-3">
+															<div class="col col-4">
 																<div class="list-dxc-container">
 																	<p class="para text-center fs-16 lh-1">Select the DXC</p>
 																	<ul class="selectable-list list-dxc list-style-none pl-0 text-center border-grey">
@@ -191,7 +191,7 @@
 																	</ul>
 																</div>
 															</div>
-															<div class="col col-9 pl-0">
+															<div class="col col-8 pl-0">
 																<div class="table-dxc-data-container">
 																	<p class="para text-center fs-16 lh-1">Select the data</p>
 																	<table class="table border-grey table-dxc-data">

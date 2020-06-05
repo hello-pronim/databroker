@@ -221,7 +221,7 @@
 						<div class="col-6">
 							<h4 class="h4_intro text-left">Identify your data source</h4>
 							<div class="row">
-								<div class="col col-3">
+								<div class="col col-4">
 									<div class="list-dxc-container">
 										<p class="para text-center fs-16 lh-1">Select the DXC</p>
 										<input type="hidden" name="dxc" id="dxc" value="{{$dxcs[0]->host}}">
@@ -234,7 +234,7 @@
 										</ul>
 									</div>
 								</div>
-								<div class="col col-9 pl-0">
+								<div class="col col-8 pl-0">
 									<div class="table-dxc-data-container">
 										<p class="para text-center fs-16 lh-1">Select the data</p>
 										<input type="hidden" name="did" id="did" value="">
