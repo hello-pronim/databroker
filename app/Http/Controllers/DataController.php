@@ -1020,14 +1020,28 @@ class DataController extends Controller
 
     public function offer_publish_confirm($id, Request $request){
         $offerId = $id;
-        $offer = Offer::find($id);
+        $offer = Offer::with(['region'])                   
+                        ->join('communities', 'offers.communityIdx', '=',  'communities.communityIdx')
+                        ->join('providers', 'providers.providerIdx', '=', 'offers.providerIdx')
+                        ->join('users', 'users.userIdx', '=', 'providers.userIdx')
+                        ->join('companies', 'companies.companyIdx', '=', 'users.companyIdx')
+                        ->where('offers.offerIdx', $offerId)
+                        ->get()
+                        ->first();
+        $companyName = str_replace(' ', '', strtolower($offer->companyName));
+        $offer_title = str_replace(' ', '-', strtolower($offer->offerTitle) );
+        $offer_region = "";
+        foreach($offer->region as $key=>$r){
+            $offer_region = $offer_region . str_replace(' ', '-', strtolower($r->regionName));
+            if($key+1 < count($offer->region)) $offer_region = $offer_region . "-";
+        }
         
         $communityIdx = $offer['communityIdx'];
         $community = Community::find($communityIdx);
         // $offer_plain = json_encode($offer);
         // $community_plain = json_encode($community);
         $community_route = str_replace( ' ', '_', strtolower($community->communityName) );
-        $link_to_market = route('data_details', ['id'=>$offerId]);
+        $link_to_market = route('data_details', ['companyName'=>$companyName, 'param'=>$offer_title.'-'.$offer_region]);
 
         $data = array( 'offerId', 'link_to_market' ); //, 'offer_plain', 'community_plain'
         return view('data.offer_publish_confirm', compact($data));

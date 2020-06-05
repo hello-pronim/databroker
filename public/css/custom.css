@@ -2110,20 +2110,17 @@ a[data-target='#mediaLibraryModal']:hover{
 .dataTables_wrapper label{
 	margin-bottom: 0px;
 }
-.list-dxc-container >p{
-	margin-top: 9px;
+div.dataTables_wrapper div.dataTables_filter label{
+	width: 100%;
+}
+div.dataTables_wrapper div.dataTables_filter input{
+	width: calc(100% - 55px);
 }
 .list-dxc-container .list-dxc{
-	margin-top: 17px;
+	margin-top: 50px;
 }
 .table-dxc-data-container{
 	position: relative;
-}
-.table-dxc-data-container >p{
-	position: absolute;
-	left: 135px;
-	top: 9px;
-	margin-bottom: 0px;
 }
 div.dataTables_wrapper div.dataTables_info{
 	font-size: 12px;

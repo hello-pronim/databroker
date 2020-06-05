@@ -16,12 +16,6 @@
 		left: 132px;
 		top: 198px;	
 	}
-	.table-dxc-data-container >p{
-		position: absolute;
-		left: 135px;
-		top: 9px;
-		margin-bottom: 0px;
-	}
 }
 
 @media (max-width: 1600px) {
@@ -37,12 +31,6 @@
 		position: absolute;
 		left: 49px;
 		top: 198px;	
-	}
-	.table-dxc-data-container >p{
-		position: absolute;
-		left: 90px;
-		top: 9px;
-		margin-bottom: 0px;
 	}
 }
 

@@ -206,7 +206,7 @@
 																				@if($dxc->acceptanceStatus=="ACCEPTED")
 																					@foreach($dxc->datasources as $index=>$pp)
 																						@if($pp->available)
-																			<tr class="selectable-list-item" parent-id="{{$key+1}}">
+																			<tr class="selectable-list-item {{$pp->did==$product['did']?'selected':''}}" parent-id="{{$key+1}}">
 																				<td>{{$pp->name}}</td>
 																				<td>{{$pp->type}}</td>
 																			</tr>
