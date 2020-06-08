@@ -122,9 +122,9 @@ class ProfileController extends Controller
         if(!$detail) return redirect(route('account.purchases'));
                 
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:8081/dxc/datasource/".$detail->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+        $url = "https://databroker-dxs-beta.herokuapp.com/dxc/datasource/".$detail->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
         $response = $client->request("GET", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=>'{}'
         ]);
         $dataAccess = json_decode($response->getBody()->getContents());
@@ -220,9 +220,9 @@ class ProfileController extends Controller
         $client = new \GuzzleHttp\Client();
         //$query['index'] = $sale->index;
         $query['index'] = 1;
-        $url = "http://161.35.212.38:8081/ethereum/payout";
+        $url = "https://databroker-dxs-beta.herokuapp.com/ethereum/payout";
         $response = $client->request("POST", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=> json_encode($query)
         ]);
         $res = $response->getBody()->getContents();
@@ -383,9 +383,9 @@ class ProfileController extends Controller
 
         if(!$userObj->wallet){
             $client2 = new \GuzzleHttp\Client();
-            $url = "http://161.35.212.38:8081/ethereum/wallet";
+            $url = "https://databroker-dxs-beta.herokuapp.com/ethereum/wallet";
             $response = $client2->request("POST", $url, [
-                'headers'=> ['Content-Type' => 'application/json'],
+                'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
                 'body'=>'{}'
             ]);
             $responseBody = json_decode($response->getBody()->getContents());
@@ -400,17 +400,17 @@ class ProfileController extends Controller
 
         $address = $userObj->wallet;
         $client3 = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:8081/user/apikey/".$address;
+        $url = "https://databroker-dxs-beta.herokuapp.com/user/apikey/".$address;
         $response = $client3->request("GET", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=>'{}'
         ]);
         $apiKey = $response->getBody()->getContents();
 
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:8081/ethereum/balanceof/".$address;
+        $url = "https://databroker-dxs-beta.herokuapp.com/ethereum/balanceof/".$address;
         $response = $client->request("GET", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=> '{}'
         ]);
         $balance = json_decode($response->getBody()->getContents());

@@ -34,18 +34,18 @@ class DXCController extends Controller
         $apiKey = $userObj->apiKey;
 
         $client1 = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:8081/user/apikey/".$address;
+        $url = "https://databroker-dxs-beta.herokuapp.com/user/apikey/".$address;
         $response = $client1->request("GET", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=>'{}'
         ]);
         $apiKey = $response->getBody()->getContents();
 
         $walletAddress = $userObj->wallet;
         $client2 = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:8081/dxc/getfor/".$walletAddress;
+        $url = "https://databroker-dxs-beta.herokuapp.com/dxc/getfor/".$walletAddress;
         $response = $client2->request("GET", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=>'{}'
         ]);
         $response = json_decode($response->getBody()->getContents());
@@ -56,9 +56,9 @@ class DXCController extends Controller
     }
     public function update_apiKey(Request $request){
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:8081/user/apikey/".$request->address.'?forceNew=true';
+        $url = "https://databroker-dxs-beta.herokuapp.com/user/apikey/".$request->address.'?forceNew=true';
         $response = $client->request("GET", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=>'{}'
         ]);
         $apiKey = $response->getBody()->getContents();

@@ -301,9 +301,9 @@ class DataController extends Controller
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
         $walletAddress = $userObj->wallet;
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:8081/dxc/getfor/".$walletAddress;
+        $url = "https://databroker-dxs-beta.herokuapp.com/dxc/getfor/".$walletAddress;
         $response = $client->request("GET", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=>'{}'
         ]);
         $response = json_decode($response->getBody()->getContents());
@@ -541,7 +541,7 @@ class DataController extends Controller
                 $client = new \GuzzleHttp\Client();
                 $url = "https://prod-107.westeurope.logic.azure.com:443/workflows/bdf7e02c893d426c8f8e101408d30471/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=RvoLkDUgsGbKOUk8oorOUrhXpjcSIdf1_29oSPDA-Tw";
                 $response = $client->request("POST", $url, [
-                    'headers'=> ['Content-Type' => 'application/json'],
+                    'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
                     'body'=> json_encode($query)
                 ]);
             }
@@ -791,9 +791,9 @@ class DataController extends Controller
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
         $walletAddress = $userObj->wallet;
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:8081/dxc/getfor/".$walletAddress;
+        $url = "https://databroker-dxs-beta.herokuapp.com/dxc/getfor/".$walletAddress;
         $response = $client->request("GET", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=>'{}'
         ]);
         $response = json_decode($response->getBody()->getContents());
@@ -843,9 +843,9 @@ class DataController extends Controller
         $userObj = User::where('userIdx', $user->userIdx)->get()->first();
         $walletAddress = $userObj->wallet;
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:8081/dxc/getfor/".$walletAddress;
+        $url = "https://databroker-dxs-beta.herokuapp.com/dxc/getfor/".$walletAddress;
         $response = $client->request("GET", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=>'{}'
         ]);
         $response = json_decode($response->getBody()->getContents());
@@ -1597,15 +1597,15 @@ class DataController extends Controller
                     $query = array();
                     $query['address'] = $seller->wallet;
                     $query['amount'] = floatval($request->productPrice);
-                    $url = "http://161.35.212.38:8081/ethereum/wallet/addfunds";
+                    $url = "https://databroker-dxs-beta.herokuapp.com/ethereum/wallet/addfunds";
                     $response = $client->request("POST", $url, [
-                        'headers'=> ['Content-Type' => 'application/json'],
+                        'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
                         'body'=> json_encode($query)
                     ]);
                     $res = $response->getBody()->getContents();
 
                     // $client = new \GuzzleHttp\Client();
-                    // $url = "http://161.35.212.38:8081/ethereum/deal";
+                    // $url = "https://databroker-dxs-beta.herokuapp.com/ethereum/deal";
                     // $query = array();
                     // $query['did'] = $product->did;
                     // $query['ownerAddress'] = $userObj->wallet;
@@ -1620,7 +1620,7 @@ class DataController extends Controller
                     // $query['validUntil'] = strtotime($paidProductData['to']);
 
                     // $response = $client->request("POST", $url, [
-                    //     'headers'=> ['Content-Type' => 'application/json'],
+                    //     'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
                     //     'body'=>json_encode($query)
                     // ]);
                     // $response = $response->getBody()->getContents();
@@ -1692,9 +1692,9 @@ class DataController extends Controller
                 $transactionId = $product->transactionId;
             }
             $client = new \GuzzleHttp\Client();
-            $url = "http://161.35.212.38:8081/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+            $url = "https://databroker-dxs-beta.herokuapp.com/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
             $response = $client->request("GET", $url, [
-                'headers'=> ['Content-Type' => 'application/json'],
+                'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
                 'body'=>'{}'
             ]);
             $dataAccess = json_decode($response->getBody()->getContents());
@@ -1898,9 +1898,9 @@ class DataController extends Controller
         }
 
         $client = new \GuzzleHttp\Client();
-        $url = "http://161.35.212.38:8081/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
+        $url = "https://databroker-dxs-beta.herokuapp.com/dxc/datasource/".$product->did."/geturlfor/".$userObj->wallet.'?privatekey='.$userObj->walletPrivateKey;
         $response = $client->request("GET", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=>'{}'
         ]);
         $dataAccess = json_decode($response->getBody()->getContents());
