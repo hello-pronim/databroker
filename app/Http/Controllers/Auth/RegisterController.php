@@ -152,9 +152,9 @@ class RegisterController extends Controller
 
         //create a wallet
         $client2 = new \GuzzleHttp\Client();
-        $url = "https://dxs-swagger.herokuapp.com/ethereum/wallet";
+        $url = "https://databroker-dxs-beta.herokuapp.com/ethereum/wallet";
         $response = $client2->request("POST", $url, [
-            'headers'=> ['Content-Type' => 'application/json'],
+            'headers'=> ['Content-Type' => 'application/json', 'DXS_API_KEY' => 'rdfjwey0ccvrbud50qmo'],
             'body'=>'{}'
         ]);
         $responseBody = json_decode($response->getBody()->getContents());
