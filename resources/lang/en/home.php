@@ -44,7 +44,7 @@ return [
     'cookie_desc' => 'We use cookies to give you the best possible experience on Databroker, and to provide web analytics that help us improve our site. To find out more, check out our',
     'accept_cookie' => 'Accept Cookies',
     'cookie_more' => 'Read more about cookies',
-    'meta_title' => 'Welcome to Databroker | The marketplace for data',
+    'meta_title' => 'Welcome to CHEMFLIX | The marketplace for data',
     'meta_desc' => 'Join the biggest community of data buyers and sellers worldwide on our peer-to-peer data marketplace. Need data? Find it. Got data? Monetise it.',
 
     /*menu*/
@@ -77,7 +77,7 @@ return [
     'new_on_marketplace' => 'New on the marketplace',
     'looking_supercharge' => 'Looking for specific data to supercharge your business?',
     'looking_supercharge_description' => 'Let our tailor-made DataMatch service find the perfect data partner for you!',
-    'team_picks' => 'Databroker team picks',
+    'team_picks' => 'CHEMFLIX team picks',
     'featured_data_providers' => 'Featured data providers',
     'sell_or_share' => 'Do you have data to sell or share?',
     'sell_or_share_desc' => 'Connect with a global audience of potential buyers',

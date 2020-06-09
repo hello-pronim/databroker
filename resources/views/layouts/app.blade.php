@@ -139,7 +139,7 @@
             <div class="app-top-bar align-items-center">
                 <div class="row app-brand">
                     <a href="{{route('home') }}">
-                        <svg id="logo-black" xmlns="http://www.w3.org/2000/svg" width="525.314" height="90.848" viewBox="0 0 525.314 90.848">
+                        <!-- <svg id="logo-black" xmlns="http://www.w3.org/2000/svg" width="525.314" height="90.848" viewBox="0 0 525.314 90.848">
                           <path id="Path_7836" data-name="Path 7836" d="M207.345,445.195v5.323a1.338,1.338,0,0,0,1.388,1.515h1.11v1.726H208.3a2.805,2.805,0,0,1-3.108-2.989v-5.575h-1.668v-1.65h1.668V440.72h2.152v2.825h2.518v1.65Z" transform="translate(-95.181 -367.715)" fill="#020a09"></path>
                           <path id="Path_7837" data-name="Path 7837" d="M218.466,448.047v6.211h-2.093v-5.9c0-1.968-1.032-2.643-2.324-2.643a2.383,2.383,0,0,0-2.459,2.662v5.883h-2.1V439.444h2.1V445.5a3.476,3.476,0,0,1,3.067-1.648c2.217,0,3.81,1.408,3.81,4.2" transform="translate(-92.85 -368.214)" fill="#020a09"></path>
                           <path id="Path_7838" data-name="Path 7838" d="M227.979,448.219h-8.556a3.291,3.291,0,0,0,3.338,3.2,3.332,3.332,0,0,0,2.884-1.582l1.746.743a5.086,5.086,0,0,1-4.621,2.633,5.305,5.305,0,1,1-.047-10.609A5.165,5.165,0,0,1,228,447.795Zm-8.43-1.466h6.239a3.007,3.007,0,0,0-3.056-2.44,3.2,3.2,0,0,0-3.183,2.44" transform="translate(-89.775 -366.978)" fill="#020a09"></path>
@@ -174,7 +174,8 @@
                           <path id="Path_7866" data-name="Path 7866" d="M151.875,411.614a14.475,14.475,0,1,0,20.273,2.849,14.476,14.476,0,0,0-20.273-2.849" transform="translate(-117.631 -380.236)" fill="#78e6d0"></path>
                           <path id="Path_7867" data-name="Path 7867" d="M154.616,412.637h0l0,0a23.216,23.216,0,0,1,37.188,18.5l19.726-14.88.013.017V388.237h-85.91V434.5Z" transform="translate(-125.637 -388.237)" fill="#78e6d0"></path>
                           <path id="Path_7868" data-name="Path 7868" d="M182.565,438.581a23.215,23.215,0,0,1-37.188-18.5l-19.726,14.88-.014-.017v28.07h85.91V416.718Z" transform="translate(-125.637 -377.1)" fill="#78e6d0"></path>
-                        </svg>
+                        </svg> -->
+                        <img src="{{ asset('/images/logos/site_logo_new.png') }}" id="top-bar-img"/>  
                     </a>
                 </div>                
                 <div class="clear"></div>
@@ -185,7 +186,7 @@
   			    <div class="container">
               <div class="row app-brand">
           			<a href=" {{route('home') }}">
-                  <img src="{{ asset('/images/logos/site_logo.png') }}" id="top-bar-img"/>                                                
+                  <img src="{{ asset('/images/logos/site_logo_new.png') }}" id="top-bar-img"/>                                                
                 </a>    
               </div>
 			        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="top-bar-menu-btn">
