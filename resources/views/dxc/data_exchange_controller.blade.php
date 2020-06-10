@@ -96,9 +96,11 @@
 						        	<td>
 						        		@if($dxc->acceptanceStatus=="ACCEPTED")
 						        		<div class="dot-success"></div>
-						        		@elseif($dxc->acceptanceStatus!="ACCEPTED")
+						        		@elseif($dxc->acceptanceStatus=="")
+						        		<div class="dot-pending"><a href="#">Pending</a></div>
+						        		@else
 						        		<div class="dot-error"></div>
-						        		@endif
+						        		@endif						        		
 						        	</td>
 					          	</tr>
 					          		@endforeach
