@@ -106,7 +106,7 @@ class DataController extends Controller
             if (strpos($offer['offerImage'], 'media_') === false ) {                           
                 $offer['offerImage'] = '/uploads/offer/medium/'.$offer['offerImage'];    
             }else{
-                $offer['offerImage'] = '/images/gallery/thumbs/medium/'.$offer['offerImage'];    
+                $offer['offerImage'] = $offer['offerImage'];    
             }
         }    
             
