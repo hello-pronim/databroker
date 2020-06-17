@@ -281,9 +281,6 @@ Route::group(['middleware' => ['ReturnAfterAuthentication']], function(){
 	Route::post('/register_nl', 'AboutController@create_nl')->name('create_nl');
 
 	Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap.index');
-	Route::get('/sitemap.xml/communities', 'SitemapController@communities')->name('sitemap.communities');
-	Route::get('/sitemap.xml/offers', 'SitemapController@offers')->name('sitemap.offers');
-	Route::get('/sitemap.xml/company_offers', 'SitemapController@company_offers')->name('sitemap.company_offers');
 });
 
 Auth::routes(['verify' => true]);
