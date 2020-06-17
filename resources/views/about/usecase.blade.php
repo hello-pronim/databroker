@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="flex-center" id="remove-row">
-                <button type="button" class="button blue-outline w225" id="btn-more" data-id="{{ $usecases2[2]->published }}">LOAD MORE</button>
+                <button type="button" class="button blue-outline w225" id="btn-more">LOAD MORE</button>
             </div>
         </div>
     </div>
